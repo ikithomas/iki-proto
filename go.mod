@@ -1,4 +1,4 @@
-module github.com/ikithomas/proto
+module github.com/ikithomas/iki-proto
 
 go 1.17
 
