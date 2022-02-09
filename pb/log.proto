@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "/log";
+
+message Log {
+  int64 id = 1;
+  string title = 2;
+  string text = 3;
+}
+
+message Logs {
+  repeated Log logs = 1;
+}
