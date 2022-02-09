@@ -1,0 +1,9 @@
+---
+version: '3'
+services:
+  app:
+    build: '.'
+    volumes:
+    - '.:/go/src/iki'
+    environment:
+      IKI_DIR: "/go/src/iki"

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "/auth";
+
+message User {
+  int64 id = 1;
+  string username = 2;
+  string password = 3;
+  string email = 4;
+  string nickname = 5;
+}
+
+message Users {
+  repeated User users = 1;
+}
