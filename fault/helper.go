@@ -2,16 +2,16 @@ package fault
 
 import "google.golang.org/protobuf/proto"
 
-func (f *Fault) CodeStr() string {
-	return f.Code.String()
-}
-
 func (f *Fault) Byte() []byte {
 	b, err := proto.Marshal(f)
 	if err != nil {
 		panic(err)
 	}
 	return b
+}
+
+func (f *Fault) CodeStr() string {
+	return f.Code.String()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
