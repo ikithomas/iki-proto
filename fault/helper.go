@@ -46,6 +46,13 @@ func InvalidJSON(msg string) *Fault {
 	}
 }
 
+func InvalidBody(msg string) *Fault {
+	return &Fault{
+		Code:    Fault_InvalidBody,
+		Message: msg,
+	}
+}
+
 func DBError(msg string) *Fault {
 	return &Fault{
 		Code:    Fault_DBError,
