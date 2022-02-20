@@ -1,6 +1,10 @@
 package fault
 
-import "google.golang.org/protobuf/proto"
+import (
+	"fmt"
+
+	"google.golang.org/protobuf/proto"
+)
 
 func (f *Fault) Byte() []byte {
 	b, err := proto.Marshal(f)
@@ -18,44 +22,44 @@ func (f *Fault) CodeStr() string {
 // Builder
 /////
 
-func InvalidParam(msg string) *Fault {
+func InvalidParam(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_InvalidParam,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
 
-func IOError(msg string) *Fault {
+func IOError(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_IOError,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
 
-func InvalidProtoBuff(msg string) *Fault {
+func InvalidProtoBuff(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_InvalidProtoBuff,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
 
-func InvalidJSON(msg string) *Fault {
+func InvalidJSON(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_InvalidJSON,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
 
-func InvalidBody(msg string) *Fault {
+func InvalidBody(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_InvalidBody,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
 
-func DBError(msg string) *Fault {
+func DBError(format string, args ...interface{}) *Fault {
 	return &Fault{
 		Code:    Fault_DBError,
-		Message: msg,
+		Message: fmt.Sprintf(format, args...),
 	}
 }
