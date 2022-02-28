@@ -7,4 +7,4 @@ sh:
 	@docker-compose run --rm app sh
 
 pb:
-	@protoc -I=pb --go_out=. pb/*.proto
+	@protoc -I=proto --go_out=. proto/*.proto
