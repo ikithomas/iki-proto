@@ -1,4 +1,4 @@
-package log
+package proto
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func subject() Log {
+func newLog() Log {
 	return Log{
 		Id:    1,
 		Title: "test",
@@ -15,7 +15,7 @@ func subject() Log {
 }
 
 func TestLog_Getter(t *testing.T) {
-	subject := subject()
+	subject := newLog()
 	assert.Equal(t, int64(1), subject.GetId())
 	assert.Equal(t, "test", subject.GetTitle())
 	assert.Equal(t, "Friends", subject.GetText())

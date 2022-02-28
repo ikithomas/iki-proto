@@ -1,4 +1,4 @@
-package auth
+package proto
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func subject() User {
+func newUser() User {
 	return User{
 		Id:       1,
 		Username: "ikithomas",
@@ -18,7 +18,7 @@ func subject() User {
 }
 
 func TestUserGetter(t *testing.T) {
-	subject := subject()
+	subject := newUser()
 	assert.Equal(t, "Thomas", subject.GetNickname())
 	assert.Equal(t, "password", subject.GetPassword())
 	assert.Equal(t, "ikithomas", subject.GetUsername())
@@ -27,7 +27,7 @@ func TestUserGetter(t *testing.T) {
 }
 
 func TestUserReset(t *testing.T) {
-	subject := subject()
+	subject := newUser()
 	subject.Reset()
 	assert.Zero(t, subject.GetNickname())
 	assert.Zero(t, subject.GetPassword())
@@ -37,7 +37,7 @@ func TestUserReset(t *testing.T) {
 }
 
 func TestUserSerialization(t *testing.T) {
-	expected := subject()
+	expected := newUser()
 	var actual User
 
 	b, err := proto.Marshal(&expected)

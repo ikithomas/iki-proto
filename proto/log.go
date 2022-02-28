@@ -1,4 +1,4 @@
-package log
+package proto
 
 import "google.golang.org/protobuf/proto"
 

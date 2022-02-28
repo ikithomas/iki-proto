@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "/log";
+option go_package = "/proto";
 
 message Log {
   int64 id = 1;
