@@ -11,6 +11,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
+var jspb = require('google-protobuf');
+var goog = jspb;
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+
 goog.exportSymbol('proto.health.HealthCheckRequest', null, global);
 goog.exportSymbol('proto.health.HealthCheckResponse', null, global);
 goog.exportSymbol('proto.health.HealthCheckResponse.ServingStatus', null, global);
@@ -326,3 +330,4 @@ proto.health.HealthCheckResponse.prototype.setStatus = function(value) {
 };
 
 
+goog.object.extend(exports, proto.health);

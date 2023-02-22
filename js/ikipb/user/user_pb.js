@@ -11,6 +11,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
+var jspb = require('google-protobuf');
+var goog = jspb;
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+
 goog.exportSymbol('proto.User', null, global);
 goog.exportSymbol('proto.Users', null, global);
 /**
@@ -495,3 +499,4 @@ proto.Users.prototype.clearUsersList = function() {
 };
 
 
+goog.object.extend(exports, proto);

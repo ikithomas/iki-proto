@@ -15,23 +15,12 @@
 // @ts-nocheck
 
 
-goog.provide('proto.health.HealthClient');
-goog.provide('proto.health.HealthPromiseClient');
 
-goog.require('grpc.web.MethodDescriptor');
-goog.require('grpc.web.MethodType');
-goog.require('grpc.web.GrpcWebClientBase');
-goog.require('grpc.web.AbstractClientBase');
-goog.require('grpc.web.ClientReadableStream');
-goog.require('grpc.web.RpcError');
-goog.require('proto.health.HealthCheckRequest');
-goog.require('proto.health.HealthCheckResponse');
+const grpc = {};
+grpc.web = require('grpc-web');
 
-goog.requireType('grpc.web.ClientOptions');
-
-
-
-goog.scope(function() {
+const proto = {};
+proto.health = require('./health_pb.js');
 
 /**
  * @param {string} hostname
@@ -202,5 +191,5 @@ proto.health.HealthPromiseClient.prototype.watch =
 };
 
 
-}); // goog.scope
+module.exports = proto.health;
 

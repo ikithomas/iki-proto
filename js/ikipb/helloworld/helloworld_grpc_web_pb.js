@@ -15,23 +15,12 @@
 // @ts-nocheck
 
 
-goog.provide('proto.helloworld.GreeterClient');
-goog.provide('proto.helloworld.GreeterPromiseClient');
 
-goog.require('grpc.web.MethodDescriptor');
-goog.require('grpc.web.MethodType');
-goog.require('grpc.web.GrpcWebClientBase');
-goog.require('grpc.web.AbstractClientBase');
-goog.require('grpc.web.ClientReadableStream');
-goog.require('grpc.web.RpcError');
-goog.require('proto.helloworld.HelloReply');
-goog.require('proto.helloworld.HelloRequest');
+const grpc = {};
+grpc.web = require('grpc-web');
 
-goog.requireType('grpc.web.ClientOptions');
-
-
-
-goog.scope(function() {
+const proto = {};
+proto.helloworld = require('./helloworld_pb.js');
 
 /**
  * @param {string} hostname
@@ -263,5 +252,5 @@ proto.helloworld.GreeterPromiseClient.prototype.sayHellos =
 };
 
 
-}); // goog.scope
+module.exports = proto.helloworld;
 

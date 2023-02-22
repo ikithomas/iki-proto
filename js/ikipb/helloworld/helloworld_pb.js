@@ -11,6 +11,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
+var jspb = require('google-protobuf');
+var goog = jspb;
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+
 goog.exportSymbol('proto.helloworld.HelloReply', null, global);
 goog.exportSymbol('proto.helloworld.HelloRequest', null, global);
 /**
@@ -315,3 +319,4 @@ proto.helloworld.HelloReply.prototype.setMessage = function(value) {
 };
 
 
+goog.object.extend(exports, proto.helloworld);

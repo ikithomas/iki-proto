@@ -11,6 +11,12 @@
 /* eslint-disable */
 // @ts-nocheck
 
+var jspb = require('google-protobuf');
+var goog = jspb;
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+
+var ikipb_user_user_pb = require('../../ikipb/user/user_pb.js');
+goog.object.extend(proto, ikipb_user_user_pb);
 goog.exportSymbol('proto.Log', null, global);
 goog.exportSymbol('proto.Logs', null, global);
 /**
@@ -91,7 +97,7 @@ proto.Log.toObject = function(includeInstance, msg) {
     title: jspb.Message.getFieldWithDefault(msg, 2, ""),
     text: jspb.Message.getFieldWithDefault(msg, 3, ""),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    author: (f = msg.getAuthor()) && proto.User.toObject(includeInstance, f)
+    author: (f = msg.getAuthor()) && ikipb_user_user_pb.User.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -145,8 +151,8 @@ proto.Log.deserializeBinaryFromReader = function(msg, reader) {
       msg.setUpdatedAt(value);
       break;
     case 5:
-      var value = new proto.User;
-      reader.readMessage(value,proto.User.deserializeBinaryFromReader);
+      var value = new ikipb_user_user_pb.User;
+      reader.readMessage(value,ikipb_user_user_pb.User.deserializeBinaryFromReader);
       msg.setAuthor(value);
       break;
     default:
@@ -211,7 +217,7 @@ proto.Log.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.User.serializeBinaryToWriter
+      ikipb_user_user_pb.User.serializeBinaryToWriter
     );
   }
 };
@@ -295,7 +301,7 @@ proto.Log.prototype.setUpdatedAt = function(value) {
  */
 proto.Log.prototype.getAuthor = function() {
   return /** @type{?proto.User} */ (
-    jspb.Message.getWrapperField(this, proto.User, 5));
+    jspb.Message.getWrapperField(this, ikipb_user_user_pb.User, 5));
 };
 
 
@@ -486,3 +492,4 @@ proto.Logs.prototype.clearLogsList = function() {
 };
 
 
+goog.object.extend(exports, proto);
