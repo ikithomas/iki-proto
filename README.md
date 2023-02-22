@@ -16,3 +16,16 @@ brew install protoc-gen-grpc-web
 ```bash
 protoc -I=proto --go_out=. proto/user.proto
 ```
+
+Publish to NPM
+
+```bash
+# Link the repo
+npm link iki-proto
+
+# Login
+npm  adduser
+
+# Publish
+npm publish
+```
