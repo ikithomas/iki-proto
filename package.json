@@ -1,6 +1,10 @@
 {
   "name": "iki-proto",
-  "version": "1.0.1",
+  "dependencies": {
+    "google-protobuf": "^3.6.1",
+    "grpc-web": "^0.4.0"
+  },
+  "version": "1.0.2",
   "description": "",
   "main": "js/index.js",
   "scripts": {
