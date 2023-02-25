@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type ActivityServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetGpxResponse, error)
 }
 
 type activityServiceClient struct {
@@ -52,12 +53,22 @@ func (c *activityServiceClient) List(ctx context.Context, in *ListRequest, opts 
 	return out, nil
 }
 
+func (c *activityServiceClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetGpxResponse, error) {
+	out := new(GetGpxResponse)
+	err := c.cc.Invoke(ctx, "/activity.ActivityService/GetGpx", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ActivityServiceServer is the server API for ActivityService service.
 // All implementations must embed UnimplementedActivityServiceServer
 // for forward compatibility
 type ActivityServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	GetGpx(context.Context, *GetGpxRequest) (*GetGpxResponse, error)
 	mustEmbedUnimplementedActivityServiceServer()
 }
 
@@ -70,6 +81,9 @@ func (UnimplementedActivityServiceServer) Get(context.Context, *GetRequest) (*Ge
 }
 func (UnimplementedActivityServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedActivityServiceServer) GetGpx(context.Context, *GetGpxRequest) (*GetGpxResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGpx not implemented")
 }
 func (UnimplementedActivityServiceServer) mustEmbedUnimplementedActivityServiceServer() {}
 
@@ -120,6 +134,24 @@ func _ActivityService_List_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ActivityService_GetGpx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGpxRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ActivityServiceServer).GetGpx(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/activity.ActivityService/GetGpx",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ActivityServiceServer).GetGpx(ctx, req.(*GetGpxRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ActivityService_ServiceDesc is the grpc.ServiceDesc for ActivityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +166,10 @@ var ActivityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _ActivityService_List_Handler,
+		},
+		{
+			MethodName: "GetGpx",
+			Handler:    _ActivityService_GetGpx_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

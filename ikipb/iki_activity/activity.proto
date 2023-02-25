@@ -7,6 +7,7 @@ package activity;
 service ActivityService {
   rpc Get (GetRequest) returns (GetResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
+  rpc GetGpx (GetGpxRequest) returns (GetGpxResponse) {}
 }
 
 message Activity {
@@ -35,13 +36,21 @@ message GetRequest {
   int64 id = 1;
 }
 
-message ListRequest {
-}
-
 message GetResponse {
   Activity activity = 1;
 }
 
+message ListRequest {
+}
+
 message ListResponse {
   repeated Activity activities = 1;
+}
+
+message GetGpxRequest {
+  int64 id = 1;
+}
+
+message GetGpxResponse {
+  bytes data = 1;
 }
