@@ -15,6 +15,6 @@ pb:
     --go-grpc_out=./ --go-grpc_opt=paths=source_relative \
     ikipb/*/*.proto
 	@protoc \
-    --js_out=import_style=commonjs:./js/ \
-    --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./js/ \
+    --js_out=import_style=commonjs:./ \
+    --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./ \
     ikipb/*/*.proto
