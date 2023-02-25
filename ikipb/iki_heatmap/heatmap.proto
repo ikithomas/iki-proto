@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "/heatmap";
+
+package heatmap;
+
+service HeatmapService {
+  rpc Get (GetRequest) returns (stream Track) {}
+}
+
+message GetRequest {
+  // Athlete ID
+  int64 athlete_id = 1;
+  // Resolution of the activity in the heatmap
+  int64 resolution = 2;
+}
+
+message Track {
+  int64 id = 1;
+  int64 start_timstamp = 2;
+  repeated GeoPoint track = 3;
+}
+
+message GeoPoint {
+  float lat = 1;
+  float lng = 2;
+}
