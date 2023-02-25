@@ -7,7 +7,7 @@ package activity;
 service ActivityService {
   rpc Get (GetRequest) returns (GetResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
-  rpc GetGpx (GetGpxRequest) returns (GetGpxResponse) {}
+  rpc GetGpx (GetGpxRequest) returns (stream Chunk) {}
 }
 
 message Activity {
@@ -32,6 +32,10 @@ message Activity {
   string gpx_file_path = 19;
 }
 
+message Chunk {
+  bytes chunk = 1;
+}
+
 message GetRequest {
   int64 id = 1;
 }
@@ -49,8 +53,4 @@ message ListResponse {
 
 message GetGpxRequest {
   int64 id = 1;
-}
-
-message GetGpxResponse {
-  bytes data = 1;
 }

@@ -200,13 +200,13 @@ proto.activity.ActivityServicePromiseClient.prototype.list =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.activity.GetGpxRequest,
- *   !proto.activity.GetGpxResponse>}
+ *   !proto.activity.Chunk>}
  */
 const methodDescriptor_ActivityService_GetGpx = new grpc.web.MethodDescriptor(
   '/activity.ActivityService/GetGpx',
-  grpc.web.MethodType.UNARY,
+  grpc.web.MethodType.SERVER_STREAMING,
   proto.activity.GetGpxRequest,
-  proto.activity.GetGpxResponse,
+  proto.activity.Chunk,
   /**
    * @param {!proto.activity.GetGpxRequest} request
    * @return {!Uint8Array}
@@ -214,42 +214,37 @@ const methodDescriptor_ActivityService_GetGpx = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.activity.GetGpxResponse.deserializeBinary
+  proto.activity.Chunk.deserializeBinary
 );
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {!proto.activity.GetGpxRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.activity.GetGpxResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.activity.GetGpxResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.Chunk>}
  *     The XHR Node Readable Stream
  */
 proto.activity.ActivityServiceClient.prototype.getGpx =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
       '/activity.ActivityService/GetGpx',
       request,
       metadata || {},
-      methodDescriptor_ActivityService_GetGpx,
-      callback);
+      methodDescriptor_ActivityService_GetGpx);
 };
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The
- *     request proto
+ * @param {!proto.activity.GetGpxRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.activity.GetGpxResponse>}
- *     Promise that resolves to the response
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.Chunk>}
+ *     The XHR Node Readable Stream
  */
 proto.activity.ActivityServicePromiseClient.prototype.getGpx =
     function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
+  return this.client_.serverStreaming(this.hostname_ +
       '/activity.ActivityService/GetGpx',
       request,
       metadata || {},
