@@ -175,7 +175,7 @@ proto.activity.Activity.toObject = function(includeInstance, msg) {
     averageTemp: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
     averageHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
     maxHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
-    gpxFilePath: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0)
+    gpxFilePath: jspb.Message.getFieldWithDefault(msg, 19, "")
   };
 
   if (includeInstance) {
@@ -285,7 +285,7 @@ proto.activity.Activity.deserializeBinaryFromReader = function(msg, reader) {
       msg.setMaxHeartrate(value);
       break;
     case 19:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {string} */ (reader.readString());
       msg.setGpxFilePath(value);
       break;
     default:
@@ -444,8 +444,8 @@ proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getGpxFilePath();
-  if (f !== 0.0) {
-    writer.writeFloat(
+  if (f.length > 0) {
+    writer.writeString(
       19,
       f
     );
@@ -778,20 +778,20 @@ proto.activity.Activity.prototype.setMaxHeartrate = function(value) {
 
 
 /**
- * optional float gpx_file_path = 19;
- * @return {number}
+ * optional string gpx_file_path = 19;
+ * @return {string}
  */
 proto.activity.Activity.prototype.getGpxFilePath = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 19, 0.0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setGpxFilePath = function(value) {
-  return jspb.Message.setProto3FloatField(this, 19, value);
+  return jspb.Message.setProto3StringField(this, 19, value);
 };
 
 
