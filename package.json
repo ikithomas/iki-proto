@@ -4,7 +4,7 @@
     "google-protobuf": "^3.6.1",
     "grpc-web": "~1.0.7"
   },
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "js/index.js",
   "scripts": {
