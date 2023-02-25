@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "/activity";
+
+package activity;
+
+service ActivityService {
+  rpc Get (GetActivityRequest) returns (GetActivityResponse) {}
+  rpc List (ListActivityRequest) returns (ListActivityResponse) {}
+}
+
+message Activity {
+  int64 id = 1;
+  int64 external_id = 2;
+  string name = 3;
+  string type = 4;
+  int64 athlete_id = 5;
+  float distance = 6;
+  int64 elapsed_time = 7;
+  float total_elevation_gain = 8;
+  int64 start_date = 9;
+  float start_lat = 10;
+  float start_lng = 11;
+  float end_lat = 12;
+  float end_lng = 13;
+  float average_speed = 14;
+  float average_cadence = 15;
+  float average_temp = 16;
+  float average_heartrate = 17;
+  float max_heartrate = 18;
+  float gpx_file_path = 19;
+}
+
+message GetActivityRequest {
+  int64 id = 1;
+}
+
+message ListActivityRequest {
+}
+
+message GetActivityResponse {
+  Activity activity = 1;
+}
+
+message ListActivityResponse {
+  repeated Activity activity = 1;
+}
