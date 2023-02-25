@@ -28,7 +28,7 @@ message Activity {
   float average_temp = 16;
   float average_heartrate = 17;
   float max_heartrate = 18;
-  float gpx_file_path = 19;
+  string gpx_file_path = 19;
 }
 
 message GetRequest {
