@@ -77,33 +77,33 @@ proto.activity.ActivityServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.activity.GetActivityRequest,
- *   !proto.activity.GetActivityResponse>}
+ *   !proto.activity.GetRequest,
+ *   !proto.activity.GetResponse>}
  */
 const methodDescriptor_ActivityService_Get = new grpc.web.MethodDescriptor(
   '/activity.ActivityService/Get',
   grpc.web.MethodType.UNARY,
-  proto.activity.GetActivityRequest,
-  proto.activity.GetActivityResponse,
+  proto.activity.GetRequest,
+  proto.activity.GetResponse,
   /**
-   * @param {!proto.activity.GetActivityRequest} request
+   * @param {!proto.activity.GetRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.activity.GetActivityResponse.deserializeBinary
+  proto.activity.GetResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.activity.GetActivityRequest} request The
+ * @param {!proto.activity.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.activity.GetActivityResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.activity.GetResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.activity.GetActivityResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.GetResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.activity.ActivityServiceClient.prototype.get =
@@ -118,11 +118,11 @@ proto.activity.ActivityServiceClient.prototype.get =
 
 
 /**
- * @param {!proto.activity.GetActivityRequest} request The
+ * @param {!proto.activity.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.activity.GetActivityResponse>}
+ * @return {!Promise<!proto.activity.GetResponse>}
  *     Promise that resolves to the response
  */
 proto.activity.ActivityServicePromiseClient.prototype.get =
@@ -138,33 +138,33 @@ proto.activity.ActivityServicePromiseClient.prototype.get =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.activity.ListActivityRequest,
- *   !proto.activity.ListActivityResponse>}
+ *   !proto.activity.ListRequest,
+ *   !proto.activity.ListResponse>}
  */
 const methodDescriptor_ActivityService_List = new grpc.web.MethodDescriptor(
   '/activity.ActivityService/List',
   grpc.web.MethodType.UNARY,
-  proto.activity.ListActivityRequest,
-  proto.activity.ListActivityResponse,
+  proto.activity.ListRequest,
+  proto.activity.ListResponse,
   /**
-   * @param {!proto.activity.ListActivityRequest} request
+   * @param {!proto.activity.ListRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.activity.ListActivityResponse.deserializeBinary
+  proto.activity.ListResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.activity.ListActivityRequest} request The
+ * @param {!proto.activity.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.activity.ListActivityResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.activity.ListResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.activity.ListActivityResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.ListResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.activity.ActivityServiceClient.prototype.list =
@@ -179,11 +179,11 @@ proto.activity.ActivityServiceClient.prototype.list =
 
 
 /**
- * @param {!proto.activity.ListActivityRequest} request The
+ * @param {!proto.activity.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.activity.ListActivityResponse>}
+ * @return {!Promise<!proto.activity.ListResponse>}
  *     Promise that resolves to the response
  */
 proto.activity.ActivityServicePromiseClient.prototype.list =

@@ -5,8 +5,8 @@ option go_package = "/activity";
 package activity;
 
 service ActivityService {
-  rpc Get (GetActivityRequest) returns (GetActivityResponse) {}
-  rpc List (ListActivityRequest) returns (ListActivityResponse) {}
+  rpc Get (GetRequest) returns (GetResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {}
 }
 
 message Activity {
@@ -31,17 +31,17 @@ message Activity {
   float gpx_file_path = 19;
 }
 
-message GetActivityRequest {
+message GetRequest {
   int64 id = 1;
 }
 
-message ListActivityRequest {
+message ListRequest {
 }
 
-message GetActivityResponse {
+message GetResponse {
   Activity activity = 1;
 }
 
-message ListActivityResponse {
+message ListResponse {
   repeated Activity activity = 1;
 }

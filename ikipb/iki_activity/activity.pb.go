@@ -211,7 +211,7 @@ func (x *Activity) GetGpxFilePath() float32 {
 	return 0
 }
 
-type GetActivityRequest struct {
+type GetRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -219,8 +219,8 @@ type GetActivityRequest struct {
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetActivityRequest) Reset() {
-	*x = GetActivityRequest{}
+func (x *GetRequest) Reset() {
+	*x = GetRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -228,13 +228,13 @@ func (x *GetActivityRequest) Reset() {
 	}
 }
 
-func (x *GetActivityRequest) String() string {
+func (x *GetRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetActivityRequest) ProtoMessage() {}
+func (*GetRequest) ProtoMessage() {}
 
-func (x *GetActivityRequest) ProtoReflect() protoreflect.Message {
+func (x *GetRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -246,26 +246,26 @@ func (x *GetActivityRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetActivityRequest.ProtoReflect.Descriptor instead.
-func (*GetActivityRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
+func (*GetRequest) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetActivityRequest) GetId() int64 {
+func (x *GetRequest) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-type ListActivityRequest struct {
+type ListRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ListActivityRequest) Reset() {
-	*x = ListActivityRequest{}
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -273,13 +273,13 @@ func (x *ListActivityRequest) Reset() {
 	}
 }
 
-func (x *ListActivityRequest) String() string {
+func (x *ListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListActivityRequest) ProtoMessage() {}
+func (*ListRequest) ProtoMessage() {}
 
-func (x *ListActivityRequest) ProtoReflect() protoreflect.Message {
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -291,12 +291,12 @@ func (x *ListActivityRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListActivityRequest.ProtoReflect.Descriptor instead.
-func (*ListActivityRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{2}
 }
 
-type GetActivityResponse struct {
+type GetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -304,8 +304,8 @@ type GetActivityResponse struct {
 	Activity *Activity `protobuf:"bytes,1,opt,name=activity,proto3" json:"activity,omitempty"`
 }
 
-func (x *GetActivityResponse) Reset() {
-	*x = GetActivityResponse{}
+func (x *GetResponse) Reset() {
+	*x = GetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -313,13 +313,13 @@ func (x *GetActivityResponse) Reset() {
 	}
 }
 
-func (x *GetActivityResponse) String() string {
+func (x *GetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetActivityResponse) ProtoMessage() {}
+func (*GetResponse) ProtoMessage() {}
 
-func (x *GetActivityResponse) ProtoReflect() protoreflect.Message {
+func (x *GetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -331,19 +331,19 @@ func (x *GetActivityResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetActivityResponse.ProtoReflect.Descriptor instead.
-func (*GetActivityResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
+func (*GetResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetActivityResponse) GetActivity() *Activity {
+func (x *GetResponse) GetActivity() *Activity {
 	if x != nil {
 		return x.Activity
 	}
 	return nil
 }
 
-type ListActivityResponse struct {
+type ListResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -351,8 +351,8 @@ type ListActivityResponse struct {
 	Activity []*Activity `protobuf:"bytes,1,rep,name=activity,proto3" json:"activity,omitempty"`
 }
 
-func (x *ListActivityResponse) Reset() {
-	*x = ListActivityResponse{}
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -360,13 +360,13 @@ func (x *ListActivityResponse) Reset() {
 	}
 }
 
-func (x *ListActivityResponse) String() string {
+func (x *ListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListActivityResponse) ProtoMessage() {}
+func (*ListResponse) ProtoMessage() {}
 
-func (x *ListActivityResponse) ProtoReflect() protoreflect.Message {
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -378,12 +378,12 @@ func (x *ListActivityResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListActivityResponse.ProtoReflect.Descriptor instead.
-func (*ListActivityResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ListActivityResponse) GetActivity() []*Activity {
+func (x *ListResponse) GetActivity() []*Activity {
 	if x != nil {
 		return x.Activity
 	}
@@ -434,29 +434,25 @@ var file_ikipb_iki_activity_activity_proto_rawDesc = []byte{
 	0x01, 0x28, 0x02, 0x52, 0x0c, 0x6d, 0x61, 0x78, 0x48, 0x65, 0x61, 0x72, 0x74, 0x72, 0x61, 0x74,
 	0x65, 0x12, 0x22, 0x0a, 0x0d, 0x67, 0x70, 0x78, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x70, 0x61,
 	0x74, 0x68, 0x18, 0x13, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0b, 0x67, 0x70, 0x78, 0x46, 0x69, 0x6c,
-	0x65, 0x50, 0x61, 0x74, 0x68, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x41, 0x63, 0x74, 0x69,
-	0x76, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x15, 0x0a, 0x13, 0x4c,
-	0x69, 0x73, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x45, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
-	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74,
-	0x69, 0x76, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63,
-	0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52,
-	0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x22, 0x46, 0x0a, 0x14, 0x4c, 0x69, 0x73,
-	0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x50, 0x61, 0x74, 0x68, 0x22, 0x1c, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x02, 0x69, 0x64, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x3d, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x41,
+	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
+	0x79, 0x22, 0x3e, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
 	0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x41,
 	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
-	0x79, 0x32, 0xa0, 0x01, 0x0a, 0x0f, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x53, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x44, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x1c, 0x2e, 0x61,
-	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76,
-	0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x61, 0x63, 0x74,
-	0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
-	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x47, 0x0a, 0x04, 0x4c,
-	0x69, 0x73, 0x74, 0x12, 0x1d, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c,
-	0x69, 0x73, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69,
-	0x73, 0x74, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x79, 0x32, 0x80, 0x01, 0x0a, 0x0f, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x34, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x61,
+	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x37, 0x0a, 0x04, 0x4c,
+	0x69, 0x73, 0x74, 0x12, 0x15, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x61, 0x63, 0x74,
+	0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x22, 0x00, 0x42, 0x0b, 0x5a, 0x09, 0x2f, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
 	0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
@@ -475,19 +471,19 @@ func file_ikipb_iki_activity_activity_proto_rawDescGZIP() []byte {
 
 var file_ikipb_iki_activity_activity_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_ikipb_iki_activity_activity_proto_goTypes = []interface{}{
-	(*Activity)(nil),             // 0: activity.Activity
-	(*GetActivityRequest)(nil),   // 1: activity.GetActivityRequest
-	(*ListActivityRequest)(nil),  // 2: activity.ListActivityRequest
-	(*GetActivityResponse)(nil),  // 3: activity.GetActivityResponse
-	(*ListActivityResponse)(nil), // 4: activity.ListActivityResponse
+	(*Activity)(nil),     // 0: activity.Activity
+	(*GetRequest)(nil),   // 1: activity.GetRequest
+	(*ListRequest)(nil),  // 2: activity.ListRequest
+	(*GetResponse)(nil),  // 3: activity.GetResponse
+	(*ListResponse)(nil), // 4: activity.ListResponse
 }
 var file_ikipb_iki_activity_activity_proto_depIdxs = []int32{
-	0, // 0: activity.GetActivityResponse.activity:type_name -> activity.Activity
-	0, // 1: activity.ListActivityResponse.activity:type_name -> activity.Activity
-	1, // 2: activity.ActivityService.Get:input_type -> activity.GetActivityRequest
-	2, // 3: activity.ActivityService.List:input_type -> activity.ListActivityRequest
-	3, // 4: activity.ActivityService.Get:output_type -> activity.GetActivityResponse
-	4, // 5: activity.ActivityService.List:output_type -> activity.ListActivityResponse
+	0, // 0: activity.GetResponse.activity:type_name -> activity.Activity
+	0, // 1: activity.ListResponse.activity:type_name -> activity.Activity
+	1, // 2: activity.ActivityService.Get:input_type -> activity.GetRequest
+	2, // 3: activity.ActivityService.List:input_type -> activity.ListRequest
+	3, // 4: activity.ActivityService.Get:output_type -> activity.GetResponse
+	4, // 5: activity.ActivityService.List:output_type -> activity.ListResponse
 	4, // [4:6] is the sub-list for method output_type
 	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -514,7 +510,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetActivityRequest); i {
+			switch v := v.(*GetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -526,7 +522,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListActivityRequest); i {
+			switch v := v.(*ListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -538,7 +534,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetActivityResponse); i {
+			switch v := v.(*GetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -550,7 +546,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListActivityResponse); i {
+			switch v := v.(*ListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
