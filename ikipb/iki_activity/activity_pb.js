@@ -1378,7 +1378,7 @@ proto.activity.ListResponse.prototype.toObject = function(opt_includeInstance) {
  */
 proto.activity.ListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    activityList: jspb.Message.toObjectList(msg.getActivityList(),
+    activitiesList: jspb.Message.toObjectList(msg.getActivitiesList(),
     proto.activity.Activity.toObject, includeInstance)
   };
 
@@ -1419,7 +1419,7 @@ proto.activity.ListResponse.deserializeBinaryFromReader = function(msg, reader) 
     case 1:
       var value = new proto.activity.Activity;
       reader.readMessage(value,proto.activity.Activity.deserializeBinaryFromReader);
-      msg.addActivity(value);
+      msg.addActivities(value);
       break;
     default:
       reader.skipField();
@@ -1450,7 +1450,7 @@ proto.activity.ListResponse.prototype.serializeBinary = function() {
  */
 proto.activity.ListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getActivityList();
+  f = message.getActivitiesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -1462,10 +1462,10 @@ proto.activity.ListResponse.serializeBinaryToWriter = function(message, writer) 
 
 
 /**
- * repeated Activity activity = 1;
+ * repeated Activity activities = 1;
  * @return {!Array<!proto.activity.Activity>}
  */
-proto.activity.ListResponse.prototype.getActivityList = function() {
+proto.activity.ListResponse.prototype.getActivitiesList = function() {
   return /** @type{!Array<!proto.activity.Activity>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.activity.Activity, 1));
 };
@@ -1475,7 +1475,7 @@ proto.activity.ListResponse.prototype.getActivityList = function() {
  * @param {!Array<!proto.activity.Activity>} value
  * @return {!proto.activity.ListResponse} returns this
 */
-proto.activity.ListResponse.prototype.setActivityList = function(value) {
+proto.activity.ListResponse.prototype.setActivitiesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1485,7 +1485,7 @@ proto.activity.ListResponse.prototype.setActivityList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.activity.Activity}
  */
-proto.activity.ListResponse.prototype.addActivity = function(opt_value, opt_index) {
+proto.activity.ListResponse.prototype.addActivities = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.activity.Activity, opt_index);
 };
 
@@ -1494,8 +1494,8 @@ proto.activity.ListResponse.prototype.addActivity = function(opt_value, opt_inde
  * Clears the list making it empty but non-null.
  * @return {!proto.activity.ListResponse} returns this
  */
-proto.activity.ListResponse.prototype.clearActivityList = function() {
-  return this.setActivityList([]);
+proto.activity.ListResponse.prototype.clearActivitiesList = function() {
+  return this.setActivitiesList([]);
 };
 
 
