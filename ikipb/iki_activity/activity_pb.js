@@ -380,64 +380,64 @@ proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStartLat();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
     writer.writeFloat(
       10,
       f
     );
   }
-  f = message.getStartLng();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
     writer.writeFloat(
       11,
       f
     );
   }
-  f = message.getEndLat();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 12));
+  if (f != null) {
     writer.writeFloat(
       12,
       f
     );
   }
-  f = message.getEndLng();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 13));
+  if (f != null) {
     writer.writeFloat(
       13,
       f
     );
   }
-  f = message.getAverageSpeed();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 14));
+  if (f != null) {
     writer.writeFloat(
       14,
       f
     );
   }
-  f = message.getAverageCadence();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 15));
+  if (f != null) {
     writer.writeFloat(
       15,
       f
     );
   }
-  f = message.getAverageTemp();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 16));
+  if (f != null) {
     writer.writeFloat(
       16,
       f
     );
   }
-  f = message.getAverageHeartrate();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 17));
+  if (f != null) {
     writer.writeFloat(
       17,
       f
     );
   }
-  f = message.getMaxHeartrate();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 18));
+  if (f != null) {
     writer.writeFloat(
       18,
       f
@@ -629,7 +629,25 @@ proto.activity.Activity.prototype.getStartLat = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setStartLat = function(value) {
-  return jspb.Message.setProto3FloatField(this, 10, value);
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearStartLat = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasStartLat = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -647,7 +665,25 @@ proto.activity.Activity.prototype.getStartLng = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setStartLng = function(value) {
-  return jspb.Message.setProto3FloatField(this, 11, value);
+  return jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearStartLng = function() {
+  return jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasStartLng = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -665,7 +701,25 @@ proto.activity.Activity.prototype.getEndLat = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setEndLat = function(value) {
-  return jspb.Message.setProto3FloatField(this, 12, value);
+  return jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearEndLat = function() {
+  return jspb.Message.setField(this, 12, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasEndLat = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -683,7 +737,25 @@ proto.activity.Activity.prototype.getEndLng = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setEndLng = function(value) {
-  return jspb.Message.setProto3FloatField(this, 13, value);
+  return jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearEndLng = function() {
+  return jspb.Message.setField(this, 13, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasEndLng = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
@@ -701,7 +773,25 @@ proto.activity.Activity.prototype.getAverageSpeed = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setAverageSpeed = function(value) {
-  return jspb.Message.setProto3FloatField(this, 14, value);
+  return jspb.Message.setField(this, 14, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearAverageSpeed = function() {
+  return jspb.Message.setField(this, 14, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasAverageSpeed = function() {
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
@@ -719,7 +809,25 @@ proto.activity.Activity.prototype.getAverageCadence = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setAverageCadence = function(value) {
-  return jspb.Message.setProto3FloatField(this, 15, value);
+  return jspb.Message.setField(this, 15, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearAverageCadence = function() {
+  return jspb.Message.setField(this, 15, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasAverageCadence = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -737,7 +845,25 @@ proto.activity.Activity.prototype.getAverageTemp = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setAverageTemp = function(value) {
-  return jspb.Message.setProto3FloatField(this, 16, value);
+  return jspb.Message.setField(this, 16, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearAverageTemp = function() {
+  return jspb.Message.setField(this, 16, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasAverageTemp = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 
@@ -755,7 +881,25 @@ proto.activity.Activity.prototype.getAverageHeartrate = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setAverageHeartrate = function(value) {
-  return jspb.Message.setProto3FloatField(this, 17, value);
+  return jspb.Message.setField(this, 17, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearAverageHeartrate = function() {
+  return jspb.Message.setField(this, 17, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasAverageHeartrate = function() {
+  return jspb.Message.getField(this, 17) != null;
 };
 
 
@@ -773,7 +917,25 @@ proto.activity.Activity.prototype.getMaxHeartrate = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setMaxHeartrate = function(value) {
-  return jspb.Message.setProto3FloatField(this, 18, value);
+  return jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearMaxHeartrate = function() {
+  return jspb.Message.setField(this, 18, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasMaxHeartrate = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 
