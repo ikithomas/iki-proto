@@ -282,7 +282,7 @@ proto.heatmap.Track.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     startTimstamp: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    trackList: jspb.Message.toObjectList(msg.getTrackList(),
+    tracksList: jspb.Message.toObjectList(msg.getTracksList(),
     proto.heatmap.GeoPoint.toObject, includeInstance)
   };
 
@@ -331,7 +331,7 @@ proto.heatmap.Track.deserializeBinaryFromReader = function(msg, reader) {
     case 3:
       var value = new proto.heatmap.GeoPoint;
       reader.readMessage(value,proto.heatmap.GeoPoint.deserializeBinaryFromReader);
-      msg.addTrack(value);
+      msg.addTracks(value);
       break;
     default:
       reader.skipField();
@@ -376,7 +376,7 @@ proto.heatmap.Track.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTrackList();
+  f = message.getTracksList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       3,
@@ -424,10 +424,10 @@ proto.heatmap.Track.prototype.setStartTimstamp = function(value) {
 
 
 /**
- * repeated GeoPoint track = 3;
+ * repeated GeoPoint tracks = 3;
  * @return {!Array<!proto.heatmap.GeoPoint>}
  */
-proto.heatmap.Track.prototype.getTrackList = function() {
+proto.heatmap.Track.prototype.getTracksList = function() {
   return /** @type{!Array<!proto.heatmap.GeoPoint>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.heatmap.GeoPoint, 3));
 };
@@ -437,7 +437,7 @@ proto.heatmap.Track.prototype.getTrackList = function() {
  * @param {!Array<!proto.heatmap.GeoPoint>} value
  * @return {!proto.heatmap.Track} returns this
 */
-proto.heatmap.Track.prototype.setTrackList = function(value) {
+proto.heatmap.Track.prototype.setTracksList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -447,7 +447,7 @@ proto.heatmap.Track.prototype.setTrackList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.heatmap.GeoPoint}
  */
-proto.heatmap.Track.prototype.addTrack = function(opt_value, opt_index) {
+proto.heatmap.Track.prototype.addTracks = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.heatmap.GeoPoint, opt_index);
 };
 
@@ -456,8 +456,8 @@ proto.heatmap.Track.prototype.addTrack = function(opt_value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.heatmap.Track} returns this
  */
-proto.heatmap.Track.prototype.clearTrackList = function() {
-  return this.setTrackList([]);
+proto.heatmap.Track.prototype.clearTracksList = function() {
+  return this.setTracksList([]);
 };
 
 
