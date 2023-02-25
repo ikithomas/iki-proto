@@ -43,5 +43,5 @@ message GetResponse {
 }
 
 message ListResponse {
-  repeated Activity activity = 1;
+  repeated Activity activities = 1;
 }
