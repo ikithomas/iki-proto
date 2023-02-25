@@ -18,7 +18,7 @@ message GetRequest {
 message Track {
   int64 id = 1;
   int64 start_timstamp = 2;
-  repeated GeoPoint track = 3;
+  repeated GeoPoint tracks = 3;
 }
 
 message GeoPoint {
