@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "/event";
+
+package event;
+
+message UserLogin {
+  enum Result {
+    RESULT_UNSPECIFIED = 0;
+    RESULT_SUCCESS = 1;
+    RESULT_INCORRECT_CREDENTIAL = 2;
+    RESULT_UNKNOWN = 3;
+  }
+
+  string user_id = 1;
+  Result result = 2;
+}
+
+message UserCreated {
+  string user_id = 1;
+  string email = 2;
+}
