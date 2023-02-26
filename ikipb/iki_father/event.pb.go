@@ -20,24 +20,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserLogin_Result int32
+type EventUserLogin_Result int32
 
 const (
-	UserLogin_RESULT_UNSPECIFIED          UserLogin_Result = 0
-	UserLogin_RESULT_SUCCESS              UserLogin_Result = 1
-	UserLogin_RESULT_INCORRECT_CREDENTIAL UserLogin_Result = 2
-	UserLogin_RESULT_UNKNOWN              UserLogin_Result = 3
+	EventUserLogin_RESULT_UNSPECIFIED          EventUserLogin_Result = 0
+	EventUserLogin_RESULT_SUCCESS              EventUserLogin_Result = 1
+	EventUserLogin_RESULT_INCORRECT_CREDENTIAL EventUserLogin_Result = 2
+	EventUserLogin_RESULT_UNKNOWN              EventUserLogin_Result = 3
 )
 
-// Enum value maps for UserLogin_Result.
+// Enum value maps for EventUserLogin_Result.
 var (
-	UserLogin_Result_name = map[int32]string{
+	EventUserLogin_Result_name = map[int32]string{
 		0: "RESULT_UNSPECIFIED",
 		1: "RESULT_SUCCESS",
 		2: "RESULT_INCORRECT_CREDENTIAL",
 		3: "RESULT_UNKNOWN",
 	}
-	UserLogin_Result_value = map[string]int32{
+	EventUserLogin_Result_value = map[string]int32{
 		"RESULT_UNSPECIFIED":          0,
 		"RESULT_SUCCESS":              1,
 		"RESULT_INCORRECT_CREDENTIAL": 2,
@@ -45,44 +45,44 @@ var (
 	}
 )
 
-func (x UserLogin_Result) Enum() *UserLogin_Result {
-	p := new(UserLogin_Result)
+func (x EventUserLogin_Result) Enum() *EventUserLogin_Result {
+	p := new(EventUserLogin_Result)
 	*p = x
 	return p
 }
 
-func (x UserLogin_Result) String() string {
+func (x EventUserLogin_Result) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (UserLogin_Result) Descriptor() protoreflect.EnumDescriptor {
+func (EventUserLogin_Result) Descriptor() protoreflect.EnumDescriptor {
 	return file_ikipb_iki_father_event_proto_enumTypes[0].Descriptor()
 }
 
-func (UserLogin_Result) Type() protoreflect.EnumType {
+func (EventUserLogin_Result) Type() protoreflect.EnumType {
 	return &file_ikipb_iki_father_event_proto_enumTypes[0]
 }
 
-func (x UserLogin_Result) Number() protoreflect.EnumNumber {
+func (x EventUserLogin_Result) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use UserLogin_Result.Descriptor instead.
-func (UserLogin_Result) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use EventUserLogin_Result.Descriptor instead.
+func (EventUserLogin_Result) EnumDescriptor() ([]byte, []int) {
 	return file_ikipb_iki_father_event_proto_rawDescGZIP(), []int{0, 0}
 }
 
-type UserLogin struct {
+type EventUserLogin struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId string           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Result UserLogin_Result `protobuf:"varint,2,opt,name=result,proto3,enum=event.UserLogin_Result" json:"result,omitempty"`
+	UserId int64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Result EventUserLogin_Result `protobuf:"varint,2,opt,name=result,proto3,enum=event.EventUserLogin_Result" json:"result,omitempty"`
 }
 
-func (x *UserLogin) Reset() {
-	*x = UserLogin{}
+func (x *EventUserLogin) Reset() {
+	*x = EventUserLogin{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_father_event_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -90,13 +90,13 @@ func (x *UserLogin) Reset() {
 	}
 }
 
-func (x *UserLogin) String() string {
+func (x *EventUserLogin) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserLogin) ProtoMessage() {}
+func (*EventUserLogin) ProtoMessage() {}
 
-func (x *UserLogin) ProtoReflect() protoreflect.Message {
+func (x *EventUserLogin) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_father_event_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,36 +108,36 @@ func (x *UserLogin) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserLogin.ProtoReflect.Descriptor instead.
-func (*UserLogin) Descriptor() ([]byte, []int) {
+// Deprecated: Use EventUserLogin.ProtoReflect.Descriptor instead.
+func (*EventUserLogin) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_father_event_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserLogin) GetUserId() string {
+func (x *EventUserLogin) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
-	return ""
+	return 0
 }
 
-func (x *UserLogin) GetResult() UserLogin_Result {
+func (x *EventUserLogin) GetResult() EventUserLogin_Result {
 	if x != nil {
 		return x.Result
 	}
-	return UserLogin_RESULT_UNSPECIFIED
+	return EventUserLogin_RESULT_UNSPECIFIED
 }
 
-type UserCreated struct {
+type EventUserCreate struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId int64  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Email  string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 }
 
-func (x *UserCreated) Reset() {
-	*x = UserCreated{}
+func (x *EventUserCreate) Reset() {
+	*x = EventUserCreate{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_ikipb_iki_father_event_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -145,13 +145,13 @@ func (x *UserCreated) Reset() {
 	}
 }
 
-func (x *UserCreated) String() string {
+func (x *EventUserCreate) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserCreated) ProtoMessage() {}
+func (*EventUserCreate) ProtoMessage() {}
 
-func (x *UserCreated) ProtoReflect() protoreflect.Message {
+func (x *EventUserCreate) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_father_event_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -163,19 +163,19 @@ func (x *UserCreated) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserCreated.ProtoReflect.Descriptor instead.
-func (*UserCreated) Descriptor() ([]byte, []int) {
+// Deprecated: Use EventUserCreate.ProtoReflect.Descriptor instead.
+func (*EventUserCreate) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_father_event_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UserCreated) GetUserId() string {
+func (x *EventUserCreate) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
-	return ""
+	return 0
 }
 
-func (x *UserCreated) GetEmail() string {
+func (x *EventUserCreate) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
@@ -187,24 +187,25 @@ var File_ikipb_iki_father_event_proto protoreflect.FileDescriptor
 var file_ikipb_iki_father_event_proto_rawDesc = []byte{
 	0x0a, 0x1c, 0x69, 0x6b, 0x69, 0x70, 0x62, 0x2f, 0x69, 0x6b, 0x69, 0x5f, 0x66, 0x61, 0x74, 0x68,
 	0x65, 0x72, 0x2f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05,
-	0x65, 0x76, 0x65, 0x6e, 0x74, 0x22, 0xc0, 0x01, 0x0a, 0x09, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x6f,
-	0x67, 0x69, 0x6e, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2f, 0x0a, 0x06,
-	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x65,
-	0x76, 0x65, 0x6e, 0x74, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x2e, 0x52,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x69, 0x0a,
-	0x06, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x16, 0x0a, 0x12, 0x52, 0x45, 0x53, 0x55, 0x4c,
-	0x54, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12,
-	0x12, 0x0a, 0x0e, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x53, 0x55, 0x43, 0x43, 0x45, 0x53,
-	0x53, 0x10, 0x01, 0x12, 0x1f, 0x0a, 0x1b, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x49, 0x4e,
-	0x43, 0x4f, 0x52, 0x52, 0x45, 0x43, 0x54, 0x5f, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49,
-	0x41, 0x4c, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x55,
-	0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x03, 0x22, 0x3c, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
-	0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x42, 0x08, 0x5a, 0x06, 0x2f, 0x65, 0x76, 0x65, 0x6e, 0x74,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x76, 0x65, 0x6e, 0x74, 0x22, 0xca, 0x01, 0x0a, 0x0e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x55,
+	0x73, 0x65, 0x72, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49,
+	0x64, 0x12, 0x34, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x1c, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x55,
+	0x73, 0x65, 0x72, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52,
+	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x69, 0x0a, 0x06, 0x52, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x12, 0x16, 0x0a, 0x12, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x55, 0x4e, 0x53, 0x50,
+	0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x52, 0x45, 0x53,
+	0x55, 0x4c, 0x54, 0x5f, 0x53, 0x55, 0x43, 0x43, 0x45, 0x53, 0x53, 0x10, 0x01, 0x12, 0x1f, 0x0a,
+	0x1b, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x49, 0x4e, 0x43, 0x4f, 0x52, 0x52, 0x45, 0x43,
+	0x54, 0x5f, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x10, 0x02, 0x12, 0x12,
+	0x0a, 0x0e, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e,
+	0x10, 0x03, 0x22, 0x40, 0x0a, 0x0f, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x55, 0x73, 0x65, 0x72, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14,
+	0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65,
+	0x6d, 0x61, 0x69, 0x6c, 0x42, 0x08, 0x5a, 0x06, 0x2f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -222,12 +223,12 @@ func file_ikipb_iki_father_event_proto_rawDescGZIP() []byte {
 var file_ikipb_iki_father_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_ikipb_iki_father_event_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_ikipb_iki_father_event_proto_goTypes = []interface{}{
-	(UserLogin_Result)(0), // 0: event.UserLogin.Result
-	(*UserLogin)(nil),     // 1: event.UserLogin
-	(*UserCreated)(nil),   // 2: event.UserCreated
+	(EventUserLogin_Result)(0), // 0: event.EventUserLogin.Result
+	(*EventUserLogin)(nil),     // 1: event.EventUserLogin
+	(*EventUserCreate)(nil),    // 2: event.EventUserCreate
 }
 var file_ikipb_iki_father_event_proto_depIdxs = []int32{
-	0, // 0: event.UserLogin.result:type_name -> event.UserLogin.Result
+	0, // 0: event.EventUserLogin.result:type_name -> event.EventUserLogin.Result
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -242,7 +243,7 @@ func file_ikipb_iki_father_event_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_ikipb_iki_father_event_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserLogin); i {
+			switch v := v.(*EventUserLogin); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -254,7 +255,7 @@ func file_ikipb_iki_father_event_proto_init() {
 			}
 		}
 		file_ikipb_iki_father_event_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserCreated); i {
+			switch v := v.(*EventUserCreate); i {
 			case 0:
 				return &v.state
 			case 1:
