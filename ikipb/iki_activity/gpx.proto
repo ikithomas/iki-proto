@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "/activity";
+
+package activity;
+
+service GpxService {
+  rpc GetGpx (GetGpxRequest) returns (stream Chunk) {}
+  rpc GetConciseGpx (GetGpxRequest) returns (Gpx) {}
+}
+
+message Chunk {
+  bytes chunk = 1;
+}
+
+message GetGpxRequest {
+  int64 id = 1;
+}
+
+message Gpx {
+  string name = 1;
+  int64 start_date = 2;
+  string type = 3;
+  repeated Point points = 4;
+}
+
+message Point {
+  float lat = 1;
+  float lon = 2;
+  float ele = 3;
+  int64 time = 4;
+  int32 hr = 5;
+  int32 cad = 6;
+}

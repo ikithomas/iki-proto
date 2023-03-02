@@ -24,7 +24,6 @@ const _ = grpc.SupportPackageIsVersion7
 type ActivityServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (ActivityService_GetGpxClient, error)
 }
 
 type activityServiceClient struct {
@@ -53,45 +52,12 @@ func (c *activityServiceClient) List(ctx context.Context, in *ListRequest, opts 
 	return out, nil
 }
 
-func (c *activityServiceClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (ActivityService_GetGpxClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ActivityService_ServiceDesc.Streams[0], "/activity.ActivityService/GetGpx", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &activityServiceGetGpxClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type ActivityService_GetGpxClient interface {
-	Recv() (*Chunk, error)
-	grpc.ClientStream
-}
-
-type activityServiceGetGpxClient struct {
-	grpc.ClientStream
-}
-
-func (x *activityServiceGetGpxClient) Recv() (*Chunk, error) {
-	m := new(Chunk)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // ActivityServiceServer is the server API for ActivityService service.
 // All implementations must embed UnimplementedActivityServiceServer
 // for forward compatibility
 type ActivityServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
-	GetGpx(*GetGpxRequest, ActivityService_GetGpxServer) error
 	mustEmbedUnimplementedActivityServiceServer()
 }
 
@@ -104,9 +70,6 @@ func (UnimplementedActivityServiceServer) Get(context.Context, *GetRequest) (*Ge
 }
 func (UnimplementedActivityServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedActivityServiceServer) GetGpx(*GetGpxRequest, ActivityService_GetGpxServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetGpx not implemented")
 }
 func (UnimplementedActivityServiceServer) mustEmbedUnimplementedActivityServiceServer() {}
 
@@ -157,27 +120,6 @@ func _ActivityService_List_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_GetGpx_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetGpxRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(ActivityServiceServer).GetGpx(m, &activityServiceGetGpxServer{stream})
-}
-
-type ActivityService_GetGpxServer interface {
-	Send(*Chunk) error
-	grpc.ServerStream
-}
-
-type activityServiceGetGpxServer struct {
-	grpc.ServerStream
-}
-
-func (x *activityServiceGetGpxServer) Send(m *Chunk) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 // ActivityService_ServiceDesc is the grpc.ServiceDesc for ActivityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -194,12 +136,6 @@ var ActivityService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ActivityService_List_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "GetGpx",
-			Handler:       _ActivityService_GetGpx_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "ikipb/iki_activity/activity.proto",
 }
