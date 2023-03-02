@@ -16,12 +16,13 @@ message GetRequest {
 }
 
 message Track {
-  int64 id = 1;
-  int64 start_timstamp = 2;
-  repeated GeoPoint geo_points = 3;
+  string name = 1;
+  int64 start_date = 2;
+  string type = 3;
+  repeated Point points = 4;
 }
 
-message GeoPoint {
+message Point {
   float lat = 1;
   float lng = 2;
 }
