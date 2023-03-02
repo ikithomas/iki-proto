@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for activity
+ * @fileoverview gRPC-Web generated client stub for gpx
  * @enhanceable
  * @public
  */
@@ -20,7 +20,7 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 const proto = {};
-proto.activity = require('./gpx_pb.js');
+proto.gpx = require('./gpx_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +30,7 @@ proto.activity = require('./gpx_pb.js');
  * @struct
  * @final
  */
-proto.activity.GpxServiceClient =
+proto.gpx.GpxServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +56,7 @@ proto.activity.GpxServiceClient =
  * @struct
  * @final
  */
-proto.activity.GpxServicePromiseClient =
+proto.gpx.GpxServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,36 +77,36 @@ proto.activity.GpxServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.activity.GetGpxRequest,
- *   !proto.activity.Chunk>}
+ *   !proto.gpx.GetGpxRequest,
+ *   !proto.gpx.Chunk>}
  */
 const methodDescriptor_GpxService_GetGpx = new grpc.web.MethodDescriptor(
-  '/activity.GpxService/GetGpx',
+  '/gpx.GpxService/GetGpx',
   grpc.web.MethodType.SERVER_STREAMING,
-  proto.activity.GetGpxRequest,
-  proto.activity.Chunk,
+  proto.gpx.GetGpxRequest,
+  proto.gpx.Chunk,
   /**
-   * @param {!proto.activity.GetGpxRequest} request
+   * @param {!proto.gpx.GetGpxRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.activity.Chunk.deserializeBinary
+  proto.gpx.Chunk.deserializeBinary
 );
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The request proto
+ * @param {!proto.gpx.GetGpxRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.activity.Chunk>}
+ * @return {!grpc.web.ClientReadableStream<!proto.gpx.Chunk>}
  *     The XHR Node Readable Stream
  */
-proto.activity.GpxServiceClient.prototype.getGpx =
+proto.gpx.GpxServiceClient.prototype.getGpx =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/activity.GpxService/GetGpx',
+      '/gpx.GpxService/GetGpx',
       request,
       metadata || {},
       methodDescriptor_GpxService_GetGpx);
@@ -114,16 +114,16 @@ proto.activity.GpxServiceClient.prototype.getGpx =
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The request proto
+ * @param {!proto.gpx.GetGpxRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.activity.Chunk>}
+ * @return {!grpc.web.ClientReadableStream<!proto.gpx.Chunk>}
  *     The XHR Node Readable Stream
  */
-proto.activity.GpxServicePromiseClient.prototype.getGpx =
+proto.gpx.GpxServicePromiseClient.prototype.getGpx =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/activity.GpxService/GetGpx',
+      '/gpx.GpxService/GetGpx',
       request,
       metadata || {},
       methodDescriptor_GpxService_GetGpx);
@@ -133,39 +133,39 @@ proto.activity.GpxServicePromiseClient.prototype.getGpx =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.activity.GetGpxRequest,
- *   !proto.activity.Gpx>}
+ *   !proto.gpx.GetGpxRequest,
+ *   !proto.gpx.Gpx>}
  */
 const methodDescriptor_GpxService_GetConciseGpx = new grpc.web.MethodDescriptor(
-  '/activity.GpxService/GetConciseGpx',
+  '/gpx.GpxService/GetConciseGpx',
   grpc.web.MethodType.UNARY,
-  proto.activity.GetGpxRequest,
-  proto.activity.Gpx,
+  proto.gpx.GetGpxRequest,
+  proto.gpx.Gpx,
   /**
-   * @param {!proto.activity.GetGpxRequest} request
+   * @param {!proto.gpx.GetGpxRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.activity.Gpx.deserializeBinary
+  proto.gpx.Gpx.deserializeBinary
 );
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The
+ * @param {!proto.gpx.GetGpxRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.activity.Gpx)}
+ * @param {function(?grpc.web.RpcError, ?proto.gpx.Gpx)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.activity.Gpx>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.gpx.Gpx>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.activity.GpxServiceClient.prototype.getConciseGpx =
+proto.gpx.GpxServiceClient.prototype.getConciseGpx =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/activity.GpxService/GetConciseGpx',
+      '/gpx.GpxService/GetConciseGpx',
       request,
       metadata || {},
       methodDescriptor_GpxService_GetConciseGpx,
@@ -174,22 +174,22 @@ proto.activity.GpxServiceClient.prototype.getConciseGpx =
 
 
 /**
- * @param {!proto.activity.GetGpxRequest} request The
+ * @param {!proto.gpx.GetGpxRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.activity.Gpx>}
+ * @return {!Promise<!proto.gpx.Gpx>}
  *     Promise that resolves to the response
  */
-proto.activity.GpxServicePromiseClient.prototype.getConciseGpx =
+proto.gpx.GpxServicePromiseClient.prototype.getConciseGpx =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/activity.GpxService/GetConciseGpx',
+      '/gpx.GpxService/GetConciseGpx',
       request,
       metadata || {},
       methodDescriptor_GpxService_GetConciseGpx);
 };
 
 
-module.exports = proto.activity;
+module.exports = proto.gpx;
 

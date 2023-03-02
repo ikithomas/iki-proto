@@ -35,7 +35,7 @@ func NewGpxServiceClient(cc grpc.ClientConnInterface) GpxServiceClient {
 }
 
 func (c *gpxServiceClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxService_GetGpxClient, error) {
-	stream, err := c.cc.NewStream(ctx, &GpxService_ServiceDesc.Streams[0], "/activity.GpxService/GetGpx", opts...)
+	stream, err := c.cc.NewStream(ctx, &GpxService_ServiceDesc.Streams[0], "/gpx.GpxService/GetGpx", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (x *gpxServiceGetGpxClient) Recv() (*Chunk, error) {
 
 func (c *gpxServiceClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*Gpx, error) {
 	out := new(Gpx)
-	err := c.cc.Invoke(ctx, "/activity.GpxService/GetConciseGpx", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gpx.GpxService/GetConciseGpx", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,7 +138,7 @@ func _GpxService_GetConciseGpx_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.GpxService/GetConciseGpx",
+		FullMethod: "/gpx.GpxService/GetConciseGpx",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GpxServiceServer).GetConciseGpx(ctx, req.(*GetGpxRequest))
@@ -150,7 +150,7 @@ func _GpxService_GetConciseGpx_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GpxService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "activity.GpxService",
+	ServiceName: "gpx.GpxService",
 	HandlerType: (*GpxServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

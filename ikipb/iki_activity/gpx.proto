@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "/activity";
 
-package activity;
+package gpx;
 
 service GpxService {
   rpc GetGpx (GetGpxRequest) returns (stream Chunk) {}
