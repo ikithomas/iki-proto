@@ -6,15 +6,26 @@ package gpx;
 
 service GpxService {
   rpc GetGpx (GetGpxRequest) returns (stream Chunk) {}
-  rpc GetConciseGpx (GetGpxRequest) returns (Gpx) {}
-}
-
-message Chunk {
-  bytes chunk = 1;
+  rpc GetConciseGpx (GetGpxRequest) returns (GetConciseGpxResponse) {}
 }
 
 message GetGpxRequest {
   int64 id = 1;
+}
+
+message GetConciseGpxRequest {
+  int64 id = 1;
+}
+
+message GetConciseGpxResponse {
+  int64 id = 1;
+  int64 external_id = 2;
+  int64 athlete_id = 3;
+  Gpx gpx = 4;
+}
+
+message Chunk {
+  bytes chunk = 1;
 }
 
 message Gpx {

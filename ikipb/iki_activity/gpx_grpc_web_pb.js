@@ -134,13 +134,13 @@ proto.gpx.GpxServicePromiseClient.prototype.getGpx =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.gpx.GetGpxRequest,
- *   !proto.gpx.Gpx>}
+ *   !proto.gpx.GetConciseGpxResponse>}
  */
 const methodDescriptor_GpxService_GetConciseGpx = new grpc.web.MethodDescriptor(
   '/gpx.GpxService/GetConciseGpx',
   grpc.web.MethodType.UNARY,
   proto.gpx.GetGpxRequest,
-  proto.gpx.Gpx,
+  proto.gpx.GetConciseGpxResponse,
   /**
    * @param {!proto.gpx.GetGpxRequest} request
    * @return {!Uint8Array}
@@ -148,7 +148,7 @@ const methodDescriptor_GpxService_GetConciseGpx = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.gpx.Gpx.deserializeBinary
+  proto.gpx.GetConciseGpxResponse.deserializeBinary
 );
 
 
@@ -157,9 +157,9 @@ const methodDescriptor_GpxService_GetConciseGpx = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.gpx.Gpx)}
+ * @param {function(?grpc.web.RpcError, ?proto.gpx.GetConciseGpxResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.gpx.Gpx>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.gpx.GetConciseGpxResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.gpx.GpxServiceClient.prototype.getConciseGpx =
@@ -178,7 +178,7 @@ proto.gpx.GpxServiceClient.prototype.getConciseGpx =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.gpx.Gpx>}
+ * @return {!Promise<!proto.gpx.GetConciseGpxResponse>}
  *     Promise that resolves to the response
  */
 proto.gpx.GpxServicePromiseClient.prototype.getConciseGpx =

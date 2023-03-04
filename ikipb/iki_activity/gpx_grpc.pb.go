@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GpxServiceClient interface {
 	GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxService_GetGpxClient, error)
-	GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*Gpx, error)
+	GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetConciseGpxResponse, error)
 }
 
 type gpxServiceClient struct {
@@ -66,8 +66,8 @@ func (x *gpxServiceGetGpxClient) Recv() (*Chunk, error) {
 	return m, nil
 }
 
-func (c *gpxServiceClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*Gpx, error) {
-	out := new(Gpx)
+func (c *gpxServiceClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetConciseGpxResponse, error) {
+	out := new(GetConciseGpxResponse)
 	err := c.cc.Invoke(ctx, "/gpx.GpxService/GetConciseGpx", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func (c *gpxServiceClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest,
 // for forward compatibility
 type GpxServiceServer interface {
 	GetGpx(*GetGpxRequest, GpxService_GetGpxServer) error
-	GetConciseGpx(context.Context, *GetGpxRequest) (*Gpx, error)
+	GetConciseGpx(context.Context, *GetGpxRequest) (*GetConciseGpxResponse, error)
 	mustEmbedUnimplementedGpxServiceServer()
 }
 
@@ -91,7 +91,7 @@ type UnimplementedGpxServiceServer struct {
 func (UnimplementedGpxServiceServer) GetGpx(*GetGpxRequest, GpxService_GetGpxServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetGpx not implemented")
 }
-func (UnimplementedGpxServiceServer) GetConciseGpx(context.Context, *GetGpxRequest) (*Gpx, error) {
+func (UnimplementedGpxServiceServer) GetConciseGpx(context.Context, *GetGpxRequest) (*GetConciseGpxResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConciseGpx not implemented")
 }
 func (UnimplementedGpxServiceServer) mustEmbedUnimplementedGpxServiceServer() {}
