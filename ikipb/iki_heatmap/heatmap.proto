@@ -20,6 +20,7 @@ message Track {
   int64 start_date = 2;
   string type = 3;
   repeated Point points = 4;
+  int64 id = 5;
 }
 
 message Point {
