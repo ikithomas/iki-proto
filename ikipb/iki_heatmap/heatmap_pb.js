@@ -284,7 +284,8 @@ proto.heatmap.Track.toObject = function(includeInstance, msg) {
     startDate: jspb.Message.getFieldWithDefault(msg, 2, 0),
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     pointsList: jspb.Message.toObjectList(msg.getPointsList(),
-    proto.heatmap.Point.toObject, includeInstance)
+    proto.heatmap.Point.toObject, includeInstance),
+    id: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -337,6 +338,10 @@ proto.heatmap.Track.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.heatmap.Point;
       reader.readMessage(value,proto.heatmap.Point.deserializeBinaryFromReader);
       msg.addPoints(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -394,6 +399,13 @@ proto.heatmap.Track.serializeBinaryToWriter = function(message, writer) {
       4,
       f,
       proto.heatmap.Point.serializeBinaryToWriter
+    );
+  }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
+      f
     );
   }
 };
@@ -488,6 +500,24 @@ proto.heatmap.Track.prototype.addPoints = function(opt_value, opt_index) {
  */
 proto.heatmap.Track.prototype.clearPointsList = function() {
   return this.setPointsList([]);
+};
+
+
+/**
+ * optional int64 id = 5;
+ * @return {number}
+ */
+proto.heatmap.Track.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.heatmap.Track} returns this
+ */
+proto.heatmap.Track.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
