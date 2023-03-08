@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for access
+ * @fileoverview gRPC-Web generated client stub for group
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: ikipb/iki_iam/access.proto
+// source: ikipb/iki_iam/group.proto
 
 
 /* eslint-disable */
@@ -20,7 +20,7 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 const proto = {};
-proto.access = require('./access_pb.js');
+proto.group = require('./group_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +30,7 @@ proto.access = require('./access_pb.js');
  * @struct
  * @final
  */
-proto.access.AccessServiceClient =
+proto.group.AccessServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +56,7 @@ proto.access.AccessServiceClient =
  * @struct
  * @final
  */
-proto.access.AccessServicePromiseClient =
+proto.group.AccessServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,39 +77,39 @@ proto.access.AccessServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.access.GetGroupsRequest,
- *   !proto.access.GetGroupsResponse>}
+ *   !proto.group.GetGroupsRequest,
+ *   !proto.group.GetGroupsResponse>}
  */
 const methodDescriptor_AccessService_GetGroups = new grpc.web.MethodDescriptor(
-  '/access.AccessService/GetGroups',
+  '/group.AccessService/GetGroups',
   grpc.web.MethodType.UNARY,
-  proto.access.GetGroupsRequest,
-  proto.access.GetGroupsResponse,
+  proto.group.GetGroupsRequest,
+  proto.group.GetGroupsResponse,
   /**
-   * @param {!proto.access.GetGroupsRequest} request
+   * @param {!proto.group.GetGroupsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.access.GetGroupsResponse.deserializeBinary
+  proto.group.GetGroupsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.access.GetGroupsRequest} request The
+ * @param {!proto.group.GetGroupsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.access.GetGroupsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.GetGroupsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.access.GetGroupsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.GetGroupsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.access.AccessServiceClient.prototype.getGroups =
+proto.group.AccessServiceClient.prototype.getGroups =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/access.AccessService/GetGroups',
+      '/group.AccessService/GetGroups',
       request,
       metadata || {},
       methodDescriptor_AccessService_GetGroups,
@@ -118,17 +118,17 @@ proto.access.AccessServiceClient.prototype.getGroups =
 
 
 /**
- * @param {!proto.access.GetGroupsRequest} request The
+ * @param {!proto.group.GetGroupsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.access.GetGroupsResponse>}
+ * @return {!Promise<!proto.group.GetGroupsResponse>}
  *     Promise that resolves to the response
  */
-proto.access.AccessServicePromiseClient.prototype.getGroups =
+proto.group.AccessServicePromiseClient.prototype.getGroups =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/access.AccessService/GetGroups',
+      '/group.AccessService/GetGroups',
       request,
       metadata || {},
       methodDescriptor_AccessService_GetGroups);
@@ -138,39 +138,39 @@ proto.access.AccessServicePromiseClient.prototype.getGroups =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.access.ListGroupsRequest,
- *   !proto.access.ListGroupsResponse>}
+ *   !proto.group.ListGroupsRequest,
+ *   !proto.group.ListGroupsResponse>}
  */
 const methodDescriptor_AccessService_ListGroups = new grpc.web.MethodDescriptor(
-  '/access.AccessService/ListGroups',
+  '/group.AccessService/ListGroups',
   grpc.web.MethodType.UNARY,
-  proto.access.ListGroupsRequest,
-  proto.access.ListGroupsResponse,
+  proto.group.ListGroupsRequest,
+  proto.group.ListGroupsResponse,
   /**
-   * @param {!proto.access.ListGroupsRequest} request
+   * @param {!proto.group.ListGroupsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.access.ListGroupsResponse.deserializeBinary
+  proto.group.ListGroupsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.access.ListGroupsRequest} request The
+ * @param {!proto.group.ListGroupsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.access.ListGroupsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.ListGroupsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.access.ListGroupsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.ListGroupsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.access.AccessServiceClient.prototype.listGroups =
+proto.group.AccessServiceClient.prototype.listGroups =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/access.AccessService/ListGroups',
+      '/group.AccessService/ListGroups',
       request,
       metadata || {},
       methodDescriptor_AccessService_ListGroups,
@@ -179,17 +179,17 @@ proto.access.AccessServiceClient.prototype.listGroups =
 
 
 /**
- * @param {!proto.access.ListGroupsRequest} request The
+ * @param {!proto.group.ListGroupsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.access.ListGroupsResponse>}
+ * @return {!Promise<!proto.group.ListGroupsResponse>}
  *     Promise that resolves to the response
  */
-proto.access.AccessServicePromiseClient.prototype.listGroups =
+proto.group.AccessServicePromiseClient.prototype.listGroups =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/access.AccessService/ListGroups',
+      '/group.AccessService/ListGroups',
       request,
       metadata || {},
       methodDescriptor_AccessService_ListGroups);
@@ -199,39 +199,39 @@ proto.access.AccessServicePromiseClient.prototype.listGroups =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.access.AttachGroupRequest,
- *   !proto.access.AttachGroupResponse>}
+ *   !proto.group.AttachGroupRequest,
+ *   !proto.group.AttachGroupResponse>}
  */
 const methodDescriptor_AccessService_AttachGroup = new grpc.web.MethodDescriptor(
-  '/access.AccessService/AttachGroup',
+  '/group.AccessService/AttachGroup',
   grpc.web.MethodType.UNARY,
-  proto.access.AttachGroupRequest,
-  proto.access.AttachGroupResponse,
+  proto.group.AttachGroupRequest,
+  proto.group.AttachGroupResponse,
   /**
-   * @param {!proto.access.AttachGroupRequest} request
+   * @param {!proto.group.AttachGroupRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.access.AttachGroupResponse.deserializeBinary
+  proto.group.AttachGroupResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.access.AttachGroupRequest} request The
+ * @param {!proto.group.AttachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.access.AttachGroupResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.AttachGroupResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.access.AttachGroupResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.AttachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.access.AccessServiceClient.prototype.attachGroup =
+proto.group.AccessServiceClient.prototype.attachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/access.AccessService/AttachGroup',
+      '/group.AccessService/AttachGroup',
       request,
       metadata || {},
       methodDescriptor_AccessService_AttachGroup,
@@ -240,17 +240,17 @@ proto.access.AccessServiceClient.prototype.attachGroup =
 
 
 /**
- * @param {!proto.access.AttachGroupRequest} request The
+ * @param {!proto.group.AttachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.access.AttachGroupResponse>}
+ * @return {!Promise<!proto.group.AttachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.access.AccessServicePromiseClient.prototype.attachGroup =
+proto.group.AccessServicePromiseClient.prototype.attachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/access.AccessService/AttachGroup',
+      '/group.AccessService/AttachGroup',
       request,
       metadata || {},
       methodDescriptor_AccessService_AttachGroup);
@@ -260,39 +260,39 @@ proto.access.AccessServicePromiseClient.prototype.attachGroup =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.access.DetachGroupRequest,
- *   !proto.access.DetachGroupResponse>}
+ *   !proto.group.DetachGroupRequest,
+ *   !proto.group.DetachGroupResponse>}
  */
 const methodDescriptor_AccessService_DetachGroup = new grpc.web.MethodDescriptor(
-  '/access.AccessService/DetachGroup',
+  '/group.AccessService/DetachGroup',
   grpc.web.MethodType.UNARY,
-  proto.access.DetachGroupRequest,
-  proto.access.DetachGroupResponse,
+  proto.group.DetachGroupRequest,
+  proto.group.DetachGroupResponse,
   /**
-   * @param {!proto.access.DetachGroupRequest} request
+   * @param {!proto.group.DetachGroupRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.access.DetachGroupResponse.deserializeBinary
+  proto.group.DetachGroupResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.access.DetachGroupRequest} request The
+ * @param {!proto.group.DetachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.access.DetachGroupResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.DetachGroupResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.access.DetachGroupResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.DetachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.access.AccessServiceClient.prototype.detachGroup =
+proto.group.AccessServiceClient.prototype.detachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/access.AccessService/DetachGroup',
+      '/group.AccessService/DetachGroup',
       request,
       metadata || {},
       methodDescriptor_AccessService_DetachGroup,
@@ -301,22 +301,22 @@ proto.access.AccessServiceClient.prototype.detachGroup =
 
 
 /**
- * @param {!proto.access.DetachGroupRequest} request The
+ * @param {!proto.group.DetachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.access.DetachGroupResponse>}
+ * @return {!Promise<!proto.group.DetachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.access.AccessServicePromiseClient.prototype.detachGroup =
+proto.group.AccessServicePromiseClient.prototype.detachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/access.AccessService/DetachGroup',
+      '/group.AccessService/DetachGroup',
       request,
       metadata || {},
       methodDescriptor_AccessService_DetachGroup);
 };
 
 
-module.exports = proto.access;
+module.exports = proto.group;
 

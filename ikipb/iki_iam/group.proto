@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "/iam";
 
-package access;
+package group;
 
 service AccessService {
   rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {}

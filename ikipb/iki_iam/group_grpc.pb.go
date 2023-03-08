@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: ikipb/iki_iam/access.proto
+// source: ikipb/iki_iam/group.proto
 
 package iam
 
@@ -38,7 +38,7 @@ func NewAccessServiceClient(cc grpc.ClientConnInterface) AccessServiceClient {
 
 func (c *accessServiceClient) GetGroups(ctx context.Context, in *GetGroupsRequest, opts ...grpc.CallOption) (*GetGroupsResponse, error) {
 	out := new(GetGroupsResponse)
-	err := c.cc.Invoke(ctx, "/access.AccessService/GetGroups", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/group.AccessService/GetGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *accessServiceClient) GetGroups(ctx context.Context, in *GetGroupsReques
 
 func (c *accessServiceClient) ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error) {
 	out := new(ListGroupsResponse)
-	err := c.cc.Invoke(ctx, "/access.AccessService/ListGroups", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/group.AccessService/ListGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *accessServiceClient) ListGroups(ctx context.Context, in *ListGroupsRequ
 
 func (c *accessServiceClient) AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error) {
 	out := new(AttachGroupResponse)
-	err := c.cc.Invoke(ctx, "/access.AccessService/AttachGroup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/group.AccessService/AttachGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *accessServiceClient) AttachGroup(ctx context.Context, in *AttachGroupRe
 
 func (c *accessServiceClient) DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error) {
 	out := new(DetachGroupResponse)
-	err := c.cc.Invoke(ctx, "/access.AccessService/DetachGroup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/group.AccessService/DetachGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +122,7 @@ func _AccessService_GetGroups_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/access.AccessService/GetGroups",
+		FullMethod: "/group.AccessService/GetGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccessServiceServer).GetGroups(ctx, req.(*GetGroupsRequest))
@@ -140,7 +140,7 @@ func _AccessService_ListGroups_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/access.AccessService/ListGroups",
+		FullMethod: "/group.AccessService/ListGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccessServiceServer).ListGroups(ctx, req.(*ListGroupsRequest))
@@ -158,7 +158,7 @@ func _AccessService_AttachGroup_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/access.AccessService/AttachGroup",
+		FullMethod: "/group.AccessService/AttachGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccessServiceServer).AttachGroup(ctx, req.(*AttachGroupRequest))
@@ -176,7 +176,7 @@ func _AccessService_DetachGroup_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/access.AccessService/DetachGroup",
+		FullMethod: "/group.AccessService/DetachGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccessServiceServer).DetachGroup(ctx, req.(*DetachGroupRequest))
@@ -188,7 +188,7 @@ func _AccessService_DetachGroup_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AccessService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "access.AccessService",
+	ServiceName: "group.AccessService",
 	HandlerType: (*AccessServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -209,5 +209,5 @@ var AccessService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ikipb/iki_iam/access.proto",
+	Metadata: "ikipb/iki_iam/group.proto",
 }
