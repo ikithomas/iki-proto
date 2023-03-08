@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = "/iam";
+
+package user;
+
+service UserService {
+  rpc Profile(ProfileRequest) returns (ProfileResponse) {}
+
+  // Adminitration endpoints
+  rpc List(ListRequest) returns (ListResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc Blacklist(BlacklistRequest) returns (BlacklistResponse) {}
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+}
+
+message ProfileRequest {}
+
+message ProfileResponse {
+  User user = 1;
+}
+
+message GetRequest {}
+message GetResponse {}
+message ListRequest {}
+message ListResponse {}
+message DeleteRequest {}
+message DeleteResponse {}
+message BlacklistRequest {}
+message BlacklistResponse {}
+message ResetPasswordRequest {}
+message ResetPasswordResponse {}
+
+message User {
+  string irn = 1;
+}

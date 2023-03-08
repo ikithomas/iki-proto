@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "/iam";
+
+package access;
+
+service AccessService {
+  rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {}
+  rpc ListGroups (ListGroupsRequest) returns (ListGroupsResponse) {}
+  rpc AttachGroup (AttachGroupRequest) returns (AttachGroupResponse) {}
+  rpc DetachGroup (DetachGroupRequest) returns (DetachGroupResponse) {}
+}
+
+message GetGroupsRequest {}
+
+message GetGroupsResponse {}
+
+message ListGroupsRequest {}
+
+message ListGroupsResponse {}
+
+message AttachGroupRequest {}
+
+message AttachGroupResponse {}
+
+message DetachGroupRequest {}
+
+message DetachGroupResponse {}

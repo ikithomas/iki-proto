@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "/iam";
+
+package auth;
+
+service AuthService {
+  rpc LoginWithGoogle (LoginWithGoogleRequest) returns (LoginWithGoogleResponse) {}
+  rpc Signout (SignoutRequest) returns (SignoutResponse) {}
+}
+
+message LoginWithGoogleRequest {
+  string id_token = 1;
+}
+
+message LoginWithGoogleResponse {
+  enum Result {
+    RESULT_UNSPECIFIED = 0;
+    RESULT_SUCCESS = 1;
+    RESULT_ = 2;
+    RESULT_UNKNOWN = 3;
+  }
+
+  string access_token = 1;
+}
+
+message SignoutRequest {}
+message SignoutResponse {}
