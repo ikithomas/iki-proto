@@ -30,7 +30,7 @@ proto.group = require('./group_pb.js');
  * @struct
  * @final
  */
-proto.group.AccessServiceClient =
+proto.group.GroupServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +56,7 @@ proto.group.AccessServiceClient =
  * @struct
  * @final
  */
-proto.group.AccessServicePromiseClient =
+proto.group.GroupServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -80,8 +80,8 @@ proto.group.AccessServicePromiseClient =
  *   !proto.group.GetGroupsRequest,
  *   !proto.group.GetGroupsResponse>}
  */
-const methodDescriptor_AccessService_GetGroups = new grpc.web.MethodDescriptor(
-  '/group.AccessService/GetGroups',
+const methodDescriptor_GroupService_GetGroups = new grpc.web.MethodDescriptor(
+  '/group.GroupService/GetGroups',
   grpc.web.MethodType.UNARY,
   proto.group.GetGroupsRequest,
   proto.group.GetGroupsResponse,
@@ -106,13 +106,13 @@ const methodDescriptor_AccessService_GetGroups = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.group.GetGroupsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.AccessServiceClient.prototype.getGroups =
+proto.group.GroupServiceClient.prototype.getGroups =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.AccessService/GetGroups',
+      '/group.GroupService/GetGroups',
       request,
       metadata || {},
-      methodDescriptor_AccessService_GetGroups,
+      methodDescriptor_GroupService_GetGroups,
       callback);
 };
 
@@ -125,13 +125,13 @@ proto.group.AccessServiceClient.prototype.getGroups =
  * @return {!Promise<!proto.group.GetGroupsResponse>}
  *     Promise that resolves to the response
  */
-proto.group.AccessServicePromiseClient.prototype.getGroups =
+proto.group.GroupServicePromiseClient.prototype.getGroups =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.AccessService/GetGroups',
+      '/group.GroupService/GetGroups',
       request,
       metadata || {},
-      methodDescriptor_AccessService_GetGroups);
+      methodDescriptor_GroupService_GetGroups);
 };
 
 
@@ -141,8 +141,8 @@ proto.group.AccessServicePromiseClient.prototype.getGroups =
  *   !proto.group.ListGroupsRequest,
  *   !proto.group.ListGroupsResponse>}
  */
-const methodDescriptor_AccessService_ListGroups = new grpc.web.MethodDescriptor(
-  '/group.AccessService/ListGroups',
+const methodDescriptor_GroupService_ListGroups = new grpc.web.MethodDescriptor(
+  '/group.GroupService/ListGroups',
   grpc.web.MethodType.UNARY,
   proto.group.ListGroupsRequest,
   proto.group.ListGroupsResponse,
@@ -167,13 +167,13 @@ const methodDescriptor_AccessService_ListGroups = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.group.ListGroupsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.AccessServiceClient.prototype.listGroups =
+proto.group.GroupServiceClient.prototype.listGroups =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.AccessService/ListGroups',
+      '/group.GroupService/ListGroups',
       request,
       metadata || {},
-      methodDescriptor_AccessService_ListGroups,
+      methodDescriptor_GroupService_ListGroups,
       callback);
 };
 
@@ -186,13 +186,13 @@ proto.group.AccessServiceClient.prototype.listGroups =
  * @return {!Promise<!proto.group.ListGroupsResponse>}
  *     Promise that resolves to the response
  */
-proto.group.AccessServicePromiseClient.prototype.listGroups =
+proto.group.GroupServicePromiseClient.prototype.listGroups =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.AccessService/ListGroups',
+      '/group.GroupService/ListGroups',
       request,
       metadata || {},
-      methodDescriptor_AccessService_ListGroups);
+      methodDescriptor_GroupService_ListGroups);
 };
 
 
@@ -202,8 +202,8 @@ proto.group.AccessServicePromiseClient.prototype.listGroups =
  *   !proto.group.AttachGroupRequest,
  *   !proto.group.AttachGroupResponse>}
  */
-const methodDescriptor_AccessService_AttachGroup = new grpc.web.MethodDescriptor(
-  '/group.AccessService/AttachGroup',
+const methodDescriptor_GroupService_AttachGroup = new grpc.web.MethodDescriptor(
+  '/group.GroupService/AttachGroup',
   grpc.web.MethodType.UNARY,
   proto.group.AttachGroupRequest,
   proto.group.AttachGroupResponse,
@@ -228,13 +228,13 @@ const methodDescriptor_AccessService_AttachGroup = new grpc.web.MethodDescriptor
  * @return {!grpc.web.ClientReadableStream<!proto.group.AttachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.AccessServiceClient.prototype.attachGroup =
+proto.group.GroupServiceClient.prototype.attachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.AccessService/AttachGroup',
+      '/group.GroupService/AttachGroup',
       request,
       metadata || {},
-      methodDescriptor_AccessService_AttachGroup,
+      methodDescriptor_GroupService_AttachGroup,
       callback);
 };
 
@@ -247,13 +247,13 @@ proto.group.AccessServiceClient.prototype.attachGroup =
  * @return {!Promise<!proto.group.AttachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.group.AccessServicePromiseClient.prototype.attachGroup =
+proto.group.GroupServicePromiseClient.prototype.attachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.AccessService/AttachGroup',
+      '/group.GroupService/AttachGroup',
       request,
       metadata || {},
-      methodDescriptor_AccessService_AttachGroup);
+      methodDescriptor_GroupService_AttachGroup);
 };
 
 
@@ -263,8 +263,8 @@ proto.group.AccessServicePromiseClient.prototype.attachGroup =
  *   !proto.group.DetachGroupRequest,
  *   !proto.group.DetachGroupResponse>}
  */
-const methodDescriptor_AccessService_DetachGroup = new grpc.web.MethodDescriptor(
-  '/group.AccessService/DetachGroup',
+const methodDescriptor_GroupService_DetachGroup = new grpc.web.MethodDescriptor(
+  '/group.GroupService/DetachGroup',
   grpc.web.MethodType.UNARY,
   proto.group.DetachGroupRequest,
   proto.group.DetachGroupResponse,
@@ -289,13 +289,13 @@ const methodDescriptor_AccessService_DetachGroup = new grpc.web.MethodDescriptor
  * @return {!grpc.web.ClientReadableStream<!proto.group.DetachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.AccessServiceClient.prototype.detachGroup =
+proto.group.GroupServiceClient.prototype.detachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.AccessService/DetachGroup',
+      '/group.GroupService/DetachGroup',
       request,
       metadata || {},
-      methodDescriptor_AccessService_DetachGroup,
+      methodDescriptor_GroupService_DetachGroup,
       callback);
 };
 
@@ -308,13 +308,13 @@ proto.group.AccessServiceClient.prototype.detachGroup =
  * @return {!Promise<!proto.group.DetachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.group.AccessServicePromiseClient.prototype.detachGroup =
+proto.group.GroupServicePromiseClient.prototype.detachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.AccessService/DetachGroup',
+      '/group.GroupService/DetachGroup',
       request,
       metadata || {},
-      methodDescriptor_AccessService_DetachGroup);
+      methodDescriptor_GroupService_DetachGroup);
 };
 
 
