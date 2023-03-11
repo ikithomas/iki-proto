@@ -14,13 +14,6 @@ message LoginWithGoogleRequest {
 }
 
 message LoginWithGoogleResponse {
-  enum Result {
-    RESULT_UNSPECIFIED = 0;
-    RESULT_SUCCESS = 1;
-    RESULT_ = 2;
-    RESULT_UNKNOWN = 3;
-  }
-
   string access_token = 1;
 }
 
