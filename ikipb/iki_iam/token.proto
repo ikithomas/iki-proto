@@ -6,7 +6,7 @@ package token;
 
 service TokenService {
   rpc GetJwkset(GetJwksetRequest) returns (GetJwksetResponse) {}
-  rpc AccessToken(AccessTokenRequest) returns (AccessTokenRequest) {}
+  rpc AccessToken(AccessTokenRequest) returns (AccessTokenResponse) {}
 }
 
 message GetJwksetRequest{}
