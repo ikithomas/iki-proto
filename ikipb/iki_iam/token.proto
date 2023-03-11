@@ -7,8 +7,6 @@ package token;
 service TokenService {
   rpc GetJwkset(GetJwksetRequest) returns (GetJwksetResponse) {}
   rpc AccessToken(AccessTokenRequest) returns (AccessTokenRequest) {}
-  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
-  rpc SigningKeys(SigningKeysRequest) returns (SigningKeysResponse) {}
 }
 
 message GetJwksetRequest{}
@@ -17,27 +15,9 @@ message GetJwksetResponse{
 }
 
 message AccessTokenRequest {
-  // 1. Google JWT token exchanges a session_id
-  // 2. session_id exchanges an access token and refresh token
-  // 3. refresh token exchanges an access token
-  // 4. iki-iam reads the `session_id` from cookie and proceed.
+  string refresh_token = 1;
 }
 
 message AccessTokenResponse {
   string access_token = 1;
-}
-
-message RefreshTokenRequest {
-  string refresh_token = 1;
-}
-
-message RefreshTokenResponse {
-  string access_token = 1;
-}
-
-message SigningKeysRequest {
-}
-
-message SigningKeysResponse {
-  repeated string signing_key = 1;
 }

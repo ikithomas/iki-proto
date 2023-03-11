@@ -15,6 +15,7 @@ message LoginWithGoogleRequest {
 
 message LoginWithGoogleResponse {
   string access_token = 1;
+  string refresh_token = 2;
 }
 
 message SignoutRequest {}

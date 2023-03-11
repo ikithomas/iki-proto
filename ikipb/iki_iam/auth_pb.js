@@ -17,7 +17,6 @@ var global = (function() { return this || window || global || self || Function('
 
 goog.exportSymbol('proto.auth.LoginWithGoogleRequest', null, global);
 goog.exportSymbol('proto.auth.LoginWithGoogleResponse', null, global);
-goog.exportSymbol('proto.auth.LoginWithGoogleResponse.Result', null, global);
 goog.exportSymbol('proto.auth.SignoutRequest', null, global);
 goog.exportSymbol('proto.auth.SignoutResponse', null, global);
 /**
@@ -266,7 +265,8 @@ proto.auth.LoginWithGoogleResponse.prototype.toObject = function(opt_includeInst
  */
 proto.auth.LoginWithGoogleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accessToken: jspb.Message.getFieldWithDefault(msg, 1, "")
+    accessToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    refreshToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -307,6 +307,10 @@ proto.auth.LoginWithGoogleResponse.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setAccessToken(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRefreshToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -343,18 +347,15 @@ proto.auth.LoginWithGoogleResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
+  f = message.getRefreshToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
-
-/**
- * @enum {number}
- */
-proto.auth.LoginWithGoogleResponse.Result = {
-  RESULT_UNSPECIFIED: 0,
-  RESULT_SUCCESS: 1,
-  RESULT_: 2,
-  RESULT_UNKNOWN: 3
-};
 
 /**
  * optional string access_token = 1;
@@ -371,6 +372,24 @@ proto.auth.LoginWithGoogleResponse.prototype.getAccessToken = function() {
  */
 proto.auth.LoginWithGoogleResponse.prototype.setAccessToken = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string refresh_token = 2;
+ * @return {string}
+ */
+proto.auth.LoginWithGoogleResponse.prototype.getRefreshToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.auth.LoginWithGoogleResponse} returns this
+ */
+proto.auth.LoginWithGoogleResponse.prototype.setRefreshToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

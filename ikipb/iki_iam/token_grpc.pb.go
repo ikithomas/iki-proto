@@ -24,8 +24,6 @@ const _ = grpc.SupportPackageIsVersion7
 type TokenServiceClient interface {
 	GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error)
 	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenRequest, error)
-	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
-	SigningKeys(ctx context.Context, in *SigningKeysRequest, opts ...grpc.CallOption) (*SigningKeysResponse, error)
 }
 
 type tokenServiceClient struct {
@@ -54,32 +52,12 @@ func (c *tokenServiceClient) AccessToken(ctx context.Context, in *AccessTokenReq
 	return out, nil
 }
 
-func (c *tokenServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
-	out := new(RefreshTokenResponse)
-	err := c.cc.Invoke(ctx, "/token.TokenService/RefreshToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tokenServiceClient) SigningKeys(ctx context.Context, in *SigningKeysRequest, opts ...grpc.CallOption) (*SigningKeysResponse, error) {
-	out := new(SigningKeysResponse)
-	err := c.cc.Invoke(ctx, "/token.TokenService/SigningKeys", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // TokenServiceServer is the server API for TokenService service.
 // All implementations must embed UnimplementedTokenServiceServer
 // for forward compatibility
 type TokenServiceServer interface {
 	GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error)
 	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error)
-	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
-	SigningKeys(context.Context, *SigningKeysRequest) (*SigningKeysResponse, error)
 	mustEmbedUnimplementedTokenServiceServer()
 }
 
@@ -92,12 +70,6 @@ func (UnimplementedTokenServiceServer) GetJwkset(context.Context, *GetJwksetRequ
 }
 func (UnimplementedTokenServiceServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AccessToken not implemented")
-}
-func (UnimplementedTokenServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
-}
-func (UnimplementedTokenServiceServer) SigningKeys(context.Context, *SigningKeysRequest) (*SigningKeysResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SigningKeys not implemented")
 }
 func (UnimplementedTokenServiceServer) mustEmbedUnimplementedTokenServiceServer() {}
 
@@ -148,42 +120,6 @@ func _TokenService_AccessToken_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TokenService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshTokenRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TokenServiceServer).RefreshToken(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/token.TokenService/RefreshToken",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TokenService_SigningKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SigningKeysRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TokenServiceServer).SigningKeys(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/token.TokenService/SigningKeys",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServiceServer).SigningKeys(ctx, req.(*SigningKeysRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // TokenService_ServiceDesc is the grpc.ServiceDesc for TokenService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -198,14 +134,6 @@ var TokenService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AccessToken",
 			Handler:    _TokenService_AccessToken_Handler,
-		},
-		{
-			MethodName: "RefreshToken",
-			Handler:    _TokenService_RefreshToken_Handler,
-		},
-		{
-			MethodName: "SigningKeys",
-			Handler:    _TokenService_SigningKeys_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

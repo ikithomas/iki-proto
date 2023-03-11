@@ -1595,7 +1595,10 @@ proto.user.User.prototype.toObject = function(opt_includeInstance) {
  */
 proto.user.User.toObject = function(includeInstance, msg) {
   var f, obj = {
-    irn: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    givenName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    familyName: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1633,8 +1636,20 @@ proto.user.User.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
+      break;
+    case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setIrn(value);
+      msg.setEmail(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGivenName(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFamilyName(value);
       break;
     default:
       reader.skipField();
@@ -1665,10 +1680,31 @@ proto.user.User.prototype.serializeBinary = function() {
  */
 proto.user.User.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getIrn();
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getEmail();
   if (f.length > 0) {
     writer.writeString(
-      1,
+      2,
+      f
+    );
+  }
+  f = message.getGivenName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getFamilyName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -1676,11 +1712,29 @@ proto.user.User.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string irn = 1;
+ * optional int64 id = 1;
+ * @return {number}
+ */
+proto.user.User.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.User} returns this
+ */
+proto.user.User.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string email = 2;
  * @return {string}
  */
-proto.user.User.prototype.getIrn = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.user.User.prototype.getEmail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1688,8 +1742,44 @@ proto.user.User.prototype.getIrn = function() {
  * @param {string} value
  * @return {!proto.user.User} returns this
  */
-proto.user.User.prototype.setIrn = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.user.User.prototype.setEmail = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string given_name = 3;
+ * @return {string}
+ */
+proto.user.User.prototype.getGivenName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.User} returns this
+ */
+proto.user.User.prototype.setGivenName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string family_name = 4;
+ * @return {string}
+ */
+proto.user.User.prototype.getFamilyName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.User} returns this
+ */
+proto.user.User.prototype.setFamilyName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
