@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TokenServiceClient interface {
+	GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error)
 	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenRequest, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	SigningKeys(ctx context.Context, in *SigningKeysRequest, opts ...grpc.CallOption) (*SigningKeysResponse, error)
@@ -33,6 +34,15 @@ type tokenServiceClient struct {
 
 func NewTokenServiceClient(cc grpc.ClientConnInterface) TokenServiceClient {
 	return &tokenServiceClient{cc}
+}
+
+func (c *tokenServiceClient) GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error) {
+	out := new(GetJwksetResponse)
+	err := c.cc.Invoke(ctx, "/token.TokenService/GetJwkset", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *tokenServiceClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenRequest, error) {
@@ -66,6 +76,7 @@ func (c *tokenServiceClient) SigningKeys(ctx context.Context, in *SigningKeysReq
 // All implementations must embed UnimplementedTokenServiceServer
 // for forward compatibility
 type TokenServiceServer interface {
+	GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error)
 	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	SigningKeys(context.Context, *SigningKeysRequest) (*SigningKeysResponse, error)
@@ -76,6 +87,9 @@ type TokenServiceServer interface {
 type UnimplementedTokenServiceServer struct {
 }
 
+func (UnimplementedTokenServiceServer) GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetJwkset not implemented")
+}
 func (UnimplementedTokenServiceServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AccessToken not implemented")
 }
@@ -96,6 +110,24 @@ type UnsafeTokenServiceServer interface {
 
 func RegisterTokenServiceServer(s grpc.ServiceRegistrar, srv TokenServiceServer) {
 	s.RegisterService(&TokenService_ServiceDesc, srv)
+}
+
+func _TokenService_GetJwkset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetJwksetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenServiceServer).GetJwkset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/token.TokenService/GetJwkset",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenServiceServer).GetJwkset(ctx, req.(*GetJwksetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TokenService_AccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -159,6 +191,10 @@ var TokenService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "token.TokenService",
 	HandlerType: (*TokenServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetJwkset",
+			Handler:    _TokenService_GetJwkset_Handler,
+		},
 		{
 			MethodName: "AccessToken",
 			Handler:    _TokenService_AccessToken_Handler,

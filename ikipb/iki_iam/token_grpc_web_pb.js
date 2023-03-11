@@ -77,6 +77,67 @@ proto.token.TokenServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.token.GetJwksetRequest,
+ *   !proto.token.GetJwksetResponse>}
+ */
+const methodDescriptor_TokenService_GetJwkset = new grpc.web.MethodDescriptor(
+  '/token.TokenService/GetJwkset',
+  grpc.web.MethodType.UNARY,
+  proto.token.GetJwksetRequest,
+  proto.token.GetJwksetResponse,
+  /**
+   * @param {!proto.token.GetJwksetRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.token.GetJwksetResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.token.GetJwksetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.token.GetJwksetResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.token.GetJwksetResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.token.TokenServiceClient.prototype.getJwkset =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/token.TokenService/GetJwkset',
+      request,
+      metadata || {},
+      methodDescriptor_TokenService_GetJwkset,
+      callback);
+};
+
+
+/**
+ * @param {!proto.token.GetJwksetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.token.GetJwksetResponse>}
+ *     Promise that resolves to the response
+ */
+proto.token.TokenServicePromiseClient.prototype.getJwkset =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/token.TokenService/GetJwkset',
+      request,
+      metadata || {},
+      methodDescriptor_TokenService_GetJwkset);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.token.AccessTokenRequest,
  *   !proto.token.AccessTokenRequest>}
  */

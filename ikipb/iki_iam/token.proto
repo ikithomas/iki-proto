@@ -5,9 +5,15 @@ option go_package = "/iam";
 package token;
 
 service TokenService {
+  rpc GetJwkset(GetJwksetRequest) returns (GetJwksetResponse) {}
   rpc AccessToken(AccessTokenRequest) returns (AccessTokenRequest) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc SigningKeys(SigningKeysRequest) returns (SigningKeysResponse) {}
+}
+
+message GetJwksetRequest{}
+message GetJwksetResponse{
+  bytes jwkset = 1;
 }
 
 message AccessTokenRequest {
