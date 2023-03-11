@@ -139,13 +139,13 @@ proto.token.TokenServicePromiseClient.prototype.getJwkset =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.token.AccessTokenRequest,
- *   !proto.token.AccessTokenRequest>}
+ *   !proto.token.AccessTokenResponse>}
  */
 const methodDescriptor_TokenService_AccessToken = new grpc.web.MethodDescriptor(
   '/token.TokenService/AccessToken',
   grpc.web.MethodType.UNARY,
   proto.token.AccessTokenRequest,
-  proto.token.AccessTokenRequest,
+  proto.token.AccessTokenResponse,
   /**
    * @param {!proto.token.AccessTokenRequest} request
    * @return {!Uint8Array}
@@ -153,7 +153,7 @@ const methodDescriptor_TokenService_AccessToken = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.token.AccessTokenRequest.deserializeBinary
+  proto.token.AccessTokenResponse.deserializeBinary
 );
 
 
@@ -162,9 +162,9 @@ const methodDescriptor_TokenService_AccessToken = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.token.AccessTokenRequest)}
+ * @param {function(?grpc.web.RpcError, ?proto.token.AccessTokenResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.token.AccessTokenRequest>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.token.AccessTokenResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.token.TokenServiceClient.prototype.accessToken =
@@ -183,7 +183,7 @@ proto.token.TokenServiceClient.prototype.accessToken =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.token.AccessTokenRequest>}
+ * @return {!Promise<!proto.token.AccessTokenResponse>}
  *     Promise that resolves to the response
  */
 proto.token.TokenServicePromiseClient.prototype.accessToken =

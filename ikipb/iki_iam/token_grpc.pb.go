@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TokenServiceClient interface {
 	GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error)
-	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenRequest, error)
+	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 }
 
 type tokenServiceClient struct {
@@ -43,8 +43,8 @@ func (c *tokenServiceClient) GetJwkset(ctx context.Context, in *GetJwksetRequest
 	return out, nil
 }
 
-func (c *tokenServiceClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenRequest, error) {
-	out := new(AccessTokenRequest)
+func (c *tokenServiceClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error) {
+	out := new(AccessTokenResponse)
 	err := c.cc.Invoke(ctx, "/token.TokenService/AccessToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func (c *tokenServiceClient) AccessToken(ctx context.Context, in *AccessTokenReq
 // for forward compatibility
 type TokenServiceServer interface {
 	GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error)
-	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error)
+	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
 	mustEmbedUnimplementedTokenServiceServer()
 }
 
@@ -68,7 +68,7 @@ type UnimplementedTokenServiceServer struct {
 func (UnimplementedTokenServiceServer) GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJwkset not implemented")
 }
-func (UnimplementedTokenServiceServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenRequest, error) {
+func (UnimplementedTokenServiceServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AccessToken not implemented")
 }
 func (UnimplementedTokenServiceServer) mustEmbedUnimplementedTokenServiceServer() {}
