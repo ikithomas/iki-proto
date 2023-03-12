@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "/cani";
+
+package cani;
+
+service CanIService {
+  rpc CanI(CanIRequest) returns (CanIResponse) {}
+}
+
+message CanIRequest {}
+message CanIResponse {
+  repeated string full_method = 1;
+}
+
