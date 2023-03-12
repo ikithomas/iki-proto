@@ -22,7 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
+	// Login or signup with google.
+	// If a user is not yet created, a new user account will be created associated with that email address.
 	LoginWithGoogle(ctx context.Context, in *LoginWithGoogleRequest, opts ...grpc.CallOption) (*LoginWithGoogleResponse, error)
+	// Login with password.
+	LoginWithPassword(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error)
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
 }
 
@@ -43,6 +47,15 @@ func (c *authServiceClient) LoginWithGoogle(ctx context.Context, in *LoginWithGo
 	return out, nil
 }
 
+func (c *authServiceClient) LoginWithPassword(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error) {
+	out := new(PasswordLoginResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/LoginWithPassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authServiceClient) Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error) {
 	out := new(SignoutResponse)
 	err := c.cc.Invoke(ctx, "/auth.AuthService/Signout", in, out, opts...)
@@ -56,7 +69,11 @@ func (c *authServiceClient) Signout(ctx context.Context, in *SignoutRequest, opt
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
+	// Login or signup with google.
+	// If a user is not yet created, a new user account will be created associated with that email address.
 	LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error)
+	// Login with password.
+	LoginWithPassword(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
@@ -67,6 +84,9 @@ type UnimplementedAuthServiceServer struct {
 
 func (UnimplementedAuthServiceServer) LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginWithGoogle not implemented")
+}
+func (UnimplementedAuthServiceServer) LoginWithPassword(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginWithPassword not implemented")
 }
 func (UnimplementedAuthServiceServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signout not implemented")
@@ -102,6 +122,24 @@ func _AuthService_LoginWithGoogle_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_LoginWithPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PasswordLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).LoginWithPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.AuthService/LoginWithPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).LoginWithPassword(ctx, req.(*PasswordLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthService_Signout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignoutRequest)
 	if err := dec(in); err != nil {
@@ -130,6 +168,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginWithGoogle",
 			Handler:    _AuthService_LoginWithGoogle_Handler,
+		},
+		{
+			MethodName: "LoginWithPassword",
+			Handler:    _AuthService_LoginWithPassword_Handler,
 		},
 		{
 			MethodName: "Signout",

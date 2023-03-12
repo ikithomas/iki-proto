@@ -23,11 +23,17 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
-	// Adminitration endpoints
+	// Adminitrator or owner only
+	// list all users
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	// Adminitrator or owner only.
+	// get the details of a specific user.
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	// Adminitrator or owner only.
+	// delete a user.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	Blacklist(ctx context.Context, in *BlacklistRequest, opts ...grpc.CallOption) (*BlacklistResponse, error)
+	// Adminitrator or owner only.
+	// delete a user
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 }
 
@@ -75,15 +81,6 @@ func (c *userServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) Blacklist(ctx context.Context, in *BlacklistRequest, opts ...grpc.CallOption) (*BlacklistResponse, error) {
-	out := new(BlacklistResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/Blacklist", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
 	out := new(ResetPasswordResponse)
 	err := c.cc.Invoke(ctx, "/user.UserService/ResetPassword", in, out, opts...)
@@ -98,11 +95,17 @@ func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword
 // for forward compatibility
 type UserServiceServer interface {
 	Profile(context.Context, *ProfileRequest) (*ProfileResponse, error)
-	// Adminitration endpoints
+	// Adminitrator or owner only
+	// list all users
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	// Adminitrator or owner only.
+	// get the details of a specific user.
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	// Adminitrator or owner only.
+	// delete a user.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	Blacklist(context.Context, *BlacklistRequest) (*BlacklistResponse, error)
+	// Adminitrator or owner only.
+	// delete a user
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
@@ -122,9 +125,6 @@ func (UnimplementedUserServiceServer) Get(context.Context, *GetRequest) (*GetRes
 }
 func (UnimplementedUserServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedUserServiceServer) Blacklist(context.Context, *BlacklistRequest) (*BlacklistResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Blacklist not implemented")
 }
 func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
@@ -214,24 +214,6 @@ func _UserService_Delete_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_Blacklist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlacklistRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).Blacklist(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.UserService/Blacklist",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Blacklist(ctx, req.(*BlacklistRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _UserService_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResetPasswordRequest)
 	if err := dec(in); err != nil {
@@ -272,10 +254,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _UserService_Delete_Handler,
-		},
-		{
-			MethodName: "Blacklist",
-			Handler:    _UserService_Blacklist_Handler,
 		},
 		{
 			MethodName: "ResetPassword",

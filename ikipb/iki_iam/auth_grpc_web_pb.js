@@ -138,6 +138,67 @@ proto.auth.AuthServicePromiseClient.prototype.loginWithGoogle =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.auth.PasswordLoginRequest,
+ *   !proto.auth.PasswordLoginResponse>}
+ */
+const methodDescriptor_AuthService_LoginWithPassword = new grpc.web.MethodDescriptor(
+  '/auth.AuthService/LoginWithPassword',
+  grpc.web.MethodType.UNARY,
+  proto.auth.PasswordLoginRequest,
+  proto.auth.PasswordLoginResponse,
+  /**
+   * @param {!proto.auth.PasswordLoginRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.auth.PasswordLoginResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.auth.PasswordLoginRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.auth.PasswordLoginResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.auth.PasswordLoginResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.auth.AuthServiceClient.prototype.loginWithPassword =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/auth.AuthService/LoginWithPassword',
+      request,
+      metadata || {},
+      methodDescriptor_AuthService_LoginWithPassword,
+      callback);
+};
+
+
+/**
+ * @param {!proto.auth.PasswordLoginRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.auth.PasswordLoginResponse>}
+ *     Promise that resolves to the response
+ */
+proto.auth.AuthServicePromiseClient.prototype.loginWithPassword =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/auth.AuthService/LoginWithPassword',
+      request,
+      metadata || {},
+      methodDescriptor_AuthService_LoginWithPassword);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.auth.SignoutRequest,
  *   !proto.auth.SignoutResponse>}
  */

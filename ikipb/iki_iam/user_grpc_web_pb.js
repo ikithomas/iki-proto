@@ -321,67 +321,6 @@ proto.user.UserServicePromiseClient.prototype.delete =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.BlacklistRequest,
- *   !proto.user.BlacklistResponse>}
- */
-const methodDescriptor_UserService_Blacklist = new grpc.web.MethodDescriptor(
-  '/user.UserService/Blacklist',
-  grpc.web.MethodType.UNARY,
-  proto.user.BlacklistRequest,
-  proto.user.BlacklistResponse,
-  /**
-   * @param {!proto.user.BlacklistRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.user.BlacklistResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.user.BlacklistRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.BlacklistResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.BlacklistResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.user.UserServiceClient.prototype.blacklist =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/Blacklist',
-      request,
-      metadata || {},
-      methodDescriptor_UserService_Blacklist,
-      callback);
-};
-
-
-/**
- * @param {!proto.user.BlacklistRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.user.BlacklistResponse>}
- *     Promise that resolves to the response
- */
-proto.user.UserServicePromiseClient.prototype.blacklist =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/Blacklist',
-      request,
-      metadata || {},
-      methodDescriptor_UserService_Blacklist);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.user.ResetPasswordRequest,
  *   !proto.user.ResetPasswordResponse>}
  */
