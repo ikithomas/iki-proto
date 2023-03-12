@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type ActivityServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	GetMine(ctx context.Context, in *GetMineRequest, opts ...grpc.CallOption) (*GetMineResponse, error)
+	ListMine(ctx context.Context, in *ListMineRequest, opts ...grpc.CallOption) (*ListMineResponse, error)
 }
 
 type activityServiceClient struct {
@@ -52,12 +54,32 @@ func (c *activityServiceClient) List(ctx context.Context, in *ListRequest, opts 
 	return out, nil
 }
 
+func (c *activityServiceClient) GetMine(ctx context.Context, in *GetMineRequest, opts ...grpc.CallOption) (*GetMineResponse, error) {
+	out := new(GetMineResponse)
+	err := c.cc.Invoke(ctx, "/activity.ActivityService/GetMine", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *activityServiceClient) ListMine(ctx context.Context, in *ListMineRequest, opts ...grpc.CallOption) (*ListMineResponse, error) {
+	out := new(ListMineResponse)
+	err := c.cc.Invoke(ctx, "/activity.ActivityService/ListMine", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ActivityServiceServer is the server API for ActivityService service.
 // All implementations must embed UnimplementedActivityServiceServer
 // for forward compatibility
 type ActivityServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	GetMine(context.Context, *GetMineRequest) (*GetMineResponse, error)
+	ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error)
 	mustEmbedUnimplementedActivityServiceServer()
 }
 
@@ -70,6 +92,12 @@ func (UnimplementedActivityServiceServer) Get(context.Context, *GetRequest) (*Ge
 }
 func (UnimplementedActivityServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedActivityServiceServer) GetMine(context.Context, *GetMineRequest) (*GetMineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMine not implemented")
+}
+func (UnimplementedActivityServiceServer) ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMine not implemented")
 }
 func (UnimplementedActivityServiceServer) mustEmbedUnimplementedActivityServiceServer() {}
 
@@ -120,6 +148,42 @@ func _ActivityService_List_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ActivityService_GetMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ActivityServiceServer).GetMine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/activity.ActivityService/GetMine",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ActivityServiceServer).GetMine(ctx, req.(*GetMineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ActivityService_ListMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ActivityServiceServer).ListMine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/activity.ActivityService/ListMine",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ActivityServiceServer).ListMine(ctx, req.(*ListMineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ActivityService_ServiceDesc is the grpc.ServiceDesc for ActivityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +198,14 @@ var ActivityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _ActivityService_List_Handler,
+		},
+		{
+			MethodName: "GetMine",
+			Handler:    _ActivityService_GetMine_Handler,
+		},
+		{
+			MethodName: "ListMine",
+			Handler:    _ActivityService_ListMine_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

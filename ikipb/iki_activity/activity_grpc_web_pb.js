@@ -196,5 +196,127 @@ proto.activity.ActivityServicePromiseClient.prototype.list =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.activity.GetMineRequest,
+ *   !proto.activity.GetMineResponse>}
+ */
+const methodDescriptor_ActivityService_GetMine = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/GetMine',
+  grpc.web.MethodType.UNARY,
+  proto.activity.GetMineRequest,
+  proto.activity.GetMineResponse,
+  /**
+   * @param {!proto.activity.GetMineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.activity.GetMineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.activity.GetMineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.activity.GetMineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.GetMineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.getMine =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/GetMine',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_GetMine,
+      callback);
+};
+
+
+/**
+ * @param {!proto.activity.GetMineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.activity.GetMineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.getMine =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/GetMine',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_GetMine);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.activity.ListMineRequest,
+ *   !proto.activity.ListMineResponse>}
+ */
+const methodDescriptor_ActivityService_ListMine = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/ListMine',
+  grpc.web.MethodType.UNARY,
+  proto.activity.ListMineRequest,
+  proto.activity.ListMineResponse,
+  /**
+   * @param {!proto.activity.ListMineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.activity.ListMineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.activity.ListMineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.activity.ListMineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.ListMineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.listMine =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/ListMine',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_ListMine,
+      callback);
+};
+
+
+/**
+ * @param {!proto.activity.ListMineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.activity.ListMineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.listMine =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/ListMine',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_ListMine);
+};
+
+
 module.exports = proto.activity;
 
