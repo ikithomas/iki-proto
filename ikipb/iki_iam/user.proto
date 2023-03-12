@@ -7,13 +7,23 @@ package user;
 service UserService {
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
 
-  // Adminitration endpoints
+  // Adminitrator or owner only
+  // list all users
   rpc List(ListRequest) returns (ListResponse) {}
+
+  // Adminitrator or owner only.
+  // get the details of a specific user.
   rpc Get(GetRequest) returns (GetResponse) {}
+
+  // Adminitrator or owner only.
+  // delete a user.
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
-  rpc Blacklist(BlacklistRequest) returns (BlacklistResponse) {}
+
+  // Adminitrator or owner only.
+  // delete a user
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
 }
+
 
 message ProfileRequest {}
 
@@ -21,15 +31,30 @@ message ProfileResponse {
   User user = 1;
 }
 
-message GetRequest {}
-message GetResponse {}
+message GetRequest {
+  int64 id = 1;
+}
+message GetResponse {
+  User user = 1;
+}
+
 message ListRequest {}
-message ListResponse {}
-message DeleteRequest {}
+
+message ListResponse {
+  repeated User users = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}
+
 message DeleteResponse {}
-message BlacklistRequest {}
-message BlacklistResponse {}
-message ResetPasswordRequest {}
+
+message ResetPasswordRequest {
+  int64 id = 1;
+  string new_password = 2;
+}
+
 message ResetPasswordResponse {}
 
 message User {

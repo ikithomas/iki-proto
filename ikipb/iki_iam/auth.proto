@@ -5,7 +5,13 @@ option go_package = "/iam";
 package auth;
 
 service AuthService {
+  // Login or signup with google.
+  // If a user is not yet created, a new user account will be created associated with that email address.
   rpc LoginWithGoogle (LoginWithGoogleRequest) returns (LoginWithGoogleResponse) {}
+
+  // Login with password.
+  rpc LoginWithPassword (PasswordLoginRequest) returns (PasswordLoginResponse) {}
+
   rpc Signout (SignoutRequest) returns (SignoutResponse) {}
 }
 
@@ -14,6 +20,16 @@ message LoginWithGoogleRequest {
 }
 
 message LoginWithGoogleResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message PasswordLoginRequest {
+  string email_address = 1;
+  string password = 2;
+}
+
+message PasswordLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
 }
