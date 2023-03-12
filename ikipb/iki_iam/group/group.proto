@@ -4,25 +4,26 @@ option go_package = "/group";
 
 package group;
 
-service GroupService {
-  rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {}
-  rpc ListGroups (ListGroupsRequest) returns (ListGroupsResponse) {}
-  rpc AttachGroup (AttachGroupRequest) returns (AttachGroupResponse) {}
-  rpc DetachGroup (DetachGroupRequest) returns (DetachGroupResponse) {}
+message Group {
+  int64 id = 1;
+  string name = 2;
 }
 
-message GetGroupsRequest {}
+service GroupService {
+  rpc Get (GetRequest) returns (GetResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {}
+}
 
-message GetGroupsResponse {}
+message GetRequest {
+  int64 id = 1;
+}
 
-message ListGroupsRequest {}
+message GetResponse {
+  Group group = 1;
+}
 
-message ListGroupsResponse {}
+message ListRequest {}
 
-message AttachGroupRequest {}
-
-message AttachGroupResponse {}
-
-message DetachGroupRequest {}
-
-message DetachGroupResponse {}
+message ListResponse {
+  repeated Group groups = 1;
+}

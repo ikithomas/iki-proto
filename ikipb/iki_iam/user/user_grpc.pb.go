@@ -35,6 +35,12 @@ type UserServiceClient interface {
 	// Adminitrator or owner only.
 	// delete a user
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
+	// Adminitrator or owner only.
+	// attach a user to a group
+	AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error)
+	// Adminitrator or owner only.
+	// detach a user from a group
+	DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error)
 }
 
 type userServiceClient struct {
@@ -90,6 +96,24 @@ func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword
 	return out, nil
 }
 
+func (c *userServiceClient) AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error) {
+	out := new(AttachGroupResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/AttachGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error) {
+	out := new(DetachGroupResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/DetachGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -107,6 +131,12 @@ type UserServiceServer interface {
 	// Adminitrator or owner only.
 	// delete a user
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
+	// Adminitrator or owner only.
+	// attach a user to a group
+	AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error)
+	// Adminitrator or owner only.
+	// detach a user from a group
+	DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -128,6 +158,12 @@ func (UnimplementedUserServiceServer) Delete(context.Context, *DeleteRequest) (*
 }
 func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedUserServiceServer) AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttachGroup not implemented")
+}
+func (UnimplementedUserServiceServer) DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DetachGroup not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -232,6 +268,42 @@ func _UserService_ResetPassword_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_AttachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).AttachGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.UserService/AttachGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).AttachGroup(ctx, req.(*AttachGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_DetachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DetachGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).DetachGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.UserService/DetachGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).DetachGroup(ctx, req.(*DetachGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -258,6 +330,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResetPassword",
 			Handler:    _UserService_ResetPassword_Handler,
+		},
+		{
+			MethodName: "AttachGroup",
+			Handler:    _UserService_AttachGroup_Handler,
+		},
+		{
+			MethodName: "DetachGroup",
+			Handler:    _UserService_DetachGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

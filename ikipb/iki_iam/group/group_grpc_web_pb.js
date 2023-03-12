@@ -77,244 +77,122 @@ proto.group.GroupServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.GetGroupsRequest,
- *   !proto.group.GetGroupsResponse>}
+ *   !proto.group.GetRequest,
+ *   !proto.group.GetResponse>}
  */
-const methodDescriptor_GroupService_GetGroups = new grpc.web.MethodDescriptor(
-  '/group.GroupService/GetGroups',
+const methodDescriptor_GroupService_Get = new grpc.web.MethodDescriptor(
+  '/group.GroupService/Get',
   grpc.web.MethodType.UNARY,
-  proto.group.GetGroupsRequest,
-  proto.group.GetGroupsResponse,
+  proto.group.GetRequest,
+  proto.group.GetResponse,
   /**
-   * @param {!proto.group.GetGroupsRequest} request
+   * @param {!proto.group.GetRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.group.GetGroupsResponse.deserializeBinary
+  proto.group.GetResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.group.GetGroupsRequest} request The
+ * @param {!proto.group.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.GetGroupsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.GetResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.GetGroupsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.GetResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.GroupServiceClient.prototype.getGroups =
+proto.group.GroupServiceClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/GetGroups',
+      '/group.GroupService/Get',
       request,
       metadata || {},
-      methodDescriptor_GroupService_GetGroups,
+      methodDescriptor_GroupService_Get,
       callback);
 };
 
 
 /**
- * @param {!proto.group.GetGroupsRequest} request The
+ * @param {!proto.group.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.group.GetGroupsResponse>}
+ * @return {!Promise<!proto.group.GetResponse>}
  *     Promise that resolves to the response
  */
-proto.group.GroupServicePromiseClient.prototype.getGroups =
+proto.group.GroupServicePromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/GetGroups',
+      '/group.GroupService/Get',
       request,
       metadata || {},
-      methodDescriptor_GroupService_GetGroups);
+      methodDescriptor_GroupService_Get);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.ListGroupsRequest,
- *   !proto.group.ListGroupsResponse>}
+ *   !proto.group.ListRequest,
+ *   !proto.group.ListResponse>}
  */
-const methodDescriptor_GroupService_ListGroups = new grpc.web.MethodDescriptor(
-  '/group.GroupService/ListGroups',
+const methodDescriptor_GroupService_List = new grpc.web.MethodDescriptor(
+  '/group.GroupService/List',
   grpc.web.MethodType.UNARY,
-  proto.group.ListGroupsRequest,
-  proto.group.ListGroupsResponse,
+  proto.group.ListRequest,
+  proto.group.ListResponse,
   /**
-   * @param {!proto.group.ListGroupsRequest} request
+   * @param {!proto.group.ListRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.group.ListGroupsResponse.deserializeBinary
+  proto.group.ListResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.group.ListGroupsRequest} request The
+ * @param {!proto.group.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.ListGroupsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.group.ListResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.ListGroupsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.group.ListResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.GroupServiceClient.prototype.listGroups =
+proto.group.GroupServiceClient.prototype.list =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/ListGroups',
+      '/group.GroupService/List',
       request,
       metadata || {},
-      methodDescriptor_GroupService_ListGroups,
+      methodDescriptor_GroupService_List,
       callback);
 };
 
 
 /**
- * @param {!proto.group.ListGroupsRequest} request The
+ * @param {!proto.group.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.group.ListGroupsResponse>}
+ * @return {!Promise<!proto.group.ListResponse>}
  *     Promise that resolves to the response
  */
-proto.group.GroupServicePromiseClient.prototype.listGroups =
+proto.group.GroupServicePromiseClient.prototype.list =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/ListGroups',
+      '/group.GroupService/List',
       request,
       metadata || {},
-      methodDescriptor_GroupService_ListGroups);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.AttachGroupRequest,
- *   !proto.group.AttachGroupResponse>}
- */
-const methodDescriptor_GroupService_AttachGroup = new grpc.web.MethodDescriptor(
-  '/group.GroupService/AttachGroup',
-  grpc.web.MethodType.UNARY,
-  proto.group.AttachGroupRequest,
-  proto.group.AttachGroupResponse,
-  /**
-   * @param {!proto.group.AttachGroupRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.group.AttachGroupResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.group.AttachGroupRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.AttachGroupResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.AttachGroupResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.group.GroupServiceClient.prototype.attachGroup =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/AttachGroup',
-      request,
-      metadata || {},
-      methodDescriptor_GroupService_AttachGroup,
-      callback);
-};
-
-
-/**
- * @param {!proto.group.AttachGroupRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.group.AttachGroupResponse>}
- *     Promise that resolves to the response
- */
-proto.group.GroupServicePromiseClient.prototype.attachGroup =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/AttachGroup',
-      request,
-      metadata || {},
-      methodDescriptor_GroupService_AttachGroup);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.DetachGroupRequest,
- *   !proto.group.DetachGroupResponse>}
- */
-const methodDescriptor_GroupService_DetachGroup = new grpc.web.MethodDescriptor(
-  '/group.GroupService/DetachGroup',
-  grpc.web.MethodType.UNARY,
-  proto.group.DetachGroupRequest,
-  proto.group.DetachGroupResponse,
-  /**
-   * @param {!proto.group.DetachGroupRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.group.DetachGroupResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.group.DetachGroupRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.DetachGroupResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.DetachGroupResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.group.GroupServiceClient.prototype.detachGroup =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/DetachGroup',
-      request,
-      metadata || {},
-      methodDescriptor_GroupService_DetachGroup,
-      callback);
-};
-
-
-/**
- * @param {!proto.group.DetachGroupRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.group.DetachGroupResponse>}
- *     Promise that resolves to the response
- */
-proto.group.GroupServicePromiseClient.prototype.detachGroup =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/DetachGroup',
-      request,
-      metadata || {},
-      methodDescriptor_GroupService_DetachGroup);
+      methodDescriptor_GroupService_List);
 };
 
 

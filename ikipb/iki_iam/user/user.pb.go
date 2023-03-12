@@ -20,448 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *ProfileRequest) Reset() {
-	*x = ProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ProfileRequest) ProtoMessage() {}
-
-func (x *ProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ProfileRequest.ProtoReflect.Descriptor instead.
-func (*ProfileRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{0}
-}
-
-type ProfileResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-}
-
-func (x *ProfileResponse) Reset() {
-	*x = ProfileResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ProfileResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ProfileResponse) ProtoMessage() {}
-
-func (x *ProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ProfileResponse.ProtoReflect.Descriptor instead.
-func (*ProfileResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *ProfileResponse) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type GetRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *GetRequest) Reset() {
-	*x = GetRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRequest) ProtoMessage() {}
-
-func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
-func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type GetResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-}
-
-func (x *GetResponse) Reset() {
-	*x = GetResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetResponse) ProtoMessage() {}
-
-func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
-func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetResponse) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type ListRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *ListRequest) Reset() {
-	*x = ListRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListRequest) ProtoMessage() {}
-
-func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
-func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{4}
-}
-
-type ListResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Users []*User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
-}
-
-func (x *ListResponse) Reset() {
-	*x = ListResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListResponse) ProtoMessage() {}
-
-func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
-func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ListResponse) GetUsers() []*User {
-	if x != nil {
-		return x.Users
-	}
-	return nil
-}
-
-type DeleteRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *DeleteRequest) Reset() {
-	*x = DeleteRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteRequest) ProtoMessage() {}
-
-func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *DeleteRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type DeleteResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *DeleteResponse) Reset() {
-	*x = DeleteResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteResponse) ProtoMessage() {}
-
-func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{7}
-}
-
-type ResetPasswordRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id          int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	NewPassword string `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
-}
-
-func (x *ResetPasswordRequest) Reset() {
-	*x = ResetPasswordRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ResetPasswordRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResetPasswordRequest) ProtoMessage() {}
-
-func (x *ResetPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResetPasswordRequest.ProtoReflect.Descriptor instead.
-func (*ResetPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *ResetPasswordRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *ResetPasswordRequest) GetNewPassword() string {
-	if x != nil {
-		return x.NewPassword
-	}
-	return ""
-}
-
-type ResetPasswordResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *ResetPasswordResponse) Reset() {
-	*x = ResetPasswordResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ResetPasswordResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResetPasswordResponse) ProtoMessage() {}
-
-func (x *ResetPasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResetPasswordResponse.ProtoReflect.Descriptor instead.
-func (*ResetPasswordResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{9}
-}
-
 type User struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -476,7 +34,7 @@ type User struct {
 func (x *User) Reset() {
 	*x = User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[10]
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -489,7 +47,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[10]
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -502,7 +60,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{10}
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *User) GetId() int64 {
@@ -533,61 +91,710 @@ func (x *User) GetFamilyName() string {
 	return ""
 }
 
+type ProfileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ProfileRequest) Reset() {
+	*x = ProfileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProfileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProfileRequest) ProtoMessage() {}
+
+func (x *ProfileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProfileRequest.ProtoReflect.Descriptor instead.
+func (*ProfileRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{1}
+}
+
+type ProfileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (x *ProfileResponse) Reset() {
+	*x = ProfileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProfileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProfileResponse) ProtoMessage() {}
+
+func (x *ProfileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProfileResponse.ProtoReflect.Descriptor instead.
+func (*ProfileResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ProfileResponse) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type GetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetRequest) Reset() {
+	*x = GetRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRequest) ProtoMessage() {}
+
+func (x *GetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
+func (*GetRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (x *GetResponse) Reset() {
+	*x = GetResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetResponse) ProtoMessage() {}
+
+func (x *GetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
+func (*GetResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetResponse) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type ListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRequest) ProtoMessage() {}
+
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{5}
+}
+
+type ListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Users []*User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+}
+
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListResponse) ProtoMessage() {}
+
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListResponse) GetUsers() []*User {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
+type DeleteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *DeleteRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DeleteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteResponse) Reset() {
+	*x = DeleteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteResponse) ProtoMessage() {}
+
+func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{8}
+}
+
+type ResetPasswordRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id          int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	NewPassword string `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
+}
+
+func (x *ResetPasswordRequest) Reset() {
+	*x = ResetPasswordRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ResetPasswordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResetPasswordRequest) ProtoMessage() {}
+
+func (x *ResetPasswordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResetPasswordRequest.ProtoReflect.Descriptor instead.
+func (*ResetPasswordRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ResetPasswordRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ResetPasswordRequest) GetNewPassword() string {
+	if x != nil {
+		return x.NewPassword
+	}
+	return ""
+}
+
+type ResetPasswordResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ResetPasswordResponse) Reset() {
+	*x = ResetPasswordResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ResetPasswordResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResetPasswordResponse) ProtoMessage() {}
+
+func (x *ResetPasswordResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResetPasswordResponse.ProtoReflect.Descriptor instead.
+func (*ResetPasswordResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{10}
+}
+
+type AttachGroupRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId  int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	GroupId int64 `protobuf:"varint,2,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
+}
+
+func (x *AttachGroupRequest) Reset() {
+	*x = AttachGroupRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AttachGroupRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AttachGroupRequest) ProtoMessage() {}
+
+func (x *AttachGroupRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AttachGroupRequest.ProtoReflect.Descriptor instead.
+func (*AttachGroupRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *AttachGroupRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *AttachGroupRequest) GetGroupId() int64 {
+	if x != nil {
+		return x.GroupId
+	}
+	return 0
+}
+
+type AttachGroupResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AttachGroupResponse) Reset() {
+	*x = AttachGroupResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AttachGroupResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AttachGroupResponse) ProtoMessage() {}
+
+func (x *AttachGroupResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AttachGroupResponse.ProtoReflect.Descriptor instead.
+func (*AttachGroupResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{12}
+}
+
+type DetachGroupRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId  int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	GroupId int64 `protobuf:"varint,2,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
+}
+
+func (x *DetachGroupRequest) Reset() {
+	*x = DetachGroupRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DetachGroupRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DetachGroupRequest) ProtoMessage() {}
+
+func (x *DetachGroupRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DetachGroupRequest.ProtoReflect.Descriptor instead.
+func (*DetachGroupRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DetachGroupRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *DetachGroupRequest) GetGroupId() int64 {
+	if x != nil {
+		return x.GroupId
+	}
+	return 0
+}
+
+type DetachGroupResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DetachGroupResponse) Reset() {
+	*x = DetachGroupResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DetachGroupResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DetachGroupResponse) ProtoMessage() {}
+
+func (x *DetachGroupResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_user_user_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DetachGroupResponse.ProtoReflect.Descriptor instead.
+func (*DetachGroupResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_user_user_proto_rawDescGZIP(), []int{14}
+}
+
 var File_ikipb_iki_iam_user_user_proto protoreflect.FileDescriptor
 
 var file_ikipb_iki_iam_user_user_proto_rawDesc = []byte{
 	0x0a, 0x1d, 0x69, 0x6b, 0x69, 0x70, 0x62, 0x2f, 0x69, 0x6b, 0x69, 0x5f, 0x69, 0x61, 0x6d, 0x2f,
 	0x75, 0x73, 0x65, 0x72, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x10, 0x0a, 0x0e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x31, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x75, 0x73,
-	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e,
-	0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1c, 0x0a, 0x0a, 0x47, 0x65,
-	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2d, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x30, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x1f, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x10, 0x0a, 0x0e, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x49, 0x0a, 0x14, 0x52,
-	0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x02, 0x69, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x6e, 0x65, 0x77, 0x5f, 0x70, 0x61, 0x73, 0x73, 0x77,
-	0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x65, 0x77, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x17, 0x0a, 0x15, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50,
-	0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x6c, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1d, 0x0a,
-	0x0a, 0x67, 0x69, 0x76, 0x65, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x09, 0x67, 0x69, 0x76, 0x65, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x0b,
-	0x66, 0x61, 0x6d, 0x69, 0x6c, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x0a, 0x66, 0x61, 0x6d, 0x69, 0x6c, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x32, 0xa9, 0x02,
-	0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x38, 0x0a,
-	0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x14, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15,
-	0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x2f, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12,
-	0x11, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x12, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x2c, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12,
-	0x10, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x11, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x12, 0x13, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4a, 0x0a,
-	0x0d, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x1a,
-	0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77,
-	0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x75, 0x73, 0x65,
-	0x72, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x75, 0x73,
-	0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x6c, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a,
+	0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d,
+	0x61, 0x69, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x67, 0x69, 0x76, 0x65, 0x6e, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x67, 0x69, 0x76, 0x65, 0x6e, 0x4e, 0x61,
+	0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x66, 0x61, 0x6d, 0x69, 0x6c, 0x79, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x66, 0x61, 0x6d, 0x69, 0x6c, 0x79, 0x4e,
+	0x61, 0x6d, 0x65, 0x22, 0x10, 0x0a, 0x0e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x31, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1c, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2d, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x22, 0x30, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x1f, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x10, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x49, 0x0a, 0x14, 0x52, 0x65, 0x73,
+	0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x21, 0x0a, 0x0c, 0x6e, 0x65, 0x77, 0x5f, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x65, 0x77, 0x50, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x22, 0x17, 0x0a, 0x15, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x48, 0x0a,
+	0x12, 0x41, 0x74, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08,
+	0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07,
+	0x67, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22, 0x15, 0x0a, 0x13, 0x41, 0x74, 0x74, 0x61, 0x63,
+	0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x48,
+	0x0a, 0x12, 0x44, 0x65, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x19, 0x0a,
+	0x08, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x07, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22, 0x15, 0x0a, 0x13, 0x44, 0x65, 0x74, 0x61,
+	0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
+	0xb5, 0x03, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x38, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x14, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x2f, 0x0a, 0x04, 0x4c, 0x69, 0x73,
+	0x74, 0x12, 0x11, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x2c, 0x0a, 0x03, 0x47, 0x65,
+	0x74, 0x12, 0x10, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x11, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x12, 0x13, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x4a, 0x0a, 0x0d, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x12, 0x1a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x75,
+	0x73, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x44, 0x0a, 0x0b, 0x41,
+	0x74, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x18, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x2e, 0x41, 0x74, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x41, 0x74, 0x74, 0x61,
+	0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x44, 0x0a, 0x0b, 0x44, 0x65, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x12, 0x18, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x75, 0x73, 0x65, 0x72,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -602,36 +809,44 @@ func file_ikipb_iki_iam_user_user_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_iam_user_user_proto_rawDescData
 }
 
-var file_ikipb_iki_iam_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_ikipb_iki_iam_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_ikipb_iki_iam_user_user_proto_goTypes = []interface{}{
-	(*ProfileRequest)(nil),        // 0: user.ProfileRequest
-	(*ProfileResponse)(nil),       // 1: user.ProfileResponse
-	(*GetRequest)(nil),            // 2: user.GetRequest
-	(*GetResponse)(nil),           // 3: user.GetResponse
-	(*ListRequest)(nil),           // 4: user.ListRequest
-	(*ListResponse)(nil),          // 5: user.ListResponse
-	(*DeleteRequest)(nil),         // 6: user.DeleteRequest
-	(*DeleteResponse)(nil),        // 7: user.DeleteResponse
-	(*ResetPasswordRequest)(nil),  // 8: user.ResetPasswordRequest
-	(*ResetPasswordResponse)(nil), // 9: user.ResetPasswordResponse
-	(*User)(nil),                  // 10: user.User
+	(*User)(nil),                  // 0: user.User
+	(*ProfileRequest)(nil),        // 1: user.ProfileRequest
+	(*ProfileResponse)(nil),       // 2: user.ProfileResponse
+	(*GetRequest)(nil),            // 3: user.GetRequest
+	(*GetResponse)(nil),           // 4: user.GetResponse
+	(*ListRequest)(nil),           // 5: user.ListRequest
+	(*ListResponse)(nil),          // 6: user.ListResponse
+	(*DeleteRequest)(nil),         // 7: user.DeleteRequest
+	(*DeleteResponse)(nil),        // 8: user.DeleteResponse
+	(*ResetPasswordRequest)(nil),  // 9: user.ResetPasswordRequest
+	(*ResetPasswordResponse)(nil), // 10: user.ResetPasswordResponse
+	(*AttachGroupRequest)(nil),    // 11: user.AttachGroupRequest
+	(*AttachGroupResponse)(nil),   // 12: user.AttachGroupResponse
+	(*DetachGroupRequest)(nil),    // 13: user.DetachGroupRequest
+	(*DetachGroupResponse)(nil),   // 14: user.DetachGroupResponse
 }
 var file_ikipb_iki_iam_user_user_proto_depIdxs = []int32{
-	10, // 0: user.ProfileResponse.user:type_name -> user.User
-	10, // 1: user.GetResponse.user:type_name -> user.User
-	10, // 2: user.ListResponse.users:type_name -> user.User
-	0,  // 3: user.UserService.Profile:input_type -> user.ProfileRequest
-	4,  // 4: user.UserService.List:input_type -> user.ListRequest
-	2,  // 5: user.UserService.Get:input_type -> user.GetRequest
-	6,  // 6: user.UserService.Delete:input_type -> user.DeleteRequest
-	8,  // 7: user.UserService.ResetPassword:input_type -> user.ResetPasswordRequest
-	1,  // 8: user.UserService.Profile:output_type -> user.ProfileResponse
-	5,  // 9: user.UserService.List:output_type -> user.ListResponse
-	3,  // 10: user.UserService.Get:output_type -> user.GetResponse
-	7,  // 11: user.UserService.Delete:output_type -> user.DeleteResponse
-	9,  // 12: user.UserService.ResetPassword:output_type -> user.ResetPasswordResponse
-	8,  // [8:13] is the sub-list for method output_type
-	3,  // [3:8] is the sub-list for method input_type
+	0,  // 0: user.ProfileResponse.user:type_name -> user.User
+	0,  // 1: user.GetResponse.user:type_name -> user.User
+	0,  // 2: user.ListResponse.users:type_name -> user.User
+	1,  // 3: user.UserService.Profile:input_type -> user.ProfileRequest
+	5,  // 4: user.UserService.List:input_type -> user.ListRequest
+	3,  // 5: user.UserService.Get:input_type -> user.GetRequest
+	7,  // 6: user.UserService.Delete:input_type -> user.DeleteRequest
+	9,  // 7: user.UserService.ResetPassword:input_type -> user.ResetPasswordRequest
+	11, // 8: user.UserService.AttachGroup:input_type -> user.AttachGroupRequest
+	13, // 9: user.UserService.DetachGroup:input_type -> user.DetachGroupRequest
+	2,  // 10: user.UserService.Profile:output_type -> user.ProfileResponse
+	6,  // 11: user.UserService.List:output_type -> user.ListResponse
+	4,  // 12: user.UserService.Get:output_type -> user.GetResponse
+	8,  // 13: user.UserService.Delete:output_type -> user.DeleteResponse
+	10, // 14: user.UserService.ResetPassword:output_type -> user.ResetPasswordResponse
+	12, // 15: user.UserService.AttachGroup:output_type -> user.AttachGroupResponse
+	14, // 16: user.UserService.DetachGroup:output_type -> user.DetachGroupResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -644,7 +859,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_ikipb_iki_iam_user_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProfileRequest); i {
+			switch v := v.(*User); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -656,7 +871,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProfileResponse); i {
+			switch v := v.(*ProfileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -668,7 +883,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRequest); i {
+			switch v := v.(*ProfileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -680,7 +895,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResponse); i {
+			switch v := v.(*GetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -692,7 +907,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRequest); i {
+			switch v := v.(*GetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -704,7 +919,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListResponse); i {
+			switch v := v.(*ListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -716,7 +931,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRequest); i {
+			switch v := v.(*ListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -728,7 +943,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteResponse); i {
+			switch v := v.(*DeleteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -740,7 +955,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResetPasswordRequest); i {
+			switch v := v.(*DeleteResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -752,7 +967,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResetPasswordResponse); i {
+			switch v := v.(*ResetPasswordRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -764,7 +979,55 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_user_user_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*User); i {
+			switch v := v.(*ResetPasswordResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_user_user_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AttachGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_user_user_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AttachGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_user_user_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DetachGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_user_user_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DetachGroupResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -782,7 +1045,7 @@ func file_ikipb_iki_iam_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_ikipb_iki_iam_user_user_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

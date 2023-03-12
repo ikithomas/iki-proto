@@ -379,5 +379,127 @@ proto.user.UserServicePromiseClient.prototype.resetPassword =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.user.AttachGroupRequest,
+ *   !proto.user.AttachGroupResponse>}
+ */
+const methodDescriptor_UserService_AttachGroup = new grpc.web.MethodDescriptor(
+  '/user.UserService/AttachGroup',
+  grpc.web.MethodType.UNARY,
+  proto.user.AttachGroupRequest,
+  proto.user.AttachGroupResponse,
+  /**
+   * @param {!proto.user.AttachGroupRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.user.AttachGroupResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.user.AttachGroupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.user.AttachGroupResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.user.AttachGroupResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.user.UserServiceClient.prototype.attachGroup =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/user.UserService/AttachGroup',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_AttachGroup,
+      callback);
+};
+
+
+/**
+ * @param {!proto.user.AttachGroupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.user.AttachGroupResponse>}
+ *     Promise that resolves to the response
+ */
+proto.user.UserServicePromiseClient.prototype.attachGroup =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/user.UserService/AttachGroup',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_AttachGroup);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.user.DetachGroupRequest,
+ *   !proto.user.DetachGroupResponse>}
+ */
+const methodDescriptor_UserService_DetachGroup = new grpc.web.MethodDescriptor(
+  '/user.UserService/DetachGroup',
+  grpc.web.MethodType.UNARY,
+  proto.user.DetachGroupRequest,
+  proto.user.DetachGroupResponse,
+  /**
+   * @param {!proto.user.DetachGroupRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.user.DetachGroupResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.user.DetachGroupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.user.DetachGroupResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.user.DetachGroupResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.user.UserServiceClient.prototype.detachGroup =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/user.UserService/DetachGroup',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_DetachGroup,
+      callback);
+};
+
+
+/**
+ * @param {!proto.user.DetachGroupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.user.DetachGroupResponse>}
+ *     Promise that resolves to the response
+ */
+proto.user.UserServicePromiseClient.prototype.detachGroup =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/user.UserService/DetachGroup',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_DetachGroup);
+};
+
+
 module.exports = proto.user;
 

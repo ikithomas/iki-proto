@@ -4,6 +4,13 @@ option go_package = "/user";
 
 package user;
 
+message User {
+  int64 id = 1;
+  string email = 2;
+  string given_name = 3;
+  string family_name = 4;
+}
+
 service UserService {
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
 
@@ -22,8 +29,15 @@ service UserService {
   // Adminitrator or owner only.
   // delete a user
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
-}
 
+  // Adminitrator or owner only.
+  // attach a user to a group
+  rpc AttachGroup (AttachGroupRequest) returns (AttachGroupResponse) {}
+
+  // Adminitrator or owner only.
+  // detach a user from a group
+  rpc DetachGroup (DetachGroupRequest) returns (DetachGroupResponse) {}
+}
 
 message ProfileRequest {}
 
@@ -57,9 +71,16 @@ message ResetPasswordRequest {
 
 message ResetPasswordResponse {}
 
-message User {
-  int64 id = 1;
-  string email = 2;
-  string given_name = 3;
-  string family_name = 4;
+message AttachGroupRequest {
+  int64 user_id = 1;
+  int64 group_id = 2;
 }
+
+message AttachGroupResponse {}
+
+message DetachGroupRequest {
+  int64 user_id = 1;
+  int64 group_id = 2;
+}
+
+message DetachGroupResponse {}

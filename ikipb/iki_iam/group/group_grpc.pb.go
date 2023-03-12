@@ -22,10 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GroupServiceClient interface {
-	GetGroups(ctx context.Context, in *GetGroupsRequest, opts ...grpc.CallOption) (*GetGroupsResponse, error)
-	ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error)
-	AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error)
-	DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 }
 
 type groupServiceClient struct {
@@ -36,36 +34,18 @@ func NewGroupServiceClient(cc grpc.ClientConnInterface) GroupServiceClient {
 	return &groupServiceClient{cc}
 }
 
-func (c *groupServiceClient) GetGroups(ctx context.Context, in *GetGroupsRequest, opts ...grpc.CallOption) (*GetGroupsResponse, error) {
-	out := new(GetGroupsResponse)
-	err := c.cc.Invoke(ctx, "/group.GroupService/GetGroups", in, out, opts...)
+func (c *groupServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, "/group.GroupService/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *groupServiceClient) ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error) {
-	out := new(ListGroupsResponse)
-	err := c.cc.Invoke(ctx, "/group.GroupService/ListGroups", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *groupServiceClient) AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error) {
-	out := new(AttachGroupResponse)
-	err := c.cc.Invoke(ctx, "/group.GroupService/AttachGroup", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *groupServiceClient) DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error) {
-	out := new(DetachGroupResponse)
-	err := c.cc.Invoke(ctx, "/group.GroupService/DetachGroup", in, out, opts...)
+func (c *groupServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, "/group.GroupService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,10 +56,8 @@ func (c *groupServiceClient) DetachGroup(ctx context.Context, in *DetachGroupReq
 // All implementations must embed UnimplementedGroupServiceServer
 // for forward compatibility
 type GroupServiceServer interface {
-	GetGroups(context.Context, *GetGroupsRequest) (*GetGroupsResponse, error)
-	ListGroups(context.Context, *ListGroupsRequest) (*ListGroupsResponse, error)
-	AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error)
-	DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error)
+	Get(context.Context, *GetRequest) (*GetResponse, error)
+	List(context.Context, *ListRequest) (*ListResponse, error)
 	mustEmbedUnimplementedGroupServiceServer()
 }
 
@@ -87,17 +65,11 @@ type GroupServiceServer interface {
 type UnimplementedGroupServiceServer struct {
 }
 
-func (UnimplementedGroupServiceServer) GetGroups(context.Context, *GetGroupsRequest) (*GetGroupsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGroups not implemented")
+func (UnimplementedGroupServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedGroupServiceServer) ListGroups(context.Context, *ListGroupsRequest) (*ListGroupsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListGroups not implemented")
-}
-func (UnimplementedGroupServiceServer) AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AttachGroup not implemented")
-}
-func (UnimplementedGroupServiceServer) DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DetachGroup not implemented")
+func (UnimplementedGroupServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedGroupServiceServer) mustEmbedUnimplementedGroupServiceServer() {}
 
@@ -112,74 +84,38 @@ func RegisterGroupServiceServer(s grpc.ServiceRegistrar, srv GroupServiceServer)
 	s.RegisterService(&GroupService_ServiceDesc, srv)
 }
 
-func _GroupService_GetGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGroupsRequest)
+func _GroupService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServiceServer).GetGroups(ctx, in)
+		return srv.(GroupServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/group.GroupService/GetGroups",
+		FullMethod: "/group.GroupService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServiceServer).GetGroups(ctx, req.(*GetGroupsRequest))
+		return srv.(GroupServiceServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GroupService_ListGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListGroupsRequest)
+func _GroupService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServiceServer).ListGroups(ctx, in)
+		return srv.(GroupServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/group.GroupService/ListGroups",
+		FullMethod: "/group.GroupService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServiceServer).ListGroups(ctx, req.(*ListGroupsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GroupService_AttachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AttachGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GroupServiceServer).AttachGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/group.GroupService/AttachGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServiceServer).AttachGroup(ctx, req.(*AttachGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GroupService_DetachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DetachGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GroupServiceServer).DetachGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/group.GroupService/DetachGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServiceServer).DetachGroup(ctx, req.(*DetachGroupRequest))
+		return srv.(GroupServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -192,20 +128,12 @@ var GroupService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GroupServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetGroups",
-			Handler:    _GroupService_GetGroups_Handler,
+			MethodName: "Get",
+			Handler:    _GroupService_Get_Handler,
 		},
 		{
-			MethodName: "ListGroups",
-			Handler:    _GroupService_ListGroups_Handler,
-		},
-		{
-			MethodName: "AttachGroup",
-			Handler:    _GroupService_AttachGroup_Handler,
-		},
-		{
-			MethodName: "DetachGroup",
-			Handler:    _GroupService_DetachGroup_Handler,
+			MethodName: "List",
+			Handler:    _GroupService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
