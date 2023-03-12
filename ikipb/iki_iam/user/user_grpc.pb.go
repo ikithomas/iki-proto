@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: ikipb/iki_iam/user.proto
+// source: ikipb/iki_iam/user/user.proto
 
-package iam
+package user
 
 import (
 	context "context"
@@ -261,5 +261,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ikipb/iki_iam/user.proto",
+	Metadata: "ikipb/iki_iam/user/user.proto",
 }

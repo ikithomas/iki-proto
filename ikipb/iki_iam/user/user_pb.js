@@ -1,4 +1,4 @@
-// source: ikipb/iki_iam/user.proto
+// source: ikipb/iki_iam/user/user.proto
 /**
  * @fileoverview
  * @enhanceable

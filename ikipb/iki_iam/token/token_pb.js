@@ -1,4 +1,4 @@
-// source: ikipb/iki_iam/token.proto
+// source: ikipb/iki_iam/token/token.proto
 /**
  * @fileoverview
  * @enhanceable

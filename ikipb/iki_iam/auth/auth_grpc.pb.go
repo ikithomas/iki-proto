@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: ikipb/iki_iam/auth.proto
+// source: ikipb/iki_iam/auth/auth.proto
 
-package iam
+package auth
 
 import (
 	context "context"
@@ -179,5 +179,5 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ikipb/iki_iam/auth.proto",
+	Metadata: "ikipb/iki_iam/auth/auth.proto",
 }

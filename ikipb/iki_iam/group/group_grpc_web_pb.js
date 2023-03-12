@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: ikipb/iki_iam/group.proto
+// source: ikipb/iki_iam/group/group.proto
 
 
 /* eslint-disable */
