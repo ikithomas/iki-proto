@@ -77,61 +77,61 @@ proto.auth.AuthServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.auth.LoginWithGoogleRequest,
- *   !proto.auth.LoginWithGoogleResponse>}
+ *   !proto.auth.GoogleLoginRequest,
+ *   !proto.auth.GoogleLoginResponse>}
  */
-const methodDescriptor_AuthService_LoginWithGoogle = new grpc.web.MethodDescriptor(
-  '/auth.AuthService/LoginWithGoogle',
+const methodDescriptor_AuthService_GoogleLogin = new grpc.web.MethodDescriptor(
+  '/auth.AuthService/GoogleLogin',
   grpc.web.MethodType.UNARY,
-  proto.auth.LoginWithGoogleRequest,
-  proto.auth.LoginWithGoogleResponse,
+  proto.auth.GoogleLoginRequest,
+  proto.auth.GoogleLoginResponse,
   /**
-   * @param {!proto.auth.LoginWithGoogleRequest} request
+   * @param {!proto.auth.GoogleLoginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.auth.LoginWithGoogleResponse.deserializeBinary
+  proto.auth.GoogleLoginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.auth.LoginWithGoogleRequest} request The
+ * @param {!proto.auth.GoogleLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.auth.LoginWithGoogleResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.auth.GoogleLoginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.auth.LoginWithGoogleResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.auth.GoogleLoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.auth.AuthServiceClient.prototype.loginWithGoogle =
+proto.auth.AuthServiceClient.prototype.googleLogin =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/auth.AuthService/LoginWithGoogle',
+      '/auth.AuthService/GoogleLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_LoginWithGoogle,
+      methodDescriptor_AuthService_GoogleLogin,
       callback);
 };
 
 
 /**
- * @param {!proto.auth.LoginWithGoogleRequest} request The
+ * @param {!proto.auth.GoogleLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.auth.LoginWithGoogleResponse>}
+ * @return {!Promise<!proto.auth.GoogleLoginResponse>}
  *     Promise that resolves to the response
  */
-proto.auth.AuthServicePromiseClient.prototype.loginWithGoogle =
+proto.auth.AuthServicePromiseClient.prototype.googleLogin =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/auth.AuthService/LoginWithGoogle',
+      '/auth.AuthService/GoogleLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_LoginWithGoogle);
+      methodDescriptor_AuthService_GoogleLogin);
 };
 
 
@@ -141,8 +141,8 @@ proto.auth.AuthServicePromiseClient.prototype.loginWithGoogle =
  *   !proto.auth.PasswordLoginRequest,
  *   !proto.auth.PasswordLoginResponse>}
  */
-const methodDescriptor_AuthService_LoginWithPassword = new grpc.web.MethodDescriptor(
-  '/auth.AuthService/LoginWithPassword',
+const methodDescriptor_AuthService_PasswordLogin = new grpc.web.MethodDescriptor(
+  '/auth.AuthService/PasswordLogin',
   grpc.web.MethodType.UNARY,
   proto.auth.PasswordLoginRequest,
   proto.auth.PasswordLoginResponse,
@@ -167,13 +167,13 @@ const methodDescriptor_AuthService_LoginWithPassword = new grpc.web.MethodDescri
  * @return {!grpc.web.ClientReadableStream<!proto.auth.PasswordLoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.auth.AuthServiceClient.prototype.loginWithPassword =
+proto.auth.AuthServiceClient.prototype.passwordLogin =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/auth.AuthService/LoginWithPassword',
+      '/auth.AuthService/PasswordLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_LoginWithPassword,
+      methodDescriptor_AuthService_PasswordLogin,
       callback);
 };
 
@@ -186,13 +186,13 @@ proto.auth.AuthServiceClient.prototype.loginWithPassword =
  * @return {!Promise<!proto.auth.PasswordLoginResponse>}
  *     Promise that resolves to the response
  */
-proto.auth.AuthServicePromiseClient.prototype.loginWithPassword =
+proto.auth.AuthServicePromiseClient.prototype.passwordLogin =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/auth.AuthService/LoginWithPassword',
+      '/auth.AuthService/PasswordLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_LoginWithPassword);
+      methodDescriptor_AuthService_PasswordLogin);
 };
 
 

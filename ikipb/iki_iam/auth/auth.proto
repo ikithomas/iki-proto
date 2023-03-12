@@ -7,19 +7,19 @@ package auth;
 service AuthService {
   // Login or signup with google.
   // If a user is not yet created, a new user account will be created associated with that email address.
-  rpc LoginWithGoogle (LoginWithGoogleRequest) returns (LoginWithGoogleResponse) {}
+  rpc GoogleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}
 
   // Login with password.
-  rpc LoginWithPassword (PasswordLoginRequest) returns (PasswordLoginResponse) {}
+  rpc PasswordLogin (PasswordLoginRequest) returns (PasswordLoginResponse) {}
 
   rpc Signout (SignoutRequest) returns (SignoutResponse) {}
 }
 
-message LoginWithGoogleRequest {
+message GoogleLoginRequest {
   string id_token = 1;
 }
 
-message LoginWithGoogleResponse {
+message GoogleLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
 }

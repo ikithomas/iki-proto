@@ -24,9 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type AuthServiceClient interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
-	LoginWithGoogle(ctx context.Context, in *LoginWithGoogleRequest, opts ...grpc.CallOption) (*LoginWithGoogleResponse, error)
+	GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
 	// Login with password.
-	LoginWithPassword(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error)
+	PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error)
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
 }
 
@@ -38,18 +38,18 @@ func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
 }
 
-func (c *authServiceClient) LoginWithGoogle(ctx context.Context, in *LoginWithGoogleRequest, opts ...grpc.CallOption) (*LoginWithGoogleResponse, error) {
-	out := new(LoginWithGoogleResponse)
-	err := c.cc.Invoke(ctx, "/auth.AuthService/LoginWithGoogle", in, out, opts...)
+func (c *authServiceClient) GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error) {
+	out := new(GoogleLoginResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/GoogleLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) LoginWithPassword(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error) {
+func (c *authServiceClient) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error) {
 	out := new(PasswordLoginResponse)
-	err := c.cc.Invoke(ctx, "/auth.AuthService/LoginWithPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/PasswordLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,9 +71,9 @@ func (c *authServiceClient) Signout(ctx context.Context, in *SignoutRequest, opt
 type AuthServiceServer interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
-	LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error)
+	GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error)
 	// Login with password.
-	LoginWithPassword(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error)
+	PasswordLogin(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
@@ -82,11 +82,11 @@ type AuthServiceServer interface {
 type UnimplementedAuthServiceServer struct {
 }
 
-func (UnimplementedAuthServiceServer) LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LoginWithGoogle not implemented")
+func (UnimplementedAuthServiceServer) GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedAuthServiceServer) LoginWithPassword(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LoginWithPassword not implemented")
+func (UnimplementedAuthServiceServer) PasswordLogin(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PasswordLogin not implemented")
 }
 func (UnimplementedAuthServiceServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signout not implemented")
@@ -104,38 +104,38 @@ func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 	s.RegisterService(&AuthService_ServiceDesc, srv)
 }
 
-func _AuthService_LoginWithGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginWithGoogleRequest)
+func _AuthService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoogleLoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).LoginWithGoogle(ctx, in)
+		return srv.(AuthServiceServer).GoogleLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.AuthService/LoginWithGoogle",
+		FullMethod: "/auth.AuthService/GoogleLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).LoginWithGoogle(ctx, req.(*LoginWithGoogleRequest))
+		return srv.(AuthServiceServer).GoogleLogin(ctx, req.(*GoogleLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_LoginWithPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_PasswordLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PasswordLoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).LoginWithPassword(ctx, in)
+		return srv.(AuthServiceServer).PasswordLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.AuthService/LoginWithPassword",
+		FullMethod: "/auth.AuthService/PasswordLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).LoginWithPassword(ctx, req.(*PasswordLoginRequest))
+		return srv.(AuthServiceServer).PasswordLogin(ctx, req.(*PasswordLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -166,12 +166,12 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "LoginWithGoogle",
-			Handler:    _AuthService_LoginWithGoogle_Handler,
+			MethodName: "GoogleLogin",
+			Handler:    _AuthService_GoogleLogin_Handler,
 		},
 		{
-			MethodName: "LoginWithPassword",
-			Handler:    _AuthService_LoginWithPassword_Handler,
+			MethodName: "PasswordLogin",
+			Handler:    _AuthService_PasswordLogin_Handler,
 		},
 		{
 			MethodName: "Signout",
