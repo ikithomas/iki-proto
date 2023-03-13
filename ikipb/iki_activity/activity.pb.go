@@ -43,7 +43,8 @@ type Activity struct {
 	AverageTemp        *float32 `protobuf:"fixed32,16,opt,name=average_temp,json=averageTemp,proto3,oneof" json:"average_temp,omitempty"`
 	AverageHeartrate   *float32 `protobuf:"fixed32,17,opt,name=average_heartrate,json=averageHeartrate,proto3,oneof" json:"average_heartrate,omitempty"`
 	MaxHeartrate       *float32 `protobuf:"fixed32,18,opt,name=max_heartrate,json=maxHeartrate,proto3,oneof" json:"max_heartrate,omitempty"`
-	GpxFilePath        string   `protobuf:"bytes,19,opt,name=gpx_file_path,json=gpxFilePath,proto3" json:"gpx_file_path,omitempty"`
+	// Deprecated
+	GpxFilePath string `protobuf:"bytes,19,opt,name=gpx_file_path,json=gpxFilePath,proto3" json:"gpx_file_path,omitempty"`
 }
 
 func (x *Activity) Reset() {
@@ -305,91 +306,6 @@ func (x *GetResponse) GetActivity() *Activity {
 	return nil
 }
 
-type ListRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *ListRequest) Reset() {
-	*x = ListRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListRequest) ProtoMessage() {}
-
-func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
-func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{3}
-}
-
-type ListResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Activities []*Activity `protobuf:"bytes,1,rep,name=activities,proto3" json:"activities,omitempty"`
-}
-
-func (x *ListResponse) Reset() {
-	*x = ListResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListResponse) ProtoMessage() {}
-
-func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
-func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ListResponse) GetActivities() []*Activity {
-	if x != nil {
-		return x.Activities
-	}
-	return nil
-}
-
 type GetMineRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -401,7 +317,7 @@ type GetMineRequest struct {
 func (x *GetMineRequest) Reset() {
 	*x = GetMineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[5]
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -414,7 +330,7 @@ func (x *GetMineRequest) String() string {
 func (*GetMineRequest) ProtoMessage() {}
 
 func (x *GetMineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[5]
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -427,7 +343,7 @@ func (x *GetMineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMineRequest.ProtoReflect.Descriptor instead.
 func (*GetMineRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{5}
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetMineRequest) GetId() int64 {
@@ -448,7 +364,7 @@ type GetMineResponse struct {
 func (x *GetMineResponse) Reset() {
 	*x = GetMineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[6]
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -461,7 +377,7 @@ func (x *GetMineResponse) String() string {
 func (*GetMineResponse) ProtoMessage() {}
 
 func (x *GetMineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[6]
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -474,12 +390,191 @@ func (x *GetMineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMineResponse.ProtoReflect.Descriptor instead.
 func (*GetMineResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{6}
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetMineResponse) GetActivity() *Activity {
 	if x != nil {
 		return x.Activity
+	}
+	return nil
+}
+
+type GetFeaturedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetFeaturedRequest) Reset() {
+	*x = GetFeaturedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetFeaturedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFeaturedRequest) ProtoMessage() {}
+
+func (x *GetFeaturedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFeaturedRequest.ProtoReflect.Descriptor instead.
+func (*GetFeaturedRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetFeaturedRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetFeaturedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Activity *Activity `protobuf:"bytes,1,opt,name=activity,proto3" json:"activity,omitempty"`
+}
+
+func (x *GetFeaturedResponse) Reset() {
+	*x = GetFeaturedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetFeaturedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFeaturedResponse) ProtoMessage() {}
+
+func (x *GetFeaturedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFeaturedResponse.ProtoReflect.Descriptor instead.
+func (*GetFeaturedResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetFeaturedResponse) GetActivity() *Activity {
+	if x != nil {
+		return x.Activity
+	}
+	return nil
+}
+
+type ListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRequest) ProtoMessage() {}
+
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{7}
+}
+
+type ListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Activities []*Activity `protobuf:"bytes,1,rep,name=activities,proto3" json:"activities,omitempty"`
+}
+
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListResponse) ProtoMessage() {}
+
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ListResponse) GetActivities() []*Activity {
+	if x != nil {
+		return x.Activities
 	}
 	return nil
 }
@@ -493,7 +588,7 @@ type ListMineRequest struct {
 func (x *ListMineRequest) Reset() {
 	*x = ListMineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[7]
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -506,7 +601,7 @@ func (x *ListMineRequest) String() string {
 func (*ListMineRequest) ProtoMessage() {}
 
 func (x *ListMineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[7]
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -519,7 +614,7 @@ func (x *ListMineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMineRequest.ProtoReflect.Descriptor instead.
 func (*ListMineRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{7}
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{9}
 }
 
 type ListMineResponse struct {
@@ -533,7 +628,7 @@ type ListMineResponse struct {
 func (x *ListMineResponse) Reset() {
 	*x = ListMineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[8]
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -546,7 +641,7 @@ func (x *ListMineResponse) String() string {
 func (*ListMineResponse) ProtoMessage() {}
 
 func (x *ListMineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[8]
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -559,10 +654,95 @@ func (x *ListMineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMineResponse.ProtoReflect.Descriptor instead.
 func (*ListMineResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{8}
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListMineResponse) GetActivities() []*Activity {
+	if x != nil {
+		return x.Activities
+	}
+	return nil
+}
+
+type ListFeaturedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListFeaturedRequest) Reset() {
+	*x = ListFeaturedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListFeaturedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFeaturedRequest) ProtoMessage() {}
+
+func (x *ListFeaturedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFeaturedRequest.ProtoReflect.Descriptor instead.
+func (*ListFeaturedRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{11}
+}
+
+type ListFeaturedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Activities []*Activity `protobuf:"bytes,1,rep,name=activities,proto3" json:"activities,omitempty"`
+}
+
+func (x *ListFeaturedResponse) Reset() {
+	*x = ListFeaturedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_activity_activity_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListFeaturedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFeaturedResponse) ProtoMessage() {}
+
+func (x *ListFeaturedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_activity_activity_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFeaturedResponse.ProtoReflect.Descriptor instead.
+func (*ListFeaturedResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_activity_activity_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ListFeaturedResponse) GetActivities() []*Activity {
 	if x != nil {
 		return x.Activities
 	}
@@ -631,42 +811,65 @@ var file_ikipb_iki_activity_activity_proto_rawDesc = []byte{
 	0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e,
 	0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69,
-	0x74, 0x79, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x22, 0x42, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x74, 0x79, 0x22, 0x20, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x41, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76,
+	0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69,
+	0x76, 0x69, 0x74, 0x79, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x08, 0x61,
+	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x46, 0x65,
+	0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x45, 0x0a,
+	0x13, 0x47, 0x65, 0x74, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
+	0x79, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x08, 0x61, 0x63, 0x74, 0x69,
+	0x76, 0x69, 0x74, 0x79, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x22, 0x42, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69, 0x65,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69,
+	0x74, 0x79, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x61, 0x63, 0x74,
+	0x69, 0x76, 0x69, 0x74, 0x69, 0x65, 0x73, 0x22, 0x11, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x4d,
+	0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x46, 0x0a, 0x10, 0x4c, 0x69,
+	0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32,
+	0x0a, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x41, 0x63,
+	0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69,
+	0x65, 0x73, 0x22, 0x15, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72,
+	0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4a, 0x0a, 0x14, 0x4c, 0x69, 0x73,
+	0x74, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x12, 0x32, 0x0a, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69, 0x65, 0x73, 0x18,
 	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79,
 	0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76,
-	0x69, 0x74, 0x69, 0x65, 0x73, 0x22, 0x20, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x41, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4d, 0x69,
-	0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x63,
-	0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61,
-	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79,
-	0x52, 0x08, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x22, 0x11, 0x0a, 0x0f, 0x4c, 0x69,
-	0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x46, 0x0a,
-	0x10, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x32, 0x0a, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69, 0x65, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79,
-	0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x61, 0x63, 0x74, 0x69, 0x76,
-	0x69, 0x74, 0x69, 0x65, 0x73, 0x32, 0x87, 0x02, 0x0a, 0x0f, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69,
+	0x69, 0x74, 0x69, 0x65, 0x73, 0x32, 0xa6, 0x03, 0x0a, 0x0f, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69,
 	0x74, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x34, 0x0a, 0x03, 0x47, 0x65, 0x74,
 	0x12, 0x14, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
 	0x79, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x40, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x12, 0x18, 0x2e, 0x61, 0x63, 0x74,
+	0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e,
+	0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x4c, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64,
+	0x12, 0x1c, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x46,
+	0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d,
+	0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x46, 0x65, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
 	0x37, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x15, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69,
 	0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
 	0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x40, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4d,
-	0x69, 0x6e, 0x65, 0x12, 0x18, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47,
-	0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e,
-	0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x6e, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x43, 0x0a, 0x08, 0x4c, 0x69,
-	0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x12, 0x19, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74,
-	0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x1a, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73,
-	0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42,
-	0x0b, 0x5a, 0x09, 0x2f, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x43, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74,
+	0x4d, 0x69, 0x6e, 0x65, 0x12, 0x19, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x4d, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x1a, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d,
+	0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4f, 0x0a,
+	0x0c, 0x4c, 0x69, 0x73, 0x74, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x12, 0x1d, 0x2e,
+	0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x46, 0x65, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x61,
+	0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x46, 0x65, 0x61, 0x74,
+	0x75, 0x72, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0b,
+	0x5a, 0x09, 0x2f, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -681,36 +884,46 @@ func file_ikipb_iki_activity_activity_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_activity_activity_proto_rawDescData
 }
 
-var file_ikipb_iki_activity_activity_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ikipb_iki_activity_activity_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_ikipb_iki_activity_activity_proto_goTypes = []interface{}{
-	(*Activity)(nil),         // 0: activity.Activity
-	(*GetRequest)(nil),       // 1: activity.GetRequest
-	(*GetResponse)(nil),      // 2: activity.GetResponse
-	(*ListRequest)(nil),      // 3: activity.ListRequest
-	(*ListResponse)(nil),     // 4: activity.ListResponse
-	(*GetMineRequest)(nil),   // 5: activity.GetMineRequest
-	(*GetMineResponse)(nil),  // 6: activity.GetMineResponse
-	(*ListMineRequest)(nil),  // 7: activity.ListMineRequest
-	(*ListMineResponse)(nil), // 8: activity.ListMineResponse
+	(*Activity)(nil),             // 0: activity.Activity
+	(*GetRequest)(nil),           // 1: activity.GetRequest
+	(*GetResponse)(nil),          // 2: activity.GetResponse
+	(*GetMineRequest)(nil),       // 3: activity.GetMineRequest
+	(*GetMineResponse)(nil),      // 4: activity.GetMineResponse
+	(*GetFeaturedRequest)(nil),   // 5: activity.GetFeaturedRequest
+	(*GetFeaturedResponse)(nil),  // 6: activity.GetFeaturedResponse
+	(*ListRequest)(nil),          // 7: activity.ListRequest
+	(*ListResponse)(nil),         // 8: activity.ListResponse
+	(*ListMineRequest)(nil),      // 9: activity.ListMineRequest
+	(*ListMineResponse)(nil),     // 10: activity.ListMineResponse
+	(*ListFeaturedRequest)(nil),  // 11: activity.ListFeaturedRequest
+	(*ListFeaturedResponse)(nil), // 12: activity.ListFeaturedResponse
 }
 var file_ikipb_iki_activity_activity_proto_depIdxs = []int32{
-	0, // 0: activity.GetResponse.activity:type_name -> activity.Activity
-	0, // 1: activity.ListResponse.activities:type_name -> activity.Activity
-	0, // 2: activity.GetMineResponse.activity:type_name -> activity.Activity
-	0, // 3: activity.ListMineResponse.activities:type_name -> activity.Activity
-	1, // 4: activity.ActivityService.Get:input_type -> activity.GetRequest
-	3, // 5: activity.ActivityService.List:input_type -> activity.ListRequest
-	5, // 6: activity.ActivityService.GetMine:input_type -> activity.GetMineRequest
-	7, // 7: activity.ActivityService.ListMine:input_type -> activity.ListMineRequest
-	2, // 8: activity.ActivityService.Get:output_type -> activity.GetResponse
-	4, // 9: activity.ActivityService.List:output_type -> activity.ListResponse
-	6, // 10: activity.ActivityService.GetMine:output_type -> activity.GetMineResponse
-	8, // 11: activity.ActivityService.ListMine:output_type -> activity.ListMineResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0,  // 0: activity.GetResponse.activity:type_name -> activity.Activity
+	0,  // 1: activity.GetMineResponse.activity:type_name -> activity.Activity
+	0,  // 2: activity.GetFeaturedResponse.activity:type_name -> activity.Activity
+	0,  // 3: activity.ListResponse.activities:type_name -> activity.Activity
+	0,  // 4: activity.ListMineResponse.activities:type_name -> activity.Activity
+	0,  // 5: activity.ListFeaturedResponse.activities:type_name -> activity.Activity
+	1,  // 6: activity.ActivityService.Get:input_type -> activity.GetRequest
+	3,  // 7: activity.ActivityService.GetMine:input_type -> activity.GetMineRequest
+	5,  // 8: activity.ActivityService.GetFeatured:input_type -> activity.GetFeaturedRequest
+	7,  // 9: activity.ActivityService.List:input_type -> activity.ListRequest
+	9,  // 10: activity.ActivityService.ListMine:input_type -> activity.ListMineRequest
+	11, // 11: activity.ActivityService.ListFeatured:input_type -> activity.ListFeaturedRequest
+	2,  // 12: activity.ActivityService.Get:output_type -> activity.GetResponse
+	4,  // 13: activity.ActivityService.GetMine:output_type -> activity.GetMineResponse
+	6,  // 14: activity.ActivityService.GetFeatured:output_type -> activity.GetFeaturedResponse
+	8,  // 15: activity.ActivityService.List:output_type -> activity.ListResponse
+	10, // 16: activity.ActivityService.ListMine:output_type -> activity.ListMineResponse
+	12, // 17: activity.ActivityService.ListFeatured:output_type -> activity.ListFeaturedResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_activity_activity_proto_init() }
@@ -756,30 +969,6 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_ikipb_iki_activity_activity_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_ikipb_iki_activity_activity_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMineRequest); i {
 			case 0:
 				return &v.state
@@ -791,7 +980,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 				return nil
 			}
 		}
-		file_ikipb_iki_activity_activity_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_ikipb_iki_activity_activity_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMineResponse); i {
 			case 0:
 				return &v.state
@@ -803,8 +992,32 @@ func file_ikipb_iki_activity_activity_proto_init() {
 				return nil
 			}
 		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetFeaturedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetFeaturedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListMineRequest); i {
+			switch v := v.(*ListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -816,7 +1029,55 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			}
 		}
 		file_ikipb_iki_activity_activity_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListMineRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListMineResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListFeaturedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_activity_activity_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListFeaturedResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -835,7 +1096,7 @@ func file_ikipb_iki_activity_activity_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_ikipb_iki_activity_activity_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

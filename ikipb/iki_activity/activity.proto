@@ -23,42 +23,50 @@ message Activity {
   optional float average_temp = 16;
   optional float average_heartrate = 17;
   optional float max_heartrate = 18;
+
+  // Deprecated
   string gpx_file_path = 19;
 }
 
 service ActivityService {
   rpc Get (GetRequest) returns (GetResponse) {}
-  rpc List (ListRequest) returns (ListResponse) {}
   rpc GetMine (GetMineRequest) returns (GetMineResponse) {}
+  rpc GetFeatured (GetFeaturedRequest) returns (GetFeaturedResponse) {}
+
+  rpc List (ListRequest) returns (ListResponse) {}
   rpc ListMine (ListMineRequest) returns (ListMineResponse) {}
+  rpc ListFeatured (ListFeaturedRequest) returns (ListFeaturedResponse) {}
 }
 
 message GetRequest {
   int64 id = 1;
 }
-
 message GetResponse {
   Activity activity = 1;
 }
-
-message ListRequest {
-}
-
-message ListResponse {
-  repeated Activity activities = 1;
-}
-
 message GetMineRequest {
   int64 id = 1;
 }
-
 message GetMineResponse {
   Activity activity = 1;
 }
-
-message ListMineRequest {
+message GetFeaturedRequest {
+  int64 id = 1;
+}
+message GetFeaturedResponse {
+  Activity activity = 1;
 }
 
+
+message ListRequest {}
+message ListResponse {
+  repeated Activity activities = 1;
+}
+message ListMineRequest {}
 message ListMineResponse {
+  repeated Activity activities = 1;
+}
+message ListFeaturedRequest {}
+message ListFeaturedResponse {
   repeated Activity activities = 1;
 }

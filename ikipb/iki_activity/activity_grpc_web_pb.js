@@ -138,67 +138,6 @@ proto.activity.ActivityServicePromiseClient.prototype.get =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.activity.ListRequest,
- *   !proto.activity.ListResponse>}
- */
-const methodDescriptor_ActivityService_List = new grpc.web.MethodDescriptor(
-  '/activity.ActivityService/List',
-  grpc.web.MethodType.UNARY,
-  proto.activity.ListRequest,
-  proto.activity.ListResponse,
-  /**
-   * @param {!proto.activity.ListRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.activity.ListResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.activity.ListRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.activity.ListResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.activity.ListResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.activity.ActivityServiceClient.prototype.list =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/activity.ActivityService/List',
-      request,
-      metadata || {},
-      methodDescriptor_ActivityService_List,
-      callback);
-};
-
-
-/**
- * @param {!proto.activity.ListRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.activity.ListResponse>}
- *     Promise that resolves to the response
- */
-proto.activity.ActivityServicePromiseClient.prototype.list =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/activity.ActivityService/List',
-      request,
-      metadata || {},
-      methodDescriptor_ActivityService_List);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.activity.GetMineRequest,
  *   !proto.activity.GetMineResponse>}
  */
@@ -260,6 +199,128 @@ proto.activity.ActivityServicePromiseClient.prototype.getMine =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.activity.GetFeaturedRequest,
+ *   !proto.activity.GetFeaturedResponse>}
+ */
+const methodDescriptor_ActivityService_GetFeatured = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/GetFeatured',
+  grpc.web.MethodType.UNARY,
+  proto.activity.GetFeaturedRequest,
+  proto.activity.GetFeaturedResponse,
+  /**
+   * @param {!proto.activity.GetFeaturedRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.activity.GetFeaturedResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.activity.GetFeaturedRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.activity.GetFeaturedResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.GetFeaturedResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.getFeatured =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/GetFeatured',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_GetFeatured,
+      callback);
+};
+
+
+/**
+ * @param {!proto.activity.GetFeaturedRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.activity.GetFeaturedResponse>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.getFeatured =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/GetFeatured',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_GetFeatured);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.activity.ListRequest,
+ *   !proto.activity.ListResponse>}
+ */
+const methodDescriptor_ActivityService_List = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/List',
+  grpc.web.MethodType.UNARY,
+  proto.activity.ListRequest,
+  proto.activity.ListResponse,
+  /**
+   * @param {!proto.activity.ListRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.activity.ListResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.activity.ListRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.activity.ListResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.ListResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.list =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/List',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_List,
+      callback);
+};
+
+
+/**
+ * @param {!proto.activity.ListRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.activity.ListResponse>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/List',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.activity.ListMineRequest,
  *   !proto.activity.ListMineResponse>}
  */
@@ -315,6 +376,67 @@ proto.activity.ActivityServicePromiseClient.prototype.listMine =
       request,
       metadata || {},
       methodDescriptor_ActivityService_ListMine);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.activity.ListFeaturedRequest,
+ *   !proto.activity.ListFeaturedResponse>}
+ */
+const methodDescriptor_ActivityService_ListFeatured = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/ListFeatured',
+  grpc.web.MethodType.UNARY,
+  proto.activity.ListFeaturedRequest,
+  proto.activity.ListFeaturedResponse,
+  /**
+   * @param {!proto.activity.ListFeaturedRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.activity.ListFeaturedResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.activity.ListFeaturedRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.activity.ListFeaturedResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.activity.ListFeaturedResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.listFeatured =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/ListFeatured',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_ListFeatured,
+      callback);
+};
+
+
+/**
+ * @param {!proto.activity.ListFeaturedRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.activity.ListFeaturedResponse>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.listFeatured =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/ListFeatured',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_ListFeatured);
 };
 
 
