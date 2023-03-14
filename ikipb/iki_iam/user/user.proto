@@ -5,7 +5,7 @@ option go_package = "/user";
 package user;
 
 message User {
-  int64 id = 1;
+  string id = 1;
   string email = 2;
   string given_name = 3;
   string family_name = 4;
