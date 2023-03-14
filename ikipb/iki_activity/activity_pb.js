@@ -333,11 +333,11 @@ proto.activity.Activity.prototype.toObject = function(opt_includeInstance) {
  */
 proto.activity.Activity.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    externalId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    athleteId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    stravaId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    stravaAthleteId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 5, ""),
     distance: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     elapsedTime: jspb.Message.getFieldWithDefault(msg, 7, 0),
     totalElevationGain: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
@@ -350,8 +350,7 @@ proto.activity.Activity.toObject = function(includeInstance, msg) {
     averageCadence: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
     averageTemp: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
     averageHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
-    maxHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
-    gpxFilePath: jspb.Message.getFieldWithDefault(msg, 19, "")
+    maxHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0)
   };
 
   if (includeInstance) {
@@ -389,24 +388,24 @@ proto.activity.Activity.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setExternalId(value);
+      msg.setStravaId(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setStravaAthleteId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setType(value);
+      msg.setName(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setAthleteId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readFloat());
@@ -460,10 +459,6 @@ proto.activity.Activity.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readFloat());
       msg.setMaxHeartrate(value);
       break;
-    case 19:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setGpxFilePath(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -494,36 +489,36 @@ proto.activity.Activity.prototype.serializeBinary = function() {
 proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
-  f = message.getExternalId();
+  f = message.getStravaId();
   if (f !== 0) {
     writer.writeInt64(
       2,
       f
     );
   }
-  f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getStravaAthleteId();
+  if (f !== 0) {
+    writer.writeInt64(
       3,
       f
     );
   }
-  f = message.getType();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getAthleteId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
@@ -619,39 +614,32 @@ proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getGpxFilePath();
-  if (f.length > 0) {
-    writer.writeString(
-      19,
-      f
-    );
-  }
 };
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.activity.Activity.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int64 external_id = 2;
+ * optional int64 strava_id = 2;
  * @return {number}
  */
-proto.activity.Activity.prototype.getExternalId = function() {
+proto.activity.Activity.prototype.getStravaId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -660,34 +648,34 @@ proto.activity.Activity.prototype.getExternalId = function() {
  * @param {number} value
  * @return {!proto.activity.Activity} returns this
  */
-proto.activity.Activity.prototype.setExternalId = function(value) {
+proto.activity.Activity.prototype.setStravaId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string name = 3;
+ * optional int64 strava_athlete_id = 3;
+ * @return {number}
+ */
+proto.activity.Activity.prototype.getStravaAthleteId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.setStravaAthleteId = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string name = 4;
  * @return {string}
  */
 proto.activity.Activity.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.activity.Activity} returns this
- */
-proto.activity.Activity.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional string type = 4;
- * @return {string}
- */
-proto.activity.Activity.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -696,26 +684,26 @@ proto.activity.Activity.prototype.getType = function() {
  * @param {string} value
  * @return {!proto.activity.Activity} returns this
  */
-proto.activity.Activity.prototype.setType = function(value) {
+proto.activity.Activity.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int64 athlete_id = 5;
- * @return {number}
+ * optional string type = 5;
+ * @return {string}
  */
-proto.activity.Activity.prototype.getAthleteId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+proto.activity.Activity.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.Activity} returns this
  */
-proto.activity.Activity.prototype.setAthleteId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+proto.activity.Activity.prototype.setType = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -1115,24 +1103,6 @@ proto.activity.Activity.prototype.hasMaxHeartrate = function() {
 };
 
 
-/**
- * optional string gpx_file_path = 19;
- * @return {string}
- */
-proto.activity.Activity.prototype.getGpxFilePath = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.activity.Activity} returns this
- */
-proto.activity.Activity.prototype.setGpxFilePath = function(value) {
-  return jspb.Message.setProto3StringField(this, 19, value);
-};
-
-
 
 
 
@@ -1165,7 +1135,7 @@ proto.activity.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.activity.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1203,7 +1173,7 @@ proto.activity.GetRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1236,8 +1206,8 @@ proto.activity.GetRequest.prototype.serializeBinary = function() {
 proto.activity.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1246,20 +1216,20 @@ proto.activity.GetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.activity.GetRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.GetRequest} returns this
  */
 proto.activity.GetRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1446,7 +1416,7 @@ proto.activity.GetMineRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.activity.GetMineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1484,7 +1454,7 @@ proto.activity.GetMineRequest.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1517,8 +1487,8 @@ proto.activity.GetMineRequest.prototype.serializeBinary = function() {
 proto.activity.GetMineRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1527,20 +1497,20 @@ proto.activity.GetMineRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.activity.GetMineRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.GetMineRequest} returns this
  */
 proto.activity.GetMineRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1727,7 +1697,7 @@ proto.activity.GetFeaturedRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.activity.GetFeaturedRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1765,7 +1735,7 @@ proto.activity.GetFeaturedRequest.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1798,8 +1768,8 @@ proto.activity.GetFeaturedRequest.prototype.serializeBinary = function() {
 proto.activity.GetFeaturedRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1808,20 +1778,20 @@ proto.activity.GetFeaturedRequest.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.activity.GetFeaturedRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.activity.GetFeaturedRequest} returns this
  */
 proto.activity.GetFeaturedRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

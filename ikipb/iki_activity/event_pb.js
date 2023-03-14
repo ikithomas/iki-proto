@@ -69,7 +69,7 @@ proto.event.EventActivityUpload.prototype.toObject = function(opt_includeInstanc
  */
 proto.event.EventActivityUpload.toObject = function(includeInstance, msg) {
   var f, obj = {
-    activityId: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    activityId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -107,7 +107,7 @@ proto.event.EventActivityUpload.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setActivityId(value);
       break;
     default:
@@ -140,8 +140,8 @@ proto.event.EventActivityUpload.prototype.serializeBinary = function() {
 proto.event.EventActivityUpload.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getActivityId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -150,20 +150,20 @@ proto.event.EventActivityUpload.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int64 activity_id = 1;
- * @return {number}
+ * optional string activity_id = 1;
+ * @return {string}
  */
 proto.event.EventActivityUpload.prototype.getActivityId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.event.EventActivityUpload} returns this
  */
 proto.event.EventActivityUpload.prototype.setActivityId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

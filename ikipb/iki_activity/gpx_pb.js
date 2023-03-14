@@ -179,7 +179,7 @@ proto.gpx.GetGpxRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.gpx.GetGpxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    activityId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -217,8 +217,8 @@ proto.gpx.GetGpxRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setActivityId(value);
       break;
     default:
       reader.skipField();
@@ -249,9 +249,9 @@ proto.gpx.GetGpxRequest.prototype.serializeBinary = function() {
  */
 proto.gpx.GetGpxRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getActivityId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -260,20 +260,20 @@ proto.gpx.GetGpxRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string activity_id = 1;
+ * @return {string}
  */
-proto.gpx.GetGpxRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.gpx.GetGpxRequest.prototype.getActivityId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.gpx.GetGpxRequest} returns this
  */
-proto.gpx.GetGpxRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.gpx.GetGpxRequest.prototype.setActivityId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -309,7 +309,7 @@ proto.gpx.GetConciseGpxRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.gpx.GetConciseGpxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    activityId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -347,8 +347,8 @@ proto.gpx.GetConciseGpxRequest.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setActivityId(value);
       break;
     default:
       reader.skipField();
@@ -379,9 +379,9 @@ proto.gpx.GetConciseGpxRequest.prototype.serializeBinary = function() {
  */
 proto.gpx.GetConciseGpxRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getActivityId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -390,20 +390,20 @@ proto.gpx.GetConciseGpxRequest.serializeBinaryToWriter = function(message, write
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string activity_id = 1;
+ * @return {string}
  */
-proto.gpx.GetConciseGpxRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.gpx.GetConciseGpxRequest.prototype.getActivityId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.gpx.GetConciseGpxRequest} returns this
  */
-proto.gpx.GetConciseGpxRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.gpx.GetConciseGpxRequest.prototype.setActivityId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -439,9 +439,9 @@ proto.gpx.GetConciseGpxResponse.prototype.toObject = function(opt_includeInstanc
  */
 proto.gpx.GetConciseGpxResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    externalId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    athleteId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    activityId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    stravaId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    stravaAthleteId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     gpx: (f = msg.getGpx()) && proto.gpx.Gpx.toObject(includeInstance, f)
   };
 
@@ -480,16 +480,16 @@ proto.gpx.GetConciseGpxResponse.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setActivityId(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setExternalId(value);
+      msg.setStravaId(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setAthleteId(value);
+      msg.setStravaAthleteId(value);
       break;
     case 4:
       var value = new proto.gpx.Gpx;
@@ -525,21 +525,21 @@ proto.gpx.GetConciseGpxResponse.prototype.serializeBinary = function() {
  */
 proto.gpx.GetConciseGpxResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getActivityId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
-  f = message.getExternalId();
+  f = message.getStravaId();
   if (f !== 0) {
     writer.writeInt64(
       2,
       f
     );
   }
-  f = message.getAthleteId();
+  f = message.getStravaAthleteId();
   if (f !== 0) {
     writer.writeInt64(
       3,
@@ -558,28 +558,28 @@ proto.gpx.GetConciseGpxResponse.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string activity_id = 1;
+ * @return {string}
  */
-proto.gpx.GetConciseGpxResponse.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.gpx.GetConciseGpxResponse.prototype.getActivityId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.gpx.GetConciseGpxResponse} returns this
  */
-proto.gpx.GetConciseGpxResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.gpx.GetConciseGpxResponse.prototype.setActivityId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int64 external_id = 2;
+ * optional int64 strava_id = 2;
  * @return {number}
  */
-proto.gpx.GetConciseGpxResponse.prototype.getExternalId = function() {
+proto.gpx.GetConciseGpxResponse.prototype.getStravaId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -588,16 +588,16 @@ proto.gpx.GetConciseGpxResponse.prototype.getExternalId = function() {
  * @param {number} value
  * @return {!proto.gpx.GetConciseGpxResponse} returns this
  */
-proto.gpx.GetConciseGpxResponse.prototype.setExternalId = function(value) {
+proto.gpx.GetConciseGpxResponse.prototype.setStravaId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional int64 athlete_id = 3;
+ * optional int64 strava_athlete_id = 3;
  * @return {number}
  */
-proto.gpx.GetConciseGpxResponse.prototype.getAthleteId = function() {
+proto.gpx.GetConciseGpxResponse.prototype.getStravaAthleteId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -606,7 +606,7 @@ proto.gpx.GetConciseGpxResponse.prototype.getAthleteId = function() {
  * @param {number} value
  * @return {!proto.gpx.GetConciseGpxResponse} returns this
  */
-proto.gpx.GetConciseGpxResponse.prototype.setAthleteId = function(value) {
+proto.gpx.GetConciseGpxResponse.prototype.setStravaAthleteId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 

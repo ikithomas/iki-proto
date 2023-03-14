@@ -113,7 +113,7 @@ proto.heatmap.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.heatmap.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    athleteId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    ikiUserId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     resolution: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -152,8 +152,8 @@ proto.heatmap.GetRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setAthleteId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIkiUserId(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
@@ -188,9 +188,9 @@ proto.heatmap.GetRequest.prototype.serializeBinary = function() {
  */
 proto.heatmap.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAthleteId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getIkiUserId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -206,20 +206,20 @@ proto.heatmap.GetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional int64 athlete_id = 1;
- * @return {number}
+ * optional string iki_user_id = 1;
+ * @return {string}
  */
-proto.heatmap.GetRequest.prototype.getAthleteId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.heatmap.GetRequest.prototype.getIkiUserId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.heatmap.GetRequest} returns this
  */
-proto.heatmap.GetRequest.prototype.setAthleteId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.heatmap.GetRequest.prototype.setIkiUserId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

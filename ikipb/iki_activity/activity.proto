@@ -5,11 +5,11 @@ option go_package = "/activity";
 package activity;
 
 message Activity {
-  int64 id = 1;
-  int64 external_id = 2;
-  string name = 3;
-  string type = 4;
-  int64 athlete_id = 5;
+  string id = 1;
+  int64 strava_id = 2;
+  int64 strava_athlete_id = 3;
+  string name = 4;
+  string type = 5;
   float distance = 6;
   int64 elapsed_time = 7;
   float total_elevation_gain = 8;
@@ -23,9 +23,6 @@ message Activity {
   optional float average_temp = 16;
   optional float average_heartrate = 17;
   optional float max_heartrate = 18;
-
-  // Deprecated
-  string gpx_file_path = 19;
 }
 
 service ActivityService {
@@ -39,19 +36,19 @@ service ActivityService {
 }
 
 message GetRequest {
-  int64 id = 1;
+  string id = 1;
 }
 message GetResponse {
   Activity activity = 1;
 }
 message GetMineRequest {
-  int64 id = 1;
+  string id = 1;
 }
 message GetMineResponse {
   Activity activity = 1;
 }
 message GetFeaturedRequest {
-  int64 id = 1;
+  string id = 1;
 }
 message GetFeaturedResponse {
   Activity activity = 1;

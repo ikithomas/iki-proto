@@ -5,5 +5,5 @@ option go_package = "/activity";
 package event;
 
 message EventActivityUpload {
-  int64 activity_id = 1;
+  string activity_id = 1;
 }
