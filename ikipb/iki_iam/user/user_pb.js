@@ -849,7 +849,7 @@ proto.user.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.user.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -887,7 +887,7 @@ proto.user.GetRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -920,8 +920,8 @@ proto.user.GetRequest.prototype.serializeBinary = function() {
 proto.user.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -930,20 +930,20 @@ proto.user.GetRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.user.GetRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.GetRequest} returns this
  */
 proto.user.GetRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1391,7 +1391,7 @@ proto.user.DeleteRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.user.DeleteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1429,7 +1429,7 @@ proto.user.DeleteRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -1462,8 +1462,8 @@ proto.user.DeleteRequest.prototype.serializeBinary = function() {
 proto.user.DeleteRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1472,20 +1472,20 @@ proto.user.DeleteRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.user.DeleteRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.DeleteRequest} returns this
  */
 proto.user.DeleteRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1622,7 +1622,7 @@ proto.user.ResetPasswordRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.user.ResetPasswordRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     newPassword: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -1661,7 +1661,7 @@ proto.user.ResetPasswordRequest.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     case 2:
@@ -1698,8 +1698,8 @@ proto.user.ResetPasswordRequest.prototype.serializeBinary = function() {
 proto.user.ResetPasswordRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -1715,20 +1715,20 @@ proto.user.ResetPasswordRequest.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int64 id = 1;
- * @return {number}
+ * optional string id = 1;
+ * @return {string}
  */
 proto.user.ResetPasswordRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.ResetPasswordRequest} returns this
  */
 proto.user.ResetPasswordRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1883,8 +1883,8 @@ proto.user.AttachGroupRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.user.AttachGroupRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    groupId: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    groupId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1922,11 +1922,11 @@ proto.user.AttachGroupRequest.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setUserId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setGroupId(value);
       break;
     default:
@@ -1959,15 +1959,15 @@ proto.user.AttachGroupRequest.prototype.serializeBinary = function() {
 proto.user.AttachGroupRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUserId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
   f = message.getGroupId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -1976,38 +1976,38 @@ proto.user.AttachGroupRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional int64 user_id = 1;
- * @return {number}
+ * optional string user_id = 1;
+ * @return {string}
  */
 proto.user.AttachGroupRequest.prototype.getUserId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.AttachGroupRequest} returns this
  */
 proto.user.AttachGroupRequest.prototype.setUserId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int64 group_id = 2;
- * @return {number}
+ * optional string group_id = 2;
+ * @return {string}
  */
 proto.user.AttachGroupRequest.prototype.getGroupId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.AttachGroupRequest} returns this
  */
 proto.user.AttachGroupRequest.prototype.setGroupId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -2144,8 +2144,8 @@ proto.user.DetachGroupRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.user.DetachGroupRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    groupId: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    groupId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2183,11 +2183,11 @@ proto.user.DetachGroupRequest.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setUserId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setGroupId(value);
       break;
     default:
@@ -2220,15 +2220,15 @@ proto.user.DetachGroupRequest.prototype.serializeBinary = function() {
 proto.user.DetachGroupRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUserId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
   f = message.getGroupId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -2237,38 +2237,38 @@ proto.user.DetachGroupRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional int64 user_id = 1;
- * @return {number}
+ * optional string user_id = 1;
+ * @return {string}
  */
 proto.user.DetachGroupRequest.prototype.getUserId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.DetachGroupRequest} returns this
  */
 proto.user.DetachGroupRequest.prototype.setUserId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int64 group_id = 2;
- * @return {number}
+ * optional string group_id = 2;
+ * @return {string}
  */
 proto.user.DetachGroupRequest.prototype.getGroupId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.user.DetachGroupRequest} returns this
  */
 proto.user.DetachGroupRequest.prototype.setGroupId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
