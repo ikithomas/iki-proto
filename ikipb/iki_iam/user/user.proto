@@ -46,7 +46,7 @@ message ProfileResponse {
 }
 
 message GetRequest {
-  int64 id = 1;
+  string id = 1;
 }
 message GetResponse {
   User user = 1;
@@ -59,28 +59,28 @@ message ListResponse {
 }
 
 message DeleteRequest {
-  int64 id = 1;
+  string id = 1;
 }
 
 message DeleteResponse {}
 
 message ResetPasswordRequest {
-  int64 id = 1;
+  string id = 1;
   string new_password = 2;
 }
 
 message ResetPasswordResponse {}
 
 message AttachGroupRequest {
-  int64 user_id = 1;
-  int64 group_id = 2;
+  string user_id = 1;
+  string group_id = 2;
 }
 
 message AttachGroupResponse {}
 
 message DetachGroupRequest {
-  int64 user_id = 1;
-  int64 group_id = 2;
+  string user_id = 1;
+  string group_id = 2;
 }
 
 message DetachGroupResponse {}
