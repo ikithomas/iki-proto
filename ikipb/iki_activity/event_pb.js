@@ -69,7 +69,8 @@ proto.event.EventActivityUpload.prototype.toObject = function(opt_includeInstanc
  */
 proto.event.EventActivityUpload.toObject = function(includeInstance, msg) {
   var f, obj = {
-    activityId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    activityId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    ikiUserId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -110,6 +111,10 @@ proto.event.EventActivityUpload.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setActivityId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIkiUserId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -146,6 +151,13 @@ proto.event.EventActivityUpload.serializeBinaryToWriter = function(message, writ
       f
     );
   }
+  f = message.getIkiUserId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -164,6 +176,24 @@ proto.event.EventActivityUpload.prototype.getActivityId = function() {
  */
 proto.event.EventActivityUpload.prototype.setActivityId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string iki_user_id = 2;
+ * @return {string}
+ */
+proto.event.EventActivityUpload.prototype.getIkiUserId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event.EventActivityUpload} returns this
+ */
+proto.event.EventActivityUpload.prototype.setIkiUserId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

@@ -6,4 +6,5 @@ package event;
 
 message EventActivityUpload {
   string activity_id = 1;
+  string iki_user_id = 2;
 }
