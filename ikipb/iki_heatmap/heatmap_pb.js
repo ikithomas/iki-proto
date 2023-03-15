@@ -285,7 +285,7 @@ proto.heatmap.Track.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     pointsList: jspb.Message.toObjectList(msg.getPointsList(),
     proto.heatmap.Point.toObject, includeInstance),
-    id: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -340,7 +340,7 @@ proto.heatmap.Track.deserializeBinaryFromReader = function(msg, reader) {
       msg.addPoints(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -402,8 +402,8 @@ proto.heatmap.Track.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
@@ -504,20 +504,20 @@ proto.heatmap.Track.prototype.clearPointsList = function() {
 
 
 /**
- * optional int64 id = 5;
- * @return {number}
+ * optional string id = 5;
+ * @return {string}
  */
 proto.heatmap.Track.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.heatmap.Track} returns this
  */
 proto.heatmap.Track.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
