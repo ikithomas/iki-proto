@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "/route";
+
+package route;
+
+message Route {
+  string id = 1;
+  string co = 2;
+  string route = 3;
+  string bound = 4;
+  string service_type = 5;
+  string orig = 6;
+  string dest = 7;
+  int64 created_at = 8;
+  int64 remote_timestamp = 9;
+}
+
+service RouteService {
+  rpc List (ListRequest) returns (ListResponse) {}
+}
+
+message ListRequest {}
+
+message ListResponse {
+  repeated Route routes = 1;
+}

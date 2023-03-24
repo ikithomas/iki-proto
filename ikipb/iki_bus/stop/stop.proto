@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "/stop";
+
+package stop;
+
+message Stop {
+  string id = 1;
+  string remote_id = 2;
+  string name = 3;
+  float lat = 4;
+  float long = 5;
+  int64 remote_timestamp = 6;
+  int64 created_at = 7;
+}
+
+service StopService {
+  rpc List (ListRequest) returns (ListResponse) {}
+}
+
+message ListRequest {}
+
+message ListResponse {
+  repeated Stop stops = 1;
+}
