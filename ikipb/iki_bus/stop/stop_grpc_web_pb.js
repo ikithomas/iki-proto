@@ -79,16 +79,16 @@ proto.stop.StopServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.google.protobuf.Empty,
+ *   !proto.stop.ListRequest,
  *   !proto.stop.ListResponse>}
  */
 const methodDescriptor_StopService_List = new grpc.web.MethodDescriptor(
   '/stop.StopService/List',
   grpc.web.MethodType.UNARY,
-  google_protobuf_empty_pb.Empty,
+  proto.stop.ListRequest,
   proto.stop.ListResponse,
   /**
-   * @param {!proto.google.protobuf.Empty} request
+   * @param {!proto.stop.ListRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -99,7 +99,7 @@ const methodDescriptor_StopService_List = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.google.protobuf.Empty} request The
+ * @param {!proto.stop.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -120,7 +120,7 @@ proto.stop.StopServiceClient.prototype.list =
 
 
 /**
- * @param {!proto.google.protobuf.Empty} request The
+ * @param {!proto.stop.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata

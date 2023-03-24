@@ -17,10 +17,13 @@ message Stop {
 }
 
 service StopService {
-  rpc List (google.protobuf.Empty) returns (ListResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {}
   rpc Sync (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
+message ListRequest {
+  string language = 1;
+}
 
 message ListResponse {
   repeated Stop stops = 1;
