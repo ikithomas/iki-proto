@@ -19,6 +19,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 const proto = {};
 proto.stop = require('./stop_pb.js');
 
@@ -77,16 +79,16 @@ proto.stop.StopServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stop.ListRequest,
+ *   !proto.google.protobuf.Empty,
  *   !proto.stop.ListResponse>}
  */
 const methodDescriptor_StopService_List = new grpc.web.MethodDescriptor(
   '/stop.StopService/List',
   grpc.web.MethodType.UNARY,
-  proto.stop.ListRequest,
+  google_protobuf_empty_pb.Empty,
   proto.stop.ListResponse,
   /**
-   * @param {!proto.stop.ListRequest} request
+   * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -97,7 +99,7 @@ const methodDescriptor_StopService_List = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.stop.ListRequest} request The
+ * @param {!proto.google.protobuf.Empty} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -118,7 +120,7 @@ proto.stop.StopServiceClient.prototype.list =
 
 
 /**
- * @param {!proto.stop.ListRequest} request The
+ * @param {!proto.google.protobuf.Empty} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
@@ -132,6 +134,67 @@ proto.stop.StopServicePromiseClient.prototype.list =
       request,
       metadata || {},
       methodDescriptor_StopService_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.google.protobuf.Empty,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_StopService_Sync = new grpc.web.MethodDescriptor(
+  '/stop.StopService/Sync',
+  grpc.web.MethodType.UNARY,
+  google_protobuf_empty_pb.Empty,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.google.protobuf.Empty} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stop.StopServiceClient.prototype.sync =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stop.StopService/Sync',
+      request,
+      metadata || {},
+      methodDescriptor_StopService_Sync,
+      callback);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stop.StopServicePromiseClient.prototype.sync =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stop.StopService/Sync',
+      request,
+      metadata || {},
+      methodDescriptor_StopService_Sync);
 };
 
 

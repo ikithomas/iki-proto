@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RouteServiceClient interface {
-	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListResponse, error)
+	Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type routeServiceClient struct {
@@ -33,9 +35,18 @@ func NewRouteServiceClient(cc grpc.ClientConnInterface) RouteServiceClient {
 	return &routeServiceClient{cc}
 }
 
-func (c *routeServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *routeServiceClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
 	err := c.cc.Invoke(ctx, "/route.RouteService/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routeServiceClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/route.RouteService/Sync", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +57,8 @@ func (c *routeServiceClient) List(ctx context.Context, in *ListRequest, opts ...
 // All implementations must embed UnimplementedRouteServiceServer
 // for forward compatibility
 type RouteServiceServer interface {
-	List(context.Context, *ListRequest) (*ListResponse, error)
+	List(context.Context, *emptypb.Empty) (*ListResponse, error)
+	Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	mustEmbedUnimplementedRouteServiceServer()
 }
 
@@ -54,8 +66,11 @@ type RouteServiceServer interface {
 type UnimplementedRouteServiceServer struct {
 }
 
-func (UnimplementedRouteServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedRouteServiceServer) List(context.Context, *emptypb.Empty) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedRouteServiceServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
 func (UnimplementedRouteServiceServer) mustEmbedUnimplementedRouteServiceServer() {}
 
@@ -71,7 +86,7 @@ func RegisterRouteServiceServer(s grpc.ServiceRegistrar, srv RouteServiceServer)
 }
 
 func _RouteService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -83,7 +98,25 @@ func _RouteService_List_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/route.RouteService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(RouteServiceServer).List(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RouteService_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RouteServiceServer).Sync(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/route.RouteService/Sync",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RouteServiceServer).Sync(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -98,6 +131,10 @@ var RouteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _RouteService_List_Handler,
+		},
+		{
+			MethodName: "Sync",
+			Handler:    _RouteService_Sync_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

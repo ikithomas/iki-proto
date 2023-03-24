@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StopServiceClient interface {
-	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListResponse, error)
+	Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type stopServiceClient struct {
@@ -33,9 +35,18 @@ func NewStopServiceClient(cc grpc.ClientConnInterface) StopServiceClient {
 	return &stopServiceClient{cc}
 }
 
-func (c *stopServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *stopServiceClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
 	err := c.cc.Invoke(ctx, "/stop.StopService/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stopServiceClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/stop.StopService/Sync", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +57,8 @@ func (c *stopServiceClient) List(ctx context.Context, in *ListRequest, opts ...g
 // All implementations must embed UnimplementedStopServiceServer
 // for forward compatibility
 type StopServiceServer interface {
-	List(context.Context, *ListRequest) (*ListResponse, error)
+	List(context.Context, *emptypb.Empty) (*ListResponse, error)
+	Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	mustEmbedUnimplementedStopServiceServer()
 }
 
@@ -54,8 +66,11 @@ type StopServiceServer interface {
 type UnimplementedStopServiceServer struct {
 }
 
-func (UnimplementedStopServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedStopServiceServer) List(context.Context, *emptypb.Empty) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedStopServiceServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
 func (UnimplementedStopServiceServer) mustEmbedUnimplementedStopServiceServer() {}
 
@@ -71,7 +86,7 @@ func RegisterStopServiceServer(s grpc.ServiceRegistrar, srv StopServiceServer) {
 }
 
 func _StopService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -83,7 +98,25 @@ func _StopService_List_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: "/stop.StopService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StopServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(StopServiceServer).List(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StopService_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StopServiceServer).Sync(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stop.StopService/Sync",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StopServiceServer).Sync(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -98,6 +131,10 @@ var StopService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _StopService_List_Handler,
+		},
+		{
+			MethodName: "Sync",
+			Handler:    _StopService_Sync_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
