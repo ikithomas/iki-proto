@@ -9,9 +9,9 @@ message User {
   string email = 2;
   string given_name = 3;
   string family_name = 4;
-  bool owner = 5;
-  bool admin = 6;
-  bool user = 7;
+  bool group_owner = 5;
+  bool group_admin = 6;
+  bool group_user = 7;
 }
 
 message Group {

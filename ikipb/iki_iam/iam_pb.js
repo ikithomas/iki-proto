@@ -95,9 +95,9 @@ proto.iam.User.toObject = function(includeInstance, msg) {
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     givenName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     familyName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    owner: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    admin: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    user: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+    groupOwner: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    groupAdmin: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    groupUser: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -152,15 +152,15 @@ proto.iam.User.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setOwner(value);
+      msg.setGroupOwner(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAdmin(value);
+      msg.setGroupAdmin(value);
       break;
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setUser(value);
+      msg.setGroupUser(value);
       break;
     default:
       reader.skipField();
@@ -219,21 +219,21 @@ proto.iam.User.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getOwner();
+  f = message.getGroupOwner();
   if (f) {
     writer.writeBool(
       5,
       f
     );
   }
-  f = message.getAdmin();
+  f = message.getGroupAdmin();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getUser();
+  f = message.getGroupUser();
   if (f) {
     writer.writeBool(
       7,
@@ -316,10 +316,10 @@ proto.iam.User.prototype.setFamilyName = function(value) {
 
 
 /**
- * optional bool owner = 5;
+ * optional bool group_owner = 5;
  * @return {boolean}
  */
-proto.iam.User.prototype.getOwner = function() {
+proto.iam.User.prototype.getGroupOwner = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -328,16 +328,16 @@ proto.iam.User.prototype.getOwner = function() {
  * @param {boolean} value
  * @return {!proto.iam.User} returns this
  */
-proto.iam.User.prototype.setOwner = function(value) {
+proto.iam.User.prototype.setGroupOwner = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * optional bool admin = 6;
+ * optional bool group_admin = 6;
  * @return {boolean}
  */
-proto.iam.User.prototype.getAdmin = function() {
+proto.iam.User.prototype.getGroupAdmin = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -346,16 +346,16 @@ proto.iam.User.prototype.getAdmin = function() {
  * @param {boolean} value
  * @return {!proto.iam.User} returns this
  */
-proto.iam.User.prototype.setAdmin = function(value) {
+proto.iam.User.prototype.setGroupAdmin = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional bool user = 7;
+ * optional bool group_user = 7;
  * @return {boolean}
  */
-proto.iam.User.prototype.getUser = function() {
+proto.iam.User.prototype.getGroupUser = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
@@ -364,7 +364,7 @@ proto.iam.User.prototype.getUser = function() {
  * @param {boolean} value
  * @return {!proto.iam.User} returns this
  */
-proto.iam.User.prototype.setUser = function(value) {
+proto.iam.User.prototype.setGroupUser = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
