@@ -22,7 +22,14 @@ service StopService {
 }
 
 message ListRequest {
-  string language = 1;
+  enum Language {
+    LANGUAGE_UNSPECIFIED = 0;
+    LANGUAGE_EN = 1;
+    LANGUAGE_TC = 2;
+    LANGUAGE_SC = 3;
+  }
+
+  Language language = 1;
 }
 
 message ListResponse {
