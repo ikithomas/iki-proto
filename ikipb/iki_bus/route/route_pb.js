@@ -18,6 +18,7 @@ var global = (function() { return this || window || global || self || Function('
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 goog.object.extend(proto, google_protobuf_empty_pb);
 goog.exportSymbol('proto.route.ListRequest', null, global);
+goog.exportSymbol('proto.route.ListRequest.Language', null, global);
 goog.exportSymbol('proto.route.ListResponse', null, global);
 goog.exportSymbol('proto.route.Route', null, global);
 /**
@@ -485,7 +486,7 @@ proto.route.ListRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.route.ListRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    language: jspb.Message.getFieldWithDefault(msg, 1, "")
+    language: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -523,7 +524,7 @@ proto.route.ListRequest.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.route.ListRequest.Language} */ (reader.readEnum());
       msg.setLanguage(value);
       break;
     default:
@@ -556,8 +557,8 @@ proto.route.ListRequest.prototype.serializeBinary = function() {
 proto.route.ListRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLanguage();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
@@ -566,20 +567,30 @@ proto.route.ListRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string language = 1;
- * @return {string}
+ * @enum {number}
+ */
+proto.route.ListRequest.Language = {
+  LANGUAGE_UNSPECIFIED: 0,
+  LANGUAGE_EN: 1,
+  LANGUAGE_TC: 2,
+  LANGUAGE_SC: 3
+};
+
+/**
+ * optional Language language = 1;
+ * @return {!proto.route.ListRequest.Language}
  */
 proto.route.ListRequest.prototype.getLanguage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!proto.route.ListRequest.Language} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.route.ListRequest.Language} value
  * @return {!proto.route.ListRequest} returns this
  */
 proto.route.ListRequest.prototype.setLanguage = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
