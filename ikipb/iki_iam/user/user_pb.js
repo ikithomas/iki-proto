@@ -380,7 +380,9 @@ proto.user.User.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     givenName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    familyName: jspb.Message.getFieldWithDefault(msg, 4, "")
+    familyName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    owner: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    admin: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -432,6 +434,14 @@ proto.user.User.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setFamilyName(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOwner(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAdmin(value);
       break;
     default:
       reader.skipField();
@@ -487,6 +497,20 @@ proto.user.User.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getOwner();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = message.getAdmin();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -562,6 +586,42 @@ proto.user.User.prototype.getFamilyName = function() {
  */
 proto.user.User.prototype.setFamilyName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool owner = 5;
+ * @return {boolean}
+ */
+proto.user.User.prototype.getOwner = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.user.User} returns this
+ */
+proto.user.User.prototype.setOwner = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional bool admin = 6;
+ * @return {boolean}
+ */
+proto.user.User.prototype.getAdmin = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.user.User} returns this
+ */
+proto.user.User.prototype.setAdmin = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
