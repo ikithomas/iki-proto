@@ -97,7 +97,7 @@ proto.iam.User.toObject = function(includeInstance, msg) {
     familyName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     owner: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     admin: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    visitor: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+    user: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -160,7 +160,7 @@ proto.iam.User.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setVisitor(value);
+      msg.setUser(value);
       break;
     default:
       reader.skipField();
@@ -233,7 +233,7 @@ proto.iam.User.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getVisitor();
+  f = message.getUser();
   if (f) {
     writer.writeBool(
       7,
@@ -352,10 +352,10 @@ proto.iam.User.prototype.setAdmin = function(value) {
 
 
 /**
- * optional bool visitor = 7;
+ * optional bool user = 7;
  * @return {boolean}
  */
-proto.iam.User.prototype.getVisitor = function() {
+proto.iam.User.prototype.getUser = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
@@ -364,7 +364,7 @@ proto.iam.User.prototype.getVisitor = function() {
  * @param {boolean} value
  * @return {!proto.iam.User} returns this
  */
-proto.iam.User.prototype.setVisitor = function(value) {
+proto.iam.User.prototype.setUser = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
