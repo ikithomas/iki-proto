@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for auth
+ * @fileoverview gRPC-Web generated client stub for authsvc
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: ikipb/iki_iam/auth/auth.proto
+// source: ikipb/iki_iam/authsvc/auth.proto
 
 
 /* eslint-disable */
@@ -19,8 +19,10 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var ikipb_iki_iam_iam_pb = require('../../../ikipb/iki_iam/iam_pb.js')
 const proto = {};
-proto.auth = require('./auth_pb.js');
+proto.authsvc = require('./auth_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +32,7 @@ proto.auth = require('./auth_pb.js');
  * @struct
  * @final
  */
-proto.auth.AuthServiceClient =
+proto.authsvc.AuthClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +58,7 @@ proto.auth.AuthServiceClient =
  * @struct
  * @final
  */
-proto.auth.AuthServicePromiseClient =
+proto.authsvc.AuthPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,185 +79,185 @@ proto.auth.AuthServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.auth.GoogleLoginRequest,
- *   !proto.auth.GoogleLoginResponse>}
+ *   !proto.authsvc.GoogleLoginRequest,
+ *   !proto.authsvc.GoogleLoginResponse>}
  */
-const methodDescriptor_AuthService_GoogleLogin = new grpc.web.MethodDescriptor(
-  '/auth.AuthService/GoogleLogin',
+const methodDescriptor_Auth_GoogleLogin = new grpc.web.MethodDescriptor(
+  '/authsvc.Auth/GoogleLogin',
   grpc.web.MethodType.UNARY,
-  proto.auth.GoogleLoginRequest,
-  proto.auth.GoogleLoginResponse,
+  proto.authsvc.GoogleLoginRequest,
+  proto.authsvc.GoogleLoginResponse,
   /**
-   * @param {!proto.auth.GoogleLoginRequest} request
+   * @param {!proto.authsvc.GoogleLoginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.auth.GoogleLoginResponse.deserializeBinary
+  proto.authsvc.GoogleLoginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.auth.GoogleLoginRequest} request The
+ * @param {!proto.authsvc.GoogleLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.auth.GoogleLoginResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.authsvc.GoogleLoginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.auth.GoogleLoginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.authsvc.GoogleLoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.auth.AuthServiceClient.prototype.googleLogin =
+proto.authsvc.AuthClient.prototype.googleLogin =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/auth.AuthService/GoogleLogin',
+      '/authsvc.Auth/GoogleLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_GoogleLogin,
+      methodDescriptor_Auth_GoogleLogin,
       callback);
 };
 
 
 /**
- * @param {!proto.auth.GoogleLoginRequest} request The
+ * @param {!proto.authsvc.GoogleLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.auth.GoogleLoginResponse>}
+ * @return {!Promise<!proto.authsvc.GoogleLoginResponse>}
  *     Promise that resolves to the response
  */
-proto.auth.AuthServicePromiseClient.prototype.googleLogin =
+proto.authsvc.AuthPromiseClient.prototype.googleLogin =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/auth.AuthService/GoogleLogin',
+      '/authsvc.Auth/GoogleLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_GoogleLogin);
+      methodDescriptor_Auth_GoogleLogin);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.auth.PasswordLoginRequest,
- *   !proto.auth.PasswordLoginResponse>}
+ *   !proto.authsvc.PasswordLoginRequest,
+ *   !proto.authsvc.PasswordLoginResponse>}
  */
-const methodDescriptor_AuthService_PasswordLogin = new grpc.web.MethodDescriptor(
-  '/auth.AuthService/PasswordLogin',
+const methodDescriptor_Auth_PasswordLogin = new grpc.web.MethodDescriptor(
+  '/authsvc.Auth/PasswordLogin',
   grpc.web.MethodType.UNARY,
-  proto.auth.PasswordLoginRequest,
-  proto.auth.PasswordLoginResponse,
+  proto.authsvc.PasswordLoginRequest,
+  proto.authsvc.PasswordLoginResponse,
   /**
-   * @param {!proto.auth.PasswordLoginRequest} request
+   * @param {!proto.authsvc.PasswordLoginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.auth.PasswordLoginResponse.deserializeBinary
+  proto.authsvc.PasswordLoginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.auth.PasswordLoginRequest} request The
+ * @param {!proto.authsvc.PasswordLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.auth.PasswordLoginResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.authsvc.PasswordLoginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.auth.PasswordLoginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.authsvc.PasswordLoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.auth.AuthServiceClient.prototype.passwordLogin =
+proto.authsvc.AuthClient.prototype.passwordLogin =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/auth.AuthService/PasswordLogin',
+      '/authsvc.Auth/PasswordLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_PasswordLogin,
+      methodDescriptor_Auth_PasswordLogin,
       callback);
 };
 
 
 /**
- * @param {!proto.auth.PasswordLoginRequest} request The
+ * @param {!proto.authsvc.PasswordLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.auth.PasswordLoginResponse>}
+ * @return {!Promise<!proto.authsvc.PasswordLoginResponse>}
  *     Promise that resolves to the response
  */
-proto.auth.AuthServicePromiseClient.prototype.passwordLogin =
+proto.authsvc.AuthPromiseClient.prototype.passwordLogin =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/auth.AuthService/PasswordLogin',
+      '/authsvc.Auth/PasswordLogin',
       request,
       metadata || {},
-      methodDescriptor_AuthService_PasswordLogin);
+      methodDescriptor_Auth_PasswordLogin);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.auth.SignoutRequest,
- *   !proto.auth.SignoutResponse>}
+ *   !proto.authsvc.SignoutRequest,
+ *   !proto.authsvc.SignoutResponse>}
  */
-const methodDescriptor_AuthService_Signout = new grpc.web.MethodDescriptor(
-  '/auth.AuthService/Signout',
+const methodDescriptor_Auth_Signout = new grpc.web.MethodDescriptor(
+  '/authsvc.Auth/Signout',
   grpc.web.MethodType.UNARY,
-  proto.auth.SignoutRequest,
-  proto.auth.SignoutResponse,
+  proto.authsvc.SignoutRequest,
+  proto.authsvc.SignoutResponse,
   /**
-   * @param {!proto.auth.SignoutRequest} request
+   * @param {!proto.authsvc.SignoutRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.auth.SignoutResponse.deserializeBinary
+  proto.authsvc.SignoutResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.auth.SignoutRequest} request The
+ * @param {!proto.authsvc.SignoutRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.auth.SignoutResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.authsvc.SignoutResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.auth.SignoutResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.authsvc.SignoutResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.auth.AuthServiceClient.prototype.signout =
+proto.authsvc.AuthClient.prototype.signout =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/auth.AuthService/Signout',
+      '/authsvc.Auth/Signout',
       request,
       metadata || {},
-      methodDescriptor_AuthService_Signout,
+      methodDescriptor_Auth_Signout,
       callback);
 };
 
 
 /**
- * @param {!proto.auth.SignoutRequest} request The
+ * @param {!proto.authsvc.SignoutRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.auth.SignoutResponse>}
+ * @return {!Promise<!proto.authsvc.SignoutResponse>}
  *     Promise that resolves to the response
  */
-proto.auth.AuthServicePromiseClient.prototype.signout =
+proto.authsvc.AuthPromiseClient.prototype.signout =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/auth.AuthService/Signout',
+      '/authsvc.Auth/Signout',
       request,
       metadata || {},
-      methodDescriptor_AuthService_Signout);
+      methodDescriptor_Auth_Signout);
 };
 
 
-module.exports = proto.auth;
+module.exports = proto.authsvc;
 

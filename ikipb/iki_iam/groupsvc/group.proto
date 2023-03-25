@@ -1,15 +1,12 @@
 syntax = "proto3";
 
-option go_package = "/group";
+import "ikipb/iki_iam/iam.proto";
 
-package group;
+option go_package = "/groupsvc";
 
-message Group {
-  string id = 1;
-  string name = 2;
-}
+package groupsvc;
 
-service GroupService {
+service Group {
   rpc Get (GetRequest) returns (GetResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
 }
@@ -19,11 +16,11 @@ message GetRequest {
 }
 
 message GetResponse {
-  Group group = 1;
+  iam.Group group = 1;
 }
 
 message ListRequest {}
 
 message ListResponse {
-  repeated Group groups = 1;
+  repeated iam.Group groups = 1;
 }

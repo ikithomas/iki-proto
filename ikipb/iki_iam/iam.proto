@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_iam";
+
+package iam;
+
+message User {
+  string id = 1;
+  string email = 2;
+  string given_name = 3;
+  string family_name = 4;
+  bool owner = 5;
+  bool admin = 6;
+  bool visitor = 7;
+}
+
+message Group {
+  string id = 1;
+  string name = 2;
+}

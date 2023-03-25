@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for group
+ * @fileoverview gRPC-Web generated client stub for tokensvc
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: ikipb/iki_iam/group/group.proto
+// source: ikipb/iki_iam/tokensvc/token.proto
 
 
 /* eslint-disable */
@@ -20,7 +20,7 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 const proto = {};
-proto.group = require('./group_pb.js');
+proto.tokensvc = require('./token_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +30,7 @@ proto.group = require('./group_pb.js');
  * @struct
  * @final
  */
-proto.group.GroupServiceClient =
+proto.tokensvc.TokenClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +56,7 @@ proto.group.GroupServiceClient =
  * @struct
  * @final
  */
-proto.group.GroupServicePromiseClient =
+proto.tokensvc.TokenPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,124 +77,124 @@ proto.group.GroupServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.GetRequest,
- *   !proto.group.GetResponse>}
+ *   !proto.tokensvc.GetJwksetRequest,
+ *   !proto.tokensvc.GetJwksetResponse>}
  */
-const methodDescriptor_GroupService_Get = new grpc.web.MethodDescriptor(
-  '/group.GroupService/Get',
+const methodDescriptor_Token_GetJwkset = new grpc.web.MethodDescriptor(
+  '/tokensvc.Token/GetJwkset',
   grpc.web.MethodType.UNARY,
-  proto.group.GetRequest,
-  proto.group.GetResponse,
+  proto.tokensvc.GetJwksetRequest,
+  proto.tokensvc.GetJwksetResponse,
   /**
-   * @param {!proto.group.GetRequest} request
+   * @param {!proto.tokensvc.GetJwksetRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.group.GetResponse.deserializeBinary
+  proto.tokensvc.GetJwksetResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.group.GetRequest} request The
+ * @param {!proto.tokensvc.GetJwksetRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.GetResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.tokensvc.GetJwksetResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.GetResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.tokensvc.GetJwksetResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.GroupServiceClient.prototype.get =
+proto.tokensvc.TokenClient.prototype.getJwkset =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/Get',
+      '/tokensvc.Token/GetJwkset',
       request,
       metadata || {},
-      methodDescriptor_GroupService_Get,
+      methodDescriptor_Token_GetJwkset,
       callback);
 };
 
 
 /**
- * @param {!proto.group.GetRequest} request The
+ * @param {!proto.tokensvc.GetJwksetRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.group.GetResponse>}
+ * @return {!Promise<!proto.tokensvc.GetJwksetResponse>}
  *     Promise that resolves to the response
  */
-proto.group.GroupServicePromiseClient.prototype.get =
+proto.tokensvc.TokenPromiseClient.prototype.getJwkset =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/Get',
+      '/tokensvc.Token/GetJwkset',
       request,
       metadata || {},
-      methodDescriptor_GroupService_Get);
+      methodDescriptor_Token_GetJwkset);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.group.ListRequest,
- *   !proto.group.ListResponse>}
+ *   !proto.tokensvc.AccessTokenRequest,
+ *   !proto.tokensvc.AccessTokenResponse>}
  */
-const methodDescriptor_GroupService_List = new grpc.web.MethodDescriptor(
-  '/group.GroupService/List',
+const methodDescriptor_Token_AccessToken = new grpc.web.MethodDescriptor(
+  '/tokensvc.Token/AccessToken',
   grpc.web.MethodType.UNARY,
-  proto.group.ListRequest,
-  proto.group.ListResponse,
+  proto.tokensvc.AccessTokenRequest,
+  proto.tokensvc.AccessTokenResponse,
   /**
-   * @param {!proto.group.ListRequest} request
+   * @param {!proto.tokensvc.AccessTokenRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.group.ListResponse.deserializeBinary
+  proto.tokensvc.AccessTokenResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.group.ListRequest} request The
+ * @param {!proto.tokensvc.AccessTokenRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.group.ListResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.tokensvc.AccessTokenResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.group.ListResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.tokensvc.AccessTokenResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.group.GroupServiceClient.prototype.list =
+proto.tokensvc.TokenClient.prototype.accessToken =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/group.GroupService/List',
+      '/tokensvc.Token/AccessToken',
       request,
       metadata || {},
-      methodDescriptor_GroupService_List,
+      methodDescriptor_Token_AccessToken,
       callback);
 };
 
 
 /**
- * @param {!proto.group.ListRequest} request The
+ * @param {!proto.tokensvc.AccessTokenRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.group.ListResponse>}
+ * @return {!Promise<!proto.tokensvc.AccessTokenResponse>}
  *     Promise that resolves to the response
  */
-proto.group.GroupServicePromiseClient.prototype.list =
+proto.tokensvc.TokenPromiseClient.prototype.accessToken =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/group.GroupService/List',
+      '/tokensvc.Token/AccessToken',
       request,
       metadata || {},
-      methodDescriptor_GroupService_List);
+      methodDescriptor_Token_AccessToken);
 };
 
 
-module.exports = proto.group;
+module.exports = proto.tokensvc;
 

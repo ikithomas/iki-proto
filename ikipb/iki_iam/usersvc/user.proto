@@ -1,20 +1,12 @@
 syntax = "proto3";
 
-option go_package = "/user";
+import "ikipb/iki_iam/iam.proto";
 
-package user;
+option go_package = "/usersvc";
 
-message User {
-  string id = 1;
-  string email = 2;
-  string given_name = 3;
-  string family_name = 4;
-  bool owner = 5;
-  bool admin = 6;
-  bool visitor = 7;
-}
+package usersvc;
 
-service UserService {
+service User {
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
 
   // Adminitrator or owner only
@@ -45,20 +37,20 @@ service UserService {
 message ProfileRequest {}
 
 message ProfileResponse {
-  User user = 1;
+  iam.User user = 1;
 }
 
 message GetRequest {
   string id = 1;
 }
 message GetResponse {
-  User user = 1;
+  iam.User user = 1;
 }
 
 message ListRequest {}
 
 message ListResponse {
-  repeated User users = 1;
+  repeated iam.User users = 1;
 }
 
 message DeleteRequest {

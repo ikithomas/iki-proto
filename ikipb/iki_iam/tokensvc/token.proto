@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "/token";
+option go_package = "/tokensvc";
 
-package token;
+package tokensvc;
 
-service TokenService {
+service Token {
   rpc GetJwkset(GetJwksetRequest) returns (GetJwksetResponse) {}
   rpc AccessToken(AccessTokenRequest) returns (AccessTokenResponse) {}
 }

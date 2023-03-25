@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for user
+ * @fileoverview gRPC-Web generated client stub for usersvc
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: ikipb/iki_iam/user/user.proto
+// source: ikipb/iki_iam/usersvc/user.proto
 
 
 /* eslint-disable */
@@ -19,8 +19,10 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var ikipb_iki_iam_iam_pb = require('../../../ikipb/iki_iam/iam_pb.js')
 const proto = {};
-proto.user = require('./user_pb.js');
+proto.usersvc = require('./user_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +32,7 @@ proto.user = require('./user_pb.js');
  * @struct
  * @final
  */
-proto.user.UserServiceClient =
+proto.usersvc.UserClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +58,7 @@ proto.user.UserServiceClient =
  * @struct
  * @final
  */
-proto.user.UserServicePromiseClient =
+proto.usersvc.UserPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,429 +79,429 @@ proto.user.UserServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.ProfileRequest,
- *   !proto.user.ProfileResponse>}
+ *   !proto.usersvc.ProfileRequest,
+ *   !proto.usersvc.ProfileResponse>}
  */
-const methodDescriptor_UserService_Profile = new grpc.web.MethodDescriptor(
-  '/user.UserService/Profile',
+const methodDescriptor_User_Profile = new grpc.web.MethodDescriptor(
+  '/usersvc.User/Profile',
   grpc.web.MethodType.UNARY,
-  proto.user.ProfileRequest,
-  proto.user.ProfileResponse,
+  proto.usersvc.ProfileRequest,
+  proto.usersvc.ProfileResponse,
   /**
-   * @param {!proto.user.ProfileRequest} request
+   * @param {!proto.usersvc.ProfileRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.ProfileResponse.deserializeBinary
+  proto.usersvc.ProfileResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.ProfileRequest} request The
+ * @param {!proto.usersvc.ProfileRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.ProfileResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.ProfileResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.ProfileResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.ProfileResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.profile =
+proto.usersvc.UserClient.prototype.profile =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/Profile',
+      '/usersvc.User/Profile',
       request,
       metadata || {},
-      methodDescriptor_UserService_Profile,
+      methodDescriptor_User_Profile,
       callback);
 };
 
 
 /**
- * @param {!proto.user.ProfileRequest} request The
+ * @param {!proto.usersvc.ProfileRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.ProfileResponse>}
+ * @return {!Promise<!proto.usersvc.ProfileResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.profile =
+proto.usersvc.UserPromiseClient.prototype.profile =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/Profile',
+      '/usersvc.User/Profile',
       request,
       metadata || {},
-      methodDescriptor_UserService_Profile);
+      methodDescriptor_User_Profile);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.ListRequest,
- *   !proto.user.ListResponse>}
+ *   !proto.usersvc.ListRequest,
+ *   !proto.usersvc.ListResponse>}
  */
-const methodDescriptor_UserService_List = new grpc.web.MethodDescriptor(
-  '/user.UserService/List',
+const methodDescriptor_User_List = new grpc.web.MethodDescriptor(
+  '/usersvc.User/List',
   grpc.web.MethodType.UNARY,
-  proto.user.ListRequest,
-  proto.user.ListResponse,
+  proto.usersvc.ListRequest,
+  proto.usersvc.ListResponse,
   /**
-   * @param {!proto.user.ListRequest} request
+   * @param {!proto.usersvc.ListRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.ListResponse.deserializeBinary
+  proto.usersvc.ListResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.ListRequest} request The
+ * @param {!proto.usersvc.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.ListResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.ListResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.ListResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.ListResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.list =
+proto.usersvc.UserClient.prototype.list =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/List',
+      '/usersvc.User/List',
       request,
       metadata || {},
-      methodDescriptor_UserService_List,
+      methodDescriptor_User_List,
       callback);
 };
 
 
 /**
- * @param {!proto.user.ListRequest} request The
+ * @param {!proto.usersvc.ListRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.ListResponse>}
+ * @return {!Promise<!proto.usersvc.ListResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.list =
+proto.usersvc.UserPromiseClient.prototype.list =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/List',
+      '/usersvc.User/List',
       request,
       metadata || {},
-      methodDescriptor_UserService_List);
+      methodDescriptor_User_List);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.GetRequest,
- *   !proto.user.GetResponse>}
+ *   !proto.usersvc.GetRequest,
+ *   !proto.usersvc.GetResponse>}
  */
-const methodDescriptor_UserService_Get = new grpc.web.MethodDescriptor(
-  '/user.UserService/Get',
+const methodDescriptor_User_Get = new grpc.web.MethodDescriptor(
+  '/usersvc.User/Get',
   grpc.web.MethodType.UNARY,
-  proto.user.GetRequest,
-  proto.user.GetResponse,
+  proto.usersvc.GetRequest,
+  proto.usersvc.GetResponse,
   /**
-   * @param {!proto.user.GetRequest} request
+   * @param {!proto.usersvc.GetRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.GetResponse.deserializeBinary
+  proto.usersvc.GetResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.GetRequest} request The
+ * @param {!proto.usersvc.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.GetResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.GetResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.GetResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.GetResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.get =
+proto.usersvc.UserClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/Get',
+      '/usersvc.User/Get',
       request,
       metadata || {},
-      methodDescriptor_UserService_Get,
+      methodDescriptor_User_Get,
       callback);
 };
 
 
 /**
- * @param {!proto.user.GetRequest} request The
+ * @param {!proto.usersvc.GetRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.GetResponse>}
+ * @return {!Promise<!proto.usersvc.GetResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.get =
+proto.usersvc.UserPromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/Get',
+      '/usersvc.User/Get',
       request,
       metadata || {},
-      methodDescriptor_UserService_Get);
+      methodDescriptor_User_Get);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.DeleteRequest,
- *   !proto.user.DeleteResponse>}
+ *   !proto.usersvc.DeleteRequest,
+ *   !proto.usersvc.DeleteResponse>}
  */
-const methodDescriptor_UserService_Delete = new grpc.web.MethodDescriptor(
-  '/user.UserService/Delete',
+const methodDescriptor_User_Delete = new grpc.web.MethodDescriptor(
+  '/usersvc.User/Delete',
   grpc.web.MethodType.UNARY,
-  proto.user.DeleteRequest,
-  proto.user.DeleteResponse,
+  proto.usersvc.DeleteRequest,
+  proto.usersvc.DeleteResponse,
   /**
-   * @param {!proto.user.DeleteRequest} request
+   * @param {!proto.usersvc.DeleteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.DeleteResponse.deserializeBinary
+  proto.usersvc.DeleteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.DeleteRequest} request The
+ * @param {!proto.usersvc.DeleteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.DeleteResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.DeleteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.DeleteResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.DeleteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.delete =
+proto.usersvc.UserClient.prototype.delete =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/Delete',
+      '/usersvc.User/Delete',
       request,
       metadata || {},
-      methodDescriptor_UserService_Delete,
+      methodDescriptor_User_Delete,
       callback);
 };
 
 
 /**
- * @param {!proto.user.DeleteRequest} request The
+ * @param {!proto.usersvc.DeleteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.DeleteResponse>}
+ * @return {!Promise<!proto.usersvc.DeleteResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.delete =
+proto.usersvc.UserPromiseClient.prototype.delete =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/Delete',
+      '/usersvc.User/Delete',
       request,
       metadata || {},
-      methodDescriptor_UserService_Delete);
+      methodDescriptor_User_Delete);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.ResetPasswordRequest,
- *   !proto.user.ResetPasswordResponse>}
+ *   !proto.usersvc.ResetPasswordRequest,
+ *   !proto.usersvc.ResetPasswordResponse>}
  */
-const methodDescriptor_UserService_ResetPassword = new grpc.web.MethodDescriptor(
-  '/user.UserService/ResetPassword',
+const methodDescriptor_User_ResetPassword = new grpc.web.MethodDescriptor(
+  '/usersvc.User/ResetPassword',
   grpc.web.MethodType.UNARY,
-  proto.user.ResetPasswordRequest,
-  proto.user.ResetPasswordResponse,
+  proto.usersvc.ResetPasswordRequest,
+  proto.usersvc.ResetPasswordResponse,
   /**
-   * @param {!proto.user.ResetPasswordRequest} request
+   * @param {!proto.usersvc.ResetPasswordRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.ResetPasswordResponse.deserializeBinary
+  proto.usersvc.ResetPasswordResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.ResetPasswordRequest} request The
+ * @param {!proto.usersvc.ResetPasswordRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.ResetPasswordResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.ResetPasswordResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.ResetPasswordResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.ResetPasswordResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.resetPassword =
+proto.usersvc.UserClient.prototype.resetPassword =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/ResetPassword',
+      '/usersvc.User/ResetPassword',
       request,
       metadata || {},
-      methodDescriptor_UserService_ResetPassword,
+      methodDescriptor_User_ResetPassword,
       callback);
 };
 
 
 /**
- * @param {!proto.user.ResetPasswordRequest} request The
+ * @param {!proto.usersvc.ResetPasswordRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.ResetPasswordResponse>}
+ * @return {!Promise<!proto.usersvc.ResetPasswordResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.resetPassword =
+proto.usersvc.UserPromiseClient.prototype.resetPassword =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/ResetPassword',
+      '/usersvc.User/ResetPassword',
       request,
       metadata || {},
-      methodDescriptor_UserService_ResetPassword);
+      methodDescriptor_User_ResetPassword);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.AttachGroupRequest,
- *   !proto.user.AttachGroupResponse>}
+ *   !proto.usersvc.AttachGroupRequest,
+ *   !proto.usersvc.AttachGroupResponse>}
  */
-const methodDescriptor_UserService_AttachGroup = new grpc.web.MethodDescriptor(
-  '/user.UserService/AttachGroup',
+const methodDescriptor_User_AttachGroup = new grpc.web.MethodDescriptor(
+  '/usersvc.User/AttachGroup',
   grpc.web.MethodType.UNARY,
-  proto.user.AttachGroupRequest,
-  proto.user.AttachGroupResponse,
+  proto.usersvc.AttachGroupRequest,
+  proto.usersvc.AttachGroupResponse,
   /**
-   * @param {!proto.user.AttachGroupRequest} request
+   * @param {!proto.usersvc.AttachGroupRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.AttachGroupResponse.deserializeBinary
+  proto.usersvc.AttachGroupResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.AttachGroupRequest} request The
+ * @param {!proto.usersvc.AttachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.AttachGroupResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.AttachGroupResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.AttachGroupResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.AttachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.attachGroup =
+proto.usersvc.UserClient.prototype.attachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/AttachGroup',
+      '/usersvc.User/AttachGroup',
       request,
       metadata || {},
-      methodDescriptor_UserService_AttachGroup,
+      methodDescriptor_User_AttachGroup,
       callback);
 };
 
 
 /**
- * @param {!proto.user.AttachGroupRequest} request The
+ * @param {!proto.usersvc.AttachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.AttachGroupResponse>}
+ * @return {!Promise<!proto.usersvc.AttachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.attachGroup =
+proto.usersvc.UserPromiseClient.prototype.attachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/AttachGroup',
+      '/usersvc.User/AttachGroup',
       request,
       metadata || {},
-      methodDescriptor_UserService_AttachGroup);
+      methodDescriptor_User_AttachGroup);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.user.DetachGroupRequest,
- *   !proto.user.DetachGroupResponse>}
+ *   !proto.usersvc.DetachGroupRequest,
+ *   !proto.usersvc.DetachGroupResponse>}
  */
-const methodDescriptor_UserService_DetachGroup = new grpc.web.MethodDescriptor(
-  '/user.UserService/DetachGroup',
+const methodDescriptor_User_DetachGroup = new grpc.web.MethodDescriptor(
+  '/usersvc.User/DetachGroup',
   grpc.web.MethodType.UNARY,
-  proto.user.DetachGroupRequest,
-  proto.user.DetachGroupResponse,
+  proto.usersvc.DetachGroupRequest,
+  proto.usersvc.DetachGroupResponse,
   /**
-   * @param {!proto.user.DetachGroupRequest} request
+   * @param {!proto.usersvc.DetachGroupRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.user.DetachGroupResponse.deserializeBinary
+  proto.usersvc.DetachGroupResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.user.DetachGroupRequest} request The
+ * @param {!proto.usersvc.DetachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.user.DetachGroupResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.usersvc.DetachGroupResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.user.DetachGroupResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.usersvc.DetachGroupResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.user.UserServiceClient.prototype.detachGroup =
+proto.usersvc.UserClient.prototype.detachGroup =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/user.UserService/DetachGroup',
+      '/usersvc.User/DetachGroup',
       request,
       metadata || {},
-      methodDescriptor_UserService_DetachGroup,
+      methodDescriptor_User_DetachGroup,
       callback);
 };
 
 
 /**
- * @param {!proto.user.DetachGroupRequest} request The
+ * @param {!proto.usersvc.DetachGroupRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.user.DetachGroupResponse>}
+ * @return {!Promise<!proto.usersvc.DetachGroupResponse>}
  *     Promise that resolves to the response
  */
-proto.user.UserServicePromiseClient.prototype.detachGroup =
+proto.usersvc.UserPromiseClient.prototype.detachGroup =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/user.UserService/DetachGroup',
+      '/usersvc.User/DetachGroup',
       request,
       metadata || {},
-      methodDescriptor_UserService_DetachGroup);
+      methodDescriptor_User_DetachGroup);
 };
 
 
-module.exports = proto.user;
+module.exports = proto.usersvc;
 

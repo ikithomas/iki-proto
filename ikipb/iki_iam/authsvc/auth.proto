@@ -1,10 +1,12 @@
 syntax = "proto3";
 
-option go_package = "/auth";
+import "ikipb/iki_iam/iam.proto";
 
-package auth;
+option go_package = "/authsvc";
 
-service AuthService {
+package authsvc;
+
+service Auth {
   // Login or signup with google.
   // If a user is not yet created, a new user account will be created associated with that email address.
   rpc GoogleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}
@@ -22,6 +24,7 @@ message GoogleLoginRequest {
 message GoogleLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
+  iam.User user = 3;
 }
 
 message PasswordLoginRequest {
@@ -32,6 +35,7 @@ message PasswordLoginRequest {
 message PasswordLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
+  iam.User user = 3;
 }
 
 message SignoutRequest {}
