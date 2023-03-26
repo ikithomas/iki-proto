@@ -121,8 +121,7 @@ proto.stop.Stop.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     lat: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     pb_long: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    remoteTimestamp: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    createdAt: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    createdAt: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -180,10 +179,6 @@ proto.stop.Stop.deserializeBinaryFromReader = function(msg, reader) {
       msg.setLong(value);
       break;
     case 6:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRemoteTimestamp(value);
-      break;
-    case 7:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCreatedAt(value);
       break;
@@ -251,17 +246,10 @@ proto.stop.Stop.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRemoteTimestamp();
-  if (f !== 0) {
-    writer.writeInt64(
-      6,
-      f
-    );
-  }
   f = message.getCreatedAt();
   if (f !== 0) {
     writer.writeInt64(
-      7,
+      6,
       f
     );
   }
@@ -359,10 +347,10 @@ proto.stop.Stop.prototype.setLong = function(value) {
 
 
 /**
- * optional int64 remote_timestamp = 6;
+ * optional int64 created_at = 6;
  * @return {number}
  */
-proto.stop.Stop.prototype.getRemoteTimestamp = function() {
+proto.stop.Stop.prototype.getCreatedAt = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
@@ -371,26 +359,8 @@ proto.stop.Stop.prototype.getRemoteTimestamp = function() {
  * @param {number} value
  * @return {!proto.stop.Stop} returns this
  */
-proto.stop.Stop.prototype.setRemoteTimestamp = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional int64 created_at = 7;
- * @return {number}
- */
-proto.stop.Stop.prototype.getCreatedAt = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.stop.Stop} returns this
- */
 proto.stop.Stop.prototype.setCreatedAt = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 

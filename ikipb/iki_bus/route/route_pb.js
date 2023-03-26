@@ -123,8 +123,7 @@ proto.route.Route.toObject = function(includeInstance, msg) {
     serviceType: jspb.Message.getFieldWithDefault(msg, 5, ""),
     orig: jspb.Message.getFieldWithDefault(msg, 6, ""),
     dest: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    createdAt: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    remoteTimestamp: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    createdAt: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -192,10 +191,6 @@ proto.route.Route.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCreatedAt(value);
-      break;
-    case 9:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRemoteTimestamp(value);
       break;
     default:
       reader.skipField();
@@ -279,13 +274,6 @@ proto.route.Route.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt64(
       8,
-      f
-    );
-  }
-  f = message.getRemoteTimestamp();
-  if (f !== 0) {
-    writer.writeInt64(
-      9,
       f
     );
   }
@@ -433,24 +421,6 @@ proto.route.Route.prototype.getCreatedAt = function() {
  */
 proto.route.Route.prototype.setCreatedAt = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
-};
-
-
-/**
- * optional int64 remote_timestamp = 9;
- * @return {number}
- */
-proto.route.Route.prototype.getRemoteTimestamp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.route.Route} returns this
- */
-proto.route.Route.prototype.setRemoteTimestamp = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 

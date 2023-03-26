@@ -12,8 +12,7 @@ message Stop {
   string name = 3;
   float lat = 4;
   float long = 5;
-  int64 remote_timestamp = 6;
-  int64 created_at = 7;
+  int64 created_at = 6;
 }
 
 service StopService {
