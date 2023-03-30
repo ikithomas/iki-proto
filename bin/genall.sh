@@ -2,8 +2,16 @@
 
 rm -rf ikipb/**/*.pb.go
 rm -rf ikipb/**/*_pb.js
-rm -rf ikipb/**/*_pb.ts
+rm -rf ikipb/**/*_pb.d.ts
 rm -rf ikipb/**/*Pb.ts
+rm -rf ikipb/iki_bus/**/*.pb.go
+rm -rf ikipb/iki_bus/**/*_pb.js
+rm -rf ikipb/iki_bus/**/*_pb.d.ts
+rm -rf ikipb/iki_bus/**/*Pb.ts
+rm -rf ikipb/iki_iam/**/*.pb.go
+rm -rf ikipb/iki_iam/**/*_pb.js
+rm -rf ikipb/iki_iam/**/*_pb.d.ts
+rm -rf ikipb/iki_iam/**/*Pb.ts
 
 for f in $(find . -name "*.proto"); do
   protoc \
@@ -12,6 +20,6 @@ for f in $(find . -name "*.proto"); do
     ${f}
   protoc \
     --js_out=import_style=commonjs:./ \
-    --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./ \
+    --grpc-web_out=import_style=typescript,mode=grpcwebtext:./ \
     ${f}
 done
