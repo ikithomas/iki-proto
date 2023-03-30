@@ -12,6 +12,6 @@ for f in $(find . -name "*.proto"); do
     ${f}
   protoc \
     --js_out=import_style=commonjs:./ \
-    --grpc-web_out=import_style=typescript,mode=grpcwebtext:./ \
+    --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./ \
     ${f}
 done
