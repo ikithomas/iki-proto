@@ -2,6 +2,8 @@
 
 rm -rf ikipb/**/*.pb.go
 rm -rf ikipb/**/*_pb.js
+rm -rf ikipb/**/*_pb.ts
+rm -rf ikipb/**/*Pb.ts
 
 for f in $(find . -name "*.proto"); do
   protoc \
