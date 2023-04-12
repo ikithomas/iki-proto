@@ -619,8 +619,8 @@ proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 19));
-  if (f != null) {
+  f = message.getTrimp();
+  if (f !== 0.0) {
     writer.writeFloat(
       19,
       f
@@ -1129,25 +1129,7 @@ proto.activity.Activity.prototype.getTrimp = function() {
  * @return {!proto.activity.Activity} returns this
  */
 proto.activity.Activity.prototype.setTrimp = function(value) {
-  return jspb.Message.setField(this, 19, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.activity.Activity} returns this
- */
-proto.activity.Activity.prototype.clearTrimp = function() {
-  return jspb.Message.setField(this, 19, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.activity.Activity.prototype.hasTrimp = function() {
-  return jspb.Message.getField(this, 19) != null;
+  return jspb.Message.setProto3FloatField(this, 19, value);
 };
 
 

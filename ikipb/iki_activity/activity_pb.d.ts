@@ -77,8 +77,6 @@ export class Activity extends jspb.Message {
 
   getTrimp(): number;
   setTrimp(value: number): Activity;
-  hasTrimp(): boolean;
-  clearTrimp(): Activity;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Activity.AsObject;
@@ -108,7 +106,7 @@ export namespace Activity {
     averageTemp?: number,
     averageHeartrate?: number,
     maxHeartrate?: number,
-    trimp?: number,
+    trimp: number,
   }
 
   export enum StartLatCase { 
@@ -154,11 +152,6 @@ export namespace Activity {
   export enum MaxHeartrateCase { 
     _MAX_HEARTRATE_NOT_SET = 0,
     MAX_HEARTRATE = 18,
-  }
-
-  export enum TrimpCase { 
-    _TRIMP_NOT_SET = 0,
-    TRIMP = 19,
   }
 }
 
