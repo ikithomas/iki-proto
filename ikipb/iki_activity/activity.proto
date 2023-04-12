@@ -23,6 +23,7 @@ message Activity {
   optional float average_temp = 16;
   optional float average_heartrate = 17;
   optional float max_heartrate = 18;
+  optional float trimp = 19;
 }
 
 service ActivityService {

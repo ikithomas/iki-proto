@@ -350,7 +350,8 @@ proto.activity.Activity.toObject = function(includeInstance, msg) {
     averageCadence: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
     averageTemp: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
     averageHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 17, 0.0),
-    maxHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0)
+    maxHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 18, 0.0),
+    trimp: jspb.Message.getFloatingPointFieldWithDefault(msg, 19, 0.0)
   };
 
   if (includeInstance) {
@@ -458,6 +459,10 @@ proto.activity.Activity.deserializeBinaryFromReader = function(msg, reader) {
     case 18:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setMaxHeartrate(value);
+      break;
+    case 19:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setTrimp(value);
       break;
     default:
       reader.skipField();
@@ -611,6 +616,13 @@ proto.activity.Activity.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeFloat(
       18,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 19));
+  if (f != null) {
+    writer.writeFloat(
+      19,
       f
     );
   }
@@ -1100,6 +1112,42 @@ proto.activity.Activity.prototype.clearMaxHeartrate = function() {
  */
 proto.activity.Activity.prototype.hasMaxHeartrate = function() {
   return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional float trimp = 19;
+ * @return {number}
+ */
+proto.activity.Activity.prototype.getTrimp = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 19, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.setTrimp = function(value) {
+  return jspb.Message.setField(this, 19, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.activity.Activity} returns this
+ */
+proto.activity.Activity.prototype.clearTrimp = function() {
+  return jspb.Message.setField(this, 19, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.activity.Activity.prototype.hasTrimp = function() {
+  return jspb.Message.getField(this, 19) != null;
 };
 
 
