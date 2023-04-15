@@ -78,6 +78,11 @@ export class Activity extends jspb.Message {
   getTrimp(): number;
   setTrimp(value: number): Activity;
 
+  getStats(): Stats | undefined;
+  setStats(value?: Stats): Activity;
+  hasStats(): boolean;
+  clearStats(): Activity;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Activity.AsObject;
   static toObject(includeInstance: boolean, msg: Activity): Activity.AsObject;
@@ -107,6 +112,7 @@ export namespace Activity {
     averageHeartrate?: number,
     maxHeartrate?: number,
     trimp: number,
+    stats?: Stats.AsObject,
   }
 
   export enum StartLatCase { 
@@ -152,6 +158,168 @@ export namespace Activity {
   export enum MaxHeartrateCase { 
     _MAX_HEARTRATE_NOT_SET = 0,
     MAX_HEARTRATE = 18,
+  }
+}
+
+export class Stats extends jspb.Message {
+  getStructLat(): number;
+  setStructLat(value: number): Stats;
+
+  getStructLng(): number;
+  setStructLng(value: number): Stats;
+
+  getEndLat(): number;
+  setEndLat(value: number): Stats;
+
+  getEndLng(): number;
+  setEndLng(value: number): Stats;
+
+  getDistance(): number;
+  setDistance(value: number): Stats;
+
+  getElevGain(): number;
+  setElevGain(value: number): Stats;
+
+  getElevLoss(): number;
+  setElevLoss(value: number): Stats;
+
+  getElapsedSec(): number;
+  setElapsedSec(value: number): Stats;
+
+  getAvgCadence(): number;
+  setAvgCadence(value: number): Stats;
+
+  getAvgHeartrate(): number;
+  setAvgHeartrate(value: number): Stats;
+
+  getMinHeartrate(): number;
+  setMinHeartrate(value: number): Stats;
+
+  getMaxHeartrate(): number;
+  setMaxHeartrate(value: number): Stats;
+
+  getTrimp(): number;
+  setTrimp(value: number): Stats;
+
+  getHrZone0Sec(): number;
+  setHrZone0Sec(value: number): Stats;
+
+  getHrZone1Sec(): number;
+  setHrZone1Sec(value: number): Stats;
+
+  getHrZone2Sec(): number;
+  setHrZone2Sec(value: number): Stats;
+
+  getHrZone3Sec(): number;
+  setHrZone3Sec(value: number): Stats;
+
+  getHrZone4Sec(): number;
+  setHrZone4Sec(value: number): Stats;
+
+  getHrZone5Sec(): number;
+  setHrZone5Sec(value: number): Stats;
+
+  getHrZone0Trimp(): number;
+  setHrZone0Trimp(value: number): Stats;
+
+  getHrZone1Trimp(): number;
+  setHrZone1Trimp(value: number): Stats;
+
+  getHrZone2Trimp(): number;
+  setHrZone2Trimp(value: number): Stats;
+
+  getHrZone3Trimp(): number;
+  setHrZone3Trimp(value: number): Stats;
+
+  getHrZone4Trimp(): number;
+  setHrZone4Trimp(value: number): Stats;
+
+  getHrZone5Trimp(): number;
+  setHrZone5Trimp(value: number): Stats;
+
+  getPersonalMetric(): PersonalMetric | undefined;
+  setPersonalMetric(value?: PersonalMetric): Stats;
+  hasPersonalMetric(): boolean;
+  clearPersonalMetric(): Stats;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Stats.AsObject;
+  static toObject(includeInstance: boolean, msg: Stats): Stats.AsObject;
+  static serializeBinaryToWriter(message: Stats, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Stats;
+  static deserializeBinaryFromReader(message: Stats, reader: jspb.BinaryReader): Stats;
+}
+
+export namespace Stats {
+  export type AsObject = {
+    structLat: number,
+    structLng: number,
+    endLat: number,
+    endLng: number,
+    distance: number,
+    elevGain: number,
+    elevLoss: number,
+    elapsedSec: number,
+    avgCadence: number,
+    avgHeartrate: number,
+    minHeartrate: number,
+    maxHeartrate: number,
+    trimp: number,
+    hrZone0Sec: number,
+    hrZone1Sec: number,
+    hrZone2Sec: number,
+    hrZone3Sec: number,
+    hrZone4Sec: number,
+    hrZone5Sec: number,
+    hrZone0Trimp: number,
+    hrZone1Trimp: number,
+    hrZone2Trimp: number,
+    hrZone3Trimp: number,
+    hrZone4Trimp: number,
+    hrZone5Trimp: number,
+    personalMetric?: PersonalMetric.AsObject,
+  }
+}
+
+export class PersonalMetric extends jspb.Message {
+  getAge(): number;
+  setAge(value: number): PersonalMetric;
+
+  getHeight(): number;
+  setHeight(value: number): PersonalMetric;
+
+  getWeight(): number;
+  setWeight(value: number): PersonalMetric;
+
+  getMaxHeartrate(): number;
+  setMaxHeartrate(value: number): PersonalMetric;
+
+  getRestHeartrate(): number;
+  setRestHeartrate(value: number): PersonalMetric;
+
+  getVo2Max(): number;
+  setVo2Max(value: number): PersonalMetric;
+
+  getMale(): boolean;
+  setMale(value: boolean): PersonalMetric;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PersonalMetric.AsObject;
+  static toObject(includeInstance: boolean, msg: PersonalMetric): PersonalMetric.AsObject;
+  static serializeBinaryToWriter(message: PersonalMetric, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PersonalMetric;
+  static deserializeBinaryFromReader(message: PersonalMetric, reader: jspb.BinaryReader): PersonalMetric;
+}
+
+export namespace PersonalMetric {
+  export type AsObject = {
+    age: number,
+    height: number,
+    weight: number,
+    maxHeartrate: number,
+    restHeartrate: number,
+    vo2Max: number,
+    male: boolean,
   }
 }
 

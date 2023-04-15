@@ -24,6 +24,46 @@ message Activity {
   optional float average_heartrate = 17;
   optional float max_heartrate = 18;
   float trimp = 19;
+  Stats stats = 20;
+}
+
+message Stats {
+	float struct_lat = 1;
+	float struct_lng = 2;
+	float end_lat = 3;
+	float end_lng = 4;
+	float distance = 5;
+	float elev_gain = 6;
+	float elev_loss = 7;
+	int64 elapsed_sec = 8;
+	double avg_cadence = 9;
+	double avg_heartrate = 10;
+	int32 min_heartrate = 11;
+	int32 max_heartrate = 12;
+	double trimp = 13;
+	int64 hr_zone0_sec = 14;
+	int64 hr_zone1_sec = 15;
+	int64 hr_zone2_sec = 16;
+	int64 hr_zone3_sec = 17;
+	int64 hr_zone4_sec = 18;
+	int64 hr_zone5_sec = 19;
+	double hr_zone0_trimp = 20;
+	double hr_zone1_trimp = 21;
+  double hr_zone2_trimp = 22;
+  double hr_zone3_trimp = 23;
+	double hr_zone4_trimp = 24;
+  double hr_zone5_trimp = 25;
+  PersonalMetric personal_metric = 26;
+}
+
+message PersonalMetric {
+	int32 age  = 1;
+	float height  = 2;
+	float weight  = 3;
+	int32 max_heartrate  = 4;
+	int32 rest_heartrate  = 5;
+	int32 vo2_max  = 6;
+	bool male  = 7;
 }
 
 service ActivityService {
