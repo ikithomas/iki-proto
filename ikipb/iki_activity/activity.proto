@@ -28,8 +28,8 @@ message Activity {
 }
 
 message Stats {
-	float struct_lat = 1;
-	float struct_lng = 2;
+	float start_lat = 1;
+	float start_lng = 2;
 	float end_lat = 3;
 	float end_lng = 4;
 	float distance = 5;

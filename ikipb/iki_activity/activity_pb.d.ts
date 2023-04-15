@@ -162,11 +162,11 @@ export namespace Activity {
 }
 
 export class Stats extends jspb.Message {
-  getStructLat(): number;
-  setStructLat(value: number): Stats;
+  getStartLat(): number;
+  setStartLat(value: number): Stats;
 
-  getStructLng(): number;
-  setStructLng(value: number): Stats;
+  getStartLng(): number;
+  setStartLng(value: number): Stats;
 
   getEndLat(): number;
   setEndLat(value: number): Stats;
@@ -252,8 +252,8 @@ export class Stats extends jspb.Message {
 
 export namespace Stats {
   export type AsObject = {
-    structLat: number,
-    structLng: number,
+    startLat: number,
+    startLng: number,
     endLat: number,
     endLng: number,
     distance: number,

@@ -1260,8 +1260,8 @@ proto.activity.Stats.prototype.toObject = function(opt_includeInstance) {
  */
 proto.activity.Stats.toObject = function(includeInstance, msg) {
   var f, obj = {
-    structLat: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    structLng: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    startLat: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    startLng: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     endLat: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     endLng: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     distance: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
@@ -1324,11 +1324,11 @@ proto.activity.Stats.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setStructLat(value);
+      msg.setStartLat(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setStructLng(value);
+      msg.setStartLng(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readFloat());
@@ -1456,14 +1456,14 @@ proto.activity.Stats.prototype.serializeBinary = function() {
  */
 proto.activity.Stats.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getStructLat();
+  f = message.getStartLat();
   if (f !== 0.0) {
     writer.writeFloat(
       1,
       f
     );
   }
-  f = message.getStructLng();
+  f = message.getStartLng();
   if (f !== 0.0) {
     writer.writeFloat(
       2,
@@ -1643,10 +1643,10 @@ proto.activity.Stats.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional float struct_lat = 1;
+ * optional float start_lat = 1;
  * @return {number}
  */
-proto.activity.Stats.prototype.getStructLat = function() {
+proto.activity.Stats.prototype.getStartLat = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 1, 0.0));
 };
 
@@ -1655,16 +1655,16 @@ proto.activity.Stats.prototype.getStructLat = function() {
  * @param {number} value
  * @return {!proto.activity.Stats} returns this
  */
-proto.activity.Stats.prototype.setStructLat = function(value) {
+proto.activity.Stats.prototype.setStartLat = function(value) {
   return jspb.Message.setProto3FloatField(this, 1, value);
 };
 
 
 /**
- * optional float struct_lng = 2;
+ * optional float start_lng = 2;
  * @return {number}
  */
-proto.activity.Stats.prototype.getStructLng = function() {
+proto.activity.Stats.prototype.getStartLng = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
@@ -1673,7 +1673,7 @@ proto.activity.Stats.prototype.getStructLng = function() {
  * @param {number} value
  * @return {!proto.activity.Stats} returns this
  */
-proto.activity.Stats.prototype.setStructLng = function(value) {
+proto.activity.Stats.prototype.setStartLng = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
