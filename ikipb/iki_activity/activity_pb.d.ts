@@ -242,6 +242,21 @@ export class Stats extends jspb.Message {
   hasPersonalMetric(): boolean;
   clearPersonalMetric(): Stats;
 
+  getAverageSpeed(): number;
+  setAverageSpeed(value: number): Stats;
+
+  getAverageEpSpeed(): number;
+  setAverageEpSpeed(value: number): Stats;
+
+  getAveragePace(): number;
+  setAveragePace(value: number): Stats;
+
+  getAverageEpPace(): number;
+  setAverageEpPace(value: number): Stats;
+
+  getActiveCalories(): number;
+  setActiveCalories(value: number): Stats;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Stats.AsObject;
   static toObject(includeInstance: boolean, msg: Stats): Stats.AsObject;
@@ -278,6 +293,11 @@ export namespace Stats {
     hrZone4Trimp: number,
     hrZone5Trimp: number,
     personalMetric?: PersonalMetric.AsObject,
+    averageSpeed: number,
+    averageEpSpeed: number,
+    averagePace: number,
+    averageEpPace: number,
+    activeCalories: number,
   }
 }
 

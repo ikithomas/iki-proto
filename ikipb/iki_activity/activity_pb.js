@@ -1285,7 +1285,12 @@ proto.activity.Stats.toObject = function(includeInstance, msg) {
     hrZone3Trimp: jspb.Message.getFloatingPointFieldWithDefault(msg, 23, 0.0),
     hrZone4Trimp: jspb.Message.getFloatingPointFieldWithDefault(msg, 24, 0.0),
     hrZone5Trimp: jspb.Message.getFloatingPointFieldWithDefault(msg, 25, 0.0),
-    personalMetric: (f = msg.getPersonalMetric()) && proto.activity.PersonalMetric.toObject(includeInstance, f)
+    personalMetric: (f = msg.getPersonalMetric()) && proto.activity.PersonalMetric.toObject(includeInstance, f),
+    averageSpeed: jspb.Message.getFloatingPointFieldWithDefault(msg, 27, 0.0),
+    averageEpSpeed: jspb.Message.getFloatingPointFieldWithDefault(msg, 28, 0.0),
+    averagePace: jspb.Message.getFieldWithDefault(msg, 29, 0),
+    averageEpPace: jspb.Message.getFieldWithDefault(msg, 30, 0),
+    activeCalories: jspb.Message.getFieldWithDefault(msg, 31, 0)
   };
 
   if (includeInstance) {
@@ -1426,6 +1431,26 @@ proto.activity.Stats.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.activity.PersonalMetric;
       reader.readMessage(value,proto.activity.PersonalMetric.deserializeBinaryFromReader);
       msg.setPersonalMetric(value);
+      break;
+    case 27:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setAverageSpeed(value);
+      break;
+    case 28:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setAverageEpSpeed(value);
+      break;
+    case 29:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setAveragePace(value);
+      break;
+    case 30:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setAverageEpPace(value);
+      break;
+    case 31:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setActiveCalories(value);
       break;
     default:
       reader.skipField();
@@ -1637,6 +1662,41 @@ proto.activity.Stats.serializeBinaryToWriter = function(message, writer) {
       26,
       f,
       proto.activity.PersonalMetric.serializeBinaryToWriter
+    );
+  }
+  f = message.getAverageSpeed();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      27,
+      f
+    );
+  }
+  f = message.getAverageEpSpeed();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      28,
+      f
+    );
+  }
+  f = message.getAveragePace();
+  if (f !== 0) {
+    writer.writeInt32(
+      29,
+      f
+    );
+  }
+  f = message.getAverageEpPace();
+  if (f !== 0) {
+    writer.writeInt32(
+      30,
+      f
+    );
+  }
+  f = message.getActiveCalories();
+  if (f !== 0) {
+    writer.writeInt32(
+      31,
+      f
     );
   }
 };
@@ -2126,6 +2186,96 @@ proto.activity.Stats.prototype.clearPersonalMetric = function() {
  */
 proto.activity.Stats.prototype.hasPersonalMetric = function() {
   return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional double average_speed = 27;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getAverageSpeed = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 27, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setAverageSpeed = function(value) {
+  return jspb.Message.setProto3FloatField(this, 27, value);
+};
+
+
+/**
+ * optional double average_ep_speed = 28;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getAverageEpSpeed = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 28, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setAverageEpSpeed = function(value) {
+  return jspb.Message.setProto3FloatField(this, 28, value);
+};
+
+
+/**
+ * optional int32 average_pace = 29;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getAveragePace = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 29, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setAveragePace = function(value) {
+  return jspb.Message.setProto3IntField(this, 29, value);
+};
+
+
+/**
+ * optional int32 average_ep_pace = 30;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getAverageEpPace = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 30, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setAverageEpPace = function(value) {
+  return jspb.Message.setProto3IntField(this, 30, value);
+};
+
+
+/**
+ * optional int32 active_calories = 31;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getActiveCalories = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 31, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setActiveCalories = function(value) {
+  return jspb.Message.setProto3IntField(this, 31, value);
 };
 
 

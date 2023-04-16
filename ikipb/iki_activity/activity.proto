@@ -10,20 +10,20 @@ message Activity {
   int64 strava_athlete_id = 3;
   string name = 4;
   string type = 5;
-  float distance = 6;
-  int64 elapsed_time = 7;
-  float total_elevation_gain = 8;
+  float distance = 6 [deprecated=true];
+  int64 elapsed_time = 7 [deprecated=true];
+  float total_elevation_gain = 8 [deprecated=true];
   int64 start_date = 9;
-  optional float start_lat = 10;
-  optional float start_lng = 11;
-  optional float end_lat = 12;
-  optional float end_lng = 13;
-  optional float average_speed = 14;
-  optional float average_cadence = 15;
-  optional float average_temp = 16;
-  optional float average_heartrate = 17;
-  optional float max_heartrate = 18;
-  float trimp = 19;
+  optional float start_lat = 10 [deprecated=true];
+  optional float start_lng = 11 [deprecated=true];
+  optional float end_lat = 12 [deprecated=true];
+  optional float end_lng = 13 [deprecated=true];
+  optional float average_speed = 14 [deprecated=true];
+  optional float average_cadence = 15 [deprecated=true];
+  optional float average_temp = 16 [deprecated=true];
+  optional float average_heartrate = 17 [deprecated=true];
+  optional float max_heartrate = 18 [deprecated=true];
+  float trimp = 19 [deprecated=true];;
   Stats stats = 20;
 }
 
@@ -54,6 +54,12 @@ message Stats {
 	double hr_zone4_trimp = 24;
   double hr_zone5_trimp = 25;
   PersonalMetric personal_metric = 26;
+
+  double average_speed = 27;
+  double average_ep_speed = 28;
+  int32 average_pace = 29;
+  int32 average_ep_pace = 30;
+  int32 active_calories = 31;
 }
 
 message PersonalMetric {
