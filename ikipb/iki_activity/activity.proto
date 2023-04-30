@@ -5,25 +5,14 @@ option go_package = "/activity";
 package activity;
 
 message Activity {
+  reserved 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19;
+
   string id = 1;
   int64 strava_id = 2;
   int64 strava_athlete_id = 3;
   string name = 4;
   string type = 5;
-  float distance = 6 [deprecated=true];
-  int64 elapsed_time = 7 [deprecated=true];
-  float total_elevation_gain = 8 [deprecated=true];
   int64 start_date = 9;
-  optional float start_lat = 10 [deprecated=true];
-  optional float start_lng = 11 [deprecated=true];
-  optional float end_lat = 12 [deprecated=true];
-  optional float end_lng = 13 [deprecated=true];
-  optional float average_speed = 14 [deprecated=true];
-  optional float average_cadence = 15 [deprecated=true];
-  optional float average_temp = 16 [deprecated=true];
-  optional float average_heartrate = 17 [deprecated=true];
-  optional float max_heartrate = 18 [deprecated=true];
-  float trimp = 19 [deprecated=true];;
   Stats stats = 20;
 }
 

@@ -18,65 +18,8 @@ export class Activity extends jspb.Message {
   getType(): string;
   setType(value: string): Activity;
 
-  getDistance(): number;
-  setDistance(value: number): Activity;
-
-  getElapsedTime(): number;
-  setElapsedTime(value: number): Activity;
-
-  getTotalElevationGain(): number;
-  setTotalElevationGain(value: number): Activity;
-
   getStartDate(): number;
   setStartDate(value: number): Activity;
-
-  getStartLat(): number;
-  setStartLat(value: number): Activity;
-  hasStartLat(): boolean;
-  clearStartLat(): Activity;
-
-  getStartLng(): number;
-  setStartLng(value: number): Activity;
-  hasStartLng(): boolean;
-  clearStartLng(): Activity;
-
-  getEndLat(): number;
-  setEndLat(value: number): Activity;
-  hasEndLat(): boolean;
-  clearEndLat(): Activity;
-
-  getEndLng(): number;
-  setEndLng(value: number): Activity;
-  hasEndLng(): boolean;
-  clearEndLng(): Activity;
-
-  getAverageSpeed(): number;
-  setAverageSpeed(value: number): Activity;
-  hasAverageSpeed(): boolean;
-  clearAverageSpeed(): Activity;
-
-  getAverageCadence(): number;
-  setAverageCadence(value: number): Activity;
-  hasAverageCadence(): boolean;
-  clearAverageCadence(): Activity;
-
-  getAverageTemp(): number;
-  setAverageTemp(value: number): Activity;
-  hasAverageTemp(): boolean;
-  clearAverageTemp(): Activity;
-
-  getAverageHeartrate(): number;
-  setAverageHeartrate(value: number): Activity;
-  hasAverageHeartrate(): boolean;
-  clearAverageHeartrate(): Activity;
-
-  getMaxHeartrate(): number;
-  setMaxHeartrate(value: number): Activity;
-  hasMaxHeartrate(): boolean;
-  clearMaxHeartrate(): Activity;
-
-  getTrimp(): number;
-  setTrimp(value: number): Activity;
 
   getStats(): Stats | undefined;
   setStats(value?: Stats): Activity;
@@ -98,66 +41,8 @@ export namespace Activity {
     stravaAthleteId: number,
     name: string,
     type: string,
-    distance: number,
-    elapsedTime: number,
-    totalElevationGain: number,
     startDate: number,
-    startLat?: number,
-    startLng?: number,
-    endLat?: number,
-    endLng?: number,
-    averageSpeed?: number,
-    averageCadence?: number,
-    averageTemp?: number,
-    averageHeartrate?: number,
-    maxHeartrate?: number,
-    trimp: number,
     stats?: Stats.AsObject,
-  }
-
-  export enum StartLatCase { 
-    _START_LAT_NOT_SET = 0,
-    START_LAT = 10,
-  }
-
-  export enum StartLngCase { 
-    _START_LNG_NOT_SET = 0,
-    START_LNG = 11,
-  }
-
-  export enum EndLatCase { 
-    _END_LAT_NOT_SET = 0,
-    END_LAT = 12,
-  }
-
-  export enum EndLngCase { 
-    _END_LNG_NOT_SET = 0,
-    END_LNG = 13,
-  }
-
-  export enum AverageSpeedCase { 
-    _AVERAGE_SPEED_NOT_SET = 0,
-    AVERAGE_SPEED = 14,
-  }
-
-  export enum AverageCadenceCase { 
-    _AVERAGE_CADENCE_NOT_SET = 0,
-    AVERAGE_CADENCE = 15,
-  }
-
-  export enum AverageTempCase { 
-    _AVERAGE_TEMP_NOT_SET = 0,
-    AVERAGE_TEMP = 16,
-  }
-
-  export enum AverageHeartrateCase { 
-    _AVERAGE_HEARTRATE_NOT_SET = 0,
-    AVERAGE_HEARTRATE = 17,
-  }
-
-  export enum MaxHeartrateCase { 
-    _MAX_HEARTRATE_NOT_SET = 0,
-    MAX_HEARTRATE = 18,
   }
 }
 
