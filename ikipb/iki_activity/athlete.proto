@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "/athlete";
+
+package athlete;
+
+message FitnessMetric {
+  int32 age = 1;
+  float height = 2;
+  float weight = 3;
+  int32 max_heartrate = 4;
+  int32 rest_heartrate = 5;
+  int32 vo2_max = 6;
+  bool male = 7;
+}
+
+service AthleteService {
+  rpc SetFitnessMetric(SetFitnessMetricRequest) returns (google.protobuf.Empty) {}
+  rpc GetFitnessMetric(google.protobuf.Empty) returns (GetFitnessMetricResponse) {}
+}
+
+message SetFitnessMetricRequest {
+  FitnessMetric fitness_metric = 1;
+}
+
+message GetFitnessMetricResponse {
+  FitnessMetric fitness_metric = 1;
+}
