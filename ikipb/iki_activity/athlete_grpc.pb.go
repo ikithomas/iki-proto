@@ -4,7 +4,7 @@
 // - protoc             v3.20.3
 // source: ikipb/iki_activity/athlete.proto
 
-package athlete
+package activity
 
 import (
 	context "context"
