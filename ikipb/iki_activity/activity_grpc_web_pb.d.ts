@@ -1,6 +1,7 @@
 import * as grpcWeb from 'grpc-web';
 
 import * as ikipb_iki_activity_activity_pb from '../../ikipb/iki_activity/activity_pb';
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 
 
 export class ActivityServiceClient {
@@ -50,6 +51,13 @@ export class ActivityServiceClient {
                response: ikipb_iki_activity_activity_pb.ListFeaturedResponse) => void
   ): grpcWeb.ClientReadableStream<ikipb_iki_activity_activity_pb.ListFeaturedResponse>;
 
+  calculateStats(
+    request: google_protobuf_empty_pb.Empty,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
 }
 
 export class ActivityServicePromiseClient {
@@ -86,6 +94,11 @@ export class ActivityServicePromiseClient {
     request: ikipb_iki_activity_activity_pb.ListFeaturedRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<ikipb_iki_activity_activity_pb.ListFeaturedResponse>;
+
+  calculateStats(
+    request: google_protobuf_empty_pb.Empty,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
 
 }
 

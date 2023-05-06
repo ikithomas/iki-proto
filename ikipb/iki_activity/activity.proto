@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 option go_package = "/activity";
 
 package activity;
@@ -69,6 +71,8 @@ service ActivityService {
   rpc List (ListRequest) returns (ListResponse) {}
   rpc ListMine (ListMineRequest) returns (ListMineResponse) {}
   rpc ListFeatured (ListFeaturedRequest) returns (ListFeaturedResponse) {}
+
+  rpc CalculateStats(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
 message GetRequest {

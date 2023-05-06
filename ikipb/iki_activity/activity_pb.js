@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
+goog.object.extend(proto, google_protobuf_empty_pb);
 goog.exportSymbol('proto.activity.Activity', null, global);
 goog.exportSymbol('proto.activity.GetFeaturedRequest', null, global);
 goog.exportSymbol('proto.activity.GetFeaturedResponse', null, global);

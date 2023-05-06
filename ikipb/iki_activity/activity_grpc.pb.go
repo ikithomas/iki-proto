@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -28,6 +29,7 @@ type ActivityServiceClient interface {
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListMine(ctx context.Context, in *ListMineRequest, opts ...grpc.CallOption) (*ListMineResponse, error)
 	ListFeatured(ctx context.Context, in *ListFeaturedRequest, opts ...grpc.CallOption) (*ListFeaturedResponse, error)
+	CalculateStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type activityServiceClient struct {
@@ -92,6 +94,15 @@ func (c *activityServiceClient) ListFeatured(ctx context.Context, in *ListFeatur
 	return out, nil
 }
 
+func (c *activityServiceClient) CalculateStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/activity.ActivityService/CalculateStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ActivityServiceServer is the server API for ActivityService service.
 // All implementations must embed UnimplementedActivityServiceServer
 // for forward compatibility
@@ -102,6 +113,7 @@ type ActivityServiceServer interface {
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error)
 	ListFeatured(context.Context, *ListFeaturedRequest) (*ListFeaturedResponse, error)
+	CalculateStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	mustEmbedUnimplementedActivityServiceServer()
 }
 
@@ -126,6 +138,9 @@ func (UnimplementedActivityServiceServer) ListMine(context.Context, *ListMineReq
 }
 func (UnimplementedActivityServiceServer) ListFeatured(context.Context, *ListFeaturedRequest) (*ListFeaturedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFeatured not implemented")
+}
+func (UnimplementedActivityServiceServer) CalculateStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CalculateStats not implemented")
 }
 func (UnimplementedActivityServiceServer) mustEmbedUnimplementedActivityServiceServer() {}
 
@@ -248,6 +263,24 @@ func _ActivityService_ListFeatured_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ActivityService_CalculateStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ActivityServiceServer).CalculateStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/activity.ActivityService/CalculateStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ActivityServiceServer).CalculateStats(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ActivityService_ServiceDesc is the grpc.ServiceDesc for ActivityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -278,6 +311,10 @@ var ActivityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListFeatured",
 			Handler:    _ActivityService_ListFeatured_Handler,
+		},
+		{
+			MethodName: "CalculateStats",
+			Handler:    _ActivityService_CalculateStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

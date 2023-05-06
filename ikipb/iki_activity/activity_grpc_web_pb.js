@@ -19,6 +19,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 const proto = {};
 proto.activity = require('./activity_pb.js');
 
@@ -437,6 +439,67 @@ proto.activity.ActivityServicePromiseClient.prototype.listFeatured =
       request,
       metadata || {},
       methodDescriptor_ActivityService_ListFeatured);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.google.protobuf.Empty,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_ActivityService_CalculateStats = new grpc.web.MethodDescriptor(
+  '/activity.ActivityService/CalculateStats',
+  grpc.web.MethodType.UNARY,
+  google_protobuf_empty_pb.Empty,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.google.protobuf.Empty} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.activity.ActivityServiceClient.prototype.calculateStats =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/activity.ActivityService/CalculateStats',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_CalculateStats,
+      callback);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.activity.ActivityServicePromiseClient.prototype.calculateStats =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/activity.ActivityService/CalculateStats',
+      request,
+      metadata || {},
+      methodDescriptor_ActivityService_CalculateStats);
 };
 
 
