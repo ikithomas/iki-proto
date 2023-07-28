@@ -22,6 +22,20 @@ export class GroupClient {
                response: ikipb_iki_iam_groupsvc_group_pb.ListResponse) => void
   ): grpcWeb.ClientReadableStream<ikipb_iki_iam_groupsvc_group_pb.ListResponse>;
 
+  create(
+    request: ikipb_iki_iam_groupsvc_group_pb.CreateRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: ikipb_iki_iam_groupsvc_group_pb.CreateResponse) => void
+  ): grpcWeb.ClientReadableStream<ikipb_iki_iam_groupsvc_group_pb.CreateResponse>;
+
+  delete(
+    request: ikipb_iki_iam_groupsvc_group_pb.DeleteRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: ikipb_iki_iam_groupsvc_group_pb.DeleteResponse) => void
+  ): grpcWeb.ClientReadableStream<ikipb_iki_iam_groupsvc_group_pb.DeleteResponse>;
+
 }
 
 export class GroupPromiseClient {
@@ -38,6 +52,16 @@ export class GroupPromiseClient {
     request: ikipb_iki_iam_groupsvc_group_pb.ListRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<ikipb_iki_iam_groupsvc_group_pb.ListResponse>;
+
+  create(
+    request: ikipb_iki_iam_groupsvc_group_pb.CreateRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<ikipb_iki_iam_groupsvc_group_pb.CreateResponse>;
+
+  delete(
+    request: ikipb_iki_iam_groupsvc_group_pb.DeleteRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<ikipb_iki_iam_groupsvc_group_pb.DeleteResponse>;
 
 }
 

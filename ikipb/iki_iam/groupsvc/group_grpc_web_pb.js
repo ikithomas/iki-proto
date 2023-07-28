@@ -198,5 +198,127 @@ proto.groupsvc.GroupPromiseClient.prototype.list =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.groupsvc.CreateRequest,
+ *   !proto.groupsvc.CreateResponse>}
+ */
+const methodDescriptor_Group_Create = new grpc.web.MethodDescriptor(
+  '/groupsvc.Group/Create',
+  grpc.web.MethodType.UNARY,
+  proto.groupsvc.CreateRequest,
+  proto.groupsvc.CreateResponse,
+  /**
+   * @param {!proto.groupsvc.CreateRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.groupsvc.CreateResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.groupsvc.CreateRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.groupsvc.CreateResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.groupsvc.CreateResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.groupsvc.GroupClient.prototype.create =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/groupsvc.Group/Create',
+      request,
+      metadata || {},
+      methodDescriptor_Group_Create,
+      callback);
+};
+
+
+/**
+ * @param {!proto.groupsvc.CreateRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.groupsvc.CreateResponse>}
+ *     Promise that resolves to the response
+ */
+proto.groupsvc.GroupPromiseClient.prototype.create =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/groupsvc.Group/Create',
+      request,
+      metadata || {},
+      methodDescriptor_Group_Create);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.groupsvc.DeleteRequest,
+ *   !proto.groupsvc.DeleteResponse>}
+ */
+const methodDescriptor_Group_Delete = new grpc.web.MethodDescriptor(
+  '/groupsvc.Group/Delete',
+  grpc.web.MethodType.UNARY,
+  proto.groupsvc.DeleteRequest,
+  proto.groupsvc.DeleteResponse,
+  /**
+   * @param {!proto.groupsvc.DeleteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.groupsvc.DeleteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.groupsvc.DeleteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.groupsvc.DeleteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.groupsvc.DeleteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.groupsvc.GroupClient.prototype.delete =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/groupsvc.Group/Delete',
+      request,
+      metadata || {},
+      methodDescriptor_Group_Delete,
+      callback);
+};
+
+
+/**
+ * @param {!proto.groupsvc.DeleteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.groupsvc.DeleteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.groupsvc.GroupPromiseClient.prototype.delete =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/groupsvc.Group/Delete',
+      request,
+      metadata || {},
+      methodDescriptor_Group_Delete);
+};
+
+
 module.exports = proto.groupsvc;
 
