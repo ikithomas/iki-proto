@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "ikipb/iki_iam/iam.proto";
+
+option go_package = "/servicesvc";
+
+package servicesvc;
+
+service Service {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc List(ListRequest) returns (ListResponse) {}
+
+  // AddSecret adds a new usable secret
+  rpc AddSecret(AddSecretRequest) returns (AddSecretResponse) {}
+
+  rpc DeactivateSecret(DeactivateSecretRequest) returns (DeactivateSecretResponse) {}
+
+  rpc DeleteSecret(DeleteSecretRequest) returns (DeleteSecretResponse) {}
+
+  rpc AuthorizeServices(AuthorizeServicesRequest) returns (AuthorizeServicesResponse) {}
+}
+
+message CreateRequest{
+  string name = 1;
+  repeated string authorized_service_ids = 2;
+}
+message CreateResponse{
+  iam.Service service = 1;
+}
+message GetRequest{
+  string id = 1;
+}
+
+message GetResponse{
+  iam.Service service = 1;
+}
+
+message ListRequest{
+
+}
+
+message ListResponse{
+  repeated iam.Service service = 1;
+}
+
+message DeleteRequest{
+  string id = 1;
+}
+
+message DeleteResponse{
+
+}
+
+message AddSecretRequest {
+  string service_id = 1;
+}
+
+message AddSecretResponse {
+  iam.Service service = 1;
+}
+
+message DeactivateSecretRequest {
+  string id = 1;
+}
+
+message DeactivateSecretResponse {
+  iam.Service service = 1;
+}
+
+message DeleteSecretRequest {
+  string id = 1;
+}
+
+message DeleteSecretResponse {
+  iam.Service service = 1;
+}
+
+message AuthorizeServicesRequest{
+  string id = 1;
+  repeated string authorized_service_ids = 2;
+}
+
+message AuthorizeServicesResponse{
+  iam.Service service = 1;
+}

@@ -25,8 +25,7 @@ type AuthClient interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
 	GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
-	// Login with password.
-	PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error)
+	ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error)
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
 }
 
@@ -47,9 +46,9 @@ func (c *authClient) GoogleLogin(ctx context.Context, in *GoogleLoginRequest, op
 	return out, nil
 }
 
-func (c *authClient) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...grpc.CallOption) (*PasswordLoginResponse, error) {
-	out := new(PasswordLoginResponse)
-	err := c.cc.Invoke(ctx, "/authsvc.Auth/PasswordLogin", in, out, opts...)
+func (c *authClient) ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error) {
+	out := new(ServiceLoginResponse)
+	err := c.cc.Invoke(ctx, "/authsvc.Auth/ServiceLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +71,7 @@ type AuthServer interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
 	GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error)
-	// Login with password.
-	PasswordLogin(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error)
+	ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -85,8 +83,8 @@ type UnimplementedAuthServer struct {
 func (UnimplementedAuthServer) GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedAuthServer) PasswordLogin(context.Context, *PasswordLoginRequest) (*PasswordLoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PasswordLogin not implemented")
+func (UnimplementedAuthServer) ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ServiceLogin not implemented")
 }
 func (UnimplementedAuthServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signout not implemented")
@@ -122,20 +120,20 @@ func _Auth_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_PasswordLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PasswordLoginRequest)
+func _Auth_ServiceLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ServiceLoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).PasswordLogin(ctx, in)
+		return srv.(AuthServer).ServiceLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/authsvc.Auth/PasswordLogin",
+		FullMethod: "/authsvc.Auth/ServiceLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).PasswordLogin(ctx, req.(*PasswordLoginRequest))
+		return srv.(AuthServer).ServiceLogin(ctx, req.(*ServiceLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -170,8 +168,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_GoogleLogin_Handler,
 		},
 		{
-			MethodName: "PasswordLogin",
-			Handler:    _Auth_PasswordLogin_Handler,
+			MethodName: "ServiceLogin",
+			Handler:    _Auth_ServiceLogin_Handler,
 		},
 		{
 			MethodName: "Signout",

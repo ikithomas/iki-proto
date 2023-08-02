@@ -11,8 +11,7 @@ service Auth {
   // If a user is not yet created, a new user account will be created associated with that email address.
   rpc GoogleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}
 
-  // Login with password.
-  rpc PasswordLogin (PasswordLoginRequest) returns (PasswordLoginResponse) {}
+  rpc ServiceLogin (ServiceLoginRequest) returns (ServiceLoginResponse) {}
 
   rpc Signout (SignoutRequest) returns (SignoutResponse) {}
 }
@@ -27,15 +26,15 @@ message GoogleLoginResponse {
   iam.User user = 3;
 }
 
-message PasswordLoginRequest {
-  string email_address = 1;
-  string password = 2;
+message ServiceLoginRequest {
+  string client_id = 1;
+  string client_secret = 2;
 }
 
-message PasswordLoginResponse {
+message ServiceLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
-  iam.User user = 3;
+  iam.Service service = 3;
 }
 
 message SignoutRequest {}

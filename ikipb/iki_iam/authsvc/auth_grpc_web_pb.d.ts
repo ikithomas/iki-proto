@@ -15,12 +15,12 @@ export class AuthClient {
                response: ikipb_iki_iam_authsvc_auth_pb.GoogleLoginResponse) => void
   ): grpcWeb.ClientReadableStream<ikipb_iki_iam_authsvc_auth_pb.GoogleLoginResponse>;
 
-  passwordLogin(
-    request: ikipb_iki_iam_authsvc_auth_pb.PasswordLoginRequest,
+  serviceLogin(
+    request: ikipb_iki_iam_authsvc_auth_pb.ServiceLoginRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: ikipb_iki_iam_authsvc_auth_pb.PasswordLoginResponse) => void
-  ): grpcWeb.ClientReadableStream<ikipb_iki_iam_authsvc_auth_pb.PasswordLoginResponse>;
+               response: ikipb_iki_iam_authsvc_auth_pb.ServiceLoginResponse) => void
+  ): grpcWeb.ClientReadableStream<ikipb_iki_iam_authsvc_auth_pb.ServiceLoginResponse>;
 
   signout(
     request: ikipb_iki_iam_authsvc_auth_pb.SignoutRequest,
@@ -41,10 +41,10 @@ export class AuthPromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<ikipb_iki_iam_authsvc_auth_pb.GoogleLoginResponse>;
 
-  passwordLogin(
-    request: ikipb_iki_iam_authsvc_auth_pb.PasswordLoginRequest,
+  serviceLogin(
+    request: ikipb_iki_iam_authsvc_auth_pb.ServiceLoginRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<ikipb_iki_iam_authsvc_auth_pb.PasswordLoginResponse>;
+  ): Promise<ikipb_iki_iam_authsvc_auth_pb.ServiceLoginResponse>;
 
   signout(
     request: ikipb_iki_iam_authsvc_auth_pb.SignoutRequest,

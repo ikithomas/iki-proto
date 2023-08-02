@@ -49,53 +49,53 @@ export namespace GoogleLoginResponse {
   }
 }
 
-export class PasswordLoginRequest extends jspb.Message {
-  getEmailAddress(): string;
-  setEmailAddress(value: string): PasswordLoginRequest;
+export class ServiceLoginRequest extends jspb.Message {
+  getClientId(): string;
+  setClientId(value: string): ServiceLoginRequest;
 
-  getPassword(): string;
-  setPassword(value: string): PasswordLoginRequest;
+  getClientSecret(): string;
+  setClientSecret(value: string): ServiceLoginRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PasswordLoginRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: PasswordLoginRequest): PasswordLoginRequest.AsObject;
-  static serializeBinaryToWriter(message: PasswordLoginRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PasswordLoginRequest;
-  static deserializeBinaryFromReader(message: PasswordLoginRequest, reader: jspb.BinaryReader): PasswordLoginRequest;
+  toObject(includeInstance?: boolean): ServiceLoginRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ServiceLoginRequest): ServiceLoginRequest.AsObject;
+  static serializeBinaryToWriter(message: ServiceLoginRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ServiceLoginRequest;
+  static deserializeBinaryFromReader(message: ServiceLoginRequest, reader: jspb.BinaryReader): ServiceLoginRequest;
 }
 
-export namespace PasswordLoginRequest {
+export namespace ServiceLoginRequest {
   export type AsObject = {
-    emailAddress: string,
-    password: string,
+    clientId: string,
+    clientSecret: string,
   }
 }
 
-export class PasswordLoginResponse extends jspb.Message {
+export class ServiceLoginResponse extends jspb.Message {
   getAccessToken(): string;
-  setAccessToken(value: string): PasswordLoginResponse;
+  setAccessToken(value: string): ServiceLoginResponse;
 
   getRefreshToken(): string;
-  setRefreshToken(value: string): PasswordLoginResponse;
+  setRefreshToken(value: string): ServiceLoginResponse;
 
-  getUser(): ikipb_iki_iam_iam_pb.User | undefined;
-  setUser(value?: ikipb_iki_iam_iam_pb.User): PasswordLoginResponse;
-  hasUser(): boolean;
-  clearUser(): PasswordLoginResponse;
+  getService(): ikipb_iki_iam_iam_pb.Service | undefined;
+  setService(value?: ikipb_iki_iam_iam_pb.Service): ServiceLoginResponse;
+  hasService(): boolean;
+  clearService(): ServiceLoginResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PasswordLoginResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: PasswordLoginResponse): PasswordLoginResponse.AsObject;
-  static serializeBinaryToWriter(message: PasswordLoginResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PasswordLoginResponse;
-  static deserializeBinaryFromReader(message: PasswordLoginResponse, reader: jspb.BinaryReader): PasswordLoginResponse;
+  toObject(includeInstance?: boolean): ServiceLoginResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ServiceLoginResponse): ServiceLoginResponse.AsObject;
+  static serializeBinaryToWriter(message: ServiceLoginResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ServiceLoginResponse;
+  static deserializeBinaryFromReader(message: ServiceLoginResponse, reader: jspb.BinaryReader): ServiceLoginResponse;
 }
 
-export namespace PasswordLoginResponse {
+export namespace ServiceLoginResponse {
   export type AsObject = {
     accessToken: string,
     refreshToken: string,
-    user?: ikipb_iki_iam_iam_pb.User.AsObject,
+    service?: ikipb_iki_iam_iam_pb.Service.AsObject,
   }
 }
 

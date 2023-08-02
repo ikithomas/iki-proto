@@ -4,6 +4,7 @@ option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_iam";
 
 package iam;
 
+// User is a human user
 message User {
   string id = 1;
   string email = 2;
@@ -17,4 +18,25 @@ message User {
 message Group {
   string id = 1;
   string name = 2;
+}
+
+// Service is a microservice
+message Service {
+  // id is the DB ID and the client ID of the service.
+  string id = 1;
+
+  // secret to authenticate to.
+  repeated Secret secret = 2;
+
+  string name = 3;
+
+  // List of service's ids that the service is allowed to communicate to.
+  repeated string authorized_service_ids = 4;
+}
+
+message Secret {
+  string id = 1;
+  string secret = 2;
+  string last_used = 3;
+  bool active = 4;
 }

@@ -140,61 +140,61 @@ proto.authsvc.AuthPromiseClient.prototype.googleLogin =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.authsvc.PasswordLoginRequest,
- *   !proto.authsvc.PasswordLoginResponse>}
+ *   !proto.authsvc.ServiceLoginRequest,
+ *   !proto.authsvc.ServiceLoginResponse>}
  */
-const methodDescriptor_Auth_PasswordLogin = new grpc.web.MethodDescriptor(
-  '/authsvc.Auth/PasswordLogin',
+const methodDescriptor_Auth_ServiceLogin = new grpc.web.MethodDescriptor(
+  '/authsvc.Auth/ServiceLogin',
   grpc.web.MethodType.UNARY,
-  proto.authsvc.PasswordLoginRequest,
-  proto.authsvc.PasswordLoginResponse,
+  proto.authsvc.ServiceLoginRequest,
+  proto.authsvc.ServiceLoginResponse,
   /**
-   * @param {!proto.authsvc.PasswordLoginRequest} request
+   * @param {!proto.authsvc.ServiceLoginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.authsvc.PasswordLoginResponse.deserializeBinary
+  proto.authsvc.ServiceLoginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.authsvc.PasswordLoginRequest} request The
+ * @param {!proto.authsvc.ServiceLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.authsvc.PasswordLoginResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.authsvc.ServiceLoginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.authsvc.PasswordLoginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.authsvc.ServiceLoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.authsvc.AuthClient.prototype.passwordLogin =
+proto.authsvc.AuthClient.prototype.serviceLogin =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/authsvc.Auth/PasswordLogin',
+      '/authsvc.Auth/ServiceLogin',
       request,
       metadata || {},
-      methodDescriptor_Auth_PasswordLogin,
+      methodDescriptor_Auth_ServiceLogin,
       callback);
 };
 
 
 /**
- * @param {!proto.authsvc.PasswordLoginRequest} request The
+ * @param {!proto.authsvc.ServiceLoginRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.authsvc.PasswordLoginResponse>}
+ * @return {!Promise<!proto.authsvc.ServiceLoginResponse>}
  *     Promise that resolves to the response
  */
-proto.authsvc.AuthPromiseClient.prototype.passwordLogin =
+proto.authsvc.AuthPromiseClient.prototype.serviceLogin =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/authsvc.Auth/PasswordLogin',
+      '/authsvc.Auth/ServiceLogin',
       request,
       metadata || {},
-      methodDescriptor_Auth_PasswordLogin);
+      methodDescriptor_Auth_ServiceLogin);
 };
 
 
