@@ -44,7 +44,7 @@ goog.exportSymbol('proto.servicesvc.ListResponse', null, global);
  * @constructor
  */
 proto.servicesvc.CreateRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.servicesvc.CreateRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.servicesvc.CreateRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -338,7 +338,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.servicesvc.AuthorizeServicesRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.servicesvc.AuthorizeServicesRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.servicesvc.AuthorizeServicesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -369,13 +369,6 @@ if (goog.DEBUG && !COMPILED) {
    */
   proto.servicesvc.AuthorizeServicesResponse.displayName = 'proto.servicesvc.AuthorizeServicesResponse';
 }
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.servicesvc.CreateRequest.repeatedFields_ = [2];
 
 
 
@@ -408,8 +401,7 @@ proto.servicesvc.CreateRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.servicesvc.CreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    authorizedServiceIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -450,10 +442,6 @@ proto.servicesvc.CreateRequest.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addAuthorizedServiceIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -490,13 +478,6 @@ proto.servicesvc.CreateRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getAuthorizedServiceIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -515,43 +496,6 @@ proto.servicesvc.CreateRequest.prototype.getName = function() {
  */
 proto.servicesvc.CreateRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * repeated string authorized_service_ids = 2;
- * @return {!Array<string>}
- */
-proto.servicesvc.CreateRequest.prototype.getAuthorizedServiceIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.servicesvc.CreateRequest} returns this
- */
-proto.servicesvc.CreateRequest.prototype.setAuthorizedServiceIdsList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.servicesvc.CreateRequest} returns this
- */
-proto.servicesvc.CreateRequest.prototype.addAuthorizedServiceIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.servicesvc.CreateRequest} returns this
- */
-proto.servicesvc.CreateRequest.prototype.clearAuthorizedServiceIdsList = function() {
-  return this.setAuthorizedServiceIdsList([]);
 };
 
 
@@ -2323,13 +2267,6 @@ proto.servicesvc.DeleteSecretResponse.prototype.hasService = function() {
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.servicesvc.AuthorizeServicesRequest.repeatedFields_ = [2];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2361,8 +2298,7 @@ proto.servicesvc.AuthorizeServicesRequest.prototype.toObject = function(opt_incl
  */
 proto.servicesvc.AuthorizeServicesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    authorizedServiceIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2403,10 +2339,6 @@ proto.servicesvc.AuthorizeServicesRequest.deserializeBinaryFromReader = function
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addAuthorizedServiceIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2443,13 +2375,6 @@ proto.servicesvc.AuthorizeServicesRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getAuthorizedServiceIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -2468,43 +2393,6 @@ proto.servicesvc.AuthorizeServicesRequest.prototype.getId = function() {
  */
 proto.servicesvc.AuthorizeServicesRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * repeated string authorized_service_ids = 2;
- * @return {!Array<string>}
- */
-proto.servicesvc.AuthorizeServicesRequest.prototype.getAuthorizedServiceIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.servicesvc.AuthorizeServicesRequest} returns this
- */
-proto.servicesvc.AuthorizeServicesRequest.prototype.setAuthorizedServiceIdsList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.servicesvc.AuthorizeServicesRequest} returns this
- */
-proto.servicesvc.AuthorizeServicesRequest.prototype.addAuthorizedServiceIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.servicesvc.AuthorizeServicesRequest} returns this
- */
-proto.servicesvc.AuthorizeServicesRequest.prototype.clearAuthorizedServiceIdsList = function() {
-  return this.setAuthorizedServiceIdsList([]);
 };
 
 

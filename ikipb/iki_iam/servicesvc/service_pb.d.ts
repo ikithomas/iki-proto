@@ -7,11 +7,6 @@ export class CreateRequest extends jspb.Message {
   getName(): string;
   setName(value: string): CreateRequest;
 
-  getAuthorizedServiceIdsList(): Array<string>;
-  setAuthorizedServiceIdsList(value: Array<string>): CreateRequest;
-  clearAuthorizedServiceIdsList(): CreateRequest;
-  addAuthorizedServiceIds(value: string, index?: number): CreateRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateRequest): CreateRequest.AsObject;
@@ -23,7 +18,6 @@ export class CreateRequest extends jspb.Message {
 export namespace CreateRequest {
   export type AsObject = {
     name: string,
-    authorizedServiceIdsList: Array<string>,
   }
 }
 
@@ -269,11 +263,6 @@ export class AuthorizeServicesRequest extends jspb.Message {
   getId(): string;
   setId(value: string): AuthorizeServicesRequest;
 
-  getAuthorizedServiceIdsList(): Array<string>;
-  setAuthorizedServiceIdsList(value: Array<string>): AuthorizeServicesRequest;
-  clearAuthorizedServiceIdsList(): AuthorizeServicesRequest;
-  addAuthorizedServiceIds(value: string, index?: number): AuthorizeServicesRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthorizeServicesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AuthorizeServicesRequest): AuthorizeServicesRequest.AsObject;
@@ -285,7 +274,6 @@ export class AuthorizeServicesRequest extends jspb.Message {
 export namespace AuthorizeServicesRequest {
   export type AsObject = {
     id: string,
-    authorizedServiceIdsList: Array<string>,
   }
 }
 

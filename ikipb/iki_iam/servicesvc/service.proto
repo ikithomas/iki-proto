@@ -24,8 +24,8 @@ service Service {
 
 message CreateRequest{
   string name = 1;
-  repeated string authorized_service_ids = 2;
 }
+
 message CreateResponse{
   iam.Service service = 1;
 }
@@ -79,7 +79,6 @@ message DeleteSecretResponse {
 
 message AuthorizeServicesRequest{
   string id = 1;
-  repeated string authorized_service_ids = 2;
 }
 
 message AuthorizeServicesResponse{
