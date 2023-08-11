@@ -104,11 +104,11 @@ export class Secret extends jspb.Message {
   getId(): string;
   setId(value: string): Secret;
 
-  getSecret(): string;
-  setSecret(value: string): Secret;
+  getToken(): string;
+  setToken(value: string): Secret;
 
-  getLastUsed(): number;
-  setLastUsed(value: number): Secret;
+  getLastUsedAt(): number;
+  setLastUsedAt(value: number): Secret;
 
   getActive(): boolean;
   setActive(value: boolean): Secret;
@@ -124,8 +124,8 @@ export class Secret extends jspb.Message {
 export namespace Secret {
   export type AsObject = {
     id: string,
-    secret: string,
-    lastUsed: number,
+    token: string,
+    lastUsedAt: number,
     active: boolean,
   }
 }

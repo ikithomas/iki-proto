@@ -34,7 +34,7 @@ message Service {
 
 message Secret {
   string id = 1;
-  string secret = 2;
+  string token = 2;
   int64 last_used_at = 3;
   bool active = 4;
 }
