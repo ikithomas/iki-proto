@@ -13,6 +13,7 @@ message User {
   bool group_owner = 5;
   bool group_admin = 6;
   bool group_user = 7;
+  repeated string roles = 8;
 }
 
 message Group {
@@ -22,16 +23,13 @@ message Group {
 
 // Service is a microservice
 message Service {
-  // id is the DB ID and the client ID of the service.
+  // client ID of the service.
   string id = 1;
 
   // secret to authenticate to.
   repeated Secret secret = 2;
 
   string name = 3;
-
-  // List of service's ids that the service is allowed to communicate to.
-  repeated string authorized_service_ids = 4;
 }
 
 message Secret {

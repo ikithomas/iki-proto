@@ -24,6 +24,11 @@ export class User extends jspb.Message {
   getGroupUser(): boolean;
   setGroupUser(value: boolean): User;
 
+  getRolesList(): Array<string>;
+  setRolesList(value: Array<string>): User;
+  clearRolesList(): User;
+  addRoles(value: string, index?: number): User;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
   static toObject(includeInstance: boolean, msg: User): User.AsObject;
@@ -41,6 +46,7 @@ export namespace User {
     groupOwner: boolean,
     groupAdmin: boolean,
     groupUser: boolean,
+    rolesList: Array<string>,
   }
 }
 
@@ -78,11 +84,6 @@ export class Service extends jspb.Message {
   getName(): string;
   setName(value: string): Service;
 
-  getAuthorizedServiceIdsList(): Array<string>;
-  setAuthorizedServiceIdsList(value: Array<string>): Service;
-  clearAuthorizedServiceIdsList(): Service;
-  addAuthorizedServiceIds(value: string, index?: number): Service;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Service.AsObject;
   static toObject(includeInstance: boolean, msg: Service): Service.AsObject;
@@ -96,7 +97,6 @@ export namespace Service {
     id: string,
     secretList: Array<Secret.AsObject>,
     name: string,
-    authorizedServiceIdsList: Array<string>,
   }
 }
 

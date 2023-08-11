@@ -30,7 +30,7 @@ goog.exportSymbol('proto.iam.User', null, global);
  * @constructor
  */
 proto.iam.User = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.iam.User.repeatedFields_, null);
 };
 goog.inherits(proto.iam.User, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -104,6 +104,13 @@ if (goog.DEBUG && !COMPILED) {
   proto.iam.Secret.displayName = 'proto.iam.Secret';
 }
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.iam.User.repeatedFields_ = [8];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -141,7 +148,8 @@ proto.iam.User.toObject = function(includeInstance, msg) {
     familyName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     groupOwner: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     groupAdmin: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    groupUser: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+    groupUser: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    rolesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -205,6 +213,10 @@ proto.iam.User.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setGroupUser(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addRoles(value);
       break;
     default:
       reader.skipField();
@@ -281,6 +293,13 @@ proto.iam.User.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       7,
+      f
+    );
+  }
+  f = message.getRolesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      8,
       f
     );
   }
@@ -410,6 +429,43 @@ proto.iam.User.prototype.getGroupUser = function() {
  */
 proto.iam.User.prototype.setGroupUser = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
+};
+
+
+/**
+ * repeated string roles = 8;
+ * @return {!Array<string>}
+ */
+proto.iam.User.prototype.getRolesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.iam.User} returns this
+ */
+proto.iam.User.prototype.setRolesList = function(value) {
+  return jspb.Message.setField(this, 8, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.iam.User} returns this
+ */
+proto.iam.User.prototype.addRoles = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.iam.User} returns this
+ */
+proto.iam.User.prototype.clearRolesList = function() {
+  return this.setRolesList([]);
 };
 
 
@@ -579,7 +635,7 @@ proto.iam.Group.prototype.setName = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.iam.Service.repeatedFields_ = [2,4];
+proto.iam.Service.repeatedFields_ = [2];
 
 
 
@@ -615,8 +671,7 @@ proto.iam.Service.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secretList: jspb.Message.toObjectList(msg.getSecretList(),
     proto.iam.Secret.toObject, includeInstance),
-    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    authorizedServiceIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    name: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -666,10 +721,6 @@ proto.iam.Service.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addAuthorizedServiceIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -718,13 +769,6 @@ proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
-      f
-    );
-  }
-  f = message.getAuthorizedServiceIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      4,
       f
     );
   }
@@ -802,43 +846,6 @@ proto.iam.Service.prototype.getName = function() {
  */
 proto.iam.Service.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * repeated string authorized_service_ids = 4;
- * @return {!Array<string>}
- */
-proto.iam.Service.prototype.getAuthorizedServiceIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.iam.Service} returns this
- */
-proto.iam.Service.prototype.setAuthorizedServiceIdsList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.iam.Service} returns this
- */
-proto.iam.Service.prototype.addAuthorizedServiceIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.iam.Service} returns this
- */
-proto.iam.Service.prototype.clearAuthorizedServiceIdsList = function() {
-  return this.setAuthorizedServiceIdsList([]);
 };
 
 
