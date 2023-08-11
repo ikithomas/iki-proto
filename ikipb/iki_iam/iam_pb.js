@@ -883,7 +883,7 @@ proto.iam.Secret.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lastUsed: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    lastUsed: jspb.Message.getFieldWithDefault(msg, 3, 0),
     active: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
@@ -930,7 +930,7 @@ proto.iam.Secret.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSecret(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setLastUsed(value);
       break;
     case 4:
@@ -981,8 +981,8 @@ proto.iam.Secret.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getLastUsed();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0) {
+    writer.writeInt64(
       3,
       f
     );
@@ -1034,20 +1034,20 @@ proto.iam.Secret.prototype.setSecret = function(value) {
 
 
 /**
- * optional string last_used = 3;
- * @return {string}
+ * optional int64 last_used = 3;
+ * @return {number}
  */
 proto.iam.Secret.prototype.getLastUsed = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.iam.Secret} returns this
  */
 proto.iam.Secret.prototype.setLastUsed = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
