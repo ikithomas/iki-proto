@@ -18,8 +18,6 @@ service Service {
   rpc DeactivateSecret(DeactivateSecretRequest) returns (DeactivateSecretResponse) {}
 
   rpc DeleteSecret(DeleteSecretRequest) returns (DeleteSecretResponse) {}
-
-  rpc AuthorizeServices(AuthorizeServicesRequest) returns (AuthorizeServicesResponse) {}
 }
 
 message CreateRequest{
@@ -74,13 +72,5 @@ message DeleteSecretRequest {
 }
 
 message DeleteSecretResponse {
-  iam.Service service = 1;
-}
-
-message AuthorizeServicesRequest{
-  string id = 1;
-}
-
-message AuthorizeServicesResponse{
   iam.Service service = 1;
 }

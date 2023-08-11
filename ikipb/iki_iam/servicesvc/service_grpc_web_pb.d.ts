@@ -57,13 +57,6 @@ export class ServiceClient {
                response: ikipb_iki_iam_servicesvc_service_pb.DeleteSecretResponse) => void
   ): grpcWeb.ClientReadableStream<ikipb_iki_iam_servicesvc_service_pb.DeleteSecretResponse>;
 
-  authorizeServices(
-    request: ikipb_iki_iam_servicesvc_service_pb.AuthorizeServicesRequest,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.RpcError,
-               response: ikipb_iki_iam_servicesvc_service_pb.AuthorizeServicesResponse) => void
-  ): grpcWeb.ClientReadableStream<ikipb_iki_iam_servicesvc_service_pb.AuthorizeServicesResponse>;
-
 }
 
 export class ServicePromiseClient {
@@ -105,11 +98,6 @@ export class ServicePromiseClient {
     request: ikipb_iki_iam_servicesvc_service_pb.DeleteSecretRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<ikipb_iki_iam_servicesvc_service_pb.DeleteSecretResponse>;
-
-  authorizeServices(
-    request: ikipb_iki_iam_servicesvc_service_pb.AuthorizeServicesRequest,
-    metadata?: grpcWeb.Metadata
-  ): Promise<ikipb_iki_iam_servicesvc_service_pb.AuthorizeServicesResponse>;
 
 }
 
