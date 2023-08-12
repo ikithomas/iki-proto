@@ -73,6 +73,9 @@ export namespace Group {
 }
 
 export class Service extends jspb.Message {
+  getId(): string;
+  setId(value: string): Service;
+
   getClientId(): string;
   setClientId(value: string): Service;
 
@@ -94,6 +97,7 @@ export class Service extends jspb.Message {
 
 export namespace Service {
   export type AsObject = {
+    id: string,
     clientId: string,
     secretList: Array<Secret.AsObject>,
     name: string,
@@ -104,8 +108,8 @@ export class Secret extends jspb.Message {
   getId(): string;
   setId(value: string): Secret;
 
-  getToken(): string;
-  setToken(value: string): Secret;
+  getSecret(): string;
+  setSecret(value: string): Secret;
 
   getLastUsedAt(): number;
   setLastUsedAt(value: number): Secret;
@@ -124,7 +128,7 @@ export class Secret extends jspb.Message {
 export namespace Secret {
   export type AsObject = {
     id: string,
-    token: string,
+    secret: string,
     lastUsedAt: number,
     active: boolean,
   }

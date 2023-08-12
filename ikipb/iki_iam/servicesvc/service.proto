@@ -28,7 +28,7 @@ message CreateResponse{
   iam.Service service = 1;
 }
 message GetRequest{
-  string client_id = 1;
+  string id = 1;
 }
 
 message GetResponse{
@@ -44,7 +44,7 @@ message ListResponse{
 }
 
 message DeleteRequest{
-  string client_id = 1;
+  string id = 1;
 }
 
 message DeleteResponse{

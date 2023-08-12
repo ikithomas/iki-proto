@@ -635,7 +635,7 @@ proto.iam.Group.prototype.setName = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.iam.Service.repeatedFields_ = [2];
+proto.iam.Service.repeatedFields_ = [3];
 
 
 
@@ -668,10 +668,11 @@ proto.iam.Service.prototype.toObject = function(opt_includeInstance) {
  */
 proto.iam.Service.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    clientId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     secretList: jspb.Message.toObjectList(msg.getSecretList(),
     proto.iam.Secret.toObject, includeInstance),
-    name: jspb.Message.getFieldWithDefault(msg, 3, "")
+    name: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -710,14 +711,18 @@ proto.iam.Service.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setClientId(value);
+      msg.setId(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientId(value);
+      break;
+    case 3:
       var value = new proto.iam.Secret;
       reader.readMessage(value,proto.iam.Secret.deserializeBinaryFromReader);
       msg.addSecret(value);
       break;
-    case 3:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
@@ -750,17 +755,24 @@ proto.iam.Service.prototype.serializeBinary = function() {
  */
 proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
+  f = message.getClientId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getSecretList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      3,
       f,
       proto.iam.Secret.serializeBinaryToWriter
     );
@@ -768,7 +780,7 @@ proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
@@ -776,10 +788,10 @@ proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string client_id = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.iam.Service.prototype.getClientId = function() {
+proto.iam.Service.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -788,18 +800,36 @@ proto.iam.Service.prototype.getClientId = function() {
  * @param {string} value
  * @return {!proto.iam.Service} returns this
  */
-proto.iam.Service.prototype.setClientId = function(value) {
+proto.iam.Service.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * repeated Secret secret = 2;
+ * optional string client_id = 2;
+ * @return {string}
+ */
+proto.iam.Service.prototype.getClientId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.iam.Service} returns this
+ */
+proto.iam.Service.prototype.setClientId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated Secret secret = 3;
  * @return {!Array<!proto.iam.Secret>}
  */
 proto.iam.Service.prototype.getSecretList = function() {
   return /** @type{!Array<!proto.iam.Secret>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.iam.Secret, 2));
+    jspb.Message.getRepeatedWrapperField(this, proto.iam.Secret, 3));
 };
 
 
@@ -808,7 +838,7 @@ proto.iam.Service.prototype.getSecretList = function() {
  * @return {!proto.iam.Service} returns this
 */
 proto.iam.Service.prototype.setSecretList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
@@ -818,7 +848,7 @@ proto.iam.Service.prototype.setSecretList = function(value) {
  * @return {!proto.iam.Secret}
  */
 proto.iam.Service.prototype.addSecret = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.iam.Secret, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.iam.Secret, opt_index);
 };
 
 
@@ -832,11 +862,11 @@ proto.iam.Service.prototype.clearSecretList = function() {
 
 
 /**
- * optional string name = 3;
+ * optional string name = 4;
  * @return {string}
  */
 proto.iam.Service.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -845,7 +875,7 @@ proto.iam.Service.prototype.getName = function() {
  * @return {!proto.iam.Service} returns this
  */
 proto.iam.Service.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -882,7 +912,7 @@ proto.iam.Secret.prototype.toObject = function(opt_includeInstance) {
 proto.iam.Secret.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    token: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
     lastUsedAt: jspb.Message.getFieldWithDefault(msg, 3, 0),
     active: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
@@ -927,7 +957,7 @@ proto.iam.Secret.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setToken(value);
+      msg.setSecret(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
@@ -973,7 +1003,7 @@ proto.iam.Secret.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getToken();
+  f = message.getSecret();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1016,10 +1046,10 @@ proto.iam.Secret.prototype.setId = function(value) {
 
 
 /**
- * optional string token = 2;
+ * optional string secret = 2;
  * @return {string}
  */
-proto.iam.Secret.prototype.getToken = function() {
+proto.iam.Secret.prototype.getSecret = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1028,7 +1058,7 @@ proto.iam.Secret.prototype.getToken = function() {
  * @param {string} value
  * @return {!proto.iam.Secret} returns this
  */
-proto.iam.Secret.prototype.setToken = function(value) {
+proto.iam.Secret.prototype.setSecret = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

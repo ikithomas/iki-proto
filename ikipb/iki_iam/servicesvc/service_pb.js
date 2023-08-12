@@ -638,7 +638,7 @@ proto.servicesvc.GetRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.servicesvc.GetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -677,7 +677,7 @@ proto.servicesvc.GetRequest.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setClientId(value);
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -708,7 +708,7 @@ proto.servicesvc.GetRequest.prototype.serializeBinary = function() {
  */
 proto.servicesvc.GetRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -719,10 +719,10 @@ proto.servicesvc.GetRequest.serializeBinaryToWriter = function(message, writer) 
 
 
 /**
- * optional string client_id = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.servicesvc.GetRequest.prototype.getClientId = function() {
+proto.servicesvc.GetRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -731,7 +731,7 @@ proto.servicesvc.GetRequest.prototype.getClientId = function() {
  * @param {string} value
  * @return {!proto.servicesvc.GetRequest} returns this
  */
-proto.servicesvc.GetRequest.prototype.setClientId = function(value) {
+proto.servicesvc.GetRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1180,7 +1180,7 @@ proto.servicesvc.DeleteRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.servicesvc.DeleteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1219,7 +1219,7 @@ proto.servicesvc.DeleteRequest.deserializeBinaryFromReader = function(msg, reade
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setClientId(value);
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -1250,7 +1250,7 @@ proto.servicesvc.DeleteRequest.prototype.serializeBinary = function() {
  */
 proto.servicesvc.DeleteRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1261,10 +1261,10 @@ proto.servicesvc.DeleteRequest.serializeBinaryToWriter = function(message, write
 
 
 /**
- * optional string client_id = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.servicesvc.DeleteRequest.prototype.getClientId = function() {
+proto.servicesvc.DeleteRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1273,7 +1273,7 @@ proto.servicesvc.DeleteRequest.prototype.getClientId = function() {
  * @param {string} value
  * @return {!proto.servicesvc.DeleteRequest} returns this
  */
-proto.servicesvc.DeleteRequest.prototype.setClientId = function(value) {
+proto.servicesvc.DeleteRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

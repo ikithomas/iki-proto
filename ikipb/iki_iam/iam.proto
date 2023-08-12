@@ -23,18 +23,22 @@ message Group {
 
 // Service is a microservice
 message Service {
-  // client ID of the service.
-  string client_id = 1;
+  // Internal ID of the service.
+  string id = 1;
+
+  // Client ID of the service. Used for authentication.
+  string client_id = 2;
 
   // secret to authenticate to.
-  repeated Secret secret = 2;
+  repeated Secret secret = 3;
 
-  string name = 3;
+  // Friendly name
+  string name = 4;
 }
 
 message Secret {
   string id = 1;
-  string token = 2;
+  string secret = 2;
   int64 last_used_at = 3;
   bool active = 4;
 }
