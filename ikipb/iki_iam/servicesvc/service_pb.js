@@ -2053,7 +2053,7 @@ proto.servicesvc.DeleteSecretResponse.prototype.toObject = function(opt_includeI
  */
 proto.servicesvc.DeleteSecretResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    service: (f = msg.getService()) && ikipb_iki_iam_iam_pb.Service.toObject(includeInstance, f)
+
   };
 
   if (includeInstance) {
@@ -2090,11 +2090,6 @@ proto.servicesvc.DeleteSecretResponse.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new ikipb_iki_iam_iam_pb.Service;
-      reader.readMessage(value,ikipb_iki_iam_iam_pb.Service.deserializeBinaryFromReader);
-      msg.setService(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2124,51 +2119,6 @@ proto.servicesvc.DeleteSecretResponse.prototype.serializeBinary = function() {
  */
 proto.servicesvc.DeleteSecretResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getService();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      ikipb_iki_iam_iam_pb.Service.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional iam.Service service = 1;
- * @return {?proto.iam.Service}
- */
-proto.servicesvc.DeleteSecretResponse.prototype.getService = function() {
-  return /** @type{?proto.iam.Service} */ (
-    jspb.Message.getWrapperField(this, ikipb_iki_iam_iam_pb.Service, 1));
-};
-
-
-/**
- * @param {?proto.iam.Service|undefined} value
- * @return {!proto.servicesvc.DeleteSecretResponse} returns this
-*/
-proto.servicesvc.DeleteSecretResponse.prototype.setService = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.servicesvc.DeleteSecretResponse} returns this
- */
-proto.servicesvc.DeleteSecretResponse.prototype.clearService = function() {
-  return this.setService(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.servicesvc.DeleteSecretResponse.prototype.hasService = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
