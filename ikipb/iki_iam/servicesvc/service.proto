@@ -56,7 +56,7 @@ message AddSecretRequest {
 }
 
 message AddSecretResponse {
-  iam.Service service = 1;
+  iam.Secret secret = 1;
 }
 
 message DeactivateSecretRequest {

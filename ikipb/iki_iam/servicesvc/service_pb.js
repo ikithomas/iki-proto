@@ -1541,7 +1541,7 @@ proto.servicesvc.AddSecretResponse.prototype.toObject = function(opt_includeInst
  */
 proto.servicesvc.AddSecretResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    service: (f = msg.getService()) && ikipb_iki_iam_iam_pb.Service.toObject(includeInstance, f)
+    secret: (f = msg.getSecret()) && ikipb_iki_iam_iam_pb.Secret.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1579,9 +1579,9 @@ proto.servicesvc.AddSecretResponse.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new ikipb_iki_iam_iam_pb.Service;
-      reader.readMessage(value,ikipb_iki_iam_iam_pb.Service.deserializeBinaryFromReader);
-      msg.setService(value);
+      var value = new ikipb_iki_iam_iam_pb.Secret;
+      reader.readMessage(value,ikipb_iki_iam_iam_pb.Secret.deserializeBinaryFromReader);
+      msg.setSecret(value);
       break;
     default:
       reader.skipField();
@@ -1612,32 +1612,32 @@ proto.servicesvc.AddSecretResponse.prototype.serializeBinary = function() {
  */
 proto.servicesvc.AddSecretResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getService();
+  f = message.getSecret();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      ikipb_iki_iam_iam_pb.Service.serializeBinaryToWriter
+      ikipb_iki_iam_iam_pb.Secret.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional iam.Service service = 1;
- * @return {?proto.iam.Service}
+ * optional iam.Secret secret = 1;
+ * @return {?proto.iam.Secret}
  */
-proto.servicesvc.AddSecretResponse.prototype.getService = function() {
-  return /** @type{?proto.iam.Service} */ (
-    jspb.Message.getWrapperField(this, ikipb_iki_iam_iam_pb.Service, 1));
+proto.servicesvc.AddSecretResponse.prototype.getSecret = function() {
+  return /** @type{?proto.iam.Secret} */ (
+    jspb.Message.getWrapperField(this, ikipb_iki_iam_iam_pb.Secret, 1));
 };
 
 
 /**
- * @param {?proto.iam.Service|undefined} value
+ * @param {?proto.iam.Secret|undefined} value
  * @return {!proto.servicesvc.AddSecretResponse} returns this
 */
-proto.servicesvc.AddSecretResponse.prototype.setService = function(value) {
+proto.servicesvc.AddSecretResponse.prototype.setSecret = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1646,8 +1646,8 @@ proto.servicesvc.AddSecretResponse.prototype.setService = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.servicesvc.AddSecretResponse} returns this
  */
-proto.servicesvc.AddSecretResponse.prototype.clearService = function() {
-  return this.setService(undefined);
+proto.servicesvc.AddSecretResponse.prototype.clearSecret = function() {
+  return this.setSecret(undefined);
 };
 
 
@@ -1655,7 +1655,7 @@ proto.servicesvc.AddSecretResponse.prototype.clearService = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.servicesvc.AddSecretResponse.prototype.hasService = function() {
+proto.servicesvc.AddSecretResponse.prototype.hasSecret = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 

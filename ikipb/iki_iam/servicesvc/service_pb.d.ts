@@ -164,10 +164,10 @@ export namespace AddSecretRequest {
 }
 
 export class AddSecretResponse extends jspb.Message {
-  getService(): ikipb_iki_iam_iam_pb.Service | undefined;
-  setService(value?: ikipb_iki_iam_iam_pb.Service): AddSecretResponse;
-  hasService(): boolean;
-  clearService(): AddSecretResponse;
+  getSecret(): ikipb_iki_iam_iam_pb.Secret | undefined;
+  setSecret(value?: ikipb_iki_iam_iam_pb.Secret): AddSecretResponse;
+  hasSecret(): boolean;
+  clearSecret(): AddSecretResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddSecretResponse.AsObject;
@@ -179,7 +179,7 @@ export class AddSecretResponse extends jspb.Message {
 
 export namespace AddSecretResponse {
   export type AsObject = {
-    service?: ikipb_iki_iam_iam_pb.Service.AsObject,
+    secret?: ikipb_iki_iam_iam_pb.Secret.AsObject,
   }
 }
 
