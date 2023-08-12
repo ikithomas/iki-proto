@@ -42,3 +42,9 @@ message Secret {
   int64 last_used_at = 3;
   bool active = 4;
 }
+
+enum EntityType {
+  ENTITY_TYPE_UNSPECIFIED = 0;
+  ENTITY_TYPE_USER = 1;
+  ENTITY_TYPE_SERVICE = 2;
+}

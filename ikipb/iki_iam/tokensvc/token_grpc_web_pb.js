@@ -19,6 +19,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var ikipb_iki_iam_iam_pb = require('../../../ikipb/iki_iam/iam_pb.js')
 const proto = {};
 proto.tokensvc = require('./token_pb.js');
 

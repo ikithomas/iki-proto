@@ -1,5 +1,6 @@
 import * as jspb from 'google-protobuf'
 
+import * as ikipb_iki_iam_iam_pb from '../../../ikipb/iki_iam/iam_pb';
 
 
 export class GetJwksetRequest extends jspb.Message {
@@ -40,6 +41,9 @@ export class AccessTokenRequest extends jspb.Message {
   getRefreshToken(): string;
   setRefreshToken(value: string): AccessTokenRequest;
 
+  getEntityType(): ikipb_iki_iam_iam_pb.EntityType;
+  setEntityType(value: ikipb_iki_iam_iam_pb.EntityType): AccessTokenRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AccessTokenRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AccessTokenRequest): AccessTokenRequest.AsObject;
@@ -51,6 +55,7 @@ export class AccessTokenRequest extends jspb.Message {
 export namespace AccessTokenRequest {
   export type AsObject = {
     refreshToken: string,
+    entityType: ikipb_iki_iam_iam_pb.EntityType,
   }
 }
 

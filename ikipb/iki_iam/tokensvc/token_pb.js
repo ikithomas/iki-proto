@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var ikipb_iki_iam_iam_pb = require('../../../ikipb/iki_iam/iam_pb.js');
+goog.object.extend(proto, ikipb_iki_iam_iam_pb);
 goog.exportSymbol('proto.tokensvc.AccessTokenRequest', null, global);
 goog.exportSymbol('proto.tokensvc.AccessTokenResponse', null, global);
 goog.exportSymbol('proto.tokensvc.GetJwksetRequest', null, global);
@@ -390,7 +392,8 @@ proto.tokensvc.AccessTokenRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.tokensvc.AccessTokenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    refreshToken: jspb.Message.getFieldWithDefault(msg, 1, "")
+    refreshToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    entityType: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -431,6 +434,10 @@ proto.tokensvc.AccessTokenRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setRefreshToken(value);
       break;
+    case 2:
+      var value = /** @type {!proto.iam.EntityType} */ (reader.readEnum());
+      msg.setEntityType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -467,6 +474,13 @@ proto.tokensvc.AccessTokenRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getEntityType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -485,6 +499,24 @@ proto.tokensvc.AccessTokenRequest.prototype.getRefreshToken = function() {
  */
 proto.tokensvc.AccessTokenRequest.prototype.setRefreshToken = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional iam.EntityType entity_type = 2;
+ * @return {!proto.iam.EntityType}
+ */
+proto.tokensvc.AccessTokenRequest.prototype.getEntityType = function() {
+  return /** @type {!proto.iam.EntityType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.iam.EntityType} value
+ * @return {!proto.tokensvc.AccessTokenRequest} returns this
+ */
+proto.tokensvc.AccessTokenRequest.prototype.setEntityType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 

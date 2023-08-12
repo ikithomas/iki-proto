@@ -134,3 +134,8 @@ export namespace Secret {
   }
 }
 
+export enum EntityType { 
+  ENTITY_TYPE_UNSPECIFIED = 0,
+  ENTITY_TYPE_USER = 1,
+  ENTITY_TYPE_SERVICE = 2,
+}

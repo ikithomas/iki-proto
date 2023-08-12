@@ -15,6 +15,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+goog.exportSymbol('proto.iam.EntityType', null, global);
 goog.exportSymbol('proto.iam.Group', null, global);
 goog.exportSymbol('proto.iam.Secret', null, global);
 goog.exportSymbol('proto.iam.Service', null, global);
@@ -1098,5 +1099,14 @@ proto.iam.Secret.prototype.setActive = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.iam.EntityType = {
+  ENTITY_TYPE_UNSPECIFIED: 0,
+  ENTITY_TYPE_USER: 1,
+  ENTITY_TYPE_SERVICE: 2
+};
 
 goog.object.extend(exports, proto.iam);
