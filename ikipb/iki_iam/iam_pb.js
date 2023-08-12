@@ -668,7 +668,7 @@ proto.iam.Service.prototype.toObject = function(opt_includeInstance) {
  */
 proto.iam.Service.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    clientId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secretList: jspb.Message.toObjectList(msg.getSecretList(),
     proto.iam.Secret.toObject, includeInstance),
     name: jspb.Message.getFieldWithDefault(msg, 3, "")
@@ -710,7 +710,7 @@ proto.iam.Service.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setClientId(value);
       break;
     case 2:
       var value = new proto.iam.Secret;
@@ -750,7 +750,7 @@ proto.iam.Service.prototype.serializeBinary = function() {
  */
 proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getClientId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -776,10 +776,10 @@ proto.iam.Service.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string id = 1;
+ * optional string client_id = 1;
  * @return {string}
  */
-proto.iam.Service.prototype.getId = function() {
+proto.iam.Service.prototype.getClientId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -788,7 +788,7 @@ proto.iam.Service.prototype.getId = function() {
  * @param {string} value
  * @return {!proto.iam.Service} returns this
  */
-proto.iam.Service.prototype.setId = function(value) {
+proto.iam.Service.prototype.setClientId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

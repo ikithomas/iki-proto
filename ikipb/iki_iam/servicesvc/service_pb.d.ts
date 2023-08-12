@@ -42,8 +42,8 @@ export namespace CreateResponse {
 }
 
 export class GetRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): GetRequest;
+  getClientId(): string;
+  setClientId(value: string): GetRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRequest.AsObject;
@@ -55,7 +55,7 @@ export class GetRequest extends jspb.Message {
 
 export namespace GetRequest {
   export type AsObject = {
-    id: string,
+    clientId: string,
   }
 }
 
@@ -114,8 +114,8 @@ export namespace ListResponse {
 }
 
 export class DeleteRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): DeleteRequest;
+  getClientId(): string;
+  setClientId(value: string): DeleteRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteRequest.AsObject;
@@ -127,7 +127,7 @@ export class DeleteRequest extends jspb.Message {
 
 export namespace DeleteRequest {
   export type AsObject = {
-    id: string,
+    clientId: string,
   }
 }
 
@@ -146,8 +146,8 @@ export namespace DeleteResponse {
 }
 
 export class AddSecretRequest extends jspb.Message {
-  getServiceId(): string;
-  setServiceId(value: string): AddSecretRequest;
+  getClientId(): string;
+  setClientId(value: string): AddSecretRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddSecretRequest.AsObject;
@@ -159,7 +159,7 @@ export class AddSecretRequest extends jspb.Message {
 
 export namespace AddSecretRequest {
   export type AsObject = {
-    serviceId: string,
+    clientId: string,
   }
 }
 

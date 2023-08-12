@@ -24,7 +24,7 @@ message Group {
 // Service is a microservice
 message Service {
   // client ID of the service.
-  string id = 1;
+  string client_id = 1;
 
   // secret to authenticate to.
   repeated Secret secret = 2;
