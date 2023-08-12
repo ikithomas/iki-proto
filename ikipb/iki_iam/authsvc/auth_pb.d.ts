@@ -78,11 +78,6 @@ export class ServiceLoginResponse extends jspb.Message {
   getRefreshToken(): string;
   setRefreshToken(value: string): ServiceLoginResponse;
 
-  getService(): ikipb_iki_iam_iam_pb.Service | undefined;
-  setService(value?: ikipb_iki_iam_iam_pb.Service): ServiceLoginResponse;
-  hasService(): boolean;
-  clearService(): ServiceLoginResponse;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceLoginResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceLoginResponse): ServiceLoginResponse.AsObject;
@@ -95,7 +90,6 @@ export namespace ServiceLoginResponse {
   export type AsObject = {
     accessToken: string,
     refreshToken: string,
-    service?: ikipb_iki_iam_iam_pb.Service.AsObject,
   }
 }
 

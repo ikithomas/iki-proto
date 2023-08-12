@@ -34,7 +34,6 @@ message ServiceLoginRequest {
 message ServiceLoginResponse {
   string access_token = 1;
   string refresh_token = 2;
-  iam.Service service = 3;
 }
 
 message SignoutRequest {}

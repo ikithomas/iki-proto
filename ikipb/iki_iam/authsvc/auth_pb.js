@@ -683,8 +683,7 @@ proto.authsvc.ServiceLoginResponse.prototype.toObject = function(opt_includeInst
 proto.authsvc.ServiceLoginResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     accessToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    refreshToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    service: (f = msg.getService()) && ikipb_iki_iam_iam_pb.Service.toObject(includeInstance, f)
+    refreshToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -729,11 +728,6 @@ proto.authsvc.ServiceLoginResponse.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setRefreshToken(value);
       break;
-    case 3:
-      var value = new ikipb_iki_iam_iam_pb.Service;
-      reader.readMessage(value,ikipb_iki_iam_iam_pb.Service.deserializeBinaryFromReader);
-      msg.setService(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -777,14 +771,6 @@ proto.authsvc.ServiceLoginResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getService();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      ikipb_iki_iam_iam_pb.Service.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -821,43 +807,6 @@ proto.authsvc.ServiceLoginResponse.prototype.getRefreshToken = function() {
  */
 proto.authsvc.ServiceLoginResponse.prototype.setRefreshToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional iam.Service service = 3;
- * @return {?proto.iam.Service}
- */
-proto.authsvc.ServiceLoginResponse.prototype.getService = function() {
-  return /** @type{?proto.iam.Service} */ (
-    jspb.Message.getWrapperField(this, ikipb_iki_iam_iam_pb.Service, 3));
-};
-
-
-/**
- * @param {?proto.iam.Service|undefined} value
- * @return {!proto.authsvc.ServiceLoginResponse} returns this
-*/
-proto.authsvc.ServiceLoginResponse.prototype.setService = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.authsvc.ServiceLoginResponse} returns this
- */
-proto.authsvc.ServiceLoginResponse.prototype.clearService = function() {
-  return this.setService(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.authsvc.ServiceLoginResponse.prototype.hasService = function() {
-  return jspb.Message.getField(this, 3) != null;
 };
 
 
