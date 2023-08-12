@@ -1822,7 +1822,7 @@ proto.servicesvc.DeactivateSecretResponse.prototype.toObject = function(opt_incl
  */
 proto.servicesvc.DeactivateSecretResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    service: (f = msg.getService()) && ikipb_iki_iam_iam_pb.Service.toObject(includeInstance, f)
+
   };
 
   if (includeInstance) {
@@ -1859,11 +1859,6 @@ proto.servicesvc.DeactivateSecretResponse.deserializeBinaryFromReader = function
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new ikipb_iki_iam_iam_pb.Service;
-      reader.readMessage(value,ikipb_iki_iam_iam_pb.Service.deserializeBinaryFromReader);
-      msg.setService(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1893,51 +1888,6 @@ proto.servicesvc.DeactivateSecretResponse.prototype.serializeBinary = function()
  */
 proto.servicesvc.DeactivateSecretResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getService();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      ikipb_iki_iam_iam_pb.Service.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional iam.Service service = 1;
- * @return {?proto.iam.Service}
- */
-proto.servicesvc.DeactivateSecretResponse.prototype.getService = function() {
-  return /** @type{?proto.iam.Service} */ (
-    jspb.Message.getWrapperField(this, ikipb_iki_iam_iam_pb.Service, 1));
-};
-
-
-/**
- * @param {?proto.iam.Service|undefined} value
- * @return {!proto.servicesvc.DeactivateSecretResponse} returns this
-*/
-proto.servicesvc.DeactivateSecretResponse.prototype.setService = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.servicesvc.DeactivateSecretResponse} returns this
- */
-proto.servicesvc.DeactivateSecretResponse.prototype.clearService = function() {
-  return this.setService(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.servicesvc.DeactivateSecretResponse.prototype.hasService = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

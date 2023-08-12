@@ -64,7 +64,6 @@ message DeactivateSecretRequest {
 }
 
 message DeactivateSecretResponse {
-  iam.Service service = 1;
 }
 
 message DeleteSecretRequest {

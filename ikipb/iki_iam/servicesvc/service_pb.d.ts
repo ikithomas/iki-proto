@@ -202,11 +202,6 @@ export namespace DeactivateSecretRequest {
 }
 
 export class DeactivateSecretResponse extends jspb.Message {
-  getService(): ikipb_iki_iam_iam_pb.Service | undefined;
-  setService(value?: ikipb_iki_iam_iam_pb.Service): DeactivateSecretResponse;
-  hasService(): boolean;
-  clearService(): DeactivateSecretResponse;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeactivateSecretResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeactivateSecretResponse): DeactivateSecretResponse.AsObject;
@@ -217,7 +212,6 @@ export class DeactivateSecretResponse extends jspb.Message {
 
 export namespace DeactivateSecretResponse {
   export type AsObject = {
-    service?: ikipb_iki_iam_iam_pb.Service.AsObject,
   }
 }
 
