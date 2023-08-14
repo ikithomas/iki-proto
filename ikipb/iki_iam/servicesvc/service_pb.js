@@ -1411,7 +1411,7 @@ proto.servicesvc.AddSecretRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.servicesvc.AddSecretRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1450,7 +1450,7 @@ proto.servicesvc.AddSecretRequest.deserializeBinaryFromReader = function(msg, re
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setClientId(value);
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -1481,7 +1481,7 @@ proto.servicesvc.AddSecretRequest.prototype.serializeBinary = function() {
  */
 proto.servicesvc.AddSecretRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1492,10 +1492,10 @@ proto.servicesvc.AddSecretRequest.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional string client_id = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.servicesvc.AddSecretRequest.prototype.getClientId = function() {
+proto.servicesvc.AddSecretRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1504,7 +1504,7 @@ proto.servicesvc.AddSecretRequest.prototype.getClientId = function() {
  * @param {string} value
  * @return {!proto.servicesvc.AddSecretRequest} returns this
  */
-proto.servicesvc.AddSecretRequest.prototype.setClientId = function(value) {
+proto.servicesvc.AddSecretRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

@@ -52,7 +52,7 @@ message DeleteResponse{
 }
 
 message AddSecretRequest {
-  string client_id = 1;
+  string id = 1;
 }
 
 message AddSecretResponse {

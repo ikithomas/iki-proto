@@ -146,8 +146,8 @@ export namespace DeleteResponse {
 }
 
 export class AddSecretRequest extends jspb.Message {
-  getClientId(): string;
-  setClientId(value: string): AddSecretRequest;
+  getId(): string;
+  setId(value: string): AddSecretRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddSecretRequest.AsObject;
@@ -159,7 +159,7 @@ export class AddSecretRequest extends jspb.Message {
 
 export namespace AddSecretRequest {
   export type AsObject = {
-    clientId: string,
+    id: string,
   }
 }
 
