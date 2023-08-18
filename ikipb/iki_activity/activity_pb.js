@@ -718,6 +718,7 @@ proto.activity.Stats.toObject = function(includeInstance, msg) {
     elevGain: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     elevLoss: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     elapsedSec: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    movingSec: jspb.Message.getFieldWithDefault(msg, 32, 0),
     avgCadence: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     avgHeartrate: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
     minHeartrate: jspb.Message.getFieldWithDefault(msg, 11, 0),
@@ -808,6 +809,10 @@ proto.activity.Stats.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setElapsedSec(value);
+      break;
+    case 32:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMovingSec(value);
       break;
     case 9:
       var value = /** @type {number} */ (reader.readDouble());
@@ -984,6 +989,13 @@ proto.activity.Stats.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt64(
       8,
+      f
+    );
+  }
+  f = message.getMovingSec();
+  if (f !== 0) {
+    writer.writeInt64(
+      32,
       f
     );
   }
@@ -1293,6 +1305,24 @@ proto.activity.Stats.prototype.getElapsedSec = function() {
  */
 proto.activity.Stats.prototype.setElapsedSec = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional int64 moving_sec = 32;
+ * @return {number}
+ */
+proto.activity.Stats.prototype.getMovingSec = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 32, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.activity.Stats} returns this
+ */
+proto.activity.Stats.prototype.setMovingSec = function(value) {
+  return jspb.Message.setProto3IntField(this, 32, value);
 };
 
 

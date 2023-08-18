@@ -27,6 +27,7 @@ message Stats {
 	float elev_gain = 6;
 	float elev_loss = 7;
 	int64 elapsed_sec = 8;
+	int64 moving_sec = 32;
 	double avg_cadence = 9;
 	double avg_heartrate = 10;
 	int32 min_heartrate = 11;

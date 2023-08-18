@@ -72,6 +72,9 @@ export class Stats extends jspb.Message {
   getElapsedSec(): number;
   setElapsedSec(value: number): Stats;
 
+  getMovingSec(): number;
+  setMovingSec(value: number): Stats;
+
   getAvgCadence(): number;
   setAvgCadence(value: number): Stats;
 
@@ -161,6 +164,7 @@ export namespace Stats {
     elevGain: number,
     elevLoss: number,
     elapsedSec: number,
+    movingSec: number,
     avgCadence: number,
     avgHeartrate: number,
     minHeartrate: number,
