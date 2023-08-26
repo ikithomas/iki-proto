@@ -1,5 +1,9 @@
 {
   "name": "iki-proto",
+  "version": "1.0.34",
+  "description": "",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",
     "google-protobuf": "^3.6.1",
@@ -9,12 +13,7 @@
     "ts-proto": "^1.156.7",
     "typescript": "^5.2.2"
   },
-  "version": "1.0.34",
-  "description": "",
-  "main": "js/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "files": [
+    "/dist"
+  ]
 }
