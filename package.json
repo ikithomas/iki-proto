@@ -2,7 +2,8 @@
   "name": "iki-proto",
   "dependencies": {
     "google-protobuf": "^3.6.1",
-    "grpc-web": "~1.0.7"
+    "grpc-web": "~1.0.7",
+    "ts-proto": "^1.156.7"
   },
   "version": "1.0.34",
   "description": "",

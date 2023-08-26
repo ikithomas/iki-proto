@@ -11,6 +11,9 @@ Prerequisite
 brew install protobuf@3
 brew link --overwrite protobuf@3
 brew install protoc-gen-grpc-web
+
+# ts proto
+npm install ts-proto
 ```
 
 ```bash
