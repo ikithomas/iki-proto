@@ -1,9 +1,9 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Empty } from "../../../google/protobuf/empty";
-import Long = require("long");
 
 export const protobufPackage = "route";
 
@@ -349,12 +349,12 @@ export const ListResponse = {
   },
 };
 
-export interface RouteService {
+export interface RouteSvc {
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   Sync(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty>;
 }
 
-export class RouteServiceClientImpl implements RouteService {
+export class RouteSvcClientImpl implements RouteSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -364,19 +364,19 @@ export class RouteServiceClientImpl implements RouteService {
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(RouteServiceListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(RouteSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   Sync(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty> {
-    return this.rpc.unary(RouteServiceSyncDesc, Empty.fromPartial(request), metadata);
+    return this.rpc.unary(RouteSvcSyncDesc, Empty.fromPartial(request), metadata);
   }
 }
 
-export const RouteServiceDesc = { serviceName: "route.RouteService" };
+export const RouteSvcDesc = { serviceName: "route.RouteSvc" };
 
-export const RouteServiceListDesc: UnaryMethodDefinitionish = {
+export const RouteSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: RouteServiceDesc,
+  service: RouteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -397,9 +397,9 @@ export const RouteServiceListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const RouteServiceSyncDesc: UnaryMethodDefinitionish = {
+export const RouteSvcSyncDesc: UnaryMethodDefinitionish = {
   methodName: "Sync",
-  service: RouteServiceDesc,
+  service: RouteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

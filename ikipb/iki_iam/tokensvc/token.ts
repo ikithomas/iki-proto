@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import _m0 from "protobufjs/minimal";
 import { EntityType, entityTypeFromJSON, entityTypeToJSON } from "../iam";
 
 export const protobufPackage = "tokensvc";
@@ -253,12 +253,12 @@ export const AccessTokenResponse = {
   },
 };
 
-export interface Token {
+export interface TokenSvc {
   GetJwkset(request: DeepPartial<GetJwksetRequest>, metadata?: grpc.Metadata): Promise<GetJwksetResponse>;
   AccessToken(request: DeepPartial<AccessTokenRequest>, metadata?: grpc.Metadata): Promise<AccessTokenResponse>;
 }
 
-export class TokenClientImpl implements Token {
+export class TokenSvcClientImpl implements TokenSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -268,19 +268,19 @@ export class TokenClientImpl implements Token {
   }
 
   GetJwkset(request: DeepPartial<GetJwksetRequest>, metadata?: grpc.Metadata): Promise<GetJwksetResponse> {
-    return this.rpc.unary(TokenGetJwksetDesc, GetJwksetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(TokenSvcGetJwksetDesc, GetJwksetRequest.fromPartial(request), metadata);
   }
 
   AccessToken(request: DeepPartial<AccessTokenRequest>, metadata?: grpc.Metadata): Promise<AccessTokenResponse> {
-    return this.rpc.unary(TokenAccessTokenDesc, AccessTokenRequest.fromPartial(request), metadata);
+    return this.rpc.unary(TokenSvcAccessTokenDesc, AccessTokenRequest.fromPartial(request), metadata);
   }
 }
 
-export const TokenDesc = { serviceName: "tokensvc.Token" };
+export const TokenSvcDesc = { serviceName: "tokensvc.TokenSvc" };
 
-export const TokenGetJwksetDesc: UnaryMethodDefinitionish = {
+export const TokenSvcGetJwksetDesc: UnaryMethodDefinitionish = {
   methodName: "GetJwkset",
-  service: TokenDesc,
+  service: TokenSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -301,9 +301,9 @@ export const TokenGetJwksetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const TokenAccessTokenDesc: UnaryMethodDefinitionish = {
+export const TokenSvcAccessTokenDesc: UnaryMethodDefinitionish = {
   methodName: "AccessToken",
-  service: TokenDesc,
+  service: TokenSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

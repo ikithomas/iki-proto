@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "es2015",
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "outDir": "./dist",
+    "lib": [
+      "ES2016",
+      "DOM",
+    ]
+  },
+  "include": [
+    "ikipb/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

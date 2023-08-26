@@ -6,7 +6,7 @@ option go_package = "/authsvc";
 
 package authsvc;
 
-service Auth {
+service AuthSvc {
   // Login or signup with google.
   // If a user is not yet created, a new user account will be created associated with that email address.
   rpc GoogleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}

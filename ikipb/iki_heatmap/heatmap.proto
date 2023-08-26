@@ -4,7 +4,7 @@ option go_package = "/heatmap";
 
 package heatmap;
 
-service HeatmapService {
+service HeatmapSvc {
   rpc Get (GetRequest) returns (stream Track) {}
 }
 

@@ -18,27 +18,27 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// HeatmapServiceClient is the client API for HeatmapService service.
+// HeatmapSvcClient is the client API for HeatmapSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type HeatmapServiceClient interface {
-	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (HeatmapService_GetClient, error)
+type HeatmapSvcClient interface {
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (HeatmapSvc_GetClient, error)
 }
 
-type heatmapServiceClient struct {
+type heatmapSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewHeatmapServiceClient(cc grpc.ClientConnInterface) HeatmapServiceClient {
-	return &heatmapServiceClient{cc}
+func NewHeatmapSvcClient(cc grpc.ClientConnInterface) HeatmapSvcClient {
+	return &heatmapSvcClient{cc}
 }
 
-func (c *heatmapServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (HeatmapService_GetClient, error) {
-	stream, err := c.cc.NewStream(ctx, &HeatmapService_ServiceDesc.Streams[0], "/heatmap.HeatmapService/Get", opts...)
+func (c *heatmapSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (HeatmapSvc_GetClient, error) {
+	stream, err := c.cc.NewStream(ctx, &HeatmapSvc_ServiceDesc.Streams[0], "/heatmap.HeatmapSvc/Get", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &heatmapServiceGetClient{stream}
+	x := &heatmapSvcGetClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -48,16 +48,16 @@ func (c *heatmapServiceClient) Get(ctx context.Context, in *GetRequest, opts ...
 	return x, nil
 }
 
-type HeatmapService_GetClient interface {
+type HeatmapSvc_GetClient interface {
 	Recv() (*Track, error)
 	grpc.ClientStream
 }
 
-type heatmapServiceGetClient struct {
+type heatmapSvcGetClient struct {
 	grpc.ClientStream
 }
 
-func (x *heatmapServiceGetClient) Recv() (*Track, error) {
+func (x *heatmapSvcGetClient) Recv() (*Track, error) {
 	m := new(Track)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -65,66 +65,66 @@ func (x *heatmapServiceGetClient) Recv() (*Track, error) {
 	return m, nil
 }
 
-// HeatmapServiceServer is the server API for HeatmapService service.
-// All implementations must embed UnimplementedHeatmapServiceServer
+// HeatmapSvcServer is the server API for HeatmapSvc service.
+// All implementations must embed UnimplementedHeatmapSvcServer
 // for forward compatibility
-type HeatmapServiceServer interface {
-	Get(*GetRequest, HeatmapService_GetServer) error
-	mustEmbedUnimplementedHeatmapServiceServer()
+type HeatmapSvcServer interface {
+	Get(*GetRequest, HeatmapSvc_GetServer) error
+	mustEmbedUnimplementedHeatmapSvcServer()
 }
 
-// UnimplementedHeatmapServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedHeatmapServiceServer struct {
+// UnimplementedHeatmapSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedHeatmapSvcServer struct {
 }
 
-func (UnimplementedHeatmapServiceServer) Get(*GetRequest, HeatmapService_GetServer) error {
+func (UnimplementedHeatmapSvcServer) Get(*GetRequest, HeatmapSvc_GetServer) error {
 	return status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedHeatmapServiceServer) mustEmbedUnimplementedHeatmapServiceServer() {}
+func (UnimplementedHeatmapSvcServer) mustEmbedUnimplementedHeatmapSvcServer() {}
 
-// UnsafeHeatmapServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to HeatmapServiceServer will
+// UnsafeHeatmapSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HeatmapSvcServer will
 // result in compilation errors.
-type UnsafeHeatmapServiceServer interface {
-	mustEmbedUnimplementedHeatmapServiceServer()
+type UnsafeHeatmapSvcServer interface {
+	mustEmbedUnimplementedHeatmapSvcServer()
 }
 
-func RegisterHeatmapServiceServer(s grpc.ServiceRegistrar, srv HeatmapServiceServer) {
-	s.RegisterService(&HeatmapService_ServiceDesc, srv)
+func RegisterHeatmapSvcServer(s grpc.ServiceRegistrar, srv HeatmapSvcServer) {
+	s.RegisterService(&HeatmapSvc_ServiceDesc, srv)
 }
 
-func _HeatmapService_Get_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _HeatmapSvc_Get_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(GetRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(HeatmapServiceServer).Get(m, &heatmapServiceGetServer{stream})
+	return srv.(HeatmapSvcServer).Get(m, &heatmapSvcGetServer{stream})
 }
 
-type HeatmapService_GetServer interface {
+type HeatmapSvc_GetServer interface {
 	Send(*Track) error
 	grpc.ServerStream
 }
 
-type heatmapServiceGetServer struct {
+type heatmapSvcGetServer struct {
 	grpc.ServerStream
 }
 
-func (x *heatmapServiceGetServer) Send(m *Track) error {
+func (x *heatmapSvcGetServer) Send(m *Track) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// HeatmapService_ServiceDesc is the grpc.ServiceDesc for HeatmapService service.
+// HeatmapSvc_ServiceDesc is the grpc.ServiceDesc for HeatmapSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var HeatmapService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "heatmap.HeatmapService",
-	HandlerType: (*HeatmapServiceServer)(nil),
+var HeatmapSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "heatmap.HeatmapSvc",
+	HandlerType: (*HeatmapSvcServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Get",
-			Handler:       _HeatmapService_Get_Handler,
+			Handler:       _HeatmapSvc_Get_Handler,
 			ServerStreams: true,
 		},
 	},

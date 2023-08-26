@@ -6,7 +6,7 @@ option go_package = "/usersvc";
 
 package usersvc;
 
-service User {
+service UserSvc {
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
 
   // Adminitrator or owner only

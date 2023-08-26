@@ -1,10 +1,10 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Observable } from "rxjs";
 import { share } from "rxjs/operators";
-import Long = require("long");
 
 export const protobufPackage = "gpx";
 
@@ -556,12 +556,12 @@ export const Point = {
   },
 };
 
-export interface GpxService {
+export interface GpxSvc {
   GetGpx(request: DeepPartial<GetGpxRequest>, metadata?: grpc.Metadata): Observable<Chunk>;
   GetConciseGpx(request: DeepPartial<GetGpxRequest>, metadata?: grpc.Metadata): Promise<GetConciseGpxResponse>;
 }
 
-export class GpxServiceClientImpl implements GpxService {
+export class GpxSvcClientImpl implements GpxSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -571,19 +571,19 @@ export class GpxServiceClientImpl implements GpxService {
   }
 
   GetGpx(request: DeepPartial<GetGpxRequest>, metadata?: grpc.Metadata): Observable<Chunk> {
-    return this.rpc.invoke(GpxServiceGetGpxDesc, GetGpxRequest.fromPartial(request), metadata);
+    return this.rpc.invoke(GpxSvcGetGpxDesc, GetGpxRequest.fromPartial(request), metadata);
   }
 
   GetConciseGpx(request: DeepPartial<GetGpxRequest>, metadata?: grpc.Metadata): Promise<GetConciseGpxResponse> {
-    return this.rpc.unary(GpxServiceGetConciseGpxDesc, GetGpxRequest.fromPartial(request), metadata);
+    return this.rpc.unary(GpxSvcGetConciseGpxDesc, GetGpxRequest.fromPartial(request), metadata);
   }
 }
 
-export const GpxServiceDesc = { serviceName: "gpx.GpxService" };
+export const GpxSvcDesc = { serviceName: "gpx.GpxSvc" };
 
-export const GpxServiceGetGpxDesc: UnaryMethodDefinitionish = {
+export const GpxSvcGetGpxDesc: UnaryMethodDefinitionish = {
   methodName: "GetGpx",
-  service: GpxServiceDesc,
+  service: GpxSvcDesc,
   requestStream: false,
   responseStream: true,
   requestType: {
@@ -604,9 +604,9 @@ export const GpxServiceGetGpxDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const GpxServiceGetConciseGpxDesc: UnaryMethodDefinitionish = {
+export const GpxSvcGetConciseGpxDesc: UnaryMethodDefinitionish = {
   methodName: "GetConciseGpx",
-  service: GpxServiceDesc,
+  service: GpxSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

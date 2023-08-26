@@ -4,7 +4,7 @@ option go_package = "/activity";
 
 package gpx;
 
-service GpxService {
+service GpxSvc {
   rpc GetGpx (GetGpxRequest) returns (stream Chunk) {}
   rpc GetConciseGpx (GetGpxRequest) returns (GetConciseGpxResponse) {}
 }

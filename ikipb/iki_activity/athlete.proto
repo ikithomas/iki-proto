@@ -16,7 +16,7 @@ message FitnessMetric {
   bool male = 7;
 }
 
-service AthleteService {
+service AthleteSvc {
   rpc SetFitnessMetric(SetFitnessMetricRequest) returns (google.protobuf.Empty) {}
   rpc GetFitnessMetric(google.protobuf.Empty) returns (GetFitnessMetricResponse) {}
 }

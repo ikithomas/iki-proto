@@ -6,7 +6,7 @@ option go_package = "/tokensvc";
 
 package tokensvc;
 
-service Token {
+service TokenSvc {
   rpc GetJwkset(GetJwksetRequest) returns (GetJwksetResponse) {}
   rpc AccessToken(AccessTokenRequest) returns (AccessTokenResponse) {}
 }

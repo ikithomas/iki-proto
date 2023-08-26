@@ -19,122 +19,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// StopServiceClient is the client API for StopService service.
+// StopSvcClient is the client API for StopSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type StopServiceClient interface {
+type StopSvcClient interface {
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type stopServiceClient struct {
+type stopSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewStopServiceClient(cc grpc.ClientConnInterface) StopServiceClient {
-	return &stopServiceClient{cc}
+func NewStopSvcClient(cc grpc.ClientConnInterface) StopSvcClient {
+	return &stopSvcClient{cc}
 }
 
-func (c *stopServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *stopSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/stop.StopService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stop.StopSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *stopServiceClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *stopSvcClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/stop.StopService/Sync", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stop.StopSvc/Sync", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// StopServiceServer is the server API for StopService service.
-// All implementations must embed UnimplementedStopServiceServer
+// StopSvcServer is the server API for StopSvc service.
+// All implementations must embed UnimplementedStopSvcServer
 // for forward compatibility
-type StopServiceServer interface {
+type StopSvcServer interface {
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	mustEmbedUnimplementedStopServiceServer()
+	mustEmbedUnimplementedStopSvcServer()
 }
 
-// UnimplementedStopServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedStopServiceServer struct {
+// UnimplementedStopSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedStopSvcServer struct {
 }
 
-func (UnimplementedStopServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedStopSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedStopServiceServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedStopSvcServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
-func (UnimplementedStopServiceServer) mustEmbedUnimplementedStopServiceServer() {}
+func (UnimplementedStopSvcServer) mustEmbedUnimplementedStopSvcServer() {}
 
-// UnsafeStopServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to StopServiceServer will
+// UnsafeStopSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StopSvcServer will
 // result in compilation errors.
-type UnsafeStopServiceServer interface {
-	mustEmbedUnimplementedStopServiceServer()
+type UnsafeStopSvcServer interface {
+	mustEmbedUnimplementedStopSvcServer()
 }
 
-func RegisterStopServiceServer(s grpc.ServiceRegistrar, srv StopServiceServer) {
-	s.RegisterService(&StopService_ServiceDesc, srv)
+func RegisterStopSvcServer(s grpc.ServiceRegistrar, srv StopSvcServer) {
+	s.RegisterService(&StopSvc_ServiceDesc, srv)
 }
 
-func _StopService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StopSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StopServiceServer).List(ctx, in)
+		return srv.(StopSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stop.StopService/List",
+		FullMethod: "/stop.StopSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StopServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(StopSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StopService_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StopSvc_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StopServiceServer).Sync(ctx, in)
+		return srv.(StopSvcServer).Sync(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stop.StopService/Sync",
+		FullMethod: "/stop.StopSvc/Sync",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StopServiceServer).Sync(ctx, req.(*emptypb.Empty))
+		return srv.(StopSvcServer).Sync(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// StopService_ServiceDesc is the grpc.ServiceDesc for StopService service.
+// StopSvc_ServiceDesc is the grpc.ServiceDesc for StopSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var StopService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "stop.StopService",
-	HandlerType: (*StopServiceServer)(nil),
+var StopSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "stop.StopSvc",
+	HandlerType: (*StopSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "List",
-			Handler:    _StopService_List_Handler,
+			Handler:    _StopSvc_List_Handler,
 		},
 		{
 			MethodName: "Sync",
-			Handler:    _StopService_Sync_Handler,
+			Handler:    _StopSvc_Sync_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

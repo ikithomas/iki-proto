@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import _m0 from "protobufjs/minimal";
 import { Observable } from "rxjs";
 import { share } from "rxjs/operators";
 
@@ -175,12 +175,12 @@ export const HealthCheckResponse = {
   },
 };
 
-export interface Health {
+export interface HealthSvc {
   Check(request: DeepPartial<HealthCheckRequest>, metadata?: grpc.Metadata): Promise<HealthCheckResponse>;
   Watch(request: DeepPartial<HealthCheckRequest>, metadata?: grpc.Metadata): Observable<HealthCheckResponse>;
 }
 
-export class HealthClientImpl implements Health {
+export class HealthSvcClientImpl implements HealthSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -190,19 +190,19 @@ export class HealthClientImpl implements Health {
   }
 
   Check(request: DeepPartial<HealthCheckRequest>, metadata?: grpc.Metadata): Promise<HealthCheckResponse> {
-    return this.rpc.unary(HealthCheckDesc, HealthCheckRequest.fromPartial(request), metadata);
+    return this.rpc.unary(HealthSvcCheckDesc, HealthCheckRequest.fromPartial(request), metadata);
   }
 
   Watch(request: DeepPartial<HealthCheckRequest>, metadata?: grpc.Metadata): Observable<HealthCheckResponse> {
-    return this.rpc.invoke(HealthWatchDesc, HealthCheckRequest.fromPartial(request), metadata);
+    return this.rpc.invoke(HealthSvcWatchDesc, HealthCheckRequest.fromPartial(request), metadata);
   }
 }
 
-export const HealthDesc = { serviceName: "health.Health" };
+export const HealthSvcDesc = { serviceName: "health.HealthSvc" };
 
-export const HealthCheckDesc: UnaryMethodDefinitionish = {
+export const HealthSvcCheckDesc: UnaryMethodDefinitionish = {
   methodName: "Check",
-  service: HealthDesc,
+  service: HealthSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -223,9 +223,9 @@ export const HealthCheckDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const HealthWatchDesc: UnaryMethodDefinitionish = {
+export const HealthSvcWatchDesc: UnaryMethodDefinitionish = {
   methodName: "Watch",
-  service: HealthDesc,
+  service: HealthSvcDesc,
   requestStream: false,
   responseStream: true,
   requestType: {

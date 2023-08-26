@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// AuthClient is the client API for Auth service.
+// AuthSvcClient is the client API for AuthSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AuthClient interface {
+type AuthSvcClient interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
 	GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
@@ -29,151 +29,151 @@ type AuthClient interface {
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
 }
 
-type authClient struct {
+type authSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
-	return &authClient{cc}
+func NewAuthSvcClient(cc grpc.ClientConnInterface) AuthSvcClient {
+	return &authSvcClient{cc}
 }
 
-func (c *authClient) GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error) {
+func (c *authSvcClient) GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error) {
 	out := new(GoogleLoginResponse)
-	err := c.cc.Invoke(ctx, "/authsvc.Auth/GoogleLogin", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/authsvc.AuthSvc/GoogleLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error) {
+func (c *authSvcClient) ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error) {
 	out := new(ServiceLoginResponse)
-	err := c.cc.Invoke(ctx, "/authsvc.Auth/ServiceLogin", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/authsvc.AuthSvc/ServiceLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error) {
+func (c *authSvcClient) Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error) {
 	out := new(SignoutResponse)
-	err := c.cc.Invoke(ctx, "/authsvc.Auth/Signout", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/authsvc.AuthSvc/Signout", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthServer is the server API for Auth service.
-// All implementations must embed UnimplementedAuthServer
+// AuthSvcServer is the server API for AuthSvc service.
+// All implementations must embed UnimplementedAuthSvcServer
 // for forward compatibility
-type AuthServer interface {
+type AuthSvcServer interface {
 	// Login or signup with google.
 	// If a user is not yet created, a new user account will be created associated with that email address.
 	GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error)
 	ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
-	mustEmbedUnimplementedAuthServer()
+	mustEmbedUnimplementedAuthSvcServer()
 }
 
-// UnimplementedAuthServer must be embedded to have forward compatible implementations.
-type UnimplementedAuthServer struct {
+// UnimplementedAuthSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedAuthSvcServer struct {
 }
 
-func (UnimplementedAuthServer) GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error) {
+func (UnimplementedAuthSvcServer) GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedAuthServer) ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error) {
+func (UnimplementedAuthSvcServer) ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServiceLogin not implemented")
 }
-func (UnimplementedAuthServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
+func (UnimplementedAuthSvcServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signout not implemented")
 }
-func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
+func (UnimplementedAuthSvcServer) mustEmbedUnimplementedAuthSvcServer() {}
 
-// UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AuthServer will
+// UnsafeAuthSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthSvcServer will
 // result in compilation errors.
-type UnsafeAuthServer interface {
-	mustEmbedUnimplementedAuthServer()
+type UnsafeAuthSvcServer interface {
+	mustEmbedUnimplementedAuthSvcServer()
 }
 
-func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
-	s.RegisterService(&Auth_ServiceDesc, srv)
+func RegisterAuthSvcServer(s grpc.ServiceRegistrar, srv AuthSvcServer) {
+	s.RegisterService(&AuthSvc_ServiceDesc, srv)
 }
 
-func _Auth_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthSvc_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GoogleLoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GoogleLogin(ctx, in)
+		return srv.(AuthSvcServer).GoogleLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/authsvc.Auth/GoogleLogin",
+		FullMethod: "/authsvc.AuthSvc/GoogleLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GoogleLogin(ctx, req.(*GoogleLoginRequest))
+		return srv.(AuthSvcServer).GoogleLogin(ctx, req.(*GoogleLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_ServiceLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthSvc_ServiceLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ServiceLoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).ServiceLogin(ctx, in)
+		return srv.(AuthSvcServer).ServiceLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/authsvc.Auth/ServiceLogin",
+		FullMethod: "/authsvc.AuthSvc/ServiceLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ServiceLogin(ctx, req.(*ServiceLoginRequest))
+		return srv.(AuthSvcServer).ServiceLogin(ctx, req.(*ServiceLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Signout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthSvc_Signout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Signout(ctx, in)
+		return srv.(AuthSvcServer).Signout(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/authsvc.Auth/Signout",
+		FullMethod: "/authsvc.AuthSvc/Signout",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Signout(ctx, req.(*SignoutRequest))
+		return srv.(AuthSvcServer).Signout(ctx, req.(*SignoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
+// AuthSvc_ServiceDesc is the grpc.ServiceDesc for AuthSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "authsvc.Auth",
-	HandlerType: (*AuthServer)(nil),
+var AuthSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "authsvc.AuthSvc",
+	HandlerType: (*AuthSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GoogleLogin",
-			Handler:    _Auth_GoogleLogin_Handler,
+			Handler:    _AuthSvc_GoogleLogin_Handler,
 		},
 		{
 			MethodName: "ServiceLogin",
-			Handler:    _Auth_ServiceLogin_Handler,
+			Handler:    _AuthSvc_ServiceLogin_Handler,
 		},
 		{
 			MethodName: "Signout",
-			Handler:    _Auth_Signout_Handler,
+			Handler:    _AuthSvc_Signout_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

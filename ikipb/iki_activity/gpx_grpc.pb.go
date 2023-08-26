@@ -18,28 +18,28 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// GpxServiceClient is the client API for GpxService service.
+// GpxSvcClient is the client API for GpxSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GpxServiceClient interface {
-	GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxService_GetGpxClient, error)
+type GpxSvcClient interface {
+	GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxSvc_GetGpxClient, error)
 	GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetConciseGpxResponse, error)
 }
 
-type gpxServiceClient struct {
+type gpxSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGpxServiceClient(cc grpc.ClientConnInterface) GpxServiceClient {
-	return &gpxServiceClient{cc}
+func NewGpxSvcClient(cc grpc.ClientConnInterface) GpxSvcClient {
+	return &gpxSvcClient{cc}
 }
 
-func (c *gpxServiceClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxService_GetGpxClient, error) {
-	stream, err := c.cc.NewStream(ctx, &GpxService_ServiceDesc.Streams[0], "/gpx.GpxService/GetGpx", opts...)
+func (c *gpxSvcClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (GpxSvc_GetGpxClient, error) {
+	stream, err := c.cc.NewStream(ctx, &GpxSvc_ServiceDesc.Streams[0], "/gpx.GpxSvc/GetGpx", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gpxServiceGetGpxClient{stream}
+	x := &gpxSvcGetGpxClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -49,16 +49,16 @@ func (c *gpxServiceClient) GetGpx(ctx context.Context, in *GetGpxRequest, opts .
 	return x, nil
 }
 
-type GpxService_GetGpxClient interface {
+type GpxSvc_GetGpxClient interface {
 	Recv() (*Chunk, error)
 	grpc.ClientStream
 }
 
-type gpxServiceGetGpxClient struct {
+type gpxSvcGetGpxClient struct {
 	grpc.ClientStream
 }
 
-func (x *gpxServiceGetGpxClient) Recv() (*Chunk, error) {
+func (x *gpxSvcGetGpxClient) Recv() (*Chunk, error) {
 	m := new(Chunk)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -66,102 +66,102 @@ func (x *gpxServiceGetGpxClient) Recv() (*Chunk, error) {
 	return m, nil
 }
 
-func (c *gpxServiceClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetConciseGpxResponse, error) {
+func (c *gpxSvcClient) GetConciseGpx(ctx context.Context, in *GetGpxRequest, opts ...grpc.CallOption) (*GetConciseGpxResponse, error) {
 	out := new(GetConciseGpxResponse)
-	err := c.cc.Invoke(ctx, "/gpx.GpxService/GetConciseGpx", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gpx.GpxSvc/GetConciseGpx", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GpxServiceServer is the server API for GpxService service.
-// All implementations must embed UnimplementedGpxServiceServer
+// GpxSvcServer is the server API for GpxSvc service.
+// All implementations must embed UnimplementedGpxSvcServer
 // for forward compatibility
-type GpxServiceServer interface {
-	GetGpx(*GetGpxRequest, GpxService_GetGpxServer) error
+type GpxSvcServer interface {
+	GetGpx(*GetGpxRequest, GpxSvc_GetGpxServer) error
 	GetConciseGpx(context.Context, *GetGpxRequest) (*GetConciseGpxResponse, error)
-	mustEmbedUnimplementedGpxServiceServer()
+	mustEmbedUnimplementedGpxSvcServer()
 }
 
-// UnimplementedGpxServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedGpxServiceServer struct {
+// UnimplementedGpxSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedGpxSvcServer struct {
 }
 
-func (UnimplementedGpxServiceServer) GetGpx(*GetGpxRequest, GpxService_GetGpxServer) error {
+func (UnimplementedGpxSvcServer) GetGpx(*GetGpxRequest, GpxSvc_GetGpxServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetGpx not implemented")
 }
-func (UnimplementedGpxServiceServer) GetConciseGpx(context.Context, *GetGpxRequest) (*GetConciseGpxResponse, error) {
+func (UnimplementedGpxSvcServer) GetConciseGpx(context.Context, *GetGpxRequest) (*GetConciseGpxResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConciseGpx not implemented")
 }
-func (UnimplementedGpxServiceServer) mustEmbedUnimplementedGpxServiceServer() {}
+func (UnimplementedGpxSvcServer) mustEmbedUnimplementedGpxSvcServer() {}
 
-// UnsafeGpxServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GpxServiceServer will
+// UnsafeGpxSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GpxSvcServer will
 // result in compilation errors.
-type UnsafeGpxServiceServer interface {
-	mustEmbedUnimplementedGpxServiceServer()
+type UnsafeGpxSvcServer interface {
+	mustEmbedUnimplementedGpxSvcServer()
 }
 
-func RegisterGpxServiceServer(s grpc.ServiceRegistrar, srv GpxServiceServer) {
-	s.RegisterService(&GpxService_ServiceDesc, srv)
+func RegisterGpxSvcServer(s grpc.ServiceRegistrar, srv GpxSvcServer) {
+	s.RegisterService(&GpxSvc_ServiceDesc, srv)
 }
 
-func _GpxService_GetGpx_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _GpxSvc_GetGpx_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(GetGpxRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(GpxServiceServer).GetGpx(m, &gpxServiceGetGpxServer{stream})
+	return srv.(GpxSvcServer).GetGpx(m, &gpxSvcGetGpxServer{stream})
 }
 
-type GpxService_GetGpxServer interface {
+type GpxSvc_GetGpxServer interface {
 	Send(*Chunk) error
 	grpc.ServerStream
 }
 
-type gpxServiceGetGpxServer struct {
+type gpxSvcGetGpxServer struct {
 	grpc.ServerStream
 }
 
-func (x *gpxServiceGetGpxServer) Send(m *Chunk) error {
+func (x *gpxSvcGetGpxServer) Send(m *Chunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _GpxService_GetConciseGpx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GpxSvc_GetConciseGpx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGpxRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GpxServiceServer).GetConciseGpx(ctx, in)
+		return srv.(GpxSvcServer).GetConciseGpx(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gpx.GpxService/GetConciseGpx",
+		FullMethod: "/gpx.GpxSvc/GetConciseGpx",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GpxServiceServer).GetConciseGpx(ctx, req.(*GetGpxRequest))
+		return srv.(GpxSvcServer).GetConciseGpx(ctx, req.(*GetGpxRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GpxService_ServiceDesc is the grpc.ServiceDesc for GpxService service.
+// GpxSvc_ServiceDesc is the grpc.ServiceDesc for GpxSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GpxService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gpx.GpxService",
-	HandlerType: (*GpxServiceServer)(nil),
+var GpxSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "gpx.GpxSvc",
+	HandlerType: (*GpxSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetConciseGpx",
-			Handler:    _GpxService_GetConciseGpx_Handler,
+			Handler:    _GpxSvc_GetConciseGpx_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetGpx",
-			Handler:       _GpxService_GetGpx_Handler,
+			Handler:       _GpxSvc_GetGpx_Handler,
 			ServerStreams: true,
 		},
 	},

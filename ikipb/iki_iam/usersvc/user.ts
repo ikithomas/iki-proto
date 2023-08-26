@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
-import { User as User1 } from "../iam";
+import _m0 from "protobufjs/minimal";
+import { User } from "../iam";
 
 export const protobufPackage = "usersvc";
 
@@ -10,7 +10,7 @@ export interface ProfileRequest {
 }
 
 export interface ProfileResponse {
-  user: User1 | undefined;
+  user: User | undefined;
 }
 
 export interface GetRequest {
@@ -18,14 +18,14 @@ export interface GetRequest {
 }
 
 export interface GetResponse {
-  user: User1 | undefined;
+  user: User | undefined;
 }
 
 export interface ListRequest {
 }
 
 export interface ListResponse {
-  users: User1[];
+  users: User[];
 }
 
 export interface DeleteRequest {
@@ -109,7 +109,7 @@ function createBaseProfileResponse(): ProfileResponse {
 export const ProfileResponse = {
   encode(message: ProfileResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.user !== undefined) {
-      User1.encode(message.user, writer.uint32(10).fork()).ldelim();
+      User.encode(message.user, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -126,7 +126,7 @@ export const ProfileResponse = {
             break;
           }
 
-          message.user = User1.decode(reader, reader.uint32());
+          message.user = User.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -138,13 +138,13 @@ export const ProfileResponse = {
   },
 
   fromJSON(object: any): ProfileResponse {
-    return { user: isSet(object.user) ? User1.fromJSON(object.user) : undefined };
+    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
   },
 
   toJSON(message: ProfileResponse): unknown {
     const obj: any = {};
     if (message.user !== undefined) {
-      obj.user = User1.toJSON(message.user);
+      obj.user = User.toJSON(message.user);
     }
     return obj;
   },
@@ -154,7 +154,7 @@ export const ProfileResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ProfileResponse>, I>>(object: I): ProfileResponse {
     const message = createBaseProfileResponse();
-    message.user = (object.user !== undefined && object.user !== null) ? User1.fromPartial(object.user) : undefined;
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
     return message;
   },
 };
@@ -223,7 +223,7 @@ function createBaseGetResponse(): GetResponse {
 export const GetResponse = {
   encode(message: GetResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.user !== undefined) {
-      User1.encode(message.user, writer.uint32(10).fork()).ldelim();
+      User.encode(message.user, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -240,7 +240,7 @@ export const GetResponse = {
             break;
           }
 
-          message.user = User1.decode(reader, reader.uint32());
+          message.user = User.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -252,13 +252,13 @@ export const GetResponse = {
   },
 
   fromJSON(object: any): GetResponse {
-    return { user: isSet(object.user) ? User1.fromJSON(object.user) : undefined };
+    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
   },
 
   toJSON(message: GetResponse): unknown {
     const obj: any = {};
     if (message.user !== undefined) {
-      obj.user = User1.toJSON(message.user);
+      obj.user = User.toJSON(message.user);
     }
     return obj;
   },
@@ -268,7 +268,7 @@ export const GetResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetResponse>, I>>(object: I): GetResponse {
     const message = createBaseGetResponse();
-    message.user = (object.user !== undefined && object.user !== null) ? User1.fromPartial(object.user) : undefined;
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
     return message;
   },
 };
@@ -323,7 +323,7 @@ function createBaseListResponse(): ListResponse {
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.users) {
-      User1.encode(v!, writer.uint32(10).fork()).ldelim();
+      User.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -340,7 +340,7 @@ export const ListResponse = {
             break;
           }
 
-          message.users.push(User1.decode(reader, reader.uint32()));
+          message.users.push(User.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -368,7 +368,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.users = object.users?.map((e) => User1.fromPartial(e)) || [];
+    message.users = object.users?.map((e) => User.fromPartial(e)) || [];
     return message;
   },
 };
@@ -824,7 +824,7 @@ export const DetachGroupResponse = {
   },
 };
 
-export interface User {
+export interface UserSvc {
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
   /**
    * Adminitrator or owner only
@@ -858,7 +858,7 @@ export interface User {
   DetachGroup(request: DeepPartial<DetachGroupRequest>, metadata?: grpc.Metadata): Promise<DetachGroupResponse>;
 }
 
-export class UserClientImpl implements User {
+export class UserSvcClientImpl implements UserSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -873,39 +873,39 @@ export class UserClientImpl implements User {
   }
 
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse> {
-    return this.rpc.unary(UserProfileDesc, ProfileRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcProfileDesc, ProfileRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(UserListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(UserGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse> {
-    return this.rpc.unary(UserDeleteDesc, DeleteRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcDeleteDesc, DeleteRequest.fromPartial(request), metadata);
   }
 
   ResetPassword(request: DeepPartial<ResetPasswordRequest>, metadata?: grpc.Metadata): Promise<ResetPasswordResponse> {
-    return this.rpc.unary(UserResetPasswordDesc, ResetPasswordRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcResetPasswordDesc, ResetPasswordRequest.fromPartial(request), metadata);
   }
 
   AttachGroup(request: DeepPartial<AttachGroupRequest>, metadata?: grpc.Metadata): Promise<AttachGroupResponse> {
-    return this.rpc.unary(UserAttachGroupDesc, AttachGroupRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcAttachGroupDesc, AttachGroupRequest.fromPartial(request), metadata);
   }
 
   DetachGroup(request: DeepPartial<DetachGroupRequest>, metadata?: grpc.Metadata): Promise<DetachGroupResponse> {
-    return this.rpc.unary(UserDetachGroupDesc, DetachGroupRequest.fromPartial(request), metadata);
+    return this.rpc.unary(UserSvcDetachGroupDesc, DetachGroupRequest.fromPartial(request), metadata);
   }
 }
 
-export const UserDesc = { serviceName: "usersvc.User" };
+export const UserSvcDesc = { serviceName: "usersvc.UserSvc" };
 
-export const UserProfileDesc: UnaryMethodDefinitionish = {
+export const UserSvcProfileDesc: UnaryMethodDefinitionish = {
   methodName: "Profile",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -926,9 +926,9 @@ export const UserProfileDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserListDesc: UnaryMethodDefinitionish = {
+export const UserSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -949,9 +949,9 @@ export const UserListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserGetDesc: UnaryMethodDefinitionish = {
+export const UserSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -972,9 +972,9 @@ export const UserGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserDeleteDesc: UnaryMethodDefinitionish = {
+export const UserSvcDeleteDesc: UnaryMethodDefinitionish = {
   methodName: "Delete",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -995,9 +995,9 @@ export const UserDeleteDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserResetPasswordDesc: UnaryMethodDefinitionish = {
+export const UserSvcResetPasswordDesc: UnaryMethodDefinitionish = {
   methodName: "ResetPassword",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1018,9 +1018,9 @@ export const UserResetPasswordDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserAttachGroupDesc: UnaryMethodDefinitionish = {
+export const UserSvcAttachGroupDesc: UnaryMethodDefinitionish = {
   methodName: "AttachGroup",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1041,9 +1041,9 @@ export const UserAttachGroupDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserDetachGroupDesc: UnaryMethodDefinitionish = {
+export const UserSvcDetachGroupDesc: UnaryMethodDefinitionish = {
   methodName: "DetachGroup",
-  service: UserDesc,
+  service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

@@ -18,7 +18,7 @@ message HealthCheckResponse {
   ServingStatus status = 1;
 }
 
-service Health {
+service HealthSvc {
   rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
 
   rpc Watch(HealthCheckRequest) returns (stream HealthCheckResponse);

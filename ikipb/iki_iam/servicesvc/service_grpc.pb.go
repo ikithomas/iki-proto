@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ServiceClient is the client API for Service service.
+// ServiceSvcClient is the client API for ServiceSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
+type ServiceSvcClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
@@ -32,81 +32,81 @@ type ServiceClient interface {
 	DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
 }
 
-type serviceClient struct {
+type serviceSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewServiceSvcClient(cc grpc.ClientConnInterface) ServiceSvcClient {
+	return &serviceSvcClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+func (c *serviceSvcClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	out := new(CreateResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *serviceSvcClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *serviceSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *serviceSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) AddSecret(ctx context.Context, in *AddSecretRequest, opts ...grpc.CallOption) (*AddSecretResponse, error) {
+func (c *serviceSvcClient) AddSecret(ctx context.Context, in *AddSecretRequest, opts ...grpc.CallOption) (*AddSecretResponse, error) {
 	out := new(AddSecretResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/AddSecret", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/AddSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) DeactivateSecret(ctx context.Context, in *DeactivateSecretRequest, opts ...grpc.CallOption) (*DeactivateSecretResponse, error) {
+func (c *serviceSvcClient) DeactivateSecret(ctx context.Context, in *DeactivateSecretRequest, opts ...grpc.CallOption) (*DeactivateSecretResponse, error) {
 	out := new(DeactivateSecretResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/DeactivateSecret", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/DeactivateSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error) {
+func (c *serviceSvcClient) DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error) {
 	out := new(DeleteSecretResponse)
-	err := c.cc.Invoke(ctx, "/servicesvc.Service/DeleteSecret", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/DeleteSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// ServiceSvcServer is the server API for ServiceSvc service.
+// All implementations must embed UnimplementedServiceSvcServer
 // for forward compatibility
-type ServiceServer interface {
+type ServiceSvcServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
@@ -115,207 +115,207 @@ type ServiceServer interface {
 	AddSecret(context.Context, *AddSecretRequest) (*AddSecretResponse, error)
 	DeactivateSecret(context.Context, *DeactivateSecretRequest) (*DeactivateSecretResponse, error)
 	DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
-	mustEmbedUnimplementedServiceServer()
+	mustEmbedUnimplementedServiceSvcServer()
 }
 
-// UnimplementedServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedServiceServer struct {
+// UnimplementedServiceSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedServiceSvcServer struct {
 }
 
-func (UnimplementedServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+func (UnimplementedServiceSvcServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedServiceSvcServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedServiceSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedServiceSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedServiceServer) AddSecret(context.Context, *AddSecretRequest) (*AddSecretResponse, error) {
+func (UnimplementedServiceSvcServer) AddSecret(context.Context, *AddSecretRequest) (*AddSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecret not implemented")
 }
-func (UnimplementedServiceServer) DeactivateSecret(context.Context, *DeactivateSecretRequest) (*DeactivateSecretResponse, error) {
+func (UnimplementedServiceSvcServer) DeactivateSecret(context.Context, *DeactivateSecretRequest) (*DeactivateSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeactivateSecret not implemented")
 }
-func (UnimplementedServiceServer) DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error) {
+func (UnimplementedServiceSvcServer) DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSecret not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
+func (UnimplementedServiceSvcServer) mustEmbedUnimplementedServiceSvcServer() {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeServiceSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ServiceSvcServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeServiceSvcServer interface {
+	mustEmbedUnimplementedServiceSvcServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	s.RegisterService(&Service_ServiceDesc, srv)
+func RegisterServiceSvcServer(s grpc.ServiceRegistrar, srv ServiceSvcServer) {
+	s.RegisterService(&ServiceSvc_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(ServiceSvcServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/Create",
+		FullMethod: "/servicesvc.ServiceSvc/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CreateRequest))
+		return srv.(ServiceSvcServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Delete(ctx, in)
+		return srv.(ServiceSvcServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/Delete",
+		FullMethod: "/servicesvc.ServiceSvc/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(ServiceSvcServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Get(ctx, in)
+		return srv.(ServiceSvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/Get",
+		FullMethod: "/servicesvc.ServiceSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*GetRequest))
+		return srv.(ServiceSvcServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).List(ctx, in)
+		return srv.(ServiceSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/List",
+		FullMethod: "/servicesvc.ServiceSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(ServiceSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_AddSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_AddSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).AddSecret(ctx, in)
+		return srv.(ServiceSvcServer).AddSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/AddSecret",
+		FullMethod: "/servicesvc.ServiceSvc/AddSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).AddSecret(ctx, req.(*AddSecretRequest))
+		return srv.(ServiceSvcServer).AddSecret(ctx, req.(*AddSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_DeactivateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_DeactivateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeactivateSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).DeactivateSecret(ctx, in)
+		return srv.(ServiceSvcServer).DeactivateSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/DeactivateSecret",
+		FullMethod: "/servicesvc.ServiceSvc/DeactivateSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).DeactivateSecret(ctx, req.(*DeactivateSecretRequest))
+		return srv.(ServiceSvcServer).DeactivateSecret(ctx, req.(*DeactivateSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_DeleteSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceSvc_DeleteSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).DeleteSecret(ctx, in)
+		return srv.(ServiceSvcServer).DeleteSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/servicesvc.Service/DeleteSecret",
+		FullMethod: "/servicesvc.ServiceSvc/DeleteSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).DeleteSecret(ctx, req.(*DeleteSecretRequest))
+		return srv.(ServiceSvcServer).DeleteSecret(ctx, req.(*DeleteSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+// ServiceSvc_ServiceDesc is the grpc.ServiceDesc for ServiceSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "servicesvc.Service",
-	HandlerType: (*ServiceServer)(nil),
+var ServiceSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "servicesvc.ServiceSvc",
+	HandlerType: (*ServiceSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _Service_Create_Handler,
+			Handler:    _ServiceSvc_Create_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Service_Delete_Handler,
+			Handler:    _ServiceSvc_Delete_Handler,
 		},
 		{
 			MethodName: "Get",
-			Handler:    _Service_Get_Handler,
+			Handler:    _ServiceSvc_Get_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _Service_List_Handler,
+			Handler:    _ServiceSvc_List_Handler,
 		},
 		{
 			MethodName: "AddSecret",
-			Handler:    _Service_AddSecret_Handler,
+			Handler:    _ServiceSvc_AddSecret_Handler,
 		},
 		{
 			MethodName: "DeactivateSecret",
-			Handler:    _Service_DeactivateSecret_Handler,
+			Handler:    _ServiceSvc_DeactivateSecret_Handler,
 		},
 		{
 			MethodName: "DeleteSecret",
-			Handler:    _Service_DeleteSecret_Handler,
+			Handler:    _ServiceSvc_DeleteSecret_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

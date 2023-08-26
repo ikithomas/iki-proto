@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cani";
 
@@ -112,11 +112,11 @@ export const CanIResponse = {
   },
 };
 
-export interface CanIService {
+export interface CanISvc {
   CanI(request: DeepPartial<CanIRequest>, metadata?: grpc.Metadata): Promise<CanIResponse>;
 }
 
-export class CanIServiceClientImpl implements CanIService {
+export class CanISvcClientImpl implements CanISvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -125,15 +125,15 @@ export class CanIServiceClientImpl implements CanIService {
   }
 
   CanI(request: DeepPartial<CanIRequest>, metadata?: grpc.Metadata): Promise<CanIResponse> {
-    return this.rpc.unary(CanIServiceCanIDesc, CanIRequest.fromPartial(request), metadata);
+    return this.rpc.unary(CanISvcCanIDesc, CanIRequest.fromPartial(request), metadata);
   }
 }
 
-export const CanIServiceDesc = { serviceName: "cani.CanIService" };
+export const CanISvcDesc = { serviceName: "cani.CanISvc" };
 
-export const CanIServiceCanIDesc: UnaryMethodDefinitionish = {
+export const CanISvcCanIDesc: UnaryMethodDefinitionish = {
   methodName: "CanI",
-  service: CanIServiceDesc,
+  service: CanISvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import _m0 from "protobufjs/minimal";
 import { User } from "../iam";
 
 export const protobufPackage = "authsvc";
@@ -412,7 +412,7 @@ export const SignoutResponse = {
   },
 };
 
-export interface Auth {
+export interface AuthSvc {
   /**
    * Login or signup with google.
    * If a user is not yet created, a new user account will be created associated with that email address.
@@ -422,7 +422,7 @@ export interface Auth {
   Signout(request: DeepPartial<SignoutRequest>, metadata?: grpc.Metadata): Promise<SignoutResponse>;
 }
 
-export class AuthClientImpl implements Auth {
+export class AuthSvcClientImpl implements AuthSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -433,23 +433,23 @@ export class AuthClientImpl implements Auth {
   }
 
   GoogleLogin(request: DeepPartial<GoogleLoginRequest>, metadata?: grpc.Metadata): Promise<GoogleLoginResponse> {
-    return this.rpc.unary(AuthGoogleLoginDesc, GoogleLoginRequest.fromPartial(request), metadata);
+    return this.rpc.unary(AuthSvcGoogleLoginDesc, GoogleLoginRequest.fromPartial(request), metadata);
   }
 
   ServiceLogin(request: DeepPartial<ServiceLoginRequest>, metadata?: grpc.Metadata): Promise<ServiceLoginResponse> {
-    return this.rpc.unary(AuthServiceLoginDesc, ServiceLoginRequest.fromPartial(request), metadata);
+    return this.rpc.unary(AuthSvcServiceLoginDesc, ServiceLoginRequest.fromPartial(request), metadata);
   }
 
   Signout(request: DeepPartial<SignoutRequest>, metadata?: grpc.Metadata): Promise<SignoutResponse> {
-    return this.rpc.unary(AuthSignoutDesc, SignoutRequest.fromPartial(request), metadata);
+    return this.rpc.unary(AuthSvcSignoutDesc, SignoutRequest.fromPartial(request), metadata);
   }
 }
 
-export const AuthDesc = { serviceName: "authsvc.Auth" };
+export const AuthSvcDesc = { serviceName: "authsvc.AuthSvc" };
 
-export const AuthGoogleLoginDesc: UnaryMethodDefinitionish = {
+export const AuthSvcGoogleLoginDesc: UnaryMethodDefinitionish = {
   methodName: "GoogleLogin",
-  service: AuthDesc,
+  service: AuthSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -470,9 +470,9 @@ export const AuthGoogleLoginDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const AuthServiceLoginDesc: UnaryMethodDefinitionish = {
+export const AuthSvcServiceLoginDesc: UnaryMethodDefinitionish = {
   methodName: "ServiceLogin",
-  service: AuthDesc,
+  service: AuthSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -493,9 +493,9 @@ export const AuthServiceLoginDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const AuthSignoutDesc: UnaryMethodDefinitionish = {
+export const AuthSvcSignoutDesc: UnaryMethodDefinitionish = {
   methodName: "Signout",
-  service: AuthDesc,
+  service: AuthSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

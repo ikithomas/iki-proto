@@ -19,122 +19,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// RouteServiceClient is the client API for RouteService service.
+// RouteSvcClient is the client API for RouteSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type RouteServiceClient interface {
+type RouteSvcClient interface {
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type routeServiceClient struct {
+type routeSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRouteServiceClient(cc grpc.ClientConnInterface) RouteServiceClient {
-	return &routeServiceClient{cc}
+func NewRouteSvcClient(cc grpc.ClientConnInterface) RouteSvcClient {
+	return &routeSvcClient{cc}
 }
 
-func (c *routeServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *routeSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/route.RouteService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/route.RouteSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *routeServiceClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *routeSvcClient) Sync(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/route.RouteService/Sync", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/route.RouteSvc/Sync", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// RouteServiceServer is the server API for RouteService service.
-// All implementations must embed UnimplementedRouteServiceServer
+// RouteSvcServer is the server API for RouteSvc service.
+// All implementations must embed UnimplementedRouteSvcServer
 // for forward compatibility
-type RouteServiceServer interface {
+type RouteSvcServer interface {
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	mustEmbedUnimplementedRouteServiceServer()
+	mustEmbedUnimplementedRouteSvcServer()
 }
 
-// UnimplementedRouteServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedRouteServiceServer struct {
+// UnimplementedRouteSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedRouteSvcServer struct {
 }
 
-func (UnimplementedRouteServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedRouteSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedRouteServiceServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedRouteSvcServer) Sync(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
-func (UnimplementedRouteServiceServer) mustEmbedUnimplementedRouteServiceServer() {}
+func (UnimplementedRouteSvcServer) mustEmbedUnimplementedRouteSvcServer() {}
 
-// UnsafeRouteServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RouteServiceServer will
+// UnsafeRouteSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RouteSvcServer will
 // result in compilation errors.
-type UnsafeRouteServiceServer interface {
-	mustEmbedUnimplementedRouteServiceServer()
+type UnsafeRouteSvcServer interface {
+	mustEmbedUnimplementedRouteSvcServer()
 }
 
-func RegisterRouteServiceServer(s grpc.ServiceRegistrar, srv RouteServiceServer) {
-	s.RegisterService(&RouteService_ServiceDesc, srv)
+func RegisterRouteSvcServer(s grpc.ServiceRegistrar, srv RouteSvcServer) {
+	s.RegisterService(&RouteSvc_ServiceDesc, srv)
 }
 
-func _RouteService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RouteSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RouteServiceServer).List(ctx, in)
+		return srv.(RouteSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/route.RouteService/List",
+		FullMethod: "/route.RouteSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(RouteSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RouteService_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RouteSvc_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RouteServiceServer).Sync(ctx, in)
+		return srv.(RouteSvcServer).Sync(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/route.RouteService/Sync",
+		FullMethod: "/route.RouteSvc/Sync",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteServiceServer).Sync(ctx, req.(*emptypb.Empty))
+		return srv.(RouteSvcServer).Sync(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RouteService_ServiceDesc is the grpc.ServiceDesc for RouteService service.
+// RouteSvc_ServiceDesc is the grpc.ServiceDesc for RouteSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var RouteService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "route.RouteService",
-	HandlerType: (*RouteServiceServer)(nil),
+var RouteSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "route.RouteSvc",
+	HandlerType: (*RouteSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "List",
-			Handler:    _RouteService_List_Handler,
+			Handler:    _RouteSvc_List_Handler,
 		},
 		{
 			MethodName: "Sync",
-			Handler:    _RouteService_Sync_Handler,
+			Handler:    _RouteSvc_Sync_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

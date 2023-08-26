@@ -18,122 +18,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TokenClient is the client API for Token service.
+// TokenSvcClient is the client API for TokenSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TokenClient interface {
+type TokenSvcClient interface {
 	GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error)
 	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 }
 
-type tokenClient struct {
+type tokenSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTokenClient(cc grpc.ClientConnInterface) TokenClient {
-	return &tokenClient{cc}
+func NewTokenSvcClient(cc grpc.ClientConnInterface) TokenSvcClient {
+	return &tokenSvcClient{cc}
 }
 
-func (c *tokenClient) GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error) {
+func (c *tokenSvcClient) GetJwkset(ctx context.Context, in *GetJwksetRequest, opts ...grpc.CallOption) (*GetJwksetResponse, error) {
 	out := new(GetJwksetResponse)
-	err := c.cc.Invoke(ctx, "/tokensvc.Token/GetJwkset", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tokensvc.TokenSvc/GetJwkset", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *tokenClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error) {
+func (c *tokenSvcClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error) {
 	out := new(AccessTokenResponse)
-	err := c.cc.Invoke(ctx, "/tokensvc.Token/AccessToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tokensvc.TokenSvc/AccessToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TokenServer is the server API for Token service.
-// All implementations must embed UnimplementedTokenServer
+// TokenSvcServer is the server API for TokenSvc service.
+// All implementations must embed UnimplementedTokenSvcServer
 // for forward compatibility
-type TokenServer interface {
+type TokenSvcServer interface {
 	GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error)
 	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
-	mustEmbedUnimplementedTokenServer()
+	mustEmbedUnimplementedTokenSvcServer()
 }
 
-// UnimplementedTokenServer must be embedded to have forward compatible implementations.
-type UnimplementedTokenServer struct {
+// UnimplementedTokenSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedTokenSvcServer struct {
 }
 
-func (UnimplementedTokenServer) GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error) {
+func (UnimplementedTokenSvcServer) GetJwkset(context.Context, *GetJwksetRequest) (*GetJwksetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJwkset not implemented")
 }
-func (UnimplementedTokenServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
+func (UnimplementedTokenSvcServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AccessToken not implemented")
 }
-func (UnimplementedTokenServer) mustEmbedUnimplementedTokenServer() {}
+func (UnimplementedTokenSvcServer) mustEmbedUnimplementedTokenSvcServer() {}
 
-// UnsafeTokenServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TokenServer will
+// UnsafeTokenSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TokenSvcServer will
 // result in compilation errors.
-type UnsafeTokenServer interface {
-	mustEmbedUnimplementedTokenServer()
+type UnsafeTokenSvcServer interface {
+	mustEmbedUnimplementedTokenSvcServer()
 }
 
-func RegisterTokenServer(s grpc.ServiceRegistrar, srv TokenServer) {
-	s.RegisterService(&Token_ServiceDesc, srv)
+func RegisterTokenSvcServer(s grpc.ServiceRegistrar, srv TokenSvcServer) {
+	s.RegisterService(&TokenSvc_ServiceDesc, srv)
 }
 
-func _Token_GetJwkset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TokenSvc_GetJwkset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetJwksetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TokenServer).GetJwkset(ctx, in)
+		return srv.(TokenSvcServer).GetJwkset(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tokensvc.Token/GetJwkset",
+		FullMethod: "/tokensvc.TokenSvc/GetJwkset",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).GetJwkset(ctx, req.(*GetJwksetRequest))
+		return srv.(TokenSvcServer).GetJwkset(ctx, req.(*GetJwksetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Token_AccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TokenSvc_AccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AccessTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TokenServer).AccessToken(ctx, in)
+		return srv.(TokenSvcServer).AccessToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tokensvc.Token/AccessToken",
+		FullMethod: "/tokensvc.TokenSvc/AccessToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).AccessToken(ctx, req.(*AccessTokenRequest))
+		return srv.(TokenSvcServer).AccessToken(ctx, req.(*AccessTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Token_ServiceDesc is the grpc.ServiceDesc for Token service.
+// TokenSvc_ServiceDesc is the grpc.ServiceDesc for TokenSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Token_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tokensvc.Token",
-	HandlerType: (*TokenServer)(nil),
+var TokenSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tokensvc.TokenSvc",
+	HandlerType: (*TokenSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetJwkset",
-			Handler:    _Token_GetJwkset_Handler,
+			Handler:    _TokenSvc_GetJwkset_Handler,
 		},
 		{
 			MethodName: "AccessToken",
-			Handler:    _Token_AccessToken_Handler,
+			Handler:    _TokenSvc_AccessToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

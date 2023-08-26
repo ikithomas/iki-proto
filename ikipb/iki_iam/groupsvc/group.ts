@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
-import { Group as Group1 } from "../iam";
+import _m0 from "protobufjs/minimal";
+import { Group } from "../iam";
 
 export const protobufPackage = "groupsvc";
 
@@ -11,14 +11,14 @@ export interface GetRequest {
 }
 
 export interface GetResponse {
-  group: Group1 | undefined;
+  group: Group | undefined;
 }
 
 export interface ListRequest {
 }
 
 export interface ListResponse {
-  groups: Group1[];
+  groups: Group[];
 }
 
 export interface CreateRequest {
@@ -26,7 +26,7 @@ export interface CreateRequest {
 }
 
 export interface CreateResponse {
-  group: Group1 | undefined;
+  group: Group | undefined;
 }
 
 export interface DeleteRequest {
@@ -100,7 +100,7 @@ function createBaseGetResponse(): GetResponse {
 export const GetResponse = {
   encode(message: GetResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.group !== undefined) {
-      Group1.encode(message.group, writer.uint32(10).fork()).ldelim();
+      Group.encode(message.group, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -117,7 +117,7 @@ export const GetResponse = {
             break;
           }
 
-          message.group = Group1.decode(reader, reader.uint32());
+          message.group = Group.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -129,13 +129,13 @@ export const GetResponse = {
   },
 
   fromJSON(object: any): GetResponse {
-    return { group: isSet(object.group) ? Group1.fromJSON(object.group) : undefined };
+    return { group: isSet(object.group) ? Group.fromJSON(object.group) : undefined };
   },
 
   toJSON(message: GetResponse): unknown {
     const obj: any = {};
     if (message.group !== undefined) {
-      obj.group = Group1.toJSON(message.group);
+      obj.group = Group.toJSON(message.group);
     }
     return obj;
   },
@@ -145,9 +145,7 @@ export const GetResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetResponse>, I>>(object: I): GetResponse {
     const message = createBaseGetResponse();
-    message.group = (object.group !== undefined && object.group !== null)
-      ? Group1.fromPartial(object.group)
-      : undefined;
+    message.group = (object.group !== undefined && object.group !== null) ? Group.fromPartial(object.group) : undefined;
     return message;
   },
 };
@@ -202,7 +200,7 @@ function createBaseListResponse(): ListResponse {
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.groups) {
-      Group1.encode(v!, writer.uint32(10).fork()).ldelim();
+      Group.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -219,7 +217,7 @@ export const ListResponse = {
             break;
           }
 
-          message.groups.push(Group1.decode(reader, reader.uint32()));
+          message.groups.push(Group.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -247,7 +245,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.groups = object.groups?.map((e) => Group1.fromPartial(e)) || [];
+    message.groups = object.groups?.map((e) => Group.fromPartial(e)) || [];
     return message;
   },
 };
@@ -316,7 +314,7 @@ function createBaseCreateResponse(): CreateResponse {
 export const CreateResponse = {
   encode(message: CreateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.group !== undefined) {
-      Group1.encode(message.group, writer.uint32(10).fork()).ldelim();
+      Group.encode(message.group, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -333,7 +331,7 @@ export const CreateResponse = {
             break;
           }
 
-          message.group = Group1.decode(reader, reader.uint32());
+          message.group = Group.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -345,13 +343,13 @@ export const CreateResponse = {
   },
 
   fromJSON(object: any): CreateResponse {
-    return { group: isSet(object.group) ? Group1.fromJSON(object.group) : undefined };
+    return { group: isSet(object.group) ? Group.fromJSON(object.group) : undefined };
   },
 
   toJSON(message: CreateResponse): unknown {
     const obj: any = {};
     if (message.group !== undefined) {
-      obj.group = Group1.toJSON(message.group);
+      obj.group = Group.toJSON(message.group);
     }
     return obj;
   },
@@ -361,9 +359,7 @@ export const CreateResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<CreateResponse>, I>>(object: I): CreateResponse {
     const message = createBaseCreateResponse();
-    message.group = (object.group !== undefined && object.group !== null)
-      ? Group1.fromPartial(object.group)
-      : undefined;
+    message.group = (object.group !== undefined && object.group !== null) ? Group.fromPartial(object.group) : undefined;
     return message;
   },
 };
@@ -468,14 +464,14 @@ export const DeleteResponse = {
   },
 };
 
-export interface Group {
+export interface GroupSvc {
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse>;
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
 }
 
-export class GroupClientImpl implements Group {
+export class GroupSvcClientImpl implements GroupSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -487,27 +483,27 @@ export class GroupClientImpl implements Group {
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(GroupGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(GroupSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(GroupListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(GroupSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse> {
-    return this.rpc.unary(GroupCreateDesc, CreateRequest.fromPartial(request), metadata);
+    return this.rpc.unary(GroupSvcCreateDesc, CreateRequest.fromPartial(request), metadata);
   }
 
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse> {
-    return this.rpc.unary(GroupDeleteDesc, DeleteRequest.fromPartial(request), metadata);
+    return this.rpc.unary(GroupSvcDeleteDesc, DeleteRequest.fromPartial(request), metadata);
   }
 }
 
-export const GroupDesc = { serviceName: "groupsvc.Group" };
+export const GroupSvcDesc = { serviceName: "groupsvc.GroupSvc" };
 
-export const GroupGetDesc: UnaryMethodDefinitionish = {
+export const GroupSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: GroupDesc,
+  service: GroupSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -528,9 +524,9 @@ export const GroupGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const GroupListDesc: UnaryMethodDefinitionish = {
+export const GroupSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: GroupDesc,
+  service: GroupSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -551,9 +547,9 @@ export const GroupListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const GroupCreateDesc: UnaryMethodDefinitionish = {
+export const GroupSvcCreateDesc: UnaryMethodDefinitionish = {
   methodName: "Create",
-  service: GroupDesc,
+  service: GroupSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -574,9 +570,9 @@ export const GroupCreateDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const GroupDeleteDesc: UnaryMethodDefinitionish = {
+export const GroupSvcDeleteDesc: UnaryMethodDefinitionish = {
   methodName: "Delete",
-  service: GroupDesc,
+  service: GroupSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

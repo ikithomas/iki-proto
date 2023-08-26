@@ -17,7 +17,7 @@ message Route {
   int64 created_at = 8;
 }
 
-service RouteService {
+service RouteSvc {
   rpc List (ListRequest) returns (ListResponse) {}
   rpc Sync (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }

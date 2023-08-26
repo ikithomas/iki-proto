@@ -18,194 +18,194 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// GroupClient is the client API for Group service.
+// GroupSvcClient is the client API for GroupSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GroupClient interface {
+type GroupSvcClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
-type groupClient struct {
+type groupSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGroupClient(cc grpc.ClientConnInterface) GroupClient {
-	return &groupClient{cc}
+func NewGroupSvcClient(cc grpc.ClientConnInterface) GroupSvcClient {
+	return &groupSvcClient{cc}
 }
 
-func (c *groupClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *groupSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/groupsvc.Group/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/groupsvc.GroupSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *groupClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *groupSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/groupsvc.Group/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/groupsvc.GroupSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *groupClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+func (c *groupSvcClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	out := new(CreateResponse)
-	err := c.cc.Invoke(ctx, "/groupsvc.Group/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/groupsvc.GroupSvc/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *groupClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *groupSvcClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/groupsvc.Group/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/groupsvc.GroupSvc/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GroupServer is the server API for Group service.
-// All implementations must embed UnimplementedGroupServer
+// GroupSvcServer is the server API for GroupSvc service.
+// All implementations must embed UnimplementedGroupSvcServer
 // for forward compatibility
-type GroupServer interface {
+type GroupSvcServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	mustEmbedUnimplementedGroupServer()
+	mustEmbedUnimplementedGroupSvcServer()
 }
 
-// UnimplementedGroupServer must be embedded to have forward compatible implementations.
-type UnimplementedGroupServer struct {
+// UnimplementedGroupSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedGroupSvcServer struct {
 }
 
-func (UnimplementedGroupServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedGroupSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedGroupServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedGroupSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedGroupServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+func (UnimplementedGroupSvcServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedGroupServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedGroupSvcServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedGroupServer) mustEmbedUnimplementedGroupServer() {}
+func (UnimplementedGroupSvcServer) mustEmbedUnimplementedGroupSvcServer() {}
 
-// UnsafeGroupServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GroupServer will
+// UnsafeGroupSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GroupSvcServer will
 // result in compilation errors.
-type UnsafeGroupServer interface {
-	mustEmbedUnimplementedGroupServer()
+type UnsafeGroupSvcServer interface {
+	mustEmbedUnimplementedGroupSvcServer()
 }
 
-func RegisterGroupServer(s grpc.ServiceRegistrar, srv GroupServer) {
-	s.RegisterService(&Group_ServiceDesc, srv)
+func RegisterGroupSvcServer(s grpc.ServiceRegistrar, srv GroupSvcServer) {
+	s.RegisterService(&GroupSvc_ServiceDesc, srv)
 }
 
-func _Group_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GroupSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServer).Get(ctx, in)
+		return srv.(GroupSvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/groupsvc.Group/Get",
+		FullMethod: "/groupsvc.GroupSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServer).Get(ctx, req.(*GetRequest))
+		return srv.(GroupSvcServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Group_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GroupSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServer).List(ctx, in)
+		return srv.(GroupSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/groupsvc.Group/List",
+		FullMethod: "/groupsvc.GroupSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServer).List(ctx, req.(*ListRequest))
+		return srv.(GroupSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Group_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GroupSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServer).Create(ctx, in)
+		return srv.(GroupSvcServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/groupsvc.Group/Create",
+		FullMethod: "/groupsvc.GroupSvc/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServer).Create(ctx, req.(*CreateRequest))
+		return srv.(GroupSvcServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Group_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GroupSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServer).Delete(ctx, in)
+		return srv.(GroupSvcServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/groupsvc.Group/Delete",
+		FullMethod: "/groupsvc.GroupSvc/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(GroupSvcServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Group_ServiceDesc is the grpc.ServiceDesc for Group service.
+// GroupSvc_ServiceDesc is the grpc.ServiceDesc for GroupSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Group_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "groupsvc.Group",
-	HandlerType: (*GroupServer)(nil),
+var GroupSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "groupsvc.GroupSvc",
+	HandlerType: (*GroupSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Get",
-			Handler:    _Group_Get_Handler,
+			Handler:    _GroupSvc_Get_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _Group_List_Handler,
+			Handler:    _GroupSvc_List_Handler,
 		},
 		{
 			MethodName: "Create",
-			Handler:    _Group_Create_Handler,
+			Handler:    _GroupSvc_Create_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Group_Delete_Handler,
+			Handler:    _GroupSvc_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

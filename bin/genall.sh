@@ -27,5 +27,11 @@ for f in $(find . -path "./ikipb/**/*.proto"); do
     --plugin=node_modules/ts-proto/protoc-gen-ts_proto \
     --ts_proto_opt=env=browser \
     --ts_proto_opt=outputClientImpl=grpc-web \
+    --ts_proto_opt=forceLong=number \
+    --ts_proto_opt=esModuleInterop=true \
     ${f}
 done
+
+# typescrypt compile
+rm -r dist/*
+npx tsc --skipLibCheck

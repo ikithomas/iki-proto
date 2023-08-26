@@ -15,7 +15,7 @@ message Stop {
   int64 created_at = 6;
 }
 
-service StopService {
+service StopSvc {
   rpc List (ListRequest) returns (ListResponse) {}
   rpc Sync (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }

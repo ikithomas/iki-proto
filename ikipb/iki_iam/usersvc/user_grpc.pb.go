@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserClient is the client API for User service.
+// UserSvcClient is the client API for UserSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserClient interface {
+type UserSvcClient interface {
 	Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
 	// Adminitrator or owner only
 	// list all users
@@ -43,81 +43,81 @@ type UserClient interface {
 	DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error)
 }
 
-type userClient struct {
+type userSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserClient(cc grpc.ClientConnInterface) UserClient {
-	return &userClient{cc}
+func NewUserSvcClient(cc grpc.ClientConnInterface) UserSvcClient {
+	return &userSvcClient{cc}
 }
 
-func (c *userClient) Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
+func (c *userSvcClient) Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
 	out := new(ProfileResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/Profile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/Profile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *userSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *userSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *userSvcClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
+func (c *userSvcClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
 	out := new(ResetPasswordResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/ResetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/ResetPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error) {
+func (c *userSvcClient) AttachGroup(ctx context.Context, in *AttachGroupRequest, opts ...grpc.CallOption) (*AttachGroupResponse, error) {
 	out := new(AttachGroupResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/AttachGroup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/AttachGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error) {
+func (c *userSvcClient) DetachGroup(ctx context.Context, in *DetachGroupRequest, opts ...grpc.CallOption) (*DetachGroupResponse, error) {
 	out := new(DetachGroupResponse)
-	err := c.cc.Invoke(ctx, "/usersvc.User/DetachGroup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/DetachGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// UserSvcServer is the server API for UserSvc service.
+// All implementations must embed UnimplementedUserSvcServer
 // for forward compatibility
-type UserServer interface {
+type UserSvcServer interface {
 	Profile(context.Context, *ProfileRequest) (*ProfileResponse, error)
 	// Adminitrator or owner only
 	// list all users
@@ -137,207 +137,207 @@ type UserServer interface {
 	// Adminitrator or owner only.
 	// detach a user from a group
 	DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error)
-	mustEmbedUnimplementedUserServer()
+	mustEmbedUnimplementedUserSvcServer()
 }
 
-// UnimplementedUserServer must be embedded to have forward compatible implementations.
-type UnimplementedUserServer struct {
+// UnimplementedUserSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedUserSvcServer struct {
 }
 
-func (UnimplementedUserServer) Profile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
+func (UnimplementedUserSvcServer) Profile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Profile not implemented")
 }
-func (UnimplementedUserServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedUserSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedUserServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedUserSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedUserServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedUserSvcServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUserServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
+func (UnimplementedUserSvcServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
-func (UnimplementedUserServer) AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error) {
+func (UnimplementedUserSvcServer) AttachGroup(context.Context, *AttachGroupRequest) (*AttachGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AttachGroup not implemented")
 }
-func (UnimplementedUserServer) DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error) {
+func (UnimplementedUserSvcServer) DetachGroup(context.Context, *DetachGroupRequest) (*DetachGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DetachGroup not implemented")
 }
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserSvcServer) mustEmbedUnimplementedUserSvcServer() {}
 
-// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServer will
+// UnsafeUserSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserSvcServer will
 // result in compilation errors.
-type UnsafeUserServer interface {
-	mustEmbedUnimplementedUserServer()
+type UnsafeUserSvcServer interface {
+	mustEmbedUnimplementedUserSvcServer()
 }
 
-func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
-	s.RegisterService(&User_ServiceDesc, srv)
+func RegisterUserSvcServer(s grpc.ServiceRegistrar, srv UserSvcServer) {
+	s.RegisterService(&UserSvc_ServiceDesc, srv)
 }
 
-func _User_Profile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_Profile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Profile(ctx, in)
+		return srv.(UserSvcServer).Profile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/Profile",
+		FullMethod: "/usersvc.UserSvc/Profile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Profile(ctx, req.(*ProfileRequest))
+		return srv.(UserSvcServer).Profile(ctx, req.(*ProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).List(ctx, in)
+		return srv.(UserSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/List",
+		FullMethod: "/usersvc.UserSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).List(ctx, req.(*ListRequest))
+		return srv.(UserSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Get(ctx, in)
+		return srv.(UserSvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/Get",
+		FullMethod: "/usersvc.UserSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Get(ctx, req.(*GetRequest))
+		return srv.(UserSvcServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Delete(ctx, in)
+		return srv.(UserSvcServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/Delete",
+		FullMethod: "/usersvc.UserSvc/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(UserSvcServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResetPasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).ResetPassword(ctx, in)
+		return srv.(UserSvcServer).ResetPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/ResetPassword",
+		FullMethod: "/usersvc.UserSvc/ResetPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
+		return srv.(UserSvcServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_AttachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_AttachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AttachGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).AttachGroup(ctx, in)
+		return srv.(UserSvcServer).AttachGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/AttachGroup",
+		FullMethod: "/usersvc.UserSvc/AttachGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).AttachGroup(ctx, req.(*AttachGroupRequest))
+		return srv.(UserSvcServer).AttachGroup(ctx, req.(*AttachGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_DetachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserSvc_DetachGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DetachGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).DetachGroup(ctx, in)
+		return srv.(UserSvcServer).DetachGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/usersvc.User/DetachGroup",
+		FullMethod: "/usersvc.UserSvc/DetachGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).DetachGroup(ctx, req.(*DetachGroupRequest))
+		return srv.(UserSvcServer).DetachGroup(ctx, req.(*DetachGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// UserSvc_ServiceDesc is the grpc.ServiceDesc for UserSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "usersvc.User",
-	HandlerType: (*UserServer)(nil),
+var UserSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "usersvc.UserSvc",
+	HandlerType: (*UserSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Profile",
-			Handler:    _User_Profile_Handler,
+			Handler:    _UserSvc_Profile_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _User_List_Handler,
+			Handler:    _UserSvc_List_Handler,
 		},
 		{
 			MethodName: "Get",
-			Handler:    _User_Get_Handler,
+			Handler:    _UserSvc_Get_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _User_Delete_Handler,
+			Handler:    _UserSvc_Delete_Handler,
 		},
 		{
 			MethodName: "ResetPassword",
-			Handler:    _User_ResetPassword_Handler,
+			Handler:    _UserSvc_ResetPassword_Handler,
 		},
 		{
 			MethodName: "AttachGroup",
-			Handler:    _User_AttachGroup_Handler,
+			Handler:    _UserSvc_AttachGroup_Handler,
 		},
 		{
 			MethodName: "DetachGroup",
-			Handler:    _User_DetachGroup_Handler,
+			Handler:    _UserSvc_DetachGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

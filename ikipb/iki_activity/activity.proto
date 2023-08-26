@@ -64,7 +64,7 @@ message PersonalMetric {
 	bool male  = 7;
 }
 
-service ActivityService {
+service ActivitySvc {
   rpc Get (GetRequest) returns (GetResponse) {}
   rpc GetMine (GetMineRequest) returns (GetMineResponse) {}
   rpc GetFeatured (GetFeaturedRequest) returns (GetFeaturedResponse) {}

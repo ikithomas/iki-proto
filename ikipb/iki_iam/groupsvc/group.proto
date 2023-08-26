@@ -6,7 +6,7 @@ option go_package = "/groupsvc";
 
 package groupsvc;
 
-service Group {
+service GroupSvc {
   rpc Get (GetRequest) returns (GetResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
   rpc Create (CreateRequest) returns (CreateResponse) {}

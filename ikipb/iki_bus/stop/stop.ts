@@ -1,9 +1,9 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Empty } from "../../../google/protobuf/empty";
-import Long = require("long");
 
 export const protobufPackage = "stop";
 
@@ -317,12 +317,12 @@ export const ListResponse = {
   },
 };
 
-export interface StopService {
+export interface StopSvc {
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   Sync(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty>;
 }
 
-export class StopServiceClientImpl implements StopService {
+export class StopSvcClientImpl implements StopSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -332,19 +332,19 @@ export class StopServiceClientImpl implements StopService {
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(StopServiceListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(StopSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   Sync(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty> {
-    return this.rpc.unary(StopServiceSyncDesc, Empty.fromPartial(request), metadata);
+    return this.rpc.unary(StopSvcSyncDesc, Empty.fromPartial(request), metadata);
   }
 }
 
-export const StopServiceDesc = { serviceName: "stop.StopService" };
+export const StopSvcDesc = { serviceName: "stop.StopSvc" };
 
-export const StopServiceListDesc: UnaryMethodDefinitionish = {
+export const StopSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: StopServiceDesc,
+  service: StopSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -365,9 +365,9 @@ export const StopServiceListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const StopServiceSyncDesc: UnaryMethodDefinitionish = {
+export const StopSvcSyncDesc: UnaryMethodDefinitionish = {
   methodName: "Sync",
-  service: StopServiceDesc,
+  service: StopSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

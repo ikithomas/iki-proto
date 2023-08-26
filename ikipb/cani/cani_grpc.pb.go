@@ -18,86 +18,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// CanIServiceClient is the client API for CanIService service.
+// CanISvcClient is the client API for CanISvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CanIServiceClient interface {
+type CanISvcClient interface {
 	CanI(ctx context.Context, in *CanIRequest, opts ...grpc.CallOption) (*CanIResponse, error)
 }
 
-type canIServiceClient struct {
+type canISvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewCanIServiceClient(cc grpc.ClientConnInterface) CanIServiceClient {
-	return &canIServiceClient{cc}
+func NewCanISvcClient(cc grpc.ClientConnInterface) CanISvcClient {
+	return &canISvcClient{cc}
 }
 
-func (c *canIServiceClient) CanI(ctx context.Context, in *CanIRequest, opts ...grpc.CallOption) (*CanIResponse, error) {
+func (c *canISvcClient) CanI(ctx context.Context, in *CanIRequest, opts ...grpc.CallOption) (*CanIResponse, error) {
 	out := new(CanIResponse)
-	err := c.cc.Invoke(ctx, "/cani.CanIService/CanI", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cani.CanISvc/CanI", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CanIServiceServer is the server API for CanIService service.
-// All implementations must embed UnimplementedCanIServiceServer
+// CanISvcServer is the server API for CanISvc service.
+// All implementations must embed UnimplementedCanISvcServer
 // for forward compatibility
-type CanIServiceServer interface {
+type CanISvcServer interface {
 	CanI(context.Context, *CanIRequest) (*CanIResponse, error)
-	mustEmbedUnimplementedCanIServiceServer()
+	mustEmbedUnimplementedCanISvcServer()
 }
 
-// UnimplementedCanIServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedCanIServiceServer struct {
+// UnimplementedCanISvcServer must be embedded to have forward compatible implementations.
+type UnimplementedCanISvcServer struct {
 }
 
-func (UnimplementedCanIServiceServer) CanI(context.Context, *CanIRequest) (*CanIResponse, error) {
+func (UnimplementedCanISvcServer) CanI(context.Context, *CanIRequest) (*CanIResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CanI not implemented")
 }
-func (UnimplementedCanIServiceServer) mustEmbedUnimplementedCanIServiceServer() {}
+func (UnimplementedCanISvcServer) mustEmbedUnimplementedCanISvcServer() {}
 
-// UnsafeCanIServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CanIServiceServer will
+// UnsafeCanISvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CanISvcServer will
 // result in compilation errors.
-type UnsafeCanIServiceServer interface {
-	mustEmbedUnimplementedCanIServiceServer()
+type UnsafeCanISvcServer interface {
+	mustEmbedUnimplementedCanISvcServer()
 }
 
-func RegisterCanIServiceServer(s grpc.ServiceRegistrar, srv CanIServiceServer) {
-	s.RegisterService(&CanIService_ServiceDesc, srv)
+func RegisterCanISvcServer(s grpc.ServiceRegistrar, srv CanISvcServer) {
+	s.RegisterService(&CanISvc_ServiceDesc, srv)
 }
 
-func _CanIService_CanI_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CanISvc_CanI_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CanIRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CanIServiceServer).CanI(ctx, in)
+		return srv.(CanISvcServer).CanI(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cani.CanIService/CanI",
+		FullMethod: "/cani.CanISvc/CanI",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CanIServiceServer).CanI(ctx, req.(*CanIRequest))
+		return srv.(CanISvcServer).CanI(ctx, req.(*CanIRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// CanIService_ServiceDesc is the grpc.ServiceDesc for CanIService service.
+// CanISvc_ServiceDesc is the grpc.ServiceDesc for CanISvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var CanIService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cani.CanIService",
-	HandlerType: (*CanIServiceServer)(nil),
+var CanISvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cani.CanISvc",
+	HandlerType: (*CanISvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CanI",
-			Handler:    _CanIService_CanI_Handler,
+			Handler:    _CanISvc_CanI_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

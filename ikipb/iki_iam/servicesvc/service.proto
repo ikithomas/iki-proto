@@ -6,7 +6,7 @@ option go_package = "/servicesvc";
 
 package servicesvc;
 
-service Service {
+service ServiceSvc {
   rpc Create(CreateRequest) returns (CreateResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
   rpc Get(GetRequest) returns (GetResponse) {}

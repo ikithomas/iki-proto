@@ -1,9 +1,9 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Empty } from "../../google/protobuf/empty";
-import Long = require("long");
 
 export const protobufPackage = "activity";
 
@@ -1618,7 +1618,7 @@ export const ListFeaturedResponse = {
   },
 };
 
-export interface ActivityService {
+export interface ActivitySvc {
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
   GetMine(request: DeepPartial<GetMineRequest>, metadata?: grpc.Metadata): Promise<GetMineResponse>;
   GetFeatured(request: DeepPartial<GetFeaturedRequest>, metadata?: grpc.Metadata): Promise<GetFeaturedResponse>;
@@ -1628,7 +1628,7 @@ export interface ActivityService {
   CalculateStats(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty>;
 }
 
-export class ActivityServiceClientImpl implements ActivityService {
+export class ActivitySvcClientImpl implements ActivitySvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -1643,39 +1643,39 @@ export class ActivityServiceClientImpl implements ActivityService {
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(ActivityServiceGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 
   GetMine(request: DeepPartial<GetMineRequest>, metadata?: grpc.Metadata): Promise<GetMineResponse> {
-    return this.rpc.unary(ActivityServiceGetMineDesc, GetMineRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcGetMineDesc, GetMineRequest.fromPartial(request), metadata);
   }
 
   GetFeatured(request: DeepPartial<GetFeaturedRequest>, metadata?: grpc.Metadata): Promise<GetFeaturedResponse> {
-    return this.rpc.unary(ActivityServiceGetFeaturedDesc, GetFeaturedRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcGetFeaturedDesc, GetFeaturedRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(ActivityServiceListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   ListMine(request: DeepPartial<ListMineRequest>, metadata?: grpc.Metadata): Promise<ListMineResponse> {
-    return this.rpc.unary(ActivityServiceListMineDesc, ListMineRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcListMineDesc, ListMineRequest.fromPartial(request), metadata);
   }
 
   ListFeatured(request: DeepPartial<ListFeaturedRequest>, metadata?: grpc.Metadata): Promise<ListFeaturedResponse> {
-    return this.rpc.unary(ActivityServiceListFeaturedDesc, ListFeaturedRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcListFeaturedDesc, ListFeaturedRequest.fromPartial(request), metadata);
   }
 
   CalculateStats(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty> {
-    return this.rpc.unary(ActivityServiceCalculateStatsDesc, Empty.fromPartial(request), metadata);
+    return this.rpc.unary(ActivitySvcCalculateStatsDesc, Empty.fromPartial(request), metadata);
   }
 }
 
-export const ActivityServiceDesc = { serviceName: "activity.ActivityService" };
+export const ActivitySvcDesc = { serviceName: "activity.ActivitySvc" };
 
-export const ActivityServiceGetDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1696,9 +1696,9 @@ export const ActivityServiceGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceGetMineDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcGetMineDesc: UnaryMethodDefinitionish = {
   methodName: "GetMine",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1719,9 +1719,9 @@ export const ActivityServiceGetMineDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceGetFeaturedDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcGetFeaturedDesc: UnaryMethodDefinitionish = {
   methodName: "GetFeatured",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1742,9 +1742,9 @@ export const ActivityServiceGetFeaturedDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceListDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1765,9 +1765,9 @@ export const ActivityServiceListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceListMineDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcListMineDesc: UnaryMethodDefinitionish = {
   methodName: "ListMine",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1788,9 +1788,9 @@ export const ActivityServiceListMineDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceListFeaturedDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcListFeaturedDesc: UnaryMethodDefinitionish = {
   methodName: "ListFeatured",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1811,9 +1811,9 @@ export const ActivityServiceListFeaturedDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ActivityServiceCalculateStatsDesc: UnaryMethodDefinitionish = {
+export const ActivitySvcCalculateStatsDesc: UnaryMethodDefinitionish = {
   methodName: "CalculateStats",
-  service: ActivityServiceDesc,
+  service: ActivitySvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

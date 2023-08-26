@@ -19,10 +19,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ActivityServiceClient is the client API for ActivityService service.
+// ActivitySvcClient is the client API for ActivitySvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ActivityServiceClient interface {
+type ActivitySvcClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetMine(ctx context.Context, in *GetMineRequest, opts ...grpc.CallOption) (*GetMineResponse, error)
 	GetFeatured(ctx context.Context, in *GetFeaturedRequest, opts ...grpc.CallOption) (*GetFeaturedResponse, error)
@@ -32,81 +32,81 @@ type ActivityServiceClient interface {
 	CalculateStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type activityServiceClient struct {
+type activitySvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewActivityServiceClient(cc grpc.ClientConnInterface) ActivityServiceClient {
-	return &activityServiceClient{cc}
+func NewActivitySvcClient(cc grpc.ClientConnInterface) ActivitySvcClient {
+	return &activitySvcClient{cc}
 }
 
-func (c *activityServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *activitySvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) GetMine(ctx context.Context, in *GetMineRequest, opts ...grpc.CallOption) (*GetMineResponse, error) {
+func (c *activitySvcClient) GetMine(ctx context.Context, in *GetMineRequest, opts ...grpc.CallOption) (*GetMineResponse, error) {
 	out := new(GetMineResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/GetMine", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/GetMine", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) GetFeatured(ctx context.Context, in *GetFeaturedRequest, opts ...grpc.CallOption) (*GetFeaturedResponse, error) {
+func (c *activitySvcClient) GetFeatured(ctx context.Context, in *GetFeaturedRequest, opts ...grpc.CallOption) (*GetFeaturedResponse, error) {
 	out := new(GetFeaturedResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/GetFeatured", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/GetFeatured", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *activitySvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) ListMine(ctx context.Context, in *ListMineRequest, opts ...grpc.CallOption) (*ListMineResponse, error) {
+func (c *activitySvcClient) ListMine(ctx context.Context, in *ListMineRequest, opts ...grpc.CallOption) (*ListMineResponse, error) {
 	out := new(ListMineResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/ListMine", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/ListMine", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) ListFeatured(ctx context.Context, in *ListFeaturedRequest, opts ...grpc.CallOption) (*ListFeaturedResponse, error) {
+func (c *activitySvcClient) ListFeatured(ctx context.Context, in *ListFeaturedRequest, opts ...grpc.CallOption) (*ListFeaturedResponse, error) {
 	out := new(ListFeaturedResponse)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/ListFeatured", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/ListFeatured", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *activityServiceClient) CalculateStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *activitySvcClient) CalculateStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/activity.ActivityService/CalculateStats", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/activity.ActivitySvc/CalculateStats", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ActivityServiceServer is the server API for ActivityService service.
-// All implementations must embed UnimplementedActivityServiceServer
+// ActivitySvcServer is the server API for ActivitySvc service.
+// All implementations must embed UnimplementedActivitySvcServer
 // for forward compatibility
-type ActivityServiceServer interface {
+type ActivitySvcServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetMine(context.Context, *GetMineRequest) (*GetMineResponse, error)
 	GetFeatured(context.Context, *GetFeaturedRequest) (*GetFeaturedResponse, error)
@@ -114,207 +114,207 @@ type ActivityServiceServer interface {
 	ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error)
 	ListFeatured(context.Context, *ListFeaturedRequest) (*ListFeaturedResponse, error)
 	CalculateStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	mustEmbedUnimplementedActivityServiceServer()
+	mustEmbedUnimplementedActivitySvcServer()
 }
 
-// UnimplementedActivityServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedActivityServiceServer struct {
+// UnimplementedActivitySvcServer must be embedded to have forward compatible implementations.
+type UnimplementedActivitySvcServer struct {
 }
 
-func (UnimplementedActivityServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedActivitySvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedActivityServiceServer) GetMine(context.Context, *GetMineRequest) (*GetMineResponse, error) {
+func (UnimplementedActivitySvcServer) GetMine(context.Context, *GetMineRequest) (*GetMineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMine not implemented")
 }
-func (UnimplementedActivityServiceServer) GetFeatured(context.Context, *GetFeaturedRequest) (*GetFeaturedResponse, error) {
+func (UnimplementedActivitySvcServer) GetFeatured(context.Context, *GetFeaturedRequest) (*GetFeaturedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFeatured not implemented")
 }
-func (UnimplementedActivityServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedActivitySvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedActivityServiceServer) ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error) {
+func (UnimplementedActivitySvcServer) ListMine(context.Context, *ListMineRequest) (*ListMineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMine not implemented")
 }
-func (UnimplementedActivityServiceServer) ListFeatured(context.Context, *ListFeaturedRequest) (*ListFeaturedResponse, error) {
+func (UnimplementedActivitySvcServer) ListFeatured(context.Context, *ListFeaturedRequest) (*ListFeaturedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFeatured not implemented")
 }
-func (UnimplementedActivityServiceServer) CalculateStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedActivitySvcServer) CalculateStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CalculateStats not implemented")
 }
-func (UnimplementedActivityServiceServer) mustEmbedUnimplementedActivityServiceServer() {}
+func (UnimplementedActivitySvcServer) mustEmbedUnimplementedActivitySvcServer() {}
 
-// UnsafeActivityServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ActivityServiceServer will
+// UnsafeActivitySvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ActivitySvcServer will
 // result in compilation errors.
-type UnsafeActivityServiceServer interface {
-	mustEmbedUnimplementedActivityServiceServer()
+type UnsafeActivitySvcServer interface {
+	mustEmbedUnimplementedActivitySvcServer()
 }
 
-func RegisterActivityServiceServer(s grpc.ServiceRegistrar, srv ActivityServiceServer) {
-	s.RegisterService(&ActivityService_ServiceDesc, srv)
+func RegisterActivitySvcServer(s grpc.ServiceRegistrar, srv ActivitySvcServer) {
+	s.RegisterService(&ActivitySvc_ServiceDesc, srv)
 }
 
-func _ActivityService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).Get(ctx, in)
+		return srv.(ActivitySvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/Get",
+		FullMethod: "/activity.ActivitySvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).Get(ctx, req.(*GetRequest))
+		return srv.(ActivitySvcServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_GetMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_GetMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).GetMine(ctx, in)
+		return srv.(ActivitySvcServer).GetMine(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/GetMine",
+		FullMethod: "/activity.ActivitySvc/GetMine",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).GetMine(ctx, req.(*GetMineRequest))
+		return srv.(ActivitySvcServer).GetMine(ctx, req.(*GetMineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_GetFeatured_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_GetFeatured_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFeaturedRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).GetFeatured(ctx, in)
+		return srv.(ActivitySvcServer).GetFeatured(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/GetFeatured",
+		FullMethod: "/activity.ActivitySvc/GetFeatured",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).GetFeatured(ctx, req.(*GetFeaturedRequest))
+		return srv.(ActivitySvcServer).GetFeatured(ctx, req.(*GetFeaturedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).List(ctx, in)
+		return srv.(ActivitySvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/List",
+		FullMethod: "/activity.ActivitySvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).List(ctx, req.(*ListRequest))
+		return srv.(ActivitySvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_ListMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_ListMine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).ListMine(ctx, in)
+		return srv.(ActivitySvcServer).ListMine(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/ListMine",
+		FullMethod: "/activity.ActivitySvc/ListMine",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).ListMine(ctx, req.(*ListMineRequest))
+		return srv.(ActivitySvcServer).ListMine(ctx, req.(*ListMineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_ListFeatured_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_ListFeatured_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListFeaturedRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).ListFeatured(ctx, in)
+		return srv.(ActivitySvcServer).ListFeatured(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/ListFeatured",
+		FullMethod: "/activity.ActivitySvc/ListFeatured",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).ListFeatured(ctx, req.(*ListFeaturedRequest))
+		return srv.(ActivitySvcServer).ListFeatured(ctx, req.(*ListFeaturedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ActivityService_CalculateStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ActivitySvc_CalculateStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ActivityServiceServer).CalculateStats(ctx, in)
+		return srv.(ActivitySvcServer).CalculateStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/activity.ActivityService/CalculateStats",
+		FullMethod: "/activity.ActivitySvc/CalculateStats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ActivityServiceServer).CalculateStats(ctx, req.(*emptypb.Empty))
+		return srv.(ActivitySvcServer).CalculateStats(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ActivityService_ServiceDesc is the grpc.ServiceDesc for ActivityService service.
+// ActivitySvc_ServiceDesc is the grpc.ServiceDesc for ActivitySvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ActivityService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "activity.ActivityService",
-	HandlerType: (*ActivityServiceServer)(nil),
+var ActivitySvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "activity.ActivitySvc",
+	HandlerType: (*ActivitySvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Get",
-			Handler:    _ActivityService_Get_Handler,
+			Handler:    _ActivitySvc_Get_Handler,
 		},
 		{
 			MethodName: "GetMine",
-			Handler:    _ActivityService_GetMine_Handler,
+			Handler:    _ActivitySvc_GetMine_Handler,
 		},
 		{
 			MethodName: "GetFeatured",
-			Handler:    _ActivityService_GetFeatured_Handler,
+			Handler:    _ActivitySvc_GetFeatured_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _ActivityService_List_Handler,
+			Handler:    _ActivitySvc_List_Handler,
 		},
 		{
 			MethodName: "ListMine",
-			Handler:    _ActivityService_ListMine_Handler,
+			Handler:    _ActivitySvc_ListMine_Handler,
 		},
 		{
 			MethodName: "ListFeatured",
-			Handler:    _ActivityService_ListFeatured_Handler,
+			Handler:    _ActivitySvc_ListFeatured_Handler,
 		},
 		{
 			MethodName: "CalculateStats",
-			Handler:    _ActivityService_CalculateStats_Handler,
+			Handler:    _ActivitySvc_CalculateStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

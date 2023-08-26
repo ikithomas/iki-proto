@@ -1,10 +1,10 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Observable } from "rxjs";
 import { share } from "rxjs/operators";
-import Long = require("long");
 
 export const protobufPackage = "heatmap";
 
@@ -291,11 +291,11 @@ export const Point = {
   },
 };
 
-export interface HeatmapService {
+export interface HeatmapSvc {
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Observable<Track>;
 }
 
-export class HeatmapServiceClientImpl implements HeatmapService {
+export class HeatmapSvcClientImpl implements HeatmapSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -304,15 +304,15 @@ export class HeatmapServiceClientImpl implements HeatmapService {
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Observable<Track> {
-    return this.rpc.invoke(HeatmapServiceGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.invoke(HeatmapSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 }
 
-export const HeatmapServiceDesc = { serviceName: "heatmap.HeatmapService" };
+export const HeatmapSvcDesc = { serviceName: "heatmap.HeatmapSvc" };
 
-export const HeatmapServiceGetDesc: UnaryMethodDefinitionish = {
+export const HeatmapSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: HeatmapServiceDesc,
+  service: HeatmapSvcDesc,
   requestStream: false,
   responseStream: true,
   requestType: {

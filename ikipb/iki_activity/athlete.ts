@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
+import _m0 from "protobufjs/minimal";
 import { Empty } from "../../google/protobuf/empty";
 
 export const protobufPackage = "athlete";
@@ -291,12 +291,12 @@ export const GetFitnessMetricResponse = {
   },
 };
 
-export interface AthleteService {
+export interface AthleteSvc {
   SetFitnessMetric(request: DeepPartial<SetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<Empty>;
   GetFitnessMetric(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<GetFitnessMetricResponse>;
 }
 
-export class AthleteServiceClientImpl implements AthleteService {
+export class AthleteSvcClientImpl implements AthleteSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -306,19 +306,19 @@ export class AthleteServiceClientImpl implements AthleteService {
   }
 
   SetFitnessMetric(request: DeepPartial<SetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<Empty> {
-    return this.rpc.unary(AthleteServiceSetFitnessMetricDesc, SetFitnessMetricRequest.fromPartial(request), metadata);
+    return this.rpc.unary(AthleteSvcSetFitnessMetricDesc, SetFitnessMetricRequest.fromPartial(request), metadata);
   }
 
   GetFitnessMetric(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<GetFitnessMetricResponse> {
-    return this.rpc.unary(AthleteServiceGetFitnessMetricDesc, Empty.fromPartial(request), metadata);
+    return this.rpc.unary(AthleteSvcGetFitnessMetricDesc, Empty.fromPartial(request), metadata);
   }
 }
 
-export const AthleteServiceDesc = { serviceName: "athlete.AthleteService" };
+export const AthleteSvcDesc = { serviceName: "athlete.AthleteSvc" };
 
-export const AthleteServiceSetFitnessMetricDesc: UnaryMethodDefinitionish = {
+export const AthleteSvcSetFitnessMetricDesc: UnaryMethodDefinitionish = {
   methodName: "SetFitnessMetric",
-  service: AthleteServiceDesc,
+  service: AthleteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -339,9 +339,9 @@ export const AthleteServiceSetFitnessMetricDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const AthleteServiceGetFitnessMetricDesc: UnaryMethodDefinitionish = {
+export const AthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish = {
   methodName: "GetFitnessMetric",
-  service: AthleteServiceDesc,
+  service: AthleteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import * as _m0 from "protobufjs/minimal";
-import { Secret, Service as Service1 } from "../iam";
+import _m0 from "protobufjs/minimal";
+import { Secret, Service } from "../iam";
 
 export const protobufPackage = "servicesvc";
 
@@ -11,7 +11,7 @@ export interface CreateRequest {
 }
 
 export interface CreateResponse {
-  service: Service1 | undefined;
+  service: Service | undefined;
 }
 
 export interface GetRequest {
@@ -19,14 +19,14 @@ export interface GetRequest {
 }
 
 export interface GetResponse {
-  service: Service1 | undefined;
+  service: Service | undefined;
 }
 
 export interface ListRequest {
 }
 
 export interface ListResponse {
-  service: Service1[];
+  service: Service[];
 }
 
 export interface DeleteRequest {
@@ -122,7 +122,7 @@ function createBaseCreateResponse(): CreateResponse {
 export const CreateResponse = {
   encode(message: CreateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.service !== undefined) {
-      Service1.encode(message.service, writer.uint32(10).fork()).ldelim();
+      Service.encode(message.service, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -139,7 +139,7 @@ export const CreateResponse = {
             break;
           }
 
-          message.service = Service1.decode(reader, reader.uint32());
+          message.service = Service.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -151,13 +151,13 @@ export const CreateResponse = {
   },
 
   fromJSON(object: any): CreateResponse {
-    return { service: isSet(object.service) ? Service1.fromJSON(object.service) : undefined };
+    return { service: isSet(object.service) ? Service.fromJSON(object.service) : undefined };
   },
 
   toJSON(message: CreateResponse): unknown {
     const obj: any = {};
     if (message.service !== undefined) {
-      obj.service = Service1.toJSON(message.service);
+      obj.service = Service.toJSON(message.service);
     }
     return obj;
   },
@@ -168,7 +168,7 @@ export const CreateResponse = {
   fromPartial<I extends Exact<DeepPartial<CreateResponse>, I>>(object: I): CreateResponse {
     const message = createBaseCreateResponse();
     message.service = (object.service !== undefined && object.service !== null)
-      ? Service1.fromPartial(object.service)
+      ? Service.fromPartial(object.service)
       : undefined;
     return message;
   },
@@ -238,7 +238,7 @@ function createBaseGetResponse(): GetResponse {
 export const GetResponse = {
   encode(message: GetResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.service !== undefined) {
-      Service1.encode(message.service, writer.uint32(10).fork()).ldelim();
+      Service.encode(message.service, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -255,7 +255,7 @@ export const GetResponse = {
             break;
           }
 
-          message.service = Service1.decode(reader, reader.uint32());
+          message.service = Service.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -267,13 +267,13 @@ export const GetResponse = {
   },
 
   fromJSON(object: any): GetResponse {
-    return { service: isSet(object.service) ? Service1.fromJSON(object.service) : undefined };
+    return { service: isSet(object.service) ? Service.fromJSON(object.service) : undefined };
   },
 
   toJSON(message: GetResponse): unknown {
     const obj: any = {};
     if (message.service !== undefined) {
-      obj.service = Service1.toJSON(message.service);
+      obj.service = Service.toJSON(message.service);
     }
     return obj;
   },
@@ -284,7 +284,7 @@ export const GetResponse = {
   fromPartial<I extends Exact<DeepPartial<GetResponse>, I>>(object: I): GetResponse {
     const message = createBaseGetResponse();
     message.service = (object.service !== undefined && object.service !== null)
-      ? Service1.fromPartial(object.service)
+      ? Service.fromPartial(object.service)
       : undefined;
     return message;
   },
@@ -340,7 +340,7 @@ function createBaseListResponse(): ListResponse {
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.service) {
-      Service1.encode(v!, writer.uint32(10).fork()).ldelim();
+      Service.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -357,7 +357,7 @@ export const ListResponse = {
             break;
           }
 
-          message.service.push(Service1.decode(reader, reader.uint32()));
+          message.service.push(Service.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -385,7 +385,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.service = object.service?.map((e) => Service1.fromPartial(e)) || [];
+    message.service = object.service?.map((e) => Service.fromPartial(e)) || [];
     return message;
   },
 };
@@ -806,7 +806,7 @@ export const DeleteSecretResponse = {
   },
 };
 
-export interface Service {
+export interface ServiceSvc {
   Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse>;
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
@@ -820,7 +820,7 @@ export interface Service {
   DeleteSecret(request: DeepPartial<DeleteSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteSecretResponse>;
 }
 
-export class ServiceClientImpl implements Service {
+export class ServiceSvcClientImpl implements ServiceSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -835,42 +835,42 @@ export class ServiceClientImpl implements Service {
   }
 
   Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse> {
-    return this.rpc.unary(ServiceCreateDesc, CreateRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcCreateDesc, CreateRequest.fromPartial(request), metadata);
   }
 
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse> {
-    return this.rpc.unary(ServiceDeleteDesc, DeleteRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcDeleteDesc, DeleteRequest.fromPartial(request), metadata);
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(ServiceGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(ServiceListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   AddSecret(request: DeepPartial<AddSecretRequest>, metadata?: grpc.Metadata): Promise<AddSecretResponse> {
-    return this.rpc.unary(ServiceAddSecretDesc, AddSecretRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcAddSecretDesc, AddSecretRequest.fromPartial(request), metadata);
   }
 
   DeactivateSecret(
     request: DeepPartial<DeactivateSecretRequest>,
     metadata?: grpc.Metadata,
   ): Promise<DeactivateSecretResponse> {
-    return this.rpc.unary(ServiceDeactivateSecretDesc, DeactivateSecretRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcDeactivateSecretDesc, DeactivateSecretRequest.fromPartial(request), metadata);
   }
 
   DeleteSecret(request: DeepPartial<DeleteSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteSecretResponse> {
-    return this.rpc.unary(ServiceDeleteSecretDesc, DeleteSecretRequest.fromPartial(request), metadata);
+    return this.rpc.unary(ServiceSvcDeleteSecretDesc, DeleteSecretRequest.fromPartial(request), metadata);
   }
 }
 
-export const ServiceDesc = { serviceName: "servicesvc.Service" };
+export const ServiceSvcDesc = { serviceName: "servicesvc.ServiceSvc" };
 
-export const ServiceCreateDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcCreateDesc: UnaryMethodDefinitionish = {
   methodName: "Create",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -891,9 +891,9 @@ export const ServiceCreateDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceDeleteDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcDeleteDesc: UnaryMethodDefinitionish = {
   methodName: "Delete",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -914,9 +914,9 @@ export const ServiceDeleteDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceGetDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -937,9 +937,9 @@ export const ServiceGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceListDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -960,9 +960,9 @@ export const ServiceListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceAddSecretDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcAddSecretDesc: UnaryMethodDefinitionish = {
   methodName: "AddSecret",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -983,9 +983,9 @@ export const ServiceAddSecretDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceDeactivateSecretDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcDeactivateSecretDesc: UnaryMethodDefinitionish = {
   methodName: "DeactivateSecret",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1006,9 +1006,9 @@ export const ServiceDeactivateSecretDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const ServiceDeleteSecretDesc: UnaryMethodDefinitionish = {
+export const ServiceSvcDeleteSecretDesc: UnaryMethodDefinitionish = {
   methodName: "DeleteSecret",
-  service: ServiceDesc,
+  service: ServiceSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
