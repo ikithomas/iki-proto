@@ -26,7 +26,6 @@ for f in $(find . -path "./ikipb/**/*.proto"); do
     --ts_proto_out=./ \
     --plugin=node_modules/ts-proto/protoc-gen-ts_proto \
     --ts_proto_opt=env=browser \
-    --ts_proto_opt=outputClientImpl=true \
     --ts_proto_opt=outputClientImpl=grpc-web \
     ${f}
 done
