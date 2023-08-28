@@ -22,16 +22,8 @@ service UserSvc {
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 
   // Adminitrator or owner only.
-  // delete a user
-  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
-
-  // Adminitrator or owner only.
   // attach a user to a group
-  rpc AttachGroup (AttachGroupRequest) returns (AttachGroupResponse) {}
-
-  // Adminitrator or owner only.
-  // detach a user from a group
-  rpc DetachGroup (DetachGroupRequest) returns (DetachGroupResponse) {}
+  rpc UpdateGroups (UpdateGroupRequest) returns (UpdateGroupResponse) {}
 }
 
 message ProfileRequest {}
@@ -59,23 +51,9 @@ message DeleteRequest {
 
 message DeleteResponse {}
 
-message ResetPasswordRequest {
-  string id = 1;
-  string new_password = 2;
-}
-
-message ResetPasswordResponse {}
-
-message AttachGroupRequest {
+message UpdateGroupRequest {
   string user_id = 1;
-  string group_id = 2;
+  repeated string group_id = 2;
 }
 
-message AttachGroupResponse {}
-
-message DetachGroupRequest {
-  string user_id = 1;
-  string group_id = 2;
-}
-
-message DetachGroupResponse {}
+message UpdateGroupResponse {}

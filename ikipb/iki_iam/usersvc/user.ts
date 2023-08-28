@@ -35,28 +35,12 @@ export interface DeleteRequest {
 export interface DeleteResponse {
 }
 
-export interface ResetPasswordRequest {
-  id: string;
-  newPassword: string;
-}
-
-export interface ResetPasswordResponse {
-}
-
-export interface AttachGroupRequest {
+export interface UpdateGroupRequest {
   userId: string;
-  groupId: string;
+  groupId: string[];
 }
 
-export interface AttachGroupResponse {
-}
-
-export interface DetachGroupRequest {
-  userId: string;
-  groupId: string;
-}
-
-export interface DetachGroupResponse {
+export interface UpdateGroupResponse {
 }
 
 function createBaseProfileRequest(): ProfileRequest {
@@ -473,142 +457,25 @@ export const DeleteResponse = {
   },
 };
 
-function createBaseResetPasswordRequest(): ResetPasswordRequest {
-  return { id: "", newPassword: "" };
+function createBaseUpdateGroupRequest(): UpdateGroupRequest {
+  return { userId: "", groupId: [] };
 }
 
-export const ResetPasswordRequest = {
-  encode(message: ResetPasswordRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    if (message.newPassword !== "") {
-      writer.uint32(18).string(message.newPassword);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ResetPasswordRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseResetPasswordRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.newPassword = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ResetPasswordRequest {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      newPassword: isSet(object.newPassword) ? String(object.newPassword) : "",
-    };
-  },
-
-  toJSON(message: ResetPasswordRequest): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.newPassword !== "") {
-      obj.newPassword = message.newPassword;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ResetPasswordRequest>, I>>(base?: I): ResetPasswordRequest {
-    return ResetPasswordRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ResetPasswordRequest>, I>>(object: I): ResetPasswordRequest {
-    const message = createBaseResetPasswordRequest();
-    message.id = object.id ?? "";
-    message.newPassword = object.newPassword ?? "";
-    return message;
-  },
-};
-
-function createBaseResetPasswordResponse(): ResetPasswordResponse {
-  return {};
-}
-
-export const ResetPasswordResponse = {
-  encode(_: ResetPasswordResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ResetPasswordResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseResetPasswordResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): ResetPasswordResponse {
-    return {};
-  },
-
-  toJSON(_: ResetPasswordResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ResetPasswordResponse>, I>>(base?: I): ResetPasswordResponse {
-    return ResetPasswordResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ResetPasswordResponse>, I>>(_: I): ResetPasswordResponse {
-    const message = createBaseResetPasswordResponse();
-    return message;
-  },
-};
-
-function createBaseAttachGroupRequest(): AttachGroupRequest {
-  return { userId: "", groupId: "" };
-}
-
-export const AttachGroupRequest = {
-  encode(message: AttachGroupRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const UpdateGroupRequest = {
+  encode(message: UpdateGroupRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
     }
-    if (message.groupId !== "") {
-      writer.uint32(18).string(message.groupId);
+    for (const v of message.groupId) {
+      writer.uint32(18).string(v!);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AttachGroupRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateGroupRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAttachGroupRequest();
+    const message = createBaseUpdateGroupRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -624,7 +491,7 @@ export const AttachGroupRequest = {
             break;
           }
 
-          message.groupId = reader.string();
+          message.groupId.push(reader.string());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -635,48 +502,48 @@ export const AttachGroupRequest = {
     return message;
   },
 
-  fromJSON(object: any): AttachGroupRequest {
+  fromJSON(object: any): UpdateGroupRequest {
     return {
       userId: isSet(object.userId) ? String(object.userId) : "",
-      groupId: isSet(object.groupId) ? String(object.groupId) : "",
+      groupId: Array.isArray(object?.groupId) ? object.groupId.map((e: any) => String(e)) : [],
     };
   },
 
-  toJSON(message: AttachGroupRequest): unknown {
+  toJSON(message: UpdateGroupRequest): unknown {
     const obj: any = {};
     if (message.userId !== "") {
       obj.userId = message.userId;
     }
-    if (message.groupId !== "") {
+    if (message.groupId?.length) {
       obj.groupId = message.groupId;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AttachGroupRequest>, I>>(base?: I): AttachGroupRequest {
-    return AttachGroupRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<UpdateGroupRequest>, I>>(base?: I): UpdateGroupRequest {
+    return UpdateGroupRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AttachGroupRequest>, I>>(object: I): AttachGroupRequest {
-    const message = createBaseAttachGroupRequest();
+  fromPartial<I extends Exact<DeepPartial<UpdateGroupRequest>, I>>(object: I): UpdateGroupRequest {
+    const message = createBaseUpdateGroupRequest();
     message.userId = object.userId ?? "";
-    message.groupId = object.groupId ?? "";
+    message.groupId = object.groupId?.map((e) => e) || [];
     return message;
   },
 };
 
-function createBaseAttachGroupResponse(): AttachGroupResponse {
+function createBaseUpdateGroupResponse(): UpdateGroupResponse {
   return {};
 }
 
-export const AttachGroupResponse = {
-  encode(_: AttachGroupResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const UpdateGroupResponse = {
+  encode(_: UpdateGroupResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AttachGroupResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateGroupResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAttachGroupResponse();
+    const message = createBaseUpdateGroupResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -689,137 +556,20 @@ export const AttachGroupResponse = {
     return message;
   },
 
-  fromJSON(_: any): AttachGroupResponse {
+  fromJSON(_: any): UpdateGroupResponse {
     return {};
   },
 
-  toJSON(_: AttachGroupResponse): unknown {
+  toJSON(_: UpdateGroupResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AttachGroupResponse>, I>>(base?: I): AttachGroupResponse {
-    return AttachGroupResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<UpdateGroupResponse>, I>>(base?: I): UpdateGroupResponse {
+    return UpdateGroupResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AttachGroupResponse>, I>>(_: I): AttachGroupResponse {
-    const message = createBaseAttachGroupResponse();
-    return message;
-  },
-};
-
-function createBaseDetachGroupRequest(): DetachGroupRequest {
-  return { userId: "", groupId: "" };
-}
-
-export const DetachGroupRequest = {
-  encode(message: DetachGroupRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== "") {
-      writer.uint32(10).string(message.userId);
-    }
-    if (message.groupId !== "") {
-      writer.uint32(18).string(message.groupId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DetachGroupRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDetachGroupRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.userId = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.groupId = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): DetachGroupRequest {
-    return {
-      userId: isSet(object.userId) ? String(object.userId) : "",
-      groupId: isSet(object.groupId) ? String(object.groupId) : "",
-    };
-  },
-
-  toJSON(message: DetachGroupRequest): unknown {
-    const obj: any = {};
-    if (message.userId !== "") {
-      obj.userId = message.userId;
-    }
-    if (message.groupId !== "") {
-      obj.groupId = message.groupId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<DetachGroupRequest>, I>>(base?: I): DetachGroupRequest {
-    return DetachGroupRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<DetachGroupRequest>, I>>(object: I): DetachGroupRequest {
-    const message = createBaseDetachGroupRequest();
-    message.userId = object.userId ?? "";
-    message.groupId = object.groupId ?? "";
-    return message;
-  },
-};
-
-function createBaseDetachGroupResponse(): DetachGroupResponse {
-  return {};
-}
-
-export const DetachGroupResponse = {
-  encode(_: DetachGroupResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DetachGroupResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDetachGroupResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): DetachGroupResponse {
-    return {};
-  },
-
-  toJSON(_: DetachGroupResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<DetachGroupResponse>, I>>(base?: I): DetachGroupResponse {
-    return DetachGroupResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<DetachGroupResponse>, I>>(_: I): DetachGroupResponse {
-    const message = createBaseDetachGroupResponse();
+  fromPartial<I extends Exact<DeepPartial<UpdateGroupResponse>, I>>(_: I): UpdateGroupResponse {
+    const message = createBaseUpdateGroupResponse();
     return message;
   },
 };
@@ -843,19 +593,9 @@ export interface UserSvc {
   Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
   /**
    * Adminitrator or owner only.
-   * delete a user
-   */
-  ResetPassword(request: DeepPartial<ResetPasswordRequest>, metadata?: grpc.Metadata): Promise<ResetPasswordResponse>;
-  /**
-   * Adminitrator or owner only.
    * attach a user to a group
    */
-  AttachGroup(request: DeepPartial<AttachGroupRequest>, metadata?: grpc.Metadata): Promise<AttachGroupResponse>;
-  /**
-   * Adminitrator or owner only.
-   * detach a user from a group
-   */
-  DetachGroup(request: DeepPartial<DetachGroupRequest>, metadata?: grpc.Metadata): Promise<DetachGroupResponse>;
+  UpdateGroups(request: DeepPartial<UpdateGroupRequest>, metadata?: grpc.Metadata): Promise<UpdateGroupResponse>;
 }
 
 export class UserSvcClientImpl implements UserSvc {
@@ -867,9 +607,7 @@ export class UserSvcClientImpl implements UserSvc {
     this.List = this.List.bind(this);
     this.Get = this.Get.bind(this);
     this.Delete = this.Delete.bind(this);
-    this.ResetPassword = this.ResetPassword.bind(this);
-    this.AttachGroup = this.AttachGroup.bind(this);
-    this.DetachGroup = this.DetachGroup.bind(this);
+    this.UpdateGroups = this.UpdateGroups.bind(this);
   }
 
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse> {
@@ -888,16 +626,8 @@ export class UserSvcClientImpl implements UserSvc {
     return this.rpc.unary(UserSvcDeleteDesc, DeleteRequest.fromPartial(request), metadata);
   }
 
-  ResetPassword(request: DeepPartial<ResetPasswordRequest>, metadata?: grpc.Metadata): Promise<ResetPasswordResponse> {
-    return this.rpc.unary(UserSvcResetPasswordDesc, ResetPasswordRequest.fromPartial(request), metadata);
-  }
-
-  AttachGroup(request: DeepPartial<AttachGroupRequest>, metadata?: grpc.Metadata): Promise<AttachGroupResponse> {
-    return this.rpc.unary(UserSvcAttachGroupDesc, AttachGroupRequest.fromPartial(request), metadata);
-  }
-
-  DetachGroup(request: DeepPartial<DetachGroupRequest>, metadata?: grpc.Metadata): Promise<DetachGroupResponse> {
-    return this.rpc.unary(UserSvcDetachGroupDesc, DetachGroupRequest.fromPartial(request), metadata);
+  UpdateGroups(request: DeepPartial<UpdateGroupRequest>, metadata?: grpc.Metadata): Promise<UpdateGroupResponse> {
+    return this.rpc.unary(UserSvcUpdateGroupsDesc, UpdateGroupRequest.fromPartial(request), metadata);
   }
 }
 
@@ -995,65 +725,19 @@ export const UserSvcDeleteDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserSvcResetPasswordDesc: UnaryMethodDefinitionish = {
-  methodName: "ResetPassword",
+export const UserSvcUpdateGroupsDesc: UnaryMethodDefinitionish = {
+  methodName: "UpdateGroups",
   service: UserSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return ResetPasswordRequest.encode(this).finish();
+      return UpdateGroupRequest.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = ResetPasswordResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const UserSvcAttachGroupDesc: UnaryMethodDefinitionish = {
-  methodName: "AttachGroup",
-  service: UserSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return AttachGroupRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = AttachGroupResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const UserSvcDetachGroupDesc: UnaryMethodDefinitionish = {
-  methodName: "DetachGroup",
-  service: UserSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return DetachGroupRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = DetachGroupResponse.decode(data);
+      const value = UpdateGroupResponse.decode(data);
       return {
         ...value,
         toObject() {

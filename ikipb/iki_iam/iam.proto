@@ -13,7 +13,7 @@ message User {
   bool group_owner = 5;
   bool group_admin = 6;
   bool group_user = 7;
-  repeated string roles = 8;
+  repeated Group roles = 8;
 }
 
 message Group {

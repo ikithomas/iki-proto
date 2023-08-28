@@ -52,7 +52,7 @@ export interface User {
   groupOwner: boolean;
   groupAdmin: boolean;
   groupUser: boolean;
-  roles: string[];
+  roles: Group[];
 }
 
 export interface Group {
@@ -116,7 +116,7 @@ export const User = {
       writer.uint32(56).bool(message.groupUser);
     }
     for (const v of message.roles) {
-      writer.uint32(66).string(v!);
+      Group.encode(v!, writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
@@ -182,7 +182,7 @@ export const User = {
             break;
           }
 
-          message.roles.push(reader.string());
+          message.roles.push(Group.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -202,7 +202,7 @@ export const User = {
       groupOwner: isSet(object.groupOwner) ? Boolean(object.groupOwner) : false,
       groupAdmin: isSet(object.groupAdmin) ? Boolean(object.groupAdmin) : false,
       groupUser: isSet(object.groupUser) ? Boolean(object.groupUser) : false,
-      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => String(e)) : [],
+      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Group.fromJSON(e)) : [],
     };
   },
 
@@ -230,7 +230,7 @@ export const User = {
       obj.groupUser = message.groupUser;
     }
     if (message.roles?.length) {
-      obj.roles = message.roles;
+      obj.roles = message.roles.map((e) => Group.toJSON(e));
     }
     return obj;
   },
@@ -247,7 +247,7 @@ export const User = {
     message.groupOwner = object.groupOwner ?? false;
     message.groupAdmin = object.groupAdmin ?? false;
     message.groupUser = object.groupUser ?? false;
-    message.roles = object.roles?.map((e) => e) || [];
+    message.roles = object.roles?.map((e) => Group.fromPartial(e)) || [];
     return message;
   },
 };
