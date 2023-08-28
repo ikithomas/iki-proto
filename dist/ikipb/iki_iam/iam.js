@@ -53,10 +53,10 @@ function createBaseUser() {
         email: "",
         givenName: "",
         familyName: "",
-        groupOwner: false,
-        groupAdmin: false,
-        groupUser: false,
         roles: [],
+        active: false,
+        lastLoginAt: 0,
+        lastActivityAt: 0,
     };
 }
 exports.User = {
@@ -73,17 +73,17 @@ exports.User = {
         if (message.familyName !== "") {
             writer.uint32(34).string(message.familyName);
         }
-        if (message.groupOwner === true) {
-            writer.uint32(40).bool(message.groupOwner);
-        }
-        if (message.groupAdmin === true) {
-            writer.uint32(48).bool(message.groupAdmin);
-        }
-        if (message.groupUser === true) {
-            writer.uint32(56).bool(message.groupUser);
-        }
         for (const v of message.roles) {
             exports.Group.encode(v, writer.uint32(66).fork()).ldelim();
+        }
+        if (message.active === true) {
+            writer.uint32(72).bool(message.active);
+        }
+        if (message.lastLoginAt !== 0) {
+            writer.uint32(80).int64(message.lastLoginAt);
+        }
+        if (message.lastActivityAt !== 0) {
+            writer.uint32(88).int64(message.lastActivityAt);
         }
         return writer;
     },
@@ -118,29 +118,29 @@ exports.User = {
                     }
                     message.familyName = reader.string();
                     continue;
-                case 5:
-                    if (tag !== 40) {
-                        break;
-                    }
-                    message.groupOwner = reader.bool();
-                    continue;
-                case 6:
-                    if (tag !== 48) {
-                        break;
-                    }
-                    message.groupAdmin = reader.bool();
-                    continue;
-                case 7:
-                    if (tag !== 56) {
-                        break;
-                    }
-                    message.groupUser = reader.bool();
-                    continue;
                 case 8:
                     if (tag !== 66) {
                         break;
                     }
                     message.roles.push(exports.Group.decode(reader, reader.uint32()));
+                    continue;
+                case 9:
+                    if (tag !== 72) {
+                        break;
+                    }
+                    message.active = reader.bool();
+                    continue;
+                case 10:
+                    if (tag !== 80) {
+                        break;
+                    }
+                    message.lastLoginAt = longToNumber(reader.int64());
+                    continue;
+                case 11:
+                    if (tag !== 88) {
+                        break;
+                    }
+                    message.lastActivityAt = longToNumber(reader.int64());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -156,10 +156,10 @@ exports.User = {
             email: isSet(object.email) ? String(object.email) : "",
             givenName: isSet(object.givenName) ? String(object.givenName) : "",
             familyName: isSet(object.familyName) ? String(object.familyName) : "",
-            groupOwner: isSet(object.groupOwner) ? Boolean(object.groupOwner) : false,
-            groupAdmin: isSet(object.groupAdmin) ? Boolean(object.groupAdmin) : false,
-            groupUser: isSet(object.groupUser) ? Boolean(object.groupUser) : false,
             roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Group.fromJSON(e)) : [],
+            active: isSet(object.active) ? Boolean(object.active) : false,
+            lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
+            lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
         };
     },
     toJSON(message) {
@@ -177,17 +177,17 @@ exports.User = {
         if (message.familyName !== "") {
             obj.familyName = message.familyName;
         }
-        if (message.groupOwner === true) {
-            obj.groupOwner = message.groupOwner;
-        }
-        if (message.groupAdmin === true) {
-            obj.groupAdmin = message.groupAdmin;
-        }
-        if (message.groupUser === true) {
-            obj.groupUser = message.groupUser;
-        }
         if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
             obj.roles = message.roles.map((e) => exports.Group.toJSON(e));
+        }
+        if (message.active === true) {
+            obj.active = message.active;
+        }
+        if (message.lastLoginAt !== 0) {
+            obj.lastLoginAt = Math.round(message.lastLoginAt);
+        }
+        if (message.lastActivityAt !== 0) {
+            obj.lastActivityAt = Math.round(message.lastActivityAt);
         }
         return obj;
     },
@@ -201,10 +201,10 @@ exports.User = {
         message.email = (_b = object.email) !== null && _b !== void 0 ? _b : "";
         message.givenName = (_c = object.givenName) !== null && _c !== void 0 ? _c : "";
         message.familyName = (_d = object.familyName) !== null && _d !== void 0 ? _d : "";
-        message.groupOwner = (_e = object.groupOwner) !== null && _e !== void 0 ? _e : false;
-        message.groupAdmin = (_f = object.groupAdmin) !== null && _f !== void 0 ? _f : false;
-        message.groupUser = (_g = object.groupUser) !== null && _g !== void 0 ? _g : false;
-        message.roles = ((_h = object.roles) === null || _h === void 0 ? void 0 : _h.map((e) => exports.Group.fromPartial(e))) || [];
+        message.roles = ((_e = object.roles) === null || _e === void 0 ? void 0 : _e.map((e) => exports.Group.fromPartial(e))) || [];
+        message.active = (_f = object.active) !== null && _f !== void 0 ? _f : false;
+        message.lastLoginAt = (_g = object.lastLoginAt) !== null && _g !== void 0 ? _g : 0;
+        message.lastActivityAt = (_h = object.lastActivityAt) !== null && _h !== void 0 ? _h : 0;
         return message;
     },
 };

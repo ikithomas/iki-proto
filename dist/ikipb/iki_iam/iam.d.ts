@@ -14,10 +14,10 @@ export interface User {
     email: string;
     givenName: string;
     familyName: string;
-    groupOwner: boolean;
-    groupAdmin: boolean;
-    groupUser: boolean;
     roles: Group[];
+    active: boolean;
+    lastLoginAt: number;
+    lastActivityAt: number;
 }
 export interface Group {
     id: string;
@@ -50,21 +50,18 @@ export declare const User: {
         email?: string;
         givenName?: string;
         familyName?: string;
-        groupOwner?: boolean;
-        groupAdmin?: boolean;
-        groupUser?: boolean;
         roles?: {
             id?: string;
             name?: string;
         }[];
+        active?: boolean;
+        lastLoginAt?: number;
+        lastActivityAt?: number;
     } & {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        groupOwner?: boolean;
-        groupAdmin?: boolean;
-        groupUser?: boolean;
         roles?: {
             id?: string;
             name?: string;
@@ -78,27 +75,27 @@ export declare const User: {
             id?: string;
             name?: string;
         }[]>]: never; };
+        active?: boolean;
+        lastLoginAt?: number;
+        lastActivityAt?: number;
     } & { [K_2 in Exclude<keyof I, keyof User>]: never; }>(base?: I): User;
     fromPartial<I_1 extends {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        groupOwner?: boolean;
-        groupAdmin?: boolean;
-        groupUser?: boolean;
         roles?: {
             id?: string;
             name?: string;
         }[];
+        active?: boolean;
+        lastLoginAt?: number;
+        lastActivityAt?: number;
     } & {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        groupOwner?: boolean;
-        groupAdmin?: boolean;
-        groupUser?: boolean;
         roles?: {
             id?: string;
             name?: string;
@@ -112,6 +109,9 @@ export declare const User: {
             id?: string;
             name?: string;
         }[]>]: never; };
+        active?: boolean;
+        lastLoginAt?: number;
+        lastActivityAt?: number;
     } & { [K_5 in Exclude<keyof I_1, keyof User>]: never; }>(object: I_1): User;
 };
 export declare const Group: {

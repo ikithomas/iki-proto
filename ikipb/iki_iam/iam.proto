@@ -6,14 +6,17 @@ package iam;
 
 // User is a human user
 message User {
+  reserved 5, 6, 7;
+
   string id = 1;
   string email = 2;
   string given_name = 3;
   string family_name = 4;
-  bool group_owner = 5;
-  bool group_admin = 6;
-  bool group_user = 7;
   repeated Group roles = 8;
+
+  bool active = 9;
+  int64 last_login_at = 10;
+  int64 last_activity_at = 11;
 }
 
 message Group {

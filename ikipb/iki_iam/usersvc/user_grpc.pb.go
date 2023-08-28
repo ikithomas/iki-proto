@@ -22,19 +22,20 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserSvcClient interface {
+	// Profile returns the user profile associated with the access token associated with the request.
 	Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
-	// Adminitrator or owner only
-	// list all users
+	// CheckEmail checks if the account is already taken.
+	CheckEmail(ctx context.Context, in *CheckEmailRequest, opts ...grpc.CallOption) (*CheckEmailResponse, error)
+	// List lists all users.
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	// Adminitrator or owner only.
-	// get the details of a specific user.
+	// Get gets the details of a specific user.
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	// Adminitrator or owner only.
-	// delete a user.
+	// Delete delete a user.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	// Adminitrator or owner only.
-	// attach a user to a group
+	// UpdateGroups updates the groups of the user.
 	UpdateGroups(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
+	ActivateUser(ctx context.Context, in *ActivateUserRequest, opts ...grpc.CallOption) (*ActivateUserResponse, error)
+	DeactivateUser(ctx context.Context, in *DeactivateUserRequest, opts ...grpc.CallOption) (*DeactivateUserResponse, error)
 }
 
 type userSvcClient struct {
@@ -48,6 +49,15 @@ func NewUserSvcClient(cc grpc.ClientConnInterface) UserSvcClient {
 func (c *userSvcClient) Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
 	out := new(ProfileResponse)
 	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/Profile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userSvcClient) CheckEmail(ctx context.Context, in *CheckEmailRequest, opts ...grpc.CallOption) (*CheckEmailResponse, error) {
+	out := new(CheckEmailResponse)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/CheckEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,23 +100,42 @@ func (c *userSvcClient) UpdateGroups(ctx context.Context, in *UpdateGroupRequest
 	return out, nil
 }
 
+func (c *userSvcClient) ActivateUser(ctx context.Context, in *ActivateUserRequest, opts ...grpc.CallOption) (*ActivateUserResponse, error) {
+	out := new(ActivateUserResponse)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/ActivateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userSvcClient) DeactivateUser(ctx context.Context, in *DeactivateUserRequest, opts ...grpc.CallOption) (*DeactivateUserResponse, error) {
+	out := new(DeactivateUserResponse)
+	err := c.cc.Invoke(ctx, "/usersvc.UserSvc/DeactivateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserSvcServer is the server API for UserSvc service.
 // All implementations must embed UnimplementedUserSvcServer
 // for forward compatibility
 type UserSvcServer interface {
+	// Profile returns the user profile associated with the access token associated with the request.
 	Profile(context.Context, *ProfileRequest) (*ProfileResponse, error)
-	// Adminitrator or owner only
-	// list all users
+	// CheckEmail checks if the account is already taken.
+	CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error)
+	// List lists all users.
 	List(context.Context, *ListRequest) (*ListResponse, error)
-	// Adminitrator or owner only.
-	// get the details of a specific user.
+	// Get gets the details of a specific user.
 	Get(context.Context, *GetRequest) (*GetResponse, error)
-	// Adminitrator or owner only.
-	// delete a user.
+	// Delete delete a user.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	// Adminitrator or owner only.
-	// attach a user to a group
+	// UpdateGroups updates the groups of the user.
 	UpdateGroups(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
+	ActivateUser(context.Context, *ActivateUserRequest) (*ActivateUserResponse, error)
+	DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error)
 	mustEmbedUnimplementedUserSvcServer()
 }
 
@@ -116,6 +145,9 @@ type UnimplementedUserSvcServer struct {
 
 func (UnimplementedUserSvcServer) Profile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Profile not implemented")
+}
+func (UnimplementedUserSvcServer) CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckEmail not implemented")
 }
 func (UnimplementedUserSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -128,6 +160,12 @@ func (UnimplementedUserSvcServer) Delete(context.Context, *DeleteRequest) (*Dele
 }
 func (UnimplementedUserSvcServer) UpdateGroups(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroups not implemented")
+}
+func (UnimplementedUserSvcServer) ActivateUser(context.Context, *ActivateUserRequest) (*ActivateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ActivateUser not implemented")
+}
+func (UnimplementedUserSvcServer) DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeactivateUser not implemented")
 }
 func (UnimplementedUserSvcServer) mustEmbedUnimplementedUserSvcServer() {}
 
@@ -156,6 +194,24 @@ func _UserSvc_Profile_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserSvcServer).Profile(ctx, req.(*ProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserSvc_CheckEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).CheckEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/usersvc.UserSvc/CheckEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).CheckEmail(ctx, req.(*CheckEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -232,6 +288,42 @@ func _UserSvc_UpdateGroups_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserSvc_ActivateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ActivateUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).ActivateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/usersvc.UserSvc/ActivateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).ActivateUser(ctx, req.(*ActivateUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserSvc_DeactivateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeactivateUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).DeactivateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/usersvc.UserSvc/DeactivateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).DeactivateUser(ctx, req.(*DeactivateUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserSvc_ServiceDesc is the grpc.ServiceDesc for UserSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +334,10 @@ var UserSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Profile",
 			Handler:    _UserSvc_Profile_Handler,
+		},
+		{
+			MethodName: "CheckEmail",
+			Handler:    _UserSvc_CheckEmail_Handler,
 		},
 		{
 			MethodName: "List",
@@ -258,6 +354,14 @@ var UserSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateGroups",
 			Handler:    _UserSvc_UpdateGroups_Handler,
+		},
+		{
+			MethodName: "ActivateUser",
+			Handler:    _UserSvc_ActivateUser_Handler,
+		},
+		{
+			MethodName: "DeactivateUser",
+			Handler:    _UserSvc_DeactivateUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

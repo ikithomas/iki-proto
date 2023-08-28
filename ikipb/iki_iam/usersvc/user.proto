@@ -7,29 +7,41 @@ option go_package = "/usersvc";
 package usersvc;
 
 service UserSvc {
+  // Profile returns the user profile associated with the access token associated with the request.
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
 
-  // Adminitrator or owner only
-  // list all users
+  // CheckEmail checks if the account is already taken.
+  rpc CheckEmail(CheckEmailRequest) returns (CheckEmailResponse) {}
+
+  // List lists all users.
   rpc List(ListRequest) returns (ListResponse) {}
 
-  // Adminitrator or owner only.
-  // get the details of a specific user.
+  // Get gets the details of a specific user.
   rpc Get(GetRequest) returns (GetResponse) {}
 
-  // Adminitrator or owner only.
-  // delete a user.
+  // Delete delete a user.
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 
-  // Adminitrator or owner only.
-  // attach a user to a group
+  // UpdateGroups updates the groups of the user.
   rpc UpdateGroups (UpdateGroupRequest) returns (UpdateGroupResponse) {}
+
+  rpc ActivateUser (ActivateUserRequest) returns (ActivateUserResponse) {}
+
+  rpc DeactivateUser (DeactivateUserRequest) returns (DeactivateUserResponse) {}
 }
 
 message ProfileRequest {}
 
 message ProfileResponse {
   iam.User user = 1;
+}
+
+message CheckEmailRequest {
+  string email = 1;
+}
+
+message CheckEmailResponse {
+  bool exist = 1;
 }
 
 message GetRequest {
@@ -57,3 +69,15 @@ message UpdateGroupRequest {
 }
 
 message UpdateGroupResponse {}
+
+message ActivateUserRequest {
+  string id = 1;
+}
+
+message ActivateUserResponse {}
+
+message DeactivateUserRequest {
+  string id = 1;
+}
+
+message DeactivateUserResponse {}

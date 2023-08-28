@@ -51,13 +51,13 @@ export declare const GoogleLoginResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         accessToken?: string;
@@ -67,21 +67,18 @@ export declare const GoogleLoginResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -95,6 +92,9 @@ export declare const GoogleLoginResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_2 in Exclude<keyof I["user"], keyof User>]: never; };
     } & { [K_3 in Exclude<keyof I, keyof GoogleLoginResponse>]: never; }>(base?: I): GoogleLoginResponse;
     fromPartial<I_1 extends {
@@ -105,13 +105,13 @@ export declare const GoogleLoginResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         accessToken?: string;
@@ -121,21 +121,18 @@ export declare const GoogleLoginResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -149,6 +146,9 @@ export declare const GoogleLoginResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
     } & { [K_7 in Exclude<keyof I_1, keyof GoogleLoginResponse>]: never; }>(object: I_1): GoogleLoginResponse;
 };

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcDeactivateUserDesc = exports.UserSvcActivateUserDesc = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcCheckEmailDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.DeactivateUserResponse = exports.DeactivateUserRequest = exports.ActivateUserResponse = exports.ActivateUserRequest = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CheckEmailResponse = exports.CheckEmailRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -94,6 +94,108 @@ exports.ProfileResponse = {
     fromPartial(object) {
         const message = createBaseProfileResponse();
         message.user = (object.user !== undefined && object.user !== null) ? iam_1.User.fromPartial(object.user) : undefined;
+        return message;
+    },
+};
+function createBaseCheckEmailRequest() {
+    return { email: "" };
+}
+exports.CheckEmailRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.email !== "") {
+            writer.uint32(10).string(message.email);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseCheckEmailRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.email = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { email: isSet(object.email) ? String(object.email) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.email !== "") {
+            obj.email = message.email;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.CheckEmailRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseCheckEmailRequest();
+        message.email = (_a = object.email) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseCheckEmailResponse() {
+    return { exist: false };
+}
+exports.CheckEmailResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.exist === true) {
+            writer.uint32(8).bool(message.exist);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseCheckEmailResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.exist = reader.bool();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { exist: isSet(object.exist) ? Boolean(object.exist) : false };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.exist === true) {
+            obj.exist = message.exist;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.CheckEmailResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseCheckEmailResponse();
+        message.exist = (_a = object.exist) !== null && _a !== void 0 ? _a : false;
         return message;
     },
 };
@@ -480,17 +582,199 @@ exports.UpdateGroupResponse = {
         return message;
     },
 };
+function createBaseActivateUserRequest() {
+    return { id: "" };
+}
+exports.ActivateUserRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseActivateUserRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ActivateUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseActivateUserRequest();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseActivateUserResponse() {
+    return {};
+}
+exports.ActivateUserResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseActivateUserResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.ActivateUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(_) {
+        const message = createBaseActivateUserResponse();
+        return message;
+    },
+};
+function createBaseDeactivateUserRequest() {
+    return { id: "" };
+}
+exports.DeactivateUserRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseDeactivateUserRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.DeactivateUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseDeactivateUserRequest();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseDeactivateUserResponse() {
+    return {};
+}
+exports.DeactivateUserResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseDeactivateUserResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.DeactivateUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(_) {
+        const message = createBaseDeactivateUserResponse();
+        return message;
+    },
+};
 class UserSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.Profile = this.Profile.bind(this);
+        this.CheckEmail = this.CheckEmail.bind(this);
         this.List = this.List.bind(this);
         this.Get = this.Get.bind(this);
         this.Delete = this.Delete.bind(this);
         this.UpdateGroups = this.UpdateGroups.bind(this);
+        this.ActivateUser = this.ActivateUser.bind(this);
+        this.DeactivateUser = this.DeactivateUser.bind(this);
     }
     Profile(request, metadata) {
         return this.rpc.unary(exports.UserSvcProfileDesc, exports.ProfileRequest.fromPartial(request), metadata);
+    }
+    CheckEmail(request, metadata) {
+        return this.rpc.unary(exports.UserSvcCheckEmailDesc, exports.CheckEmailRequest.fromPartial(request), metadata);
     }
     List(request, metadata) {
         return this.rpc.unary(exports.UserSvcListDesc, exports.ListRequest.fromPartial(request), metadata);
@@ -503,6 +787,12 @@ class UserSvcClientImpl {
     }
     UpdateGroups(request, metadata) {
         return this.rpc.unary(exports.UserSvcUpdateGroupsDesc, exports.UpdateGroupRequest.fromPartial(request), metadata);
+    }
+    ActivateUser(request, metadata) {
+        return this.rpc.unary(exports.UserSvcActivateUserDesc, exports.ActivateUserRequest.fromPartial(request), metadata);
+    }
+    DeactivateUser(request, metadata) {
+        return this.rpc.unary(exports.UserSvcDeactivateUserDesc, exports.DeactivateUserRequest.fromPartial(request), metadata);
     }
 }
 exports.UserSvcClientImpl = UserSvcClientImpl;
@@ -520,6 +810,25 @@ exports.UserSvcProfileDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.ProfileResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.UserSvcCheckEmailDesc = {
+    methodName: "CheckEmail",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.CheckEmailRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.CheckEmailResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });
@@ -596,6 +905,44 @@ exports.UserSvcUpdateGroupsDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.UpdateGroupResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.UserSvcActivateUserDesc = {
+    methodName: "ActivateUser",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.ActivateUserRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.ActivateUserResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.UserSvcDeactivateUserDesc = {
+    methodName: "DeactivateUser",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.DeactivateUserRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.DeactivateUserResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

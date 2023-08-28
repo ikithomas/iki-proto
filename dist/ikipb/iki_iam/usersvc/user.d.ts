@@ -7,6 +7,12 @@ export interface ProfileRequest {
 export interface ProfileResponse {
     user: User | undefined;
 }
+export interface CheckEmailRequest {
+    email: string;
+}
+export interface CheckEmailResponse {
+    exist: boolean;
+}
 export interface GetRequest {
     id: string;
 }
@@ -29,6 +35,16 @@ export interface UpdateGroupRequest {
 }
 export interface UpdateGroupResponse {
 }
+export interface ActivateUserRequest {
+    id: string;
+}
+export interface ActivateUserResponse {
+}
+export interface DeactivateUserRequest {
+    id: string;
+}
+export interface DeactivateUserResponse {
+}
 export declare const ProfileRequest: {
     encode(_: ProfileRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): ProfileRequest;
@@ -48,13 +64,13 @@ export declare const ProfileResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         user?: {
@@ -62,21 +78,18 @@ export declare const ProfileResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -90,6 +103,9 @@ export declare const ProfileResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_2 in Exclude<keyof I["user"], keyof User>]: never; };
     } & { [K_3 in Exclude<keyof I, "user">]: never; }>(base?: I): ProfileResponse;
     fromPartial<I_1 extends {
@@ -98,13 +114,13 @@ export declare const ProfileResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         user?: {
@@ -112,21 +128,18 @@ export declare const ProfileResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -140,8 +153,43 @@ export declare const ProfileResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
     } & { [K_7 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): ProfileResponse;
+};
+export declare const CheckEmailRequest: {
+    encode(message: CheckEmailRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CheckEmailRequest;
+    fromJSON(object: any): CheckEmailRequest;
+    toJSON(message: CheckEmailRequest): unknown;
+    create<I extends {
+        email?: string;
+    } & {
+        email?: string;
+    } & { [K in Exclude<keyof I, "email">]: never; }>(base?: I): CheckEmailRequest;
+    fromPartial<I_1 extends {
+        email?: string;
+    } & {
+        email?: string;
+    } & { [K_1 in Exclude<keyof I_1, "email">]: never; }>(object: I_1): CheckEmailRequest;
+};
+export declare const CheckEmailResponse: {
+    encode(message: CheckEmailResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CheckEmailResponse;
+    fromJSON(object: any): CheckEmailResponse;
+    toJSON(message: CheckEmailResponse): unknown;
+    create<I extends {
+        exist?: boolean;
+    } & {
+        exist?: boolean;
+    } & { [K in Exclude<keyof I, "exist">]: never; }>(base?: I): CheckEmailResponse;
+    fromPartial<I_1 extends {
+        exist?: boolean;
+    } & {
+        exist?: boolean;
+    } & { [K_1 in Exclude<keyof I_1, "exist">]: never; }>(object: I_1): CheckEmailResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;
@@ -170,13 +218,13 @@ export declare const GetResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         user?: {
@@ -184,21 +232,18 @@ export declare const GetResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -212,6 +257,9 @@ export declare const GetResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_2 in Exclude<keyof I["user"], keyof User>]: never; };
     } & { [K_3 in Exclude<keyof I, "user">]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
@@ -220,13 +268,13 @@ export declare const GetResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         };
     } & {
         user?: {
@@ -234,21 +282,18 @@ export declare const GetResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -262,6 +307,9 @@ export declare const GetResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
     } & { [K_7 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetResponse;
 };
@@ -284,13 +332,13 @@ export declare const ListResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[];
     } & {
         users?: {
@@ -298,33 +346,30 @@ export declare const ListResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[] & ({
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -338,18 +383,21 @@ export declare const ListResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_2 in Exclude<keyof I["users"][number], keyof User>]: never; })[] & { [K_3 in Exclude<keyof I["users"], keyof {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[]>]: never; };
     } & { [K_4 in Exclude<keyof I, "users">]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
@@ -358,13 +406,13 @@ export declare const ListResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[];
     } & {
         users?: {
@@ -372,33 +420,30 @@ export declare const ListResponse: {
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[] & ({
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
@@ -412,18 +457,21 @@ export declare const ListResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         } & { [K_7 in Exclude<keyof I_1["users"][number], keyof User>]: never; })[] & { [K_8 in Exclude<keyof I_1["users"], keyof {
             id?: string;
             email?: string;
             givenName?: string;
             familyName?: string;
-            groupOwner?: boolean;
-            groupAdmin?: boolean;
-            groupUser?: boolean;
             roles?: {
                 id?: string;
                 name?: string;
             }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
         }[]>]: never; };
     } & { [K_9 in Exclude<keyof I_1, "users">]: never; }>(object: I_1): ListResponse;
 };
@@ -479,46 +527,93 @@ export declare const UpdateGroupResponse: {
     create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): UpdateGroupResponse;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): UpdateGroupResponse;
 };
+export declare const ActivateUserRequest: {
+    encode(message: ActivateUserRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateUserRequest;
+    fromJSON(object: any): ActivateUserRequest;
+    toJSON(message: ActivateUserRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): ActivateUserRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): ActivateUserRequest;
+};
+export declare const ActivateUserResponse: {
+    encode(_: ActivateUserResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateUserResponse;
+    fromJSON(_: any): ActivateUserResponse;
+    toJSON(_: ActivateUserResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ActivateUserResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ActivateUserResponse;
+};
+export declare const DeactivateUserRequest: {
+    encode(message: DeactivateUserRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateUserRequest;
+    fromJSON(object: any): DeactivateUserRequest;
+    toJSON(message: DeactivateUserRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeactivateUserRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeactivateUserRequest;
+};
+export declare const DeactivateUserResponse: {
+    encode(_: DeactivateUserResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateUserResponse;
+    fromJSON(_: any): DeactivateUserResponse;
+    toJSON(_: DeactivateUserResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeactivateUserResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeactivateUserResponse;
+};
 export interface UserSvc {
+    /** Profile returns the user profile associated with the access token associated with the request. */
     Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
-    /**
-     * Adminitrator or owner only
-     * list all users
-     */
+    /** CheckEmail checks if the account is already taken. */
+    CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse>;
+    /** List lists all users. */
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
-    /**
-     * Adminitrator or owner only.
-     * get the details of a specific user.
-     */
+    /** Get gets the details of a specific user. */
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
-    /**
-     * Adminitrator or owner only.
-     * delete a user.
-     */
+    /** Delete delete a user. */
     Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
-    /**
-     * Adminitrator or owner only.
-     * attach a user to a group
-     */
+    /** UpdateGroups updates the groups of the user. */
     UpdateGroups(request: DeepPartial<UpdateGroupRequest>, metadata?: grpc.Metadata): Promise<UpdateGroupResponse>;
+    ActivateUser(request: DeepPartial<ActivateUserRequest>, metadata?: grpc.Metadata): Promise<ActivateUserResponse>;
+    DeactivateUser(request: DeepPartial<DeactivateUserRequest>, metadata?: grpc.Metadata): Promise<DeactivateUserResponse>;
 }
 export declare class UserSvcClientImpl implements UserSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
     Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
+    CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse>;
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
     Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
     UpdateGroups(request: DeepPartial<UpdateGroupRequest>, metadata?: grpc.Metadata): Promise<UpdateGroupResponse>;
+    ActivateUser(request: DeepPartial<ActivateUserRequest>, metadata?: grpc.Metadata): Promise<ActivateUserResponse>;
+    DeactivateUser(request: DeepPartial<DeactivateUserRequest>, metadata?: grpc.Metadata): Promise<DeactivateUserResponse>;
 }
 export declare const UserSvcDesc: {
     serviceName: string;
 };
 export declare const UserSvcProfileDesc: UnaryMethodDefinitionish;
+export declare const UserSvcCheckEmailDesc: UnaryMethodDefinitionish;
 export declare const UserSvcListDesc: UnaryMethodDefinitionish;
 export declare const UserSvcGetDesc: UnaryMethodDefinitionish;
 export declare const UserSvcDeleteDesc: UnaryMethodDefinitionish;
 export declare const UserSvcUpdateGroupsDesc: UnaryMethodDefinitionish;
+export declare const UserSvcActivateUserDesc: UnaryMethodDefinitionish;
+export declare const UserSvcDeactivateUserDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

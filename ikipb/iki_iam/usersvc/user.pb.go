@@ -106,6 +106,100 @@ func (x *ProfileResponse) GetUser() *iki_iam.User {
 	return nil
 }
 
+type CheckEmailRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+}
+
+func (x *CheckEmailRequest) Reset() {
+	*x = CheckEmailRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckEmailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckEmailRequest) ProtoMessage() {}
+
+func (x *CheckEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckEmailRequest.ProtoReflect.Descriptor instead.
+func (*CheckEmailRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CheckEmailRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type CheckEmailResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Exist bool `protobuf:"varint,1,opt,name=exist,proto3" json:"exist,omitempty"`
+}
+
+func (x *CheckEmailResponse) Reset() {
+	*x = CheckEmailResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckEmailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckEmailResponse) ProtoMessage() {}
+
+func (x *CheckEmailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckEmailResponse.ProtoReflect.Descriptor instead.
+func (*CheckEmailResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CheckEmailResponse) GetExist() bool {
+	if x != nil {
+		return x.Exist
+	}
+	return false
+}
+
 type GetRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -117,7 +211,7 @@ type GetRequest struct {
 func (x *GetRequest) Reset() {
 	*x = GetRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[2]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -130,7 +224,7 @@ func (x *GetRequest) String() string {
 func (*GetRequest) ProtoMessage() {}
 
 func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[2]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +237,7 @@ func (x *GetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
 func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{2}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetRequest) GetId() string {
@@ -164,7 +258,7 @@ type GetResponse struct {
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[3]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -177,7 +271,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[3]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -190,7 +284,7 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{3}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetResponse) GetUser() *iki_iam.User {
@@ -209,7 +303,7 @@ type ListRequest struct {
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[4]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -222,7 +316,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[4]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -235,7 +329,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{4}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{6}
 }
 
 type ListResponse struct {
@@ -249,7 +343,7 @@ type ListResponse struct {
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[5]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -262,7 +356,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[5]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -275,7 +369,7 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{5}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListResponse) GetUsers() []*iki_iam.User {
@@ -296,7 +390,7 @@ type DeleteRequest struct {
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[6]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -309,7 +403,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[6]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -322,7 +416,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{6}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -341,7 +435,7 @@ type DeleteResponse struct {
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[7]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -354,7 +448,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[7]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -367,7 +461,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{7}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{9}
 }
 
 type UpdateGroupRequest struct {
@@ -382,7 +476,7 @@ type UpdateGroupRequest struct {
 func (x *UpdateGroupRequest) Reset() {
 	*x = UpdateGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[8]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -395,7 +489,7 @@ func (x *UpdateGroupRequest) String() string {
 func (*UpdateGroupRequest) ProtoMessage() {}
 
 func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[8]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +502,7 @@ func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupRequest.ProtoReflect.Descriptor instead.
 func (*UpdateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{8}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateGroupRequest) GetUserId() string {
@@ -434,7 +528,7 @@ type UpdateGroupResponse struct {
 func (x *UpdateGroupResponse) Reset() {
 	*x = UpdateGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[9]
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -447,7 +541,7 @@ func (x *UpdateGroupResponse) String() string {
 func (*UpdateGroupResponse) ProtoMessage() {}
 
 func (x *UpdateGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[9]
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -460,7 +554,177 @@ func (x *UpdateGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupResponse.ProtoReflect.Descriptor instead.
 func (*UpdateGroupResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{9}
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{11}
+}
+
+type ActivateUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *ActivateUserRequest) Reset() {
+	*x = ActivateUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActivateUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActivateUserRequest) ProtoMessage() {}
+
+func (x *ActivateUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActivateUserRequest.ProtoReflect.Descriptor instead.
+func (*ActivateUserRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ActivateUserRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ActivateUserResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ActivateUserResponse) Reset() {
+	*x = ActivateUserResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActivateUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActivateUserResponse) ProtoMessage() {}
+
+func (x *ActivateUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActivateUserResponse.ProtoReflect.Descriptor instead.
+func (*ActivateUserResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{13}
+}
+
+type DeactivateUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeactivateUserRequest) Reset() {
+	*x = DeactivateUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeactivateUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeactivateUserRequest) ProtoMessage() {}
+
+func (x *DeactivateUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeactivateUserRequest.ProtoReflect.Descriptor instead.
+func (*DeactivateUserRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *DeactivateUserRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeactivateUserResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeactivateUserResponse) Reset() {
+	*x = DeactivateUserResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeactivateUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeactivateUserResponse) ProtoMessage() {}
+
+func (x *DeactivateUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_usersvc_user_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeactivateUserResponse.ProtoReflect.Descriptor instead.
+func (*DeactivateUserResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP(), []int{15}
 }
 
 var File_ikipb_iki_iam_usersvc_user_proto protoreflect.FileDescriptor
@@ -474,46 +738,75 @@ var file_ikipb_iki_iam_usersvc_user_proto_rawDesc = []byte{
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x30, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
 	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x04, 0x75, 0x73, 0x65,
 	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x69, 0x61, 0x6d, 0x2e, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1c, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2c, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x69, 0x61, 0x6d, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04,
-	0x75, 0x73, 0x65, 0x72, 0x22, 0x0d, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x22, 0x2f, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x09, 0x2e, 0x69, 0x61, 0x6d, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75,
-	0x73, 0x65, 0x72, 0x73, 0x22, 0x1f, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x10, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4a, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
-	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
-	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f,
-	0x69, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08, 0x67, 0x72, 0x6f, 0x75, 0x70,
-	0x49, 0x64, 0x73, 0x22, 0x15, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f,
-	0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xbe, 0x02, 0x0a, 0x07, 0x55,
-	0x73, 0x65, 0x72, 0x53, 0x76, 0x63, 0x12, 0x3e, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
-	0x65, 0x12, 0x17, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x50, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x75, 0x73, 0x65,
-	0x72, 0x73, 0x76, 0x63, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14,
-	0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x4c,
-	0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x32, 0x0a,
-	0x03, 0x47, 0x65, 0x74, 0x12, 0x13, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x47,
-	0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x75, 0x73, 0x65, 0x72,
-	0x73, 0x76, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x00, 0x12, 0x3b, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x12, 0x16, 0x2e, 0x75, 0x73,
-	0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4b,
-	0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x12, 0x1b,
-	0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47,
-	0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x75, 0x73,
-	0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75,
-	0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0a, 0x5a, 0x08, 0x2f,
-	0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x29, 0x0a, 0x11, 0x43, 0x68, 0x65, 0x63,
+	0x6b, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
+	0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d,
+	0x61, 0x69, 0x6c, 0x22, 0x2a, 0x0a, 0x12, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x45, 0x6d, 0x61, 0x69,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x78, 0x69,
+	0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x65, 0x78, 0x69, 0x73, 0x74, 0x22,
+	0x1c, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2c, 0x0a,
+	0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x69, 0x61, 0x6d,
+	0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x0d, 0x0a, 0x0b, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x2f, 0x0a, 0x0c, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x75, 0x73,
+	0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x69, 0x61, 0x6d, 0x2e,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x1f, 0x0a, 0x0d, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x10, 0x0a, 0x0e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4a,
+	0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1b, 0x0a,
+	0x09, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x08, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73, 0x22, 0x15, 0x0a, 0x13, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x25, 0x0a, 0x13, 0x41, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x63, 0x74, 0x69,
+	0x76, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x27, 0x0a, 0x15, 0x44, 0x65, 0x61, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x44, 0x65, 0x61,
+	0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x32, 0xab, 0x04, 0x0a, 0x07, 0x55, 0x73, 0x65, 0x72, 0x53, 0x76, 0x63, 0x12,
+	0x3e, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x17, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x73, 0x76, 0x63, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x47, 0x0a, 0x0a, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x45, 0x6d, 0x61,
+	0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x75, 0x73, 0x65, 0x72,
+	0x73, 0x76, 0x63, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74,
+	0x12, 0x14, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x32, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x13, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63,
+	0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x12, 0x3b, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x12, 0x16, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
+	0x12, 0x4b, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73,
+	0x12, 0x1b, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4d, 0x0a,
+	0x0c, 0x41, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1c, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x53, 0x0a, 0x0e,
+	0x44, 0x65, 0x61, 0x63, 0x74, 0x69, 0x76, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1e,
+	0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x44, 0x65, 0x61, 0x63, 0x74, 0x69, 0x76,
+	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f,
+	0x2e, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x2e, 0x44, 0x65, 0x61, 0x63, 0x74, 0x69, 0x76,
+	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x42, 0x0a, 0x5a, 0x08, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x73, 0x76, 0x63, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -528,36 +821,48 @@ func file_ikipb_iki_iam_usersvc_user_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_iam_usersvc_user_proto_rawDescData
 }
 
-var file_ikipb_iki_iam_usersvc_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_ikipb_iki_iam_usersvc_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_ikipb_iki_iam_usersvc_user_proto_goTypes = []interface{}{
-	(*ProfileRequest)(nil),      // 0: usersvc.ProfileRequest
-	(*ProfileResponse)(nil),     // 1: usersvc.ProfileResponse
-	(*GetRequest)(nil),          // 2: usersvc.GetRequest
-	(*GetResponse)(nil),         // 3: usersvc.GetResponse
-	(*ListRequest)(nil),         // 4: usersvc.ListRequest
-	(*ListResponse)(nil),        // 5: usersvc.ListResponse
-	(*DeleteRequest)(nil),       // 6: usersvc.DeleteRequest
-	(*DeleteResponse)(nil),      // 7: usersvc.DeleteResponse
-	(*UpdateGroupRequest)(nil),  // 8: usersvc.UpdateGroupRequest
-	(*UpdateGroupResponse)(nil), // 9: usersvc.UpdateGroupResponse
-	(*iki_iam.User)(nil),        // 10: iam.User
+	(*ProfileRequest)(nil),         // 0: usersvc.ProfileRequest
+	(*ProfileResponse)(nil),        // 1: usersvc.ProfileResponse
+	(*CheckEmailRequest)(nil),      // 2: usersvc.CheckEmailRequest
+	(*CheckEmailResponse)(nil),     // 3: usersvc.CheckEmailResponse
+	(*GetRequest)(nil),             // 4: usersvc.GetRequest
+	(*GetResponse)(nil),            // 5: usersvc.GetResponse
+	(*ListRequest)(nil),            // 6: usersvc.ListRequest
+	(*ListResponse)(nil),           // 7: usersvc.ListResponse
+	(*DeleteRequest)(nil),          // 8: usersvc.DeleteRequest
+	(*DeleteResponse)(nil),         // 9: usersvc.DeleteResponse
+	(*UpdateGroupRequest)(nil),     // 10: usersvc.UpdateGroupRequest
+	(*UpdateGroupResponse)(nil),    // 11: usersvc.UpdateGroupResponse
+	(*ActivateUserRequest)(nil),    // 12: usersvc.ActivateUserRequest
+	(*ActivateUserResponse)(nil),   // 13: usersvc.ActivateUserResponse
+	(*DeactivateUserRequest)(nil),  // 14: usersvc.DeactivateUserRequest
+	(*DeactivateUserResponse)(nil), // 15: usersvc.DeactivateUserResponse
+	(*iki_iam.User)(nil),           // 16: iam.User
 }
 var file_ikipb_iki_iam_usersvc_user_proto_depIdxs = []int32{
-	10, // 0: usersvc.ProfileResponse.user:type_name -> iam.User
-	10, // 1: usersvc.GetResponse.user:type_name -> iam.User
-	10, // 2: usersvc.ListResponse.users:type_name -> iam.User
+	16, // 0: usersvc.ProfileResponse.user:type_name -> iam.User
+	16, // 1: usersvc.GetResponse.user:type_name -> iam.User
+	16, // 2: usersvc.ListResponse.users:type_name -> iam.User
 	0,  // 3: usersvc.UserSvc.Profile:input_type -> usersvc.ProfileRequest
-	4,  // 4: usersvc.UserSvc.List:input_type -> usersvc.ListRequest
-	2,  // 5: usersvc.UserSvc.Get:input_type -> usersvc.GetRequest
-	6,  // 6: usersvc.UserSvc.Delete:input_type -> usersvc.DeleteRequest
-	8,  // 7: usersvc.UserSvc.UpdateGroups:input_type -> usersvc.UpdateGroupRequest
-	1,  // 8: usersvc.UserSvc.Profile:output_type -> usersvc.ProfileResponse
-	5,  // 9: usersvc.UserSvc.List:output_type -> usersvc.ListResponse
-	3,  // 10: usersvc.UserSvc.Get:output_type -> usersvc.GetResponse
-	7,  // 11: usersvc.UserSvc.Delete:output_type -> usersvc.DeleteResponse
-	9,  // 12: usersvc.UserSvc.UpdateGroups:output_type -> usersvc.UpdateGroupResponse
-	8,  // [8:13] is the sub-list for method output_type
-	3,  // [3:8] is the sub-list for method input_type
+	2,  // 4: usersvc.UserSvc.CheckEmail:input_type -> usersvc.CheckEmailRequest
+	6,  // 5: usersvc.UserSvc.List:input_type -> usersvc.ListRequest
+	4,  // 6: usersvc.UserSvc.Get:input_type -> usersvc.GetRequest
+	8,  // 7: usersvc.UserSvc.Delete:input_type -> usersvc.DeleteRequest
+	10, // 8: usersvc.UserSvc.UpdateGroups:input_type -> usersvc.UpdateGroupRequest
+	12, // 9: usersvc.UserSvc.ActivateUser:input_type -> usersvc.ActivateUserRequest
+	14, // 10: usersvc.UserSvc.DeactivateUser:input_type -> usersvc.DeactivateUserRequest
+	1,  // 11: usersvc.UserSvc.Profile:output_type -> usersvc.ProfileResponse
+	3,  // 12: usersvc.UserSvc.CheckEmail:output_type -> usersvc.CheckEmailResponse
+	7,  // 13: usersvc.UserSvc.List:output_type -> usersvc.ListResponse
+	5,  // 14: usersvc.UserSvc.Get:output_type -> usersvc.GetResponse
+	9,  // 15: usersvc.UserSvc.Delete:output_type -> usersvc.DeleteResponse
+	11, // 16: usersvc.UserSvc.UpdateGroups:output_type -> usersvc.UpdateGroupResponse
+	13, // 17: usersvc.UserSvc.ActivateUser:output_type -> usersvc.ActivateUserResponse
+	15, // 18: usersvc.UserSvc.DeactivateUser:output_type -> usersvc.DeactivateUserResponse
+	11, // [11:19] is the sub-list for method output_type
+	3,  // [3:11] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -594,7 +899,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRequest); i {
+			switch v := v.(*CheckEmailRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -606,7 +911,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResponse); i {
+			switch v := v.(*CheckEmailResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -618,7 +923,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRequest); i {
+			switch v := v.(*GetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -630,7 +935,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListResponse); i {
+			switch v := v.(*GetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -642,7 +947,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRequest); i {
+			switch v := v.(*ListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -654,7 +959,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteResponse); i {
+			switch v := v.(*ListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -666,7 +971,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateGroupRequest); i {
+			switch v := v.(*DeleteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -678,7 +983,79 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			}
 		}
 		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateGroupRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActivateUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActivateUserResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeactivateUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ikipb_iki_iam_usersvc_user_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeactivateUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -696,7 +1073,7 @@ func file_ikipb_iki_iam_usersvc_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_ikipb_iki_iam_usersvc_user_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

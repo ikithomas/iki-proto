@@ -49,10 +49,10 @@ export interface User {
   email: string;
   givenName: string;
   familyName: string;
-  groupOwner: boolean;
-  groupAdmin: boolean;
-  groupUser: boolean;
   roles: Group[];
+  active: boolean;
+  lastLoginAt: number;
+  lastActivityAt: number;
 }
 
 export interface Group {
@@ -85,10 +85,10 @@ function createBaseUser(): User {
     email: "",
     givenName: "",
     familyName: "",
-    groupOwner: false,
-    groupAdmin: false,
-    groupUser: false,
     roles: [],
+    active: false,
+    lastLoginAt: 0,
+    lastActivityAt: 0,
   };
 }
 
@@ -106,17 +106,17 @@ export const User = {
     if (message.familyName !== "") {
       writer.uint32(34).string(message.familyName);
     }
-    if (message.groupOwner === true) {
-      writer.uint32(40).bool(message.groupOwner);
-    }
-    if (message.groupAdmin === true) {
-      writer.uint32(48).bool(message.groupAdmin);
-    }
-    if (message.groupUser === true) {
-      writer.uint32(56).bool(message.groupUser);
-    }
     for (const v of message.roles) {
       Group.encode(v!, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.active === true) {
+      writer.uint32(72).bool(message.active);
+    }
+    if (message.lastLoginAt !== 0) {
+      writer.uint32(80).int64(message.lastLoginAt);
+    }
+    if (message.lastActivityAt !== 0) {
+      writer.uint32(88).int64(message.lastActivityAt);
     }
     return writer;
   },
@@ -156,33 +156,33 @@ export const User = {
 
           message.familyName = reader.string();
           continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.groupOwner = reader.bool();
-          continue;
-        case 6:
-          if (tag !== 48) {
-            break;
-          }
-
-          message.groupAdmin = reader.bool();
-          continue;
-        case 7:
-          if (tag !== 56) {
-            break;
-          }
-
-          message.groupUser = reader.bool();
-          continue;
         case 8:
           if (tag !== 66) {
             break;
           }
 
           message.roles.push(Group.decode(reader, reader.uint32()));
+          continue;
+        case 9:
+          if (tag !== 72) {
+            break;
+          }
+
+          message.active = reader.bool();
+          continue;
+        case 10:
+          if (tag !== 80) {
+            break;
+          }
+
+          message.lastLoginAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 11:
+          if (tag !== 88) {
+            break;
+          }
+
+          message.lastActivityAt = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -199,10 +199,10 @@ export const User = {
       email: isSet(object.email) ? String(object.email) : "",
       givenName: isSet(object.givenName) ? String(object.givenName) : "",
       familyName: isSet(object.familyName) ? String(object.familyName) : "",
-      groupOwner: isSet(object.groupOwner) ? Boolean(object.groupOwner) : false,
-      groupAdmin: isSet(object.groupAdmin) ? Boolean(object.groupAdmin) : false,
-      groupUser: isSet(object.groupUser) ? Boolean(object.groupUser) : false,
       roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Group.fromJSON(e)) : [],
+      active: isSet(object.active) ? Boolean(object.active) : false,
+      lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
+      lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
     };
   },
 
@@ -220,17 +220,17 @@ export const User = {
     if (message.familyName !== "") {
       obj.familyName = message.familyName;
     }
-    if (message.groupOwner === true) {
-      obj.groupOwner = message.groupOwner;
-    }
-    if (message.groupAdmin === true) {
-      obj.groupAdmin = message.groupAdmin;
-    }
-    if (message.groupUser === true) {
-      obj.groupUser = message.groupUser;
-    }
     if (message.roles?.length) {
       obj.roles = message.roles.map((e) => Group.toJSON(e));
+    }
+    if (message.active === true) {
+      obj.active = message.active;
+    }
+    if (message.lastLoginAt !== 0) {
+      obj.lastLoginAt = Math.round(message.lastLoginAt);
+    }
+    if (message.lastActivityAt !== 0) {
+      obj.lastActivityAt = Math.round(message.lastActivityAt);
     }
     return obj;
   },
@@ -244,10 +244,10 @@ export const User = {
     message.email = object.email ?? "";
     message.givenName = object.givenName ?? "";
     message.familyName = object.familyName ?? "";
-    message.groupOwner = object.groupOwner ?? false;
-    message.groupAdmin = object.groupAdmin ?? false;
-    message.groupUser = object.groupUser ?? false;
     message.roles = object.roles?.map((e) => Group.fromPartial(e)) || [];
+    message.active = object.active ?? false;
+    message.lastLoginAt = object.lastLoginAt ?? 0;
+    message.lastActivityAt = object.lastActivityAt ?? 0;
     return message;
   },
 };
