@@ -273,7 +273,7 @@ exports.Group = {
     },
 };
 function createBaseService() {
-    return { id: "", clientId: "", secret: [], name: "" };
+    return { id: "", clientId: "", secrets: [], name: "" };
 }
 exports.Service = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -283,7 +283,7 @@ exports.Service = {
         if (message.clientId !== "") {
             writer.uint32(18).string(message.clientId);
         }
-        for (const v of message.secret) {
+        for (const v of message.secrets) {
             exports.Secret.encode(v, writer.uint32(26).fork()).ldelim();
         }
         if (message.name !== "") {
@@ -314,7 +314,7 @@ exports.Service = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.secret.push(exports.Secret.decode(reader, reader.uint32()));
+                    message.secrets.push(exports.Secret.decode(reader, reader.uint32()));
                     continue;
                 case 4:
                     if (tag !== 34) {
@@ -334,7 +334,7 @@ exports.Service = {
         return {
             id: isSet(object.id) ? String(object.id) : "",
             clientId: isSet(object.clientId) ? String(object.clientId) : "",
-            secret: Array.isArray(object === null || object === void 0 ? void 0 : object.secret) ? object.secret.map((e) => exports.Secret.fromJSON(e)) : [],
+            secrets: Array.isArray(object === null || object === void 0 ? void 0 : object.secrets) ? object.secrets.map((e) => exports.Secret.fromJSON(e)) : [],
             name: isSet(object.name) ? String(object.name) : "",
         };
     },
@@ -347,8 +347,8 @@ exports.Service = {
         if (message.clientId !== "") {
             obj.clientId = message.clientId;
         }
-        if ((_a = message.secret) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.secret = message.secret.map((e) => exports.Secret.toJSON(e));
+        if ((_a = message.secrets) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.secrets = message.secrets.map((e) => exports.Secret.toJSON(e));
         }
         if (message.name !== "") {
             obj.name = message.name;
@@ -363,7 +363,7 @@ exports.Service = {
         const message = createBaseService();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.clientId = (_b = object.clientId) !== null && _b !== void 0 ? _b : "";
-        message.secret = ((_c = object.secret) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Secret.fromPartial(e))) || [];
+        message.secrets = ((_c = object.secrets) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Secret.fromPartial(e))) || [];
         message.name = (_d = object.name) !== null && _d !== void 0 ? _d : "";
         return message;
     },

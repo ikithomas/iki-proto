@@ -30,7 +30,7 @@ export interface Service {
     /** Client ID of the service. Used for authentication. */
     clientId: string;
     /** secret to authenticate to. */
-    secret: Secret[];
+    secrets: Secret[];
     /** Friendly name */
     name: string;
 }
@@ -112,7 +112,7 @@ export declare const Service: {
     create<I extends {
         id?: string;
         clientId?: string;
-        secret?: {
+        secrets?: {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
@@ -122,7 +122,7 @@ export declare const Service: {
     } & {
         id?: string;
         clientId?: string;
-        secret?: {
+        secrets?: {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
@@ -137,7 +137,7 @@ export declare const Service: {
             secret?: string;
             lastUsedAt?: number;
             active?: boolean;
-        } & { [K in Exclude<keyof I["secret"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["secret"], keyof {
+        } & { [K in Exclude<keyof I["secrets"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["secrets"], keyof {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
@@ -148,7 +148,7 @@ export declare const Service: {
     fromPartial<I_1 extends {
         id?: string;
         clientId?: string;
-        secret?: {
+        secrets?: {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
@@ -158,7 +158,7 @@ export declare const Service: {
     } & {
         id?: string;
         clientId?: string;
-        secret?: {
+        secrets?: {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
@@ -173,7 +173,7 @@ export declare const Service: {
             secret?: string;
             lastUsedAt?: number;
             active?: boolean;
-        } & { [K_3 in Exclude<keyof I_1["secret"][number], keyof Secret>]: never; })[] & { [K_4 in Exclude<keyof I_1["secret"], keyof {
+        } & { [K_3 in Exclude<keyof I_1["secrets"][number], keyof Secret>]: never; })[] & { [K_4 in Exclude<keyof I_1["secrets"], keyof {
             id?: string;
             secret?: string;
             lastUsedAt?: number;

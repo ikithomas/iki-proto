@@ -254,11 +254,11 @@ exports.ListRequest = {
     },
 };
 function createBaseListResponse() {
-    return { service: [] };
+    return { services: [] };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.service) {
+        for (const v of message.services) {
             iam_1.Service.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
@@ -274,7 +274,7 @@ exports.ListResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.service.push(iam_1.Service.decode(reader, reader.uint32()));
+                    message.services.push(iam_1.Service.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -285,13 +285,13 @@ exports.ListResponse = {
         return message;
     },
     fromJSON(object) {
-        return { service: Array.isArray(object === null || object === void 0 ? void 0 : object.service) ? object.service.map((e) => iam_1.Service.fromJSON(e)) : [] };
+        return { services: Array.isArray(object === null || object === void 0 ? void 0 : object.services) ? object.services.map((e) => iam_1.Service.fromJSON(e)) : [] };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if ((_a = message.service) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.service = message.service.map((e) => iam_1.Service.toJSON(e));
+        if ((_a = message.services) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.services = message.services.map((e) => iam_1.Service.toJSON(e));
         }
         return obj;
     },
@@ -301,7 +301,7 @@ exports.ListResponse = {
     fromPartial(object) {
         var _a;
         const message = createBaseListResponse();
-        message.service = ((_a = object.service) === null || _a === void 0 ? void 0 : _a.map((e) => iam_1.Service.fromPartial(e))) || [];
+        message.services = ((_a = object.services) === null || _a === void 0 ? void 0 : _a.map((e) => iam_1.Service.fromPartial(e))) || [];
         return message;
     },
 };

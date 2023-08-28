@@ -40,7 +40,7 @@ message ListRequest{
 }
 
 message ListResponse{
-  repeated iam.Service service = 1;
+  repeated iam.Service services = 1;
 }
 
 message DeleteRequest{

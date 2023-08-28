@@ -30,7 +30,7 @@ message Service {
   string client_id = 2;
 
   // secret to authenticate to.
-  repeated Secret secret = 3;
+  repeated Secret secrets = 3;
 
   // Friendly name
   string name = 4;

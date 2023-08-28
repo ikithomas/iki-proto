@@ -67,7 +67,7 @@ export interface Service {
   /** Client ID of the service. Used for authentication. */
   clientId: string;
   /** secret to authenticate to. */
-  secret: Secret[];
+  secrets: Secret[];
   /** Friendly name */
   name: string;
 }
@@ -324,7 +324,7 @@ export const Group = {
 };
 
 function createBaseService(): Service {
-  return { id: "", clientId: "", secret: [], name: "" };
+  return { id: "", clientId: "", secrets: [], name: "" };
 }
 
 export const Service = {
@@ -335,7 +335,7 @@ export const Service = {
     if (message.clientId !== "") {
       writer.uint32(18).string(message.clientId);
     }
-    for (const v of message.secret) {
+    for (const v of message.secrets) {
       Secret.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.name !== "") {
@@ -370,7 +370,7 @@ export const Service = {
             break;
           }
 
-          message.secret.push(Secret.decode(reader, reader.uint32()));
+          message.secrets.push(Secret.decode(reader, reader.uint32()));
           continue;
         case 4:
           if (tag !== 34) {
@@ -392,7 +392,7 @@ export const Service = {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      secret: Array.isArray(object?.secret) ? object.secret.map((e: any) => Secret.fromJSON(e)) : [],
+      secrets: Array.isArray(object?.secrets) ? object.secrets.map((e: any) => Secret.fromJSON(e)) : [],
       name: isSet(object.name) ? String(object.name) : "",
     };
   },
@@ -405,8 +405,8 @@ export const Service = {
     if (message.clientId !== "") {
       obj.clientId = message.clientId;
     }
-    if (message.secret?.length) {
-      obj.secret = message.secret.map((e) => Secret.toJSON(e));
+    if (message.secrets?.length) {
+      obj.secrets = message.secrets.map((e) => Secret.toJSON(e));
     }
     if (message.name !== "") {
       obj.name = message.name;
@@ -421,7 +421,7 @@ export const Service = {
     const message = createBaseService();
     message.id = object.id ?? "";
     message.clientId = object.clientId ?? "";
-    message.secret = object.secret?.map((e) => Secret.fromPartial(e)) || [];
+    message.secrets = object.secrets?.map((e) => Secret.fromPartial(e)) || [];
     message.name = object.name ?? "";
     return message;
   },

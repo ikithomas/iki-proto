@@ -26,7 +26,7 @@ export interface ListRequest {
 }
 
 export interface ListResponse {
-  service: Service[];
+  services: Service[];
 }
 
 export interface DeleteRequest {
@@ -334,12 +334,12 @@ export const ListRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { service: [] };
+  return { services: [] };
 }
 
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.service) {
+    for (const v of message.services) {
       Service.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -357,7 +357,7 @@ export const ListResponse = {
             break;
           }
 
-          message.service.push(Service.decode(reader, reader.uint32()));
+          message.services.push(Service.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -369,13 +369,13 @@ export const ListResponse = {
   },
 
   fromJSON(object: any): ListResponse {
-    return { service: Array.isArray(object?.service) ? object.service.map((e: any) => Service.fromJSON(e)) : [] };
+    return { services: Array.isArray(object?.services) ? object.services.map((e: any) => Service.fromJSON(e)) : [] };
   },
 
   toJSON(message: ListResponse): unknown {
     const obj: any = {};
-    if (message.service?.length) {
-      obj.service = message.service.map((e) => Service.toJSON(e));
+    if (message.services?.length) {
+      obj.services = message.services.map((e) => Service.toJSON(e));
     }
     return obj;
   },
@@ -385,7 +385,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.service = object.service?.map((e) => Service.fromPartial(e)) || [];
+    message.services = object.services?.map((e) => Service.fromPartial(e)) || [];
     return message;
   },
 };

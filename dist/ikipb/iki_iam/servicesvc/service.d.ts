@@ -17,7 +17,7 @@ export interface GetResponse {
 export interface ListRequest {
 }
 export interface ListResponse {
-    service: Service[];
+    services: Service[];
 }
 export interface DeleteRequest {
     id: string;
@@ -65,7 +65,7 @@ export declare const CreateResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -77,7 +77,7 @@ export declare const CreateResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -87,7 +87,7 @@ export declare const CreateResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -102,7 +102,7 @@ export declare const CreateResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K in Exclude<keyof I["service"]["secret"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["service"]["secret"], keyof {
+            } & { [K in Exclude<keyof I["service"]["secrets"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["service"]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -115,7 +115,7 @@ export declare const CreateResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -127,7 +127,7 @@ export declare const CreateResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -137,7 +137,7 @@ export declare const CreateResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -152,7 +152,7 @@ export declare const CreateResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K_4 in Exclude<keyof I_1["service"]["secret"][number], keyof Secret>]: never; })[] & { [K_5 in Exclude<keyof I_1["service"]["secret"], keyof {
+            } & { [K_4 in Exclude<keyof I_1["service"]["secrets"][number], keyof Secret>]: never; })[] & { [K_5 in Exclude<keyof I_1["service"]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -187,7 +187,7 @@ export declare const GetResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -199,7 +199,7 @@ export declare const GetResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -209,7 +209,7 @@ export declare const GetResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -224,7 +224,7 @@ export declare const GetResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K in Exclude<keyof I["service"]["secret"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["service"]["secret"], keyof {
+            } & { [K in Exclude<keyof I["service"]["secrets"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["service"]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -237,7 +237,7 @@ export declare const GetResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -249,7 +249,7 @@ export declare const GetResponse: {
         service?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -259,7 +259,7 @@ export declare const GetResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -274,7 +274,7 @@ export declare const GetResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K_4 in Exclude<keyof I_1["service"]["secret"][number], keyof Secret>]: never; })[] & { [K_5 in Exclude<keyof I_1["service"]["secret"], keyof {
+            } & { [K_4 in Exclude<keyof I_1["service"]["secrets"][number], keyof Secret>]: never; })[] & { [K_5 in Exclude<keyof I_1["service"]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -298,10 +298,10 @@ export declare const ListResponse: {
     fromJSON(object: any): ListResponse;
     toJSON(message: ListResponse): unknown;
     create<I extends {
-        service?: {
+        services?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -310,10 +310,10 @@ export declare const ListResponse: {
             name?: string;
         }[];
     } & {
-        service?: {
+        services?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -323,7 +323,7 @@ export declare const ListResponse: {
         }[] & ({
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -333,7 +333,7 @@ export declare const ListResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -348,17 +348,17 @@ export declare const ListResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K in Exclude<keyof I["service"][number]["secret"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["service"][number]["secret"], keyof {
+            } & { [K in Exclude<keyof I["services"][number]["secrets"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["services"][number]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
             }[]>]: never; };
             name?: string;
-        } & { [K_2 in Exclude<keyof I["service"][number], keyof Service>]: never; })[] & { [K_3 in Exclude<keyof I["service"], keyof {
+        } & { [K_2 in Exclude<keyof I["services"][number], keyof Service>]: never; })[] & { [K_3 in Exclude<keyof I["services"], keyof {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -366,12 +366,12 @@ export declare const ListResponse: {
             }[];
             name?: string;
         }[]>]: never; };
-    } & { [K_4 in Exclude<keyof I, "service">]: never; }>(base?: I): ListResponse;
+    } & { [K_4 in Exclude<keyof I, "services">]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
-        service?: {
+        services?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -380,10 +380,10 @@ export declare const ListResponse: {
             name?: string;
         }[];
     } & {
-        service?: {
+        services?: {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -393,7 +393,7 @@ export declare const ListResponse: {
         }[] & ({
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -403,7 +403,7 @@ export declare const ListResponse: {
         } & {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -418,17 +418,17 @@ export declare const ListResponse: {
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
-            } & { [K_5 in Exclude<keyof I_1["service"][number]["secret"][number], keyof Secret>]: never; })[] & { [K_6 in Exclude<keyof I_1["service"][number]["secret"], keyof {
+            } & { [K_5 in Exclude<keyof I_1["services"][number]["secrets"][number], keyof Secret>]: never; })[] & { [K_6 in Exclude<keyof I_1["services"][number]["secrets"], keyof {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
                 active?: boolean;
             }[]>]: never; };
             name?: string;
-        } & { [K_7 in Exclude<keyof I_1["service"][number], keyof Service>]: never; })[] & { [K_8 in Exclude<keyof I_1["service"], keyof {
+        } & { [K_7 in Exclude<keyof I_1["services"][number], keyof Service>]: never; })[] & { [K_8 in Exclude<keyof I_1["services"], keyof {
             id?: string;
             clientId?: string;
-            secret?: {
+            secrets?: {
                 id?: string;
                 secret?: string;
                 lastUsedAt?: number;
@@ -436,7 +436,7 @@ export declare const ListResponse: {
             }[];
             name?: string;
         }[]>]: never; };
-    } & { [K_9 in Exclude<keyof I_1, "service">]: never; }>(object: I_1): ListResponse;
+    } & { [K_9 in Exclude<keyof I_1, "services">]: never; }>(object: I_1): ListResponse;
 };
 export declare const DeleteRequest: {
     encode(message: DeleteRequest, writer?: _m0.Writer): _m0.Writer;
