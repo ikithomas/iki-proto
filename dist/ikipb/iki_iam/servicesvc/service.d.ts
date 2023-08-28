@@ -30,6 +30,11 @@ export interface AddSecretRequest {
 export interface AddSecretResponse {
     secret: Secret | undefined;
 }
+export interface ActivateSecretRequest {
+    id: string;
+}
+export interface ActivateSecretResponse {
+}
 export interface DeactivateSecretRequest {
     id: string;
 }
@@ -524,6 +529,30 @@ export declare const AddSecretResponse: {
         } & { [K_2 in Exclude<keyof I_1["secret"], keyof Secret>]: never; };
     } & { [K_3 in Exclude<keyof I_1, "secret">]: never; }>(object: I_1): AddSecretResponse;
 };
+export declare const ActivateSecretRequest: {
+    encode(message: ActivateSecretRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateSecretRequest;
+    fromJSON(object: any): ActivateSecretRequest;
+    toJSON(message: ActivateSecretRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): ActivateSecretRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): ActivateSecretRequest;
+};
+export declare const ActivateSecretResponse: {
+    encode(_: ActivateSecretResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateSecretResponse;
+    fromJSON(_: any): ActivateSecretResponse;
+    toJSON(_: ActivateSecretResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ActivateSecretResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ActivateSecretResponse;
+};
 export declare const DeactivateSecretRequest: {
     encode(message: DeactivateSecretRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateSecretRequest;
@@ -579,6 +608,7 @@ export interface ServiceSvc {
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     /** AddSecret adds a new usable secret */
     AddSecret(request: DeepPartial<AddSecretRequest>, metadata?: grpc.Metadata): Promise<AddSecretResponse>;
+    ActivateSecret(request: DeepPartial<ActivateSecretRequest>, metadata?: grpc.Metadata): Promise<ActivateSecretResponse>;
     DeactivateSecret(request: DeepPartial<DeactivateSecretRequest>, metadata?: grpc.Metadata): Promise<DeactivateSecretResponse>;
     DeleteSecret(request: DeepPartial<DeleteSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteSecretResponse>;
 }
@@ -590,6 +620,7 @@ export declare class ServiceSvcClientImpl implements ServiceSvc {
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     AddSecret(request: DeepPartial<AddSecretRequest>, metadata?: grpc.Metadata): Promise<AddSecretResponse>;
+    ActivateSecret(request: DeepPartial<ActivateSecretRequest>, metadata?: grpc.Metadata): Promise<ActivateSecretResponse>;
     DeactivateSecret(request: DeepPartial<DeactivateSecretRequest>, metadata?: grpc.Metadata): Promise<DeactivateSecretResponse>;
     DeleteSecret(request: DeepPartial<DeleteSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteSecretResponse>;
 }
@@ -601,6 +632,7 @@ export declare const ServiceSvcDeleteDesc: UnaryMethodDefinitionish;
 export declare const ServiceSvcGetDesc: UnaryMethodDefinitionish;
 export declare const ServiceSvcListDesc: UnaryMethodDefinitionish;
 export declare const ServiceSvcAddSecretDesc: UnaryMethodDefinitionish;
+export declare const ServiceSvcActivateSecretDesc: UnaryMethodDefinitionish;
 export declare const ServiceSvcDeactivateSecretDesc: UnaryMethodDefinitionish;
 export declare const ServiceSvcDeleteSecretDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.ServiceSvcDeleteSecretDesc = exports.ServiceSvcDeactivateSecretDesc = exports.ServiceSvcAddSecretDesc = exports.ServiceSvcListDesc = exports.ServiceSvcGetDesc = exports.ServiceSvcDeleteDesc = exports.ServiceSvcCreateDesc = exports.ServiceSvcDesc = exports.ServiceSvcClientImpl = exports.DeleteSecretResponse = exports.DeleteSecretRequest = exports.DeactivateSecretResponse = exports.DeactivateSecretRequest = exports.AddSecretResponse = exports.AddSecretRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CreateResponse = exports.CreateRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.ServiceSvcDeleteSecretDesc = exports.ServiceSvcDeactivateSecretDesc = exports.ServiceSvcActivateSecretDesc = exports.ServiceSvcAddSecretDesc = exports.ServiceSvcListDesc = exports.ServiceSvcGetDesc = exports.ServiceSvcDeleteDesc = exports.ServiceSvcCreateDesc = exports.ServiceSvcDesc = exports.ServiceSvcClientImpl = exports.DeleteSecretResponse = exports.DeleteSecretRequest = exports.DeactivateSecretResponse = exports.DeactivateSecretRequest = exports.ActivateSecretResponse = exports.ActivateSecretRequest = exports.AddSecretResponse = exports.AddSecretRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CreateResponse = exports.CreateRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -496,6 +496,94 @@ exports.AddSecretResponse = {
         return message;
     },
 };
+function createBaseActivateSecretRequest() {
+    return { id: "" };
+}
+exports.ActivateSecretRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseActivateSecretRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ActivateSecretRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseActivateSecretRequest();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseActivateSecretResponse() {
+    return {};
+}
+exports.ActivateSecretResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseActivateSecretResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.ActivateSecretResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(_) {
+        const message = createBaseActivateSecretResponse();
+        return message;
+    },
+};
 function createBaseDeactivateSecretRequest() {
     return { id: "" };
 }
@@ -680,6 +768,7 @@ class ServiceSvcClientImpl {
         this.Get = this.Get.bind(this);
         this.List = this.List.bind(this);
         this.AddSecret = this.AddSecret.bind(this);
+        this.ActivateSecret = this.ActivateSecret.bind(this);
         this.DeactivateSecret = this.DeactivateSecret.bind(this);
         this.DeleteSecret = this.DeleteSecret.bind(this);
     }
@@ -697,6 +786,9 @@ class ServiceSvcClientImpl {
     }
     AddSecret(request, metadata) {
         return this.rpc.unary(exports.ServiceSvcAddSecretDesc, exports.AddSecretRequest.fromPartial(request), metadata);
+    }
+    ActivateSecret(request, metadata) {
+        return this.rpc.unary(exports.ServiceSvcActivateSecretDesc, exports.ActivateSecretRequest.fromPartial(request), metadata);
     }
     DeactivateSecret(request, metadata) {
         return this.rpc.unary(exports.ServiceSvcDeactivateSecretDesc, exports.DeactivateSecretRequest.fromPartial(request), metadata);
@@ -796,6 +888,25 @@ exports.ServiceSvcAddSecretDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.AddSecretResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.ServiceSvcActivateSecretDesc = {
+    methodName: "ActivateSecret",
+    service: exports.ServiceSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.ActivateSecretRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.ActivateSecretResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

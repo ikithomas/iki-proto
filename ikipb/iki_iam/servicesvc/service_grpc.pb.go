@@ -28,6 +28,7 @@ type ServiceSvcClient interface {
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	// AddSecret adds a new usable secret
 	AddSecret(ctx context.Context, in *AddSecretRequest, opts ...grpc.CallOption) (*AddSecretResponse, error)
+	ActivateSecret(ctx context.Context, in *ActivateSecretRequest, opts ...grpc.CallOption) (*ActivateSecretResponse, error)
 	DeactivateSecret(ctx context.Context, in *DeactivateSecretRequest, opts ...grpc.CallOption) (*DeactivateSecretResponse, error)
 	DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
 }
@@ -85,6 +86,15 @@ func (c *serviceSvcClient) AddSecret(ctx context.Context, in *AddSecretRequest, 
 	return out, nil
 }
 
+func (c *serviceSvcClient) ActivateSecret(ctx context.Context, in *ActivateSecretRequest, opts ...grpc.CallOption) (*ActivateSecretResponse, error) {
+	out := new(ActivateSecretResponse)
+	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/ActivateSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceSvcClient) DeactivateSecret(ctx context.Context, in *DeactivateSecretRequest, opts ...grpc.CallOption) (*DeactivateSecretResponse, error) {
 	out := new(DeactivateSecretResponse)
 	err := c.cc.Invoke(ctx, "/servicesvc.ServiceSvc/DeactivateSecret", in, out, opts...)
@@ -113,6 +123,7 @@ type ServiceSvcServer interface {
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	// AddSecret adds a new usable secret
 	AddSecret(context.Context, *AddSecretRequest) (*AddSecretResponse, error)
+	ActivateSecret(context.Context, *ActivateSecretRequest) (*ActivateSecretResponse, error)
 	DeactivateSecret(context.Context, *DeactivateSecretRequest) (*DeactivateSecretResponse, error)
 	DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
 	mustEmbedUnimplementedServiceSvcServer()
@@ -136,6 +147,9 @@ func (UnimplementedServiceSvcServer) List(context.Context, *ListRequest) (*ListR
 }
 func (UnimplementedServiceSvcServer) AddSecret(context.Context, *AddSecretRequest) (*AddSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecret not implemented")
+}
+func (UnimplementedServiceSvcServer) ActivateSecret(context.Context, *ActivateSecretRequest) (*ActivateSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ActivateSecret not implemented")
 }
 func (UnimplementedServiceSvcServer) DeactivateSecret(context.Context, *DeactivateSecretRequest) (*DeactivateSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeactivateSecret not implemented")
@@ -246,6 +260,24 @@ func _ServiceSvc_AddSecret_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServiceSvc_ActivateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ActivateSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceSvcServer).ActivateSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/servicesvc.ServiceSvc/ActivateSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceSvcServer).ActivateSecret(ctx, req.(*ActivateSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ServiceSvc_DeactivateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeactivateSecretRequest)
 	if err := dec(in); err != nil {
@@ -308,6 +340,10 @@ var ServiceSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddSecret",
 			Handler:    _ServiceSvc_AddSecret_Handler,
+		},
+		{
+			MethodName: "ActivateSecret",
+			Handler:    _ServiceSvc_ActivateSecret_Handler,
 		},
 		{
 			MethodName: "DeactivateSecret",

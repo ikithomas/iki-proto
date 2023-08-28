@@ -44,6 +44,13 @@ export interface AddSecretResponse {
   secret: Secret | undefined;
 }
 
+export interface ActivateSecretRequest {
+  id: string;
+}
+
+export interface ActivateSecretResponse {
+}
+
 export interface DeactivateSecretRequest {
   id: string;
 }
@@ -606,6 +613,106 @@ export const AddSecretResponse = {
   },
 };
 
+function createBaseActivateSecretRequest(): ActivateSecretRequest {
+  return { id: "" };
+}
+
+export const ActivateSecretRequest = {
+  encode(message: ActivateSecretRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ActivateSecretRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseActivateSecretRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ActivateSecretRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: ActivateSecretRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ActivateSecretRequest>, I>>(base?: I): ActivateSecretRequest {
+    return ActivateSecretRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ActivateSecretRequest>, I>>(object: I): ActivateSecretRequest {
+    const message = createBaseActivateSecretRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseActivateSecretResponse(): ActivateSecretResponse {
+  return {};
+}
+
+export const ActivateSecretResponse = {
+  encode(_: ActivateSecretResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ActivateSecretResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseActivateSecretResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): ActivateSecretResponse {
+    return {};
+  },
+
+  toJSON(_: ActivateSecretResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ActivateSecretResponse>, I>>(base?: I): ActivateSecretResponse {
+    return ActivateSecretResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ActivateSecretResponse>, I>>(_: I): ActivateSecretResponse {
+    const message = createBaseActivateSecretResponse();
+    return message;
+  },
+};
+
 function createBaseDeactivateSecretRequest(): DeactivateSecretRequest {
   return { id: "" };
 }
@@ -813,6 +920,10 @@ export interface ServiceSvc {
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   /** AddSecret adds a new usable secret */
   AddSecret(request: DeepPartial<AddSecretRequest>, metadata?: grpc.Metadata): Promise<AddSecretResponse>;
+  ActivateSecret(
+    request: DeepPartial<ActivateSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ActivateSecretResponse>;
   DeactivateSecret(
     request: DeepPartial<DeactivateSecretRequest>,
     metadata?: grpc.Metadata,
@@ -830,6 +941,7 @@ export class ServiceSvcClientImpl implements ServiceSvc {
     this.Get = this.Get.bind(this);
     this.List = this.List.bind(this);
     this.AddSecret = this.AddSecret.bind(this);
+    this.ActivateSecret = this.ActivateSecret.bind(this);
     this.DeactivateSecret = this.DeactivateSecret.bind(this);
     this.DeleteSecret = this.DeleteSecret.bind(this);
   }
@@ -852,6 +964,13 @@ export class ServiceSvcClientImpl implements ServiceSvc {
 
   AddSecret(request: DeepPartial<AddSecretRequest>, metadata?: grpc.Metadata): Promise<AddSecretResponse> {
     return this.rpc.unary(ServiceSvcAddSecretDesc, AddSecretRequest.fromPartial(request), metadata);
+  }
+
+  ActivateSecret(
+    request: DeepPartial<ActivateSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ActivateSecretResponse> {
+    return this.rpc.unary(ServiceSvcActivateSecretDesc, ActivateSecretRequest.fromPartial(request), metadata);
   }
 
   DeactivateSecret(
@@ -973,6 +1092,29 @@ export const ServiceSvcAddSecretDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = AddSecretResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ServiceSvcActivateSecretDesc: UnaryMethodDefinitionish = {
+  methodName: "ActivateSecret",
+  service: ServiceSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ActivateSecretRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ActivateSecretResponse.decode(data);
       return {
         ...value,
         toObject() {

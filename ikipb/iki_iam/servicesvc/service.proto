@@ -15,6 +15,8 @@ service ServiceSvc {
   // AddSecret adds a new usable secret
   rpc AddSecret(AddSecretRequest) returns (AddSecretResponse) {}
 
+  rpc ActivateSecret(ActivateSecretRequest) returns (ActivateSecretResponse) {}
+
   rpc DeactivateSecret(DeactivateSecretRequest) returns (DeactivateSecretResponse) {}
 
   rpc DeleteSecret(DeleteSecretRequest) returns (DeleteSecretResponse) {}
@@ -57,6 +59,14 @@ message AddSecretRequest {
 
 message AddSecretResponse {
   iam.Secret secret = 1;
+}
+
+message ActivateSecretRequest {
+  string id = 1;
+}
+
+message ActivateSecretResponse {
+
 }
 
 message DeactivateSecretRequest {
