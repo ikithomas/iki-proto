@@ -53,7 +53,7 @@ message DeleteResponse {}
 
 message UpdateGroupRequest {
   string user_id = 1;
-  repeated string group_id = 2;
+  repeated string group_ids = 2;
 }
 
 message UpdateGroupResponse {}

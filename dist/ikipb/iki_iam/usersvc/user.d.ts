@@ -25,7 +25,7 @@ export interface DeleteResponse {
 }
 export interface UpdateGroupRequest {
     userId: string;
-    groupId: string[];
+    groupIds: string[];
 }
 export interface UpdateGroupResponse {
 }
@@ -458,17 +458,17 @@ export declare const UpdateGroupRequest: {
     toJSON(message: UpdateGroupRequest): unknown;
     create<I extends {
         userId?: string;
-        groupId?: string[];
+        groupIds?: string[];
     } & {
         userId?: string;
-        groupId?: string[] & string[] & { [K in Exclude<keyof I["groupId"], keyof string[]>]: never; };
+        groupIds?: string[] & string[] & { [K in Exclude<keyof I["groupIds"], keyof string[]>]: never; };
     } & { [K_1 in Exclude<keyof I, keyof UpdateGroupRequest>]: never; }>(base?: I): UpdateGroupRequest;
     fromPartial<I_1 extends {
         userId?: string;
-        groupId?: string[];
+        groupIds?: string[];
     } & {
         userId?: string;
-        groupId?: string[] & string[] & { [K_2 in Exclude<keyof I_1["groupId"], keyof string[]>]: never; };
+        groupIds?: string[] & string[] & { [K_2 in Exclude<keyof I_1["groupIds"], keyof string[]>]: never; };
     } & { [K_3 in Exclude<keyof I_1, keyof UpdateGroupRequest>]: never; }>(object: I_1): UpdateGroupRequest;
 };
 export declare const UpdateGroupResponse: {

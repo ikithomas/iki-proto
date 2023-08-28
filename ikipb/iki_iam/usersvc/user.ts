@@ -37,7 +37,7 @@ export interface DeleteResponse {
 
 export interface UpdateGroupRequest {
   userId: string;
-  groupId: string[];
+  groupIds: string[];
 }
 
 export interface UpdateGroupResponse {
@@ -458,7 +458,7 @@ export const DeleteResponse = {
 };
 
 function createBaseUpdateGroupRequest(): UpdateGroupRequest {
-  return { userId: "", groupId: [] };
+  return { userId: "", groupIds: [] };
 }
 
 export const UpdateGroupRequest = {
@@ -466,7 +466,7 @@ export const UpdateGroupRequest = {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
     }
-    for (const v of message.groupId) {
+    for (const v of message.groupIds) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -491,7 +491,7 @@ export const UpdateGroupRequest = {
             break;
           }
 
-          message.groupId.push(reader.string());
+          message.groupIds.push(reader.string());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -505,7 +505,7 @@ export const UpdateGroupRequest = {
   fromJSON(object: any): UpdateGroupRequest {
     return {
       userId: isSet(object.userId) ? String(object.userId) : "",
-      groupId: Array.isArray(object?.groupId) ? object.groupId.map((e: any) => String(e)) : [],
+      groupIds: Array.isArray(object?.groupIds) ? object.groupIds.map((e: any) => String(e)) : [],
     };
   },
 
@@ -514,8 +514,8 @@ export const UpdateGroupRequest = {
     if (message.userId !== "") {
       obj.userId = message.userId;
     }
-    if (message.groupId?.length) {
-      obj.groupId = message.groupId;
+    if (message.groupIds?.length) {
+      obj.groupIds = message.groupIds;
     }
     return obj;
   },
@@ -526,7 +526,7 @@ export const UpdateGroupRequest = {
   fromPartial<I extends Exact<DeepPartial<UpdateGroupRequest>, I>>(object: I): UpdateGroupRequest {
     const message = createBaseUpdateGroupRequest();
     message.userId = object.userId ?? "";
-    message.groupId = object.groupId?.map((e) => e) || [];
+    message.groupIds = object.groupIds?.map((e) => e) || [];
     return message;
   },
 };

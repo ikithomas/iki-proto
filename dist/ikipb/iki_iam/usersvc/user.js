@@ -376,14 +376,14 @@ exports.DeleteResponse = {
     },
 };
 function createBaseUpdateGroupRequest() {
-    return { userId: "", groupId: [] };
+    return { userId: "", groupIds: [] };
 }
 exports.UpdateGroupRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.userId !== "") {
             writer.uint32(10).string(message.userId);
         }
-        for (const v of message.groupId) {
+        for (const v of message.groupIds) {
             writer.uint32(18).string(v);
         }
         return writer;
@@ -405,7 +405,7 @@ exports.UpdateGroupRequest = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.groupId.push(reader.string());
+                    message.groupIds.push(reader.string());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -418,7 +418,7 @@ exports.UpdateGroupRequest = {
     fromJSON(object) {
         return {
             userId: isSet(object.userId) ? String(object.userId) : "",
-            groupId: Array.isArray(object === null || object === void 0 ? void 0 : object.groupId) ? object.groupId.map((e) => String(e)) : [],
+            groupIds: Array.isArray(object === null || object === void 0 ? void 0 : object.groupIds) ? object.groupIds.map((e) => String(e)) : [],
         };
     },
     toJSON(message) {
@@ -427,8 +427,8 @@ exports.UpdateGroupRequest = {
         if (message.userId !== "") {
             obj.userId = message.userId;
         }
-        if ((_a = message.groupId) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.groupId = message.groupId;
+        if ((_a = message.groupIds) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.groupIds = message.groupIds;
         }
         return obj;
     },
@@ -439,7 +439,7 @@ exports.UpdateGroupRequest = {
         var _a, _b;
         const message = createBaseUpdateGroupRequest();
         message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
-        message.groupId = ((_b = object.groupId) === null || _b === void 0 ? void 0 : _b.map((e) => e)) || [];
+        message.groupIds = ((_b = object.groupIds) === null || _b === void 0 ? void 0 : _b.map((e) => e)) || [];
         return message;
     },
 };
