@@ -51,7 +51,7 @@ export interface ActivityStats {
 export interface Athlete {
   id: string;
   userId: string;
-  stravaId: string;
+  stravaId: number;
   AthleteFitness: AthleteFitness | undefined;
 }
 
@@ -783,7 +783,7 @@ export const ActivityStats = {
 };
 
 function createBaseAthlete(): Athlete {
-  return { id: "", userId: "", stravaId: "", AthleteFitness: undefined };
+  return { id: "", userId: "", stravaId: 0, AthleteFitness: undefined };
 }
 
 export const Athlete = {
@@ -794,8 +794,8 @@ export const Athlete = {
     if (message.userId !== "") {
       writer.uint32(18).string(message.userId);
     }
-    if (message.stravaId !== "") {
-      writer.uint32(26).string(message.stravaId);
+    if (message.stravaId !== 0) {
+      writer.uint32(24).int64(message.stravaId);
     }
     if (message.AthleteFitness !== undefined) {
       AthleteFitness.encode(message.AthleteFitness, writer.uint32(34).fork()).ldelim();
@@ -825,11 +825,11 @@ export const Athlete = {
           message.userId = reader.string();
           continue;
         case 3:
-          if (tag !== 26) {
+          if (tag !== 24) {
             break;
           }
 
-          message.stravaId = reader.string();
+          message.stravaId = longToNumber(reader.int64() as Long);
           continue;
         case 4:
           if (tag !== 34) {
@@ -851,7 +851,7 @@ export const Athlete = {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       userId: isSet(object.userId) ? String(object.userId) : "",
-      stravaId: isSet(object.stravaId) ? String(object.stravaId) : "",
+      stravaId: isSet(object.stravaId) ? Number(object.stravaId) : 0,
       AthleteFitness: isSet(object.AthleteFitness) ? AthleteFitness.fromJSON(object.AthleteFitness) : undefined,
     };
   },
@@ -864,8 +864,8 @@ export const Athlete = {
     if (message.userId !== "") {
       obj.userId = message.userId;
     }
-    if (message.stravaId !== "") {
-      obj.stravaId = message.stravaId;
+    if (message.stravaId !== 0) {
+      obj.stravaId = Math.round(message.stravaId);
     }
     if (message.AthleteFitness !== undefined) {
       obj.AthleteFitness = AthleteFitness.toJSON(message.AthleteFitness);
@@ -880,7 +880,7 @@ export const Athlete = {
     const message = createBaseAthlete();
     message.id = object.id ?? "";
     message.userId = object.userId ?? "";
-    message.stravaId = object.stravaId ?? "";
+    message.stravaId = object.stravaId ?? 0;
     message.AthleteFitness = (object.AthleteFitness !== undefined && object.AthleteFitness !== null)
       ? AthleteFitness.fromPartial(object.AthleteFitness)
       : undefined;

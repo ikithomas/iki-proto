@@ -52,7 +52,7 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -67,7 +67,7 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -80,7 +80,7 @@ export declare const GetMyResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -104,7 +104,7 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -119,7 +119,7 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -132,7 +132,7 @@ export declare const GetMyResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -322,7 +322,7 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -337,7 +337,7 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -350,7 +350,7 @@ export declare const GetResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -374,7 +374,7 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -389,7 +389,7 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -402,7 +402,7 @@ export declare const GetResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;

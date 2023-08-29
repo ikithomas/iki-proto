@@ -45,7 +45,7 @@ export interface ActivityStats {
 export interface Athlete {
     id: string;
     userId: string;
-    stravaId: string;
+    stravaId: number;
     AthleteFitness: AthleteFitness | undefined;
 }
 export interface AthleteFitness {
@@ -454,7 +454,7 @@ export declare const Athlete: {
     create<I extends {
         id?: string;
         userId?: string;
-        stravaId?: string;
+        stravaId?: number;
         AthleteFitness?: {
             age?: number;
             height?: number;
@@ -467,7 +467,7 @@ export declare const Athlete: {
     } & {
         id?: string;
         userId?: string;
-        stravaId?: string;
+        stravaId?: number;
         AthleteFitness?: {
             age?: number;
             height?: number;
@@ -489,7 +489,7 @@ export declare const Athlete: {
     fromPartial<I_1 extends {
         id?: string;
         userId?: string;
-        stravaId?: string;
+        stravaId?: number;
         AthleteFitness?: {
             age?: number;
             height?: number;
@@ -502,7 +502,7 @@ export declare const Athlete: {
     } & {
         id?: string;
         userId?: string;
-        stravaId?: string;
+        stravaId?: number;
         AthleteFitness?: {
             age?: number;
             height?: number;

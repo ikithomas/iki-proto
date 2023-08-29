@@ -34,7 +34,7 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -49,7 +49,7 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -62,7 +62,7 @@ export declare const AuthzResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -86,7 +86,7 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -101,7 +101,7 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;
@@ -114,7 +114,7 @@ export declare const AuthzResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: string;
+            stravaId?: number;
             AthleteFitness?: {
                 age?: number;
                 height?: number;

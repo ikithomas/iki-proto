@@ -653,7 +653,7 @@ exports.ActivityStats = {
     },
 };
 function createBaseAthlete() {
-    return { id: "", userId: "", stravaId: "", AthleteFitness: undefined };
+    return { id: "", userId: "", stravaId: 0, AthleteFitness: undefined };
 }
 exports.Athlete = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -663,8 +663,8 @@ exports.Athlete = {
         if (message.userId !== "") {
             writer.uint32(18).string(message.userId);
         }
-        if (message.stravaId !== "") {
-            writer.uint32(26).string(message.stravaId);
+        if (message.stravaId !== 0) {
+            writer.uint32(24).int64(message.stravaId);
         }
         if (message.AthleteFitness !== undefined) {
             exports.AthleteFitness.encode(message.AthleteFitness, writer.uint32(34).fork()).ldelim();
@@ -691,10 +691,10 @@ exports.Athlete = {
                     message.userId = reader.string();
                     continue;
                 case 3:
-                    if (tag !== 26) {
+                    if (tag !== 24) {
                         break;
                     }
-                    message.stravaId = reader.string();
+                    message.stravaId = longToNumber(reader.int64());
                     continue;
                 case 4:
                     if (tag !== 34) {
@@ -714,7 +714,7 @@ exports.Athlete = {
         return {
             id: isSet(object.id) ? String(object.id) : "",
             userId: isSet(object.userId) ? String(object.userId) : "",
-            stravaId: isSet(object.stravaId) ? String(object.stravaId) : "",
+            stravaId: isSet(object.stravaId) ? Number(object.stravaId) : 0,
             AthleteFitness: isSet(object.AthleteFitness) ? exports.AthleteFitness.fromJSON(object.AthleteFitness) : undefined,
         };
     },
@@ -726,8 +726,8 @@ exports.Athlete = {
         if (message.userId !== "") {
             obj.userId = message.userId;
         }
-        if (message.stravaId !== "") {
-            obj.stravaId = message.stravaId;
+        if (message.stravaId !== 0) {
+            obj.stravaId = Math.round(message.stravaId);
         }
         if (message.AthleteFitness !== undefined) {
             obj.AthleteFitness = exports.AthleteFitness.toJSON(message.AthleteFitness);
@@ -742,7 +742,7 @@ exports.Athlete = {
         const message = createBaseAthlete();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.userId = (_b = object.userId) !== null && _b !== void 0 ? _b : "";
-        message.stravaId = (_c = object.stravaId) !== null && _c !== void 0 ? _c : "";
+        message.stravaId = (_c = object.stravaId) !== null && _c !== void 0 ? _c : 0;
         message.AthleteFitness = (object.AthleteFitness !== undefined && object.AthleteFitness !== null)
             ? exports.AthleteFitness.fromPartial(object.AthleteFitness)
             : undefined;
