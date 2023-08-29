@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+import "ikipb/iki_activity/activity.proto";
+
+option go_package = "/athletesvc";
+
+package athletesvc;
+
+////////////////////////////////////////////////////////////////////////////////
+// My Athlete Service
+//////
+
+service MyAthleteSvc {
+  rpc Get(GetMyRequest) returns (GetMyResponse) {}
+
+  rpc SetFitnessMetric(SetMyFitnessMetricRequest) returns (SetMyFitnessMetricResponse) {}
+
+  rpc GetFitnessMetric(GetMyFitnessMetricRequest) returns (GetMyFitnessMetricResponse) {}
+}
+
+message GetMyRequest {}
+
+message GetMyResponse {
+  activity.Athlete athlete = 1;
+}
+
+message SetMyFitnessMetricRequest {
+  activity.AthleteFitness fitness = 1;
+}
+
+message  SetMyFitnessMetricResponse {}
+
+message GetMyFitnessMetricRequest {}
+
+message GetMyFitnessMetricResponse {
+  activity.AthleteFitness fitness = 1;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Athlete Service
+//////
+
+service AthleteSvc {
+  rpc Get(GetRequest) returns (GetResponse) {}
+
+  rpc SetFitnessMetric(SetFitnessMetricRequest) returns (SetFitnessMetricResponse) {}
+
+  rpc GetFitnessMetric(GetFitnessMetricRequest) returns (GetFitnessMetricResponse) {}
+}
+
+message GetRequest {
+  string user_id = 1;
+}
+
+message GetResponse {
+  activity.Athlete athlete = 1;
+}
+
+message SetFitnessMetricRequest {
+  string user_id = 1;
+  activity.AthleteFitness fitness = 2;
+}
+
+message  SetFitnessMetricResponse {}
+
+message GetFitnessMetricRequest {
+  string user_id = 1;
+}
+
+message GetFitnessMetricResponse {
+  activity.AthleteFitness fitness = 1;
+}

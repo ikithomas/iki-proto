@@ -1,10 +1,12 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
-
-option go_package = "/activity";
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_activity";
 
 package activity;
+
+////////////////////////////////////////////////////////////////////////////////
+// Activity
+//////
 
 message Activity {
   reserved 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19;
@@ -15,10 +17,10 @@ message Activity {
   string name = 4;
   string type = 5;
   int64 start_date = 9;
-  Stats stats = 20;
+  ActivityStats stats = 20;
 }
 
-message Stats {
+message ActivityStats {
 	float start_lat = 1;
 	float start_lng = 2;
 	float end_lat = 3;
@@ -45,7 +47,6 @@ message Stats {
   double hr_zone3_trimp = 23;
 	double hr_zone4_trimp = 24;
   double hr_zone5_trimp = 25;
-  PersonalMetric personal_metric = 26;
 
   double average_speed = 27;
   double average_ep_speed = 28;
@@ -54,57 +55,56 @@ message Stats {
   int32 active_calories = 31;
 }
 
-message PersonalMetric {
-	int32 age  = 1;
-	float height  = 2;
-	float weight  = 3;
-	int32 max_heartrate  = 4;
-	int32 rest_heartrate  = 5;
-	int32 vo2_max  = 6;
-	bool male  = 7;
-}
+////////////////////////////////////////////////////////////////////////////////
+// Athlete
+//////
 
-service ActivitySvc {
-  rpc Get (GetRequest) returns (GetResponse) {}
-  rpc GetMine (GetMineRequest) returns (GetMineResponse) {}
-  rpc GetFeatured (GetFeaturedRequest) returns (GetFeaturedResponse) {}
-
-  rpc List (ListRequest) returns (ListResponse) {}
-  rpc ListMine (ListMineRequest) returns (ListMineResponse) {}
-  rpc ListFeatured (ListFeaturedRequest) returns (ListFeaturedResponse) {}
-
-  rpc CalculateStats(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-}
-
-message GetRequest {
+message Athlete {
   string id = 1;
-}
-message GetResponse {
-  Activity activity = 1;
-}
-message GetMineRequest {
-  string id = 1;
-}
-message GetMineResponse {
-  Activity activity = 1;
-}
-message GetFeaturedRequest {
-  string id = 1;
-}
-message GetFeaturedResponse {
-  Activity activity = 1;
+  string user_id = 2;
+  string strava_id = 3;
+  AthleteFitness AthleteFitness = 4;
 }
 
+message AthleteFitness {
+  int32 age = 1;
+  float height = 2;
+  float weight = 3;
+  int32 max_heartrate = 4;
+  int32 rest_heartrate = 5;
+  int32 vo2_max = 6;
+  bool male = 7;
+}
 
-message ListRequest {}
-message ListResponse {
-  repeated Activity activities = 1;
+////////////////////////////////////////////////////////////////////////////////
+// GPX
+//////
+
+message Chunk {
+  bytes chunk = 1;
 }
-message ListMineRequest {}
-message ListMineResponse {
-  repeated Activity activities = 1;
+
+message Gpx {
+  string name = 1;
+  int64 start_date = 2;
+  string type = 3;
+  repeated Point points = 4;
 }
-message ListFeaturedRequest {}
-message ListFeaturedResponse {
-  repeated Activity activities = 1;
+
+message Point {
+  float lat = 1;
+  float lon = 2;
+  float ele = 3;
+  int64 time = 4;
+  int32 hr = 5;
+  int32 cad = 6;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Events
+//////
+
+message EventActivityUpload {
+  string activity_id = 1;
+  string iki_user_id = 2;
 }

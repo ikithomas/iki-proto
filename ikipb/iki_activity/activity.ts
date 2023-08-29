@@ -1,9 +1,6 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Empty } from "../../google/protobuf/empty";
 
 export const protobufPackage = "activity";
 
@@ -14,10 +11,10 @@ export interface Activity {
   name: string;
   type: string;
   startDate: number;
-  stats: Stats | undefined;
+  stats: ActivityStats | undefined;
 }
 
-export interface Stats {
+export interface ActivityStats {
   startLat: number;
   startLng: number;
   endLat: number;
@@ -44,7 +41,6 @@ export interface Stats {
   hrZone3Trimp: number;
   hrZone4Trimp: number;
   hrZone5Trimp: number;
-  personalMetric: PersonalMetric | undefined;
   averageSpeed: number;
   averageEpSpeed: number;
   averagePace: number;
@@ -52,7 +48,14 @@ export interface Stats {
   activeCalories: number;
 }
 
-export interface PersonalMetric {
+export interface Athlete {
+  id: string;
+  userId: string;
+  stravaId: string;
+  AthleteFitness: AthleteFitness | undefined;
+}
+
+export interface AthleteFitness {
   age: number;
   height: number;
   weight: number;
@@ -62,49 +65,29 @@ export interface PersonalMetric {
   male: boolean;
 }
 
-export interface GetRequest {
-  id: string;
+export interface Chunk {
+  chunk: Uint8Array;
 }
 
-export interface GetResponse {
-  activity: Activity | undefined;
+export interface Gpx {
+  name: string;
+  startDate: number;
+  type: string;
+  points: Point[];
 }
 
-export interface GetMineRequest {
-  id: string;
+export interface Point {
+  lat: number;
+  lon: number;
+  ele: number;
+  time: number;
+  hr: number;
+  cad: number;
 }
 
-export interface GetMineResponse {
-  activity: Activity | undefined;
-}
-
-export interface GetFeaturedRequest {
-  id: string;
-}
-
-export interface GetFeaturedResponse {
-  activity: Activity | undefined;
-}
-
-export interface ListRequest {
-}
-
-export interface ListResponse {
-  activities: Activity[];
-}
-
-export interface ListMineRequest {
-}
-
-export interface ListMineResponse {
-  activities: Activity[];
-}
-
-export interface ListFeaturedRequest {
-}
-
-export interface ListFeaturedResponse {
-  activities: Activity[];
+export interface EventActivityUpload {
+  activityId: string;
+  ikiUserId: string;
 }
 
 function createBaseActivity(): Activity {
@@ -132,7 +115,7 @@ export const Activity = {
       writer.uint32(72).int64(message.startDate);
     }
     if (message.stats !== undefined) {
-      Stats.encode(message.stats, writer.uint32(162).fork()).ldelim();
+      ActivityStats.encode(message.stats, writer.uint32(162).fork()).ldelim();
     }
     return writer;
   },
@@ -191,7 +174,7 @@ export const Activity = {
             break;
           }
 
-          message.stats = Stats.decode(reader, reader.uint32());
+          message.stats = ActivityStats.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -210,7 +193,7 @@ export const Activity = {
       name: isSet(object.name) ? String(object.name) : "",
       type: isSet(object.type) ? String(object.type) : "",
       startDate: isSet(object.startDate) ? Number(object.startDate) : 0,
-      stats: isSet(object.stats) ? Stats.fromJSON(object.stats) : undefined,
+      stats: isSet(object.stats) ? ActivityStats.fromJSON(object.stats) : undefined,
     };
   },
 
@@ -235,7 +218,7 @@ export const Activity = {
       obj.startDate = Math.round(message.startDate);
     }
     if (message.stats !== undefined) {
-      obj.stats = Stats.toJSON(message.stats);
+      obj.stats = ActivityStats.toJSON(message.stats);
     }
     return obj;
   },
@@ -251,12 +234,14 @@ export const Activity = {
     message.name = object.name ?? "";
     message.type = object.type ?? "";
     message.startDate = object.startDate ?? 0;
-    message.stats = (object.stats !== undefined && object.stats !== null) ? Stats.fromPartial(object.stats) : undefined;
+    message.stats = (object.stats !== undefined && object.stats !== null)
+      ? ActivityStats.fromPartial(object.stats)
+      : undefined;
     return message;
   },
 };
 
-function createBaseStats(): Stats {
+function createBaseActivityStats(): ActivityStats {
   return {
     startLat: 0,
     startLng: 0,
@@ -284,7 +269,6 @@ function createBaseStats(): Stats {
     hrZone3Trimp: 0,
     hrZone4Trimp: 0,
     hrZone5Trimp: 0,
-    personalMetric: undefined,
     averageSpeed: 0,
     averageEpSpeed: 0,
     averagePace: 0,
@@ -293,8 +277,8 @@ function createBaseStats(): Stats {
   };
 }
 
-export const Stats = {
-  encode(message: Stats, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ActivityStats = {
+  encode(message: ActivityStats, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.startLat !== 0) {
       writer.uint32(13).float(message.startLat);
     }
@@ -373,9 +357,6 @@ export const Stats = {
     if (message.hrZone5Trimp !== 0) {
       writer.uint32(201).double(message.hrZone5Trimp);
     }
-    if (message.personalMetric !== undefined) {
-      PersonalMetric.encode(message.personalMetric, writer.uint32(210).fork()).ldelim();
-    }
     if (message.averageSpeed !== 0) {
       writer.uint32(217).double(message.averageSpeed);
     }
@@ -394,10 +375,10 @@ export const Stats = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Stats {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ActivityStats {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseStats();
+    const message = createBaseActivityStats();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -583,13 +564,6 @@ export const Stats = {
 
           message.hrZone5Trimp = reader.double();
           continue;
-        case 26:
-          if (tag !== 210) {
-            break;
-          }
-
-          message.personalMetric = PersonalMetric.decode(reader, reader.uint32());
-          continue;
         case 27:
           if (tag !== 217) {
             break;
@@ -634,7 +608,7 @@ export const Stats = {
     return message;
   },
 
-  fromJSON(object: any): Stats {
+  fromJSON(object: any): ActivityStats {
     return {
       startLat: isSet(object.startLat) ? Number(object.startLat) : 0,
       startLng: isSet(object.startLng) ? Number(object.startLng) : 0,
@@ -662,7 +636,6 @@ export const Stats = {
       hrZone3Trimp: isSet(object.hrZone3Trimp) ? Number(object.hrZone3Trimp) : 0,
       hrZone4Trimp: isSet(object.hrZone4Trimp) ? Number(object.hrZone4Trimp) : 0,
       hrZone5Trimp: isSet(object.hrZone5Trimp) ? Number(object.hrZone5Trimp) : 0,
-      personalMetric: isSet(object.personalMetric) ? PersonalMetric.fromJSON(object.personalMetric) : undefined,
       averageSpeed: isSet(object.averageSpeed) ? Number(object.averageSpeed) : 0,
       averageEpSpeed: isSet(object.averageEpSpeed) ? Number(object.averageEpSpeed) : 0,
       averagePace: isSet(object.averagePace) ? Number(object.averagePace) : 0,
@@ -671,7 +644,7 @@ export const Stats = {
     };
   },
 
-  toJSON(message: Stats): unknown {
+  toJSON(message: ActivityStats): unknown {
     const obj: any = {};
     if (message.startLat !== 0) {
       obj.startLat = message.startLat;
@@ -751,9 +724,6 @@ export const Stats = {
     if (message.hrZone5Trimp !== 0) {
       obj.hrZone5Trimp = message.hrZone5Trimp;
     }
-    if (message.personalMetric !== undefined) {
-      obj.personalMetric = PersonalMetric.toJSON(message.personalMetric);
-    }
     if (message.averageSpeed !== 0) {
       obj.averageSpeed = message.averageSpeed;
     }
@@ -772,11 +742,11 @@ export const Stats = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Stats>, I>>(base?: I): Stats {
-    return Stats.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ActivityStats>, I>>(base?: I): ActivityStats {
+    return ActivityStats.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Stats>, I>>(object: I): Stats {
-    const message = createBaseStats();
+  fromPartial<I extends Exact<DeepPartial<ActivityStats>, I>>(object: I): ActivityStats {
+    const message = createBaseActivityStats();
     message.startLat = object.startLat ?? 0;
     message.startLng = object.startLng ?? 0;
     message.endLat = object.endLat ?? 0;
@@ -803,9 +773,6 @@ export const Stats = {
     message.hrZone3Trimp = object.hrZone3Trimp ?? 0;
     message.hrZone4Trimp = object.hrZone4Trimp ?? 0;
     message.hrZone5Trimp = object.hrZone5Trimp ?? 0;
-    message.personalMetric = (object.personalMetric !== undefined && object.personalMetric !== null)
-      ? PersonalMetric.fromPartial(object.personalMetric)
-      : undefined;
     message.averageSpeed = object.averageSpeed ?? 0;
     message.averageEpSpeed = object.averageEpSpeed ?? 0;
     message.averagePace = object.averagePace ?? 0;
@@ -815,12 +782,118 @@ export const Stats = {
   },
 };
 
-function createBasePersonalMetric(): PersonalMetric {
+function createBaseAthlete(): Athlete {
+  return { id: "", userId: "", stravaId: "", AthleteFitness: undefined };
+}
+
+export const Athlete = {
+  encode(message: Athlete, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.stravaId !== "") {
+      writer.uint32(26).string(message.stravaId);
+    }
+    if (message.AthleteFitness !== undefined) {
+      AthleteFitness.encode(message.AthleteFitness, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Athlete {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAthlete();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.stravaId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.AthleteFitness = AthleteFitness.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Athlete {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      userId: isSet(object.userId) ? String(object.userId) : "",
+      stravaId: isSet(object.stravaId) ? String(object.stravaId) : "",
+      AthleteFitness: isSet(object.AthleteFitness) ? AthleteFitness.fromJSON(object.AthleteFitness) : undefined,
+    };
+  },
+
+  toJSON(message: Athlete): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.stravaId !== "") {
+      obj.stravaId = message.stravaId;
+    }
+    if (message.AthleteFitness !== undefined) {
+      obj.AthleteFitness = AthleteFitness.toJSON(message.AthleteFitness);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Athlete>, I>>(base?: I): Athlete {
+    return Athlete.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Athlete>, I>>(object: I): Athlete {
+    const message = createBaseAthlete();
+    message.id = object.id ?? "";
+    message.userId = object.userId ?? "";
+    message.stravaId = object.stravaId ?? "";
+    message.AthleteFitness = (object.AthleteFitness !== undefined && object.AthleteFitness !== null)
+      ? AthleteFitness.fromPartial(object.AthleteFitness)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseAthleteFitness(): AthleteFitness {
   return { age: 0, height: 0, weight: 0, maxHeartrate: 0, restHeartrate: 0, vo2Max: 0, male: false };
 }
 
-export const PersonalMetric = {
-  encode(message: PersonalMetric, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const AthleteFitness = {
+  encode(message: AthleteFitness, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.age !== 0) {
       writer.uint32(8).int32(message.age);
     }
@@ -845,10 +918,10 @@ export const PersonalMetric = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): PersonalMetric {
+  decode(input: _m0.Reader | Uint8Array, length?: number): AthleteFitness {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePersonalMetric();
+    const message = createBaseAthleteFitness();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -910,7 +983,7 @@ export const PersonalMetric = {
     return message;
   },
 
-  fromJSON(object: any): PersonalMetric {
+  fromJSON(object: any): AthleteFitness {
     return {
       age: isSet(object.age) ? Number(object.age) : 0,
       height: isSet(object.height) ? Number(object.height) : 0,
@@ -922,7 +995,7 @@ export const PersonalMetric = {
     };
   },
 
-  toJSON(message: PersonalMetric): unknown {
+  toJSON(message: AthleteFitness): unknown {
     const obj: any = {};
     if (message.age !== 0) {
       obj.age = Math.round(message.age);
@@ -948,11 +1021,11 @@ export const PersonalMetric = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<PersonalMetric>, I>>(base?: I): PersonalMetric {
-    return PersonalMetric.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<AthleteFitness>, I>>(base?: I): AthleteFitness {
+    return AthleteFitness.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<PersonalMetric>, I>>(object: I): PersonalMetric {
-    const message = createBasePersonalMetric();
+  fromPartial<I extends Exact<DeepPartial<AthleteFitness>, I>>(object: I): AthleteFitness {
+    const message = createBaseAthleteFitness();
     message.age = object.age ?? 0;
     message.height = object.height ?? 0;
     message.weight = object.weight ?? 0;
@@ -964,22 +1037,22 @@ export const PersonalMetric = {
   },
 };
 
-function createBaseGetRequest(): GetRequest {
-  return { id: "" };
+function createBaseChunk(): Chunk {
+  return { chunk: new Uint8Array(0) };
 }
 
-export const GetRequest = {
-  encode(message: GetRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
+export const Chunk = {
+  encode(message: Chunk, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.chunk.length !== 0) {
+      writer.uint32(10).bytes(message.chunk);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Chunk {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetRequest();
+    const message = createBaseChunk();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -988,7 +1061,7 @@ export const GetRequest = {
             break;
           }
 
-          message.id = reader.string();
+          message.chunk = reader.bytes();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -999,44 +1072,53 @@ export const GetRequest = {
     return message;
   },
 
-  fromJSON(object: any): GetRequest {
-    return { id: isSet(object.id) ? String(object.id) : "" };
+  fromJSON(object: any): Chunk {
+    return { chunk: isSet(object.chunk) ? bytesFromBase64(object.chunk) : new Uint8Array(0) };
   },
 
-  toJSON(message: GetRequest): unknown {
+  toJSON(message: Chunk): unknown {
     const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
+    if (message.chunk.length !== 0) {
+      obj.chunk = base64FromBytes(message.chunk);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetRequest>, I>>(base?: I): GetRequest {
-    return GetRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Chunk>, I>>(base?: I): Chunk {
+    return Chunk.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<GetRequest>, I>>(object: I): GetRequest {
-    const message = createBaseGetRequest();
-    message.id = object.id ?? "";
+  fromPartial<I extends Exact<DeepPartial<Chunk>, I>>(object: I): Chunk {
+    const message = createBaseChunk();
+    message.chunk = object.chunk ?? new Uint8Array(0);
     return message;
   },
 };
 
-function createBaseGetResponse(): GetResponse {
-  return { activity: undefined };
+function createBaseGpx(): Gpx {
+  return { name: "", startDate: 0, type: "", points: [] };
 }
 
-export const GetResponse = {
-  encode(message: GetResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.activity !== undefined) {
-      Activity.encode(message.activity, writer.uint32(10).fork()).ldelim();
+export const Gpx = {
+  encode(message: Gpx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.startDate !== 0) {
+      writer.uint32(16).int64(message.startDate);
+    }
+    if (message.type !== "") {
+      writer.uint32(26).string(message.type);
+    }
+    for (const v of message.points) {
+      Point.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Gpx {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetResponse();
+    const message = createBaseGpx();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1045,7 +1127,28 @@ export const GetResponse = {
             break;
           }
 
-          message.activity = Activity.decode(reader, reader.uint32());
+          message.name = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.startDate = longToNumber(reader.int64() as Long);
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.type = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.points.push(Point.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1056,432 +1159,120 @@ export const GetResponse = {
     return message;
   },
 
-  fromJSON(object: any): GetResponse {
-    return { activity: isSet(object.activity) ? Activity.fromJSON(object.activity) : undefined };
-  },
-
-  toJSON(message: GetResponse): unknown {
-    const obj: any = {};
-    if (message.activity !== undefined) {
-      obj.activity = Activity.toJSON(message.activity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetResponse>, I>>(base?: I): GetResponse {
-    return GetResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetResponse>, I>>(object: I): GetResponse {
-    const message = createBaseGetResponse();
-    message.activity = (object.activity !== undefined && object.activity !== null)
-      ? Activity.fromPartial(object.activity)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseGetMineRequest(): GetMineRequest {
-  return { id: "" };
-}
-
-export const GetMineRequest = {
-  encode(message: GetMineRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetMineRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetMineRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetMineRequest {
-    return { id: isSet(object.id) ? String(object.id) : "" };
-  },
-
-  toJSON(message: GetMineRequest): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetMineRequest>, I>>(base?: I): GetMineRequest {
-    return GetMineRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetMineRequest>, I>>(object: I): GetMineRequest {
-    const message = createBaseGetMineRequest();
-    message.id = object.id ?? "";
-    return message;
-  },
-};
-
-function createBaseGetMineResponse(): GetMineResponse {
-  return { activity: undefined };
-}
-
-export const GetMineResponse = {
-  encode(message: GetMineResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.activity !== undefined) {
-      Activity.encode(message.activity, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetMineResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetMineResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.activity = Activity.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetMineResponse {
-    return { activity: isSet(object.activity) ? Activity.fromJSON(object.activity) : undefined };
-  },
-
-  toJSON(message: GetMineResponse): unknown {
-    const obj: any = {};
-    if (message.activity !== undefined) {
-      obj.activity = Activity.toJSON(message.activity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetMineResponse>, I>>(base?: I): GetMineResponse {
-    return GetMineResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetMineResponse>, I>>(object: I): GetMineResponse {
-    const message = createBaseGetMineResponse();
-    message.activity = (object.activity !== undefined && object.activity !== null)
-      ? Activity.fromPartial(object.activity)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseGetFeaturedRequest(): GetFeaturedRequest {
-  return { id: "" };
-}
-
-export const GetFeaturedRequest = {
-  encode(message: GetFeaturedRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetFeaturedRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetFeaturedRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetFeaturedRequest {
-    return { id: isSet(object.id) ? String(object.id) : "" };
-  },
-
-  toJSON(message: GetFeaturedRequest): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetFeaturedRequest>, I>>(base?: I): GetFeaturedRequest {
-    return GetFeaturedRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetFeaturedRequest>, I>>(object: I): GetFeaturedRequest {
-    const message = createBaseGetFeaturedRequest();
-    message.id = object.id ?? "";
-    return message;
-  },
-};
-
-function createBaseGetFeaturedResponse(): GetFeaturedResponse {
-  return { activity: undefined };
-}
-
-export const GetFeaturedResponse = {
-  encode(message: GetFeaturedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.activity !== undefined) {
-      Activity.encode(message.activity, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetFeaturedResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetFeaturedResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.activity = Activity.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetFeaturedResponse {
-    return { activity: isSet(object.activity) ? Activity.fromJSON(object.activity) : undefined };
-  },
-
-  toJSON(message: GetFeaturedResponse): unknown {
-    const obj: any = {};
-    if (message.activity !== undefined) {
-      obj.activity = Activity.toJSON(message.activity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetFeaturedResponse>, I>>(base?: I): GetFeaturedResponse {
-    return GetFeaturedResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetFeaturedResponse>, I>>(object: I): GetFeaturedResponse {
-    const message = createBaseGetFeaturedResponse();
-    message.activity = (object.activity !== undefined && object.activity !== null)
-      ? Activity.fromPartial(object.activity)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseListRequest(): ListRequest {
-  return {};
-}
-
-export const ListRequest = {
-  encode(_: ListRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): ListRequest {
-    return {};
-  },
-
-  toJSON(_: ListRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ListRequest>, I>>(base?: I): ListRequest {
-    return ListRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListRequest>, I>>(_: I): ListRequest {
-    const message = createBaseListRequest();
-    return message;
-  },
-};
-
-function createBaseListResponse(): ListResponse {
-  return { activities: [] };
-}
-
-export const ListResponse = {
-  encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.activities) {
-      Activity.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.activities.push(Activity.decode(reader, reader.uint32()));
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ListResponse {
+  fromJSON(object: any): Gpx {
     return {
-      activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
+      name: isSet(object.name) ? String(object.name) : "",
+      startDate: isSet(object.startDate) ? Number(object.startDate) : 0,
+      type: isSet(object.type) ? String(object.type) : "",
+      points: Array.isArray(object?.points) ? object.points.map((e: any) => Point.fromJSON(e)) : [],
     };
   },
 
-  toJSON(message: ListResponse): unknown {
+  toJSON(message: Gpx): unknown {
     const obj: any = {};
-    if (message.activities?.length) {
-      obj.activities = message.activities.map((e) => Activity.toJSON(e));
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.startDate !== 0) {
+      obj.startDate = Math.round(message.startDate);
+    }
+    if (message.type !== "") {
+      obj.type = message.type;
+    }
+    if (message.points?.length) {
+      obj.points = message.points.map((e) => Point.toJSON(e));
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ListResponse>, I>>(base?: I): ListResponse {
-    return ListResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Gpx>, I>>(base?: I): Gpx {
+    return Gpx.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
-    const message = createBaseListResponse();
-    message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
+  fromPartial<I extends Exact<DeepPartial<Gpx>, I>>(object: I): Gpx {
+    const message = createBaseGpx();
+    message.name = object.name ?? "";
+    message.startDate = object.startDate ?? 0;
+    message.type = object.type ?? "";
+    message.points = object.points?.map((e) => Point.fromPartial(e)) || [];
     return message;
   },
 };
 
-function createBaseListMineRequest(): ListMineRequest {
-  return {};
+function createBasePoint(): Point {
+  return { lat: 0, lon: 0, ele: 0, time: 0, hr: 0, cad: 0 };
 }
 
-export const ListMineRequest = {
-  encode(_: ListMineRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListMineRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListMineRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
+export const Point = {
+  encode(message: Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.lat !== 0) {
+      writer.uint32(13).float(message.lat);
     }
-    return message;
-  },
-
-  fromJSON(_: any): ListMineRequest {
-    return {};
-  },
-
-  toJSON(_: ListMineRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ListMineRequest>, I>>(base?: I): ListMineRequest {
-    return ListMineRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListMineRequest>, I>>(_: I): ListMineRequest {
-    const message = createBaseListMineRequest();
-    return message;
-  },
-};
-
-function createBaseListMineResponse(): ListMineResponse {
-  return { activities: [] };
-}
-
-export const ListMineResponse = {
-  encode(message: ListMineResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.activities) {
-      Activity.encode(v!, writer.uint32(10).fork()).ldelim();
+    if (message.lon !== 0) {
+      writer.uint32(21).float(message.lon);
+    }
+    if (message.ele !== 0) {
+      writer.uint32(29).float(message.ele);
+    }
+    if (message.time !== 0) {
+      writer.uint32(32).int64(message.time);
+    }
+    if (message.hr !== 0) {
+      writer.uint32(40).int32(message.hr);
+    }
+    if (message.cad !== 0) {
+      writer.uint32(48).int32(message.cad);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListMineResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Point {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListMineResponse();
+    const message = createBasePoint();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 10) {
+          if (tag !== 13) {
             break;
           }
 
-          message.activities.push(Activity.decode(reader, reader.uint32()));
+          message.lat = reader.float();
+          continue;
+        case 2:
+          if (tag !== 21) {
+            break;
+          }
+
+          message.lon = reader.float();
+          continue;
+        case 3:
+          if (tag !== 29) {
+            break;
+          }
+
+          message.ele = reader.float();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.time = longToNumber(reader.int64() as Long);
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.hr = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.cad = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1492,89 +1283,74 @@ export const ListMineResponse = {
     return message;
   },
 
-  fromJSON(object: any): ListMineResponse {
+  fromJSON(object: any): Point {
     return {
-      activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
+      lat: isSet(object.lat) ? Number(object.lat) : 0,
+      lon: isSet(object.lon) ? Number(object.lon) : 0,
+      ele: isSet(object.ele) ? Number(object.ele) : 0,
+      time: isSet(object.time) ? Number(object.time) : 0,
+      hr: isSet(object.hr) ? Number(object.hr) : 0,
+      cad: isSet(object.cad) ? Number(object.cad) : 0,
     };
   },
 
-  toJSON(message: ListMineResponse): unknown {
+  toJSON(message: Point): unknown {
     const obj: any = {};
-    if (message.activities?.length) {
-      obj.activities = message.activities.map((e) => Activity.toJSON(e));
+    if (message.lat !== 0) {
+      obj.lat = message.lat;
+    }
+    if (message.lon !== 0) {
+      obj.lon = message.lon;
+    }
+    if (message.ele !== 0) {
+      obj.ele = message.ele;
+    }
+    if (message.time !== 0) {
+      obj.time = Math.round(message.time);
+    }
+    if (message.hr !== 0) {
+      obj.hr = Math.round(message.hr);
+    }
+    if (message.cad !== 0) {
+      obj.cad = Math.round(message.cad);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ListMineResponse>, I>>(base?: I): ListMineResponse {
-    return ListMineResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Point>, I>>(base?: I): Point {
+    return Point.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ListMineResponse>, I>>(object: I): ListMineResponse {
-    const message = createBaseListMineResponse();
-    message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
+  fromPartial<I extends Exact<DeepPartial<Point>, I>>(object: I): Point {
+    const message = createBasePoint();
+    message.lat = object.lat ?? 0;
+    message.lon = object.lon ?? 0;
+    message.ele = object.ele ?? 0;
+    message.time = object.time ?? 0;
+    message.hr = object.hr ?? 0;
+    message.cad = object.cad ?? 0;
     return message;
   },
 };
 
-function createBaseListFeaturedRequest(): ListFeaturedRequest {
-  return {};
+function createBaseEventActivityUpload(): EventActivityUpload {
+  return { activityId: "", ikiUserId: "" };
 }
 
-export const ListFeaturedRequest = {
-  encode(_: ListFeaturedRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListFeaturedRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListFeaturedRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
+export const EventActivityUpload = {
+  encode(message: EventActivityUpload, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.activityId !== "") {
+      writer.uint32(10).string(message.activityId);
     }
-    return message;
-  },
-
-  fromJSON(_: any): ListFeaturedRequest {
-    return {};
-  },
-
-  toJSON(_: ListFeaturedRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ListFeaturedRequest>, I>>(base?: I): ListFeaturedRequest {
-    return ListFeaturedRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListFeaturedRequest>, I>>(_: I): ListFeaturedRequest {
-    const message = createBaseListFeaturedRequest();
-    return message;
-  },
-};
-
-function createBaseListFeaturedResponse(): ListFeaturedResponse {
-  return { activities: [] };
-}
-
-export const ListFeaturedResponse = {
-  encode(message: ListFeaturedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.activities) {
-      Activity.encode(v!, writer.uint32(10).fork()).ldelim();
+    if (message.ikiUserId !== "") {
+      writer.uint32(18).string(message.ikiUserId);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListFeaturedResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventActivityUpload {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListFeaturedResponse();
+    const message = createBaseEventActivityUpload();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1583,7 +1359,14 @@ export const ListFeaturedResponse = {
             break;
           }
 
-          message.activities.push(Activity.decode(reader, reader.uint32()));
+          message.activityId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.ikiUserId = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1594,313 +1377,34 @@ export const ListFeaturedResponse = {
     return message;
   },
 
-  fromJSON(object: any): ListFeaturedResponse {
+  fromJSON(object: any): EventActivityUpload {
     return {
-      activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
+      activityId: isSet(object.activityId) ? String(object.activityId) : "",
+      ikiUserId: isSet(object.ikiUserId) ? String(object.ikiUserId) : "",
     };
   },
 
-  toJSON(message: ListFeaturedResponse): unknown {
+  toJSON(message: EventActivityUpload): unknown {
     const obj: any = {};
-    if (message.activities?.length) {
-      obj.activities = message.activities.map((e) => Activity.toJSON(e));
+    if (message.activityId !== "") {
+      obj.activityId = message.activityId;
+    }
+    if (message.ikiUserId !== "") {
+      obj.ikiUserId = message.ikiUserId;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ListFeaturedResponse>, I>>(base?: I): ListFeaturedResponse {
-    return ListFeaturedResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<EventActivityUpload>, I>>(base?: I): EventActivityUpload {
+    return EventActivityUpload.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ListFeaturedResponse>, I>>(object: I): ListFeaturedResponse {
-    const message = createBaseListFeaturedResponse();
-    message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
+  fromPartial<I extends Exact<DeepPartial<EventActivityUpload>, I>>(object: I): EventActivityUpload {
+    const message = createBaseEventActivityUpload();
+    message.activityId = object.activityId ?? "";
+    message.ikiUserId = object.ikiUserId ?? "";
     return message;
   },
 };
-
-export interface ActivitySvc {
-  Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
-  GetMine(request: DeepPartial<GetMineRequest>, metadata?: grpc.Metadata): Promise<GetMineResponse>;
-  GetFeatured(request: DeepPartial<GetFeaturedRequest>, metadata?: grpc.Metadata): Promise<GetFeaturedResponse>;
-  List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
-  ListMine(request: DeepPartial<ListMineRequest>, metadata?: grpc.Metadata): Promise<ListMineResponse>;
-  ListFeatured(request: DeepPartial<ListFeaturedRequest>, metadata?: grpc.Metadata): Promise<ListFeaturedResponse>;
-  CalculateStats(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty>;
-}
-
-export class ActivitySvcClientImpl implements ActivitySvc {
-  private readonly rpc: Rpc;
-
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Get = this.Get.bind(this);
-    this.GetMine = this.GetMine.bind(this);
-    this.GetFeatured = this.GetFeatured.bind(this);
-    this.List = this.List.bind(this);
-    this.ListMine = this.ListMine.bind(this);
-    this.ListFeatured = this.ListFeatured.bind(this);
-    this.CalculateStats = this.CalculateStats.bind(this);
-  }
-
-  Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(ActivitySvcGetDesc, GetRequest.fromPartial(request), metadata);
-  }
-
-  GetMine(request: DeepPartial<GetMineRequest>, metadata?: grpc.Metadata): Promise<GetMineResponse> {
-    return this.rpc.unary(ActivitySvcGetMineDesc, GetMineRequest.fromPartial(request), metadata);
-  }
-
-  GetFeatured(request: DeepPartial<GetFeaturedRequest>, metadata?: grpc.Metadata): Promise<GetFeaturedResponse> {
-    return this.rpc.unary(ActivitySvcGetFeaturedDesc, GetFeaturedRequest.fromPartial(request), metadata);
-  }
-
-  List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(ActivitySvcListDesc, ListRequest.fromPartial(request), metadata);
-  }
-
-  ListMine(request: DeepPartial<ListMineRequest>, metadata?: grpc.Metadata): Promise<ListMineResponse> {
-    return this.rpc.unary(ActivitySvcListMineDesc, ListMineRequest.fromPartial(request), metadata);
-  }
-
-  ListFeatured(request: DeepPartial<ListFeaturedRequest>, metadata?: grpc.Metadata): Promise<ListFeaturedResponse> {
-    return this.rpc.unary(ActivitySvcListFeaturedDesc, ListFeaturedRequest.fromPartial(request), metadata);
-  }
-
-  CalculateStats(request: DeepPartial<Empty>, metadata?: grpc.Metadata): Promise<Empty> {
-    return this.rpc.unary(ActivitySvcCalculateStatsDesc, Empty.fromPartial(request), metadata);
-  }
-}
-
-export const ActivitySvcDesc = { serviceName: "activity.ActivitySvc" };
-
-export const ActivitySvcGetDesc: UnaryMethodDefinitionish = {
-  methodName: "Get",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return GetRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = GetResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcGetMineDesc: UnaryMethodDefinitionish = {
-  methodName: "GetMine",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return GetMineRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = GetMineResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcGetFeaturedDesc: UnaryMethodDefinitionish = {
-  methodName: "GetFeatured",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return GetFeaturedRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = GetFeaturedResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcListDesc: UnaryMethodDefinitionish = {
-  methodName: "List",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return ListRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = ListResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcListMineDesc: UnaryMethodDefinitionish = {
-  methodName: "ListMine",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return ListMineRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = ListMineResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcListFeaturedDesc: UnaryMethodDefinitionish = {
-  methodName: "ListFeatured",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return ListFeaturedRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = ListFeaturedResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const ActivitySvcCalculateStatsDesc: UnaryMethodDefinitionish = {
-  methodName: "CalculateStats",
-  service: ActivitySvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return Empty.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = Empty.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
-  requestStream: any;
-  responseStream: any;
-}
-
-type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
-
-interface Rpc {
-  unary<T extends UnaryMethodDefinitionish>(
-    methodDesc: T,
-    request: any,
-    metadata: grpc.Metadata | undefined,
-  ): Promise<any>;
-}
-
-export class GrpcWebImpl {
-  private host: string;
-  private options: {
-    transport?: grpc.TransportFactory;
-
-    debug?: boolean;
-    metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
-  };
-
-  constructor(
-    host: string,
-    options: {
-      transport?: grpc.TransportFactory;
-
-      debug?: boolean;
-      metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
-    },
-  ) {
-    this.host = host;
-    this.options = options;
-  }
-
-  unary<T extends UnaryMethodDefinitionish>(
-    methodDesc: T,
-    _request: any,
-    metadata: grpc.Metadata | undefined,
-  ): Promise<any> {
-    const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata ?? this.options.metadata;
-    return new Promise((resolve, reject) => {
-      grpc.unary(methodDesc, {
-        request,
-        host: this.host,
-        metadata: maybeCombinedMetadata ?? {},
-        ...(this.options.transport !== undefined ? { transport: this.options.transport } : {}),
-        debug: this.options.debug ?? false,
-        onEnd: function (response) {
-          if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
-          } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
-            reject(err);
-          }
-        },
-      });
-    });
-  }
-}
 
 declare const self: any | undefined;
 declare const window: any | undefined;
@@ -1920,6 +1424,31 @@ const tsProtoGlobalThis: any = (() => {
   }
   throw "Unable to locate global object";
 })();
+
+function bytesFromBase64(b64: string): Uint8Array {
+  if (tsProtoGlobalThis.Buffer) {
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = tsProtoGlobalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+
+function base64FromBytes(arr: Uint8Array): string {
+  if (tsProtoGlobalThis.Buffer) {
+    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin: string[] = [];
+    arr.forEach((byte) => {
+      bin.push(String.fromCharCode(byte));
+    });
+    return tsProtoGlobalThis.btoa(bin.join(""));
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
@@ -1946,10 +1475,4 @@ if (_m0.util.Long !== Long) {
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

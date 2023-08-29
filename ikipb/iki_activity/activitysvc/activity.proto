@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+import "ikipb/iki_activity/activity.proto";
+
+option go_package = "/activitysvc";
+
+package activitysvc;
+
+////////////////////////////////////////////////////////////////////////////////
+// My Activity Service
+//////
+
+service MyActivitySvc {
+  rpc Get (GetMyRequest) returns (GetMyResponse) {}
+
+  rpc List (ListMyRequest) returns (ListMyResponse) {}
+
+  rpc CalculateStats(CalculateMyStatsRequest) returns (CalculateMyStatsResponse) {}
+}
+
+message GetMyRequest {
+  string id = 1;
+}
+
+message GetMyResponse {
+  activity.Activity activity = 1;
+}
+
+message ListMyRequest {}
+message ListMyResponse {
+  repeated activity.Activity activities = 1;
+}
+
+message CalculateMyStatsRequest {}
+message CalculateMyStatsResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// My Activity Service
+//////
+
+service ActivitySvc {
+  rpc Get (GetRequest) returns (GetResponse) {}
+
+  rpc List (ListRequest) returns (ListResponse) {}
+
+  rpc CalculateStats(CalculateStatsRequest) returns (CalculateStatsResponse) {}
+}
+
+
+message GetRequest {
+  string user_id = 1;
+  string id = 2;
+}
+
+message GetResponse {
+  activity.Activity activity = 1;
+}
+
+message ListRequest {
+  string user_id = 1;
+}
+
+message ListResponse {
+  repeated activity.Activity activities = 1;
+}
+
+message CalculateStatsRequest {
+  string user_id = 1;
+}
+
+message CalculateStatsResponse {}

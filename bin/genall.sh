@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 
 rm -rf ikipb/**/*.pb.go
-rm -rf ikipb/**/*_pb.js
-rm -rf ikipb/**/*_pb.d.ts
-rm -rf ikipb/**/*Pb.ts
+rm -rf ikipb/**/*.ts
 rm -rf ikipb/iki_bus/**/*.pb.go
-rm -rf ikipb/iki_bus/**/*_pb.js
-rm -rf ikipb/iki_bus/**/*_pb.d.ts
-rm -rf ikipb/iki_bus/**/*Pb.ts
+rm -rf ikipb/iki_bus/**/*.ts
 rm -rf ikipb/iki_iam/**/*.pb.go
-rm -rf ikipb/iki_iam/**/*_pb.js
-rm -rf ikipb/iki_iam/**/*_pb.d.ts
-rm -rf ikipb/iki_iam/**/*Pb.ts
+rm -rf ikipb/iki_iam/**/*.ts
+rm -rf ikipb/iki_activity/**/*.pb.go
+rm -rf ikipb/iki_activity/**/*.ts
 
 for f in $(find . -path "./ikipb/**/*.proto"); do
   protoc \

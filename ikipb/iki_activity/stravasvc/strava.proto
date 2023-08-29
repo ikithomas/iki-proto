@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "ikipb/iki_activity/activity.proto";
+
+option go_package = "/stravasvc";
+
+package stravasvc;
+
+service StravaSvc {
+  rpc Authz(AuthzRequest) returns (AuthzResponse) {}
+}
+
+message AuthzRequest {
+  // authz_code is the ID used to exchange Strava token.
+  string authz_code = 1;
+}
+
+message AuthzResponse {
+  activity.Athlete athlete = 1;
+}
