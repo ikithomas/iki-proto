@@ -7,15 +7,10 @@ export interface GetMyRequest {
 export interface GetMyResponse {
     athlete: Athlete | undefined;
 }
-export interface SetMyFitnessMetricRequest {
+export interface SetMyFitnessRequest {
     fitness: AthleteFitness | undefined;
 }
-export interface SetMyFitnessMetricResponse {
-}
-export interface GetMyFitnessMetricRequest {
-}
-export interface GetMyFitnessMetricResponse {
-    fitness: AthleteFitness | undefined;
+export interface SetMyFitnessResponse {
 }
 export interface GetRequest {
     userId: string;
@@ -23,17 +18,11 @@ export interface GetRequest {
 export interface GetResponse {
     athlete: Athlete | undefined;
 }
-export interface SetFitnessMetricRequest {
+export interface SetFitnessRequest {
     userId: string;
     fitness: AthleteFitness | undefined;
 }
-export interface SetFitnessMetricResponse {
-}
-export interface GetFitnessMetricRequest {
-    userId: string;
-}
-export interface GetFitnessMetricResponse {
-    fitness: AthleteFitness | undefined;
+export interface SetFitnessResponse {
 }
 export declare const GetMyRequest: {
     encode(_: GetMyRequest, writer?: _m0.Writer): _m0.Writer;
@@ -153,11 +142,11 @@ export declare const GetMyResponse: {
         } & { [K_4 in Exclude<keyof I_1["athlete"], keyof Athlete>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "athlete">]: never; }>(object: I_1): GetMyResponse;
 };
-export declare const SetMyFitnessMetricRequest: {
-    encode(message: SetMyFitnessMetricRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessMetricRequest;
-    fromJSON(object: any): SetMyFitnessMetricRequest;
-    toJSON(message: SetMyFitnessMetricRequest): unknown;
+export declare const SetMyFitnessRequest: {
+    encode(message: SetMyFitnessRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessRequest;
+    fromJSON(object: any): SetMyFitnessRequest;
+    toJSON(message: SetMyFitnessRequest): unknown;
     create<I extends {
         fitness?: {
             age?: number;
@@ -186,7 +175,7 @@ export declare const SetMyFitnessMetricRequest: {
             vo2Max?: number;
             male?: boolean;
         } & { [K in Exclude<keyof I["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_1 in Exclude<keyof I, "fitness">]: never; }>(base?: I): SetMyFitnessMetricRequest;
+    } & { [K_1 in Exclude<keyof I, "fitness">]: never; }>(base?: I): SetMyFitnessRequest;
     fromPartial<I_1 extends {
         fitness?: {
             age?: number;
@@ -215,87 +204,15 @@ export declare const SetMyFitnessMetricRequest: {
             vo2Max?: number;
             male?: boolean;
         } & { [K_2 in Exclude<keyof I_1["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, "fitness">]: never; }>(object: I_1): SetMyFitnessMetricRequest;
+    } & { [K_3 in Exclude<keyof I_1, "fitness">]: never; }>(object: I_1): SetMyFitnessRequest;
 };
-export declare const SetMyFitnessMetricResponse: {
-    encode(_: SetMyFitnessMetricResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessMetricResponse;
-    fromJSON(_: any): SetMyFitnessMetricResponse;
-    toJSON(_: SetMyFitnessMetricResponse): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): SetMyFitnessMetricResponse;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): SetMyFitnessMetricResponse;
-};
-export declare const GetMyFitnessMetricRequest: {
-    encode(_: GetMyFitnessMetricRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GetMyFitnessMetricRequest;
-    fromJSON(_: any): GetMyFitnessMetricRequest;
-    toJSON(_: GetMyFitnessMetricRequest): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): GetMyFitnessMetricRequest;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): GetMyFitnessMetricRequest;
-};
-export declare const GetMyFitnessMetricResponse: {
-    encode(message: GetMyFitnessMetricResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GetMyFitnessMetricResponse;
-    fromJSON(object: any): GetMyFitnessMetricResponse;
-    toJSON(message: GetMyFitnessMetricResponse): unknown;
-    create<I extends {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        };
-    } & {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & { [K in Exclude<keyof I["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_1 in Exclude<keyof I, "fitness">]: never; }>(base?: I): GetMyFitnessMetricResponse;
-    fromPartial<I_1 extends {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        };
-    } & {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & { [K_2 in Exclude<keyof I_1["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, "fitness">]: never; }>(object: I_1): GetMyFitnessMetricResponse;
+export declare const SetMyFitnessResponse: {
+    encode(_: SetMyFitnessResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessResponse;
+    fromJSON(_: any): SetMyFitnessResponse;
+    toJSON(_: SetMyFitnessResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): SetMyFitnessResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): SetMyFitnessResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;
@@ -423,11 +340,11 @@ export declare const GetResponse: {
         } & { [K_4 in Exclude<keyof I_1["athlete"], keyof Athlete>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "athlete">]: never; }>(object: I_1): GetResponse;
 };
-export declare const SetFitnessMetricRequest: {
-    encode(message: SetFitnessMetricRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessMetricRequest;
-    fromJSON(object: any): SetFitnessMetricRequest;
-    toJSON(message: SetFitnessMetricRequest): unknown;
+export declare const SetFitnessRequest: {
+    encode(message: SetFitnessRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessRequest;
+    fromJSON(object: any): SetFitnessRequest;
+    toJSON(message: SetFitnessRequest): unknown;
     create<I extends {
         userId?: string;
         fitness?: {
@@ -458,7 +375,7 @@ export declare const SetFitnessMetricRequest: {
             vo2Max?: number;
             male?: boolean;
         } & { [K in Exclude<keyof I["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_1 in Exclude<keyof I, keyof SetFitnessMetricRequest>]: never; }>(base?: I): SetFitnessMetricRequest;
+    } & { [K_1 in Exclude<keyof I, keyof SetFitnessRequest>]: never; }>(base?: I): SetFitnessRequest;
     fromPartial<I_1 extends {
         userId?: string;
         fitness?: {
@@ -489,132 +406,46 @@ export declare const SetFitnessMetricRequest: {
             vo2Max?: number;
             male?: boolean;
         } & { [K_2 in Exclude<keyof I_1["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, keyof SetFitnessMetricRequest>]: never; }>(object: I_1): SetFitnessMetricRequest;
+    } & { [K_3 in Exclude<keyof I_1, keyof SetFitnessRequest>]: never; }>(object: I_1): SetFitnessRequest;
 };
-export declare const SetFitnessMetricResponse: {
-    encode(_: SetFitnessMetricResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessMetricResponse;
-    fromJSON(_: any): SetFitnessMetricResponse;
-    toJSON(_: SetFitnessMetricResponse): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): SetFitnessMetricResponse;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): SetFitnessMetricResponse;
-};
-export declare const GetFitnessMetricRequest: {
-    encode(message: GetFitnessMetricRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GetFitnessMetricRequest;
-    fromJSON(object: any): GetFitnessMetricRequest;
-    toJSON(message: GetFitnessMetricRequest): unknown;
-    create<I extends {
-        userId?: string;
-    } & {
-        userId?: string;
-    } & { [K in Exclude<keyof I, "userId">]: never; }>(base?: I): GetFitnessMetricRequest;
-    fromPartial<I_1 extends {
-        userId?: string;
-    } & {
-        userId?: string;
-    } & { [K_1 in Exclude<keyof I_1, "userId">]: never; }>(object: I_1): GetFitnessMetricRequest;
-};
-export declare const GetFitnessMetricResponse: {
-    encode(message: GetFitnessMetricResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GetFitnessMetricResponse;
-    fromJSON(object: any): GetFitnessMetricResponse;
-    toJSON(message: GetFitnessMetricResponse): unknown;
-    create<I extends {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        };
-    } & {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & { [K in Exclude<keyof I["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_1 in Exclude<keyof I, "fitness">]: never; }>(base?: I): GetFitnessMetricResponse;
-    fromPartial<I_1 extends {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        };
-    } & {
-        fitness?: {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & {
-            age?: number;
-            height?: number;
-            weight?: number;
-            maxHeartrate?: number;
-            restHeartrate?: number;
-            vo2Max?: number;
-            male?: boolean;
-        } & { [K_2 in Exclude<keyof I_1["fitness"], keyof AthleteFitness>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, "fitness">]: never; }>(object: I_1): GetFitnessMetricResponse;
+export declare const SetFitnessResponse: {
+    encode(_: SetFitnessResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessResponse;
+    fromJSON(_: any): SetFitnessResponse;
+    toJSON(_: SetFitnessResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): SetFitnessResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): SetFitnessResponse;
 };
 export interface MyAthleteSvc {
     Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse>;
-    SetFitnessMetric(request: DeepPartial<SetMyFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessMetricResponse>;
-    GetFitnessMetric(request: DeepPartial<GetMyFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<GetMyFitnessMetricResponse>;
+    SetFitness(request: DeepPartial<SetMyFitnessRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessResponse>;
 }
 export declare class MyAthleteSvcClientImpl implements MyAthleteSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
     Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse>;
-    SetFitnessMetric(request: DeepPartial<SetMyFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessMetricResponse>;
-    GetFitnessMetric(request: DeepPartial<GetMyFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<GetMyFitnessMetricResponse>;
+    SetFitness(request: DeepPartial<SetMyFitnessRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessResponse>;
 }
 export declare const MyAthleteSvcDesc: {
     serviceName: string;
 };
 export declare const MyAthleteSvcGetDesc: UnaryMethodDefinitionish;
-export declare const MyAthleteSvcSetFitnessMetricDesc: UnaryMethodDefinitionish;
-export declare const MyAthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish;
+export declare const MyAthleteSvcSetFitnessDesc: UnaryMethodDefinitionish;
 export interface AthleteSvc {
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
-    SetFitnessMetric(request: DeepPartial<SetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<SetFitnessMetricResponse>;
-    GetFitnessMetric(request: DeepPartial<GetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<GetFitnessMetricResponse>;
+    SetFitness(request: DeepPartial<SetFitnessRequest>, metadata?: grpc.Metadata): Promise<SetFitnessResponse>;
 }
 export declare class AthleteSvcClientImpl implements AthleteSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
-    SetFitnessMetric(request: DeepPartial<SetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<SetFitnessMetricResponse>;
-    GetFitnessMetric(request: DeepPartial<GetFitnessMetricRequest>, metadata?: grpc.Metadata): Promise<GetFitnessMetricResponse>;
+    SetFitness(request: DeepPartial<SetFitnessRequest>, metadata?: grpc.Metadata): Promise<SetFitnessResponse>;
 }
 export declare const AthleteSvcDesc: {
     serviceName: string;
 };
 export declare const AthleteSvcGetDesc: UnaryMethodDefinitionish;
-export declare const AthleteSvcSetFitnessMetricDesc: UnaryMethodDefinitionish;
-export declare const AthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish;
+export declare const AthleteSvcSetFitnessDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

@@ -13,18 +13,11 @@ export interface GetMyResponse {
   athlete: Athlete | undefined;
 }
 
-export interface SetMyFitnessMetricRequest {
+export interface SetMyFitnessRequest {
   fitness: AthleteFitness | undefined;
 }
 
-export interface SetMyFitnessMetricResponse {
-}
-
-export interface GetMyFitnessMetricRequest {
-}
-
-export interface GetMyFitnessMetricResponse {
-  fitness: AthleteFitness | undefined;
+export interface SetMyFitnessResponse {
 }
 
 export interface GetRequest {
@@ -35,20 +28,12 @@ export interface GetResponse {
   athlete: Athlete | undefined;
 }
 
-export interface SetFitnessMetricRequest {
+export interface SetFitnessRequest {
   userId: string;
   fitness: AthleteFitness | undefined;
 }
 
-export interface SetFitnessMetricResponse {
-}
-
-export interface GetFitnessMetricRequest {
-  userId: string;
-}
-
-export interface GetFitnessMetricResponse {
-  fitness: AthleteFitness | undefined;
+export interface SetFitnessResponse {
 }
 
 function createBaseGetMyRequest(): GetMyRequest {
@@ -153,22 +138,22 @@ export const GetMyResponse = {
   },
 };
 
-function createBaseSetMyFitnessMetricRequest(): SetMyFitnessMetricRequest {
+function createBaseSetMyFitnessRequest(): SetMyFitnessRequest {
   return { fitness: undefined };
 }
 
-export const SetMyFitnessMetricRequest = {
-  encode(message: SetMyFitnessMetricRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetMyFitnessRequest = {
+  encode(message: SetMyFitnessRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.fitness !== undefined) {
       AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessMetricRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSetMyFitnessMetricRequest();
+    const message = createBaseSetMyFitnessRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -188,11 +173,11 @@ export const SetMyFitnessMetricRequest = {
     return message;
   },
 
-  fromJSON(object: any): SetMyFitnessMetricRequest {
+  fromJSON(object: any): SetMyFitnessRequest {
     return { fitness: isSet(object.fitness) ? AthleteFitness.fromJSON(object.fitness) : undefined };
   },
 
-  toJSON(message: SetMyFitnessMetricRequest): unknown {
+  toJSON(message: SetMyFitnessRequest): unknown {
     const obj: any = {};
     if (message.fitness !== undefined) {
       obj.fitness = AthleteFitness.toJSON(message.fitness);
@@ -200,11 +185,11 @@ export const SetMyFitnessMetricRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SetMyFitnessMetricRequest>, I>>(base?: I): SetMyFitnessMetricRequest {
-    return SetMyFitnessMetricRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetMyFitnessRequest>, I>>(base?: I): SetMyFitnessRequest {
+    return SetMyFitnessRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<SetMyFitnessMetricRequest>, I>>(object: I): SetMyFitnessMetricRequest {
-    const message = createBaseSetMyFitnessMetricRequest();
+  fromPartial<I extends Exact<DeepPartial<SetMyFitnessRequest>, I>>(object: I): SetMyFitnessRequest {
+    const message = createBaseSetMyFitnessRequest();
     message.fitness = (object.fitness !== undefined && object.fitness !== null)
       ? AthleteFitness.fromPartial(object.fitness)
       : undefined;
@@ -212,19 +197,19 @@ export const SetMyFitnessMetricRequest = {
   },
 };
 
-function createBaseSetMyFitnessMetricResponse(): SetMyFitnessMetricResponse {
+function createBaseSetMyFitnessResponse(): SetMyFitnessResponse {
   return {};
 }
 
-export const SetMyFitnessMetricResponse = {
-  encode(_: SetMyFitnessMetricResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetMyFitnessResponse = {
+  encode(_: SetMyFitnessResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessMetricResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetMyFitnessResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSetMyFitnessMetricResponse();
+    const message = createBaseSetMyFitnessResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -237,122 +222,20 @@ export const SetMyFitnessMetricResponse = {
     return message;
   },
 
-  fromJSON(_: any): SetMyFitnessMetricResponse {
+  fromJSON(_: any): SetMyFitnessResponse {
     return {};
   },
 
-  toJSON(_: SetMyFitnessMetricResponse): unknown {
+  toJSON(_: SetMyFitnessResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SetMyFitnessMetricResponse>, I>>(base?: I): SetMyFitnessMetricResponse {
-    return SetMyFitnessMetricResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetMyFitnessResponse>, I>>(base?: I): SetMyFitnessResponse {
+    return SetMyFitnessResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<SetMyFitnessMetricResponse>, I>>(_: I): SetMyFitnessMetricResponse {
-    const message = createBaseSetMyFitnessMetricResponse();
-    return message;
-  },
-};
-
-function createBaseGetMyFitnessMetricRequest(): GetMyFitnessMetricRequest {
-  return {};
-}
-
-export const GetMyFitnessMetricRequest = {
-  encode(_: GetMyFitnessMetricRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetMyFitnessMetricRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetMyFitnessMetricRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): GetMyFitnessMetricRequest {
-    return {};
-  },
-
-  toJSON(_: GetMyFitnessMetricRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetMyFitnessMetricRequest>, I>>(base?: I): GetMyFitnessMetricRequest {
-    return GetMyFitnessMetricRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetMyFitnessMetricRequest>, I>>(_: I): GetMyFitnessMetricRequest {
-    const message = createBaseGetMyFitnessMetricRequest();
-    return message;
-  },
-};
-
-function createBaseGetMyFitnessMetricResponse(): GetMyFitnessMetricResponse {
-  return { fitness: undefined };
-}
-
-export const GetMyFitnessMetricResponse = {
-  encode(message: GetMyFitnessMetricResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.fitness !== undefined) {
-      AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetMyFitnessMetricResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetMyFitnessMetricResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.fitness = AthleteFitness.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetMyFitnessMetricResponse {
-    return { fitness: isSet(object.fitness) ? AthleteFitness.fromJSON(object.fitness) : undefined };
-  },
-
-  toJSON(message: GetMyFitnessMetricResponse): unknown {
-    const obj: any = {};
-    if (message.fitness !== undefined) {
-      obj.fitness = AthleteFitness.toJSON(message.fitness);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetMyFitnessMetricResponse>, I>>(base?: I): GetMyFitnessMetricResponse {
-    return GetMyFitnessMetricResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetMyFitnessMetricResponse>, I>>(object: I): GetMyFitnessMetricResponse {
-    const message = createBaseGetMyFitnessMetricResponse();
-    message.fitness = (object.fitness !== undefined && object.fitness !== null)
-      ? AthleteFitness.fromPartial(object.fitness)
-      : undefined;
+  fromPartial<I extends Exact<DeepPartial<SetMyFitnessResponse>, I>>(_: I): SetMyFitnessResponse {
+    const message = createBaseSetMyFitnessResponse();
     return message;
   },
 };
@@ -473,12 +356,12 @@ export const GetResponse = {
   },
 };
 
-function createBaseSetFitnessMetricRequest(): SetFitnessMetricRequest {
+function createBaseSetFitnessRequest(): SetFitnessRequest {
   return { userId: "", fitness: undefined };
 }
 
-export const SetFitnessMetricRequest = {
-  encode(message: SetFitnessMetricRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetFitnessRequest = {
+  encode(message: SetFitnessRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
     }
@@ -488,10 +371,10 @@ export const SetFitnessMetricRequest = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessMetricRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSetFitnessMetricRequest();
+    const message = createBaseSetFitnessRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -518,14 +401,14 @@ export const SetFitnessMetricRequest = {
     return message;
   },
 
-  fromJSON(object: any): SetFitnessMetricRequest {
+  fromJSON(object: any): SetFitnessRequest {
     return {
       userId: isSet(object.userId) ? String(object.userId) : "",
       fitness: isSet(object.fitness) ? AthleteFitness.fromJSON(object.fitness) : undefined,
     };
   },
 
-  toJSON(message: SetFitnessMetricRequest): unknown {
+  toJSON(message: SetFitnessRequest): unknown {
     const obj: any = {};
     if (message.userId !== "") {
       obj.userId = message.userId;
@@ -536,11 +419,11 @@ export const SetFitnessMetricRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SetFitnessMetricRequest>, I>>(base?: I): SetFitnessMetricRequest {
-    return SetFitnessMetricRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetFitnessRequest>, I>>(base?: I): SetFitnessRequest {
+    return SetFitnessRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<SetFitnessMetricRequest>, I>>(object: I): SetFitnessMetricRequest {
-    const message = createBaseSetFitnessMetricRequest();
+  fromPartial<I extends Exact<DeepPartial<SetFitnessRequest>, I>>(object: I): SetFitnessRequest {
+    const message = createBaseSetFitnessRequest();
     message.userId = object.userId ?? "";
     message.fitness = (object.fitness !== undefined && object.fitness !== null)
       ? AthleteFitness.fromPartial(object.fitness)
@@ -549,19 +432,19 @@ export const SetFitnessMetricRequest = {
   },
 };
 
-function createBaseSetFitnessMetricResponse(): SetFitnessMetricResponse {
+function createBaseSetFitnessResponse(): SetFitnessResponse {
   return {};
 }
 
-export const SetFitnessMetricResponse = {
-  encode(_: SetFitnessMetricResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetFitnessResponse = {
+  encode(_: SetFitnessResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessMetricResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetFitnessResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSetFitnessMetricResponse();
+    const message = createBaseSetFitnessResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -574,150 +457,27 @@ export const SetFitnessMetricResponse = {
     return message;
   },
 
-  fromJSON(_: any): SetFitnessMetricResponse {
+  fromJSON(_: any): SetFitnessResponse {
     return {};
   },
 
-  toJSON(_: SetFitnessMetricResponse): unknown {
+  toJSON(_: SetFitnessResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SetFitnessMetricResponse>, I>>(base?: I): SetFitnessMetricResponse {
-    return SetFitnessMetricResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetFitnessResponse>, I>>(base?: I): SetFitnessResponse {
+    return SetFitnessResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<SetFitnessMetricResponse>, I>>(_: I): SetFitnessMetricResponse {
-    const message = createBaseSetFitnessMetricResponse();
-    return message;
-  },
-};
-
-function createBaseGetFitnessMetricRequest(): GetFitnessMetricRequest {
-  return { userId: "" };
-}
-
-export const GetFitnessMetricRequest = {
-  encode(message: GetFitnessMetricRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== "") {
-      writer.uint32(10).string(message.userId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetFitnessMetricRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetFitnessMetricRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.userId = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetFitnessMetricRequest {
-    return { userId: isSet(object.userId) ? String(object.userId) : "" };
-  },
-
-  toJSON(message: GetFitnessMetricRequest): unknown {
-    const obj: any = {};
-    if (message.userId !== "") {
-      obj.userId = message.userId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetFitnessMetricRequest>, I>>(base?: I): GetFitnessMetricRequest {
-    return GetFitnessMetricRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetFitnessMetricRequest>, I>>(object: I): GetFitnessMetricRequest {
-    const message = createBaseGetFitnessMetricRequest();
-    message.userId = object.userId ?? "";
-    return message;
-  },
-};
-
-function createBaseGetFitnessMetricResponse(): GetFitnessMetricResponse {
-  return { fitness: undefined };
-}
-
-export const GetFitnessMetricResponse = {
-  encode(message: GetFitnessMetricResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.fitness !== undefined) {
-      AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GetFitnessMetricResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetFitnessMetricResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.fitness = AthleteFitness.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetFitnessMetricResponse {
-    return { fitness: isSet(object.fitness) ? AthleteFitness.fromJSON(object.fitness) : undefined };
-  },
-
-  toJSON(message: GetFitnessMetricResponse): unknown {
-    const obj: any = {};
-    if (message.fitness !== undefined) {
-      obj.fitness = AthleteFitness.toJSON(message.fitness);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetFitnessMetricResponse>, I>>(base?: I): GetFitnessMetricResponse {
-    return GetFitnessMetricResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetFitnessMetricResponse>, I>>(object: I): GetFitnessMetricResponse {
-    const message = createBaseGetFitnessMetricResponse();
-    message.fitness = (object.fitness !== undefined && object.fitness !== null)
-      ? AthleteFitness.fromPartial(object.fitness)
-      : undefined;
+  fromPartial<I extends Exact<DeepPartial<SetFitnessResponse>, I>>(_: I): SetFitnessResponse {
+    const message = createBaseSetFitnessResponse();
     return message;
   },
 };
 
 export interface MyAthleteSvc {
   Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse>;
-  SetFitnessMetric(
-    request: DeepPartial<SetMyFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<SetMyFitnessMetricResponse>;
-  GetFitnessMetric(
-    request: DeepPartial<GetMyFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<GetMyFitnessMetricResponse>;
+  SetFitness(request: DeepPartial<SetMyFitnessRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessResponse>;
 }
 
 export class MyAthleteSvcClientImpl implements MyAthleteSvc {
@@ -726,26 +486,15 @@ export class MyAthleteSvcClientImpl implements MyAthleteSvc {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.Get = this.Get.bind(this);
-    this.SetFitnessMetric = this.SetFitnessMetric.bind(this);
-    this.GetFitnessMetric = this.GetFitnessMetric.bind(this);
+    this.SetFitness = this.SetFitness.bind(this);
   }
 
   Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse> {
     return this.rpc.unary(MyAthleteSvcGetDesc, GetMyRequest.fromPartial(request), metadata);
   }
 
-  SetFitnessMetric(
-    request: DeepPartial<SetMyFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<SetMyFitnessMetricResponse> {
-    return this.rpc.unary(MyAthleteSvcSetFitnessMetricDesc, SetMyFitnessMetricRequest.fromPartial(request), metadata);
-  }
-
-  GetFitnessMetric(
-    request: DeepPartial<GetMyFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<GetMyFitnessMetricResponse> {
-    return this.rpc.unary(MyAthleteSvcGetFitnessMetricDesc, GetMyFitnessMetricRequest.fromPartial(request), metadata);
+  SetFitness(request: DeepPartial<SetMyFitnessRequest>, metadata?: grpc.Metadata): Promise<SetMyFitnessResponse> {
+    return this.rpc.unary(MyAthleteSvcSetFitnessDesc, SetMyFitnessRequest.fromPartial(request), metadata);
   }
 }
 
@@ -774,42 +523,19 @@ export const MyAthleteSvcGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MyAthleteSvcSetFitnessMetricDesc: UnaryMethodDefinitionish = {
-  methodName: "SetFitnessMetric",
+export const MyAthleteSvcSetFitnessDesc: UnaryMethodDefinitionish = {
+  methodName: "SetFitness",
   service: MyAthleteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return SetMyFitnessMetricRequest.encode(this).finish();
+      return SetMyFitnessRequest.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = SetMyFitnessMetricResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const MyAthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish = {
-  methodName: "GetFitnessMetric",
-  service: MyAthleteSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return GetMyFitnessMetricRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = GetMyFitnessMetricResponse.decode(data);
+      const value = SetMyFitnessResponse.decode(data);
       return {
         ...value,
         toObject() {
@@ -822,14 +548,7 @@ export const MyAthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish = {
 
 export interface AthleteSvc {
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
-  SetFitnessMetric(
-    request: DeepPartial<SetFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<SetFitnessMetricResponse>;
-  GetFitnessMetric(
-    request: DeepPartial<GetFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<GetFitnessMetricResponse>;
+  SetFitness(request: DeepPartial<SetFitnessRequest>, metadata?: grpc.Metadata): Promise<SetFitnessResponse>;
 }
 
 export class AthleteSvcClientImpl implements AthleteSvc {
@@ -838,26 +557,15 @@ export class AthleteSvcClientImpl implements AthleteSvc {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.Get = this.Get.bind(this);
-    this.SetFitnessMetric = this.SetFitnessMetric.bind(this);
-    this.GetFitnessMetric = this.GetFitnessMetric.bind(this);
+    this.SetFitness = this.SetFitness.bind(this);
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
     return this.rpc.unary(AthleteSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 
-  SetFitnessMetric(
-    request: DeepPartial<SetFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<SetFitnessMetricResponse> {
-    return this.rpc.unary(AthleteSvcSetFitnessMetricDesc, SetFitnessMetricRequest.fromPartial(request), metadata);
-  }
-
-  GetFitnessMetric(
-    request: DeepPartial<GetFitnessMetricRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<GetFitnessMetricResponse> {
-    return this.rpc.unary(AthleteSvcGetFitnessMetricDesc, GetFitnessMetricRequest.fromPartial(request), metadata);
+  SetFitness(request: DeepPartial<SetFitnessRequest>, metadata?: grpc.Metadata): Promise<SetFitnessResponse> {
+    return this.rpc.unary(AthleteSvcSetFitnessDesc, SetFitnessRequest.fromPartial(request), metadata);
   }
 }
 
@@ -886,42 +594,19 @@ export const AthleteSvcGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const AthleteSvcSetFitnessMetricDesc: UnaryMethodDefinitionish = {
-  methodName: "SetFitnessMetric",
+export const AthleteSvcSetFitnessDesc: UnaryMethodDefinitionish = {
+  methodName: "SetFitness",
   service: AthleteSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return SetFitnessMetricRequest.encode(this).finish();
+      return SetFitnessRequest.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = SetFitnessMetricResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const AthleteSvcGetFitnessMetricDesc: UnaryMethodDefinitionish = {
-  methodName: "GetFitnessMetric",
-  service: AthleteSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return GetFitnessMetricRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = GetFitnessMetricResponse.decode(data);
+      const value = SetFitnessResponse.decode(data);
       return {
         ...value,
         toObject() {

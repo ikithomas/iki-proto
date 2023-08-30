@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.AthleteSvcGetFitnessMetricDesc = exports.AthleteSvcSetFitnessMetricDesc = exports.AthleteSvcGetDesc = exports.AthleteSvcDesc = exports.AthleteSvcClientImpl = exports.MyAthleteSvcGetFitnessMetricDesc = exports.MyAthleteSvcSetFitnessMetricDesc = exports.MyAthleteSvcGetDesc = exports.MyAthleteSvcDesc = exports.MyAthleteSvcClientImpl = exports.GetFitnessMetricResponse = exports.GetFitnessMetricRequest = exports.SetFitnessMetricResponse = exports.SetFitnessMetricRequest = exports.GetResponse = exports.GetRequest = exports.GetMyFitnessMetricResponse = exports.GetMyFitnessMetricRequest = exports.SetMyFitnessMetricResponse = exports.SetMyFitnessMetricRequest = exports.GetMyResponse = exports.GetMyRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.AthleteSvcSetFitnessDesc = exports.AthleteSvcGetDesc = exports.AthleteSvcDesc = exports.AthleteSvcClientImpl = exports.MyAthleteSvcSetFitnessDesc = exports.MyAthleteSvcGetDesc = exports.MyAthleteSvcDesc = exports.MyAthleteSvcClientImpl = exports.SetFitnessResponse = exports.SetFitnessRequest = exports.GetResponse = exports.GetRequest = exports.SetMyFitnessResponse = exports.SetMyFitnessRequest = exports.GetMyResponse = exports.GetMyRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -99,10 +99,10 @@ exports.GetMyResponse = {
         return message;
     },
 };
-function createBaseSetMyFitnessMetricRequest() {
+function createBaseSetMyFitnessRequest() {
     return { fitness: undefined };
 }
-exports.SetMyFitnessMetricRequest = {
+exports.SetMyFitnessRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.fitness !== undefined) {
             activity_1.AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
@@ -112,7 +112,7 @@ exports.SetMyFitnessMetricRequest = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseSetMyFitnessMetricRequest();
+        const message = createBaseSetMyFitnessRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -141,27 +141,27 @@ exports.SetMyFitnessMetricRequest = {
         return obj;
     },
     create(base) {
-        return exports.SetMyFitnessMetricRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetMyFitnessRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        const message = createBaseSetMyFitnessMetricRequest();
+        const message = createBaseSetMyFitnessRequest();
         message.fitness = (object.fitness !== undefined && object.fitness !== null)
             ? activity_1.AthleteFitness.fromPartial(object.fitness)
             : undefined;
         return message;
     },
 };
-function createBaseSetMyFitnessMetricResponse() {
+function createBaseSetMyFitnessResponse() {
     return {};
 }
-exports.SetMyFitnessMetricResponse = {
+exports.SetMyFitnessResponse = {
     encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseSetMyFitnessMetricResponse();
+        const message = createBaseSetMyFitnessResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -181,99 +181,10 @@ exports.SetMyFitnessMetricResponse = {
         return obj;
     },
     create(base) {
-        return exports.SetMyFitnessMetricResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetMyFitnessResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(_) {
-        const message = createBaseSetMyFitnessMetricResponse();
-        return message;
-    },
-};
-function createBaseGetMyFitnessMetricRequest() {
-    return {};
-}
-exports.GetMyFitnessMetricRequest = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseGetMyFitnessMetricRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.GetMyFitnessMetricRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(_) {
-        const message = createBaseGetMyFitnessMetricRequest();
-        return message;
-    },
-};
-function createBaseGetMyFitnessMetricResponse() {
-    return { fitness: undefined };
-}
-exports.GetMyFitnessMetricResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.fitness !== undefined) {
-            activity_1.AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseGetMyFitnessMetricResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.fitness = activity_1.AthleteFitness.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { fitness: isSet(object.fitness) ? activity_1.AthleteFitness.fromJSON(object.fitness) : undefined };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.fitness !== undefined) {
-            obj.fitness = activity_1.AthleteFitness.toJSON(message.fitness);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.GetMyFitnessMetricResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        const message = createBaseGetMyFitnessMetricResponse();
-        message.fitness = (object.fitness !== undefined && object.fitness !== null)
-            ? activity_1.AthleteFitness.fromPartial(object.fitness)
-            : undefined;
+        const message = createBaseSetMyFitnessResponse();
         return message;
     },
 };
@@ -380,10 +291,10 @@ exports.GetResponse = {
         return message;
     },
 };
-function createBaseSetFitnessMetricRequest() {
+function createBaseSetFitnessRequest() {
     return { userId: "", fitness: undefined };
 }
-exports.SetFitnessMetricRequest = {
+exports.SetFitnessRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.userId !== "") {
             writer.uint32(10).string(message.userId);
@@ -396,7 +307,7 @@ exports.SetFitnessMetricRequest = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseSetFitnessMetricRequest();
+        const message = createBaseSetFitnessRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -437,11 +348,11 @@ exports.SetFitnessMetricRequest = {
         return obj;
     },
     create(base) {
-        return exports.SetFitnessMetricRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetFitnessRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a;
-        const message = createBaseSetFitnessMetricRequest();
+        const message = createBaseSetFitnessRequest();
         message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
         message.fitness = (object.fitness !== undefined && object.fitness !== null)
             ? activity_1.AthleteFitness.fromPartial(object.fitness)
@@ -449,17 +360,17 @@ exports.SetFitnessMetricRequest = {
         return message;
     },
 };
-function createBaseSetFitnessMetricResponse() {
+function createBaseSetFitnessResponse() {
     return {};
 }
-exports.SetFitnessMetricResponse = {
+exports.SetFitnessResponse = {
     encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseSetFitnessMetricResponse();
+        const message = createBaseSetFitnessResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -479,113 +390,10 @@ exports.SetFitnessMetricResponse = {
         return obj;
     },
     create(base) {
-        return exports.SetFitnessMetricResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetFitnessResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(_) {
-        const message = createBaseSetFitnessMetricResponse();
-        return message;
-    },
-};
-function createBaseGetFitnessMetricRequest() {
-    return { userId: "" };
-}
-exports.GetFitnessMetricRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.userId !== "") {
-            writer.uint32(10).string(message.userId);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseGetFitnessMetricRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.userId = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { userId: isSet(object.userId) ? String(object.userId) : "" };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.userId !== "") {
-            obj.userId = message.userId;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.GetFitnessMetricRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a;
-        const message = createBaseGetFitnessMetricRequest();
-        message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
-        return message;
-    },
-};
-function createBaseGetFitnessMetricResponse() {
-    return { fitness: undefined };
-}
-exports.GetFitnessMetricResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.fitness !== undefined) {
-            activity_1.AthleteFitness.encode(message.fitness, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseGetFitnessMetricResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.fitness = activity_1.AthleteFitness.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { fitness: isSet(object.fitness) ? activity_1.AthleteFitness.fromJSON(object.fitness) : undefined };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.fitness !== undefined) {
-            obj.fitness = activity_1.AthleteFitness.toJSON(message.fitness);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.GetFitnessMetricResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        const message = createBaseGetFitnessMetricResponse();
-        message.fitness = (object.fitness !== undefined && object.fitness !== null)
-            ? activity_1.AthleteFitness.fromPartial(object.fitness)
-            : undefined;
+        const message = createBaseSetFitnessResponse();
         return message;
     },
 };
@@ -593,17 +401,13 @@ class MyAthleteSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.Get = this.Get.bind(this);
-        this.SetFitnessMetric = this.SetFitnessMetric.bind(this);
-        this.GetFitnessMetric = this.GetFitnessMetric.bind(this);
+        this.SetFitness = this.SetFitness.bind(this);
     }
     Get(request, metadata) {
         return this.rpc.unary(exports.MyAthleteSvcGetDesc, exports.GetMyRequest.fromPartial(request), metadata);
     }
-    SetFitnessMetric(request, metadata) {
-        return this.rpc.unary(exports.MyAthleteSvcSetFitnessMetricDesc, exports.SetMyFitnessMetricRequest.fromPartial(request), metadata);
-    }
-    GetFitnessMetric(request, metadata) {
-        return this.rpc.unary(exports.MyAthleteSvcGetFitnessMetricDesc, exports.GetMyFitnessMetricRequest.fromPartial(request), metadata);
+    SetFitness(request, metadata) {
+        return this.rpc.unary(exports.MyAthleteSvcSetFitnessDesc, exports.SetMyFitnessRequest.fromPartial(request), metadata);
     }
 }
 exports.MyAthleteSvcClientImpl = MyAthleteSvcClientImpl;
@@ -627,38 +431,19 @@ exports.MyAthleteSvcGetDesc = {
         },
     },
 };
-exports.MyAthleteSvcSetFitnessMetricDesc = {
-    methodName: "SetFitnessMetric",
+exports.MyAthleteSvcSetFitnessDesc = {
+    methodName: "SetFitness",
     service: exports.MyAthleteSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
         serializeBinary() {
-            return exports.SetMyFitnessMetricRequest.encode(this).finish();
+            return exports.SetMyFitnessRequest.encode(this).finish();
         },
     },
     responseType: {
         deserializeBinary(data) {
-            const value = exports.SetMyFitnessMetricResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.MyAthleteSvcGetFitnessMetricDesc = {
-    methodName: "GetFitnessMetric",
-    service: exports.MyAthleteSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.GetMyFitnessMetricRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.GetMyFitnessMetricResponse.decode(data);
+            const value = exports.SetMyFitnessResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });
@@ -669,17 +454,13 @@ class AthleteSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.Get = this.Get.bind(this);
-        this.SetFitnessMetric = this.SetFitnessMetric.bind(this);
-        this.GetFitnessMetric = this.GetFitnessMetric.bind(this);
+        this.SetFitness = this.SetFitness.bind(this);
     }
     Get(request, metadata) {
         return this.rpc.unary(exports.AthleteSvcGetDesc, exports.GetRequest.fromPartial(request), metadata);
     }
-    SetFitnessMetric(request, metadata) {
-        return this.rpc.unary(exports.AthleteSvcSetFitnessMetricDesc, exports.SetFitnessMetricRequest.fromPartial(request), metadata);
-    }
-    GetFitnessMetric(request, metadata) {
-        return this.rpc.unary(exports.AthleteSvcGetFitnessMetricDesc, exports.GetFitnessMetricRequest.fromPartial(request), metadata);
+    SetFitness(request, metadata) {
+        return this.rpc.unary(exports.AthleteSvcSetFitnessDesc, exports.SetFitnessRequest.fromPartial(request), metadata);
     }
 }
 exports.AthleteSvcClientImpl = AthleteSvcClientImpl;
@@ -703,38 +484,19 @@ exports.AthleteSvcGetDesc = {
         },
     },
 };
-exports.AthleteSvcSetFitnessMetricDesc = {
-    methodName: "SetFitnessMetric",
+exports.AthleteSvcSetFitnessDesc = {
+    methodName: "SetFitness",
     service: exports.AthleteSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
         serializeBinary() {
-            return exports.SetFitnessMetricRequest.encode(this).finish();
+            return exports.SetFitnessRequest.encode(this).finish();
         },
     },
     responseType: {
         deserializeBinary(data) {
-            const value = exports.SetFitnessMetricResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AthleteSvcGetFitnessMetricDesc = {
-    methodName: "GetFitnessMetric",
-    service: exports.AthleteSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.GetFitnessMetricRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.GetFitnessMetricResponse.decode(data);
+            const value = exports.SetFitnessResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

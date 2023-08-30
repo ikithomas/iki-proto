@@ -23,8 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MyAthleteSvcClient interface {
 	Get(ctx context.Context, in *GetMyRequest, opts ...grpc.CallOption) (*GetMyResponse, error)
-	SetFitnessMetric(ctx context.Context, in *SetMyFitnessMetricRequest, opts ...grpc.CallOption) (*SetMyFitnessMetricResponse, error)
-	GetFitnessMetric(ctx context.Context, in *GetMyFitnessMetricRequest, opts ...grpc.CallOption) (*GetMyFitnessMetricResponse, error)
+	SetFitness(ctx context.Context, in *SetMyFitnessRequest, opts ...grpc.CallOption) (*SetMyFitnessResponse, error)
 }
 
 type myAthleteSvcClient struct {
@@ -44,18 +43,9 @@ func (c *myAthleteSvcClient) Get(ctx context.Context, in *GetMyRequest, opts ...
 	return out, nil
 }
 
-func (c *myAthleteSvcClient) SetFitnessMetric(ctx context.Context, in *SetMyFitnessMetricRequest, opts ...grpc.CallOption) (*SetMyFitnessMetricResponse, error) {
-	out := new(SetMyFitnessMetricResponse)
-	err := c.cc.Invoke(ctx, "/athletesvc.MyAthleteSvc/SetFitnessMetric", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *myAthleteSvcClient) GetFitnessMetric(ctx context.Context, in *GetMyFitnessMetricRequest, opts ...grpc.CallOption) (*GetMyFitnessMetricResponse, error) {
-	out := new(GetMyFitnessMetricResponse)
-	err := c.cc.Invoke(ctx, "/athletesvc.MyAthleteSvc/GetFitnessMetric", in, out, opts...)
+func (c *myAthleteSvcClient) SetFitness(ctx context.Context, in *SetMyFitnessRequest, opts ...grpc.CallOption) (*SetMyFitnessResponse, error) {
+	out := new(SetMyFitnessResponse)
+	err := c.cc.Invoke(ctx, "/athletesvc.MyAthleteSvc/SetFitness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,8 +57,7 @@ func (c *myAthleteSvcClient) GetFitnessMetric(ctx context.Context, in *GetMyFitn
 // for forward compatibility
 type MyAthleteSvcServer interface {
 	Get(context.Context, *GetMyRequest) (*GetMyResponse, error)
-	SetFitnessMetric(context.Context, *SetMyFitnessMetricRequest) (*SetMyFitnessMetricResponse, error)
-	GetFitnessMetric(context.Context, *GetMyFitnessMetricRequest) (*GetMyFitnessMetricResponse, error)
+	SetFitness(context.Context, *SetMyFitnessRequest) (*SetMyFitnessResponse, error)
 	mustEmbedUnimplementedMyAthleteSvcServer()
 }
 
@@ -79,11 +68,8 @@ type UnimplementedMyAthleteSvcServer struct {
 func (UnimplementedMyAthleteSvcServer) Get(context.Context, *GetMyRequest) (*GetMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedMyAthleteSvcServer) SetFitnessMetric(context.Context, *SetMyFitnessMetricRequest) (*SetMyFitnessMetricResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetFitnessMetric not implemented")
-}
-func (UnimplementedMyAthleteSvcServer) GetFitnessMetric(context.Context, *GetMyFitnessMetricRequest) (*GetMyFitnessMetricResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFitnessMetric not implemented")
+func (UnimplementedMyAthleteSvcServer) SetFitness(context.Context, *SetMyFitnessRequest) (*SetMyFitnessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFitness not implemented")
 }
 func (UnimplementedMyAthleteSvcServer) mustEmbedUnimplementedMyAthleteSvcServer() {}
 
@@ -116,38 +102,20 @@ func _MyAthleteSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MyAthleteSvc_SetFitnessMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetMyFitnessMetricRequest)
+func _MyAthleteSvc_SetFitness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetMyFitnessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MyAthleteSvcServer).SetFitnessMetric(ctx, in)
+		return srv.(MyAthleteSvcServer).SetFitness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/athletesvc.MyAthleteSvc/SetFitnessMetric",
+		FullMethod: "/athletesvc.MyAthleteSvc/SetFitness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MyAthleteSvcServer).SetFitnessMetric(ctx, req.(*SetMyFitnessMetricRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MyAthleteSvc_GetFitnessMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMyFitnessMetricRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MyAthleteSvcServer).GetFitnessMetric(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/athletesvc.MyAthleteSvc/GetFitnessMetric",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MyAthleteSvcServer).GetFitnessMetric(ctx, req.(*GetMyFitnessMetricRequest))
+		return srv.(MyAthleteSvcServer).SetFitness(ctx, req.(*SetMyFitnessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -164,12 +132,8 @@ var MyAthleteSvc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MyAthleteSvc_Get_Handler,
 		},
 		{
-			MethodName: "SetFitnessMetric",
-			Handler:    _MyAthleteSvc_SetFitnessMetric_Handler,
-		},
-		{
-			MethodName: "GetFitnessMetric",
-			Handler:    _MyAthleteSvc_GetFitnessMetric_Handler,
+			MethodName: "SetFitness",
+			Handler:    _MyAthleteSvc_SetFitness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -181,8 +145,7 @@ var MyAthleteSvc_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AthleteSvcClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	SetFitnessMetric(ctx context.Context, in *SetFitnessMetricRequest, opts ...grpc.CallOption) (*SetFitnessMetricResponse, error)
-	GetFitnessMetric(ctx context.Context, in *GetFitnessMetricRequest, opts ...grpc.CallOption) (*GetFitnessMetricResponse, error)
+	SetFitness(ctx context.Context, in *SetFitnessRequest, opts ...grpc.CallOption) (*SetFitnessResponse, error)
 }
 
 type athleteSvcClient struct {
@@ -202,18 +165,9 @@ func (c *athleteSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *athleteSvcClient) SetFitnessMetric(ctx context.Context, in *SetFitnessMetricRequest, opts ...grpc.CallOption) (*SetFitnessMetricResponse, error) {
-	out := new(SetFitnessMetricResponse)
-	err := c.cc.Invoke(ctx, "/athletesvc.AthleteSvc/SetFitnessMetric", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *athleteSvcClient) GetFitnessMetric(ctx context.Context, in *GetFitnessMetricRequest, opts ...grpc.CallOption) (*GetFitnessMetricResponse, error) {
-	out := new(GetFitnessMetricResponse)
-	err := c.cc.Invoke(ctx, "/athletesvc.AthleteSvc/GetFitnessMetric", in, out, opts...)
+func (c *athleteSvcClient) SetFitness(ctx context.Context, in *SetFitnessRequest, opts ...grpc.CallOption) (*SetFitnessResponse, error) {
+	out := new(SetFitnessResponse)
+	err := c.cc.Invoke(ctx, "/athletesvc.AthleteSvc/SetFitness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -225,8 +179,7 @@ func (c *athleteSvcClient) GetFitnessMetric(ctx context.Context, in *GetFitnessM
 // for forward compatibility
 type AthleteSvcServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
-	SetFitnessMetric(context.Context, *SetFitnessMetricRequest) (*SetFitnessMetricResponse, error)
-	GetFitnessMetric(context.Context, *GetFitnessMetricRequest) (*GetFitnessMetricResponse, error)
+	SetFitness(context.Context, *SetFitnessRequest) (*SetFitnessResponse, error)
 	mustEmbedUnimplementedAthleteSvcServer()
 }
 
@@ -237,11 +190,8 @@ type UnimplementedAthleteSvcServer struct {
 func (UnimplementedAthleteSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedAthleteSvcServer) SetFitnessMetric(context.Context, *SetFitnessMetricRequest) (*SetFitnessMetricResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetFitnessMetric not implemented")
-}
-func (UnimplementedAthleteSvcServer) GetFitnessMetric(context.Context, *GetFitnessMetricRequest) (*GetFitnessMetricResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFitnessMetric not implemented")
+func (UnimplementedAthleteSvcServer) SetFitness(context.Context, *SetFitnessRequest) (*SetFitnessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFitness not implemented")
 }
 func (UnimplementedAthleteSvcServer) mustEmbedUnimplementedAthleteSvcServer() {}
 
@@ -274,38 +224,20 @@ func _AthleteSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AthleteSvc_SetFitnessMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetFitnessMetricRequest)
+func _AthleteSvc_SetFitness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFitnessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AthleteSvcServer).SetFitnessMetric(ctx, in)
+		return srv.(AthleteSvcServer).SetFitness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/athletesvc.AthleteSvc/SetFitnessMetric",
+		FullMethod: "/athletesvc.AthleteSvc/SetFitness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AthleteSvcServer).SetFitnessMetric(ctx, req.(*SetFitnessMetricRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AthleteSvc_GetFitnessMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFitnessMetricRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AthleteSvcServer).GetFitnessMetric(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/athletesvc.AthleteSvc/GetFitnessMetric",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AthleteSvcServer).GetFitnessMetric(ctx, req.(*GetFitnessMetricRequest))
+		return srv.(AthleteSvcServer).SetFitness(ctx, req.(*SetFitnessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -322,12 +254,8 @@ var AthleteSvc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AthleteSvc_Get_Handler,
 		},
 		{
-			MethodName: "SetFitnessMetric",
-			Handler:    _AthleteSvc_SetFitnessMetric_Handler,
-		},
-		{
-			MethodName: "GetFitnessMetric",
-			Handler:    _AthleteSvc_GetFitnessMetric_Handler,
+			MethodName: "SetFitness",
+			Handler:    _AthleteSvc_SetFitness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

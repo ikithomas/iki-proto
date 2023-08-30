@@ -13,9 +13,7 @@ package athletesvc;
 service MyAthleteSvc {
   rpc Get(GetMyRequest) returns (GetMyResponse) {}
 
-  rpc SetFitnessMetric(SetMyFitnessMetricRequest) returns (SetMyFitnessMetricResponse) {}
-
-  rpc GetFitnessMetric(GetMyFitnessMetricRequest) returns (GetMyFitnessMetricResponse) {}
+  rpc SetFitness(SetMyFitnessRequest) returns (SetMyFitnessResponse) {}
 }
 
 message GetMyRequest {}
@@ -24,17 +22,11 @@ message GetMyResponse {
   activity.Athlete athlete = 1;
 }
 
-message SetMyFitnessMetricRequest {
+message SetMyFitnessRequest {
   activity.AthleteFitness fitness = 1;
 }
 
-message  SetMyFitnessMetricResponse {}
-
-message GetMyFitnessMetricRequest {}
-
-message GetMyFitnessMetricResponse {
-  activity.AthleteFitness fitness = 1;
-}
+message  SetMyFitnessResponse {}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -44,9 +36,7 @@ message GetMyFitnessMetricResponse {
 service AthleteSvc {
   rpc Get(GetRequest) returns (GetResponse) {}
 
-  rpc SetFitnessMetric(SetFitnessMetricRequest) returns (SetFitnessMetricResponse) {}
-
-  rpc GetFitnessMetric(GetFitnessMetricRequest) returns (GetFitnessMetricResponse) {}
+  rpc SetFitness(SetFitnessRequest) returns (SetFitnessResponse) {}
 }
 
 message GetRequest {
@@ -57,17 +47,9 @@ message GetResponse {
   activity.Athlete athlete = 1;
 }
 
-message SetFitnessMetricRequest {
+message SetFitnessRequest {
   string user_id = 1;
   activity.AthleteFitness fitness = 2;
 }
 
-message  SetFitnessMetricResponse {}
-
-message GetFitnessMetricRequest {
-  string user_id = 1;
-}
-
-message GetFitnessMetricResponse {
-  activity.AthleteFitness fitness = 1;
-}
+message  SetFitnessResponse {}
