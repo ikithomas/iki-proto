@@ -11,12 +11,15 @@ const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const activity_1 = require("../activity");
 exports.protobufPackage = "stravasvc";
 function createBaseAuthzRequest() {
-    return { authzCode: "" };
+    return { authzCode: "", scopes: "" };
 }
 exports.AuthzRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.authzCode !== "") {
             writer.uint32(10).string(message.authzCode);
+        }
+        if (message.scopes !== "") {
+            writer.uint32(18).string(message.scopes);
         }
         return writer;
     },
@@ -33,6 +36,12 @@ exports.AuthzRequest = {
                     }
                     message.authzCode = reader.string();
                     continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.scopes = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -42,12 +51,18 @@ exports.AuthzRequest = {
         return message;
     },
     fromJSON(object) {
-        return { authzCode: isSet(object.authzCode) ? String(object.authzCode) : "" };
+        return {
+            authzCode: isSet(object.authzCode) ? String(object.authzCode) : "",
+            scopes: isSet(object.scopes) ? String(object.scopes) : "",
+        };
     },
     toJSON(message) {
         const obj = {};
         if (message.authzCode !== "") {
             obj.authzCode = message.authzCode;
+        }
+        if (message.scopes !== "") {
+            obj.scopes = message.scopes;
         }
         return obj;
     },
@@ -55,9 +70,10 @@ exports.AuthzRequest = {
         return exports.AuthzRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
+        var _a, _b;
         const message = createBaseAuthzRequest();
         message.authzCode = (_a = object.authzCode) !== null && _a !== void 0 ? _a : "";
+        message.scopes = (_b = object.scopes) !== null && _b !== void 0 ? _b : "";
         return message;
     },
 };

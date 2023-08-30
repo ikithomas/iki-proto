@@ -9,6 +9,8 @@ export const protobufPackage = "stravasvc";
 export interface AuthzRequest {
   /** authz_code is the ID used to exchange Strava token. */
   authzCode: string;
+  /** scopes is a comma-delimited list of scope. */
+  scopes: string;
 }
 
 export interface AuthzResponse {
@@ -16,13 +18,16 @@ export interface AuthzResponse {
 }
 
 function createBaseAuthzRequest(): AuthzRequest {
-  return { authzCode: "" };
+  return { authzCode: "", scopes: "" };
 }
 
 export const AuthzRequest = {
   encode(message: AuthzRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.authzCode !== "") {
       writer.uint32(10).string(message.authzCode);
+    }
+    if (message.scopes !== "") {
+      writer.uint32(18).string(message.scopes);
     }
     return writer;
   },
@@ -41,6 +46,13 @@ export const AuthzRequest = {
 
           message.authzCode = reader.string();
           continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.scopes = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -51,13 +63,19 @@ export const AuthzRequest = {
   },
 
   fromJSON(object: any): AuthzRequest {
-    return { authzCode: isSet(object.authzCode) ? String(object.authzCode) : "" };
+    return {
+      authzCode: isSet(object.authzCode) ? String(object.authzCode) : "",
+      scopes: isSet(object.scopes) ? String(object.scopes) : "",
+    };
   },
 
   toJSON(message: AuthzRequest): unknown {
     const obj: any = {};
     if (message.authzCode !== "") {
       obj.authzCode = message.authzCode;
+    }
+    if (message.scopes !== "") {
+      obj.scopes = message.scopes;
     }
     return obj;
   },
@@ -68,6 +86,7 @@ export const AuthzRequest = {
   fromPartial<I extends Exact<DeepPartial<AuthzRequest>, I>>(object: I): AuthzRequest {
     const message = createBaseAuthzRequest();
     message.authzCode = object.authzCode ?? "";
+    message.scopes = object.scopes ?? "";
     return message;
   },
 };

@@ -5,6 +5,8 @@ export declare const protobufPackage = "stravasvc";
 export interface AuthzRequest {
     /** authz_code is the ID used to exchange Strava token. */
     authzCode: string;
+    /** scopes is a comma-delimited list of scope. */
+    scopes: string;
 }
 export interface AuthzResponse {
     athlete: Athlete | undefined;
@@ -16,14 +18,18 @@ export declare const AuthzRequest: {
     toJSON(message: AuthzRequest): unknown;
     create<I extends {
         authzCode?: string;
+        scopes?: string;
     } & {
         authzCode?: string;
-    } & { [K in Exclude<keyof I, "authzCode">]: never; }>(base?: I): AuthzRequest;
+        scopes?: string;
+    } & { [K in Exclude<keyof I, keyof AuthzRequest>]: never; }>(base?: I): AuthzRequest;
     fromPartial<I_1 extends {
         authzCode?: string;
+        scopes?: string;
     } & {
         authzCode?: string;
-    } & { [K_1 in Exclude<keyof I_1, "authzCode">]: never; }>(object: I_1): AuthzRequest;
+        scopes?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof AuthzRequest>]: never; }>(object: I_1): AuthzRequest;
 };
 export declare const AuthzResponse: {
     encode(message: AuthzResponse, writer?: _m0.Writer): _m0.Writer;

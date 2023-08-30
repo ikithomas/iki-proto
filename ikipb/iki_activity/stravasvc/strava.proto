@@ -13,6 +13,9 @@ service StravaSvc {
 message AuthzRequest {
   // authz_code is the ID used to exchange Strava token.
   string authz_code = 1;
+
+  // scopes is a comma-delimited list of scope.
+  string scopes = 2;
 }
 
 message AuthzResponse {
