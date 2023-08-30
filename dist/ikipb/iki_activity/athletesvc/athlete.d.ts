@@ -41,8 +41,8 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -56,8 +56,8 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -69,8 +69,8 @@ export declare const GetMyResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -86,15 +86,15 @@ export declare const GetMyResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K in Exclude<keyof I["athlete"]["AthleteFitness"], keyof AthleteFitness>]: never; };
+            } & { [K in Exclude<keyof I["athlete"]["fitness"], keyof AthleteFitness>]: never; };
         } & { [K_1 in Exclude<keyof I["athlete"], keyof Athlete>]: never; };
     } & { [K_2 in Exclude<keyof I, "athlete">]: never; }>(base?: I): GetMyResponse;
     fromPartial<I_1 extends {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -108,8 +108,8 @@ export declare const GetMyResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -121,8 +121,8 @@ export declare const GetMyResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -138,7 +138,7 @@ export declare const GetMyResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K_3 in Exclude<keyof I_1["athlete"]["AthleteFitness"], keyof AthleteFitness>]: never; };
+            } & { [K_3 in Exclude<keyof I_1["athlete"]["fitness"], keyof AthleteFitness>]: never; };
         } & { [K_4 in Exclude<keyof I_1["athlete"], keyof Athlete>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "athlete">]: never; }>(object: I_1): GetMyResponse;
 };
@@ -239,8 +239,8 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -254,8 +254,8 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -267,8 +267,8 @@ export declare const GetResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -284,15 +284,15 @@ export declare const GetResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K in Exclude<keyof I["athlete"]["AthleteFitness"], keyof AthleteFitness>]: never; };
+            } & { [K in Exclude<keyof I["athlete"]["fitness"], keyof AthleteFitness>]: never; };
         } & { [K_1 in Exclude<keyof I["athlete"], keyof Athlete>]: never; };
     } & { [K_2 in Exclude<keyof I, "athlete">]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -306,8 +306,8 @@ export declare const GetResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -319,8 +319,8 @@ export declare const GetResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -336,7 +336,7 @@ export declare const GetResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K_3 in Exclude<keyof I_1["athlete"]["AthleteFitness"], keyof AthleteFitness>]: never; };
+            } & { [K_3 in Exclude<keyof I_1["athlete"]["fitness"], keyof AthleteFitness>]: never; };
         } & { [K_4 in Exclude<keyof I_1["athlete"], keyof Athlete>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "athlete">]: never; }>(object: I_1): GetResponse;
 };

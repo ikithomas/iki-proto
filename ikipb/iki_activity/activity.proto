@@ -62,8 +62,8 @@ message ActivityStats {
 message Athlete {
   string id = 1;
   string user_id = 2;
-  int64 strava_id = 3;
-  AthleteFitness AthleteFitness = 4;
+  string strava_id = 3;
+  AthleteFitness fitness = 4;
 }
 
 message AthleteFitness {

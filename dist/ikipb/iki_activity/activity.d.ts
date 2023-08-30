@@ -45,8 +45,8 @@ export interface ActivityStats {
 export interface Athlete {
     id: string;
     userId: string;
-    stravaId: number;
-    AthleteFitness: AthleteFitness | undefined;
+    stravaId: string;
+    fitness: AthleteFitness | undefined;
 }
 export interface AthleteFitness {
     age: number;
@@ -454,8 +454,8 @@ export declare const Athlete: {
     create<I extends {
         id?: string;
         userId?: string;
-        stravaId?: number;
-        AthleteFitness?: {
+        stravaId?: string;
+        fitness?: {
             age?: number;
             height?: number;
             weight?: number;
@@ -467,8 +467,8 @@ export declare const Athlete: {
     } & {
         id?: string;
         userId?: string;
-        stravaId?: number;
-        AthleteFitness?: {
+        stravaId?: string;
+        fitness?: {
             age?: number;
             height?: number;
             weight?: number;
@@ -484,13 +484,13 @@ export declare const Athlete: {
             restHeartrate?: number;
             vo2Max?: number;
             male?: boolean;
-        } & { [K in Exclude<keyof I["AthleteFitness"], keyof AthleteFitness>]: never; };
+        } & { [K in Exclude<keyof I["fitness"], keyof AthleteFitness>]: never; };
     } & { [K_1 in Exclude<keyof I, keyof Athlete>]: never; }>(base?: I): Athlete;
     fromPartial<I_1 extends {
         id?: string;
         userId?: string;
-        stravaId?: number;
-        AthleteFitness?: {
+        stravaId?: string;
+        fitness?: {
             age?: number;
             height?: number;
             weight?: number;
@@ -502,8 +502,8 @@ export declare const Athlete: {
     } & {
         id?: string;
         userId?: string;
-        stravaId?: number;
-        AthleteFitness?: {
+        stravaId?: string;
+        fitness?: {
             age?: number;
             height?: number;
             weight?: number;
@@ -519,7 +519,7 @@ export declare const Athlete: {
             restHeartrate?: number;
             vo2Max?: number;
             male?: boolean;
-        } & { [K_2 in Exclude<keyof I_1["AthleteFitness"], keyof AthleteFitness>]: never; };
+        } & { [K_2 in Exclude<keyof I_1["fitness"], keyof AthleteFitness>]: never; };
     } & { [K_3 in Exclude<keyof I_1, keyof Athlete>]: never; }>(object: I_1): Athlete;
 };
 export declare const AthleteFitness: {

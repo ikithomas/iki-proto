@@ -34,8 +34,8 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -49,8 +49,8 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -62,8 +62,8 @@ export declare const AuthzResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -79,15 +79,15 @@ export declare const AuthzResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K in Exclude<keyof I["athlete"]["AthleteFitness"], keyof import("../activity").AthleteFitness>]: never; };
+            } & { [K in Exclude<keyof I["athlete"]["fitness"], keyof import("../activity").AthleteFitness>]: never; };
         } & { [K_1 in Exclude<keyof I["athlete"], keyof Athlete>]: never; };
     } & { [K_2 in Exclude<keyof I, "athlete">]: never; }>(base?: I): AuthzResponse;
     fromPartial<I_1 extends {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -101,8 +101,8 @@ export declare const AuthzResponse: {
         athlete?: {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -114,8 +114,8 @@ export declare const AuthzResponse: {
         } & {
             id?: string;
             userId?: string;
-            stravaId?: number;
-            AthleteFitness?: {
+            stravaId?: string;
+            fitness?: {
                 age?: number;
                 height?: number;
                 weight?: number;
@@ -131,7 +131,7 @@ export declare const AuthzResponse: {
                 restHeartrate?: number;
                 vo2Max?: number;
                 male?: boolean;
-            } & { [K_3 in Exclude<keyof I_1["athlete"]["AthleteFitness"], keyof import("../activity").AthleteFitness>]: never; };
+            } & { [K_3 in Exclude<keyof I_1["athlete"]["fitness"], keyof import("../activity").AthleteFitness>]: never; };
         } & { [K_4 in Exclude<keyof I_1["athlete"], keyof Athlete>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "athlete">]: never; }>(object: I_1): AuthzResponse;
 };
