@@ -7,6 +7,7 @@ exports.GrpcWebError = exports.GrpcWebImpl = exports.ActivitySvcCalculateStatsDe
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
+const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const activity_1 = require("../activity");
 exports.protobufPackage = "activitysvc";
@@ -181,15 +182,15 @@ exports.ListMyRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { data: [], totalCount: 0 };
+    return { activities: [], totalCount: 0 };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.data) {
+        for (const v of message.activities) {
             activity_1.Activity.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.totalCount !== 0) {
-            writer.uint32(16).int32(message.totalCount);
+            writer.uint32(16).int64(message.totalCount);
         }
         return writer;
     },
@@ -204,13 +205,13 @@ exports.ListMyResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.data.push(activity_1.Activity.decode(reader, reader.uint32()));
+                    message.activities.push(activity_1.Activity.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 16) {
                         break;
                     }
-                    message.totalCount = reader.int32();
+                    message.totalCount = longToNumber(reader.int64());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -222,15 +223,15 @@ exports.ListMyResponse = {
     },
     fromJSON(object) {
         return {
-            data: Array.isArray(object === null || object === void 0 ? void 0 : object.data) ? object.data.map((e) => activity_1.Activity.fromJSON(e)) : [],
+            activities: Array.isArray(object === null || object === void 0 ? void 0 : object.activities) ? object.activities.map((e) => activity_1.Activity.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if ((_a = message.data) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.data = message.data.map((e) => activity_1.Activity.toJSON(e));
+        if ((_a = message.activities) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.activities = message.activities.map((e) => activity_1.Activity.toJSON(e));
         }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
@@ -243,7 +244,7 @@ exports.ListMyResponse = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseListMyResponse();
-        message.data = ((_a = object.data) === null || _a === void 0 ? void 0 : _a.map((e) => activity_1.Activity.fromPartial(e))) || [];
+        message.activities = ((_a = object.activities) === null || _a === void 0 ? void 0 : _a.map((e) => activity_1.Activity.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
@@ -520,12 +521,15 @@ exports.ListRequest = {
     },
 };
 function createBaseListResponse() {
-    return { activities: [] };
+    return { activities: [], totalCount: 0 };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         for (const v of message.activities) {
             activity_1.Activity.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.totalCount !== 0) {
+            writer.uint32(16).int64(message.totalCount);
         }
         return writer;
     },
@@ -542,6 +546,12 @@ exports.ListResponse = {
                     }
                     message.activities.push(activity_1.Activity.decode(reader, reader.uint32()));
                     continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.totalCount = longToNumber(reader.int64());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -553,6 +563,7 @@ exports.ListResponse = {
     fromJSON(object) {
         return {
             activities: Array.isArray(object === null || object === void 0 ? void 0 : object.activities) ? object.activities.map((e) => activity_1.Activity.fromJSON(e)) : [],
+            totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
     toJSON(message) {
@@ -561,15 +572,19 @@ exports.ListResponse = {
         if ((_a = message.activities) === null || _a === void 0 ? void 0 : _a.length) {
             obj.activities = message.activities.map((e) => activity_1.Activity.toJSON(e));
         }
+        if (message.totalCount !== 0) {
+            obj.totalCount = Math.round(message.totalCount);
+        }
         return obj;
     },
     create(base) {
         return exports.ListResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
+        var _a, _b;
         const message = createBaseListResponse();
         message.activities = ((_a = object.activities) === null || _a === void 0 ? void 0 : _a.map((e) => activity_1.Activity.fromPartial(e))) || [];
+        message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };
@@ -854,6 +869,16 @@ const tsProtoGlobalThis = (() => {
     }
     throw "Unable to locate global object";
 })();
+function longToNumber(long) {
+    if (long.gt(Number.MAX_SAFE_INTEGER)) {
+        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    }
+    return long.toNumber();
+}
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
+}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

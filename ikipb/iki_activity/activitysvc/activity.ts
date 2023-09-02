@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
+import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Activity } from "../activity";
 
@@ -20,7 +21,7 @@ export interface ListMyRequest {
 }
 
 export interface ListMyResponse {
-  data: Activity[];
+  activities: Activity[];
   totalCount: number;
 }
 
@@ -47,6 +48,7 @@ export interface ListRequest {
 
 export interface ListResponse {
   activities: Activity[];
+  totalCount: number;
 }
 
 export interface CalculateStatsRequest {
@@ -247,16 +249,16 @@ export const ListMyRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { data: [], totalCount: 0 };
+  return { activities: [], totalCount: 0 };
 }
 
 export const ListMyResponse = {
   encode(message: ListMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.data) {
+    for (const v of message.activities) {
       Activity.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.totalCount !== 0) {
-      writer.uint32(16).int32(message.totalCount);
+      writer.uint32(16).int64(message.totalCount);
     }
     return writer;
   },
@@ -273,14 +275,14 @@ export const ListMyResponse = {
             break;
           }
 
-          message.data.push(Activity.decode(reader, reader.uint32()));
+          message.activities.push(Activity.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 16) {
             break;
           }
 
-          message.totalCount = reader.int32();
+          message.totalCount = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -293,15 +295,15 @@ export const ListMyResponse = {
 
   fromJSON(object: any): ListMyResponse {
     return {
-      data: Array.isArray(object?.data) ? object.data.map((e: any) => Activity.fromJSON(e)) : [],
+      activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
 
   toJSON(message: ListMyResponse): unknown {
     const obj: any = {};
-    if (message.data?.length) {
-      obj.data = message.data.map((e) => Activity.toJSON(e));
+    if (message.activities?.length) {
+      obj.activities = message.activities.map((e) => Activity.toJSON(e));
     }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
@@ -314,7 +316,7 @@ export const ListMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListMyResponse>, I>>(object: I): ListMyResponse {
     const message = createBaseListMyResponse();
-    message.data = object.data?.map((e) => Activity.fromPartial(e)) || [];
+    message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     return message;
   },
@@ -626,13 +628,16 @@ export const ListRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { activities: [] };
+  return { activities: [], totalCount: 0 };
 }
 
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.activities) {
       Activity.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.totalCount !== 0) {
+      writer.uint32(16).int64(message.totalCount);
     }
     return writer;
   },
@@ -651,6 +656,13 @@ export const ListResponse = {
 
           message.activities.push(Activity.decode(reader, reader.uint32()));
           continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.totalCount = longToNumber(reader.int64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -663,6 +675,7 @@ export const ListResponse = {
   fromJSON(object: any): ListResponse {
     return {
       activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
+      totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
 
@@ -670,6 +683,9 @@ export const ListResponse = {
     const obj: any = {};
     if (message.activities?.length) {
       obj.activities = message.activities.map((e) => Activity.toJSON(e));
+    }
+    if (message.totalCount !== 0) {
+      obj.totalCount = Math.round(message.totalCount);
     }
     return obj;
   },
@@ -680,6 +696,7 @@ export const ListResponse = {
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
     message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
+    message.totalCount = object.totalCount ?? 0;
     return message;
   },
 };
@@ -1093,6 +1110,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(Number.MAX_SAFE_INTEGER)) {
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
