@@ -114,10 +114,16 @@ exports.GetMyResponse = {
     },
 };
 function createBaseListMyRequest() {
-    return {};
+    return { page: 0, pageSize: 0 };
 }
 exports.ListMyRequest = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.page !== 0) {
+            writer.uint32(8).int32(message.page);
+        }
+        if (message.pageSize !== 0) {
+            writer.uint32(16).int32(message.pageSize);
+        }
         return writer;
     },
     decode(input, length) {
@@ -127,6 +133,18 @@ exports.ListMyRequest = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 8) {
+                        break;
+                    }
+                    message.page = reader.int32();
+                    continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.pageSize = reader.int32();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -135,18 +153,30 @@ exports.ListMyRequest = {
         }
         return message;
     },
-    fromJSON(_) {
-        return {};
+    fromJSON(object) {
+        return {
+            page: isSet(object.page) ? Number(object.page) : 0,
+            pageSize: isSet(object.pageSize) ? Number(object.pageSize) : 0,
+        };
     },
-    toJSON(_) {
+    toJSON(message) {
         const obj = {};
+        if (message.page !== 0) {
+            obj.page = Math.round(message.page);
+        }
+        if (message.pageSize !== 0) {
+            obj.pageSize = Math.round(message.pageSize);
+        }
         return obj;
     },
     create(base) {
         return exports.ListMyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
-    fromPartial(_) {
+    fromPartial(object) {
+        var _a, _b;
         const message = createBaseListMyRequest();
+        message.page = (_a = object.page) !== null && _a !== void 0 ? _a : 0;
+        message.pageSize = (_b = object.pageSize) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };
@@ -395,12 +425,18 @@ exports.GetResponse = {
     },
 };
 function createBaseListRequest() {
-    return { userId: "" };
+    return { userId: "", page: 0, pageSize: 0 };
 }
 exports.ListRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.userId !== "") {
             writer.uint32(10).string(message.userId);
+        }
+        if (message.page !== 0) {
+            writer.uint32(16).int32(message.page);
+        }
+        if (message.pageSize !== 0) {
+            writer.uint32(24).int32(message.pageSize);
         }
         return writer;
     },
@@ -417,6 +453,18 @@ exports.ListRequest = {
                     }
                     message.userId = reader.string();
                     continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.page = reader.int32();
+                    continue;
+                case 3:
+                    if (tag !== 24) {
+                        break;
+                    }
+                    message.pageSize = reader.int32();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -426,12 +474,22 @@ exports.ListRequest = {
         return message;
     },
     fromJSON(object) {
-        return { userId: isSet(object.userId) ? String(object.userId) : "" };
+        return {
+            userId: isSet(object.userId) ? String(object.userId) : "",
+            page: isSet(object.page) ? Number(object.page) : 0,
+            pageSize: isSet(object.pageSize) ? Number(object.pageSize) : 0,
+        };
     },
     toJSON(message) {
         const obj = {};
         if (message.userId !== "") {
             obj.userId = message.userId;
+        }
+        if (message.page !== 0) {
+            obj.page = Math.round(message.page);
+        }
+        if (message.pageSize !== 0) {
+            obj.pageSize = Math.round(message.pageSize);
         }
         return obj;
     },
@@ -439,9 +497,11 @@ exports.ListRequest = {
         return exports.ListRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
+        var _a, _b, _c;
         const message = createBaseListRequest();
         message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
+        message.page = (_b = object.page) !== null && _b !== void 0 ? _b : 0;
+        message.pageSize = (_c = object.pageSize) !== null && _c !== void 0 ? _c : 0;
         return message;
     },
 };

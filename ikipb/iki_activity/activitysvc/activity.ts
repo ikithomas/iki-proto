@@ -15,6 +15,8 @@ export interface GetMyResponse {
 }
 
 export interface ListMyRequest {
+  page: number;
+  pageSize: number;
 }
 
 export interface ListMyResponse {
@@ -38,6 +40,8 @@ export interface GetResponse {
 
 export interface ListRequest {
   userId: string;
+  page: number;
+  pageSize: number;
 }
 
 export interface ListResponse {
@@ -168,11 +172,17 @@ export const GetMyResponse = {
 };
 
 function createBaseListMyRequest(): ListMyRequest {
-  return {};
+  return { page: 0, pageSize: 0 };
 }
 
 export const ListMyRequest = {
-  encode(_: ListMyRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: ListMyRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.page !== 0) {
+      writer.uint32(8).int32(message.page);
+    }
+    if (message.pageSize !== 0) {
+      writer.uint32(16).int32(message.pageSize);
+    }
     return writer;
   },
 
@@ -183,6 +193,20 @@ export const ListMyRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.page = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.pageSize = reader.int32();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -192,20 +216,31 @@ export const ListMyRequest = {
     return message;
   },
 
-  fromJSON(_: any): ListMyRequest {
-    return {};
+  fromJSON(object: any): ListMyRequest {
+    return {
+      page: isSet(object.page) ? Number(object.page) : 0,
+      pageSize: isSet(object.pageSize) ? Number(object.pageSize) : 0,
+    };
   },
 
-  toJSON(_: ListMyRequest): unknown {
+  toJSON(message: ListMyRequest): unknown {
     const obj: any = {};
+    if (message.page !== 0) {
+      obj.page = Math.round(message.page);
+    }
+    if (message.pageSize !== 0) {
+      obj.pageSize = Math.round(message.pageSize);
+    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<ListMyRequest>, I>>(base?: I): ListMyRequest {
     return ListMyRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ListMyRequest>, I>>(_: I): ListMyRequest {
+  fromPartial<I extends Exact<DeepPartial<ListMyRequest>, I>>(object: I): ListMyRequest {
     const message = createBaseListMyRequest();
+    message.page = object.page ?? 0;
+    message.pageSize = object.pageSize ?? 0;
     return message;
   },
 };
@@ -486,13 +521,19 @@ export const GetResponse = {
 };
 
 function createBaseListRequest(): ListRequest {
-  return { userId: "" };
+  return { userId: "", page: 0, pageSize: 0 };
 }
 
 export const ListRequest = {
   encode(message: ListRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
+    }
+    if (message.page !== 0) {
+      writer.uint32(16).int32(message.page);
+    }
+    if (message.pageSize !== 0) {
+      writer.uint32(24).int32(message.pageSize);
     }
     return writer;
   },
@@ -511,6 +552,20 @@ export const ListRequest = {
 
           message.userId = reader.string();
           continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.page = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.pageSize = reader.int32();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -521,13 +576,23 @@ export const ListRequest = {
   },
 
   fromJSON(object: any): ListRequest {
-    return { userId: isSet(object.userId) ? String(object.userId) : "" };
+    return {
+      userId: isSet(object.userId) ? String(object.userId) : "",
+      page: isSet(object.page) ? Number(object.page) : 0,
+      pageSize: isSet(object.pageSize) ? Number(object.pageSize) : 0,
+    };
   },
 
   toJSON(message: ListRequest): unknown {
     const obj: any = {};
     if (message.userId !== "") {
       obj.userId = message.userId;
+    }
+    if (message.page !== 0) {
+      obj.page = Math.round(message.page);
+    }
+    if (message.pageSize !== 0) {
+      obj.pageSize = Math.round(message.pageSize);
     }
     return obj;
   },
@@ -538,6 +603,8 @@ export const ListRequest = {
   fromPartial<I extends Exact<DeepPartial<ListRequest>, I>>(object: I): ListRequest {
     const message = createBaseListRequest();
     message.userId = object.userId ?? "";
+    message.page = object.page ?? 0;
+    message.pageSize = object.pageSize ?? 0;
     return message;
   },
 };

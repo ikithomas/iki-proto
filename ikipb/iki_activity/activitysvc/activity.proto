@@ -26,7 +26,11 @@ message GetMyResponse {
   activity.Activity activity = 1;
 }
 
-message ListMyRequest {}
+message ListMyRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
 message ListMyResponse {
   repeated activity.Activity activities = 1;
 }
@@ -58,6 +62,8 @@ message GetResponse {
 
 message ListRequest {
   string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
 }
 
 message ListResponse {

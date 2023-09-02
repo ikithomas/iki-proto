@@ -9,6 +9,8 @@ export interface GetMyResponse {
     activity: Activity | undefined;
 }
 export interface ListMyRequest {
+    page: number;
+    pageSize: number;
 }
 export interface ListMyResponse {
     activities: Activity[];
@@ -26,6 +28,8 @@ export interface GetResponse {
 }
 export interface ListRequest {
     userId: string;
+    page: number;
+    pageSize: number;
 }
 export interface ListResponse {
     activities: Activity[];
@@ -372,12 +376,24 @@ export declare const GetMyResponse: {
     } & { [K_5 in Exclude<keyof I_1, "activity">]: never; }>(object: I_1): GetMyResponse;
 };
 export declare const ListMyRequest: {
-    encode(_: ListMyRequest, writer?: _m0.Writer): _m0.Writer;
+    encode(message: ListMyRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): ListMyRequest;
-    fromJSON(_: any): ListMyRequest;
-    toJSON(_: ListMyRequest): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListMyRequest;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListMyRequest;
+    fromJSON(object: any): ListMyRequest;
+    toJSON(message: ListMyRequest): unknown;
+    create<I extends {
+        page?: number;
+        pageSize?: number;
+    } & {
+        page?: number;
+        pageSize?: number;
+    } & { [K in Exclude<keyof I, keyof ListMyRequest>]: never; }>(base?: I): ListMyRequest;
+    fromPartial<I_1 extends {
+        page?: number;
+        pageSize?: number;
+    } & {
+        page?: number;
+        pageSize?: number;
+    } & { [K_1 in Exclude<keyof I_1, keyof ListMyRequest>]: never; }>(object: I_1): ListMyRequest;
 };
 export declare const ListMyResponse: {
     encode(message: ListMyResponse, writer?: _m0.Writer): _m0.Writer;
@@ -1222,14 +1238,22 @@ export declare const ListRequest: {
     toJSON(message: ListRequest): unknown;
     create<I extends {
         userId?: string;
+        page?: number;
+        pageSize?: number;
     } & {
         userId?: string;
-    } & { [K in Exclude<keyof I, "userId">]: never; }>(base?: I): ListRequest;
+        page?: number;
+        pageSize?: number;
+    } & { [K in Exclude<keyof I, keyof ListRequest>]: never; }>(base?: I): ListRequest;
     fromPartial<I_1 extends {
         userId?: string;
+        page?: number;
+        pageSize?: number;
     } & {
         userId?: string;
-    } & { [K_1 in Exclude<keyof I_1, "userId">]: never; }>(object: I_1): ListRequest;
+        page?: number;
+        pageSize?: number;
+    } & { [K_1 in Exclude<keyof I_1, keyof ListRequest>]: never; }>(object: I_1): ListRequest;
 };
 export declare const ListResponse: {
     encode(message: ListResponse, writer?: _m0.Writer): _m0.Writer;
