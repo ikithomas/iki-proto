@@ -181,12 +181,15 @@ exports.ListMyRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { activities: [] };
+    return { data: [], totalCount: 0 };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.activities) {
+        for (const v of message.data) {
             activity_1.Activity.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.totalCount !== 0) {
+            writer.uint32(16).int32(message.totalCount);
         }
         return writer;
     },
@@ -201,7 +204,13 @@ exports.ListMyResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.activities.push(activity_1.Activity.decode(reader, reader.uint32()));
+                    message.data.push(activity_1.Activity.decode(reader, reader.uint32()));
+                    continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.totalCount = reader.int32();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -213,14 +222,18 @@ exports.ListMyResponse = {
     },
     fromJSON(object) {
         return {
-            activities: Array.isArray(object === null || object === void 0 ? void 0 : object.activities) ? object.activities.map((e) => activity_1.Activity.fromJSON(e)) : [],
+            data: Array.isArray(object === null || object === void 0 ? void 0 : object.data) ? object.data.map((e) => activity_1.Activity.fromJSON(e)) : [],
+            totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if ((_a = message.activities) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.activities = message.activities.map((e) => activity_1.Activity.toJSON(e));
+        if ((_a = message.data) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.data = message.data.map((e) => activity_1.Activity.toJSON(e));
+        }
+        if (message.totalCount !== 0) {
+            obj.totalCount = Math.round(message.totalCount);
         }
         return obj;
     },
@@ -228,9 +241,10 @@ exports.ListMyResponse = {
         return exports.ListMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
+        var _a, _b;
         const message = createBaseListMyResponse();
-        message.activities = ((_a = object.activities) === null || _a === void 0 ? void 0 : _a.map((e) => activity_1.Activity.fromPartial(e))) || [];
+        message.data = ((_a = object.data) === null || _a === void 0 ? void 0 : _a.map((e) => activity_1.Activity.fromPartial(e))) || [];
+        message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };

@@ -32,7 +32,8 @@ message ListMyRequest {
 }
 
 message ListMyResponse {
-  repeated activity.Activity activities = 1;
+  repeated activity.Activity data = 1;
+  int32 total_count = 2;
 }
 
 message CalculateMyStatsRequest {}

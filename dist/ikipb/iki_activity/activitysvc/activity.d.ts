@@ -13,7 +13,8 @@ export interface ListMyRequest {
     pageSize: number;
 }
 export interface ListMyResponse {
-    activities: Activity[];
+    data: Activity[];
+    totalCount: number;
 }
 export interface CalculateMyStatsRequest {
 }
@@ -401,7 +402,7 @@ export declare const ListMyResponse: {
     fromJSON(object: any): ListMyResponse;
     toJSON(message: ListMyResponse): unknown;
     create<I extends {
-        activities?: {
+        data?: {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -442,8 +443,9 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
             };
         }[];
+        totalCount?: number;
     } & {
-        activities?: {
+        data?: {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -594,8 +596,8 @@ export declare const ListMyResponse: {
                 averagePace?: number;
                 averageEpPace?: number;
                 activeCalories?: number;
-            } & { [K in Exclude<keyof I["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
-        } & { [K_1 in Exclude<keyof I["activities"][number], keyof Activity>]: never; })[] & { [K_2 in Exclude<keyof I["activities"], keyof {
+            } & { [K in Exclude<keyof I["data"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
+        } & { [K_1 in Exclude<keyof I["data"][number], keyof Activity>]: never; })[] & { [K_2 in Exclude<keyof I["data"], keyof {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -636,9 +638,10 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
             };
         }[]>]: never; };
-    } & { [K_3 in Exclude<keyof I, "activities">]: never; }>(base?: I): ListMyResponse;
+        totalCount?: number;
+    } & { [K_3 in Exclude<keyof I, keyof ListMyResponse>]: never; }>(base?: I): ListMyResponse;
     fromPartial<I_1 extends {
-        activities?: {
+        data?: {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -679,8 +682,9 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
             };
         }[];
+        totalCount?: number;
     } & {
-        activities?: {
+        data?: {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -831,8 +835,8 @@ export declare const ListMyResponse: {
                 averagePace?: number;
                 averageEpPace?: number;
                 activeCalories?: number;
-            } & { [K_4 in Exclude<keyof I_1["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
-        } & { [K_5 in Exclude<keyof I_1["activities"][number], keyof Activity>]: never; })[] & { [K_6 in Exclude<keyof I_1["activities"], keyof {
+            } & { [K_4 in Exclude<keyof I_1["data"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
+        } & { [K_5 in Exclude<keyof I_1["data"][number], keyof Activity>]: never; })[] & { [K_6 in Exclude<keyof I_1["data"], keyof {
             id?: string;
             stravaId?: number;
             stravaAthleteId?: number;
@@ -873,7 +877,8 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
             };
         }[]>]: never; };
-    } & { [K_7 in Exclude<keyof I_1, "activities">]: never; }>(object: I_1): ListMyResponse;
+        totalCount?: number;
+    } & { [K_7 in Exclude<keyof I_1, keyof ListMyResponse>]: never; }>(object: I_1): ListMyResponse;
 };
 export declare const CalculateMyStatsRequest: {
     encode(_: CalculateMyStatsRequest, writer?: _m0.Writer): _m0.Writer;

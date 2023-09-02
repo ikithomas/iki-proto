@@ -20,7 +20,8 @@ export interface ListMyRequest {
 }
 
 export interface ListMyResponse {
-  activities: Activity[];
+  data: Activity[];
+  totalCount: number;
 }
 
 export interface CalculateMyStatsRequest {
@@ -246,13 +247,16 @@ export const ListMyRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { activities: [] };
+  return { data: [], totalCount: 0 };
 }
 
 export const ListMyResponse = {
   encode(message: ListMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.activities) {
+    for (const v of message.data) {
       Activity.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.totalCount !== 0) {
+      writer.uint32(16).int32(message.totalCount);
     }
     return writer;
   },
@@ -269,7 +273,14 @@ export const ListMyResponse = {
             break;
           }
 
-          message.activities.push(Activity.decode(reader, reader.uint32()));
+          message.data.push(Activity.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.totalCount = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -282,14 +293,18 @@ export const ListMyResponse = {
 
   fromJSON(object: any): ListMyResponse {
     return {
-      activities: Array.isArray(object?.activities) ? object.activities.map((e: any) => Activity.fromJSON(e)) : [],
+      data: Array.isArray(object?.data) ? object.data.map((e: any) => Activity.fromJSON(e)) : [],
+      totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
 
   toJSON(message: ListMyResponse): unknown {
     const obj: any = {};
-    if (message.activities?.length) {
-      obj.activities = message.activities.map((e) => Activity.toJSON(e));
+    if (message.data?.length) {
+      obj.data = message.data.map((e) => Activity.toJSON(e));
+    }
+    if (message.totalCount !== 0) {
+      obj.totalCount = Math.round(message.totalCount);
     }
     return obj;
   },
@@ -299,7 +314,8 @@ export const ListMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListMyResponse>, I>>(object: I): ListMyResponse {
     const message = createBaseListMyResponse();
-    message.activities = object.activities?.map((e) => Activity.fromPartial(e)) || [];
+    message.data = object.data?.map((e) => Activity.fromPartial(e)) || [];
+    message.totalCount = object.totalCount ?? 0;
     return message;
   },
 };
