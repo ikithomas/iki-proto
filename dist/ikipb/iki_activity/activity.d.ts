@@ -41,6 +41,8 @@ export interface ActivityStats {
     averagePace: number;
     averageEpPace: number;
     activeCalories: number;
+    runningSec: number;
+    walkingSec: number;
 }
 export interface Athlete {
     id: string;
@@ -122,6 +124,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         };
     } & {
         id?: string;
@@ -162,6 +166,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         } & {
             startLat?: number;
             startLng?: number;
@@ -194,6 +200,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         } & { [K in Exclude<keyof I["stats"], keyof ActivityStats>]: never; };
     } & { [K_1 in Exclude<keyof I, keyof Activity>]: never; }>(base?: I): Activity;
     fromPartial<I_1 extends {
@@ -235,6 +243,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         };
     } & {
         id?: string;
@@ -275,6 +285,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         } & {
             startLat?: number;
             startLng?: number;
@@ -307,6 +319,8 @@ export declare const Activity: {
             averagePace?: number;
             averageEpPace?: number;
             activeCalories?: number;
+            runningSec?: number;
+            walkingSec?: number;
         } & { [K_2 in Exclude<keyof I_1["stats"], keyof ActivityStats>]: never; };
     } & { [K_3 in Exclude<keyof I_1, keyof Activity>]: never; }>(object: I_1): Activity;
 };
@@ -347,6 +361,8 @@ export declare const ActivityStats: {
         averagePace?: number;
         averageEpPace?: number;
         activeCalories?: number;
+        runningSec?: number;
+        walkingSec?: number;
     } & {
         startLat?: number;
         startLng?: number;
@@ -379,6 +395,8 @@ export declare const ActivityStats: {
         averagePace?: number;
         averageEpPace?: number;
         activeCalories?: number;
+        runningSec?: number;
+        walkingSec?: number;
     } & { [K in Exclude<keyof I, keyof ActivityStats>]: never; }>(base?: I): ActivityStats;
     fromPartial<I_1 extends {
         startLat?: number;
@@ -412,6 +430,8 @@ export declare const ActivityStats: {
         averagePace?: number;
         averageEpPace?: number;
         activeCalories?: number;
+        runningSec?: number;
+        walkingSec?: number;
     } & {
         startLat?: number;
         startLng?: number;
@@ -444,6 +464,8 @@ export declare const ActivityStats: {
         averagePace?: number;
         averageEpPace?: number;
         activeCalories?: number;
+        runningSec?: number;
+        walkingSec?: number;
     } & { [K_1 in Exclude<keyof I_1, keyof ActivityStats>]: never; }>(object: I_1): ActivityStats;
 };
 export declare const Athlete: {

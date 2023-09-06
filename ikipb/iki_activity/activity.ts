@@ -46,6 +46,8 @@ export interface ActivityStats {
   averagePace: number;
   averageEpPace: number;
   activeCalories: number;
+  runningSec: number;
+  walkingSec: number;
 }
 
 export interface Athlete {
@@ -274,6 +276,8 @@ function createBaseActivityStats(): ActivityStats {
     averagePace: 0,
     averageEpPace: 0,
     activeCalories: 0,
+    runningSec: 0,
+    walkingSec: 0,
   };
 }
 
@@ -371,6 +375,12 @@ export const ActivityStats = {
     }
     if (message.activeCalories !== 0) {
       writer.uint32(248).int32(message.activeCalories);
+    }
+    if (message.runningSec !== 0) {
+      writer.uint32(264).int32(message.runningSec);
+    }
+    if (message.walkingSec !== 0) {
+      writer.uint32(272).int32(message.walkingSec);
     }
     return writer;
   },
@@ -599,6 +609,20 @@ export const ActivityStats = {
 
           message.activeCalories = reader.int32();
           continue;
+        case 33:
+          if (tag !== 264) {
+            break;
+          }
+
+          message.runningSec = reader.int32();
+          continue;
+        case 34:
+          if (tag !== 272) {
+            break;
+          }
+
+          message.walkingSec = reader.int32();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -641,6 +665,8 @@ export const ActivityStats = {
       averagePace: isSet(object.averagePace) ? Number(object.averagePace) : 0,
       averageEpPace: isSet(object.averageEpPace) ? Number(object.averageEpPace) : 0,
       activeCalories: isSet(object.activeCalories) ? Number(object.activeCalories) : 0,
+      runningSec: isSet(object.runningSec) ? Number(object.runningSec) : 0,
+      walkingSec: isSet(object.walkingSec) ? Number(object.walkingSec) : 0,
     };
   },
 
@@ -739,6 +765,12 @@ export const ActivityStats = {
     if (message.activeCalories !== 0) {
       obj.activeCalories = Math.round(message.activeCalories);
     }
+    if (message.runningSec !== 0) {
+      obj.runningSec = Math.round(message.runningSec);
+    }
+    if (message.walkingSec !== 0) {
+      obj.walkingSec = Math.round(message.walkingSec);
+    }
     return obj;
   },
 
@@ -778,6 +810,8 @@ export const ActivityStats = {
     message.averagePace = object.averagePace ?? 0;
     message.averageEpPace = object.averageEpPace ?? 0;
     message.activeCalories = object.activeCalories ?? 0;
+    message.runningSec = object.runningSec ?? 0;
+    message.walkingSec = object.walkingSec ?? 0;
     return message;
   },
 };

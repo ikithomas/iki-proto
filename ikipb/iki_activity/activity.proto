@@ -53,6 +53,9 @@ message ActivityStats {
   int32 average_pace = 29;
   int32 average_ep_pace = 30;
   int32 active_calories = 31;
+
+  int32 running_sec = 33;
+  int32 walking_sec = 34;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

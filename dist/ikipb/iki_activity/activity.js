@@ -180,6 +180,8 @@ function createBaseActivityStats() {
         averagePace: 0,
         averageEpPace: 0,
         activeCalories: 0,
+        runningSec: 0,
+        walkingSec: 0,
     };
 }
 exports.ActivityStats = {
@@ -276,6 +278,12 @@ exports.ActivityStats = {
         }
         if (message.activeCalories !== 0) {
             writer.uint32(248).int32(message.activeCalories);
+        }
+        if (message.runningSec !== 0) {
+            writer.uint32(264).int32(message.runningSec);
+        }
+        if (message.walkingSec !== 0) {
+            writer.uint32(272).int32(message.walkingSec);
         }
         return writer;
     },
@@ -472,6 +480,18 @@ exports.ActivityStats = {
                     }
                     message.activeCalories = reader.int32();
                     continue;
+                case 33:
+                    if (tag !== 264) {
+                        break;
+                    }
+                    message.runningSec = reader.int32();
+                    continue;
+                case 34:
+                    if (tag !== 272) {
+                        break;
+                    }
+                    message.walkingSec = reader.int32();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -513,6 +533,8 @@ exports.ActivityStats = {
             averagePace: isSet(object.averagePace) ? Number(object.averagePace) : 0,
             averageEpPace: isSet(object.averageEpPace) ? Number(object.averageEpPace) : 0,
             activeCalories: isSet(object.activeCalories) ? Number(object.activeCalories) : 0,
+            runningSec: isSet(object.runningSec) ? Number(object.runningSec) : 0,
+            walkingSec: isSet(object.walkingSec) ? Number(object.walkingSec) : 0,
         };
     },
     toJSON(message) {
@@ -610,13 +632,19 @@ exports.ActivityStats = {
         if (message.activeCalories !== 0) {
             obj.activeCalories = Math.round(message.activeCalories);
         }
+        if (message.runningSec !== 0) {
+            obj.runningSec = Math.round(message.runningSec);
+        }
+        if (message.walkingSec !== 0) {
+            obj.walkingSec = Math.round(message.walkingSec);
+        }
         return obj;
     },
     create(base) {
         return exports.ActivityStats.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8;
         const message = createBaseActivityStats();
         message.startLat = (_a = object.startLat) !== null && _a !== void 0 ? _a : 0;
         message.startLng = (_b = object.startLng) !== null && _b !== void 0 ? _b : 0;
@@ -649,6 +677,8 @@ exports.ActivityStats = {
         message.averagePace = (_4 = object.averagePace) !== null && _4 !== void 0 ? _4 : 0;
         message.averageEpPace = (_5 = object.averageEpPace) !== null && _5 !== void 0 ? _5 : 0;
         message.activeCalories = (_6 = object.activeCalories) !== null && _6 !== void 0 ? _6 : 0;
+        message.runningSec = (_7 = object.runningSec) !== null && _7 !== void 0 ? _7 : 0;
+        message.walkingSec = (_8 = object.walkingSec) !== null && _8 !== void 0 ? _8 : 0;
         return message;
     },
 };
