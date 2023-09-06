@@ -48,6 +48,7 @@ export interface ActivityStats {
   activeCalories: number;
   runningSec: number;
   walkingSec: number;
+  idleSec: number;
 }
 
 export interface Athlete {
@@ -278,6 +279,7 @@ function createBaseActivityStats(): ActivityStats {
     activeCalories: 0,
     runningSec: 0,
     walkingSec: 0,
+    idleSec: 0,
   };
 }
 
@@ -381,6 +383,9 @@ export const ActivityStats = {
     }
     if (message.walkingSec !== 0) {
       writer.uint32(272).int32(message.walkingSec);
+    }
+    if (message.idleSec !== 0) {
+      writer.uint32(280).int32(message.idleSec);
     }
     return writer;
   },
@@ -623,6 +628,13 @@ export const ActivityStats = {
 
           message.walkingSec = reader.int32();
           continue;
+        case 35:
+          if (tag !== 280) {
+            break;
+          }
+
+          message.idleSec = reader.int32();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -667,6 +679,7 @@ export const ActivityStats = {
       activeCalories: isSet(object.activeCalories) ? Number(object.activeCalories) : 0,
       runningSec: isSet(object.runningSec) ? Number(object.runningSec) : 0,
       walkingSec: isSet(object.walkingSec) ? Number(object.walkingSec) : 0,
+      idleSec: isSet(object.idleSec) ? Number(object.idleSec) : 0,
     };
   },
 
@@ -771,6 +784,9 @@ export const ActivityStats = {
     if (message.walkingSec !== 0) {
       obj.walkingSec = Math.round(message.walkingSec);
     }
+    if (message.idleSec !== 0) {
+      obj.idleSec = Math.round(message.idleSec);
+    }
     return obj;
   },
 
@@ -812,6 +828,7 @@ export const ActivityStats = {
     message.activeCalories = object.activeCalories ?? 0;
     message.runningSec = object.runningSec ?? 0;
     message.walkingSec = object.walkingSec ?? 0;
+    message.idleSec = object.idleSec ?? 0;
     return message;
   },
 };

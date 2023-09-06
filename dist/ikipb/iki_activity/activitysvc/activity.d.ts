@@ -104,6 +104,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         };
     } & {
@@ -148,6 +149,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -190,6 +192,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -224,6 +227,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K in Exclude<keyof I["activity"]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_1 in Exclude<keyof I["activity"], keyof Activity>]: never; };
     } & { [K_2 in Exclude<keyof I, "activity">]: never; }>(base?: I): GetMyResponse;
@@ -269,6 +273,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         };
     } & {
@@ -313,6 +318,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -355,6 +361,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -389,6 +396,7 @@ export declare const GetMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K_3 in Exclude<keyof I_1["activity"]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_4 in Exclude<keyof I_1["activity"], keyof Activity>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "activity">]: never; }>(object: I_1): GetMyResponse;
@@ -460,6 +468,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[];
         totalCount?: number;
@@ -505,6 +514,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[] & ({
             id?: string;
@@ -547,6 +557,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -589,6 +600,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -623,6 +635,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K in Exclude<keyof I["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_1 in Exclude<keyof I["activities"][number], keyof Activity>]: never; })[] & { [K_2 in Exclude<keyof I["activities"], keyof {
             id?: string;
@@ -665,6 +678,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[]>]: never; };
         totalCount?: number;
@@ -711,6 +725,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[];
         totalCount?: number;
@@ -756,6 +771,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[] & ({
             id?: string;
@@ -798,6 +814,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -840,6 +857,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -874,6 +892,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K_4 in Exclude<keyof I_1["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_5 in Exclude<keyof I_1["activities"][number], keyof Activity>]: never; })[] & { [K_6 in Exclude<keyof I_1["activities"], keyof {
             id?: string;
@@ -916,6 +935,7 @@ export declare const ListMyResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[]>]: never; };
         totalCount?: number;
@@ -1004,6 +1024,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         };
     } & {
@@ -1048,6 +1069,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -1090,6 +1112,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -1124,6 +1147,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K in Exclude<keyof I["activity"]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_1 in Exclude<keyof I["activity"], keyof Activity>]: never; };
     } & { [K_2 in Exclude<keyof I, "activity">]: never; }>(base?: I): GetResponse;
@@ -1169,6 +1193,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         };
     } & {
@@ -1213,6 +1238,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -1255,6 +1281,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -1289,6 +1316,7 @@ export declare const GetResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K_3 in Exclude<keyof I_1["activity"]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_4 in Exclude<keyof I_1["activity"], keyof Activity>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "activity">]: never; }>(object: I_1): GetResponse;
@@ -1364,6 +1392,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[];
         totalCount?: number;
@@ -1409,6 +1438,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[] & ({
             id?: string;
@@ -1451,6 +1481,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -1493,6 +1524,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -1527,6 +1559,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K in Exclude<keyof I["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_1 in Exclude<keyof I["activities"][number], keyof Activity>]: never; })[] & { [K_2 in Exclude<keyof I["activities"], keyof {
             id?: string;
@@ -1569,6 +1602,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[]>]: never; };
         totalCount?: number;
@@ -1615,6 +1649,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[];
         totalCount?: number;
@@ -1660,6 +1695,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[] & ({
             id?: string;
@@ -1702,6 +1738,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         } & {
             id?: string;
@@ -1744,6 +1781,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & {
                 startLat?: number;
                 startLng?: number;
@@ -1778,6 +1816,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             } & { [K_4 in Exclude<keyof I_1["activities"][number]["stats"], keyof import("../activity").ActivityStats>]: never; };
         } & { [K_5 in Exclude<keyof I_1["activities"][number], keyof Activity>]: never; })[] & { [K_6 in Exclude<keyof I_1["activities"], keyof {
             id?: string;
@@ -1820,6 +1859,7 @@ export declare const ListResponse: {
                 activeCalories?: number;
                 runningSec?: number;
                 walkingSec?: number;
+                idleSec?: number;
             };
         }[]>]: never; };
         totalCount?: number;

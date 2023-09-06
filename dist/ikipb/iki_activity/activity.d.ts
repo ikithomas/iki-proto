@@ -43,6 +43,7 @@ export interface ActivityStats {
     activeCalories: number;
     runningSec: number;
     walkingSec: number;
+    idleSec: number;
 }
 export interface Athlete {
     id: string;
@@ -126,6 +127,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         };
     } & {
         id?: string;
@@ -168,6 +170,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         } & {
             startLat?: number;
             startLng?: number;
@@ -202,6 +205,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         } & { [K in Exclude<keyof I["stats"], keyof ActivityStats>]: never; };
     } & { [K_1 in Exclude<keyof I, keyof Activity>]: never; }>(base?: I): Activity;
     fromPartial<I_1 extends {
@@ -245,6 +249,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         };
     } & {
         id?: string;
@@ -287,6 +292,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         } & {
             startLat?: number;
             startLng?: number;
@@ -321,6 +327,7 @@ export declare const Activity: {
             activeCalories?: number;
             runningSec?: number;
             walkingSec?: number;
+            idleSec?: number;
         } & { [K_2 in Exclude<keyof I_1["stats"], keyof ActivityStats>]: never; };
     } & { [K_3 in Exclude<keyof I_1, keyof Activity>]: never; }>(object: I_1): Activity;
 };
@@ -363,6 +370,7 @@ export declare const ActivityStats: {
         activeCalories?: number;
         runningSec?: number;
         walkingSec?: number;
+        idleSec?: number;
     } & {
         startLat?: number;
         startLng?: number;
@@ -397,6 +405,7 @@ export declare const ActivityStats: {
         activeCalories?: number;
         runningSec?: number;
         walkingSec?: number;
+        idleSec?: number;
     } & { [K in Exclude<keyof I, keyof ActivityStats>]: never; }>(base?: I): ActivityStats;
     fromPartial<I_1 extends {
         startLat?: number;
@@ -432,6 +441,7 @@ export declare const ActivityStats: {
         activeCalories?: number;
         runningSec?: number;
         walkingSec?: number;
+        idleSec?: number;
     } & {
         startLat?: number;
         startLng?: number;
@@ -466,6 +476,7 @@ export declare const ActivityStats: {
         activeCalories?: number;
         runningSec?: number;
         walkingSec?: number;
+        idleSec?: number;
     } & { [K_1 in Exclude<keyof I_1, keyof ActivityStats>]: never; }>(object: I_1): ActivityStats;
 };
 export declare const Athlete: {
