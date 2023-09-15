@@ -79,6 +79,11 @@ export interface Secret {
   active: boolean;
 }
 
+export interface EventUserLogin {
+  ikiUserId: string;
+  email: string;
+}
+
 function createBaseUser(): User {
   return {
     id: "",
@@ -527,6 +532,80 @@ export const Secret = {
     message.secret = object.secret ?? "";
     message.lastUsedAt = object.lastUsedAt ?? 0;
     message.active = object.active ?? false;
+    return message;
+  },
+};
+
+function createBaseEventUserLogin(): EventUserLogin {
+  return { ikiUserId: "", email: "" };
+}
+
+export const EventUserLogin = {
+  encode(message: EventUserLogin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ikiUserId !== "") {
+      writer.uint32(10).string(message.ikiUserId);
+    }
+    if (message.email !== "") {
+      writer.uint32(18).string(message.email);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventUserLogin {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventUserLogin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ikiUserId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.email = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventUserLogin {
+    return {
+      ikiUserId: isSet(object.ikiUserId) ? String(object.ikiUserId) : "",
+      email: isSet(object.email) ? String(object.email) : "",
+    };
+  },
+
+  toJSON(message: EventUserLogin): unknown {
+    const obj: any = {};
+    if (message.ikiUserId !== "") {
+      obj.ikiUserId = message.ikiUserId;
+    }
+    if (message.email !== "") {
+      obj.email = message.email;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EventUserLogin>, I>>(base?: I): EventUserLogin {
+    return EventUserLogin.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EventUserLogin>, I>>(object: I): EventUserLogin {
+    const message = createBaseEventUserLogin();
+    message.ikiUserId = object.ikiUserId ?? "";
+    message.email = object.email ?? "";
     return message;
   },
 };

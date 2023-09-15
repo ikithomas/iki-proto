@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Secret = exports.Service = exports.Group = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.EventUserLogin = exports.Secret = exports.Service = exports.Group = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -460,6 +460,73 @@ exports.Secret = {
         message.secret = (_b = object.secret) !== null && _b !== void 0 ? _b : "";
         message.lastUsedAt = (_c = object.lastUsedAt) !== null && _c !== void 0 ? _c : 0;
         message.active = (_d = object.active) !== null && _d !== void 0 ? _d : false;
+        return message;
+    },
+};
+function createBaseEventUserLogin() {
+    return { ikiUserId: "", email: "" };
+}
+exports.EventUserLogin = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ikiUserId !== "") {
+            writer.uint32(10).string(message.ikiUserId);
+        }
+        if (message.email !== "") {
+            writer.uint32(18).string(message.email);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseEventUserLogin();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ikiUserId = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.email = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            ikiUserId: isSet(object.ikiUserId) ? String(object.ikiUserId) : "",
+            email: isSet(object.email) ? String(object.email) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ikiUserId !== "") {
+            obj.ikiUserId = message.ikiUserId;
+        }
+        if (message.email !== "") {
+            obj.email = message.email;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.EventUserLogin.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseEventUserLogin();
+        message.ikiUserId = (_a = object.ikiUserId) !== null && _a !== void 0 ? _a : "";
+        message.email = (_b = object.email) !== null && _b !== void 0 ? _b : "";
         return message;
     },
 };
