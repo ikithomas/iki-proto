@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "ikipb/iki_blog/blog.proto";
+
+option go_package = "/authorsvc";
+
+package authorsvc;
+
+////////////////////////////////////////////////////////////////////////////////
+// Author Service
+//////
+
+service AuthorSvc {
+  rpc List (ListRequest) returns (ListResponse) {}
+
+  rpc Get (GetRequest) returns (GetResponse) {}
+}
+
+message ListRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListResponse {
+  repeated blog.Author authors = 1;
+  int64 total_count = 2;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  blog.Author author = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// My Author Service
+//////
+
+service MyAuthorSvc {
+  rpc Create (CreateRequest) returns (CreateResponse) {}
+
+  rpc Profile (ProfileRequest) returns (ProfileResponse) {}
+}
+
+message CreateRequest {
+  string display_name = 1;
+}
+
+message CreateResponse {
+  blog.Author author = 1;
+}
+
+message ProfileRequest {
+}
+
+message ProfileResponse {
+  blog.Author author = 1;
+}
