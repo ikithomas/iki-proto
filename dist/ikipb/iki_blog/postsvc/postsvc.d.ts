@@ -190,7 +190,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -207,7 +207,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -221,7 +221,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -239,7 +239,7 @@ export declare const ListResponse: {
             } & { [K in Exclude<keyof I["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_1 in Exclude<keyof I["postMetadata"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -253,7 +253,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -271,7 +271,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -288,7 +288,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -302,7 +302,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -320,7 +320,7 @@ export declare const ListResponse: {
             } & { [K_5 in Exclude<keyof I_1["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_6 in Exclude<keyof I_1["postMetadata"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -334,7 +334,7 @@ export declare const ListResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -374,7 +374,7 @@ export declare const GetResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -391,7 +391,7 @@ export declare const GetResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -409,7 +409,7 @@ export declare const GetResponse: {
             } & { [K in Exclude<keyof I["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_1 in Exclude<keyof I["postMetadata"]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -427,7 +427,7 @@ export declare const GetResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -444,7 +444,7 @@ export declare const GetResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -462,7 +462,7 @@ export declare const GetResponse: {
             } & { [K_4 in Exclude<keyof I_1["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_5 in Exclude<keyof I_1["postMetadata"]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -594,7 +594,7 @@ export declare const GetMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -611,7 +611,7 @@ export declare const GetMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -629,7 +629,7 @@ export declare const GetMyResponse: {
             } & { [K in Exclude<keyof I["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_1 in Exclude<keyof I["postMetadata"]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -647,7 +647,7 @@ export declare const GetMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -664,7 +664,7 @@ export declare const GetMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -682,7 +682,7 @@ export declare const GetMyResponse: {
             } & { [K_4 in Exclude<keyof I_1["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_5 in Exclude<keyof I_1["postMetadata"]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -798,7 +798,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -815,7 +815,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -829,7 +829,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -847,7 +847,7 @@ export declare const ListMyResponse: {
             } & { [K in Exclude<keyof I["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_1 in Exclude<keyof I["postMetadata"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -861,7 +861,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -879,7 +879,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -896,7 +896,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -910,7 +910,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;
@@ -928,7 +928,7 @@ export declare const ListMyResponse: {
             } & { [K_5 in Exclude<keyof I_1["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[] & string[] & { [K_6 in Exclude<keyof I_1["postMetadata"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
@@ -942,7 +942,7 @@ export declare const ListMyResponse: {
             };
             title?: string;
             preface?: string;
-            private?: boolean;
+            published?: boolean;
             tags?: string[];
             category?: string;
             createdAt?: number;

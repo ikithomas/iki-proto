@@ -9,7 +9,7 @@ message PostMetadata {
   Author author = 2;
   string title = 3;
   string preface = 4;
-  bool private = 5;
+  bool published = 5;
   repeated string tags = 6;
   string category = 7;
   int64 created_at = 8;

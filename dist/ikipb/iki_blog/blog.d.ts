@@ -5,7 +5,7 @@ export interface PostMetadata {
     author: Author | undefined;
     title: string;
     preface: string;
-    private: boolean;
+    published: boolean;
     tags: string[];
     category: string;
     createdAt: number;
@@ -30,7 +30,7 @@ export declare const PostMetadata: {
         };
         title?: string;
         preface?: string;
-        private?: boolean;
+        published?: boolean;
         tags?: string[];
         category?: string;
         createdAt?: number;
@@ -48,7 +48,7 @@ export declare const PostMetadata: {
         } & { [K in Exclude<keyof I["author"], keyof Author>]: never; };
         title?: string;
         preface?: string;
-        private?: boolean;
+        published?: boolean;
         tags?: string[] & string[] & { [K_1 in Exclude<keyof I["tags"], keyof string[]>]: never; };
         category?: string;
         createdAt?: number;
@@ -63,7 +63,7 @@ export declare const PostMetadata: {
         };
         title?: string;
         preface?: string;
-        private?: boolean;
+        published?: boolean;
         tags?: string[];
         category?: string;
         createdAt?: number;
@@ -81,7 +81,7 @@ export declare const PostMetadata: {
         } & { [K_3 in Exclude<keyof I_1["author"], keyof Author>]: never; };
         title?: string;
         preface?: string;
-        private?: boolean;
+        published?: boolean;
         tags?: string[] & string[] & { [K_4 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
         category?: string;
         createdAt?: number;

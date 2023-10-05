@@ -14,7 +14,7 @@ function createBasePostMetadata() {
         author: undefined,
         title: "",
         preface: "",
-        private: false,
+        published: false,
         tags: [],
         category: "",
         createdAt: 0,
@@ -35,8 +35,8 @@ exports.PostMetadata = {
         if (message.preface !== "") {
             writer.uint32(34).string(message.preface);
         }
-        if (message.private === true) {
-            writer.uint32(40).bool(message.private);
+        if (message.published === true) {
+            writer.uint32(40).bool(message.published);
         }
         for (const v of message.tags) {
             writer.uint32(50).string(v);
@@ -87,7 +87,7 @@ exports.PostMetadata = {
                     if (tag !== 40) {
                         break;
                     }
-                    message.private = reader.bool();
+                    message.published = reader.bool();
                     continue;
                 case 6:
                     if (tag !== 50) {
@@ -127,7 +127,7 @@ exports.PostMetadata = {
             author: isSet(object.author) ? exports.Author.fromJSON(object.author) : undefined,
             title: isSet(object.title) ? String(object.title) : "",
             preface: isSet(object.preface) ? String(object.preface) : "",
-            private: isSet(object.private) ? Boolean(object.private) : false,
+            published: isSet(object.published) ? Boolean(object.published) : false,
             tags: Array.isArray(object === null || object === void 0 ? void 0 : object.tags) ? object.tags.map((e) => String(e)) : [],
             category: isSet(object.category) ? String(object.category) : "",
             createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
@@ -149,8 +149,8 @@ exports.PostMetadata = {
         if (message.preface !== "") {
             obj.preface = message.preface;
         }
-        if (message.private === true) {
-            obj.private = message.private;
+        if (message.published === true) {
+            obj.published = message.published;
         }
         if ((_a = message.tags) === null || _a === void 0 ? void 0 : _a.length) {
             obj.tags = message.tags;
@@ -178,7 +178,7 @@ exports.PostMetadata = {
             : undefined;
         message.title = (_b = object.title) !== null && _b !== void 0 ? _b : "";
         message.preface = (_c = object.preface) !== null && _c !== void 0 ? _c : "";
-        message.private = (_d = object.private) !== null && _d !== void 0 ? _d : false;
+        message.published = (_d = object.published) !== null && _d !== void 0 ? _d : false;
         message.tags = ((_e = object.tags) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];
         message.category = (_f = object.category) !== null && _f !== void 0 ? _f : "";
         message.createdAt = (_g = object.createdAt) !== null && _g !== void 0 ? _g : 0;

@@ -9,7 +9,7 @@ export interface PostMetadata {
   author: Author | undefined;
   title: string;
   preface: string;
-  private: boolean;
+  published: boolean;
   tags: string[];
   category: string;
   createdAt: number;
@@ -28,7 +28,7 @@ function createBasePostMetadata(): PostMetadata {
     author: undefined,
     title: "",
     preface: "",
-    private: false,
+    published: false,
     tags: [],
     category: "",
     createdAt: 0,
@@ -50,8 +50,8 @@ export const PostMetadata = {
     if (message.preface !== "") {
       writer.uint32(34).string(message.preface);
     }
-    if (message.private === true) {
-      writer.uint32(40).bool(message.private);
+    if (message.published === true) {
+      writer.uint32(40).bool(message.published);
     }
     for (const v of message.tags) {
       writer.uint32(50).string(v!);
@@ -108,7 +108,7 @@ export const PostMetadata = {
             break;
           }
 
-          message.private = reader.bool();
+          message.published = reader.bool();
           continue;
         case 6:
           if (tag !== 50) {
@@ -153,7 +153,7 @@ export const PostMetadata = {
       author: isSet(object.author) ? Author.fromJSON(object.author) : undefined,
       title: isSet(object.title) ? String(object.title) : "",
       preface: isSet(object.preface) ? String(object.preface) : "",
-      private: isSet(object.private) ? Boolean(object.private) : false,
+      published: isSet(object.published) ? Boolean(object.published) : false,
       tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
       category: isSet(object.category) ? String(object.category) : "",
       createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
@@ -175,8 +175,8 @@ export const PostMetadata = {
     if (message.preface !== "") {
       obj.preface = message.preface;
     }
-    if (message.private === true) {
-      obj.private = message.private;
+    if (message.published === true) {
+      obj.published = message.published;
     }
     if (message.tags?.length) {
       obj.tags = message.tags;
@@ -204,7 +204,7 @@ export const PostMetadata = {
       : undefined;
     message.title = object.title ?? "";
     message.preface = object.preface ?? "";
-    message.private = object.private ?? false;
+    message.published = object.published ?? false;
     message.tags = object.tags?.map((e) => e) || [];
     message.category = object.category ?? "";
     message.createdAt = object.createdAt ?? 0;
