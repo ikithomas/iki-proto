@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_blog";
+
+package blog;
+
+message PostMetadata {
+  string id = 1;
+  Author author = 2;
+  string title = 3;
+  string preface = 4;
+  bool private = 5;
+  repeated string tags = 6;
+  string category = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+}
+
+message Author {
+  string id = 1;
+  string iki_user_id = 2;
+  string display_name = 3;
+}

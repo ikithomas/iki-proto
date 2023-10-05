@@ -1,0 +1,125 @@
+import _m0 from "protobufjs/minimal";
+export declare const protobufPackage = "blog";
+export interface PostMetadata {
+    id: string;
+    author: Author | undefined;
+    title: string;
+    preface: string;
+    private: boolean;
+    tags: string[];
+    category: string;
+    createdAt: number;
+    updatedAt: number;
+}
+export interface Author {
+    id: string;
+    ikiUserId: string;
+    displayName: string;
+}
+export declare const PostMetadata: {
+    encode(message: PostMetadata, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PostMetadata;
+    fromJSON(object: any): PostMetadata;
+    toJSON(message: PostMetadata): unknown;
+    create<I extends {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
+        title?: string;
+        preface?: string;
+        private?: boolean;
+        tags?: string[];
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K in Exclude<keyof I["author"], keyof Author>]: never; };
+        title?: string;
+        preface?: string;
+        private?: boolean;
+        tags?: string[] & string[] & { [K_1 in Exclude<keyof I["tags"], keyof string[]>]: never; };
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K_2 in Exclude<keyof I, keyof PostMetadata>]: never; }>(base?: I): PostMetadata;
+    fromPartial<I_1 extends {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
+        title?: string;
+        preface?: string;
+        private?: boolean;
+        tags?: string[];
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K_3 in Exclude<keyof I_1["author"], keyof Author>]: never; };
+        title?: string;
+        preface?: string;
+        private?: boolean;
+        tags?: string[] & string[] & { [K_4 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K_5 in Exclude<keyof I_1, keyof PostMetadata>]: never; }>(object: I_1): PostMetadata;
+};
+export declare const Author: {
+    encode(message: Author, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Author;
+    fromJSON(object: any): Author;
+    toJSON(message: Author): unknown;
+    create<I extends {
+        id?: string;
+        ikiUserId?: string;
+        displayName?: string;
+    } & {
+        id?: string;
+        ikiUserId?: string;
+        displayName?: string;
+    } & { [K in Exclude<keyof I, keyof Author>]: never; }>(base?: I): Author;
+    fromPartial<I_1 extends {
+        id?: string;
+        ikiUserId?: string;
+        displayName?: string;
+    } & {
+        id?: string;
+        ikiUserId?: string;
+        displayName?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof Author>]: never; }>(object: I_1): Author;
+};
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+    [K in keyof T]?: DeepPartial<T[K]>;
+} : Partial<T>;
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P : P & {
+    [K in keyof P]: Exact<P[K], I[K]>;
+} & {
+    [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+};
+export {};

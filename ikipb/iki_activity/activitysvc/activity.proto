@@ -40,7 +40,7 @@ message CalculateMyStatsRequest {}
 message CalculateMyStatsResponse {}
 
 ////////////////////////////////////////////////////////////////////////////////
-// My Activity Service
+// Activity Service
 //////
 
 service ActivitySvc {

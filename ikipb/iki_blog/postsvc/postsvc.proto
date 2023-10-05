@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+import "ikipb/iki_blog/blog.proto";
+
+option go_package = "/postsvc";
+
+package postsvc;
+
+////////////////////////////////////////////////////////////////////////////////
+// Post Service
+//////
+
+service PostSvc {
+  rpc List (ListRequest) returns (ListResponse) {}
+
+  rpc ListByAuthorId (ListByAuthorIdRequest) returns (ListResponse) {}
+
+  rpc ListByCategory (ListByCategoryRequest) returns (ListResponse) {}
+
+  rpc ListByTag (ListByTagRequest) returns (ListResponse) {}
+
+  rpc Get (GetRequest) returns (GetResponse) {}
+}
+
+message ListRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListByAuthorIdRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string author_id = 3;
+}
+
+message ListByCategoryRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string category = 3;
+}
+
+message ListByTagRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string tag = 3;
+}
+
+message ListResponse {
+  repeated blog.PostMetadata post_metadata = 1;
+  int64 total_count = 2;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  blog.PostMetadata post_metadata = 1;
+  string content = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// My Post Service
+//////
+
+service MyPostSvc {
+  rpc Create (CreateMyRequest) returns (CreateMyResponse) {}
+
+  rpc Update (UpdateMyRequest) returns (UpdateMyResponse) {}
+
+  rpc Get (GetMyRequest) returns (GetMyResponse) {}
+
+  rpc Delete (DeleteMyRequest) returns (DeleteMyResponse) {}
+
+  rpc List (ListMyRequest) returns (ListMyResponse) {}
+
+  rpc ListByCategory (ListMyByCategoryRequest) returns (ListMyResponse) {}
+
+  rpc ListByTag (ListMyByTagRequest) returns (ListMyResponse) {}
+}
+
+message CreateMyRequest {
+  string title = 1;
+  string preface = 2;
+  bool published = 3;
+  repeated string tags = 4;
+  string category = 5;
+  string content = 6;
+}
+
+message CreateMyResponse {
+}
+
+message UpdateMyRequest {
+  string id = 1;
+  string title = 2;
+  string preface = 3;
+  bool published = 4;
+  repeated string tags = 5;
+  string category = 6;
+  string content = 7;
+}
+
+message UpdateMyResponse {
+}
+
+message GetMyRequest {
+  string id = 1;
+}
+
+message GetMyResponse {
+  blog.PostMetadata post_metadata = 1;
+  string content = 2;
+}
+
+message DeleteMyRequest {
+  string id = 1;
+}
+
+message DeleteMyResponse {
+}
+
+message ListMyRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListMyByCategoryRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string category = 3;
+}
+
+message ListMyByTagRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string tag = 3;
+}
+
+message ListMyResponse {
+  repeated blog.PostMetadata post_metadata = 1;
+  int64 total_count = 2;
+}
