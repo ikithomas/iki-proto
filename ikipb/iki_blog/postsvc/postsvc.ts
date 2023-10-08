@@ -69,8 +69,6 @@ export interface UpdateMyRequest {
 }
 
 export interface UpdateMyResponse {
-  postMetadata: PostMetadata | undefined;
-  content: string;
 }
 
 export interface GetMyRequest {
@@ -1021,17 +1019,11 @@ export const UpdateMyRequest = {
 };
 
 function createBaseUpdateMyResponse(): UpdateMyResponse {
-  return { postMetadata: undefined, content: "" };
+  return {};
 }
 
 export const UpdateMyResponse = {
-  encode(message: UpdateMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.postMetadata !== undefined) {
-      PostMetadata.encode(message.postMetadata, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.content !== "") {
-      writer.uint32(18).string(message.content);
-    }
+  encode(_: UpdateMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -1042,20 +1034,6 @@ export const UpdateMyResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.postMetadata = PostMetadata.decode(reader, reader.uint32());
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.content = reader.string();
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1065,33 +1043,20 @@ export const UpdateMyResponse = {
     return message;
   },
 
-  fromJSON(object: any): UpdateMyResponse {
-    return {
-      postMetadata: isSet(object.postMetadata) ? PostMetadata.fromJSON(object.postMetadata) : undefined,
-      content: isSet(object.content) ? String(object.content) : "",
-    };
+  fromJSON(_: any): UpdateMyResponse {
+    return {};
   },
 
-  toJSON(message: UpdateMyResponse): unknown {
+  toJSON(_: UpdateMyResponse): unknown {
     const obj: any = {};
-    if (message.postMetadata !== undefined) {
-      obj.postMetadata = PostMetadata.toJSON(message.postMetadata);
-    }
-    if (message.content !== "") {
-      obj.content = message.content;
-    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<UpdateMyResponse>, I>>(base?: I): UpdateMyResponse {
     return UpdateMyResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<UpdateMyResponse>, I>>(object: I): UpdateMyResponse {
+  fromPartial<I extends Exact<DeepPartial<UpdateMyResponse>, I>>(_: I): UpdateMyResponse {
     const message = createBaseUpdateMyResponse();
-    message.postMetadata = (object.postMetadata !== undefined && object.postMetadata !== null)
-      ? PostMetadata.fromPartial(object.postMetadata)
-      : undefined;
-    message.content = object.content ?? "";
     return message;
   },
 };

@@ -54,8 +54,6 @@ export interface UpdateMyRequest {
     content: string;
 }
 export interface UpdateMyResponse {
-    postMetadata: PostMetadata | undefined;
-    content: string;
 }
 export interface GetMyRequest {
     id: string;
@@ -664,116 +662,12 @@ export declare const UpdateMyRequest: {
     } & { [K_3 in Exclude<keyof I_1, keyof UpdateMyRequest>]: never; }>(object: I_1): UpdateMyRequest;
 };
 export declare const UpdateMyResponse: {
-    encode(message: UpdateMyResponse, writer?: _m0.Writer): _m0.Writer;
+    encode(_: UpdateMyResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): UpdateMyResponse;
-    fromJSON(object: any): UpdateMyResponse;
-    toJSON(message: UpdateMyResponse): unknown;
-    create<I extends {
-        postMetadata?: {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[];
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        };
-        content?: string;
-    } & {
-        postMetadata?: {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[];
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            } & {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            } & { [K in Exclude<keyof I["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[] & string[] & { [K_1 in Exclude<keyof I["postMetadata"]["tags"], keyof string[]>]: never; };
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & { [K_2 in Exclude<keyof I["postMetadata"], keyof PostMetadata>]: never; };
-        content?: string;
-    } & { [K_3 in Exclude<keyof I, keyof UpdateMyResponse>]: never; }>(base?: I): UpdateMyResponse;
-    fromPartial<I_1 extends {
-        postMetadata?: {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[];
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        };
-        content?: string;
-    } & {
-        postMetadata?: {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[];
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & {
-            id?: string;
-            author?: {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            } & {
-                id?: string;
-                ikiUserId?: string;
-                displayName?: string;
-            } & { [K_4 in Exclude<keyof I_1["postMetadata"]["author"], keyof import("../blog").Author>]: never; };
-            title?: string;
-            preface?: string;
-            published?: boolean;
-            tags?: string[] & string[] & { [K_5 in Exclude<keyof I_1["postMetadata"]["tags"], keyof string[]>]: never; };
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & { [K_6 in Exclude<keyof I_1["postMetadata"], keyof PostMetadata>]: never; };
-        content?: string;
-    } & { [K_7 in Exclude<keyof I_1, keyof UpdateMyResponse>]: never; }>(object: I_1): UpdateMyResponse;
+    fromJSON(_: any): UpdateMyResponse;
+    toJSON(_: UpdateMyResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): UpdateMyResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): UpdateMyResponse;
 };
 export declare const GetMyRequest: {
     encode(message: GetMyRequest, writer?: _m0.Writer): _m0.Writer;

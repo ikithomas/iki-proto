@@ -843,16 +843,10 @@ exports.UpdateMyRequest = {
     },
 };
 function createBaseUpdateMyResponse() {
-    return { postMetadata: undefined, content: "" };
+    return {};
 }
 exports.UpdateMyResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.postMetadata !== undefined) {
-            blog_1.PostMetadata.encode(message.postMetadata, writer.uint32(10).fork()).ldelim();
-        }
-        if (message.content !== "") {
-            writer.uint32(18).string(message.content);
-        }
+    encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
@@ -862,18 +856,6 @@ exports.UpdateMyResponse = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.postMetadata = blog_1.PostMetadata.decode(reader, reader.uint32());
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.content = reader.string();
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -882,32 +864,18 @@ exports.UpdateMyResponse = {
         }
         return message;
     },
-    fromJSON(object) {
-        return {
-            postMetadata: isSet(object.postMetadata) ? blog_1.PostMetadata.fromJSON(object.postMetadata) : undefined,
-            content: isSet(object.content) ? String(object.content) : "",
-        };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.postMetadata !== undefined) {
-            obj.postMetadata = blog_1.PostMetadata.toJSON(message.postMetadata);
-        }
-        if (message.content !== "") {
-            obj.content = message.content;
-        }
         return obj;
     },
     create(base) {
         return exports.UpdateMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
-    fromPartial(object) {
-        var _a;
+    fromPartial(_) {
         const message = createBaseUpdateMyResponse();
-        message.postMetadata = (object.postMetadata !== undefined && object.postMetadata !== null)
-            ? blog_1.PostMetadata.fromPartial(object.postMetadata)
-            : undefined;
-        message.content = (_a = object.content) !== null && _a !== void 0 ? _a : "";
         return message;
     },
 };

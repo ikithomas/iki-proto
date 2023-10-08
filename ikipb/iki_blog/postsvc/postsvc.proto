@@ -104,8 +104,6 @@ message UpdateMyRequest {
 }
 
 message UpdateMyResponse {
-  blog.PostMetadata post_metadata = 1;
-  string content = 2;
 }
 
 message GetMyRequest {
