@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MyFileSvcClient interface {
-	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
+	Upload(ctx context.Context, in *UploadMyRequest, opts ...grpc.CallOption) (*UploadMyResponse, error)
 }
 
 type myFileSvcClient struct {
@@ -33,8 +33,8 @@ func NewMyFileSvcClient(cc grpc.ClientConnInterface) MyFileSvcClient {
 	return &myFileSvcClient{cc}
 }
 
-func (c *myFileSvcClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
-	out := new(UploadResponse)
+func (c *myFileSvcClient) Upload(ctx context.Context, in *UploadMyRequest, opts ...grpc.CallOption) (*UploadMyResponse, error) {
+	out := new(UploadMyResponse)
 	err := c.cc.Invoke(ctx, "/filesvc.MyFileSvc/Upload", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func (c *myFileSvcClient) Upload(ctx context.Context, in *UploadRequest, opts ..
 // All implementations must embed UnimplementedMyFileSvcServer
 // for forward compatibility
 type MyFileSvcServer interface {
-	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
+	Upload(context.Context, *UploadMyRequest) (*UploadMyResponse, error)
 	mustEmbedUnimplementedMyFileSvcServer()
 }
 
@@ -54,7 +54,7 @@ type MyFileSvcServer interface {
 type UnimplementedMyFileSvcServer struct {
 }
 
-func (UnimplementedMyFileSvcServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
+func (UnimplementedMyFileSvcServer) Upload(context.Context, *UploadMyRequest) (*UploadMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
 func (UnimplementedMyFileSvcServer) mustEmbedUnimplementedMyFileSvcServer() {}
@@ -71,7 +71,7 @@ func RegisterMyFileSvcServer(s grpc.ServiceRegistrar, srv MyFileSvcServer) {
 }
 
 func _MyFileSvc_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadRequest)
+	in := new(UploadMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func _MyFileSvc_Upload_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: "/filesvc.MyFileSvc/Upload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MyFileSvcServer).Upload(ctx, req.(*UploadRequest))
+		return srv.(MyFileSvcServer).Upload(ctx, req.(*UploadMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

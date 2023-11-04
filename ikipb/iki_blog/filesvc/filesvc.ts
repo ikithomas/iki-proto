@@ -5,22 +5,22 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "filesvc";
 
-export interface UploadRequest {
+export interface UploadMyRequest {
   type: string;
   name: string;
   body: Uint8Array;
 }
 
-export interface UploadResponse {
+export interface UploadMyResponse {
   url: string;
 }
 
-function createBaseUploadRequest(): UploadRequest {
+function createBaseUploadMyRequest(): UploadMyRequest {
   return { type: "", name: "", body: new Uint8Array(0) };
 }
 
-export const UploadRequest = {
-  encode(message: UploadRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const UploadMyRequest = {
+  encode(message: UploadMyRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.type !== "") {
       writer.uint32(10).string(message.type);
     }
@@ -33,10 +33,10 @@ export const UploadRequest = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): UploadRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): UploadMyRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUploadRequest();
+    const message = createBaseUploadMyRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -70,7 +70,7 @@ export const UploadRequest = {
     return message;
   },
 
-  fromJSON(object: any): UploadRequest {
+  fromJSON(object: any): UploadMyRequest {
     return {
       type: isSet(object.type) ? String(object.type) : "",
       name: isSet(object.name) ? String(object.name) : "",
@@ -78,7 +78,7 @@ export const UploadRequest = {
     };
   },
 
-  toJSON(message: UploadRequest): unknown {
+  toJSON(message: UploadMyRequest): unknown {
     const obj: any = {};
     if (message.type !== "") {
       obj.type = message.type;
@@ -92,11 +92,11 @@ export const UploadRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UploadRequest>, I>>(base?: I): UploadRequest {
-    return UploadRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<UploadMyRequest>, I>>(base?: I): UploadMyRequest {
+    return UploadMyRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<UploadRequest>, I>>(object: I): UploadRequest {
-    const message = createBaseUploadRequest();
+  fromPartial<I extends Exact<DeepPartial<UploadMyRequest>, I>>(object: I): UploadMyRequest {
+    const message = createBaseUploadMyRequest();
     message.type = object.type ?? "";
     message.name = object.name ?? "";
     message.body = object.body ?? new Uint8Array(0);
@@ -104,22 +104,22 @@ export const UploadRequest = {
   },
 };
 
-function createBaseUploadResponse(): UploadResponse {
+function createBaseUploadMyResponse(): UploadMyResponse {
   return { url: "" };
 }
 
-export const UploadResponse = {
-  encode(message: UploadResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const UploadMyResponse = {
+  encode(message: UploadMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.url !== "") {
       writer.uint32(10).string(message.url);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): UploadResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): UploadMyResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUploadResponse();
+    const message = createBaseUploadMyResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -139,11 +139,11 @@ export const UploadResponse = {
     return message;
   },
 
-  fromJSON(object: any): UploadResponse {
+  fromJSON(object: any): UploadMyResponse {
     return { url: isSet(object.url) ? String(object.url) : "" };
   },
 
-  toJSON(message: UploadResponse): unknown {
+  toJSON(message: UploadMyResponse): unknown {
     const obj: any = {};
     if (message.url !== "") {
       obj.url = message.url;
@@ -151,18 +151,18 @@ export const UploadResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UploadResponse>, I>>(base?: I): UploadResponse {
-    return UploadResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<UploadMyResponse>, I>>(base?: I): UploadMyResponse {
+    return UploadMyResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<UploadResponse>, I>>(object: I): UploadResponse {
-    const message = createBaseUploadResponse();
+  fromPartial<I extends Exact<DeepPartial<UploadMyResponse>, I>>(object: I): UploadMyResponse {
+    const message = createBaseUploadMyResponse();
     message.url = object.url ?? "";
     return message;
   },
 };
 
 export interface MyFileSvc {
-  Upload(request: DeepPartial<UploadRequest>, metadata?: grpc.Metadata): Promise<UploadResponse>;
+  Upload(request: DeepPartial<UploadMyRequest>, metadata?: grpc.Metadata): Promise<UploadMyResponse>;
 }
 
 export class MyFileSvcClientImpl implements MyFileSvc {
@@ -173,8 +173,8 @@ export class MyFileSvcClientImpl implements MyFileSvc {
     this.Upload = this.Upload.bind(this);
   }
 
-  Upload(request: DeepPartial<UploadRequest>, metadata?: grpc.Metadata): Promise<UploadResponse> {
-    return this.rpc.unary(MyFileSvcUploadDesc, UploadRequest.fromPartial(request), metadata);
+  Upload(request: DeepPartial<UploadMyRequest>, metadata?: grpc.Metadata): Promise<UploadMyResponse> {
+    return this.rpc.unary(MyFileSvcUploadDesc, UploadMyRequest.fromPartial(request), metadata);
   }
 }
 
@@ -187,12 +187,12 @@ export const MyFileSvcUploadDesc: UnaryMethodDefinitionish = {
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return UploadRequest.encode(this).finish();
+      return UploadMyRequest.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = UploadResponse.decode(data);
+      const value = UploadMyResponse.decode(data);
       return {
         ...value,
         toObject() {

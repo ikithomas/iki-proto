@@ -5,15 +5,15 @@ option go_package = "/filesvc";
 package filesvc;
 
 service MyFileSvc {
-  rpc Upload (UploadRequest) returns (UploadResponse) {}
+  rpc Upload (UploadMyRequest) returns (UploadMyResponse) {}
 }
 
-message UploadRequest {
+message UploadMyRequest {
   string type = 1;
   string name = 2;
   bytes body = 3;
 }
 
-message UploadResponse {
+message UploadMyResponse {
   string url = 1;
 }

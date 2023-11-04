@@ -3,16 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.MyFileSvcUploadDesc = exports.MyFileSvcDesc = exports.MyFileSvcClientImpl = exports.UploadResponse = exports.UploadRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.MyFileSvcUploadDesc = exports.MyFileSvcDesc = exports.MyFileSvcClientImpl = exports.UploadMyResponse = exports.UploadMyRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "filesvc";
-function createBaseUploadRequest() {
+function createBaseUploadMyRequest() {
     return { type: "", name: "", body: new Uint8Array(0) };
 }
-exports.UploadRequest = {
+exports.UploadMyRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.type !== "") {
             writer.uint32(10).string(message.type);
@@ -28,7 +28,7 @@ exports.UploadRequest = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseUploadRequest();
+        const message = createBaseUploadMyRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -79,21 +79,21 @@ exports.UploadRequest = {
         return obj;
     },
     create(base) {
-        return exports.UploadRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.UploadMyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a, _b, _c;
-        const message = createBaseUploadRequest();
+        const message = createBaseUploadMyRequest();
         message.type = (_a = object.type) !== null && _a !== void 0 ? _a : "";
         message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
         message.body = (_c = object.body) !== null && _c !== void 0 ? _c : new Uint8Array(0);
         return message;
     },
 };
-function createBaseUploadResponse() {
+function createBaseUploadMyResponse() {
     return { url: "" };
 }
-exports.UploadResponse = {
+exports.UploadMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.url !== "") {
             writer.uint32(10).string(message.url);
@@ -103,7 +103,7 @@ exports.UploadResponse = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseUploadResponse();
+        const message = createBaseUploadMyResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -132,11 +132,11 @@ exports.UploadResponse = {
         return obj;
     },
     create(base) {
-        return exports.UploadResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.UploadMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a;
-        const message = createBaseUploadResponse();
+        const message = createBaseUploadMyResponse();
         message.url = (_a = object.url) !== null && _a !== void 0 ? _a : "";
         return message;
     },
@@ -147,7 +147,7 @@ class MyFileSvcClientImpl {
         this.Upload = this.Upload.bind(this);
     }
     Upload(request, metadata) {
-        return this.rpc.unary(exports.MyFileSvcUploadDesc, exports.UploadRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyFileSvcUploadDesc, exports.UploadMyRequest.fromPartial(request), metadata);
     }
 }
 exports.MyFileSvcClientImpl = MyFileSvcClientImpl;
@@ -159,12 +159,12 @@ exports.MyFileSvcUploadDesc = {
     responseStream: false,
     requestType: {
         serializeBinary() {
-            return exports.UploadRequest.encode(this).finish();
+            return exports.UploadMyRequest.encode(this).finish();
         },
     },
     responseType: {
         deserializeBinary(data) {
-            const value = exports.UploadResponse.decode(data);
+            const value = exports.UploadMyResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

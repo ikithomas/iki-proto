@@ -1,19 +1,19 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "filesvc";
-export interface UploadRequest {
+export interface UploadMyRequest {
     type: string;
     name: string;
     body: Uint8Array;
 }
-export interface UploadResponse {
+export interface UploadMyResponse {
     url: string;
 }
-export declare const UploadRequest: {
-    encode(message: UploadRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): UploadRequest;
-    fromJSON(object: any): UploadRequest;
-    toJSON(message: UploadRequest): unknown;
+export declare const UploadMyRequest: {
+    encode(message: UploadMyRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UploadMyRequest;
+    fromJSON(object: any): UploadMyRequest;
+    toJSON(message: UploadMyRequest): unknown;
     create<I extends {
         type?: string;
         name?: string;
@@ -22,7 +22,7 @@ export declare const UploadRequest: {
         type?: string;
         name?: string;
         body?: Uint8Array;
-    } & { [K in Exclude<keyof I, keyof UploadRequest>]: never; }>(base?: I): UploadRequest;
+    } & { [K in Exclude<keyof I, keyof UploadMyRequest>]: never; }>(base?: I): UploadMyRequest;
     fromPartial<I_1 extends {
         type?: string;
         name?: string;
@@ -31,31 +31,31 @@ export declare const UploadRequest: {
         type?: string;
         name?: string;
         body?: Uint8Array;
-    } & { [K_1 in Exclude<keyof I_1, keyof UploadRequest>]: never; }>(object: I_1): UploadRequest;
+    } & { [K_1 in Exclude<keyof I_1, keyof UploadMyRequest>]: never; }>(object: I_1): UploadMyRequest;
 };
-export declare const UploadResponse: {
-    encode(message: UploadResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): UploadResponse;
-    fromJSON(object: any): UploadResponse;
-    toJSON(message: UploadResponse): unknown;
+export declare const UploadMyResponse: {
+    encode(message: UploadMyResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UploadMyResponse;
+    fromJSON(object: any): UploadMyResponse;
+    toJSON(message: UploadMyResponse): unknown;
     create<I extends {
         url?: string;
     } & {
         url?: string;
-    } & { [K in Exclude<keyof I, "url">]: never; }>(base?: I): UploadResponse;
+    } & { [K in Exclude<keyof I, "url">]: never; }>(base?: I): UploadMyResponse;
     fromPartial<I_1 extends {
         url?: string;
     } & {
         url?: string;
-    } & { [K_1 in Exclude<keyof I_1, "url">]: never; }>(object: I_1): UploadResponse;
+    } & { [K_1 in Exclude<keyof I_1, "url">]: never; }>(object: I_1): UploadMyResponse;
 };
 export interface MyFileSvc {
-    Upload(request: DeepPartial<UploadRequest>, metadata?: grpc.Metadata): Promise<UploadResponse>;
+    Upload(request: DeepPartial<UploadMyRequest>, metadata?: grpc.Metadata): Promise<UploadMyResponse>;
 }
 export declare class MyFileSvcClientImpl implements MyFileSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
-    Upload(request: DeepPartial<UploadRequest>, metadata?: grpc.Metadata): Promise<UploadResponse>;
+    Upload(request: DeepPartial<UploadMyRequest>, metadata?: grpc.Metadata): Promise<UploadMyResponse>;
 }
 export declare const MyFileSvcDesc: {
     serviceName: string;
