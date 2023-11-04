@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "/filesvc";
+
+package filesvc;
+
+service MyFileSvc {
+  rpc Upload (UploadRequest) returns (UploadResponse) {}
+}
+
+message UploadRequest {
+  string type = 1;
+  string name = 2;
+  bytes body = 3;
+}
+
+message UploadResponse {
+  string url = 1;
+}
