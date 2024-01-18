@@ -11,10 +11,23 @@ export interface PostMetadata {
     createdAt: number;
     updatedAt: number;
 }
+export interface Series {
+    id: string;
+    author: Author | undefined;
+    title: string;
+    preface: string;
+    category: string;
+    createdAt: number;
+    updatedAt: number;
+}
 export interface Author {
     id: string;
     ikiUserId: string;
     displayName: string;
+}
+export interface Pagination {
+    page: number;
+    pageSize: number;
 }
 export declare const PostMetadata: {
     encode(message: PostMetadata, writer?: _m0.Writer): _m0.Writer;
@@ -88,6 +101,70 @@ export declare const PostMetadata: {
         updatedAt?: number;
     } & { [K_5 in Exclude<keyof I_1, keyof PostMetadata>]: never; }>(object: I_1): PostMetadata;
 };
+export declare const Series: {
+    encode(message: Series, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Series;
+    fromJSON(object: any): Series;
+    toJSON(message: Series): unknown;
+    create<I extends {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K in Exclude<keyof I["author"], keyof Author>]: never; };
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K_1 in Exclude<keyof I, keyof Series>]: never; }>(base?: I): Series;
+    fromPartial<I_1 extends {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & {
+        id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K_2 in Exclude<keyof I_1["author"], keyof Author>]: never; };
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K_3 in Exclude<keyof I_1, keyof Series>]: never; }>(object: I_1): Series;
+};
 export declare const Author: {
     encode(message: Author, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Author;
@@ -111,6 +188,26 @@ export declare const Author: {
         ikiUserId?: string;
         displayName?: string;
     } & { [K_1 in Exclude<keyof I_1, keyof Author>]: never; }>(object: I_1): Author;
+};
+export declare const Pagination: {
+    encode(message: Pagination, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Pagination;
+    fromJSON(object: any): Pagination;
+    toJSON(message: Pagination): unknown;
+    create<I extends {
+        page?: number;
+        pageSize?: number;
+    } & {
+        page?: number;
+        pageSize?: number;
+    } & { [K in Exclude<keyof I, keyof Pagination>]: never; }>(base?: I): Pagination;
+    fromPartial<I_1 extends {
+        page?: number;
+        pageSize?: number;
+    } & {
+        page?: number;
+        pageSize?: number;
+    } & { [K_1 in Exclude<keyof I_1, keyof Pagination>]: never; }>(object: I_1): Pagination;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

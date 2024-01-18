@@ -16,10 +16,25 @@ export interface PostMetadata {
   updatedAt: number;
 }
 
+export interface Series {
+  id: string;
+  author: Author | undefined;
+  title: string;
+  preface: string;
+  category: string;
+  createdAt: number;
+  updatedAt: number;
+}
+
 export interface Author {
   id: string;
   ikiUserId: string;
   displayName: string;
+}
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
 }
 
 function createBasePostMetadata(): PostMetadata {
@@ -213,6 +228,157 @@ export const PostMetadata = {
   },
 };
 
+function createBaseSeries(): Series {
+  return { id: "", author: undefined, title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
+}
+
+export const Series = {
+  encode(message: Series, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.author !== undefined) {
+      Author.encode(message.author, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.title !== "") {
+      writer.uint32(26).string(message.title);
+    }
+    if (message.preface !== "") {
+      writer.uint32(34).string(message.preface);
+    }
+    if (message.category !== "") {
+      writer.uint32(42).string(message.category);
+    }
+    if (message.createdAt !== 0) {
+      writer.uint32(48).int64(message.createdAt);
+    }
+    if (message.updatedAt !== 0) {
+      writer.uint32(56).int64(message.updatedAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Series {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSeries();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.author = Author.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.title = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.preface = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.category = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.createdAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
+          message.updatedAt = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Series {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      author: isSet(object.author) ? Author.fromJSON(object.author) : undefined,
+      title: isSet(object.title) ? String(object.title) : "",
+      preface: isSet(object.preface) ? String(object.preface) : "",
+      category: isSet(object.category) ? String(object.category) : "",
+      createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
+      updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
+    };
+  },
+
+  toJSON(message: Series): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.author !== undefined) {
+      obj.author = Author.toJSON(message.author);
+    }
+    if (message.title !== "") {
+      obj.title = message.title;
+    }
+    if (message.preface !== "") {
+      obj.preface = message.preface;
+    }
+    if (message.category !== "") {
+      obj.category = message.category;
+    }
+    if (message.createdAt !== 0) {
+      obj.createdAt = Math.round(message.createdAt);
+    }
+    if (message.updatedAt !== 0) {
+      obj.updatedAt = Math.round(message.updatedAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Series>, I>>(base?: I): Series {
+    return Series.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Series>, I>>(object: I): Series {
+    const message = createBaseSeries();
+    message.id = object.id ?? "";
+    message.author = (object.author !== undefined && object.author !== null)
+      ? Author.fromPartial(object.author)
+      : undefined;
+    message.title = object.title ?? "";
+    message.preface = object.preface ?? "";
+    message.category = object.category ?? "";
+    message.createdAt = object.createdAt ?? 0;
+    message.updatedAt = object.updatedAt ?? 0;
+    return message;
+  },
+};
+
 function createBaseAuthor(): Author {
   return { id: "", ikiUserId: "", displayName: "" };
 }
@@ -298,6 +464,80 @@ export const Author = {
     message.id = object.id ?? "";
     message.ikiUserId = object.ikiUserId ?? "";
     message.displayName = object.displayName ?? "";
+    return message;
+  },
+};
+
+function createBasePagination(): Pagination {
+  return { page: 0, pageSize: 0 };
+}
+
+export const Pagination = {
+  encode(message: Pagination, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.page !== 0) {
+      writer.uint32(8).int32(message.page);
+    }
+    if (message.pageSize !== 0) {
+      writer.uint32(16).int32(message.pageSize);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Pagination {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePagination();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.page = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.pageSize = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Pagination {
+    return {
+      page: isSet(object.page) ? Number(object.page) : 0,
+      pageSize: isSet(object.pageSize) ? Number(object.pageSize) : 0,
+    };
+  },
+
+  toJSON(message: Pagination): unknown {
+    const obj: any = {};
+    if (message.page !== 0) {
+      obj.page = Math.round(message.page);
+    }
+    if (message.pageSize !== 0) {
+      obj.pageSize = Math.round(message.pageSize);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Pagination>, I>>(base?: I): Pagination {
+    return Pagination.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Pagination>, I>>(object: I): Pagination {
+    const message = createBasePagination();
+    message.page = object.page ?? 0;
+    message.pageSize = object.pageSize ?? 0;
     return message;
   },
 };

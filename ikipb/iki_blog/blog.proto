@@ -16,8 +16,23 @@ message PostMetadata {
   int64 updated_at = 9;
 }
 
+message Series {
+  string id = 1;
+  Author author = 2;
+  string title = 3;
+  string preface = 4;
+  string category = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+}
+
 message Author {
   string id = 1;
   string iki_user_id = 2;
   string display_name = 3;
+}
+
+message Pagination {
+  int32 page = 1;
+  int32 page_size = 2;
 }
