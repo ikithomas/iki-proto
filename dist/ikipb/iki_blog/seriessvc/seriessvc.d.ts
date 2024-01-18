@@ -22,7 +22,7 @@ export interface GetRequest {
 }
 export interface GetResponse {
     series: Series | undefined;
-    post: PostMetadata[];
+    posts: PostMetadata[];
 }
 export interface CreateMyRequest {
     title: string;
@@ -355,7 +355,7 @@ export declare const GetResponse: {
             createdAt?: number;
             updatedAt?: number;
         };
-        post?: {
+        posts?: {
             id?: string;
             author?: {
                 id?: string;
@@ -400,7 +400,7 @@ export declare const GetResponse: {
             createdAt?: number;
             updatedAt?: number;
         } & { [K_1 in Exclude<keyof I["series"], keyof Series>]: never; };
-        post?: {
+        posts?: {
             id?: string;
             author?: {
                 id?: string;
@@ -438,15 +438,15 @@ export declare const GetResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_2 in Exclude<keyof I["post"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_2 in Exclude<keyof I["posts"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             published?: boolean;
-            tags?: string[] & string[] & { [K_3 in Exclude<keyof I["post"][number]["tags"], keyof string[]>]: never; };
+            tags?: string[] & string[] & { [K_3 in Exclude<keyof I["posts"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_4 in Exclude<keyof I["post"][number], keyof PostMetadata>]: never; })[] & { [K_5 in Exclude<keyof I["post"], keyof {
+        } & { [K_4 in Exclude<keyof I["posts"][number], keyof PostMetadata>]: never; })[] & { [K_5 in Exclude<keyof I["posts"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -476,7 +476,7 @@ export declare const GetResponse: {
             createdAt?: number;
             updatedAt?: number;
         };
-        post?: {
+        posts?: {
             id?: string;
             author?: {
                 id?: string;
@@ -521,7 +521,7 @@ export declare const GetResponse: {
             createdAt?: number;
             updatedAt?: number;
         } & { [K_8 in Exclude<keyof I_1["series"], keyof Series>]: never; };
-        post?: {
+        posts?: {
             id?: string;
             author?: {
                 id?: string;
@@ -559,15 +559,15 @@ export declare const GetResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_9 in Exclude<keyof I_1["post"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_9 in Exclude<keyof I_1["posts"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             published?: boolean;
-            tags?: string[] & string[] & { [K_10 in Exclude<keyof I_1["post"][number]["tags"], keyof string[]>]: never; };
+            tags?: string[] & string[] & { [K_10 in Exclude<keyof I_1["posts"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_11 in Exclude<keyof I_1["post"][number], keyof PostMetadata>]: never; })[] & { [K_12 in Exclude<keyof I_1["post"], keyof {
+        } & { [K_11 in Exclude<keyof I_1["posts"][number], keyof PostMetadata>]: never; })[] & { [K_12 in Exclude<keyof I_1["posts"], keyof {
             id?: string;
             author?: {
                 id?: string;

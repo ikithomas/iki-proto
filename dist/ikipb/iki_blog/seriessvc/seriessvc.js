@@ -321,14 +321,14 @@ exports.GetRequest = {
     },
 };
 function createBaseGetResponse() {
-    return { series: undefined, post: [] };
+    return { series: undefined, posts: [] };
 }
 exports.GetResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.series !== undefined) {
             blog_1.Series.encode(message.series, writer.uint32(10).fork()).ldelim();
         }
-        for (const v of message.post) {
+        for (const v of message.posts) {
             blog_1.PostMetadata.encode(v, writer.uint32(18).fork()).ldelim();
         }
         return writer;
@@ -350,7 +350,7 @@ exports.GetResponse = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.post.push(blog_1.PostMetadata.decode(reader, reader.uint32()));
+                    message.posts.push(blog_1.PostMetadata.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -363,7 +363,7 @@ exports.GetResponse = {
     fromJSON(object) {
         return {
             series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined,
-            post: Array.isArray(object === null || object === void 0 ? void 0 : object.post) ? object.post.map((e) => blog_1.PostMetadata.fromJSON(e)) : [],
+            posts: Array.isArray(object === null || object === void 0 ? void 0 : object.posts) ? object.posts.map((e) => blog_1.PostMetadata.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
@@ -372,8 +372,8 @@ exports.GetResponse = {
         if (message.series !== undefined) {
             obj.series = blog_1.Series.toJSON(message.series);
         }
-        if ((_a = message.post) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.post = message.post.map((e) => blog_1.PostMetadata.toJSON(e));
+        if ((_a = message.posts) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.posts = message.posts.map((e) => blog_1.PostMetadata.toJSON(e));
         }
         return obj;
     },
@@ -386,7 +386,7 @@ exports.GetResponse = {
         message.series = (object.series !== undefined && object.series !== null)
             ? blog_1.Series.fromPartial(object.series)
             : undefined;
-        message.post = ((_a = object.post) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
+        message.posts = ((_a = object.posts) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         return message;
     },
 };

@@ -32,7 +32,7 @@ export interface GetRequest {
 
 export interface GetResponse {
   series: Series | undefined;
-  post: PostMetadata[];
+  posts: PostMetadata[];
 }
 
 export interface CreateMyRequest {
@@ -427,7 +427,7 @@ export const GetRequest = {
 };
 
 function createBaseGetResponse(): GetResponse {
-  return { series: undefined, post: [] };
+  return { series: undefined, posts: [] };
 }
 
 export const GetResponse = {
@@ -435,7 +435,7 @@ export const GetResponse = {
     if (message.series !== undefined) {
       Series.encode(message.series, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.post) {
+    for (const v of message.posts) {
       PostMetadata.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     return writer;
@@ -460,7 +460,7 @@ export const GetResponse = {
             break;
           }
 
-          message.post.push(PostMetadata.decode(reader, reader.uint32()));
+          message.posts.push(PostMetadata.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -474,7 +474,7 @@ export const GetResponse = {
   fromJSON(object: any): GetResponse {
     return {
       series: isSet(object.series) ? Series.fromJSON(object.series) : undefined,
-      post: Array.isArray(object?.post) ? object.post.map((e: any) => PostMetadata.fromJSON(e)) : [],
+      posts: Array.isArray(object?.posts) ? object.posts.map((e: any) => PostMetadata.fromJSON(e)) : [],
     };
   },
 
@@ -483,8 +483,8 @@ export const GetResponse = {
     if (message.series !== undefined) {
       obj.series = Series.toJSON(message.series);
     }
-    if (message.post?.length) {
-      obj.post = message.post.map((e) => PostMetadata.toJSON(e));
+    if (message.posts?.length) {
+      obj.posts = message.posts.map((e) => PostMetadata.toJSON(e));
     }
     return obj;
   },
@@ -497,7 +497,7 @@ export const GetResponse = {
     message.series = (object.series !== undefined && object.series !== null)
       ? Series.fromPartial(object.series)
       : undefined;
-    message.post = object.post?.map((e) => PostMetadata.fromPartial(e)) || [];
+    message.posts = object.posts?.map((e) => PostMetadata.fromPartial(e)) || [];
     return message;
   },
 };

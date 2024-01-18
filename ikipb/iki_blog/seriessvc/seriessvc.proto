@@ -44,7 +44,7 @@ message GetRequest {
 
 message GetResponse {
   blog.Series series = 1;
-  repeated blog.PostMetadata post = 2;
+  repeated blog.PostMetadata posts = 2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
