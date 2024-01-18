@@ -90,6 +90,7 @@ message GetMyRequest {
 
 message GetMyResponse {
   blog.Series series = 1;
+  repeated blog.PostMetadata posts = 2;
 }
 
 message DeleteMyRequest {
