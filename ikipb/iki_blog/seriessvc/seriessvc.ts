@@ -5,7 +5,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Pagination, PostMetadata, Series } from "../blog";
 
-export const protobufPackage = "postsvc";
+export const protobufPackage = "seriessvc";
 
 export interface ListRequest {
   pagination: Pagination | undefined;
@@ -1262,7 +1262,7 @@ export class SeriesSvcClientImpl implements SeriesSvc {
   }
 }
 
-export const SeriesSvcDesc = { serviceName: "postsvc.SeriesSvc" };
+export const SeriesSvcDesc = { serviceName: "seriessvc.SeriesSvc" };
 
 export const SeriesSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
@@ -1408,7 +1408,7 @@ export class MySeriesSvcClientImpl implements MySeriesSvc {
   }
 }
 
-export const MySeriesSvcDesc = { serviceName: "postsvc.MySeriesSvc" };
+export const MySeriesSvcDesc = { serviceName: "seriessvc.MySeriesSvc" };
 
 export const MySeriesSvcCreateDesc: UnaryMethodDefinitionish = {
   methodName: "Create",

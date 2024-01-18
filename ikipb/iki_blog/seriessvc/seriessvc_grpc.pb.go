@@ -4,7 +4,7 @@
 // - protoc             v3.20.3
 // source: ikipb/iki_blog/seriessvc/seriessvc.proto
 
-package postsvc
+package seriessvc
 
 import (
 	context "context"
@@ -38,7 +38,7 @@ func NewSeriesSvcClient(cc grpc.ClientConnInterface) SeriesSvcClient {
 
 func (c *seriesSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.SeriesSvc/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *seriesSvcClient) List(ctx context.Context, in *ListRequest, opts ...grp
 
 func (c *seriesSvcClient) ListByAuthorId(ctx context.Context, in *ListByAuthorIdRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.SeriesSvc/ListByAuthorId", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/ListByAuthorId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *seriesSvcClient) ListByAuthorId(ctx context.Context, in *ListByAuthorId
 
 func (c *seriesSvcClient) ListByCategory(ctx context.Context, in *ListByCategoryRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.SeriesSvc/ListByCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/ListByCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *seriesSvcClient) ListByCategory(ctx context.Context, in *ListByCategory
 
 func (c *seriesSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.SeriesSvc/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +122,7 @@ func _SeriesSvc_List_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.SeriesSvc/List",
+		FullMethod: "/seriessvc.SeriesSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SeriesSvcServer).List(ctx, req.(*ListRequest))
@@ -140,7 +140,7 @@ func _SeriesSvc_ListByAuthorId_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.SeriesSvc/ListByAuthorId",
+		FullMethod: "/seriessvc.SeriesSvc/ListByAuthorId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SeriesSvcServer).ListByAuthorId(ctx, req.(*ListByAuthorIdRequest))
@@ -158,7 +158,7 @@ func _SeriesSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.SeriesSvc/ListByCategory",
+		FullMethod: "/seriessvc.SeriesSvc/ListByCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SeriesSvcServer).ListByCategory(ctx, req.(*ListByCategoryRequest))
@@ -176,7 +176,7 @@ func _SeriesSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.SeriesSvc/Get",
+		FullMethod: "/seriessvc.SeriesSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SeriesSvcServer).Get(ctx, req.(*GetRequest))
@@ -188,7 +188,7 @@ func _SeriesSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SeriesSvc_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "postsvc.SeriesSvc",
+	ServiceName: "seriessvc.SeriesSvc",
 	HandlerType: (*SeriesSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -234,7 +234,7 @@ func NewMySeriesSvcClient(cc grpc.ClientConnInterface) MySeriesSvcClient {
 
 func (c *mySeriesSvcClient) Create(ctx context.Context, in *CreateMyRequest, opts ...grpc.CallOption) (*CreateMyResponse, error) {
 	out := new(CreateMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -243,7 +243,7 @@ func (c *mySeriesSvcClient) Create(ctx context.Context, in *CreateMyRequest, opt
 
 func (c *mySeriesSvcClient) Update(ctx context.Context, in *UpdateMyRequest, opts ...grpc.CallOption) (*UpdateMyResponse, error) {
 	out := new(UpdateMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -252,7 +252,7 @@ func (c *mySeriesSvcClient) Update(ctx context.Context, in *UpdateMyRequest, opt
 
 func (c *mySeriesSvcClient) Get(ctx context.Context, in *GetMyRequest, opts ...grpc.CallOption) (*GetMyResponse, error) {
 	out := new(GetMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -261,7 +261,7 @@ func (c *mySeriesSvcClient) Get(ctx context.Context, in *GetMyRequest, opts ...g
 
 func (c *mySeriesSvcClient) Delete(ctx context.Context, in *DeleteMyRequest, opts ...grpc.CallOption) (*DeleteMyResponse, error) {
 	out := new(DeleteMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -270,7 +270,7 @@ func (c *mySeriesSvcClient) Delete(ctx context.Context, in *DeleteMyRequest, opt
 
 func (c *mySeriesSvcClient) List(ctx context.Context, in *ListMyRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
 	out := new(ListMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -279,7 +279,7 @@ func (c *mySeriesSvcClient) List(ctx context.Context, in *ListMyRequest, opts ..
 
 func (c *mySeriesSvcClient) ListByCategory(ctx context.Context, in *ListMyByCategoryRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
 	out := new(ListMyResponse)
-	err := c.cc.Invoke(ctx, "/postsvc.MySeriesSvc/ListByCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/ListByCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -344,7 +344,7 @@ func _MySeriesSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/Create",
+		FullMethod: "/seriessvc.MySeriesSvc/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).Create(ctx, req.(*CreateMyRequest))
@@ -362,7 +362,7 @@ func _MySeriesSvc_Update_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/Update",
+		FullMethod: "/seriessvc.MySeriesSvc/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).Update(ctx, req.(*UpdateMyRequest))
@@ -380,7 +380,7 @@ func _MySeriesSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/Get",
+		FullMethod: "/seriessvc.MySeriesSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).Get(ctx, req.(*GetMyRequest))
@@ -398,7 +398,7 @@ func _MySeriesSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/Delete",
+		FullMethod: "/seriessvc.MySeriesSvc/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).Delete(ctx, req.(*DeleteMyRequest))
@@ -416,7 +416,7 @@ func _MySeriesSvc_List_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/List",
+		FullMethod: "/seriessvc.MySeriesSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).List(ctx, req.(*ListMyRequest))
@@ -434,7 +434,7 @@ func _MySeriesSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/postsvc.MySeriesSvc/ListByCategory",
+		FullMethod: "/seriessvc.MySeriesSvc/ListByCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MySeriesSvcServer).ListByCategory(ctx, req.(*ListMyByCategoryRequest))
@@ -446,7 +446,7 @@ func _MySeriesSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MySeriesSvc_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "postsvc.MySeriesSvc",
+	ServiceName: "seriessvc.MySeriesSvc",
 	HandlerType: (*MySeriesSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

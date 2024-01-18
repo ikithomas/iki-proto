@@ -10,7 +10,7 @@ const browser_headers_1 = require("browser-headers");
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const blog_1 = require("../blog");
-exports.protobufPackage = "postsvc";
+exports.protobufPackage = "seriessvc";
 function createBaseListRequest() {
     return { pagination: undefined };
 }
@@ -1057,7 +1057,7 @@ class SeriesSvcClientImpl {
     }
 }
 exports.SeriesSvcClientImpl = SeriesSvcClientImpl;
-exports.SeriesSvcDesc = { serviceName: "postsvc.SeriesSvc" };
+exports.SeriesSvcDesc = { serviceName: "seriessvc.SeriesSvc" };
 exports.SeriesSvcListDesc = {
     methodName: "List",
     service: exports.SeriesSvcDesc,
@@ -1164,7 +1164,7 @@ class MySeriesSvcClientImpl {
     }
 }
 exports.MySeriesSvcClientImpl = MySeriesSvcClientImpl;
-exports.MySeriesSvcDesc = { serviceName: "postsvc.MySeriesSvc" };
+exports.MySeriesSvcDesc = { serviceName: "seriessvc.MySeriesSvc" };
 exports.MySeriesSvcCreateDesc = {
     methodName: "Create",
     service: exports.MySeriesSvcDesc,

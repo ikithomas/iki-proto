@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "ikipb/iki_blog/blog.proto";
 
-option go_package = "/postsvc";
+option go_package = "/seriessvc";
 
-package postsvc;
+package seriessvc;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Series Service

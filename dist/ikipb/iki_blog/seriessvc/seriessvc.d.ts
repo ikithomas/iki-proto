@@ -1,7 +1,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Pagination, PostMetadata, Series } from "../blog";
-export declare const protobufPackage = "postsvc";
+export declare const protobufPackage = "seriessvc";
 export interface ListRequest {
     pagination: Pagination | undefined;
 }
