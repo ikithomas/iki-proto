@@ -707,12 +707,15 @@ exports.GetMyRequest = {
     },
 };
 function createBaseGetMyResponse() {
-    return { series: undefined };
+    return { series: undefined, posts: [] };
 }
 exports.GetMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.series !== undefined) {
             blog_1.Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.posts) {
+            blog_1.PostMetadata.encode(v, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
@@ -729,6 +732,12 @@ exports.GetMyResponse = {
                     }
                     message.series = blog_1.Series.decode(reader, reader.uint32());
                     continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.posts.push(blog_1.PostMetadata.decode(reader, reader.uint32()));
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -738,12 +747,19 @@ exports.GetMyResponse = {
         return message;
     },
     fromJSON(object) {
-        return { series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined };
+        return {
+            series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined,
+            posts: Array.isArray(object === null || object === void 0 ? void 0 : object.posts) ? object.posts.map((e) => blog_1.PostMetadata.fromJSON(e)) : [],
+        };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
         if (message.series !== undefined) {
             obj.series = blog_1.Series.toJSON(message.series);
+        }
+        if ((_a = message.posts) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.posts = message.posts.map((e) => blog_1.PostMetadata.toJSON(e));
         }
         return obj;
     },
@@ -751,10 +767,12 @@ exports.GetMyResponse = {
         return exports.GetMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
+        var _a;
         const message = createBaseGetMyResponse();
         message.series = (object.series !== undefined && object.series !== null)
             ? blog_1.Series.fromPartial(object.series)
             : undefined;
+        message.posts = ((_a = object.posts) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         return message;
     },
 };

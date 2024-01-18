@@ -45,6 +45,7 @@ export interface GetMyRequest {
 }
 export interface GetMyResponse {
     series: Series | undefined;
+    posts: PostMetadata[];
 }
 export interface DeleteMyRequest {
     id: string;
@@ -775,6 +776,21 @@ export declare const GetMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         };
+        posts?: {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[];
     } & {
         series?: {
             id?: string;
@@ -805,7 +821,68 @@ export declare const GetMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         } & { [K_1 in Exclude<keyof I["series"], keyof Series>]: never; };
-    } & { [K_2 in Exclude<keyof I, "series">]: never; }>(base?: I): GetMyResponse;
+        posts?: {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[] & ({
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            } & {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            } & { [K_2 in Exclude<keyof I["posts"][number]["author"], keyof import("../blog").Author>]: never; };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[] & string[] & { [K_3 in Exclude<keyof I["posts"][number]["tags"], keyof string[]>]: never; };
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_4 in Exclude<keyof I["posts"][number], keyof PostMetadata>]: never; })[] & { [K_5 in Exclude<keyof I["posts"], keyof {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[]>]: never; };
+    } & { [K_6 in Exclude<keyof I, keyof GetMyResponse>]: never; }>(base?: I): GetMyResponse;
     fromPartial<I_1 extends {
         series?: {
             id?: string;
@@ -820,6 +897,21 @@ export declare const GetMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         };
+        posts?: {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[];
     } & {
         series?: {
             id?: string;
@@ -843,14 +935,75 @@ export declare const GetMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_3 in Exclude<keyof I_1["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_7 in Exclude<keyof I_1["series"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_4 in Exclude<keyof I_1["series"], keyof Series>]: never; };
-    } & { [K_5 in Exclude<keyof I_1, "series">]: never; }>(object: I_1): GetMyResponse;
+        } & { [K_8 in Exclude<keyof I_1["series"], keyof Series>]: never; };
+        posts?: {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[] & ({
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            } & {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            } & { [K_9 in Exclude<keyof I_1["posts"][number]["author"], keyof import("../blog").Author>]: never; };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[] & string[] & { [K_10 in Exclude<keyof I_1["posts"][number]["tags"], keyof string[]>]: never; };
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_11 in Exclude<keyof I_1["posts"][number], keyof PostMetadata>]: never; })[] & { [K_12 in Exclude<keyof I_1["posts"], keyof {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            published?: boolean;
+            tags?: string[];
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[]>]: never; };
+    } & { [K_13 in Exclude<keyof I_1, keyof GetMyResponse>]: never; }>(object: I_1): GetMyResponse;
 };
 export declare const DeleteMyRequest: {
     encode(message: DeleteMyRequest, writer?: _m0.Writer): _m0.Writer;
