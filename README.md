@@ -27,7 +27,7 @@ Publish to NPM
 npm link iki-proto
 
 # Login
-npm  adduser
+npm adduser
 
 # Publish
 npm publish

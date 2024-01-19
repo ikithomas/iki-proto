@@ -14,6 +14,7 @@ export interface PostMetadata {
   category: string;
   createdAt: number;
   updatedAt: number;
+  seriesId?: string | undefined;
 }
 
 export interface Series {
@@ -48,6 +49,7 @@ function createBasePostMetadata(): PostMetadata {
     category: "",
     createdAt: 0,
     updatedAt: 0,
+    seriesId: undefined,
   };
 }
 
@@ -79,6 +81,9 @@ export const PostMetadata = {
     }
     if (message.updatedAt !== 0) {
       writer.uint32(72).int64(message.updatedAt);
+    }
+    if (message.seriesId !== undefined) {
+      writer.uint32(82).string(message.seriesId);
     }
     return writer;
   },
@@ -153,6 +158,13 @@ export const PostMetadata = {
 
           message.updatedAt = longToNumber(reader.int64() as Long);
           continue;
+        case 10:
+          if (tag !== 82) {
+            break;
+          }
+
+          message.seriesId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -173,6 +185,7 @@ export const PostMetadata = {
       category: isSet(object.category) ? String(object.category) : "",
       createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
       updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
+      seriesId: isSet(object.seriesId) ? String(object.seriesId) : undefined,
     };
   },
 
@@ -205,6 +218,9 @@ export const PostMetadata = {
     if (message.updatedAt !== 0) {
       obj.updatedAt = Math.round(message.updatedAt);
     }
+    if (message.seriesId !== undefined) {
+      obj.seriesId = message.seriesId;
+    }
     return obj;
   },
 
@@ -224,6 +240,7 @@ export const PostMetadata = {
     message.category = object.category ?? "";
     message.createdAt = object.createdAt ?? 0;
     message.updatedAt = object.updatedAt ?? 0;
+    message.seriesId = object.seriesId ?? undefined;
     return message;
   },
 };

@@ -10,6 +10,7 @@ export interface PostMetadata {
     category: string;
     createdAt: number;
     updatedAt: number;
+    seriesId?: string | undefined;
 }
 export interface Series {
     id: string;
@@ -48,6 +49,7 @@ export declare const PostMetadata: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
+        seriesId?: string | undefined;
     } & {
         id?: string;
         author?: {
@@ -66,6 +68,7 @@ export declare const PostMetadata: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
+        seriesId?: string | undefined;
     } & { [K_2 in Exclude<keyof I, keyof PostMetadata>]: never; }>(base?: I): PostMetadata;
     fromPartial<I_1 extends {
         id?: string;
@@ -81,6 +84,7 @@ export declare const PostMetadata: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
+        seriesId?: string | undefined;
     } & {
         id?: string;
         author?: {
@@ -99,6 +103,7 @@ export declare const PostMetadata: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
+        seriesId?: string | undefined;
     } & { [K_5 in Exclude<keyof I_1, keyof PostMetadata>]: never; }>(object: I_1): PostMetadata;
 };
 export declare const Series: {

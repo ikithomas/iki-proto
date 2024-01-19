@@ -19,6 +19,7 @@ function createBasePostMetadata() {
         category: "",
         createdAt: 0,
         updatedAt: 0,
+        seriesId: undefined,
     };
 }
 exports.PostMetadata = {
@@ -49,6 +50,9 @@ exports.PostMetadata = {
         }
         if (message.updatedAt !== 0) {
             writer.uint32(72).int64(message.updatedAt);
+        }
+        if (message.seriesId !== undefined) {
+            writer.uint32(82).string(message.seriesId);
         }
         return writer;
     },
@@ -113,6 +117,12 @@ exports.PostMetadata = {
                     }
                     message.updatedAt = longToNumber(reader.int64());
                     continue;
+                case 10:
+                    if (tag !== 82) {
+                        break;
+                    }
+                    message.seriesId = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -132,6 +142,7 @@ exports.PostMetadata = {
             category: isSet(object.category) ? String(object.category) : "",
             createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
             updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
+            seriesId: isSet(object.seriesId) ? String(object.seriesId) : undefined,
         };
     },
     toJSON(message) {
@@ -164,13 +175,16 @@ exports.PostMetadata = {
         if (message.updatedAt !== 0) {
             obj.updatedAt = Math.round(message.updatedAt);
         }
+        if (message.seriesId !== undefined) {
+            obj.seriesId = message.seriesId;
+        }
         return obj;
     },
     create(base) {
         return exports.PostMetadata.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const message = createBasePostMetadata();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.author = (object.author !== undefined && object.author !== null)
@@ -183,6 +197,7 @@ exports.PostMetadata = {
         message.category = (_f = object.category) !== null && _f !== void 0 ? _f : "";
         message.createdAt = (_g = object.createdAt) !== null && _g !== void 0 ? _g : 0;
         message.updatedAt = (_h = object.updatedAt) !== null && _h !== void 0 ? _h : 0;
+        message.seriesId = (_j = object.seriesId) !== null && _j !== void 0 ? _j : undefined;
         return message;
     },
 };

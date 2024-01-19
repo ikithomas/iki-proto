@@ -370,6 +370,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[];
     } & {
         series?: {
@@ -415,6 +416,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -429,6 +431,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & {
             id?: string;
             author?: {
@@ -447,6 +450,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & { [K_4 in Exclude<keyof I["posts"][number], keyof PostMetadata>]: never; })[] & { [K_5 in Exclude<keyof I["posts"], keyof {
             id?: string;
             author?: {
@@ -461,6 +465,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[]>]: never; };
     } & { [K_6 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
@@ -491,6 +496,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[];
     } & {
         series?: {
@@ -536,6 +542,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -550,6 +557,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & {
             id?: string;
             author?: {
@@ -568,6 +576,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & { [K_11 in Exclude<keyof I_1["posts"][number], keyof PostMetadata>]: never; })[] & { [K_12 in Exclude<keyof I_1["posts"], keyof {
             id?: string;
             author?: {
@@ -582,6 +591,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[]>]: never; };
     } & { [K_13 in Exclude<keyof I_1, keyof GetResponse>]: never; }>(object: I_1): GetResponse;
 };
@@ -790,6 +800,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[];
     } & {
         series?: {
@@ -835,6 +846,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -849,6 +861,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & {
             id?: string;
             author?: {
@@ -867,6 +880,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & { [K_4 in Exclude<keyof I["posts"][number], keyof PostMetadata>]: never; })[] & { [K_5 in Exclude<keyof I["posts"], keyof {
             id?: string;
             author?: {
@@ -881,6 +895,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[]>]: never; };
     } & { [K_6 in Exclude<keyof I, keyof GetMyResponse>]: never; }>(base?: I): GetMyResponse;
     fromPartial<I_1 extends {
@@ -911,6 +926,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[];
     } & {
         series?: {
@@ -956,6 +972,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -970,6 +987,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & {
             id?: string;
             author?: {
@@ -988,6 +1006,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         } & { [K_11 in Exclude<keyof I_1["posts"][number], keyof PostMetadata>]: never; })[] & { [K_12 in Exclude<keyof I_1["posts"], keyof {
             id?: string;
             author?: {
@@ -1002,6 +1021,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+            seriesId?: string;
         }[]>]: never; };
     } & { [K_13 in Exclude<keyof I_1, keyof GetMyResponse>]: never; }>(object: I_1): GetMyResponse;
 };

@@ -14,6 +14,7 @@ message PostMetadata {
   string category = 7;
   int64 created_at = 8;
   int64 updated_at = 9;
+  optional string series_id = 10;
 }
 
 message Series {
