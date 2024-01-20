@@ -19,7 +19,7 @@ function createBasePostMetadata() {
         category: "",
         createdAt: 0,
         updatedAt: 0,
-        seriesId: undefined,
+        magazineId: undefined,
     };
 }
 exports.PostMetadata = {
@@ -51,8 +51,8 @@ exports.PostMetadata = {
         if (message.updatedAt !== 0) {
             writer.uint32(72).int64(message.updatedAt);
         }
-        if (message.seriesId !== undefined) {
-            writer.uint32(82).string(message.seriesId);
+        if (message.magazineId !== undefined) {
+            writer.uint32(82).string(message.magazineId);
         }
         return writer;
     },
@@ -121,7 +121,7 @@ exports.PostMetadata = {
                     if (tag !== 82) {
                         break;
                     }
-                    message.seriesId = reader.string();
+                    message.magazineId = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -142,7 +142,7 @@ exports.PostMetadata = {
             category: isSet(object.category) ? String(object.category) : "",
             createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
             updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
-            seriesId: isSet(object.seriesId) ? String(object.seriesId) : undefined,
+            magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
         };
     },
     toJSON(message) {
@@ -175,8 +175,8 @@ exports.PostMetadata = {
         if (message.updatedAt !== 0) {
             obj.updatedAt = Math.round(message.updatedAt);
         }
-        if (message.seriesId !== undefined) {
-            obj.seriesId = message.seriesId;
+        if (message.magazineId !== undefined) {
+            obj.magazineId = message.magazineId;
         }
         return obj;
     },
@@ -197,7 +197,7 @@ exports.PostMetadata = {
         message.category = (_f = object.category) !== null && _f !== void 0 ? _f : "";
         message.createdAt = (_g = object.createdAt) !== null && _g !== void 0 ? _g : 0;
         message.updatedAt = (_h = object.updatedAt) !== null && _h !== void 0 ? _h : 0;
-        message.seriesId = (_j = object.seriesId) !== null && _j !== void 0 ? _j : undefined;
+        message.magazineId = (_j = object.magazineId) !== null && _j !== void 0 ? _j : undefined;
         return message;
     },
 };

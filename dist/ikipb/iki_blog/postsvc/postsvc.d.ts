@@ -197,7 +197,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[];
         totalCount?: number;
     } & {
@@ -215,7 +215,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -230,7 +230,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -249,7 +249,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_2 in Exclude<keyof I["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_3 in Exclude<keyof I["postMetadata"], keyof {
             id?: string;
             author?: {
@@ -264,7 +264,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
     } & { [K_4 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
@@ -283,7 +283,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[];
         totalCount?: number;
     } & {
@@ -301,7 +301,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -316,7 +316,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -335,7 +335,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_7 in Exclude<keyof I_1["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_8 in Exclude<keyof I_1["postMetadata"], keyof {
             id?: string;
             author?: {
@@ -350,7 +350,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
     } & { [K_9 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
@@ -391,7 +391,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -409,7 +409,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -428,7 +428,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_2 in Exclude<keyof I["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_3 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I): GetResponse;
@@ -447,7 +447,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -465,7 +465,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -484,7 +484,7 @@ export declare const GetResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_6 in Exclude<keyof I_1["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_7 in Exclude<keyof I_1, keyof GetResponse>]: never; }>(object: I_1): GetResponse;
@@ -545,7 +545,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -563,7 +563,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -582,7 +582,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_2 in Exclude<keyof I["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_3 in Exclude<keyof I, keyof CreateMyResponse>]: never; }>(base?: I): CreateMyResponse;
@@ -601,7 +601,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -619,7 +619,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -638,7 +638,7 @@ export declare const CreateMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_6 in Exclude<keyof I_1["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_7 in Exclude<keyof I_1, keyof CreateMyResponse>]: never; }>(object: I_1): CreateMyResponse;
@@ -727,7 +727,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -745,7 +745,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -764,7 +764,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_2 in Exclude<keyof I["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_3 in Exclude<keyof I, keyof GetMyResponse>]: never; }>(base?: I): GetMyResponse;
@@ -783,7 +783,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         };
         content?: string;
     } & {
@@ -801,7 +801,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -820,7 +820,7 @@ export declare const GetMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_6 in Exclude<keyof I_1["postMetadata"], keyof PostMetadata>]: never; };
         content?: string;
     } & { [K_7 in Exclude<keyof I_1, keyof GetMyResponse>]: never; }>(object: I_1): GetMyResponse;
@@ -937,7 +937,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[];
         totalCount?: number;
     } & {
@@ -955,7 +955,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -970,7 +970,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -989,7 +989,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_2 in Exclude<keyof I["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_3 in Exclude<keyof I["postMetadata"], keyof {
             id?: string;
             author?: {
@@ -1004,7 +1004,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
     } & { [K_4 in Exclude<keyof I, keyof ListMyResponse>]: never; }>(base?: I): ListMyResponse;
@@ -1023,7 +1023,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[];
         totalCount?: number;
     } & {
@@ -1041,7 +1041,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[] & ({
             id?: string;
             author?: {
@@ -1056,7 +1056,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & {
             id?: string;
             author?: {
@@ -1075,7 +1075,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         } & { [K_7 in Exclude<keyof I_1["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_8 in Exclude<keyof I_1["postMetadata"], keyof {
             id?: string;
             author?: {
@@ -1090,7 +1090,7 @@ export declare const ListMyResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-            seriesId?: string;
+            magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
     } & { [K_9 in Exclude<keyof I_1, keyof ListMyResponse>]: never; }>(object: I_1): ListMyResponse;

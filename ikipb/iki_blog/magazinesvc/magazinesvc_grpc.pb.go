@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: ikipb/iki_blog/seriessvc/seriessvc.proto
+// source: ikipb/iki_blog/magazinesvc/magazinesvc.proto
 
 package magazinesvc
 
@@ -209,7 +209,7 @@ var MagazineSvc_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ikipb/iki_blog/seriessvc/seriessvc.proto",
+	Metadata: "ikipb/iki_blog/magazinesvc/magazinesvc.proto",
 }
 
 // MyMagazineSvcClient is the client API for MyMagazineSvc service.
@@ -475,5 +475,5 @@ var MyMagazineSvc_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "ikipb/iki_blog/seriessvc/seriessvc.proto",
+	Metadata: "ikipb/iki_blog/magazinesvc/magazinesvc.proto",
 }

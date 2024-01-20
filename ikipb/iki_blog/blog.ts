@@ -14,7 +14,7 @@ export interface PostMetadata {
   category: string;
   createdAt: number;
   updatedAt: number;
-  seriesId?: string | undefined;
+  magazineId?: string | undefined;
 }
 
 export interface Magazine {
@@ -58,7 +58,7 @@ function createBasePostMetadata(): PostMetadata {
     category: "",
     createdAt: 0,
     updatedAt: 0,
-    seriesId: undefined,
+    magazineId: undefined,
   };
 }
 
@@ -91,8 +91,8 @@ export const PostMetadata = {
     if (message.updatedAt !== 0) {
       writer.uint32(72).int64(message.updatedAt);
     }
-    if (message.seriesId !== undefined) {
-      writer.uint32(82).string(message.seriesId);
+    if (message.magazineId !== undefined) {
+      writer.uint32(82).string(message.magazineId);
     }
     return writer;
   },
@@ -172,7 +172,7 @@ export const PostMetadata = {
             break;
           }
 
-          message.seriesId = reader.string();
+          message.magazineId = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -194,7 +194,7 @@ export const PostMetadata = {
       category: isSet(object.category) ? String(object.category) : "",
       createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
       updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
-      seriesId: isSet(object.seriesId) ? String(object.seriesId) : undefined,
+      magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
     };
   },
 
@@ -227,8 +227,8 @@ export const PostMetadata = {
     if (message.updatedAt !== 0) {
       obj.updatedAt = Math.round(message.updatedAt);
     }
-    if (message.seriesId !== undefined) {
-      obj.seriesId = message.seriesId;
+    if (message.magazineId !== undefined) {
+      obj.magazineId = message.magazineId;
     }
     return obj;
   },
@@ -249,7 +249,7 @@ export const PostMetadata = {
     message.category = object.category ?? "";
     message.createdAt = object.createdAt ?? 0;
     message.updatedAt = object.updatedAt ?? 0;
-    message.seriesId = object.seriesId ?? undefined;
+    message.magazineId = object.magazineId ?? undefined;
     return message;
   },
 };
