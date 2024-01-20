@@ -341,12 +341,27 @@ exports.Series = {
     },
 };
 function createBaseBilly() {
-    return { id: "" };
+    return { id: "", title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
 exports.Billy = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.id !== "") {
             writer.uint32(10).string(message.id);
+        }
+        if (message.title !== "") {
+            writer.uint32(26).string(message.title);
+        }
+        if (message.preface !== "") {
+            writer.uint32(34).string(message.preface);
+        }
+        if (message.category !== "") {
+            writer.uint32(42).string(message.category);
+        }
+        if (message.createdAt !== 0) {
+            writer.uint32(48).int64(message.createdAt);
+        }
+        if (message.updatedAt !== 0) {
+            writer.uint32(56).int64(message.updatedAt);
         }
         return writer;
     },
@@ -363,6 +378,36 @@ exports.Billy = {
                     }
                     message.id = reader.string();
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.title = reader.string();
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.preface = reader.string();
+                    continue;
+                case 5:
+                    if (tag !== 42) {
+                        break;
+                    }
+                    message.category = reader.string();
+                    continue;
+                case 6:
+                    if (tag !== 48) {
+                        break;
+                    }
+                    message.createdAt = longToNumber(reader.int64());
+                    continue;
+                case 7:
+                    if (tag !== 56) {
+                        break;
+                    }
+                    message.updatedAt = longToNumber(reader.int64());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -372,12 +417,34 @@ exports.Billy = {
         return message;
     },
     fromJSON(object) {
-        return { id: isSet(object.id) ? String(object.id) : "" };
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            title: isSet(object.title) ? String(object.title) : "",
+            preface: isSet(object.preface) ? String(object.preface) : "",
+            category: isSet(object.category) ? String(object.category) : "",
+            createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
+            updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
+        };
     },
     toJSON(message) {
         const obj = {};
         if (message.id !== "") {
             obj.id = message.id;
+        }
+        if (message.title !== "") {
+            obj.title = message.title;
+        }
+        if (message.preface !== "") {
+            obj.preface = message.preface;
+        }
+        if (message.category !== "") {
+            obj.category = message.category;
+        }
+        if (message.createdAt !== 0) {
+            obj.createdAt = Math.round(message.createdAt);
+        }
+        if (message.updatedAt !== 0) {
+            obj.updatedAt = Math.round(message.updatedAt);
         }
         return obj;
     },
@@ -385,9 +452,14 @@ exports.Billy = {
         return exports.Billy.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
+        var _a, _b, _c, _d, _e, _f;
         const message = createBaseBilly();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.title = (_b = object.title) !== null && _b !== void 0 ? _b : "";
+        message.preface = (_c = object.preface) !== null && _c !== void 0 ? _c : "";
+        message.category = (_d = object.category) !== null && _d !== void 0 ? _d : "";
+        message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
+        message.updatedAt = (_f = object.updatedAt) !== null && _f !== void 0 ? _f : 0;
         return message;
     },
 };

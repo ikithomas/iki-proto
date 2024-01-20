@@ -196,6 +196,11 @@ export declare const ListResponse: {
         }[];
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         };
         totalCount?: number;
     } & {
@@ -254,9 +259,19 @@ export declare const ListResponse: {
         }[]>]: never; };
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
-        } & { [K_3 in Exclude<keyof I["billy"], "id">]: never; };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_3 in Exclude<keyof I["billy"], keyof Billy>]: never; };
         totalCount?: number;
     } & { [K_4 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
@@ -275,6 +290,11 @@ export declare const ListResponse: {
         }[];
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         };
         totalCount?: number;
     } & {
@@ -333,9 +353,19 @@ export declare const ListResponse: {
         }[]>]: never; };
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
-        } & { [K_8 in Exclude<keyof I_1["billy"], "id">]: never; };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_8 in Exclude<keyof I_1["billy"], keyof Billy>]: never; };
         totalCount?: number;
     } & { [K_9 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
 };
@@ -1160,6 +1190,11 @@ export declare const ListMyResponse: {
         }[];
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         };
         totalCount?: number;
     } & {
@@ -1218,9 +1253,19 @@ export declare const ListMyResponse: {
         }[]>]: never; };
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
-        } & { [K_3 in Exclude<keyof I["billy"], "id">]: never; };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_3 in Exclude<keyof I["billy"], keyof Billy>]: never; };
         totalCount?: number;
     } & { [K_4 in Exclude<keyof I, keyof ListMyResponse>]: never; }>(base?: I): ListMyResponse;
     fromPartial<I_1 extends {
@@ -1239,6 +1284,11 @@ export declare const ListMyResponse: {
         }[];
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         };
         totalCount?: number;
     } & {
@@ -1297,9 +1347,19 @@ export declare const ListMyResponse: {
         }[]>]: never; };
         billy?: {
             id?: string;
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
-        } & { [K_8 in Exclude<keyof I_1["billy"], "id">]: never; };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        } & { [K_8 in Exclude<keyof I_1["billy"], keyof Billy>]: never; };
         totalCount?: number;
     } & { [K_9 in Exclude<keyof I_1, keyof ListMyResponse>]: never; }>(object: I_1): ListMyResponse;
 };

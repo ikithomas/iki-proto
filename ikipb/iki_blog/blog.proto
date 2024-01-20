@@ -29,6 +29,11 @@ message Series {
 
 message Billy {
   string id = 1;
+  string title = 3;
+  string preface = 4;
+  string category = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
 }
 
 message Author {

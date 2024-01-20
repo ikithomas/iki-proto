@@ -23,6 +23,11 @@ export interface Series {
 }
 export interface Billy {
     id: string;
+    title: string;
+    preface: string;
+    category: string;
+    createdAt: number;
+    updatedAt: number;
 }
 export interface Author {
     id: string;
@@ -180,14 +185,34 @@ export declare const Billy: {
     toJSON(message: Billy): unknown;
     create<I extends {
         id?: string;
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
     } & {
         id?: string;
-    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): Billy;
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K in Exclude<keyof I, keyof Billy>]: never; }>(base?: I): Billy;
     fromPartial<I_1 extends {
         id?: string;
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
     } & {
         id?: string;
-    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): Billy;
+        title?: string;
+        preface?: string;
+        category?: string;
+        createdAt?: number;
+        updatedAt?: number;
+    } & { [K_1 in Exclude<keyof I_1, keyof Billy>]: never; }>(object: I_1): Billy;
 };
 export declare const Author: {
     encode(message: Author, writer?: _m0.Writer): _m0.Writer;

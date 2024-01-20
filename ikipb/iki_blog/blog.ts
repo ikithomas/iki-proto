@@ -29,6 +29,11 @@ export interface Series {
 
 export interface Billy {
   id: string;
+  title: string;
+  preface: string;
+  category: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface Author {
@@ -401,13 +406,28 @@ export const Series = {
 };
 
 function createBaseBilly(): Billy {
-  return { id: "" };
+  return { id: "", title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
 
 export const Billy = {
   encode(message: Billy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
+    }
+    if (message.title !== "") {
+      writer.uint32(26).string(message.title);
+    }
+    if (message.preface !== "") {
+      writer.uint32(34).string(message.preface);
+    }
+    if (message.category !== "") {
+      writer.uint32(42).string(message.category);
+    }
+    if (message.createdAt !== 0) {
+      writer.uint32(48).int64(message.createdAt);
+    }
+    if (message.updatedAt !== 0) {
+      writer.uint32(56).int64(message.updatedAt);
     }
     return writer;
   },
@@ -426,6 +446,41 @@ export const Billy = {
 
           message.id = reader.string();
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.title = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.preface = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.category = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.createdAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
+          message.updatedAt = longToNumber(reader.int64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -436,13 +491,35 @@ export const Billy = {
   },
 
   fromJSON(object: any): Billy {
-    return { id: isSet(object.id) ? String(object.id) : "" };
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      title: isSet(object.title) ? String(object.title) : "",
+      preface: isSet(object.preface) ? String(object.preface) : "",
+      category: isSet(object.category) ? String(object.category) : "",
+      createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
+      updatedAt: isSet(object.updatedAt) ? Number(object.updatedAt) : 0,
+    };
   },
 
   toJSON(message: Billy): unknown {
     const obj: any = {};
     if (message.id !== "") {
       obj.id = message.id;
+    }
+    if (message.title !== "") {
+      obj.title = message.title;
+    }
+    if (message.preface !== "") {
+      obj.preface = message.preface;
+    }
+    if (message.category !== "") {
+      obj.category = message.category;
+    }
+    if (message.createdAt !== 0) {
+      obj.createdAt = Math.round(message.createdAt);
+    }
+    if (message.updatedAt !== 0) {
+      obj.updatedAt = Math.round(message.updatedAt);
     }
     return obj;
   },
@@ -453,6 +530,11 @@ export const Billy = {
   fromPartial<I extends Exact<DeepPartial<Billy>, I>>(object: I): Billy {
     const message = createBaseBilly();
     message.id = object.id ?? "";
+    message.title = object.title ?? "";
+    message.preface = object.preface ?? "";
+    message.category = object.category ?? "";
+    message.createdAt = object.createdAt ?? 0;
+    message.updatedAt = object.updatedAt ?? 0;
     return message;
   },
 };
