@@ -1000,12 +1000,15 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { series: [], totalCount: 0 };
+    return { series: [], billy: undefined, totalCount: 0 };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         for (const v of message.series) {
             blog_1.Series.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.billy !== undefined) {
+            blog_1.Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
         }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
@@ -1025,6 +1028,12 @@ exports.ListMyResponse = {
                     }
                     message.series.push(blog_1.Series.decode(reader, reader.uint32()));
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.billy = blog_1.Billy.decode(reader, reader.uint32());
+                    continue;
                 case 2:
                     if (tag !== 16) {
                         break;
@@ -1042,6 +1051,7 @@ exports.ListMyResponse = {
     fromJSON(object) {
         return {
             series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
+            billy: isSet(object.billy) ? blog_1.Billy.fromJSON(object.billy) : undefined,
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
@@ -1050,6 +1060,9 @@ exports.ListMyResponse = {
         const obj = {};
         if ((_a = message.series) === null || _a === void 0 ? void 0 : _a.length) {
             obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
+        }
+        if (message.billy !== undefined) {
+            obj.billy = blog_1.Billy.toJSON(message.billy);
         }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
@@ -1063,6 +1076,7 @@ exports.ListMyResponse = {
         var _a, _b;
         const message = createBaseListMyResponse();
         message.series = ((_a = object.series) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Series.fromPartial(e))) || [];
+        message.billy = (object.billy !== undefined && object.billy !== null) ? blog_1.Billy.fromPartial(object.billy) : undefined;
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
     },

@@ -113,6 +113,8 @@ message ListMyByCategoryRequest {
 
 message ListMyResponse {
   repeated blog.Series series = 1;
+  
+  blog.Billy billy = 3;
 
   int64 total_count = 2;
 }
