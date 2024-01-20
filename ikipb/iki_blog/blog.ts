@@ -17,7 +17,7 @@ export interface PostMetadata {
   seriesId?: string | undefined;
 }
 
-export interface Series {
+export interface Magazine {
   id: string;
   author: Author | undefined;
   title: string;
@@ -254,12 +254,12 @@ export const PostMetadata = {
   },
 };
 
-function createBaseSeries(): Series {
+function createBaseMagazine(): Magazine {
   return { id: "", author: undefined, title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
 
-export const Series = {
-  encode(message: Series, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const Magazine = {
+  encode(message: Magazine, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -284,10 +284,10 @@ export const Series = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Series {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Magazine {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSeries();
+    const message = createBaseMagazine();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -349,7 +349,7 @@ export const Series = {
     return message;
   },
 
-  fromJSON(object: any): Series {
+  fromJSON(object: any): Magazine {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       author: isSet(object.author) ? Author.fromJSON(object.author) : undefined,
@@ -361,7 +361,7 @@ export const Series = {
     };
   },
 
-  toJSON(message: Series): unknown {
+  toJSON(message: Magazine): unknown {
     const obj: any = {};
     if (message.id !== "") {
       obj.id = message.id;
@@ -387,11 +387,11 @@ export const Series = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Series>, I>>(base?: I): Series {
-    return Series.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Magazine>, I>>(base?: I): Magazine {
+    return Magazine.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Series>, I>>(object: I): Series {
-    const message = createBaseSeries();
+  fromPartial<I extends Exact<DeepPartial<Magazine>, I>>(object: I): Magazine {
+    const message = createBaseMagazine();
     message.id = object.id ?? "";
     message.author = (object.author !== undefined && object.author !== null)
       ? Author.fromPartial(object.author)

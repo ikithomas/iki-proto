@@ -3,9 +3,9 @@ import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Billy, Pagination, PostMetadata, Series } from "../blog";
+import { Billy, Magazine, Pagination, PostMetadata } from "../blog";
 
-export const protobufPackage = "seriessvc";
+export const protobufPackage = "magazinesvc";
 
 export interface ListRequest {
   pagination: Pagination | undefined;
@@ -22,7 +22,7 @@ export interface ListByCategoryRequest {
 }
 
 export interface ListResponse {
-  series: Series[];
+  magazines: Magazine[];
   billy: Billy | undefined;
   totalCount: number;
 }
@@ -32,7 +32,7 @@ export interface GetRequest {
 }
 
 export interface GetResponse {
-  series: Series | undefined;
+  magazine: Magazine | undefined;
   posts: PostMetadata[];
 }
 
@@ -43,7 +43,7 @@ export interface CreateMyRequest {
 }
 
 export interface CreateMyResponse {
-  series: Series | undefined;
+  magazine: Magazine | undefined;
 }
 
 export interface UpdateMyRequest {
@@ -61,7 +61,7 @@ export interface GetMyRequest {
 }
 
 export interface GetMyResponse {
-  series: Series | undefined;
+  magazine: Magazine | undefined;
   posts: PostMetadata[];
 }
 
@@ -82,8 +82,7 @@ export interface ListMyByCategoryRequest {
 }
 
 export interface ListMyResponse {
-  series: Series[];
-  billy: Billy | undefined;
+  magazines: Magazine[];
   totalCount: number;
 }
 
@@ -299,13 +298,13 @@ export const ListByCategoryRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { series: [], billy: undefined, totalCount: 0 };
+  return { magazines: [], billy: undefined, totalCount: 0 };
 }
 
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.series) {
-      Series.encode(v!, writer.uint32(10).fork()).ldelim();
+    for (const v of message.magazines) {
+      Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.billy !== undefined) {
       Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
@@ -328,7 +327,7 @@ export const ListResponse = {
             break;
           }
 
-          message.series.push(Series.decode(reader, reader.uint32()));
+          message.magazines.push(Magazine.decode(reader, reader.uint32()));
           continue;
         case 3:
           if (tag !== 26) {
@@ -355,7 +354,7 @@ export const ListResponse = {
 
   fromJSON(object: any): ListResponse {
     return {
-      series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
+      magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
@@ -363,8 +362,8 @@ export const ListResponse = {
 
   toJSON(message: ListResponse): unknown {
     const obj: any = {};
-    if (message.series?.length) {
-      obj.series = message.series.map((e) => Series.toJSON(e));
+    if (message.magazines?.length) {
+      obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
     }
     if (message.billy !== undefined) {
       obj.billy = Billy.toJSON(message.billy);
@@ -380,7 +379,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
+    message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
     message.totalCount = object.totalCount ?? 0;
     return message;
@@ -445,13 +444,13 @@ export const GetRequest = {
 };
 
 function createBaseGetResponse(): GetResponse {
-  return { series: undefined, posts: [] };
+  return { magazine: undefined, posts: [] };
 }
 
 export const GetResponse = {
   encode(message: GetResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.series !== undefined) {
-      Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+    if (message.magazine !== undefined) {
+      Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
     }
     for (const v of message.posts) {
       PostMetadata.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -471,7 +470,7 @@ export const GetResponse = {
             break;
           }
 
-          message.series = Series.decode(reader, reader.uint32());
+          message.magazine = Magazine.decode(reader, reader.uint32());
           continue;
         case 2:
           if (tag !== 18) {
@@ -491,15 +490,15 @@ export const GetResponse = {
 
   fromJSON(object: any): GetResponse {
     return {
-      series: isSet(object.series) ? Series.fromJSON(object.series) : undefined,
+      magazine: isSet(object.magazine) ? Magazine.fromJSON(object.magazine) : undefined,
       posts: Array.isArray(object?.posts) ? object.posts.map((e: any) => PostMetadata.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: GetResponse): unknown {
     const obj: any = {};
-    if (message.series !== undefined) {
-      obj.series = Series.toJSON(message.series);
+    if (message.magazine !== undefined) {
+      obj.magazine = Magazine.toJSON(message.magazine);
     }
     if (message.posts?.length) {
       obj.posts = message.posts.map((e) => PostMetadata.toJSON(e));
@@ -512,8 +511,8 @@ export const GetResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetResponse>, I>>(object: I): GetResponse {
     const message = createBaseGetResponse();
-    message.series = (object.series !== undefined && object.series !== null)
-      ? Series.fromPartial(object.series)
+    message.magazine = (object.magazine !== undefined && object.magazine !== null)
+      ? Magazine.fromPartial(object.magazine)
       : undefined;
     message.posts = object.posts?.map((e) => PostMetadata.fromPartial(e)) || [];
     return message;
@@ -610,13 +609,13 @@ export const CreateMyRequest = {
 };
 
 function createBaseCreateMyResponse(): CreateMyResponse {
-  return { series: undefined };
+  return { magazine: undefined };
 }
 
 export const CreateMyResponse = {
   encode(message: CreateMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.series !== undefined) {
-      Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+    if (message.magazine !== undefined) {
+      Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -633,7 +632,7 @@ export const CreateMyResponse = {
             break;
           }
 
-          message.series = Series.decode(reader, reader.uint32());
+          message.magazine = Magazine.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -645,13 +644,13 @@ export const CreateMyResponse = {
   },
 
   fromJSON(object: any): CreateMyResponse {
-    return { series: isSet(object.series) ? Series.fromJSON(object.series) : undefined };
+    return { magazine: isSet(object.magazine) ? Magazine.fromJSON(object.magazine) : undefined };
   },
 
   toJSON(message: CreateMyResponse): unknown {
     const obj: any = {};
-    if (message.series !== undefined) {
-      obj.series = Series.toJSON(message.series);
+    if (message.magazine !== undefined) {
+      obj.magazine = Magazine.toJSON(message.magazine);
     }
     return obj;
   },
@@ -661,8 +660,8 @@ export const CreateMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<CreateMyResponse>, I>>(object: I): CreateMyResponse {
     const message = createBaseCreateMyResponse();
-    message.series = (object.series !== undefined && object.series !== null)
-      ? Series.fromPartial(object.series)
+    message.magazine = (object.magazine !== undefined && object.magazine !== null)
+      ? Magazine.fromPartial(object.magazine)
       : undefined;
     return message;
   },
@@ -873,13 +872,13 @@ export const GetMyRequest = {
 };
 
 function createBaseGetMyResponse(): GetMyResponse {
-  return { series: undefined, posts: [] };
+  return { magazine: undefined, posts: [] };
 }
 
 export const GetMyResponse = {
   encode(message: GetMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.series !== undefined) {
-      Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+    if (message.magazine !== undefined) {
+      Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
     }
     for (const v of message.posts) {
       PostMetadata.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -899,7 +898,7 @@ export const GetMyResponse = {
             break;
           }
 
-          message.series = Series.decode(reader, reader.uint32());
+          message.magazine = Magazine.decode(reader, reader.uint32());
           continue;
         case 2:
           if (tag !== 18) {
@@ -919,15 +918,15 @@ export const GetMyResponse = {
 
   fromJSON(object: any): GetMyResponse {
     return {
-      series: isSet(object.series) ? Series.fromJSON(object.series) : undefined,
+      magazine: isSet(object.magazine) ? Magazine.fromJSON(object.magazine) : undefined,
       posts: Array.isArray(object?.posts) ? object.posts.map((e: any) => PostMetadata.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: GetMyResponse): unknown {
     const obj: any = {};
-    if (message.series !== undefined) {
-      obj.series = Series.toJSON(message.series);
+    if (message.magazine !== undefined) {
+      obj.magazine = Magazine.toJSON(message.magazine);
     }
     if (message.posts?.length) {
       obj.posts = message.posts.map((e) => PostMetadata.toJSON(e));
@@ -940,8 +939,8 @@ export const GetMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetMyResponse>, I>>(object: I): GetMyResponse {
     const message = createBaseGetMyResponse();
-    message.series = (object.series !== undefined && object.series !== null)
-      ? Series.fromPartial(object.series)
+    message.magazine = (object.magazine !== undefined && object.magazine !== null)
+      ? Magazine.fromPartial(object.magazine)
       : undefined;
     message.posts = object.posts?.map((e) => PostMetadata.fromPartial(e)) || [];
     return message;
@@ -1184,16 +1183,13 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { series: [], billy: undefined, totalCount: 0 };
+  return { magazines: [], totalCount: 0 };
 }
 
 export const ListMyResponse = {
   encode(message: ListMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.series) {
-      Series.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.billy !== undefined) {
-      Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+    for (const v of message.magazines) {
+      Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
@@ -1213,14 +1209,7 @@ export const ListMyResponse = {
             break;
           }
 
-          message.series.push(Series.decode(reader, reader.uint32()));
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.billy = Billy.decode(reader, reader.uint32());
+          message.magazines.push(Magazine.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 16) {
@@ -1240,19 +1229,15 @@ export const ListMyResponse = {
 
   fromJSON(object: any): ListMyResponse {
     return {
-      series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
-      billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
+      magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
 
   toJSON(message: ListMyResponse): unknown {
     const obj: any = {};
-    if (message.series?.length) {
-      obj.series = message.series.map((e) => Series.toJSON(e));
-    }
-    if (message.billy !== undefined) {
-      obj.billy = Billy.toJSON(message.billy);
+    if (message.magazines?.length) {
+      obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
     }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
@@ -1265,8 +1250,7 @@ export const ListMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListMyResponse>, I>>(object: I): ListMyResponse {
     const message = createBaseListMyResponse();
-    message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
-    message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
+    message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     return message;
   },
@@ -1274,17 +1258,17 @@ export const ListMyResponse = {
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
- * Series Service
+ * Magazine Service
  * ////
  */
-export interface SeriesSvc {
+export interface MagazineSvc {
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
 
-export class SeriesSvcClientImpl implements SeriesSvc {
+export class MagazineSvcClientImpl implements MagazineSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -1296,27 +1280,27 @@ export class SeriesSvcClientImpl implements SeriesSvc {
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(SeriesSvcListDesc, ListRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MagazineSvcListDesc, ListRequest.fromPartial(request), metadata);
   }
 
   ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(SeriesSvcListByAuthorIdDesc, ListByAuthorIdRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MagazineSvcListByAuthorIdDesc, ListByAuthorIdRequest.fromPartial(request), metadata);
   }
 
   ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
-    return this.rpc.unary(SeriesSvcListByCategoryDesc, ListByCategoryRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MagazineSvcListByCategoryDesc, ListByCategoryRequest.fromPartial(request), metadata);
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
-    return this.rpc.unary(SeriesSvcGetDesc, GetRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MagazineSvcGetDesc, GetRequest.fromPartial(request), metadata);
   }
 }
 
-export const SeriesSvcDesc = { serviceName: "seriessvc.SeriesSvc" };
+export const MagazineSvcDesc = { serviceName: "magazinesvc.MagazineSvc" };
 
-export const SeriesSvcListDesc: UnaryMethodDefinitionish = {
+export const MagazineSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: SeriesSvcDesc,
+  service: MagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1337,9 +1321,9 @@ export const SeriesSvcListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const SeriesSvcListByAuthorIdDesc: UnaryMethodDefinitionish = {
+export const MagazineSvcListByAuthorIdDesc: UnaryMethodDefinitionish = {
   methodName: "ListByAuthorId",
-  service: SeriesSvcDesc,
+  service: MagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1360,9 +1344,9 @@ export const SeriesSvcListByAuthorIdDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const SeriesSvcListByCategoryDesc: UnaryMethodDefinitionish = {
+export const MagazineSvcListByCategoryDesc: UnaryMethodDefinitionish = {
   methodName: "ListByCategory",
-  service: SeriesSvcDesc,
+  service: MagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1383,9 +1367,9 @@ export const SeriesSvcListByCategoryDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const SeriesSvcGetDesc: UnaryMethodDefinitionish = {
+export const MagazineSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: SeriesSvcDesc,
+  service: MagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1408,10 +1392,10 @@ export const SeriesSvcGetDesc: UnaryMethodDefinitionish = {
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
- * MySeries Service
+ * MyMagazine Service
  * ////
  */
-export interface MySeriesSvc {
+export interface MyMagazineSvc {
   Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse>;
   Update(request: DeepPartial<UpdateMyRequest>, metadata?: grpc.Metadata): Promise<UpdateMyResponse>;
   Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse>;
@@ -1420,7 +1404,7 @@ export interface MySeriesSvc {
   ListByCategory(request: DeepPartial<ListMyByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse>;
 }
 
-export class MySeriesSvcClientImpl implements MySeriesSvc {
+export class MyMagazineSvcClientImpl implements MyMagazineSvc {
   private readonly rpc: Rpc;
 
   constructor(rpc: Rpc) {
@@ -1434,35 +1418,35 @@ export class MySeriesSvcClientImpl implements MySeriesSvc {
   }
 
   Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse> {
-    return this.rpc.unary(MySeriesSvcCreateDesc, CreateMyRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcCreateDesc, CreateMyRequest.fromPartial(request), metadata);
   }
 
   Update(request: DeepPartial<UpdateMyRequest>, metadata?: grpc.Metadata): Promise<UpdateMyResponse> {
-    return this.rpc.unary(MySeriesSvcUpdateDesc, UpdateMyRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcUpdateDesc, UpdateMyRequest.fromPartial(request), metadata);
   }
 
   Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse> {
-    return this.rpc.unary(MySeriesSvcGetDesc, GetMyRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcGetDesc, GetMyRequest.fromPartial(request), metadata);
   }
 
   Delete(request: DeepPartial<DeleteMyRequest>, metadata?: grpc.Metadata): Promise<DeleteMyResponse> {
-    return this.rpc.unary(MySeriesSvcDeleteDesc, DeleteMyRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcDeleteDesc, DeleteMyRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListMyRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse> {
-    return this.rpc.unary(MySeriesSvcListDesc, ListMyRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcListDesc, ListMyRequest.fromPartial(request), metadata);
   }
 
   ListByCategory(request: DeepPartial<ListMyByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse> {
-    return this.rpc.unary(MySeriesSvcListByCategoryDesc, ListMyByCategoryRequest.fromPartial(request), metadata);
+    return this.rpc.unary(MyMagazineSvcListByCategoryDesc, ListMyByCategoryRequest.fromPartial(request), metadata);
   }
 }
 
-export const MySeriesSvcDesc = { serviceName: "seriessvc.MySeriesSvc" };
+export const MyMagazineSvcDesc = { serviceName: "magazinesvc.MyMagazineSvc" };
 
-export const MySeriesSvcCreateDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcCreateDesc: UnaryMethodDefinitionish = {
   methodName: "Create",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1483,9 +1467,9 @@ export const MySeriesSvcCreateDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MySeriesSvcUpdateDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcUpdateDesc: UnaryMethodDefinitionish = {
   methodName: "Update",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1506,9 +1490,9 @@ export const MySeriesSvcUpdateDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MySeriesSvcGetDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1529,9 +1513,9 @@ export const MySeriesSvcGetDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MySeriesSvcDeleteDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcDeleteDesc: UnaryMethodDefinitionish = {
   methodName: "Delete",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1552,9 +1536,9 @@ export const MySeriesSvcDeleteDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MySeriesSvcListDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcListDesc: UnaryMethodDefinitionish = {
   methodName: "List",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
@@ -1575,9 +1559,9 @@ export const MySeriesSvcListDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MySeriesSvcListByCategoryDesc: UnaryMethodDefinitionish = {
+export const MyMagazineSvcListByCategoryDesc: UnaryMethodDefinitionish = {
   methodName: "ListByCategory",
-  service: MySeriesSvcDesc,
+  service: MyMagazineSvcDesc,
   requestStream: false,
   responseStream: false,
   requestType: {

@@ -1,7 +1,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { Billy, Pagination, PostMetadata, Series } from "../blog";
-export declare const protobufPackage = "seriessvc";
+import { Billy, Magazine, Pagination, PostMetadata } from "../blog";
+export declare const protobufPackage = "magazinesvc";
 export interface ListRequest {
     pagination: Pagination | undefined;
 }
@@ -14,7 +14,7 @@ export interface ListByCategoryRequest {
     category: string;
 }
 export interface ListResponse {
-    series: Series[];
+    magazines: Magazine[];
     billy: Billy | undefined;
     totalCount: number;
 }
@@ -22,7 +22,7 @@ export interface GetRequest {
     id: string;
 }
 export interface GetResponse {
-    series: Series | undefined;
+    magazine: Magazine | undefined;
     posts: PostMetadata[];
 }
 export interface CreateMyRequest {
@@ -31,7 +31,7 @@ export interface CreateMyRequest {
     category: string;
 }
 export interface CreateMyResponse {
-    series: Series | undefined;
+    magazine: Magazine | undefined;
 }
 export interface UpdateMyRequest {
     id: string;
@@ -45,7 +45,7 @@ export interface GetMyRequest {
     id: string;
 }
 export interface GetMyResponse {
-    series: Series | undefined;
+    magazine: Magazine | undefined;
     posts: PostMetadata[];
 }
 export interface DeleteMyRequest {
@@ -61,8 +61,7 @@ export interface ListMyByCategoryRequest {
     category: string;
 }
 export interface ListMyResponse {
-    series: Series[];
-    billy: Billy | undefined;
+    magazines: Magazine[];
     totalCount: number;
 }
 export declare const ListRequest: {
@@ -181,7 +180,7 @@ export declare const ListResponse: {
     fromJSON(object: any): ListResponse;
     toJSON(message: ListResponse): unknown;
     create<I extends {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -204,7 +203,7 @@ export declare const ListResponse: {
         };
         totalCount?: number;
     } & {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -238,13 +237,13 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K in Exclude<keyof I["series"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K in Exclude<keyof I["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_1 in Exclude<keyof I["series"][number], keyof Series>]: never; })[] & { [K_2 in Exclude<keyof I["series"], keyof {
+        } & { [K_1 in Exclude<keyof I["magazines"][number], keyof Magazine>]: never; })[] & { [K_2 in Exclude<keyof I["magazines"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -275,7 +274,7 @@ export declare const ListResponse: {
         totalCount?: number;
     } & { [K_4 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -298,7 +297,7 @@ export declare const ListResponse: {
         };
         totalCount?: number;
     } & {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -332,13 +331,13 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_5 in Exclude<keyof I_1["series"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_5 in Exclude<keyof I_1["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_6 in Exclude<keyof I_1["series"][number], keyof Series>]: never; })[] & { [K_7 in Exclude<keyof I_1["series"], keyof {
+        } & { [K_6 in Exclude<keyof I_1["magazines"][number], keyof Magazine>]: never; })[] & { [K_7 in Exclude<keyof I_1["magazines"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -391,7 +390,7 @@ export declare const GetResponse: {
     fromJSON(object: any): GetResponse;
     toJSON(message: GetResponse): unknown;
     create<I extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -421,7 +420,7 @@ export declare const GetResponse: {
             seriesId?: string;
         }[];
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -443,13 +442,13 @@ export declare const GetResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K in Exclude<keyof I["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K in Exclude<keyof I["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_1 in Exclude<keyof I["series"], keyof Series>]: never; };
+        } & { [K_1 in Exclude<keyof I["magazine"], keyof Magazine>]: never; };
         posts?: {
             id?: string;
             author?: {
@@ -517,7 +516,7 @@ export declare const GetResponse: {
         }[]>]: never; };
     } & { [K_6 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -547,7 +546,7 @@ export declare const GetResponse: {
             seriesId?: string;
         }[];
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -569,13 +568,13 @@ export declare const GetResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_7 in Exclude<keyof I_1["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_7 in Exclude<keyof I_1["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_8 in Exclude<keyof I_1["series"], keyof Series>]: never; };
+        } & { [K_8 in Exclude<keyof I_1["magazine"], keyof Magazine>]: never; };
         posts?: {
             id?: string;
             author?: {
@@ -673,7 +672,7 @@ export declare const CreateMyResponse: {
     fromJSON(object: any): CreateMyResponse;
     toJSON(message: CreateMyResponse): unknown;
     create<I extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -687,7 +686,7 @@ export declare const CreateMyResponse: {
             updatedAt?: number;
         };
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -709,16 +708,16 @@ export declare const CreateMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K in Exclude<keyof I["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K in Exclude<keyof I["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_1 in Exclude<keyof I["series"], keyof Series>]: never; };
-    } & { [K_2 in Exclude<keyof I, "series">]: never; }>(base?: I): CreateMyResponse;
+        } & { [K_1 in Exclude<keyof I["magazine"], keyof Magazine>]: never; };
+    } & { [K_2 in Exclude<keyof I, "magazine">]: never; }>(base?: I): CreateMyResponse;
     fromPartial<I_1 extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -732,7 +731,7 @@ export declare const CreateMyResponse: {
             updatedAt?: number;
         };
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -754,14 +753,14 @@ export declare const CreateMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_3 in Exclude<keyof I_1["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_3 in Exclude<keyof I_1["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_4 in Exclude<keyof I_1["series"], keyof Series>]: never; };
-    } & { [K_5 in Exclude<keyof I_1, "series">]: never; }>(object: I_1): CreateMyResponse;
+        } & { [K_4 in Exclude<keyof I_1["magazine"], keyof Magazine>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, "magazine">]: never; }>(object: I_1): CreateMyResponse;
 };
 export declare const UpdateMyRequest: {
     encode(message: UpdateMyRequest, writer?: _m0.Writer): _m0.Writer;
@@ -821,7 +820,7 @@ export declare const GetMyResponse: {
     fromJSON(object: any): GetMyResponse;
     toJSON(message: GetMyResponse): unknown;
     create<I extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -851,7 +850,7 @@ export declare const GetMyResponse: {
             seriesId?: string;
         }[];
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -873,13 +872,13 @@ export declare const GetMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K in Exclude<keyof I["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K in Exclude<keyof I["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_1 in Exclude<keyof I["series"], keyof Series>]: never; };
+        } & { [K_1 in Exclude<keyof I["magazine"], keyof Magazine>]: never; };
         posts?: {
             id?: string;
             author?: {
@@ -947,7 +946,7 @@ export declare const GetMyResponse: {
         }[]>]: never; };
     } & { [K_6 in Exclude<keyof I, keyof GetMyResponse>]: never; }>(base?: I): GetMyResponse;
     fromPartial<I_1 extends {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -977,7 +976,7 @@ export declare const GetMyResponse: {
             seriesId?: string;
         }[];
     } & {
-        series?: {
+        magazine?: {
             id?: string;
             author?: {
                 id?: string;
@@ -999,13 +998,13 @@ export declare const GetMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_7 in Exclude<keyof I_1["series"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_7 in Exclude<keyof I_1["magazine"]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_8 in Exclude<keyof I_1["series"], keyof Series>]: never; };
+        } & { [K_8 in Exclude<keyof I_1["magazine"], keyof Magazine>]: never; };
         posts?: {
             id?: string;
             author?: {
@@ -1175,7 +1174,7 @@ export declare const ListMyResponse: {
     fromJSON(object: any): ListMyResponse;
     toJSON(message: ListMyResponse): unknown;
     create<I extends {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -1188,17 +1187,9 @@ export declare const ListMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         }[];
-        billy?: {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        };
         totalCount?: number;
     } & {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -1232,13 +1223,13 @@ export declare const ListMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K in Exclude<keyof I["series"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K in Exclude<keyof I["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_1 in Exclude<keyof I["series"][number], keyof Series>]: never; })[] & { [K_2 in Exclude<keyof I["series"], keyof {
+        } & { [K_1 in Exclude<keyof I["magazines"][number], keyof Magazine>]: never; })[] & { [K_2 in Exclude<keyof I["magazines"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -1251,25 +1242,10 @@ export declare const ListMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         }[]>]: never; };
-        billy?: {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & { [K_3 in Exclude<keyof I["billy"], keyof Billy>]: never; };
         totalCount?: number;
-    } & { [K_4 in Exclude<keyof I, keyof ListMyResponse>]: never; }>(base?: I): ListMyResponse;
+    } & { [K_3 in Exclude<keyof I, keyof ListMyResponse>]: never; }>(base?: I): ListMyResponse;
     fromPartial<I_1 extends {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -1282,17 +1258,9 @@ export declare const ListMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         }[];
-        billy?: {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        };
         totalCount?: number;
     } & {
-        series?: {
+        magazines?: {
             id?: string;
             author?: {
                 id?: string;
@@ -1326,13 +1294,13 @@ export declare const ListMyResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_5 in Exclude<keyof I_1["series"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_4 in Exclude<keyof I_1["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_6 in Exclude<keyof I_1["series"][number], keyof Series>]: never; })[] & { [K_7 in Exclude<keyof I_1["series"], keyof {
+        } & { [K_5 in Exclude<keyof I_1["magazines"][number], keyof Magazine>]: never; })[] & { [K_6 in Exclude<keyof I_1["magazines"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -1345,36 +1313,21 @@ export declare const ListMyResponse: {
             createdAt?: number;
             updatedAt?: number;
         }[]>]: never; };
-        billy?: {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & {
-            id?: string;
-            title?: string;
-            preface?: string;
-            category?: string;
-            createdAt?: number;
-            updatedAt?: number;
-        } & { [K_8 in Exclude<keyof I_1["billy"], keyof Billy>]: never; };
         totalCount?: number;
-    } & { [K_9 in Exclude<keyof I_1, keyof ListMyResponse>]: never; }>(object: I_1): ListMyResponse;
+    } & { [K_7 in Exclude<keyof I_1, keyof ListMyResponse>]: never; }>(object: I_1): ListMyResponse;
 };
 /**
  * //////////////////////////////////////////////////////////////////////////////
- * Series Service
+ * Magazine Service
  * ////
  */
-export interface SeriesSvc {
+export interface MagazineSvc {
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
-export declare class SeriesSvcClientImpl implements SeriesSvc {
+export declare class MagazineSvcClientImpl implements MagazineSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
@@ -1382,19 +1335,19 @@ export declare class SeriesSvcClientImpl implements SeriesSvc {
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
-export declare const SeriesSvcDesc: {
+export declare const MagazineSvcDesc: {
     serviceName: string;
 };
-export declare const SeriesSvcListDesc: UnaryMethodDefinitionish;
-export declare const SeriesSvcListByAuthorIdDesc: UnaryMethodDefinitionish;
-export declare const SeriesSvcListByCategoryDesc: UnaryMethodDefinitionish;
-export declare const SeriesSvcGetDesc: UnaryMethodDefinitionish;
+export declare const MagazineSvcListDesc: UnaryMethodDefinitionish;
+export declare const MagazineSvcListByAuthorIdDesc: UnaryMethodDefinitionish;
+export declare const MagazineSvcListByCategoryDesc: UnaryMethodDefinitionish;
+export declare const MagazineSvcGetDesc: UnaryMethodDefinitionish;
 /**
  * //////////////////////////////////////////////////////////////////////////////
- * MySeries Service
+ * MyMagazine Service
  * ////
  */
-export interface MySeriesSvc {
+export interface MyMagazineSvc {
     Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse>;
     Update(request: DeepPartial<UpdateMyRequest>, metadata?: grpc.Metadata): Promise<UpdateMyResponse>;
     Get(request: DeepPartial<GetMyRequest>, metadata?: grpc.Metadata): Promise<GetMyResponse>;
@@ -1402,7 +1355,7 @@ export interface MySeriesSvc {
     List(request: DeepPartial<ListMyRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse>;
     ListByCategory(request: DeepPartial<ListMyByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse>;
 }
-export declare class MySeriesSvcClientImpl implements MySeriesSvc {
+export declare class MyMagazineSvcClientImpl implements MyMagazineSvc {
     private readonly rpc;
     constructor(rpc: Rpc);
     Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse>;
@@ -1412,15 +1365,15 @@ export declare class MySeriesSvcClientImpl implements MySeriesSvc {
     List(request: DeepPartial<ListMyRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse>;
     ListByCategory(request: DeepPartial<ListMyByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListMyResponse>;
 }
-export declare const MySeriesSvcDesc: {
+export declare const MyMagazineSvcDesc: {
     serviceName: string;
 };
-export declare const MySeriesSvcCreateDesc: UnaryMethodDefinitionish;
-export declare const MySeriesSvcUpdateDesc: UnaryMethodDefinitionish;
-export declare const MySeriesSvcGetDesc: UnaryMethodDefinitionish;
-export declare const MySeriesSvcDeleteDesc: UnaryMethodDefinitionish;
-export declare const MySeriesSvcListDesc: UnaryMethodDefinitionish;
-export declare const MySeriesSvcListByCategoryDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcCreateDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcUpdateDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcGetDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcDeleteDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcListDesc: UnaryMethodDefinitionish;
+export declare const MyMagazineSvcListByCategoryDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

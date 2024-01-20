@@ -2,14 +2,14 @@ syntax = "proto3";
 
 import "ikipb/iki_blog/blog.proto";
 
-option go_package = "/seriessvc";
+option go_package = "/magazinesvc";
 
-package seriessvc;
+package magazinesvc;
 
 ////////////////////////////////////////////////////////////////////////////////
-// Series Service
+// Magazine Service
 //////
-service SeriesSvc {
+service MagazineSvc {
   rpc List (ListRequest) returns (ListResponse) {}
   rpc ListByAuthorId (ListByAuthorIdRequest) returns (ListResponse) {}
   rpc ListByCategory (ListByCategoryRequest) returns (ListResponse) {}
@@ -33,7 +33,7 @@ message ListByCategoryRequest {
 }
 
 message ListResponse {
-  repeated blog.Series series = 1;
+  repeated blog.Magazine magazines = 1;
 
   blog.Billy billy = 3;
 
@@ -45,14 +45,14 @@ message GetRequest {
 }
 
 message GetResponse {
-  blog.Series series = 1;
+  blog.Magazine magazine = 1;
   repeated blog.PostMetadata posts = 2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// MySeries Service
+// MyMagazine Service
 //////
-service MySeriesSvc {
+service MyMagazineSvc {
   rpc Create (CreateMyRequest) returns (CreateMyResponse) {}
 
   rpc Update (UpdateMyRequest) returns (UpdateMyResponse) {}
@@ -73,7 +73,7 @@ message CreateMyRequest {
 }
 
 message CreateMyResponse {
-  blog.Series series = 1;
+  blog.Magazine magazine = 1;
 }
 
 message UpdateMyRequest {
@@ -91,7 +91,7 @@ message GetMyRequest {
 }
 
 message GetMyResponse {
-  blog.Series series = 1;
+  blog.Magazine magazine = 1;
   repeated blog.PostMetadata posts = 2;
 }
 
@@ -112,8 +112,7 @@ message ListMyByCategoryRequest {
 }
 
 message ListMyResponse {
-  repeated blog.Series series = 1;
-  blog.Billy billy = 3;
+  repeated blog.Magazine magazines = 1;
 
   int64 total_count = 2;
 }

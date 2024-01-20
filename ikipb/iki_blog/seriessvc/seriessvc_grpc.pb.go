@@ -4,7 +4,7 @@
 // - protoc             v3.20.3
 // source: ikipb/iki_blog/seriessvc/seriessvc.proto
 
-package seriessvc
+package magazinesvc
 
 import (
 	context "context"
@@ -18,204 +18,204 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// SeriesSvcClient is the client API for SeriesSvc service.
+// MagazineSvcClient is the client API for MagazineSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SeriesSvcClient interface {
+type MagazineSvcClient interface {
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListByAuthorId(ctx context.Context, in *ListByAuthorIdRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListByCategory(ctx context.Context, in *ListByCategoryRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 }
 
-type seriesSvcClient struct {
+type magazineSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSeriesSvcClient(cc grpc.ClientConnInterface) SeriesSvcClient {
-	return &seriesSvcClient{cc}
+func NewMagazineSvcClient(cc grpc.ClientConnInterface) MagazineSvcClient {
+	return &magazineSvcClient{cc}
 }
 
-func (c *seriesSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *magazineSvcClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MagazineSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seriesSvcClient) ListByAuthorId(ctx context.Context, in *ListByAuthorIdRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *magazineSvcClient) ListByAuthorId(ctx context.Context, in *ListByAuthorIdRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/ListByAuthorId", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MagazineSvc/ListByAuthorId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seriesSvcClient) ListByCategory(ctx context.Context, in *ListByCategoryRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *magazineSvcClient) ListByCategory(ctx context.Context, in *ListByCategoryRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/ListByCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MagazineSvc/ListByCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seriesSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *magazineSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.SeriesSvc/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MagazineSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SeriesSvcServer is the server API for SeriesSvc service.
-// All implementations must embed UnimplementedSeriesSvcServer
+// MagazineSvcServer is the server API for MagazineSvc service.
+// All implementations must embed UnimplementedMagazineSvcServer
 // for forward compatibility
-type SeriesSvcServer interface {
+type MagazineSvcServer interface {
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	ListByAuthorId(context.Context, *ListByAuthorIdRequest) (*ListResponse, error)
 	ListByCategory(context.Context, *ListByCategoryRequest) (*ListResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
-	mustEmbedUnimplementedSeriesSvcServer()
+	mustEmbedUnimplementedMagazineSvcServer()
 }
 
-// UnimplementedSeriesSvcServer must be embedded to have forward compatible implementations.
-type UnimplementedSeriesSvcServer struct {
+// UnimplementedMagazineSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedMagazineSvcServer struct {
 }
 
-func (UnimplementedSeriesSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+func (UnimplementedMagazineSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedSeriesSvcServer) ListByAuthorId(context.Context, *ListByAuthorIdRequest) (*ListResponse, error) {
+func (UnimplementedMagazineSvcServer) ListByAuthorId(context.Context, *ListByAuthorIdRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByAuthorId not implemented")
 }
-func (UnimplementedSeriesSvcServer) ListByCategory(context.Context, *ListByCategoryRequest) (*ListResponse, error) {
+func (UnimplementedMagazineSvcServer) ListByCategory(context.Context, *ListByCategoryRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByCategory not implemented")
 }
-func (UnimplementedSeriesSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedMagazineSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedSeriesSvcServer) mustEmbedUnimplementedSeriesSvcServer() {}
+func (UnimplementedMagazineSvcServer) mustEmbedUnimplementedMagazineSvcServer() {}
 
-// UnsafeSeriesSvcServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SeriesSvcServer will
+// UnsafeMagazineSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MagazineSvcServer will
 // result in compilation errors.
-type UnsafeSeriesSvcServer interface {
-	mustEmbedUnimplementedSeriesSvcServer()
+type UnsafeMagazineSvcServer interface {
+	mustEmbedUnimplementedMagazineSvcServer()
 }
 
-func RegisterSeriesSvcServer(s grpc.ServiceRegistrar, srv SeriesSvcServer) {
-	s.RegisterService(&SeriesSvc_ServiceDesc, srv)
+func RegisterMagazineSvcServer(s grpc.ServiceRegistrar, srv MagazineSvcServer) {
+	s.RegisterService(&MagazineSvc_ServiceDesc, srv)
 }
 
-func _SeriesSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MagazineSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeriesSvcServer).List(ctx, in)
+		return srv.(MagazineSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.SeriesSvc/List",
+		FullMethod: "/magazinesvc.MagazineSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeriesSvcServer).List(ctx, req.(*ListRequest))
+		return srv.(MagazineSvcServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeriesSvc_ListByAuthorId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MagazineSvc_ListByAuthorId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListByAuthorIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeriesSvcServer).ListByAuthorId(ctx, in)
+		return srv.(MagazineSvcServer).ListByAuthorId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.SeriesSvc/ListByAuthorId",
+		FullMethod: "/magazinesvc.MagazineSvc/ListByAuthorId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeriesSvcServer).ListByAuthorId(ctx, req.(*ListByAuthorIdRequest))
+		return srv.(MagazineSvcServer).ListByAuthorId(ctx, req.(*ListByAuthorIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeriesSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MagazineSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListByCategoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeriesSvcServer).ListByCategory(ctx, in)
+		return srv.(MagazineSvcServer).ListByCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.SeriesSvc/ListByCategory",
+		FullMethod: "/magazinesvc.MagazineSvc/ListByCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeriesSvcServer).ListByCategory(ctx, req.(*ListByCategoryRequest))
+		return srv.(MagazineSvcServer).ListByCategory(ctx, req.(*ListByCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeriesSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MagazineSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeriesSvcServer).Get(ctx, in)
+		return srv.(MagazineSvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.SeriesSvc/Get",
+		FullMethod: "/magazinesvc.MagazineSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeriesSvcServer).Get(ctx, req.(*GetRequest))
+		return srv.(MagazineSvcServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SeriesSvc_ServiceDesc is the grpc.ServiceDesc for SeriesSvc service.
+// MagazineSvc_ServiceDesc is the grpc.ServiceDesc for MagazineSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SeriesSvc_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "seriessvc.SeriesSvc",
-	HandlerType: (*SeriesSvcServer)(nil),
+var MagazineSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "magazinesvc.MagazineSvc",
+	HandlerType: (*MagazineSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "List",
-			Handler:    _SeriesSvc_List_Handler,
+			Handler:    _MagazineSvc_List_Handler,
 		},
 		{
 			MethodName: "ListByAuthorId",
-			Handler:    _SeriesSvc_ListByAuthorId_Handler,
+			Handler:    _MagazineSvc_ListByAuthorId_Handler,
 		},
 		{
 			MethodName: "ListByCategory",
-			Handler:    _SeriesSvc_ListByCategory_Handler,
+			Handler:    _MagazineSvc_ListByCategory_Handler,
 		},
 		{
 			MethodName: "Get",
-			Handler:    _SeriesSvc_Get_Handler,
+			Handler:    _MagazineSvc_Get_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "ikipb/iki_blog/seriessvc/seriessvc.proto",
 }
 
-// MySeriesSvcClient is the client API for MySeriesSvc service.
+// MyMagazineSvcClient is the client API for MyMagazineSvc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MySeriesSvcClient interface {
+type MyMagazineSvcClient interface {
 	Create(ctx context.Context, in *CreateMyRequest, opts ...grpc.CallOption) (*CreateMyResponse, error)
 	Update(ctx context.Context, in *UpdateMyRequest, opts ...grpc.CallOption) (*UpdateMyResponse, error)
 	Get(ctx context.Context, in *GetMyRequest, opts ...grpc.CallOption) (*GetMyResponse, error)
@@ -224,254 +224,254 @@ type MySeriesSvcClient interface {
 	ListByCategory(ctx context.Context, in *ListMyByCategoryRequest, opts ...grpc.CallOption) (*ListMyResponse, error)
 }
 
-type mySeriesSvcClient struct {
+type myMagazineSvcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMySeriesSvcClient(cc grpc.ClientConnInterface) MySeriesSvcClient {
-	return &mySeriesSvcClient{cc}
+func NewMyMagazineSvcClient(cc grpc.ClientConnInterface) MyMagazineSvcClient {
+	return &myMagazineSvcClient{cc}
 }
 
-func (c *mySeriesSvcClient) Create(ctx context.Context, in *CreateMyRequest, opts ...grpc.CallOption) (*CreateMyResponse, error) {
+func (c *myMagazineSvcClient) Create(ctx context.Context, in *CreateMyRequest, opts ...grpc.CallOption) (*CreateMyResponse, error) {
 	out := new(CreateMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mySeriesSvcClient) Update(ctx context.Context, in *UpdateMyRequest, opts ...grpc.CallOption) (*UpdateMyResponse, error) {
+func (c *myMagazineSvcClient) Update(ctx context.Context, in *UpdateMyRequest, opts ...grpc.CallOption) (*UpdateMyResponse, error) {
 	out := new(UpdateMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mySeriesSvcClient) Get(ctx context.Context, in *GetMyRequest, opts ...grpc.CallOption) (*GetMyResponse, error) {
+func (c *myMagazineSvcClient) Get(ctx context.Context, in *GetMyRequest, opts ...grpc.CallOption) (*GetMyResponse, error) {
 	out := new(GetMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mySeriesSvcClient) Delete(ctx context.Context, in *DeleteMyRequest, opts ...grpc.CallOption) (*DeleteMyResponse, error) {
+func (c *myMagazineSvcClient) Delete(ctx context.Context, in *DeleteMyRequest, opts ...grpc.CallOption) (*DeleteMyResponse, error) {
 	out := new(DeleteMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mySeriesSvcClient) List(ctx context.Context, in *ListMyRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
+func (c *myMagazineSvcClient) List(ctx context.Context, in *ListMyRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
 	out := new(ListMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mySeriesSvcClient) ListByCategory(ctx context.Context, in *ListMyByCategoryRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
+func (c *myMagazineSvcClient) ListByCategory(ctx context.Context, in *ListMyByCategoryRequest, opts ...grpc.CallOption) (*ListMyResponse, error) {
 	out := new(ListMyResponse)
-	err := c.cc.Invoke(ctx, "/seriessvc.MySeriesSvc/ListByCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/magazinesvc.MyMagazineSvc/ListByCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MySeriesSvcServer is the server API for MySeriesSvc service.
-// All implementations must embed UnimplementedMySeriesSvcServer
+// MyMagazineSvcServer is the server API for MyMagazineSvc service.
+// All implementations must embed UnimplementedMyMagazineSvcServer
 // for forward compatibility
-type MySeriesSvcServer interface {
+type MyMagazineSvcServer interface {
 	Create(context.Context, *CreateMyRequest) (*CreateMyResponse, error)
 	Update(context.Context, *UpdateMyRequest) (*UpdateMyResponse, error)
 	Get(context.Context, *GetMyRequest) (*GetMyResponse, error)
 	Delete(context.Context, *DeleteMyRequest) (*DeleteMyResponse, error)
 	List(context.Context, *ListMyRequest) (*ListMyResponse, error)
 	ListByCategory(context.Context, *ListMyByCategoryRequest) (*ListMyResponse, error)
-	mustEmbedUnimplementedMySeriesSvcServer()
+	mustEmbedUnimplementedMyMagazineSvcServer()
 }
 
-// UnimplementedMySeriesSvcServer must be embedded to have forward compatible implementations.
-type UnimplementedMySeriesSvcServer struct {
+// UnimplementedMyMagazineSvcServer must be embedded to have forward compatible implementations.
+type UnimplementedMyMagazineSvcServer struct {
 }
 
-func (UnimplementedMySeriesSvcServer) Create(context.Context, *CreateMyRequest) (*CreateMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) Create(context.Context, *CreateMyRequest) (*CreateMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedMySeriesSvcServer) Update(context.Context, *UpdateMyRequest) (*UpdateMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) Update(context.Context, *UpdateMyRequest) (*UpdateMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMySeriesSvcServer) Get(context.Context, *GetMyRequest) (*GetMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) Get(context.Context, *GetMyRequest) (*GetMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedMySeriesSvcServer) Delete(context.Context, *DeleteMyRequest) (*DeleteMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) Delete(context.Context, *DeleteMyRequest) (*DeleteMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedMySeriesSvcServer) List(context.Context, *ListMyRequest) (*ListMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) List(context.Context, *ListMyRequest) (*ListMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedMySeriesSvcServer) ListByCategory(context.Context, *ListMyByCategoryRequest) (*ListMyResponse, error) {
+func (UnimplementedMyMagazineSvcServer) ListByCategory(context.Context, *ListMyByCategoryRequest) (*ListMyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByCategory not implemented")
 }
-func (UnimplementedMySeriesSvcServer) mustEmbedUnimplementedMySeriesSvcServer() {}
+func (UnimplementedMyMagazineSvcServer) mustEmbedUnimplementedMyMagazineSvcServer() {}
 
-// UnsafeMySeriesSvcServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MySeriesSvcServer will
+// UnsafeMyMagazineSvcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MyMagazineSvcServer will
 // result in compilation errors.
-type UnsafeMySeriesSvcServer interface {
-	mustEmbedUnimplementedMySeriesSvcServer()
+type UnsafeMyMagazineSvcServer interface {
+	mustEmbedUnimplementedMyMagazineSvcServer()
 }
 
-func RegisterMySeriesSvcServer(s grpc.ServiceRegistrar, srv MySeriesSvcServer) {
-	s.RegisterService(&MySeriesSvc_ServiceDesc, srv)
+func RegisterMyMagazineSvcServer(s grpc.ServiceRegistrar, srv MyMagazineSvcServer) {
+	s.RegisterService(&MyMagazineSvc_ServiceDesc, srv)
 }
 
-func _MySeriesSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).Create(ctx, in)
+		return srv.(MyMagazineSvcServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/Create",
+		FullMethod: "/magazinesvc.MyMagazineSvc/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).Create(ctx, req.(*CreateMyRequest))
+		return srv.(MyMagazineSvcServer).Create(ctx, req.(*CreateMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MySeriesSvc_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).Update(ctx, in)
+		return srv.(MyMagazineSvcServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/Update",
+		FullMethod: "/magazinesvc.MyMagazineSvc/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).Update(ctx, req.(*UpdateMyRequest))
+		return srv.(MyMagazineSvcServer).Update(ctx, req.(*UpdateMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MySeriesSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).Get(ctx, in)
+		return srv.(MyMagazineSvcServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/Get",
+		FullMethod: "/magazinesvc.MyMagazineSvc/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).Get(ctx, req.(*GetMyRequest))
+		return srv.(MyMagazineSvcServer).Get(ctx, req.(*GetMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MySeriesSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).Delete(ctx, in)
+		return srv.(MyMagazineSvcServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/Delete",
+		FullMethod: "/magazinesvc.MyMagazineSvc/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).Delete(ctx, req.(*DeleteMyRequest))
+		return srv.(MyMagazineSvcServer).Delete(ctx, req.(*DeleteMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MySeriesSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).List(ctx, in)
+		return srv.(MyMagazineSvcServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/List",
+		FullMethod: "/magazinesvc.MyMagazineSvc/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).List(ctx, req.(*ListMyRequest))
+		return srv.(MyMagazineSvcServer).List(ctx, req.(*ListMyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MySeriesSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyMagazineSvc_ListByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMyByCategoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MySeriesSvcServer).ListByCategory(ctx, in)
+		return srv.(MyMagazineSvcServer).ListByCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/seriessvc.MySeriesSvc/ListByCategory",
+		FullMethod: "/magazinesvc.MyMagazineSvc/ListByCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MySeriesSvcServer).ListByCategory(ctx, req.(*ListMyByCategoryRequest))
+		return srv.(MyMagazineSvcServer).ListByCategory(ctx, req.(*ListMyByCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// MySeriesSvc_ServiceDesc is the grpc.ServiceDesc for MySeriesSvc service.
+// MyMagazineSvc_ServiceDesc is the grpc.ServiceDesc for MyMagazineSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var MySeriesSvc_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "seriessvc.MySeriesSvc",
-	HandlerType: (*MySeriesSvcServer)(nil),
+var MyMagazineSvc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "magazinesvc.MyMagazineSvc",
+	HandlerType: (*MyMagazineSvcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _MySeriesSvc_Create_Handler,
+			Handler:    _MyMagazineSvc_Create_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _MySeriesSvc_Update_Handler,
+			Handler:    _MyMagazineSvc_Update_Handler,
 		},
 		{
 			MethodName: "Get",
-			Handler:    _MySeriesSvc_Get_Handler,
+			Handler:    _MyMagazineSvc_Get_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _MySeriesSvc_Delete_Handler,
+			Handler:    _MyMagazineSvc_Delete_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _MySeriesSvc_List_Handler,
+			Handler:    _MyMagazineSvc_List_Handler,
 		},
 		{
 			MethodName: "ListByCategory",
-			Handler:    _MySeriesSvc_ListByCategory_Handler,
+			Handler:    _MyMagazineSvc_ListByCategory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

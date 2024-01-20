@@ -17,7 +17,7 @@ message PostMetadata {
   optional string series_id = 10;
 }
 
-message Series {
+message Magazine {
   string id = 1;
   Author author = 2;
   string title = 3;

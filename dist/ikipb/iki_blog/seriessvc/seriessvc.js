@@ -3,14 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.MySeriesSvcListByCategoryDesc = exports.MySeriesSvcListDesc = exports.MySeriesSvcDeleteDesc = exports.MySeriesSvcGetDesc = exports.MySeriesSvcUpdateDesc = exports.MySeriesSvcCreateDesc = exports.MySeriesSvcDesc = exports.MySeriesSvcClientImpl = exports.SeriesSvcGetDesc = exports.SeriesSvcListByCategoryDesc = exports.SeriesSvcListByAuthorIdDesc = exports.SeriesSvcListDesc = exports.SeriesSvcDesc = exports.SeriesSvcClientImpl = exports.ListMyResponse = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListResponse = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.MyMagazineSvcListByCategoryDesc = exports.MyMagazineSvcListDesc = exports.MyMagazineSvcDeleteDesc = exports.MyMagazineSvcGetDesc = exports.MyMagazineSvcUpdateDesc = exports.MyMagazineSvcCreateDesc = exports.MyMagazineSvcDesc = exports.MyMagazineSvcClientImpl = exports.MagazineSvcGetDesc = exports.MagazineSvcListByCategoryDesc = exports.MagazineSvcListByAuthorIdDesc = exports.MagazineSvcListDesc = exports.MagazineSvcDesc = exports.MagazineSvcClientImpl = exports.ListMyResponse = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListResponse = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const blog_1 = require("../blog");
-exports.protobufPackage = "seriessvc";
+exports.protobufPackage = "magazinesvc";
 function createBaseListRequest() {
     return { pagination: undefined };
 }
@@ -202,12 +202,12 @@ exports.ListByCategoryRequest = {
     },
 };
 function createBaseListResponse() {
-    return { series: [], billy: undefined, totalCount: 0 };
+    return { magazines: [], billy: undefined, totalCount: 0 };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.series) {
-            blog_1.Series.encode(v, writer.uint32(10).fork()).ldelim();
+        for (const v of message.magazines) {
+            blog_1.Magazine.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.billy !== undefined) {
             blog_1.Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
@@ -228,7 +228,7 @@ exports.ListResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.series.push(blog_1.Series.decode(reader, reader.uint32()));
+                    message.magazines.push(blog_1.Magazine.decode(reader, reader.uint32()));
                     continue;
                 case 3:
                     if (tag !== 26) {
@@ -252,7 +252,7 @@ exports.ListResponse = {
     },
     fromJSON(object) {
         return {
-            series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
+            magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             billy: isSet(object.billy) ? blog_1.Billy.fromJSON(object.billy) : undefined,
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
@@ -260,8 +260,8 @@ exports.ListResponse = {
     toJSON(message) {
         var _a;
         const obj = {};
-        if ((_a = message.series) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
+        if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
         }
         if (message.billy !== undefined) {
             obj.billy = blog_1.Billy.toJSON(message.billy);
@@ -277,7 +277,7 @@ exports.ListResponse = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseListResponse();
-        message.series = ((_a = object.series) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Series.fromPartial(e))) || [];
+        message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
         message.billy = (object.billy !== undefined && object.billy !== null) ? blog_1.Billy.fromPartial(object.billy) : undefined;
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
@@ -335,12 +335,12 @@ exports.GetRequest = {
     },
 };
 function createBaseGetResponse() {
-    return { series: undefined, posts: [] };
+    return { magazine: undefined, posts: [] };
 }
 exports.GetResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.series !== undefined) {
-            blog_1.Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+        if (message.magazine !== undefined) {
+            blog_1.Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
         }
         for (const v of message.posts) {
             blog_1.PostMetadata.encode(v, writer.uint32(18).fork()).ldelim();
@@ -358,7 +358,7 @@ exports.GetResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.series = blog_1.Series.decode(reader, reader.uint32());
+                    message.magazine = blog_1.Magazine.decode(reader, reader.uint32());
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -376,15 +376,15 @@ exports.GetResponse = {
     },
     fromJSON(object) {
         return {
-            series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined,
+            magazine: isSet(object.magazine) ? blog_1.Magazine.fromJSON(object.magazine) : undefined,
             posts: Array.isArray(object === null || object === void 0 ? void 0 : object.posts) ? object.posts.map((e) => blog_1.PostMetadata.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if (message.series !== undefined) {
-            obj.series = blog_1.Series.toJSON(message.series);
+        if (message.magazine !== undefined) {
+            obj.magazine = blog_1.Magazine.toJSON(message.magazine);
         }
         if ((_a = message.posts) === null || _a === void 0 ? void 0 : _a.length) {
             obj.posts = message.posts.map((e) => blog_1.PostMetadata.toJSON(e));
@@ -397,8 +397,8 @@ exports.GetResponse = {
     fromPartial(object) {
         var _a;
         const message = createBaseGetResponse();
-        message.series = (object.series !== undefined && object.series !== null)
-            ? blog_1.Series.fromPartial(object.series)
+        message.magazine = (object.magazine !== undefined && object.magazine !== null)
+            ? blog_1.Magazine.fromPartial(object.magazine)
             : undefined;
         message.posts = ((_a = object.posts) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         return message;
@@ -486,12 +486,12 @@ exports.CreateMyRequest = {
     },
 };
 function createBaseCreateMyResponse() {
-    return { series: undefined };
+    return { magazine: undefined };
 }
 exports.CreateMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.series !== undefined) {
-            blog_1.Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+        if (message.magazine !== undefined) {
+            blog_1.Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -506,7 +506,7 @@ exports.CreateMyResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.series = blog_1.Series.decode(reader, reader.uint32());
+                    message.magazine = blog_1.Magazine.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -517,12 +517,12 @@ exports.CreateMyResponse = {
         return message;
     },
     fromJSON(object) {
-        return { series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined };
+        return { magazine: isSet(object.magazine) ? blog_1.Magazine.fromJSON(object.magazine) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.series !== undefined) {
-            obj.series = blog_1.Series.toJSON(message.series);
+        if (message.magazine !== undefined) {
+            obj.magazine = blog_1.Magazine.toJSON(message.magazine);
         }
         return obj;
     },
@@ -531,8 +531,8 @@ exports.CreateMyResponse = {
     },
     fromPartial(object) {
         const message = createBaseCreateMyResponse();
-        message.series = (object.series !== undefined && object.series !== null)
-            ? blog_1.Series.fromPartial(object.series)
+        message.magazine = (object.magazine !== undefined && object.magazine !== null)
+            ? blog_1.Magazine.fromPartial(object.magazine)
             : undefined;
         return message;
     },
@@ -721,12 +721,12 @@ exports.GetMyRequest = {
     },
 };
 function createBaseGetMyResponse() {
-    return { series: undefined, posts: [] };
+    return { magazine: undefined, posts: [] };
 }
 exports.GetMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.series !== undefined) {
-            blog_1.Series.encode(message.series, writer.uint32(10).fork()).ldelim();
+        if (message.magazine !== undefined) {
+            blog_1.Magazine.encode(message.magazine, writer.uint32(10).fork()).ldelim();
         }
         for (const v of message.posts) {
             blog_1.PostMetadata.encode(v, writer.uint32(18).fork()).ldelim();
@@ -744,7 +744,7 @@ exports.GetMyResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.series = blog_1.Series.decode(reader, reader.uint32());
+                    message.magazine = blog_1.Magazine.decode(reader, reader.uint32());
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -762,15 +762,15 @@ exports.GetMyResponse = {
     },
     fromJSON(object) {
         return {
-            series: isSet(object.series) ? blog_1.Series.fromJSON(object.series) : undefined,
+            magazine: isSet(object.magazine) ? blog_1.Magazine.fromJSON(object.magazine) : undefined,
             posts: Array.isArray(object === null || object === void 0 ? void 0 : object.posts) ? object.posts.map((e) => blog_1.PostMetadata.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if (message.series !== undefined) {
-            obj.series = blog_1.Series.toJSON(message.series);
+        if (message.magazine !== undefined) {
+            obj.magazine = blog_1.Magazine.toJSON(message.magazine);
         }
         if ((_a = message.posts) === null || _a === void 0 ? void 0 : _a.length) {
             obj.posts = message.posts.map((e) => blog_1.PostMetadata.toJSON(e));
@@ -783,8 +783,8 @@ exports.GetMyResponse = {
     fromPartial(object) {
         var _a;
         const message = createBaseGetMyResponse();
-        message.series = (object.series !== undefined && object.series !== null)
-            ? blog_1.Series.fromPartial(object.series)
+        message.magazine = (object.magazine !== undefined && object.magazine !== null)
+            ? blog_1.Magazine.fromPartial(object.magazine)
             : undefined;
         message.posts = ((_a = object.posts) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         return message;
@@ -1000,15 +1000,12 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { series: [], billy: undefined, totalCount: 0 };
+    return { magazines: [], totalCount: 0 };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.series) {
-            blog_1.Series.encode(v, writer.uint32(10).fork()).ldelim();
-        }
-        if (message.billy !== undefined) {
-            blog_1.Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+        for (const v of message.magazines) {
+            blog_1.Magazine.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
@@ -1026,13 +1023,7 @@ exports.ListMyResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.series.push(blog_1.Series.decode(reader, reader.uint32()));
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.billy = blog_1.Billy.decode(reader, reader.uint32());
+                    message.magazines.push(blog_1.Magazine.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -1050,19 +1041,15 @@ exports.ListMyResponse = {
     },
     fromJSON(object) {
         return {
-            series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
-            billy: isSet(object.billy) ? blog_1.Billy.fromJSON(object.billy) : undefined,
+            magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if ((_a = message.series) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
-        }
-        if (message.billy !== undefined) {
-            obj.billy = blog_1.Billy.toJSON(message.billy);
+        if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
         }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
@@ -1075,13 +1062,12 @@ exports.ListMyResponse = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseListMyResponse();
-        message.series = ((_a = object.series) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Series.fromPartial(e))) || [];
-        message.billy = (object.billy !== undefined && object.billy !== null) ? blog_1.Billy.fromPartial(object.billy) : undefined;
+        message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };
-class SeriesSvcClientImpl {
+class MagazineSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.List = this.List.bind(this);
@@ -1090,23 +1076,23 @@ class SeriesSvcClientImpl {
         this.Get = this.Get.bind(this);
     }
     List(request, metadata) {
-        return this.rpc.unary(exports.SeriesSvcListDesc, exports.ListRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MagazineSvcListDesc, exports.ListRequest.fromPartial(request), metadata);
     }
     ListByAuthorId(request, metadata) {
-        return this.rpc.unary(exports.SeriesSvcListByAuthorIdDesc, exports.ListByAuthorIdRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MagazineSvcListByAuthorIdDesc, exports.ListByAuthorIdRequest.fromPartial(request), metadata);
     }
     ListByCategory(request, metadata) {
-        return this.rpc.unary(exports.SeriesSvcListByCategoryDesc, exports.ListByCategoryRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MagazineSvcListByCategoryDesc, exports.ListByCategoryRequest.fromPartial(request), metadata);
     }
     Get(request, metadata) {
-        return this.rpc.unary(exports.SeriesSvcGetDesc, exports.GetRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MagazineSvcGetDesc, exports.GetRequest.fromPartial(request), metadata);
     }
 }
-exports.SeriesSvcClientImpl = SeriesSvcClientImpl;
-exports.SeriesSvcDesc = { serviceName: "seriessvc.SeriesSvc" };
-exports.SeriesSvcListDesc = {
+exports.MagazineSvcClientImpl = MagazineSvcClientImpl;
+exports.MagazineSvcDesc = { serviceName: "magazinesvc.MagazineSvc" };
+exports.MagazineSvcListDesc = {
     methodName: "List",
-    service: exports.SeriesSvcDesc,
+    service: exports.MagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1123,9 +1109,9 @@ exports.SeriesSvcListDesc = {
         },
     },
 };
-exports.SeriesSvcListByAuthorIdDesc = {
+exports.MagazineSvcListByAuthorIdDesc = {
     methodName: "ListByAuthorId",
-    service: exports.SeriesSvcDesc,
+    service: exports.MagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1142,9 +1128,9 @@ exports.SeriesSvcListByAuthorIdDesc = {
         },
     },
 };
-exports.SeriesSvcListByCategoryDesc = {
+exports.MagazineSvcListByCategoryDesc = {
     methodName: "ListByCategory",
-    service: exports.SeriesSvcDesc,
+    service: exports.MagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1161,9 +1147,9 @@ exports.SeriesSvcListByCategoryDesc = {
         },
     },
 };
-exports.SeriesSvcGetDesc = {
+exports.MagazineSvcGetDesc = {
     methodName: "Get",
-    service: exports.SeriesSvcDesc,
+    service: exports.MagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1180,7 +1166,7 @@ exports.SeriesSvcGetDesc = {
         },
     },
 };
-class MySeriesSvcClientImpl {
+class MyMagazineSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.Create = this.Create.bind(this);
@@ -1191,29 +1177,29 @@ class MySeriesSvcClientImpl {
         this.ListByCategory = this.ListByCategory.bind(this);
     }
     Create(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcCreateDesc, exports.CreateMyRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcCreateDesc, exports.CreateMyRequest.fromPartial(request), metadata);
     }
     Update(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcUpdateDesc, exports.UpdateMyRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcUpdateDesc, exports.UpdateMyRequest.fromPartial(request), metadata);
     }
     Get(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcGetDesc, exports.GetMyRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcGetDesc, exports.GetMyRequest.fromPartial(request), metadata);
     }
     Delete(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcDeleteDesc, exports.DeleteMyRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcDeleteDesc, exports.DeleteMyRequest.fromPartial(request), metadata);
     }
     List(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcListDesc, exports.ListMyRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcListDesc, exports.ListMyRequest.fromPartial(request), metadata);
     }
     ListByCategory(request, metadata) {
-        return this.rpc.unary(exports.MySeriesSvcListByCategoryDesc, exports.ListMyByCategoryRequest.fromPartial(request), metadata);
+        return this.rpc.unary(exports.MyMagazineSvcListByCategoryDesc, exports.ListMyByCategoryRequest.fromPartial(request), metadata);
     }
 }
-exports.MySeriesSvcClientImpl = MySeriesSvcClientImpl;
-exports.MySeriesSvcDesc = { serviceName: "seriessvc.MySeriesSvc" };
-exports.MySeriesSvcCreateDesc = {
+exports.MyMagazineSvcClientImpl = MyMagazineSvcClientImpl;
+exports.MyMagazineSvcDesc = { serviceName: "magazinesvc.MyMagazineSvc" };
+exports.MyMagazineSvcCreateDesc = {
     methodName: "Create",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1230,9 +1216,9 @@ exports.MySeriesSvcCreateDesc = {
         },
     },
 };
-exports.MySeriesSvcUpdateDesc = {
+exports.MyMagazineSvcUpdateDesc = {
     methodName: "Update",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1249,9 +1235,9 @@ exports.MySeriesSvcUpdateDesc = {
         },
     },
 };
-exports.MySeriesSvcGetDesc = {
+exports.MyMagazineSvcGetDesc = {
     methodName: "Get",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1268,9 +1254,9 @@ exports.MySeriesSvcGetDesc = {
         },
     },
 };
-exports.MySeriesSvcDeleteDesc = {
+exports.MyMagazineSvcDeleteDesc = {
     methodName: "Delete",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1287,9 +1273,9 @@ exports.MySeriesSvcDeleteDesc = {
         },
     },
 };
-exports.MySeriesSvcListDesc = {
+exports.MyMagazineSvcListDesc = {
     methodName: "List",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
@@ -1306,9 +1292,9 @@ exports.MySeriesSvcListDesc = {
         },
     },
 };
-exports.MySeriesSvcListByCategoryDesc = {
+exports.MyMagazineSvcListByCategoryDesc = {
     methodName: "ListByCategory",
-    service: exports.MySeriesSvcDesc,
+    service: exports.MyMagazineSvcDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
