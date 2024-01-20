@@ -3,7 +3,7 @@ import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Pagination, PostMetadata, Series } from "../blog";
+import { Billy, Pagination, PostMetadata, Series } from "../blog";
 
 export const protobufPackage = "seriessvc";
 
@@ -23,6 +23,7 @@ export interface ListByCategoryRequest {
 
 export interface ListResponse {
   series: Series[];
+  billy: Billy | undefined;
   totalCount: number;
 }
 
@@ -297,13 +298,16 @@ export const ListByCategoryRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { series: [], totalCount: 0 };
+  return { series: [], billy: undefined, totalCount: 0 };
 }
 
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.series) {
       Series.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.billy !== undefined) {
+      Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
@@ -325,6 +329,13 @@ export const ListResponse = {
 
           message.series.push(Series.decode(reader, reader.uint32()));
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.billy = Billy.decode(reader, reader.uint32());
+          continue;
         case 2:
           if (tag !== 16) {
             break;
@@ -344,6 +355,7 @@ export const ListResponse = {
   fromJSON(object: any): ListResponse {
     return {
       series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
+      billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
@@ -352,6 +364,9 @@ export const ListResponse = {
     const obj: any = {};
     if (message.series?.length) {
       obj.series = message.series.map((e) => Series.toJSON(e));
+    }
+    if (message.billy !== undefined) {
+      obj.billy = Billy.toJSON(message.billy);
     }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
@@ -365,6 +380,7 @@ export const ListResponse = {
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
     message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
+    message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
     message.totalCount = object.totalCount ?? 0;
     return message;
   },

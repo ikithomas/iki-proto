@@ -27,6 +27,10 @@ export interface Series {
   updatedAt: number;
 }
 
+export interface Billy {
+  id: string;
+}
+
 export interface Author {
   id: string;
   ikiUserId: string;
@@ -392,6 +396,63 @@ export const Series = {
     message.category = object.category ?? "";
     message.createdAt = object.createdAt ?? 0;
     message.updatedAt = object.updatedAt ?? 0;
+    return message;
+  },
+};
+
+function createBaseBilly(): Billy {
+  return { id: "" };
+}
+
+export const Billy = {
+  encode(message: Billy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Billy {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBilly();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Billy {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: Billy): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Billy>, I>>(base?: I): Billy {
+    return Billy.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Billy>, I>>(object: I): Billy {
+    const message = createBaseBilly();
+    message.id = object.id ?? "";
     return message;
   },
 };

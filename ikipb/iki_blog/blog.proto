@@ -27,6 +27,10 @@ message Series {
   int64 updated_at = 7;
 }
 
+message Billy {
+  string id = 1;
+}
+
 message Author {
   string id = 1;
   string iki_user_id = 2;

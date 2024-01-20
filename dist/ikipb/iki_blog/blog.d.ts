@@ -21,6 +21,9 @@ export interface Series {
     createdAt: number;
     updatedAt: number;
 }
+export interface Billy {
+    id: string;
+}
 export interface Author {
     id: string;
     ikiUserId: string;
@@ -169,6 +172,22 @@ export declare const Series: {
         createdAt?: number;
         updatedAt?: number;
     } & { [K_3 in Exclude<keyof I_1, keyof Series>]: never; }>(object: I_1): Series;
+};
+export declare const Billy: {
+    encode(message: Billy, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Billy;
+    fromJSON(object: any): Billy;
+    toJSON(message: Billy): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): Billy;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): Billy;
 };
 export declare const Author: {
     encode(message: Author, writer?: _m0.Writer): _m0.Writer;

@@ -2,6 +2,8 @@
 
 rm -rf ikipb/**/*.pb.go
 rm -rf ikipb/**/*.ts
+rm -rf ikipb/iki_blog/**/*.pb.go
+rm -rf ikipb/iki_blog/**/*.ts
 rm -rf ikipb/iki_bus/**/*.pb.go
 rm -rf ikipb/iki_bus/**/*.ts
 rm -rf ikipb/iki_iam/**/*.pb.go
@@ -14,10 +16,6 @@ for f in $(find . -path "./ikipb/**/*.proto"); do
     --go_out=./ --go_opt=paths=source_relative \
     --go-grpc_out=./ --go-grpc_opt=paths=source_relative \
     ${f}
-  # protoc \
-  #   --js_out=import_style=commonjs:./ \
-  #   --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./ \
-  #   ${f}
   protoc \
     --ts_proto_out=./ \
     --plugin=node_modules/ts-proto/protoc-gen-ts_proto \

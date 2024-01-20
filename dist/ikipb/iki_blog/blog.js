@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pagination = exports.Author = exports.Series = exports.PostMetadata = exports.protobufPackage = void 0;
+exports.Pagination = exports.Author = exports.Billy = exports.Series = exports.PostMetadata = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -337,6 +337,57 @@ exports.Series = {
         message.category = (_d = object.category) !== null && _d !== void 0 ? _d : "";
         message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
         message.updatedAt = (_f = object.updatedAt) !== null && _f !== void 0 ? _f : 0;
+        return message;
+    },
+};
+function createBaseBilly() {
+    return { id: "" };
+}
+exports.Billy = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseBilly();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Billy.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseBilly();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         return message;
     },
 };
