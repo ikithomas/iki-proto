@@ -84,6 +84,7 @@ export interface ListMyByCategoryRequest {
 export interface ListMyResponse {
   magazines: Magazine[];
   totalCount: number;
+  billy: Billy | undefined;
 }
 
 function createBaseListRequest(): ListRequest {
@@ -1183,7 +1184,7 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { magazines: [], totalCount: 0 };
+  return { magazines: [], totalCount: 0, billy: undefined };
 }
 
 export const ListMyResponse = {
@@ -1193,6 +1194,9 @@ export const ListMyResponse = {
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
+    }
+    if (message.billy !== undefined) {
+      Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -1218,6 +1222,13 @@ export const ListMyResponse = {
 
           message.totalCount = longToNumber(reader.int64() as Long);
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.billy = Billy.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1231,6 +1242,7 @@ export const ListMyResponse = {
     return {
       magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
+      billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
     };
   },
 
@@ -1242,6 +1254,9 @@ export const ListMyResponse = {
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
     }
+    if (message.billy !== undefined) {
+      obj.billy = Billy.toJSON(message.billy);
+    }
     return obj;
   },
 
@@ -1252,6 +1267,7 @@ export const ListMyResponse = {
     const message = createBaseListMyResponse();
     message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
+    message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
     return message;
   },
 };

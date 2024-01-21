@@ -115,4 +115,6 @@ message ListMyResponse {
   repeated blog.Magazine magazines = 1;
 
   int64 total_count = 2;
+
+  blog.Billy billy = 3;
 }
