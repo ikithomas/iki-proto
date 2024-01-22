@@ -1000,7 +1000,7 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { magazines: [], totalCount: 0, series: [] };
+    return { magazines: [], totalCount: 0, series: [], adrian: "", billian: [] };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -1013,6 +1013,14 @@ exports.ListMyResponse = {
         for (const v of message.series) {
             blog_1.Series.encode(v, writer.uint32(26).fork()).ldelim();
         }
+        if (message.adrian !== "") {
+            writer.uint32(34).string(message.adrian);
+        }
+        writer.uint32(42).fork();
+        for (const v of message.billian) {
+            writer.int32(v);
+        }
+        writer.ldelim();
         return writer;
     },
     decode(input, length) {
@@ -1040,6 +1048,25 @@ exports.ListMyResponse = {
                     }
                     message.series.push(blog_1.Series.decode(reader, reader.uint32()));
                     continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.adrian = reader.string();
+                    continue;
+                case 5:
+                    if (tag === 40) {
+                        message.billian.push(reader.int32());
+                        continue;
+                    }
+                    if (tag === 42) {
+                        const end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2) {
+                            message.billian.push(reader.int32());
+                        }
+                        continue;
+                    }
+                    break;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -1053,10 +1080,12 @@ exports.ListMyResponse = {
             magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
             series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
+            adrian: isSet(object.adrian) ? String(object.adrian) : "",
+            billian: Array.isArray(object === null || object === void 0 ? void 0 : object.billian) ? object.billian.map((e) => Number(e)) : [],
         };
     },
     toJSON(message) {
-        var _a, _b;
+        var _a, _b, _c;
         const obj = {};
         if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
             obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
@@ -1067,17 +1096,25 @@ exports.ListMyResponse = {
         if ((_b = message.series) === null || _b === void 0 ? void 0 : _b.length) {
             obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
         }
+        if (message.adrian !== "") {
+            obj.adrian = message.adrian;
+        }
+        if ((_c = message.billian) === null || _c === void 0 ? void 0 : _c.length) {
+            obj.billian = message.billian.map((e) => Math.round(e));
+        }
         return obj;
     },
     create(base) {
         return exports.ListMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d, _e;
         const message = createBaseListMyResponse();
         message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
         message.series = ((_c = object.series) === null || _c === void 0 ? void 0 : _c.map((e) => blog_1.Series.fromPartial(e))) || [];
+        message.adrian = (_d = object.adrian) !== null && _d !== void 0 ? _d : "";
+        message.billian = ((_e = object.billian) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];
         return message;
     },
 };

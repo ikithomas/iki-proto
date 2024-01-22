@@ -117,4 +117,8 @@ message ListMyResponse {
   int64 total_count = 2;
 
   repeated blog.Series series = 3;
+
+  string adrian = 4;
+
+  repeated int32 billian = 5;
 }

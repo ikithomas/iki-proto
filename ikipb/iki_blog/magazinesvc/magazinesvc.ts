@@ -85,6 +85,8 @@ export interface ListMyResponse {
   magazines: Magazine[];
   totalCount: number;
   series: Series[];
+  adrian: string;
+  billian: number[];
 }
 
 function createBaseListRequest(): ListRequest {
@@ -1184,7 +1186,7 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { magazines: [], totalCount: 0, series: [] };
+  return { magazines: [], totalCount: 0, series: [], adrian: "", billian: [] };
 }
 
 export const ListMyResponse = {
@@ -1198,6 +1200,14 @@ export const ListMyResponse = {
     for (const v of message.series) {
       Series.encode(v!, writer.uint32(26).fork()).ldelim();
     }
+    if (message.adrian !== "") {
+      writer.uint32(34).string(message.adrian);
+    }
+    writer.uint32(42).fork();
+    for (const v of message.billian) {
+      writer.int32(v);
+    }
+    writer.ldelim();
     return writer;
   },
 
@@ -1229,6 +1239,30 @@ export const ListMyResponse = {
 
           message.series.push(Series.decode(reader, reader.uint32()));
           continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.adrian = reader.string();
+          continue;
+        case 5:
+          if (tag === 40) {
+            message.billian.push(reader.int32());
+
+            continue;
+          }
+
+          if (tag === 42) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.billian.push(reader.int32());
+            }
+
+            continue;
+          }
+
+          break;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1243,6 +1277,8 @@ export const ListMyResponse = {
       magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
       series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
+      adrian: isSet(object.adrian) ? String(object.adrian) : "",
+      billian: Array.isArray(object?.billian) ? object.billian.map((e: any) => Number(e)) : [],
     };
   },
 
@@ -1257,6 +1293,12 @@ export const ListMyResponse = {
     if (message.series?.length) {
       obj.series = message.series.map((e) => Series.toJSON(e));
     }
+    if (message.adrian !== "") {
+      obj.adrian = message.adrian;
+    }
+    if (message.billian?.length) {
+      obj.billian = message.billian.map((e) => Math.round(e));
+    }
     return obj;
   },
 
@@ -1268,6 +1310,8 @@ export const ListMyResponse = {
     message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
+    message.adrian = object.adrian ?? "";
+    message.billian = object.billian?.map((e) => e) || [];
     return message;
   },
 };
