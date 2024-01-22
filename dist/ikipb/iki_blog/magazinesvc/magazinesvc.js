@@ -1000,13 +1000,10 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { magazines: [], totalCount: 0, series: [], adrian: "", billian: [] };
+    return { totalCount: 0, series: [], adrian: "", billian: [] };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.magazines) {
-            blog_1.Magazine.encode(v, writer.uint32(10).fork()).ldelim();
-        }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
         }
@@ -1030,12 +1027,6 @@ exports.ListMyResponse = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.magazines.push(blog_1.Magazine.decode(reader, reader.uint32()));
-                    continue;
                 case 2:
                     if (tag !== 16) {
                         break;
@@ -1077,7 +1068,6 @@ exports.ListMyResponse = {
     },
     fromJSON(object) {
         return {
-            magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
             series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
             adrian: isSet(object.adrian) ? String(object.adrian) : "",
@@ -1085,21 +1075,18 @@ exports.ListMyResponse = {
         };
     },
     toJSON(message) {
-        var _a, _b, _c;
+        var _a, _b;
         const obj = {};
-        if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
-        }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
         }
-        if ((_b = message.series) === null || _b === void 0 ? void 0 : _b.length) {
+        if ((_a = message.series) === null || _a === void 0 ? void 0 : _a.length) {
             obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
         }
         if (message.adrian !== "") {
             obj.adrian = message.adrian;
         }
-        if ((_c = message.billian) === null || _c === void 0 ? void 0 : _c.length) {
+        if ((_b = message.billian) === null || _b === void 0 ? void 0 : _b.length) {
             obj.billian = message.billian.map((e) => Math.round(e));
         }
         return obj;
@@ -1108,13 +1095,12 @@ exports.ListMyResponse = {
         return exports.ListMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         const message = createBaseListMyResponse();
-        message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
-        message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
-        message.series = ((_c = object.series) === null || _c === void 0 ? void 0 : _c.map((e) => blog_1.Series.fromPartial(e))) || [];
-        message.adrian = (_d = object.adrian) !== null && _d !== void 0 ? _d : "";
-        message.billian = ((_e = object.billian) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];
+        message.totalCount = (_a = object.totalCount) !== null && _a !== void 0 ? _a : 0;
+        message.series = ((_b = object.series) === null || _b === void 0 ? void 0 : _b.map((e) => blog_1.Series.fromPartial(e))) || [];
+        message.adrian = (_c = object.adrian) !== null && _c !== void 0 ? _c : "";
+        message.billian = ((_d = object.billian) === null || _d === void 0 ? void 0 : _d.map((e) => e)) || [];
         return message;
     },
 };

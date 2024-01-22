@@ -82,7 +82,6 @@ export interface ListMyByCategoryRequest {
 }
 
 export interface ListMyResponse {
-  magazines: Magazine[];
   totalCount: number;
   series: Series[];
   adrian: string;
@@ -1186,14 +1185,11 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { magazines: [], totalCount: 0, series: [], adrian: "", billian: [] };
+  return { totalCount: 0, series: [], adrian: "", billian: [] };
 }
 
 export const ListMyResponse = {
   encode(message: ListMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.magazines) {
-      Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
     }
@@ -1218,13 +1214,6 @@ export const ListMyResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.magazines.push(Magazine.decode(reader, reader.uint32()));
-          continue;
         case 2:
           if (tag !== 16) {
             break;
@@ -1274,7 +1263,6 @@ export const ListMyResponse = {
 
   fromJSON(object: any): ListMyResponse {
     return {
-      magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
       series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
       adrian: isSet(object.adrian) ? String(object.adrian) : "",
@@ -1284,9 +1272,6 @@ export const ListMyResponse = {
 
   toJSON(message: ListMyResponse): unknown {
     const obj: any = {};
-    if (message.magazines?.length) {
-      obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
-    }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
     }
@@ -1307,7 +1292,6 @@ export const ListMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListMyResponse>, I>>(object: I): ListMyResponse {
     const message = createBaseListMyResponse();
-    message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
     message.adrian = object.adrian ?? "";
