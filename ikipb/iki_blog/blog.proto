@@ -29,6 +29,7 @@ message Magazine {
 
 message Billy {
   string id = 1;
+  Author author = 2;
   string title = 3;
   string preface = 4;
   string category = 5;

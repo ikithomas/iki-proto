@@ -23,6 +23,7 @@ export interface Magazine {
 }
 export interface Billy {
     id: string;
+    author: Author | undefined;
     title: string;
     preface: string;
     category: string;
@@ -185,6 +186,11 @@ export declare const Billy: {
     toJSON(message: Billy): unknown;
     create<I extends {
         id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
         title?: string;
         preface?: string;
         category?: string;
@@ -192,14 +198,28 @@ export declare const Billy: {
         updatedAt?: number;
     } & {
         id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K in Exclude<keyof I["author"], keyof Author>]: never; };
         title?: string;
         preface?: string;
         category?: string;
         createdAt?: number;
         updatedAt?: number;
-    } & { [K in Exclude<keyof I, keyof Billy>]: never; }>(base?: I): Billy;
+    } & { [K_1 in Exclude<keyof I, keyof Billy>]: never; }>(base?: I): Billy;
     fromPartial<I_1 extends {
         id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        };
         title?: string;
         preface?: string;
         category?: string;
@@ -207,12 +227,21 @@ export declare const Billy: {
         updatedAt?: number;
     } & {
         id?: string;
+        author?: {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & {
+            id?: string;
+            ikiUserId?: string;
+            displayName?: string;
+        } & { [K_2 in Exclude<keyof I_1["author"], keyof Author>]: never; };
         title?: string;
         preface?: string;
         category?: string;
         createdAt?: number;
         updatedAt?: number;
-    } & { [K_1 in Exclude<keyof I_1, keyof Billy>]: never; }>(object: I_1): Billy;
+    } & { [K_3 in Exclude<keyof I_1, keyof Billy>]: never; }>(object: I_1): Billy;
 };
 export declare const Author: {
     encode(message: Author, writer?: _m0.Writer): _m0.Writer;

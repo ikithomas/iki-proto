@@ -29,6 +29,7 @@ export interface Magazine {
 
 export interface Billy {
   id: string;
+  author: Author | undefined;
   title: string;
   preface: string;
   category: string;
@@ -406,13 +407,16 @@ export const Magazine = {
 };
 
 function createBaseBilly(): Billy {
-  return { id: "", title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
+  return { id: "", author: undefined, title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
 
 export const Billy = {
   encode(message: Billy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
+    }
+    if (message.author !== undefined) {
+      Author.encode(message.author, writer.uint32(18).fork()).ldelim();
     }
     if (message.title !== "") {
       writer.uint32(26).string(message.title);
@@ -445,6 +449,13 @@ export const Billy = {
           }
 
           message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.author = Author.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
@@ -493,6 +504,7 @@ export const Billy = {
   fromJSON(object: any): Billy {
     return {
       id: isSet(object.id) ? String(object.id) : "",
+      author: isSet(object.author) ? Author.fromJSON(object.author) : undefined,
       title: isSet(object.title) ? String(object.title) : "",
       preface: isSet(object.preface) ? String(object.preface) : "",
       category: isSet(object.category) ? String(object.category) : "",
@@ -505,6 +517,9 @@ export const Billy = {
     const obj: any = {};
     if (message.id !== "") {
       obj.id = message.id;
+    }
+    if (message.author !== undefined) {
+      obj.author = Author.toJSON(message.author);
     }
     if (message.title !== "") {
       obj.title = message.title;
@@ -530,6 +545,9 @@ export const Billy = {
   fromPartial<I extends Exact<DeepPartial<Billy>, I>>(object: I): Billy {
     const message = createBaseBilly();
     message.id = object.id ?? "";
+    message.author = (object.author !== undefined && object.author !== null)
+      ? Author.fromPartial(object.author)
+      : undefined;
     message.title = object.title ?? "";
     message.preface = object.preface ?? "";
     message.category = object.category ?? "";
