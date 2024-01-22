@@ -38,8 +38,6 @@ message ListByCategoryRequest {
 message ListResponse {
   repeated blog.Magazine magazines = 1;
 
-  repeated blog.Series series = 3;
-
   int64 total_count = 2;
 }
 
@@ -119,11 +117,6 @@ message ListMyByCategoryRequest {
 }
 
 message ListMyResponse {
+  repeated blog.Magazine magazines = 1;
   int64 total_count = 2;
-
-  repeated blog.Series series = 3;
-
-  string adrian = 4;
-
-  repeated int32 billian = 5;
 }

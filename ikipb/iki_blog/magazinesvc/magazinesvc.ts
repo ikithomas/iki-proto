@@ -3,7 +3,7 @@ import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Magazine, Pagination, PostMetadata, Series } from "../blog";
+import { Magazine, Pagination, PostMetadata } from "../blog";
 
 export const protobufPackage = "magazinesvc";
 
@@ -23,7 +23,6 @@ export interface ListByCategoryRequest {
 
 export interface ListResponse {
   magazines: Magazine[];
-  series: Series[];
   totalCount: number;
 }
 
@@ -82,10 +81,8 @@ export interface ListMyByCategoryRequest {
 }
 
 export interface ListMyResponse {
+  magazines: Magazine[];
   totalCount: number;
-  series: Series[];
-  adrian: string;
-  billian: number[];
 }
 
 function createBaseListRequest(): ListRequest {
@@ -300,16 +297,13 @@ export const ListByCategoryRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { magazines: [], series: [], totalCount: 0 };
+  return { magazines: [], totalCount: 0 };
 }
 
 export const ListResponse = {
   encode(message: ListResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.magazines) {
       Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    for (const v of message.series) {
-      Series.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
@@ -331,13 +325,6 @@ export const ListResponse = {
 
           message.magazines.push(Magazine.decode(reader, reader.uint32()));
           continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.series.push(Series.decode(reader, reader.uint32()));
-          continue;
         case 2:
           if (tag !== 16) {
             break;
@@ -357,7 +344,6 @@ export const ListResponse = {
   fromJSON(object: any): ListResponse {
     return {
       magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
-      series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
@@ -366,9 +352,6 @@ export const ListResponse = {
     const obj: any = {};
     if (message.magazines?.length) {
       obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
-    }
-    if (message.series?.length) {
-      obj.series = message.series.map((e) => Series.toJSON(e));
     }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
@@ -382,7 +365,6 @@ export const ListResponse = {
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
     message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
-    message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     return message;
   },
@@ -1185,25 +1167,17 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { totalCount: 0, series: [], adrian: "", billian: [] };
+  return { magazines: [], totalCount: 0 };
 }
 
 export const ListMyResponse = {
   encode(message: ListMyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.magazines) {
+      Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
     }
-    for (const v of message.series) {
-      Series.encode(v!, writer.uint32(26).fork()).ldelim();
-    }
-    if (message.adrian !== "") {
-      writer.uint32(34).string(message.adrian);
-    }
-    writer.uint32(42).fork();
-    for (const v of message.billian) {
-      writer.int32(v);
-    }
-    writer.ldelim();
     return writer;
   },
 
@@ -1214,6 +1188,13 @@ export const ListMyResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.magazines.push(Magazine.decode(reader, reader.uint32()));
+          continue;
         case 2:
           if (tag !== 16) {
             break;
@@ -1221,37 +1202,6 @@ export const ListMyResponse = {
 
           message.totalCount = longToNumber(reader.int64() as Long);
           continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.series.push(Series.decode(reader, reader.uint32()));
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.adrian = reader.string();
-          continue;
-        case 5:
-          if (tag === 40) {
-            message.billian.push(reader.int32());
-
-            continue;
-          }
-
-          if (tag === 42) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.billian.push(reader.int32());
-            }
-
-            continue;
-          }
-
-          break;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1263,26 +1213,18 @@ export const ListMyResponse = {
 
   fromJSON(object: any): ListMyResponse {
     return {
+      magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
-      series: Array.isArray(object?.series) ? object.series.map((e: any) => Series.fromJSON(e)) : [],
-      adrian: isSet(object.adrian) ? String(object.adrian) : "",
-      billian: Array.isArray(object?.billian) ? object.billian.map((e: any) => Number(e)) : [],
     };
   },
 
   toJSON(message: ListMyResponse): unknown {
     const obj: any = {};
+    if (message.magazines?.length) {
+      obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
+    }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
-    }
-    if (message.series?.length) {
-      obj.series = message.series.map((e) => Series.toJSON(e));
-    }
-    if (message.adrian !== "") {
-      obj.adrian = message.adrian;
-    }
-    if (message.billian?.length) {
-      obj.billian = message.billian.map((e) => Math.round(e));
     }
     return obj;
   },
@@ -1292,10 +1234,8 @@ export const ListMyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListMyResponse>, I>>(object: I): ListMyResponse {
     const message = createBaseListMyResponse();
+    message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
-    message.series = object.series?.map((e) => Series.fromPartial(e)) || [];
-    message.adrian = object.adrian ?? "";
-    message.billian = object.billian?.map((e) => e) || [];
     return message;
   },
 };
