@@ -8,7 +8,8 @@ export const protobufPackage = "filesvc";
 export interface UploadMyRequest {
   type: string;
   name: string;
-  body: Uint8Array;
+  /** base64 bytes */
+  body: string;
 }
 
 export interface UploadMyResponse {
@@ -16,7 +17,7 @@ export interface UploadMyResponse {
 }
 
 function createBaseUploadMyRequest(): UploadMyRequest {
-  return { type: "", name: "", body: new Uint8Array(0) };
+  return { type: "", name: "", body: "" };
 }
 
 export const UploadMyRequest = {
@@ -27,8 +28,8 @@ export const UploadMyRequest = {
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.body.length !== 0) {
-      writer.uint32(26).bytes(message.body);
+    if (message.body !== "") {
+      writer.uint32(26).string(message.body);
     }
     return writer;
   },
@@ -59,7 +60,7 @@ export const UploadMyRequest = {
             break;
           }
 
-          message.body = reader.bytes();
+          message.body = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -74,7 +75,7 @@ export const UploadMyRequest = {
     return {
       type: isSet(object.type) ? String(object.type) : "",
       name: isSet(object.name) ? String(object.name) : "",
-      body: isSet(object.body) ? bytesFromBase64(object.body) : new Uint8Array(0),
+      body: isSet(object.body) ? String(object.body) : "",
     };
   },
 
@@ -86,8 +87,8 @@ export const UploadMyRequest = {
     if (message.name !== "") {
       obj.name = message.name;
     }
-    if (message.body.length !== 0) {
-      obj.body = base64FromBytes(message.body);
+    if (message.body !== "") {
+      obj.body = message.body;
     }
     return obj;
   },
@@ -99,7 +100,7 @@ export const UploadMyRequest = {
     const message = createBaseUploadMyRequest();
     message.type = object.type ?? "";
     message.name = object.name ?? "";
-    message.body = object.body ?? new Uint8Array(0);
+    message.body = object.body ?? "";
     return message;
   },
 };
@@ -289,31 +290,6 @@ const tsProtoGlobalThis: any = (() => {
   }
   throw "Unable to locate global object";
 })();
-
-function bytesFromBase64(b64: string): Uint8Array {
-  if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = tsProtoGlobalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(String.fromCharCode(byte));
-    });
-    return tsProtoGlobalThis.btoa(bin.join(""));
-  }
-}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

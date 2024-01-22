@@ -11,7 +11,8 @@ service MyFileSvc {
 message UploadMyRequest {
   string type = 1;
   string name = 2;
-  bytes body = 3;
+  // base64 bytes
+  string body = 3;
 }
 
 message UploadMyResponse {

@@ -2,10 +2,7 @@ syntax = "proto3";
 
 import "ikipb/iki_blog/blog.proto";
 
-import "google/api/annotations.proto";
-
 option go_package = "/magazinesvc";
-
 
 package magazinesvc;
 

@@ -10,7 +10,7 @@ const browser_headers_1 = require("browser-headers");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "filesvc";
 function createBaseUploadMyRequest() {
-    return { type: "", name: "", body: new Uint8Array(0) };
+    return { type: "", name: "", body: "" };
 }
 exports.UploadMyRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -20,8 +20,8 @@ exports.UploadMyRequest = {
         if (message.name !== "") {
             writer.uint32(18).string(message.name);
         }
-        if (message.body.length !== 0) {
-            writer.uint32(26).bytes(message.body);
+        if (message.body !== "") {
+            writer.uint32(26).string(message.body);
         }
         return writer;
     },
@@ -48,7 +48,7 @@ exports.UploadMyRequest = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.body = reader.bytes();
+                    message.body = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -62,7 +62,7 @@ exports.UploadMyRequest = {
         return {
             type: isSet(object.type) ? String(object.type) : "",
             name: isSet(object.name) ? String(object.name) : "",
-            body: isSet(object.body) ? bytesFromBase64(object.body) : new Uint8Array(0),
+            body: isSet(object.body) ? String(object.body) : "",
         };
     },
     toJSON(message) {
@@ -73,8 +73,8 @@ exports.UploadMyRequest = {
         if (message.name !== "") {
             obj.name = message.name;
         }
-        if (message.body.length !== 0) {
-            obj.body = base64FromBytes(message.body);
+        if (message.body !== "") {
+            obj.body = message.body;
         }
         return obj;
     },
@@ -86,7 +86,7 @@ exports.UploadMyRequest = {
         const message = createBaseUploadMyRequest();
         message.type = (_a = object.type) !== null && _a !== void 0 ? _a : "";
         message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
-        message.body = (_c = object.body) !== null && _c !== void 0 ? _c : new Uint8Array(0);
+        message.body = (_c = object.body) !== null && _c !== void 0 ? _c : "";
         return message;
     },
 };
@@ -212,31 +212,6 @@ const tsProtoGlobalThis = (() => {
     }
     throw "Unable to locate global object";
 })();
-function bytesFromBase64(b64) {
-    if (tsProtoGlobalThis.Buffer) {
-        return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-    }
-    else {
-        const bin = tsProtoGlobalThis.atob(b64);
-        const arr = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; ++i) {
-            arr[i] = bin.charCodeAt(i);
-        }
-        return arr;
-    }
-}
-function base64FromBytes(arr) {
-    if (tsProtoGlobalThis.Buffer) {
-        return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-    }
-    else {
-        const bin = [];
-        arr.forEach((byte) => {
-            bin.push(String.fromCharCode(byte));
-        });
-        return tsProtoGlobalThis.btoa(bin.join(""));
-    }
-}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

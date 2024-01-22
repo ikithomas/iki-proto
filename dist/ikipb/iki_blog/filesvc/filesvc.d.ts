@@ -4,7 +4,8 @@ export declare const protobufPackage = "filesvc";
 export interface UploadMyRequest {
     type: string;
     name: string;
-    body: Uint8Array;
+    /** base64 bytes */
+    body: string;
 }
 export interface UploadMyResponse {
     url: string;
@@ -17,20 +18,20 @@ export declare const UploadMyRequest: {
     create<I extends {
         type?: string;
         name?: string;
-        body?: Uint8Array;
+        body?: string;
     } & {
         type?: string;
         name?: string;
-        body?: Uint8Array;
+        body?: string;
     } & { [K in Exclude<keyof I, keyof UploadMyRequest>]: never; }>(base?: I): UploadMyRequest;
     fromPartial<I_1 extends {
         type?: string;
         name?: string;
-        body?: Uint8Array;
+        body?: string;
     } & {
         type?: string;
         name?: string;
-        body?: Uint8Array;
+        body?: string;
     } & { [K_1 in Exclude<keyof I_1, keyof UploadMyRequest>]: never; }>(object: I_1): UploadMyRequest;
 };
 export declare const UploadMyResponse: {
