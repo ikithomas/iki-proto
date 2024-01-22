@@ -23,7 +23,7 @@ export interface ListByCategoryRequest {
 
 export interface ListResponse {
   magazines: Magazine[];
-  billy: Billy | undefined;
+  billy: Billy[];
   totalCount: number;
 }
 
@@ -299,7 +299,7 @@ export const ListByCategoryRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { magazines: [], billy: undefined, totalCount: 0 };
+  return { magazines: [], billy: [], totalCount: 0 };
 }
 
 export const ListResponse = {
@@ -307,8 +307,8 @@ export const ListResponse = {
     for (const v of message.magazines) {
       Magazine.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.billy !== undefined) {
-      Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+    for (const v of message.billy) {
+      Billy.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
@@ -335,7 +335,7 @@ export const ListResponse = {
             break;
           }
 
-          message.billy = Billy.decode(reader, reader.uint32());
+          message.billy.push(Billy.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 16) {
@@ -356,7 +356,7 @@ export const ListResponse = {
   fromJSON(object: any): ListResponse {
     return {
       magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
-      billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
+      billy: Array.isArray(object?.billy) ? object.billy.map((e: any) => Billy.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
     };
   },
@@ -366,8 +366,8 @@ export const ListResponse = {
     if (message.magazines?.length) {
       obj.magazines = message.magazines.map((e) => Magazine.toJSON(e));
     }
-    if (message.billy !== undefined) {
-      obj.billy = Billy.toJSON(message.billy);
+    if (message.billy?.length) {
+      obj.billy = message.billy.map((e) => Billy.toJSON(e));
     }
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
@@ -381,7 +381,7 @@ export const ListResponse = {
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
     message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
-    message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
+    message.billy = object.billy?.map((e) => Billy.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
     return message;
   },

@@ -15,7 +15,7 @@ export interface ListByCategoryRequest {
 }
 export interface ListResponse {
     magazines: Magazine[];
-    billy: Billy | undefined;
+    billy: Billy[];
     totalCount: number;
 }
 export interface GetRequest {
@@ -206,7 +206,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        };
+        }[];
         totalCount?: number;
     } & {
         magazines?: {
@@ -274,6 +274,18 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+        }[] & ({
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
             author?: {
@@ -284,15 +296,27 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_3 in Exclude<keyof I["billy"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_3 in Exclude<keyof I["billy"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_4 in Exclude<keyof I["billy"], keyof Billy>]: never; };
+        } & { [K_4 in Exclude<keyof I["billy"][number], keyof Billy>]: never; })[] & { [K_5 in Exclude<keyof I["billy"], keyof {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[]>]: never; };
         totalCount?: number;
-    } & { [K_5 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
+    } & { [K_6 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
         magazines?: {
             id?: string;
@@ -319,7 +343,7 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        };
+        }[];
         totalCount?: number;
     } & {
         magazines?: {
@@ -356,13 +380,13 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_6 in Exclude<keyof I_1["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_7 in Exclude<keyof I_1["magazines"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_7 in Exclude<keyof I_1["magazines"][number], keyof Magazine>]: never; })[] & { [K_8 in Exclude<keyof I_1["magazines"], keyof {
+        } & { [K_8 in Exclude<keyof I_1["magazines"][number], keyof Magazine>]: never; })[] & { [K_9 in Exclude<keyof I_1["magazines"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -387,6 +411,18 @@ export declare const ListResponse: {
             category?: string;
             createdAt?: number;
             updatedAt?: number;
+        }[] & ({
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
         } & {
             id?: string;
             author?: {
@@ -397,15 +433,27 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_9 in Exclude<keyof I_1["billy"]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_10 in Exclude<keyof I_1["billy"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             category?: string;
             createdAt?: number;
             updatedAt?: number;
-        } & { [K_10 in Exclude<keyof I_1["billy"], keyof Billy>]: never; };
+        } & { [K_11 in Exclude<keyof I_1["billy"][number], keyof Billy>]: never; })[] & { [K_12 in Exclude<keyof I_1["billy"], keyof {
+            id?: string;
+            author?: {
+                id?: string;
+                ikiUserId?: string;
+                displayName?: string;
+            };
+            title?: string;
+            preface?: string;
+            category?: string;
+            createdAt?: number;
+            updatedAt?: number;
+        }[]>]: never; };
         totalCount?: number;
-    } & { [K_11 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
+    } & { [K_13 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;

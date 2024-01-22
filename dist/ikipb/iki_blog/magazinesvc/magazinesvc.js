@@ -202,15 +202,15 @@ exports.ListByCategoryRequest = {
     },
 };
 function createBaseListResponse() {
-    return { magazines: [], billy: undefined, totalCount: 0 };
+    return { magazines: [], billy: [], totalCount: 0 };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         for (const v of message.magazines) {
             blog_1.Magazine.encode(v, writer.uint32(10).fork()).ldelim();
         }
-        if (message.billy !== undefined) {
-            blog_1.Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+        for (const v of message.billy) {
+            blog_1.Billy.encode(v, writer.uint32(26).fork()).ldelim();
         }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
@@ -234,7 +234,7 @@ exports.ListResponse = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.billy = blog_1.Billy.decode(reader, reader.uint32());
+                    message.billy.push(blog_1.Billy.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -253,18 +253,18 @@ exports.ListResponse = {
     fromJSON(object) {
         return {
             magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
-            billy: isSet(object.billy) ? blog_1.Billy.fromJSON(object.billy) : undefined,
+            billy: Array.isArray(object === null || object === void 0 ? void 0 : object.billy) ? object.billy.map((e) => blog_1.Billy.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
     toJSON(message) {
-        var _a;
+        var _a, _b;
         const obj = {};
         if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
             obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
         }
-        if (message.billy !== undefined) {
-            obj.billy = blog_1.Billy.toJSON(message.billy);
+        if ((_b = message.billy) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.billy = message.billy.map((e) => blog_1.Billy.toJSON(e));
         }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
@@ -275,11 +275,11 @@ exports.ListResponse = {
         return exports.ListResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseListResponse();
         message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
-        message.billy = (object.billy !== undefined && object.billy !== null) ? blog_1.Billy.fromPartial(object.billy) : undefined;
-        message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
+        message.billy = ((_b = object.billy) === null || _b === void 0 ? void 0 : _b.map((e) => blog_1.Billy.fromPartial(e))) || [];
+        message.totalCount = (_c = object.totalCount) !== null && _c !== void 0 ? _c : 0;
         return message;
     },
 };
