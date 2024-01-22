@@ -116,5 +116,5 @@ message ListMyResponse {
 
   int64 total_count = 2;
 
-  blog.Billy billy = 3;
+  repeated blog.Billy billy = 3;
 }

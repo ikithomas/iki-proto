@@ -1000,7 +1000,7 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { magazines: [], totalCount: 0, billy: undefined };
+    return { magazines: [], totalCount: 0, billy: [] };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -1010,8 +1010,8 @@ exports.ListMyResponse = {
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
         }
-        if (message.billy !== undefined) {
-            blog_1.Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+        for (const v of message.billy) {
+            blog_1.Billy.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -1038,7 +1038,7 @@ exports.ListMyResponse = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.billy = blog_1.Billy.decode(reader, reader.uint32());
+                    message.billy.push(blog_1.Billy.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -1052,11 +1052,11 @@ exports.ListMyResponse = {
         return {
             magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
-            billy: isSet(object.billy) ? blog_1.Billy.fromJSON(object.billy) : undefined,
+            billy: Array.isArray(object === null || object === void 0 ? void 0 : object.billy) ? object.billy.map((e) => blog_1.Billy.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
-        var _a;
+        var _a, _b;
         const obj = {};
         if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
             obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
@@ -1064,8 +1064,8 @@ exports.ListMyResponse = {
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
         }
-        if (message.billy !== undefined) {
-            obj.billy = blog_1.Billy.toJSON(message.billy);
+        if ((_b = message.billy) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.billy = message.billy.map((e) => blog_1.Billy.toJSON(e));
         }
         return obj;
     },
@@ -1073,11 +1073,11 @@ exports.ListMyResponse = {
         return exports.ListMyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseListMyResponse();
         message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
-        message.billy = (object.billy !== undefined && object.billy !== null) ? blog_1.Billy.fromPartial(object.billy) : undefined;
+        message.billy = ((_c = object.billy) === null || _c === void 0 ? void 0 : _c.map((e) => blog_1.Billy.fromPartial(e))) || [];
         return message;
     },
 };

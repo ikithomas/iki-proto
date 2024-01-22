@@ -84,7 +84,7 @@ export interface ListMyByCategoryRequest {
 export interface ListMyResponse {
   magazines: Magazine[];
   totalCount: number;
-  billy: Billy | undefined;
+  billy: Billy[];
 }
 
 function createBaseListRequest(): ListRequest {
@@ -1184,7 +1184,7 @@ export const ListMyByCategoryRequest = {
 };
 
 function createBaseListMyResponse(): ListMyResponse {
-  return { magazines: [], totalCount: 0, billy: undefined };
+  return { magazines: [], totalCount: 0, billy: [] };
 }
 
 export const ListMyResponse = {
@@ -1195,8 +1195,8 @@ export const ListMyResponse = {
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
     }
-    if (message.billy !== undefined) {
-      Billy.encode(message.billy, writer.uint32(26).fork()).ldelim();
+    for (const v of message.billy) {
+      Billy.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -1227,7 +1227,7 @@ export const ListMyResponse = {
             break;
           }
 
-          message.billy = Billy.decode(reader, reader.uint32());
+          message.billy.push(Billy.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1242,7 +1242,7 @@ export const ListMyResponse = {
     return {
       magazines: Array.isArray(object?.magazines) ? object.magazines.map((e: any) => Magazine.fromJSON(e)) : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
-      billy: isSet(object.billy) ? Billy.fromJSON(object.billy) : undefined,
+      billy: Array.isArray(object?.billy) ? object.billy.map((e: any) => Billy.fromJSON(e)) : [],
     };
   },
 
@@ -1254,8 +1254,8 @@ export const ListMyResponse = {
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
     }
-    if (message.billy !== undefined) {
-      obj.billy = Billy.toJSON(message.billy);
+    if (message.billy?.length) {
+      obj.billy = message.billy.map((e) => Billy.toJSON(e));
     }
     return obj;
   },
@@ -1267,7 +1267,7 @@ export const ListMyResponse = {
     const message = createBaseListMyResponse();
     message.magazines = object.magazines?.map((e) => Magazine.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
-    message.billy = (object.billy !== undefined && object.billy !== null) ? Billy.fromPartial(object.billy) : undefined;
+    message.billy = object.billy?.map((e) => Billy.fromPartial(e)) || [];
     return message;
   },
 };
