@@ -62,11 +62,7 @@ service MyMagazineSvc {
 
   rpc Delete (DeleteMyRequest) returns (DeleteMyResponse) {}
 
-  rpc List (ListMyRequest) returns (ListMyResponse) {
-    option (google.api.http) = {
-      get: "/v1/my/list"
-    };
-  }
+  rpc List (ListMyRequest) returns (ListMyResponse) {}
 
   rpc ListByCategory (ListMyByCategoryRequest) returns (ListMyResponse) {}
 }
