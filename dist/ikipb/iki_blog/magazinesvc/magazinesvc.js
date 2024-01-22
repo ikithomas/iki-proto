@@ -202,15 +202,15 @@ exports.ListByCategoryRequest = {
     },
 };
 function createBaseListResponse() {
-    return { magazines: [], billy: [], totalCount: 0 };
+    return { magazines: [], series: [], totalCount: 0 };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         for (const v of message.magazines) {
             blog_1.Magazine.encode(v, writer.uint32(10).fork()).ldelim();
         }
-        for (const v of message.billy) {
-            blog_1.Billy.encode(v, writer.uint32(26).fork()).ldelim();
+        for (const v of message.series) {
+            blog_1.Series.encode(v, writer.uint32(26).fork()).ldelim();
         }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
@@ -234,7 +234,7 @@ exports.ListResponse = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.billy.push(blog_1.Billy.decode(reader, reader.uint32()));
+                    message.series.push(blog_1.Series.decode(reader, reader.uint32()));
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -253,7 +253,7 @@ exports.ListResponse = {
     fromJSON(object) {
         return {
             magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
-            billy: Array.isArray(object === null || object === void 0 ? void 0 : object.billy) ? object.billy.map((e) => blog_1.Billy.fromJSON(e)) : [],
+            series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
         };
     },
@@ -263,8 +263,8 @@ exports.ListResponse = {
         if ((_a = message.magazines) === null || _a === void 0 ? void 0 : _a.length) {
             obj.magazines = message.magazines.map((e) => blog_1.Magazine.toJSON(e));
         }
-        if ((_b = message.billy) === null || _b === void 0 ? void 0 : _b.length) {
-            obj.billy = message.billy.map((e) => blog_1.Billy.toJSON(e));
+        if ((_b = message.series) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
         }
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
@@ -278,7 +278,7 @@ exports.ListResponse = {
         var _a, _b, _c;
         const message = createBaseListResponse();
         message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
-        message.billy = ((_b = object.billy) === null || _b === void 0 ? void 0 : _b.map((e) => blog_1.Billy.fromPartial(e))) || [];
+        message.series = ((_b = object.series) === null || _b === void 0 ? void 0 : _b.map((e) => blog_1.Series.fromPartial(e))) || [];
         message.totalCount = (_c = object.totalCount) !== null && _c !== void 0 ? _c : 0;
         return message;
     },
@@ -1000,7 +1000,7 @@ exports.ListMyByCategoryRequest = {
     },
 };
 function createBaseListMyResponse() {
-    return { magazines: [], totalCount: 0, billy: [] };
+    return { magazines: [], totalCount: 0, series: [] };
 }
 exports.ListMyResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -1010,8 +1010,8 @@ exports.ListMyResponse = {
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
         }
-        for (const v of message.billy) {
-            blog_1.Billy.encode(v, writer.uint32(26).fork()).ldelim();
+        for (const v of message.series) {
+            blog_1.Series.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -1038,7 +1038,7 @@ exports.ListMyResponse = {
                     if (tag !== 26) {
                         break;
                     }
-                    message.billy.push(blog_1.Billy.decode(reader, reader.uint32()));
+                    message.series.push(blog_1.Series.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -1052,7 +1052,7 @@ exports.ListMyResponse = {
         return {
             magazines: Array.isArray(object === null || object === void 0 ? void 0 : object.magazines) ? object.magazines.map((e) => blog_1.Magazine.fromJSON(e)) : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
-            billy: Array.isArray(object === null || object === void 0 ? void 0 : object.billy) ? object.billy.map((e) => blog_1.Billy.fromJSON(e)) : [],
+            series: Array.isArray(object === null || object === void 0 ? void 0 : object.series) ? object.series.map((e) => blog_1.Series.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
@@ -1064,8 +1064,8 @@ exports.ListMyResponse = {
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
         }
-        if ((_b = message.billy) === null || _b === void 0 ? void 0 : _b.length) {
-            obj.billy = message.billy.map((e) => blog_1.Billy.toJSON(e));
+        if ((_b = message.series) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.series = message.series.map((e) => blog_1.Series.toJSON(e));
         }
         return obj;
     },
@@ -1077,7 +1077,7 @@ exports.ListMyResponse = {
         const message = createBaseListMyResponse();
         message.magazines = ((_a = object.magazines) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.Magazine.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
-        message.billy = ((_c = object.billy) === null || _c === void 0 ? void 0 : _c.map((e) => blog_1.Billy.fromPartial(e))) || [];
+        message.series = ((_c = object.series) === null || _c === void 0 ? void 0 : _c.map((e) => blog_1.Series.fromPartial(e))) || [];
         return message;
     },
 };

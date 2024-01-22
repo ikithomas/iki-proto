@@ -27,7 +27,7 @@ message Magazine {
   int64 updated_at = 7;
 }
 
-message Billy {
+message Series {
   string id = 1;
   Author author = 2;
   string title = 3;

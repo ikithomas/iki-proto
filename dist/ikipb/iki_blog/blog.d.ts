@@ -21,7 +21,7 @@ export interface Magazine {
     createdAt: number;
     updatedAt: number;
 }
-export interface Billy {
+export interface Series {
     id: string;
     author: Author | undefined;
     title: string;
@@ -179,11 +179,11 @@ export declare const Magazine: {
         updatedAt?: number;
     } & { [K_3 in Exclude<keyof I_1, keyof Magazine>]: never; }>(object: I_1): Magazine;
 };
-export declare const Billy: {
-    encode(message: Billy, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Billy;
-    fromJSON(object: any): Billy;
-    toJSON(message: Billy): unknown;
+export declare const Series: {
+    encode(message: Series, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Series;
+    fromJSON(object: any): Series;
+    toJSON(message: Series): unknown;
     create<I extends {
         id?: string;
         author?: {
@@ -212,7 +212,7 @@ export declare const Billy: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
-    } & { [K_1 in Exclude<keyof I, keyof Billy>]: never; }>(base?: I): Billy;
+    } & { [K_1 in Exclude<keyof I, keyof Series>]: never; }>(base?: I): Series;
     fromPartial<I_1 extends {
         id?: string;
         author?: {
@@ -241,7 +241,7 @@ export declare const Billy: {
         category?: string;
         createdAt?: number;
         updatedAt?: number;
-    } & { [K_3 in Exclude<keyof I_1, keyof Billy>]: never; }>(object: I_1): Billy;
+    } & { [K_3 in Exclude<keyof I_1, keyof Series>]: never; }>(object: I_1): Series;
 };
 export declare const Author: {
     encode(message: Author, writer?: _m0.Writer): _m0.Writer;

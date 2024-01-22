@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pagination = exports.Author = exports.Billy = exports.Magazine = exports.PostMetadata = exports.protobufPackage = void 0;
+exports.Pagination = exports.Author = exports.Series = exports.Magazine = exports.PostMetadata = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -340,10 +340,10 @@ exports.Magazine = {
         return message;
     },
 };
-function createBaseBilly() {
+function createBaseSeries() {
     return { id: "", author: undefined, title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
-exports.Billy = {
+exports.Series = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.id !== "") {
             writer.uint32(10).string(message.id);
@@ -371,7 +371,7 @@ exports.Billy = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseBilly();
+        const message = createBaseSeries();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -462,11 +462,11 @@ exports.Billy = {
         return obj;
     },
     create(base) {
-        return exports.Billy.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.Series.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a, _b, _c, _d, _e, _f;
-        const message = createBaseBilly();
+        const message = createBaseSeries();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.author = (object.author !== undefined && object.author !== null)
             ? exports.Author.fromPartial(object.author)

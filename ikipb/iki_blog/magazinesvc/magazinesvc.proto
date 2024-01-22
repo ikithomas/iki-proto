@@ -35,7 +35,7 @@ message ListByCategoryRequest {
 message ListResponse {
   repeated blog.Magazine magazines = 1;
 
-  repeated blog.Billy billy = 3;
+  repeated blog.Series series = 3;
 
   int64 total_count = 2;
 }
@@ -116,5 +116,5 @@ message ListMyResponse {
 
   int64 total_count = 2;
 
-  repeated blog.Billy billy = 3;
+  repeated blog.Series series = 3;
 }

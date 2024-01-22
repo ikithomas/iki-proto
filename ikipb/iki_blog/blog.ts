@@ -27,7 +27,7 @@ export interface Magazine {
   updatedAt: number;
 }
 
-export interface Billy {
+export interface Series {
   id: string;
   author: Author | undefined;
   title: string;
@@ -406,12 +406,12 @@ export const Magazine = {
   },
 };
 
-function createBaseBilly(): Billy {
+function createBaseSeries(): Series {
   return { id: "", author: undefined, title: "", preface: "", category: "", createdAt: 0, updatedAt: 0 };
 }
 
-export const Billy = {
-  encode(message: Billy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const Series = {
+  encode(message: Series, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -436,10 +436,10 @@ export const Billy = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Billy {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Series {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBilly();
+    const message = createBaseSeries();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -501,7 +501,7 @@ export const Billy = {
     return message;
   },
 
-  fromJSON(object: any): Billy {
+  fromJSON(object: any): Series {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       author: isSet(object.author) ? Author.fromJSON(object.author) : undefined,
@@ -513,7 +513,7 @@ export const Billy = {
     };
   },
 
-  toJSON(message: Billy): unknown {
+  toJSON(message: Series): unknown {
     const obj: any = {};
     if (message.id !== "") {
       obj.id = message.id;
@@ -539,11 +539,11 @@ export const Billy = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Billy>, I>>(base?: I): Billy {
-    return Billy.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Series>, I>>(base?: I): Series {
+    return Series.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Billy>, I>>(object: I): Billy {
-    const message = createBaseBilly();
+  fromPartial<I extends Exact<DeepPartial<Series>, I>>(object: I): Series {
+    const message = createBaseSeries();
     message.id = object.id ?? "";
     message.author = (object.author !== undefined && object.author !== null)
       ? Author.fromPartial(object.author)
