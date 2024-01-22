@@ -17,6 +17,11 @@ for f in $(find . -path "./ikipb/**/*.proto"); do
     --go-grpc_out=./ --go-grpc_opt=paths=source_relative \
     ${f}
   protoc \
+    --grpc-gateway_out=./ \
+    --grpc-gateway_opt=paths=source_relative \
+    --grpc-gateway_opt=generate_unbound_methods=true \
+    ${f}
+  protoc \
     --ts_proto_out=./ \
     --plugin=node_modules/ts-proto/protoc-gen-ts_proto \
     --ts_proto_opt=env=browser \
