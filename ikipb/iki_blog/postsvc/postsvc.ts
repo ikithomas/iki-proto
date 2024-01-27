@@ -51,6 +51,7 @@ export interface CreateMyRequest {
   tags: string[];
   category: string;
   content: string;
+  magazineId?: string | undefined;
 }
 
 export interface CreateMyResponse {
@@ -66,6 +67,7 @@ export interface UpdateMyRequest {
   tags: string[];
   category: string;
   content: string;
+  magazineId?: string | undefined;
 }
 
 export interface UpdateMyResponse {
@@ -660,7 +662,7 @@ export const GetResponse = {
 };
 
 function createBaseCreateMyRequest(): CreateMyRequest {
-  return { title: "", preface: "", published: false, tags: [], category: "", content: "" };
+  return { title: "", preface: "", published: false, tags: [], category: "", content: "", magazineId: undefined };
 }
 
 export const CreateMyRequest = {
@@ -682,6 +684,9 @@ export const CreateMyRequest = {
     }
     if (message.content !== "") {
       writer.uint32(50).string(message.content);
+    }
+    if (message.magazineId !== undefined) {
+      writer.uint32(58).string(message.magazineId);
     }
     return writer;
   },
@@ -735,6 +740,13 @@ export const CreateMyRequest = {
 
           message.content = reader.string();
           continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.magazineId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -752,6 +764,7 @@ export const CreateMyRequest = {
       tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
       category: isSet(object.category) ? String(object.category) : "",
       content: isSet(object.content) ? String(object.content) : "",
+      magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
     };
   },
 
@@ -775,6 +788,9 @@ export const CreateMyRequest = {
     if (message.content !== "") {
       obj.content = message.content;
     }
+    if (message.magazineId !== undefined) {
+      obj.magazineId = message.magazineId;
+    }
     return obj;
   },
 
@@ -789,6 +805,7 @@ export const CreateMyRequest = {
     message.tags = object.tags?.map((e) => e) || [];
     message.category = object.category ?? "";
     message.content = object.content ?? "";
+    message.magazineId = object.magazineId ?? undefined;
     return message;
   },
 };
@@ -870,7 +887,16 @@ export const CreateMyResponse = {
 };
 
 function createBaseUpdateMyRequest(): UpdateMyRequest {
-  return { id: "", title: "", preface: "", published: false, tags: [], category: "", content: "" };
+  return {
+    id: "",
+    title: "",
+    preface: "",
+    published: false,
+    tags: [],
+    category: "",
+    content: "",
+    magazineId: undefined,
+  };
 }
 
 export const UpdateMyRequest = {
@@ -895,6 +921,9 @@ export const UpdateMyRequest = {
     }
     if (message.content !== "") {
       writer.uint32(58).string(message.content);
+    }
+    if (message.magazineId !== undefined) {
+      writer.uint32(66).string(message.magazineId);
     }
     return writer;
   },
@@ -955,6 +984,13 @@ export const UpdateMyRequest = {
 
           message.content = reader.string();
           continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.magazineId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -973,6 +1009,7 @@ export const UpdateMyRequest = {
       tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
       category: isSet(object.category) ? String(object.category) : "",
       content: isSet(object.content) ? String(object.content) : "",
+      magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
     };
   },
 
@@ -999,6 +1036,9 @@ export const UpdateMyRequest = {
     if (message.content !== "") {
       obj.content = message.content;
     }
+    if (message.magazineId !== undefined) {
+      obj.magazineId = message.magazineId;
+    }
     return obj;
   },
 
@@ -1014,6 +1054,7 @@ export const UpdateMyRequest = {
     message.tags = object.tags?.map((e) => e) || [];
     message.category = object.category ?? "";
     message.content = object.content ?? "";
+    message.magazineId = object.magazineId ?? undefined;
     return message;
   },
 };

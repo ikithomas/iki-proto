@@ -512,7 +512,7 @@ exports.GetResponse = {
     },
 };
 function createBaseCreateMyRequest() {
-    return { title: "", preface: "", published: false, tags: [], category: "", content: "" };
+    return { title: "", preface: "", published: false, tags: [], category: "", content: "", magazineId: undefined };
 }
 exports.CreateMyRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -533,6 +533,9 @@ exports.CreateMyRequest = {
         }
         if (message.content !== "") {
             writer.uint32(50).string(message.content);
+        }
+        if (message.magazineId !== undefined) {
+            writer.uint32(58).string(message.magazineId);
         }
         return writer;
     },
@@ -579,6 +582,12 @@ exports.CreateMyRequest = {
                     }
                     message.content = reader.string();
                     continue;
+                case 7:
+                    if (tag !== 58) {
+                        break;
+                    }
+                    message.magazineId = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -595,6 +604,7 @@ exports.CreateMyRequest = {
             tags: Array.isArray(object === null || object === void 0 ? void 0 : object.tags) ? object.tags.map((e) => String(e)) : [],
             category: isSet(object.category) ? String(object.category) : "",
             content: isSet(object.content) ? String(object.content) : "",
+            magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
         };
     },
     toJSON(message) {
@@ -618,13 +628,16 @@ exports.CreateMyRequest = {
         if (message.content !== "") {
             obj.content = message.content;
         }
+        if (message.magazineId !== undefined) {
+            obj.magazineId = message.magazineId;
+        }
         return obj;
     },
     create(base) {
         return exports.CreateMyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         const message = createBaseCreateMyRequest();
         message.title = (_a = object.title) !== null && _a !== void 0 ? _a : "";
         message.preface = (_b = object.preface) !== null && _b !== void 0 ? _b : "";
@@ -632,6 +645,7 @@ exports.CreateMyRequest = {
         message.tags = ((_d = object.tags) === null || _d === void 0 ? void 0 : _d.map((e) => e)) || [];
         message.category = (_e = object.category) !== null && _e !== void 0 ? _e : "";
         message.content = (_f = object.content) !== null && _f !== void 0 ? _f : "";
+        message.magazineId = (_g = object.magazineId) !== null && _g !== void 0 ? _g : undefined;
         return message;
     },
 };
@@ -705,7 +719,16 @@ exports.CreateMyResponse = {
     },
 };
 function createBaseUpdateMyRequest() {
-    return { id: "", title: "", preface: "", published: false, tags: [], category: "", content: "" };
+    return {
+        id: "",
+        title: "",
+        preface: "",
+        published: false,
+        tags: [],
+        category: "",
+        content: "",
+        magazineId: undefined,
+    };
 }
 exports.UpdateMyRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -729,6 +752,9 @@ exports.UpdateMyRequest = {
         }
         if (message.content !== "") {
             writer.uint32(58).string(message.content);
+        }
+        if (message.magazineId !== undefined) {
+            writer.uint32(66).string(message.magazineId);
         }
         return writer;
     },
@@ -781,6 +807,12 @@ exports.UpdateMyRequest = {
                     }
                     message.content = reader.string();
                     continue;
+                case 8:
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.magazineId = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -798,6 +830,7 @@ exports.UpdateMyRequest = {
             tags: Array.isArray(object === null || object === void 0 ? void 0 : object.tags) ? object.tags.map((e) => String(e)) : [],
             category: isSet(object.category) ? String(object.category) : "",
             content: isSet(object.content) ? String(object.content) : "",
+            magazineId: isSet(object.magazineId) ? String(object.magazineId) : undefined,
         };
     },
     toJSON(message) {
@@ -824,13 +857,16 @@ exports.UpdateMyRequest = {
         if (message.content !== "") {
             obj.content = message.content;
         }
+        if (message.magazineId !== undefined) {
+            obj.magazineId = message.magazineId;
+        }
         return obj;
     },
     create(base) {
         return exports.UpdateMyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         const message = createBaseUpdateMyRequest();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.title = (_b = object.title) !== null && _b !== void 0 ? _b : "";
@@ -839,6 +875,7 @@ exports.UpdateMyRequest = {
         message.tags = ((_e = object.tags) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];
         message.category = (_f = object.category) !== null && _f !== void 0 ? _f : "";
         message.content = (_g = object.content) !== null && _g !== void 0 ? _g : "";
+        message.magazineId = (_h = object.magazineId) !== null && _h !== void 0 ? _h : undefined;
         return message;
     },
 };

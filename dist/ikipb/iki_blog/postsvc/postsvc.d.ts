@@ -39,6 +39,7 @@ export interface CreateMyRequest {
     tags: string[];
     category: string;
     content: string;
+    magazineId?: string | undefined;
 }
 export interface CreateMyResponse {
     postMetadata: PostMetadata | undefined;
@@ -52,6 +53,7 @@ export interface UpdateMyRequest {
     tags: string[];
     category: string;
     content: string;
+    magazineId?: string | undefined;
 }
 export interface UpdateMyResponse {
 }
@@ -501,6 +503,7 @@ export declare const CreateMyRequest: {
         tags?: string[];
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & {
         title?: string;
         preface?: string;
@@ -508,6 +511,7 @@ export declare const CreateMyRequest: {
         tags?: string[] & string[] & { [K in Exclude<keyof I["tags"], keyof string[]>]: never; };
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & { [K_1 in Exclude<keyof I, keyof CreateMyRequest>]: never; }>(base?: I): CreateMyRequest;
     fromPartial<I_1 extends {
         title?: string;
@@ -516,6 +520,7 @@ export declare const CreateMyRequest: {
         tags?: string[];
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & {
         title?: string;
         preface?: string;
@@ -523,6 +528,7 @@ export declare const CreateMyRequest: {
         tags?: string[] & string[] & { [K_2 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof CreateMyRequest>]: never; }>(object: I_1): CreateMyRequest;
 };
 export declare const CreateMyResponse: {
@@ -656,6 +662,7 @@ export declare const UpdateMyRequest: {
         tags?: string[];
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & {
         id?: string;
         title?: string;
@@ -664,6 +671,7 @@ export declare const UpdateMyRequest: {
         tags?: string[] & string[] & { [K in Exclude<keyof I["tags"], keyof string[]>]: never; };
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & { [K_1 in Exclude<keyof I, keyof UpdateMyRequest>]: never; }>(base?: I): UpdateMyRequest;
     fromPartial<I_1 extends {
         id?: string;
@@ -673,6 +681,7 @@ export declare const UpdateMyRequest: {
         tags?: string[];
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & {
         id?: string;
         title?: string;
@@ -681,6 +690,7 @@ export declare const UpdateMyRequest: {
         tags?: string[] & string[] & { [K_2 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
         category?: string;
         content?: string;
+        magazineId?: string | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof UpdateMyRequest>]: never; }>(object: I_1): UpdateMyRequest;
 };
 export declare const UpdateMyResponse: {
