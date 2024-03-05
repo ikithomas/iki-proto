@@ -25,6 +25,11 @@ export interface ListResponse {
     postMetadata: PostMetadata[];
     totalCount: number;
 }
+export interface ListTagRequest {
+}
+export interface ListTagResponse {
+    tags: string[];
+}
 export interface GetRequest {
     id: string;
 }
@@ -356,6 +361,30 @@ export declare const ListResponse: {
         }[]>]: never; };
         totalCount?: number;
     } & { [K_9 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
+};
+export declare const ListTagRequest: {
+    encode(_: ListTagRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListTagRequest;
+    fromJSON(_: any): ListTagRequest;
+    toJSON(_: ListTagRequest): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListTagRequest;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListTagRequest;
+};
+export declare const ListTagResponse: {
+    encode(message: ListTagResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListTagResponse;
+    fromJSON(object: any): ListTagResponse;
+    toJSON(message: ListTagResponse): unknown;
+    create<I extends {
+        tags?: string[];
+    } & {
+        tags?: string[] & string[] & { [K in Exclude<keyof I["tags"], keyof string[]>]: never; };
+    } & { [K_1 in Exclude<keyof I, "tags">]: never; }>(base?: I): ListTagResponse;
+    fromPartial<I_1 extends {
+        tags?: string[];
+    } & {
+        tags?: string[] & string[] & { [K_2 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "tags">]: never; }>(object: I_1): ListTagResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;
@@ -1110,6 +1139,7 @@ export interface PostSvc {
     ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
+    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
 export declare class PostSvcClientImpl implements PostSvc {
@@ -1119,6 +1149,7 @@ export declare class PostSvcClientImpl implements PostSvc {
     ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
+    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
 export declare const PostSvcDesc: {
@@ -1128,6 +1159,7 @@ export declare const PostSvcListDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByAuthorIdDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByCategoryDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByTagDesc: UnaryMethodDefinitionish;
+export declare const PostSvcListTagDesc: UnaryMethodDefinitionish;
 export declare const PostSvcGetDesc: UnaryMethodDefinitionish;
 export interface MyPostSvc {
     Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse>;

@@ -19,6 +19,8 @@ service PostSvc {
 
   rpc ListByTag (ListByTagRequest) returns (ListResponse) {}
 
+  rpc ListTag (ListTagRequest) returns (ListTagResponse) {}
+
   rpc Get (GetRequest) returns (GetResponse) {}
 }
 
@@ -48,6 +50,13 @@ message ListByTagRequest {
 message ListResponse {
   repeated blog.PostMetadata post_metadata = 1;
   int64 total_count = 2;
+}
+
+message ListTagRequest {
+}
+
+message ListTagResponse {
+  repeated string tags = 1;
 }
 
 message GetRequest {

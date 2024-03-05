@@ -35,6 +35,13 @@ export interface ListResponse {
   totalCount: number;
 }
 
+export interface ListTagRequest {
+}
+
+export interface ListTagResponse {
+  tags: string[];
+}
+
 export interface GetRequest {
   id: string;
 }
@@ -524,6 +531,106 @@ export const ListResponse = {
     const message = createBaseListResponse();
     message.postMetadata = object.postMetadata?.map((e) => PostMetadata.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
+    return message;
+  },
+};
+
+function createBaseListTagRequest(): ListTagRequest {
+  return {};
+}
+
+export const ListTagRequest = {
+  encode(_: ListTagRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListTagRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListTagRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): ListTagRequest {
+    return {};
+  },
+
+  toJSON(_: ListTagRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListTagRequest>, I>>(base?: I): ListTagRequest {
+    return ListTagRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListTagRequest>, I>>(_: I): ListTagRequest {
+    const message = createBaseListTagRequest();
+    return message;
+  },
+};
+
+function createBaseListTagResponse(): ListTagResponse {
+  return { tags: [] };
+}
+
+export const ListTagResponse = {
+  encode(message: ListTagResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.tags) {
+      writer.uint32(10).string(v!);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListTagResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListTagResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.tags.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListTagResponse {
+    return { tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [] };
+  },
+
+  toJSON(message: ListTagResponse): unknown {
+    const obj: any = {};
+    if (message.tags?.length) {
+      obj.tags = message.tags;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListTagResponse>, I>>(base?: I): ListTagResponse {
+    return ListTagResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListTagResponse>, I>>(object: I): ListTagResponse {
+    const message = createBaseListTagResponse();
+    message.tags = object.tags?.map((e) => e) || [];
     return message;
   },
 };
@@ -1668,6 +1775,7 @@ export interface PostSvc {
   ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
+  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
 }
 
@@ -1680,6 +1788,7 @@ export class PostSvcClientImpl implements PostSvc {
     this.ListByAuthorId = this.ListByAuthorId.bind(this);
     this.ListByCategory = this.ListByCategory.bind(this);
     this.ListByTag = this.ListByTag.bind(this);
+    this.ListTag = this.ListTag.bind(this);
     this.Get = this.Get.bind(this);
   }
 
@@ -1697,6 +1806,10 @@ export class PostSvcClientImpl implements PostSvc {
 
   ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
     return this.rpc.unary(PostSvcListByTagDesc, ListByTagRequest.fromPartial(request), metadata);
+  }
+
+  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse> {
+    return this.rpc.unary(PostSvcListTagDesc, ListTagRequest.fromPartial(request), metadata);
   }
 
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
@@ -1788,6 +1901,29 @@ export const PostSvcListByTagDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = ListResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const PostSvcListTagDesc: UnaryMethodDefinitionish = {
+  methodName: "ListTag",
+  service: PostSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ListTagRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ListTagResponse.decode(data);
       return {
         ...value,
         toObject() {

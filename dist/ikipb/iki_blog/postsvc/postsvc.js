@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.MyPostSvcListByTagDesc = exports.MyPostSvcListByCategoryDesc = exports.MyPostSvcListDesc = exports.MyPostSvcDeleteDesc = exports.MyPostSvcGetDesc = exports.MyPostSvcUpdateDesc = exports.MyPostSvcCreateDesc = exports.MyPostSvcDesc = exports.MyPostSvcClientImpl = exports.PostSvcGetDesc = exports.PostSvcListByTagDesc = exports.PostSvcListByCategoryDesc = exports.PostSvcListByAuthorIdDesc = exports.PostSvcListDesc = exports.PostSvcDesc = exports.PostSvcClientImpl = exports.ListMyResponse = exports.ListMyByTagRequest = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListResponse = exports.ListByTagRequest = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.MyPostSvcListByTagDesc = exports.MyPostSvcListByCategoryDesc = exports.MyPostSvcListDesc = exports.MyPostSvcDeleteDesc = exports.MyPostSvcGetDesc = exports.MyPostSvcUpdateDesc = exports.MyPostSvcCreateDesc = exports.MyPostSvcDesc = exports.MyPostSvcClientImpl = exports.PostSvcGetDesc = exports.PostSvcListTagDesc = exports.PostSvcListByTagDesc = exports.PostSvcListByCategoryDesc = exports.PostSvcListByAuthorIdDesc = exports.PostSvcListDesc = exports.PostSvcDesc = exports.PostSvcClientImpl = exports.ListMyResponse = exports.ListMyByTagRequest = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListTagResponse = exports.ListTagRequest = exports.ListResponse = exports.ListByTagRequest = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -388,6 +388,95 @@ exports.ListResponse = {
         const message = createBaseListResponse();
         message.postMetadata = ((_a = object.postMetadata) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
+        return message;
+    },
+};
+function createBaseListTagRequest() {
+    return {};
+}
+exports.ListTagRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseListTagRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.ListTagRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(_) {
+        const message = createBaseListTagRequest();
+        return message;
+    },
+};
+function createBaseListTagResponse() {
+    return { tags: [] };
+}
+exports.ListTagResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.tags) {
+            writer.uint32(10).string(v);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseListTagResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.tags.push(reader.string());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { tags: Array.isArray(object === null || object === void 0 ? void 0 : object.tags) ? object.tags.map((e) => String(e)) : [] };
+    },
+    toJSON(message) {
+        var _a;
+        const obj = {};
+        if ((_a = message.tags) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.tags = message.tags;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ListTagResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseListTagResponse();
+        message.tags = ((_a = object.tags) === null || _a === void 0 ? void 0 : _a.map((e) => e)) || [];
         return message;
     },
 };
@@ -1430,6 +1519,7 @@ class PostSvcClientImpl {
         this.ListByAuthorId = this.ListByAuthorId.bind(this);
         this.ListByCategory = this.ListByCategory.bind(this);
         this.ListByTag = this.ListByTag.bind(this);
+        this.ListTag = this.ListTag.bind(this);
         this.Get = this.Get.bind(this);
     }
     List(request, metadata) {
@@ -1443,6 +1533,9 @@ class PostSvcClientImpl {
     }
     ListByTag(request, metadata) {
         return this.rpc.unary(exports.PostSvcListByTagDesc, exports.ListByTagRequest.fromPartial(request), metadata);
+    }
+    ListTag(request, metadata) {
+        return this.rpc.unary(exports.PostSvcListTagDesc, exports.ListTagRequest.fromPartial(request), metadata);
     }
     Get(request, metadata) {
         return this.rpc.unary(exports.PostSvcGetDesc, exports.GetRequest.fromPartial(request), metadata);
@@ -1520,6 +1613,25 @@ exports.PostSvcListByTagDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.ListResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.PostSvcListTagDesc = {
+    methodName: "ListTag",
+    service: exports.PostSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.ListTagRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.ListTagResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });
