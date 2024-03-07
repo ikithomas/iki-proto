@@ -33,6 +33,7 @@ export interface ListByTagRequest {
 export interface ListResponse {
   postMetadata: PostMetadata[];
   totalCount: number;
+  tags: string[];
 }
 
 export interface ListTagRequest {
@@ -460,7 +461,7 @@ export const ListByTagRequest = {
 };
 
 function createBaseListResponse(): ListResponse {
-  return { postMetadata: [], totalCount: 0 };
+  return { postMetadata: [], totalCount: 0, tags: [] };
 }
 
 export const ListResponse = {
@@ -470,6 +471,9 @@ export const ListResponse = {
     }
     if (message.totalCount !== 0) {
       writer.uint32(16).int64(message.totalCount);
+    }
+    for (const v of message.tags) {
+      writer.uint32(26).string(v!);
     }
     return writer;
   },
@@ -495,6 +499,13 @@ export const ListResponse = {
 
           message.totalCount = longToNumber(reader.int64() as Long);
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.tags.push(reader.string());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -510,6 +521,7 @@ export const ListResponse = {
         ? object.postMetadata.map((e: any) => PostMetadata.fromJSON(e))
         : [],
       totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
+      tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
     };
   },
 
@@ -521,6 +533,9 @@ export const ListResponse = {
     if (message.totalCount !== 0) {
       obj.totalCount = Math.round(message.totalCount);
     }
+    if (message.tags?.length) {
+      obj.tags = message.tags;
+    }
     return obj;
   },
 
@@ -531,6 +546,7 @@ export const ListResponse = {
     const message = createBaseListResponse();
     message.postMetadata = object.postMetadata?.map((e) => PostMetadata.fromPartial(e)) || [];
     message.totalCount = object.totalCount ?? 0;
+    message.tags = object.tags?.map((e) => e) || [];
     return message;
   },
 };

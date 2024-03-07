@@ -24,6 +24,7 @@ export interface ListByTagRequest {
 export interface ListResponse {
     postMetadata: PostMetadata[];
     totalCount: number;
+    tags: string[];
 }
 export interface ListTagRequest {
 }
@@ -207,6 +208,7 @@ export declare const ListResponse: {
             magazineId?: string;
         }[];
         totalCount?: number;
+        tags?: string[];
     } & {
         postMetadata?: {
             id?: string;
@@ -274,7 +276,8 @@ export declare const ListResponse: {
             magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
-    } & { [K_4 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
+        tags?: string[] & string[] & { [K_4 in Exclude<keyof I["tags"], keyof string[]>]: never; };
+    } & { [K_5 in Exclude<keyof I, keyof ListResponse>]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
         postMetadata?: {
             id?: string;
@@ -293,6 +296,7 @@ export declare const ListResponse: {
             magazineId?: string;
         }[];
         totalCount?: number;
+        tags?: string[];
     } & {
         postMetadata?: {
             id?: string;
@@ -334,16 +338,16 @@ export declare const ListResponse: {
                 id?: string;
                 ikiUserId?: string;
                 displayName?: string;
-            } & { [K_5 in Exclude<keyof I_1["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
+            } & { [K_6 in Exclude<keyof I_1["postMetadata"][number]["author"], keyof import("../blog").Author>]: never; };
             title?: string;
             preface?: string;
             published?: boolean;
-            tags?: string[] & string[] & { [K_6 in Exclude<keyof I_1["postMetadata"][number]["tags"], keyof string[]>]: never; };
+            tags?: string[] & string[] & { [K_7 in Exclude<keyof I_1["postMetadata"][number]["tags"], keyof string[]>]: never; };
             category?: string;
             createdAt?: number;
             updatedAt?: number;
             magazineId?: string;
-        } & { [K_7 in Exclude<keyof I_1["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_8 in Exclude<keyof I_1["postMetadata"], keyof {
+        } & { [K_8 in Exclude<keyof I_1["postMetadata"][number], keyof PostMetadata>]: never; })[] & { [K_9 in Exclude<keyof I_1["postMetadata"], keyof {
             id?: string;
             author?: {
                 id?: string;
@@ -360,7 +364,8 @@ export declare const ListResponse: {
             magazineId?: string;
         }[]>]: never; };
         totalCount?: number;
-    } & { [K_9 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
+        tags?: string[] & string[] & { [K_10 in Exclude<keyof I_1["tags"], keyof string[]>]: never; };
+    } & { [K_11 in Exclude<keyof I_1, keyof ListResponse>]: never; }>(object: I_1): ListResponse;
 };
 export declare const ListTagRequest: {
     encode(_: ListTagRequest, writer?: _m0.Writer): _m0.Writer;

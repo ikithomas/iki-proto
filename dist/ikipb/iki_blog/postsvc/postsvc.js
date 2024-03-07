@@ -322,7 +322,7 @@ exports.ListByTagRequest = {
     },
 };
 function createBaseListResponse() {
-    return { postMetadata: [], totalCount: 0 };
+    return { postMetadata: [], totalCount: 0, tags: [] };
 }
 exports.ListResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -331,6 +331,9 @@ exports.ListResponse = {
         }
         if (message.totalCount !== 0) {
             writer.uint32(16).int64(message.totalCount);
+        }
+        for (const v of message.tags) {
+            writer.uint32(26).string(v);
         }
         return writer;
     },
@@ -353,6 +356,12 @@ exports.ListResponse = {
                     }
                     message.totalCount = longToNumber(reader.int64());
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.tags.push(reader.string());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -367,10 +376,11 @@ exports.ListResponse = {
                 ? object.postMetadata.map((e) => blog_1.PostMetadata.fromJSON(e))
                 : [],
             totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
+            tags: Array.isArray(object === null || object === void 0 ? void 0 : object.tags) ? object.tags.map((e) => String(e)) : [],
         };
     },
     toJSON(message) {
-        var _a;
+        var _a, _b;
         const obj = {};
         if ((_a = message.postMetadata) === null || _a === void 0 ? void 0 : _a.length) {
             obj.postMetadata = message.postMetadata.map((e) => blog_1.PostMetadata.toJSON(e));
@@ -378,16 +388,20 @@ exports.ListResponse = {
         if (message.totalCount !== 0) {
             obj.totalCount = Math.round(message.totalCount);
         }
+        if ((_b = message.tags) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.tags = message.tags;
+        }
         return obj;
     },
     create(base) {
         return exports.ListResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseListResponse();
         message.postMetadata = ((_a = object.postMetadata) === null || _a === void 0 ? void 0 : _a.map((e) => blog_1.PostMetadata.fromPartial(e))) || [];
         message.totalCount = (_b = object.totalCount) !== null && _b !== void 0 ? _b : 0;
+        message.tags = ((_c = object.tags) === null || _c === void 0 ? void 0 : _c.map((e) => e)) || [];
         return message;
     },
 };
