@@ -35,10 +35,6 @@ func request_CategorySvc_List_0(ctx context.Context, marshaler runtime.Marshaler
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
 	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -47,10 +43,6 @@ func request_CategorySvc_List_0(ctx context.Context, marshaler runtime.Marshaler
 func local_request_CategorySvc_List_0(ctx context.Context, marshaler runtime.Marshaler, server CategorySvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
 
 	msg, err := server.List(ctx, &protoReq)
 	return msg, metadata, err
@@ -63,7 +55,7 @@ func local_request_CategorySvc_List_0(ctx context.Context, marshaler runtime.Mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCategorySvcHandlerFromEndpoint instead.
 func RegisterCategorySvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CategorySvcServer) error {
 
-	mux.Handle("POST", pattern_CategorySvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_CategorySvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -71,7 +63,7 @@ func RegisterCategorySvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/categorysvc.CategorySvc/List", runtime.WithHTTPPathPattern("/categorysvc.CategorySvc/List"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/categorysvc.CategorySvc/List", runtime.WithHTTPPathPattern("/category/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -129,13 +121,13 @@ func RegisterCategorySvcHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // "CategorySvcClient" to call the correct interceptors.
 func RegisterCategorySvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CategorySvcClient) error {
 
-	mux.Handle("POST", pattern_CategorySvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_CategorySvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/categorysvc.CategorySvc/List", runtime.WithHTTPPathPattern("/categorysvc.CategorySvc/List"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/categorysvc.CategorySvc/List", runtime.WithHTTPPathPattern("/category/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -155,7 +147,7 @@ func RegisterCategorySvcHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_CategorySvc_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"categorysvc.CategorySvc", "List"}, ""))
+	pattern_CategorySvc_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"category", "list"}, ""))
 )
 
 var (

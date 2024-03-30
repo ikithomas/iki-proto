@@ -1,11 +1,15 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
 option go_package = "/categorysvc";
 
 package categorysvc;
 
 service CategorySvc {
-  rpc List (ListRequest) returns (ListResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {
+    option (google.api.http) = { get: "/category/list" };
+  }
 }
 
 message ListRequest {
