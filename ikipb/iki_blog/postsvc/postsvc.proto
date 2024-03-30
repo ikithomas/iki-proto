@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "ikipb/iki_blog/blog.proto";
 import "google/api/annotations.proto";
+import "ikipb/iki_blog/blog.proto";
 
 option go_package = "/postsvc";
 
@@ -28,12 +28,12 @@ service PostSvc {
     option (google.api.http) = { get: "/post/list-by-tag" };
   }
 
-  rpc ListTag (ListTagRequest) returns (ListTagResponse) {
-    option (google.api.http) = { get: "/post/list" };
-  }
-
   rpc Get (GetRequest) returns (GetResponse) {
     option (google.api.http) = { get: "/post/get" };
+  }
+
+  rpc ListTag (ListTagRequest) returns (ListTagResponse) {
+    option (google.api.http) = { get: "/tag/list" };
   }
 }
 

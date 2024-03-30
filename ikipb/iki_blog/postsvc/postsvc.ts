@@ -1791,8 +1791,8 @@ export interface PostSvc {
   ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
-  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
+  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
 }
 
 export class PostSvcClientImpl implements PostSvc {
@@ -1804,8 +1804,8 @@ export class PostSvcClientImpl implements PostSvc {
     this.ListByAuthorId = this.ListByAuthorId.bind(this);
     this.ListByCategory = this.ListByCategory.bind(this);
     this.ListByTag = this.ListByTag.bind(this);
-    this.ListTag = this.ListTag.bind(this);
     this.Get = this.Get.bind(this);
+    this.ListTag = this.ListTag.bind(this);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
@@ -1824,12 +1824,12 @@ export class PostSvcClientImpl implements PostSvc {
     return this.rpc.unary(PostSvcListByTagDesc, ListByTagRequest.fromPartial(request), metadata);
   }
 
-  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse> {
-    return this.rpc.unary(PostSvcListTagDesc, ListTagRequest.fromPartial(request), metadata);
-  }
-
   Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse> {
     return this.rpc.unary(PostSvcGetDesc, GetRequest.fromPartial(request), metadata);
+  }
+
+  ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse> {
+    return this.rpc.unary(PostSvcListTagDesc, ListTagRequest.fromPartial(request), metadata);
   }
 }
 
@@ -1927,29 +1927,6 @@ export const PostSvcListByTagDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const PostSvcListTagDesc: UnaryMethodDefinitionish = {
-  methodName: "ListTag",
-  service: PostSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return ListTagRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = ListTagResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
 export const PostSvcGetDesc: UnaryMethodDefinitionish = {
   methodName: "Get",
   service: PostSvcDesc,
@@ -1963,6 +1940,29 @@ export const PostSvcGetDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = GetResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const PostSvcListTagDesc: UnaryMethodDefinitionish = {
+  methodName: "ListTag",
+  service: PostSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ListTagRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ListTagResponse.decode(data);
       return {
         ...value,
         toObject() {

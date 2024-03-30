@@ -23,8 +23,8 @@ const (
 	PostSvc_ListByAuthorId_FullMethodName = "/postsvc.PostSvc/ListByAuthorId"
 	PostSvc_ListByCategory_FullMethodName = "/postsvc.PostSvc/ListByCategory"
 	PostSvc_ListByTag_FullMethodName      = "/postsvc.PostSvc/ListByTag"
-	PostSvc_ListTag_FullMethodName        = "/postsvc.PostSvc/ListTag"
 	PostSvc_Get_FullMethodName            = "/postsvc.PostSvc/Get"
+	PostSvc_ListTag_FullMethodName        = "/postsvc.PostSvc/ListTag"
 )
 
 // PostSvcClient is the client API for PostSvc service.
@@ -35,8 +35,8 @@ type PostSvcClient interface {
 	ListByAuthorId(ctx context.Context, in *ListByAuthorIdRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListByCategory(ctx context.Context, in *ListByCategoryRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListByTag(ctx context.Context, in *ListByTagRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	ListTag(ctx context.Context, in *ListTagRequest, opts ...grpc.CallOption) (*ListTagResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	ListTag(ctx context.Context, in *ListTagRequest, opts ...grpc.CallOption) (*ListTagResponse, error)
 }
 
 type postSvcClient struct {
@@ -83,18 +83,18 @@ func (c *postSvcClient) ListByTag(ctx context.Context, in *ListByTagRequest, opt
 	return out, nil
 }
 
-func (c *postSvcClient) ListTag(ctx context.Context, in *ListTagRequest, opts ...grpc.CallOption) (*ListTagResponse, error) {
-	out := new(ListTagResponse)
-	err := c.cc.Invoke(ctx, PostSvc_ListTag_FullMethodName, in, out, opts...)
+func (c *postSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, PostSvc_Get_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *postSvcClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
-	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, PostSvc_Get_FullMethodName, in, out, opts...)
+func (c *postSvcClient) ListTag(ctx context.Context, in *ListTagRequest, opts ...grpc.CallOption) (*ListTagResponse, error) {
+	out := new(ListTagResponse)
+	err := c.cc.Invoke(ctx, PostSvc_ListTag_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,8 +109,8 @@ type PostSvcServer interface {
 	ListByAuthorId(context.Context, *ListByAuthorIdRequest) (*ListResponse, error)
 	ListByCategory(context.Context, *ListByCategoryRequest) (*ListResponse, error)
 	ListByTag(context.Context, *ListByTagRequest) (*ListResponse, error)
-	ListTag(context.Context, *ListTagRequest) (*ListTagResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	ListTag(context.Context, *ListTagRequest) (*ListTagResponse, error)
 	mustEmbedUnimplementedPostSvcServer()
 }
 
@@ -130,11 +130,11 @@ func (UnimplementedPostSvcServer) ListByCategory(context.Context, *ListByCategor
 func (UnimplementedPostSvcServer) ListByTag(context.Context, *ListByTagRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByTag not implemented")
 }
-func (UnimplementedPostSvcServer) ListTag(context.Context, *ListTagRequest) (*ListTagResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTag not implemented")
-}
 func (UnimplementedPostSvcServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPostSvcServer) ListTag(context.Context, *ListTagRequest) (*ListTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTag not implemented")
 }
 func (UnimplementedPostSvcServer) mustEmbedUnimplementedPostSvcServer() {}
 
@@ -221,24 +221,6 @@ func _PostSvc_ListByTag_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PostSvc_ListTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostSvcServer).ListTag(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostSvc_ListTag_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostSvcServer).ListTag(ctx, req.(*ListTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PostSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
@@ -253,6 +235,24 @@ func _PostSvc_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostSvcServer).Get(ctx, req.(*GetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostSvc_ListTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostSvcServer).ListTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostSvc_ListTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostSvcServer).ListTag(ctx, req.(*ListTagRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -281,12 +281,12 @@ var PostSvc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PostSvc_ListByTag_Handler,
 		},
 		{
-			MethodName: "ListTag",
-			Handler:    _PostSvc_ListTag_Handler,
-		},
-		{
 			MethodName: "Get",
 			Handler:    _PostSvc_Get_Handler,
+		},
+		{
+			MethodName: "ListTag",
+			Handler:    _PostSvc_ListTag_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

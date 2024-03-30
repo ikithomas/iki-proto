@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.MyPostSvcListByTagDesc = exports.MyPostSvcListByCategoryDesc = exports.MyPostSvcListDesc = exports.MyPostSvcDeleteDesc = exports.MyPostSvcGetDesc = exports.MyPostSvcUpdateDesc = exports.MyPostSvcCreateDesc = exports.MyPostSvcDesc = exports.MyPostSvcClientImpl = exports.PostSvcGetDesc = exports.PostSvcListTagDesc = exports.PostSvcListByTagDesc = exports.PostSvcListByCategoryDesc = exports.PostSvcListByAuthorIdDesc = exports.PostSvcListDesc = exports.PostSvcDesc = exports.PostSvcClientImpl = exports.ListMyResponse = exports.ListMyByTagRequest = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListTagResponse = exports.ListTagRequest = exports.ListResponse = exports.ListByTagRequest = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.MyPostSvcListByTagDesc = exports.MyPostSvcListByCategoryDesc = exports.MyPostSvcListDesc = exports.MyPostSvcDeleteDesc = exports.MyPostSvcGetDesc = exports.MyPostSvcUpdateDesc = exports.MyPostSvcCreateDesc = exports.MyPostSvcDesc = exports.MyPostSvcClientImpl = exports.PostSvcListTagDesc = exports.PostSvcGetDesc = exports.PostSvcListByTagDesc = exports.PostSvcListByCategoryDesc = exports.PostSvcListByAuthorIdDesc = exports.PostSvcListDesc = exports.PostSvcDesc = exports.PostSvcClientImpl = exports.ListMyResponse = exports.ListMyByTagRequest = exports.ListMyByCategoryRequest = exports.ListMyRequest = exports.DeleteMyResponse = exports.DeleteMyRequest = exports.GetMyResponse = exports.GetMyRequest = exports.UpdateMyResponse = exports.UpdateMyRequest = exports.CreateMyResponse = exports.CreateMyRequest = exports.GetResponse = exports.GetRequest = exports.ListTagResponse = exports.ListTagRequest = exports.ListResponse = exports.ListByTagRequest = exports.ListByCategoryRequest = exports.ListByAuthorIdRequest = exports.ListRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -1533,8 +1533,8 @@ class PostSvcClientImpl {
         this.ListByAuthorId = this.ListByAuthorId.bind(this);
         this.ListByCategory = this.ListByCategory.bind(this);
         this.ListByTag = this.ListByTag.bind(this);
-        this.ListTag = this.ListTag.bind(this);
         this.Get = this.Get.bind(this);
+        this.ListTag = this.ListTag.bind(this);
     }
     List(request, metadata) {
         return this.rpc.unary(exports.PostSvcListDesc, exports.ListRequest.fromPartial(request), metadata);
@@ -1548,11 +1548,11 @@ class PostSvcClientImpl {
     ListByTag(request, metadata) {
         return this.rpc.unary(exports.PostSvcListByTagDesc, exports.ListByTagRequest.fromPartial(request), metadata);
     }
-    ListTag(request, metadata) {
-        return this.rpc.unary(exports.PostSvcListTagDesc, exports.ListTagRequest.fromPartial(request), metadata);
-    }
     Get(request, metadata) {
         return this.rpc.unary(exports.PostSvcGetDesc, exports.GetRequest.fromPartial(request), metadata);
+    }
+    ListTag(request, metadata) {
+        return this.rpc.unary(exports.PostSvcListTagDesc, exports.ListTagRequest.fromPartial(request), metadata);
     }
 }
 exports.PostSvcClientImpl = PostSvcClientImpl;
@@ -1633,25 +1633,6 @@ exports.PostSvcListByTagDesc = {
         },
     },
 };
-exports.PostSvcListTagDesc = {
-    methodName: "ListTag",
-    service: exports.PostSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.ListTagRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.ListTagResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
 exports.PostSvcGetDesc = {
     methodName: "Get",
     service: exports.PostSvcDesc,
@@ -1665,6 +1646,25 @@ exports.PostSvcGetDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.GetResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.PostSvcListTagDesc = {
+    methodName: "ListTag",
+    service: exports.PostSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.ListTagRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.ListTagResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

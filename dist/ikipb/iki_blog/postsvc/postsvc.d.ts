@@ -1144,8 +1144,8 @@ export interface PostSvc {
     ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
-    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
+    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
 }
 export declare class PostSvcClientImpl implements PostSvc {
     private readonly rpc;
@@ -1154,8 +1154,8 @@ export declare class PostSvcClientImpl implements PostSvc {
     ListByAuthorId(request: DeepPartial<ListByAuthorIdRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByCategory(request: DeepPartial<ListByCategoryRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     ListByTag(request: DeepPartial<ListByTagRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
-    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
+    ListTag(request: DeepPartial<ListTagRequest>, metadata?: grpc.Metadata): Promise<ListTagResponse>;
 }
 export declare const PostSvcDesc: {
     serviceName: string;
@@ -1164,8 +1164,8 @@ export declare const PostSvcListDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByAuthorIdDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByCategoryDesc: UnaryMethodDefinitionish;
 export declare const PostSvcListByTagDesc: UnaryMethodDefinitionish;
-export declare const PostSvcListTagDesc: UnaryMethodDefinitionish;
 export declare const PostSvcGetDesc: UnaryMethodDefinitionish;
+export declare const PostSvcListTagDesc: UnaryMethodDefinitionish;
 export interface MyPostSvc {
     Create(request: DeepPartial<CreateMyRequest>, metadata?: grpc.Metadata): Promise<CreateMyResponse>;
     Update(request: DeepPartial<UpdateMyRequest>, metadata?: grpc.Metadata): Promise<UpdateMyResponse>;
