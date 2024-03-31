@@ -31,11 +31,18 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
+var (
+	filter_MagazineSvc_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_MagazineSvc_List_0(ctx context.Context, marshaler runtime.Marshaler, client MagazineSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -48,7 +55,10 @@ func local_request_MagazineSvc_List_0(ctx context.Context, marshaler runtime.Mar
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -57,11 +67,18 @@ func local_request_MagazineSvc_List_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
+var (
+	filter_MagazineSvc_ListByAuthorId_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_MagazineSvc_ListByAuthorId_0(ctx context.Context, marshaler runtime.Marshaler, client MagazineSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListByAuthorIdRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_ListByAuthorId_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -74,7 +91,10 @@ func local_request_MagazineSvc_ListByAuthorId_0(ctx context.Context, marshaler r
 	var protoReq ListByAuthorIdRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_ListByAuthorId_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -83,11 +103,18 @@ func local_request_MagazineSvc_ListByAuthorId_0(ctx context.Context, marshaler r
 
 }
 
+var (
+	filter_MagazineSvc_ListByCategory_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_MagazineSvc_ListByCategory_0(ctx context.Context, marshaler runtime.Marshaler, client MagazineSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListByCategoryRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_ListByCategory_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -100,7 +127,10 @@ func local_request_MagazineSvc_ListByCategory_0(ctx context.Context, marshaler r
 	var protoReq ListByCategoryRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_ListByCategory_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -109,11 +139,18 @@ func local_request_MagazineSvc_ListByCategory_0(ctx context.Context, marshaler r
 
 }
 
+var (
+	filter_MagazineSvc_Get_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_MagazineSvc_Get_0(ctx context.Context, marshaler runtime.Marshaler, client MagazineSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_Get_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -126,7 +163,10 @@ func local_request_MagazineSvc_Get_0(ctx context.Context, marshaler runtime.Mars
 	var protoReq GetRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MagazineSvc_Get_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -297,7 +337,7 @@ func local_request_MyMagazineSvc_ListByCategory_0(ctx context.Context, marshaler
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMagazineSvcHandlerFromEndpoint instead.
 func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MagazineSvcServer) error {
 
-	mux.Handle("POST", pattern_MagazineSvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -305,7 +345,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/List", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/List"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/List", runtime.WithHTTPPathPattern("/magazine/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -322,7 +362,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_ListByAuthorId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_ListByAuthorId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -330,7 +370,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByAuthorId", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/ListByAuthorId"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByAuthorId", runtime.WithHTTPPathPattern("/magazine/list-by-author-id"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -347,7 +387,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_ListByCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_ListByCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -355,7 +395,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByCategory", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/ListByCategory"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByCategory", runtime.WithHTTPPathPattern("/magazine/list-by-category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -372,7 +412,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -380,7 +420,7 @@ func RegisterMagazineSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/Get", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/Get"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/magazinesvc.MagazineSvc/Get", runtime.WithHTTPPathPattern("/magazine/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -597,13 +637,13 @@ func RegisterMagazineSvcHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // "MagazineSvcClient" to call the correct interceptors.
 func RegisterMagazineSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MagazineSvcClient) error {
 
-	mux.Handle("POST", pattern_MagazineSvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/List", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/List"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/List", runtime.WithHTTPPathPattern("/magazine/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -619,13 +659,13 @@ func RegisterMagazineSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_ListByAuthorId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_ListByAuthorId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByAuthorId", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/ListByAuthorId"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByAuthorId", runtime.WithHTTPPathPattern("/magazine/list-by-author-id"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -641,13 +681,13 @@ func RegisterMagazineSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_ListByCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_ListByCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByCategory", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/ListByCategory"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/ListByCategory", runtime.WithHTTPPathPattern("/magazine/list-by-category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -663,13 +703,13 @@ func RegisterMagazineSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("POST", pattern_MagazineSvc_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MagazineSvc_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/Get", runtime.WithHTTPPathPattern("/magazinesvc.MagazineSvc/Get"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/magazinesvc.MagazineSvc/Get", runtime.WithHTTPPathPattern("/magazine/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -689,13 +729,13 @@ func RegisterMagazineSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_MagazineSvc_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazinesvc.MagazineSvc", "List"}, ""))
+	pattern_MagazineSvc_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazine", "list"}, ""))
 
-	pattern_MagazineSvc_ListByAuthorId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazinesvc.MagazineSvc", "ListByAuthorId"}, ""))
+	pattern_MagazineSvc_ListByAuthorId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazine", "list-by-author-id"}, ""))
 
-	pattern_MagazineSvc_ListByCategory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazinesvc.MagazineSvc", "ListByCategory"}, ""))
+	pattern_MagazineSvc_ListByCategory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazine", "list-by-category"}, ""))
 
-	pattern_MagazineSvc_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazinesvc.MagazineSvc", "Get"}, ""))
+	pattern_MagazineSvc_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"magazine", "get"}, ""))
 )
 
 var (

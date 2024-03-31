@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
 import "ikipb/iki_blog/blog.proto";
 
 option go_package = "/magazinesvc";
@@ -10,10 +11,18 @@ package magazinesvc;
 // Magazine Service
 //////
 service MagazineSvc {
-  rpc List (ListRequest) returns (ListResponse) {}
-  rpc ListByAuthorId (ListByAuthorIdRequest) returns (ListResponse) {}
-  rpc ListByCategory (ListByCategoryRequest) returns (ListResponse) {}
-  rpc Get (GetRequest) returns (GetResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {
+    option (google.api.http) = { get: "/magazine/list" };
+  }
+  rpc ListByAuthorId (ListByAuthorIdRequest) returns (ListResponse) {
+    option (google.api.http) = { get: "/magazine/list-by-author-id" };
+  }
+  rpc ListByCategory (ListByCategoryRequest) returns (ListResponse) {
+    option (google.api.http) = { get: "/magazine/list-by-category" };
+  }
+  rpc Get (GetRequest) returns (GetResponse) {
+    option (google.api.http) = { get: "/magazine/get" };
+  }
 }
 
 message ListRequest {
