@@ -1,5 +1,6 @@
 {
   "name": "iki-proto",
+  "private": true,
   "version": "1.0.35",
   "description": "",
   "author": "",
