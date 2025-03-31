@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_workers";
+
+package workers;
+
+// User is a human user
+message CpuWork {
+  int64 length = 1;
+}
+
+message MemoryWork {
+  int64 length = 1;
+}
