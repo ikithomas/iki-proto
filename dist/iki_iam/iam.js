@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventUserLogin = exports.Secret = exports.Service = exports.Group = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.EventAccessToken = exports.EventUserLogin = exports.Secret = exports.Service = exports.Group = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -527,6 +527,73 @@ exports.EventUserLogin = {
         const message = createBaseEventUserLogin();
         message.ikiUserId = (_a = object.ikiUserId) !== null && _a !== void 0 ? _a : "";
         message.email = (_b = object.email) !== null && _b !== void 0 ? _b : "";
+        return message;
+    },
+};
+function createBaseEventAccessToken() {
+    return { entityId: "", entityType: 0 };
+}
+exports.EventAccessToken = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.entityId !== "") {
+            writer.uint32(10).string(message.entityId);
+        }
+        if (message.entityType !== 0) {
+            writer.uint32(16).int32(message.entityType);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseEventAccessToken();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.entityId = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.entityType = reader.int32();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            entityId: isSet(object.entityId) ? String(object.entityId) : "",
+            entityType: isSet(object.entityType) ? entityTypeFromJSON(object.entityType) : 0,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.entityId !== "") {
+            obj.entityId = message.entityId;
+        }
+        if (message.entityType !== 0) {
+            obj.entityType = entityTypeToJSON(message.entityType);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.EventAccessToken.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseEventAccessToken();
+        message.entityId = (_a = object.entityId) !== null && _a !== void 0 ? _a : "";
+        message.entityType = (_b = object.entityType) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };

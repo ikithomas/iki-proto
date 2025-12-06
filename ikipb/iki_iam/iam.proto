@@ -60,3 +60,8 @@ message EventUserLogin {
   string iki_user_id = 1;
   string email = 2;
 }
+
+message EventAccessToken {
+  string entity_id = 1;
+  EntityType entity_type = 2;
+}

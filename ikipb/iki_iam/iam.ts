@@ -84,6 +84,11 @@ export interface EventUserLogin {
   email: string;
 }
 
+export interface EventAccessToken {
+  entityId: string;
+  entityType: EntityType;
+}
+
 function createBaseUser(): User {
   return {
     id: "",
@@ -606,6 +611,80 @@ export const EventUserLogin = {
     const message = createBaseEventUserLogin();
     message.ikiUserId = object.ikiUserId ?? "";
     message.email = object.email ?? "";
+    return message;
+  },
+};
+
+function createBaseEventAccessToken(): EventAccessToken {
+  return { entityId: "", entityType: 0 };
+}
+
+export const EventAccessToken = {
+  encode(message: EventAccessToken, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.entityId !== "") {
+      writer.uint32(10).string(message.entityId);
+    }
+    if (message.entityType !== 0) {
+      writer.uint32(16).int32(message.entityType);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventAccessToken {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventAccessToken();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entityId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.entityType = reader.int32() as any;
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventAccessToken {
+    return {
+      entityId: isSet(object.entityId) ? String(object.entityId) : "",
+      entityType: isSet(object.entityType) ? entityTypeFromJSON(object.entityType) : 0,
+    };
+  },
+
+  toJSON(message: EventAccessToken): unknown {
+    const obj: any = {};
+    if (message.entityId !== "") {
+      obj.entityId = message.entityId;
+    }
+    if (message.entityType !== 0) {
+      obj.entityType = entityTypeToJSON(message.entityType);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EventAccessToken>, I>>(base?: I): EventAccessToken {
+    return EventAccessToken.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EventAccessToken>, I>>(object: I): EventAccessToken {
+    const message = createBaseEventAccessToken();
+    message.entityId = object.entityId ?? "";
+    message.entityType = object.entityType ?? 0;
     return message;
   },
 };

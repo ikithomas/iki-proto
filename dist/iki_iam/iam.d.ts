@@ -44,6 +44,10 @@ export interface EventUserLogin {
     ikiUserId: string;
     email: string;
 }
+export interface EventAccessToken {
+    entityId: string;
+    entityType: EntityType;
+}
 export declare const User: {
     encode(message: User, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): User;
@@ -263,6 +267,26 @@ export declare const EventUserLogin: {
         ikiUserId?: string;
         email?: string;
     } & { [K_1 in Exclude<keyof I_1, keyof EventUserLogin>]: never; }>(object: I_1): EventUserLogin;
+};
+export declare const EventAccessToken: {
+    encode(message: EventAccessToken, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EventAccessToken;
+    fromJSON(object: any): EventAccessToken;
+    toJSON(message: EventAccessToken): unknown;
+    create<I extends {
+        entityId?: string;
+        entityType?: EntityType;
+    } & {
+        entityId?: string;
+        entityType?: EntityType;
+    } & { [K in Exclude<keyof I, keyof EventAccessToken>]: never; }>(base?: I): EventAccessToken;
+    fromPartial<I_1 extends {
+        entityId?: string;
+        entityType?: EntityType;
+    } & {
+        entityId?: string;
+        entityType?: EntityType;
+    } & { [K_1 in Exclude<keyof I_1, keyof EventAccessToken>]: never; }>(object: I_1): EventAccessToken;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
