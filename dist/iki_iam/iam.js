@@ -531,15 +531,18 @@ exports.EventUserLogin = {
     },
 };
 function createBaseEventAccessToken() {
-    return { entityId: "", entityType: 0 };
+    return { entityId: "", entityName: "", entityType: 0 };
 }
 exports.EventAccessToken = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.entityId !== "") {
             writer.uint32(10).string(message.entityId);
         }
+        if (message.entityName !== "") {
+            writer.uint32(18).string(message.entityName);
+        }
         if (message.entityType !== 0) {
-            writer.uint32(16).int32(message.entityType);
+            writer.uint32(24).int32(message.entityType);
         }
         return writer;
     },
@@ -557,7 +560,13 @@ exports.EventAccessToken = {
                     message.entityId = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.entityName = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 24) {
                         break;
                     }
                     message.entityType = reader.int32();
@@ -573,6 +582,7 @@ exports.EventAccessToken = {
     fromJSON(object) {
         return {
             entityId: isSet(object.entityId) ? String(object.entityId) : "",
+            entityName: isSet(object.entityName) ? String(object.entityName) : "",
             entityType: isSet(object.entityType) ? entityTypeFromJSON(object.entityType) : 0,
         };
     },
@@ -580,6 +590,9 @@ exports.EventAccessToken = {
         const obj = {};
         if (message.entityId !== "") {
             obj.entityId = message.entityId;
+        }
+        if (message.entityName !== "") {
+            obj.entityName = message.entityName;
         }
         if (message.entityType !== 0) {
             obj.entityType = entityTypeToJSON(message.entityType);
@@ -590,10 +603,11 @@ exports.EventAccessToken = {
         return exports.EventAccessToken.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseEventAccessToken();
         message.entityId = (_a = object.entityId) !== null && _a !== void 0 ? _a : "";
-        message.entityType = (_b = object.entityType) !== null && _b !== void 0 ? _b : 0;
+        message.entityName = (_b = object.entityName) !== null && _b !== void 0 ? _b : "";
+        message.entityType = (_c = object.entityType) !== null && _c !== void 0 ? _c : 0;
         return message;
     },
 };

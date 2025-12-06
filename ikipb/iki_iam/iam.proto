@@ -63,5 +63,6 @@ message EventUserLogin {
 
 message EventAccessToken {
   string entity_id = 1;
-  EntityType entity_type = 2;
+  string entity_name = 2;
+  EntityType entity_type = 3;
 }

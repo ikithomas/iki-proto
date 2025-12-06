@@ -86,6 +86,7 @@ export interface EventUserLogin {
 
 export interface EventAccessToken {
   entityId: string;
+  entityName: string;
   entityType: EntityType;
 }
 
@@ -616,7 +617,7 @@ export const EventUserLogin = {
 };
 
 function createBaseEventAccessToken(): EventAccessToken {
-  return { entityId: "", entityType: 0 };
+  return { entityId: "", entityName: "", entityType: 0 };
 }
 
 export const EventAccessToken = {
@@ -624,8 +625,11 @@ export const EventAccessToken = {
     if (message.entityId !== "") {
       writer.uint32(10).string(message.entityId);
     }
+    if (message.entityName !== "") {
+      writer.uint32(18).string(message.entityName);
+    }
     if (message.entityType !== 0) {
-      writer.uint32(16).int32(message.entityType);
+      writer.uint32(24).int32(message.entityType);
     }
     return writer;
   },
@@ -645,7 +649,14 @@ export const EventAccessToken = {
           message.entityId = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.entityName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
             break;
           }
 
@@ -663,6 +674,7 @@ export const EventAccessToken = {
   fromJSON(object: any): EventAccessToken {
     return {
       entityId: isSet(object.entityId) ? String(object.entityId) : "",
+      entityName: isSet(object.entityName) ? String(object.entityName) : "",
       entityType: isSet(object.entityType) ? entityTypeFromJSON(object.entityType) : 0,
     };
   },
@@ -671,6 +683,9 @@ export const EventAccessToken = {
     const obj: any = {};
     if (message.entityId !== "") {
       obj.entityId = message.entityId;
+    }
+    if (message.entityName !== "") {
+      obj.entityName = message.entityName;
     }
     if (message.entityType !== 0) {
       obj.entityType = entityTypeToJSON(message.entityType);
@@ -684,6 +699,7 @@ export const EventAccessToken = {
   fromPartial<I extends Exact<DeepPartial<EventAccessToken>, I>>(object: I): EventAccessToken {
     const message = createBaseEventAccessToken();
     message.entityId = object.entityId ?? "";
+    message.entityName = object.entityName ?? "";
     message.entityType = object.entityType ?? 0;
     return message;
   },

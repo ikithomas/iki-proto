@@ -46,6 +46,7 @@ export interface EventUserLogin {
 }
 export interface EventAccessToken {
     entityId: string;
+    entityName: string;
     entityType: EntityType;
 }
 export declare const User: {
@@ -275,16 +276,20 @@ export declare const EventAccessToken: {
     toJSON(message: EventAccessToken): unknown;
     create<I extends {
         entityId?: string;
+        entityName?: string;
         entityType?: EntityType;
     } & {
         entityId?: string;
+        entityName?: string;
         entityType?: EntityType;
     } & { [K in Exclude<keyof I, keyof EventAccessToken>]: never; }>(base?: I): EventAccessToken;
     fromPartial<I_1 extends {
         entityId?: string;
+        entityName?: string;
         entityType?: EntityType;
     } & {
         entityId?: string;
+        entityName?: string;
         entityType?: EntityType;
     } & { [K_1 in Exclude<keyof I_1, keyof EventAccessToken>]: never; }>(object: I_1): EventAccessToken;
 };
