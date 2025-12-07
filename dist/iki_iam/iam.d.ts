@@ -40,15 +40,6 @@ export interface Secret {
     lastUsedAt: number;
     active: boolean;
 }
-export interface EventUserLogin {
-    ikiUserId: string;
-    email: string;
-}
-export interface EventAccessToken {
-    entityId: string;
-    entityName: string;
-    entityType: EntityType;
-}
 export declare const User: {
     encode(message: User, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): User;
@@ -248,50 +239,6 @@ export declare const Secret: {
         lastUsedAt?: number;
         active?: boolean;
     } & { [K_1 in Exclude<keyof I_1, keyof Secret>]: never; }>(object: I_1): Secret;
-};
-export declare const EventUserLogin: {
-    encode(message: EventUserLogin, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): EventUserLogin;
-    fromJSON(object: any): EventUserLogin;
-    toJSON(message: EventUserLogin): unknown;
-    create<I extends {
-        ikiUserId?: string;
-        email?: string;
-    } & {
-        ikiUserId?: string;
-        email?: string;
-    } & { [K in Exclude<keyof I, keyof EventUserLogin>]: never; }>(base?: I): EventUserLogin;
-    fromPartial<I_1 extends {
-        ikiUserId?: string;
-        email?: string;
-    } & {
-        ikiUserId?: string;
-        email?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof EventUserLogin>]: never; }>(object: I_1): EventUserLogin;
-};
-export declare const EventAccessToken: {
-    encode(message: EventAccessToken, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): EventAccessToken;
-    fromJSON(object: any): EventAccessToken;
-    toJSON(message: EventAccessToken): unknown;
-    create<I extends {
-        entityId?: string;
-        entityName?: string;
-        entityType?: EntityType;
-    } & {
-        entityId?: string;
-        entityName?: string;
-        entityType?: EntityType;
-    } & { [K in Exclude<keyof I, keyof EventAccessToken>]: never; }>(base?: I): EventAccessToken;
-    fromPartial<I_1 extends {
-        entityId?: string;
-        entityName?: string;
-        entityType?: EntityType;
-    } & {
-        entityId?: string;
-        entityName?: string;
-        entityType?: EntityType;
-    } & { [K_1 in Exclude<keyof I_1, keyof EventAccessToken>]: never; }>(object: I_1): EventAccessToken;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

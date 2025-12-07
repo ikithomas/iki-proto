@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+import "ikipb/iki_iam/iam.proto";
+
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_event";
+
+package iam;
+
+////////////////////////////////////////////////////////////////////////////////
+// Events
+//////
+message EventEntity {
+  enum EventType {
+    EVENT_TYPE_UNSPECIFIED = 0;
+    EVENT_TYPE_ENTITY_REFREESH_TOKEN = 1;
+    EVENT_TYPE_ENTITY_LOGIN = 2;
+    EVENT_TYPE_ENTITY_SIGNOUT = 3;
+  }
+
+  message Content {
+    message RefreshToken {
+      enum Result {
+        RESULT_UNSPECIFIED = 0;
+        RESULT_SUCCESS = 1;
+        RESULT_FAILED = 2;
+      }
+
+      Result result = 1;
+      string message = 2;
+    }
+
+    message Login {
+      enum Result {
+        RESULT_UNSPECIFIED = 0;
+        RESULT_SUCCESS = 1;
+        RESULT_FAILED = 2;
+      }
+
+      Result result = 1;
+      string message = 2;
+    }
+
+    message Signout {
+      enum Result {
+        RESULT_UNSPECIFIED = 0;
+        RESULT_SUCCESS = 1;
+        RESULT_FAILED = 2;
+      }
+
+      Result result = 1;
+      string message = 2;
+    }
+
+    RefreshToken refresh_token = 1;
+    Login login = 2;
+    Signout signout = 3;
+  }
+
+  EventType type = 1;
+  string origin = 2;
+  string entity_id = 3;
+  string entity_name = 4;
+  EntityType entity_type = 5;
+  Content content = 6;
+}

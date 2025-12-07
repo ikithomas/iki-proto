@@ -51,18 +51,3 @@ enum EntityType {
   ENTITY_TYPE_USER = 1;
   ENTITY_TYPE_SERVICE = 2;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// Events
-//////
-
-message EventUserLogin {
-  string iki_user_id = 1;
-  string email = 2;
-}
-
-message EventAccessToken {
-  string entity_id = 1;
-  string entity_name = 2;
-  EntityType entity_type = 3;
-}
