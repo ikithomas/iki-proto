@@ -29,6 +29,9 @@ for f in $(find . -path "./ikipb/**/*.proto"); do
     --ts_proto_opt=forceLong=number \
     --ts_proto_opt=esModuleInterop=true \
     ${f}
+  protoc \
+    --ruby_out=./ \
+    ${f}
 done
 
 # typescrypt compile
