@@ -3,56 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventEntity_Content_Signout = exports.EventEntity_Content_Login = exports.EventEntity_Content_RefreshToken = exports.EventEntity_Content = exports.EventEntity = exports.eventEntity_Content_Signout_ResultToJSON = exports.eventEntity_Content_Signout_ResultFromJSON = exports.EventEntity_Content_Signout_Result = exports.eventEntity_Content_Login_ResultToJSON = exports.eventEntity_Content_Login_ResultFromJSON = exports.EventEntity_Content_Login_Result = exports.eventEntity_Content_RefreshToken_ResultToJSON = exports.eventEntity_Content_RefreshToken_ResultFromJSON = exports.EventEntity_Content_RefreshToken_Result = exports.eventEntity_EventTypeToJSON = exports.eventEntity_EventTypeFromJSON = exports.EventEntity_EventType = exports.protobufPackage = void 0;
+exports.EventEntity_Content_Signout = exports.EventEntity_Content_Login = exports.EventEntity_Content_RefreshToken = exports.EventEntity_Content = exports.EventEntity = exports.eventEntity_Content_Signout_ResultToJSON = exports.eventEntity_Content_Signout_ResultFromJSON = exports.EventEntity_Content_Signout_Result = exports.eventEntity_Content_Login_ResultToJSON = exports.eventEntity_Content_Login_ResultFromJSON = exports.EventEntity_Content_Login_Result = exports.eventEntity_Content_RefreshToken_ResultToJSON = exports.eventEntity_Content_RefreshToken_ResultFromJSON = exports.EventEntity_Content_RefreshToken_Result = exports.protobufPackage = void 0;
 /* eslint-disable */
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const iam_1 = require("../iki_iam/iam");
 exports.protobufPackage = "iam";
-var EventEntity_EventType;
-(function (EventEntity_EventType) {
-    EventEntity_EventType[EventEntity_EventType["EVENT_TYPE_UNSPECIFIED"] = 0] = "EVENT_TYPE_UNSPECIFIED";
-    EventEntity_EventType[EventEntity_EventType["EVENT_TYPE_ENTITY_REFREESH_TOKEN"] = 1] = "EVENT_TYPE_ENTITY_REFREESH_TOKEN";
-    EventEntity_EventType[EventEntity_EventType["EVENT_TYPE_ENTITY_LOGIN"] = 2] = "EVENT_TYPE_ENTITY_LOGIN";
-    EventEntity_EventType[EventEntity_EventType["EVENT_TYPE_ENTITY_SIGNOUT"] = 3] = "EVENT_TYPE_ENTITY_SIGNOUT";
-    EventEntity_EventType[EventEntity_EventType["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(EventEntity_EventType || (exports.EventEntity_EventType = EventEntity_EventType = {}));
-function eventEntity_EventTypeFromJSON(object) {
-    switch (object) {
-        case 0:
-        case "EVENT_TYPE_UNSPECIFIED":
-            return EventEntity_EventType.EVENT_TYPE_UNSPECIFIED;
-        case 1:
-        case "EVENT_TYPE_ENTITY_REFREESH_TOKEN":
-            return EventEntity_EventType.EVENT_TYPE_ENTITY_REFREESH_TOKEN;
-        case 2:
-        case "EVENT_TYPE_ENTITY_LOGIN":
-            return EventEntity_EventType.EVENT_TYPE_ENTITY_LOGIN;
-        case 3:
-        case "EVENT_TYPE_ENTITY_SIGNOUT":
-            return EventEntity_EventType.EVENT_TYPE_ENTITY_SIGNOUT;
-        case -1:
-        case "UNRECOGNIZED":
-        default:
-            return EventEntity_EventType.UNRECOGNIZED;
-    }
-}
-exports.eventEntity_EventTypeFromJSON = eventEntity_EventTypeFromJSON;
-function eventEntity_EventTypeToJSON(object) {
-    switch (object) {
-        case EventEntity_EventType.EVENT_TYPE_UNSPECIFIED:
-            return "EVENT_TYPE_UNSPECIFIED";
-        case EventEntity_EventType.EVENT_TYPE_ENTITY_REFREESH_TOKEN:
-            return "EVENT_TYPE_ENTITY_REFREESH_TOKEN";
-        case EventEntity_EventType.EVENT_TYPE_ENTITY_LOGIN:
-            return "EVENT_TYPE_ENTITY_LOGIN";
-        case EventEntity_EventType.EVENT_TYPE_ENTITY_SIGNOUT:
-            return "EVENT_TYPE_ENTITY_SIGNOUT";
-        case EventEntity_EventType.UNRECOGNIZED:
-        default:
-            return "UNRECOGNIZED";
-    }
-}
-exports.eventEntity_EventTypeToJSON = eventEntity_EventTypeToJSON;
 var EventEntity_Content_RefreshToken_Result;
 (function (EventEntity_Content_RefreshToken_Result) {
     EventEntity_Content_RefreshToken_Result[EventEntity_Content_RefreshToken_Result["RESULT_UNSPECIFIED"] = 0] = "RESULT_UNSPECIFIED";
@@ -171,12 +126,12 @@ function eventEntity_Content_Signout_ResultToJSON(object) {
 }
 exports.eventEntity_Content_Signout_ResultToJSON = eventEntity_Content_Signout_ResultToJSON;
 function createBaseEventEntity() {
-    return { type: 0, origin: "", entityId: "", entityName: "", entityType: 0, content: undefined };
+    return { topic: "", origin: "", entityId: "", entityName: "", entityType: 0, content: undefined };
 }
 exports.EventEntity = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.type !== 0) {
-            writer.uint32(8).int32(message.type);
+        if (message.topic !== "") {
+            writer.uint32(10).string(message.topic);
         }
         if (message.origin !== "") {
             writer.uint32(18).string(message.origin);
@@ -203,10 +158,10 @@ exports.EventEntity = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.type = reader.int32();
+                    message.topic = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -248,7 +203,7 @@ exports.EventEntity = {
     },
     fromJSON(object) {
         return {
-            type: isSet(object.type) ? eventEntity_EventTypeFromJSON(object.type) : 0,
+            topic: isSet(object.topic) ? String(object.topic) : "",
             origin: isSet(object.origin) ? String(object.origin) : "",
             entityId: isSet(object.entityId) ? String(object.entityId) : "",
             entityName: isSet(object.entityName) ? String(object.entityName) : "",
@@ -258,8 +213,8 @@ exports.EventEntity = {
     },
     toJSON(message) {
         const obj = {};
-        if (message.type !== 0) {
-            obj.type = eventEntity_EventTypeToJSON(message.type);
+        if (message.topic !== "") {
+            obj.topic = message.topic;
         }
         if (message.origin !== "") {
             obj.origin = message.origin;
@@ -284,7 +239,7 @@ exports.EventEntity = {
     fromPartial(object) {
         var _a, _b, _c, _d, _e;
         const message = createBaseEventEntity();
-        message.type = (_a = object.type) !== null && _a !== void 0 ? _a : 0;
+        message.topic = (_a = object.topic) !== null && _a !== void 0 ? _a : "";
         message.origin = (_b = object.origin) !== null && _b !== void 0 ? _b : "";
         message.entityId = (_c = object.entityId) !== null && _c !== void 0 ? _c : "";
         message.entityName = (_d = object.entityName) !== null && _d !== void 0 ? _d : "";

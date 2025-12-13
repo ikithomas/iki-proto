@@ -10,13 +10,6 @@ package iam;
 // Events
 //////
 message EventEntity {
-  enum EventType {
-    EVENT_TYPE_UNSPECIFIED = 0;
-    EVENT_TYPE_ENTITY_REFREESH_TOKEN = 1;
-    EVENT_TYPE_ENTITY_LOGIN = 2;
-    EVENT_TYPE_ENTITY_SIGNOUT = 3;
-  }
-
   message Content {
     message RefreshToken {
       enum Result {
@@ -56,7 +49,7 @@ message EventEntity {
     Signout signout = 3;
   }
 
-  EventType type = 1;
+  string topic = 1;
   string origin = 2;
   string entity_id = 3;
   string entity_name = 4;

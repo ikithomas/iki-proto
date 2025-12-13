@@ -7,22 +7,13 @@ export declare const protobufPackage = "iam";
  * ////
  */
 export interface EventEntity {
-    type: EventEntity_EventType;
+    topic: string;
     origin: string;
     entityId: string;
     entityName: string;
     entityType: EntityType;
     content: EventEntity_Content | undefined;
 }
-export declare enum EventEntity_EventType {
-    EVENT_TYPE_UNSPECIFIED = 0,
-    EVENT_TYPE_ENTITY_REFREESH_TOKEN = 1,
-    EVENT_TYPE_ENTITY_LOGIN = 2,
-    EVENT_TYPE_ENTITY_SIGNOUT = 3,
-    UNRECOGNIZED = -1
-}
-export declare function eventEntity_EventTypeFromJSON(object: any): EventEntity_EventType;
-export declare function eventEntity_EventTypeToJSON(object: EventEntity_EventType): string;
 export interface EventEntity_Content {
     refreshToken: EventEntity_Content_RefreshToken | undefined;
     login: EventEntity_Content_Login | undefined;
@@ -70,7 +61,7 @@ export declare const EventEntity: {
     fromJSON(object: any): EventEntity;
     toJSON(message: EventEntity): unknown;
     create<I extends {
-        type?: EventEntity_EventType;
+        topic?: string;
         origin?: string;
         entityId?: string;
         entityName?: string;
@@ -90,7 +81,7 @@ export declare const EventEntity: {
             };
         };
     } & {
-        type?: EventEntity_EventType;
+        topic?: string;
         origin?: string;
         entityId?: string;
         entityName?: string;
@@ -133,7 +124,7 @@ export declare const EventEntity: {
         } & { [K_3 in Exclude<keyof I["content"], keyof EventEntity_Content>]: never; };
     } & { [K_4 in Exclude<keyof I, keyof EventEntity>]: never; }>(base?: I): EventEntity;
     fromPartial<I_1 extends {
-        type?: EventEntity_EventType;
+        topic?: string;
         origin?: string;
         entityId?: string;
         entityName?: string;
@@ -153,7 +144,7 @@ export declare const EventEntity: {
             };
         };
     } & {
-        type?: EventEntity_EventType;
+        topic?: string;
         origin?: string;
         entityId?: string;
         entityName?: string;

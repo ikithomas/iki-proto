@@ -10,57 +10,12 @@ export const protobufPackage = "iam";
  * ////
  */
 export interface EventEntity {
-  type: EventEntity_EventType;
+  topic: string;
   origin: string;
   entityId: string;
   entityName: string;
   entityType: EntityType;
   content: EventEntity_Content | undefined;
-}
-
-export enum EventEntity_EventType {
-  EVENT_TYPE_UNSPECIFIED = 0,
-  EVENT_TYPE_ENTITY_REFREESH_TOKEN = 1,
-  EVENT_TYPE_ENTITY_LOGIN = 2,
-  EVENT_TYPE_ENTITY_SIGNOUT = 3,
-  UNRECOGNIZED = -1,
-}
-
-export function eventEntity_EventTypeFromJSON(object: any): EventEntity_EventType {
-  switch (object) {
-    case 0:
-    case "EVENT_TYPE_UNSPECIFIED":
-      return EventEntity_EventType.EVENT_TYPE_UNSPECIFIED;
-    case 1:
-    case "EVENT_TYPE_ENTITY_REFREESH_TOKEN":
-      return EventEntity_EventType.EVENT_TYPE_ENTITY_REFREESH_TOKEN;
-    case 2:
-    case "EVENT_TYPE_ENTITY_LOGIN":
-      return EventEntity_EventType.EVENT_TYPE_ENTITY_LOGIN;
-    case 3:
-    case "EVENT_TYPE_ENTITY_SIGNOUT":
-      return EventEntity_EventType.EVENT_TYPE_ENTITY_SIGNOUT;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return EventEntity_EventType.UNRECOGNIZED;
-  }
-}
-
-export function eventEntity_EventTypeToJSON(object: EventEntity_EventType): string {
-  switch (object) {
-    case EventEntity_EventType.EVENT_TYPE_UNSPECIFIED:
-      return "EVENT_TYPE_UNSPECIFIED";
-    case EventEntity_EventType.EVENT_TYPE_ENTITY_REFREESH_TOKEN:
-      return "EVENT_TYPE_ENTITY_REFREESH_TOKEN";
-    case EventEntity_EventType.EVENT_TYPE_ENTITY_LOGIN:
-      return "EVENT_TYPE_ENTITY_LOGIN";
-    case EventEntity_EventType.EVENT_TYPE_ENTITY_SIGNOUT:
-      return "EVENT_TYPE_ENTITY_SIGNOUT";
-    case EventEntity_EventType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface EventEntity_Content {
@@ -202,13 +157,13 @@ export function eventEntity_Content_Signout_ResultToJSON(object: EventEntity_Con
 }
 
 function createBaseEventEntity(): EventEntity {
-  return { type: 0, origin: "", entityId: "", entityName: "", entityType: 0, content: undefined };
+  return { topic: "", origin: "", entityId: "", entityName: "", entityType: 0, content: undefined };
 }
 
 export const EventEntity = {
   encode(message: EventEntity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.type !== 0) {
-      writer.uint32(8).int32(message.type);
+    if (message.topic !== "") {
+      writer.uint32(10).string(message.topic);
     }
     if (message.origin !== "") {
       writer.uint32(18).string(message.origin);
@@ -236,11 +191,11 @@ export const EventEntity = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.type = reader.int32() as any;
+          message.topic = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -288,7 +243,7 @@ export const EventEntity = {
 
   fromJSON(object: any): EventEntity {
     return {
-      type: isSet(object.type) ? eventEntity_EventTypeFromJSON(object.type) : 0,
+      topic: isSet(object.topic) ? String(object.topic) : "",
       origin: isSet(object.origin) ? String(object.origin) : "",
       entityId: isSet(object.entityId) ? String(object.entityId) : "",
       entityName: isSet(object.entityName) ? String(object.entityName) : "",
@@ -299,8 +254,8 @@ export const EventEntity = {
 
   toJSON(message: EventEntity): unknown {
     const obj: any = {};
-    if (message.type !== 0) {
-      obj.type = eventEntity_EventTypeToJSON(message.type);
+    if (message.topic !== "") {
+      obj.topic = message.topic;
     }
     if (message.origin !== "") {
       obj.origin = message.origin;
@@ -325,7 +280,7 @@ export const EventEntity = {
   },
   fromPartial<I extends Exact<DeepPartial<EventEntity>, I>>(object: I): EventEntity {
     const message = createBaseEventEntity();
-    message.type = object.type ?? 0;
+    message.topic = object.topic ?? "";
     message.origin = object.origin ?? "";
     message.entityId = object.entityId ?? "";
     message.entityName = object.entityName ?? "";
