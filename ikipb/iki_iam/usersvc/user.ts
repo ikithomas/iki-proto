@@ -21,6 +21,16 @@ export interface CheckEmailResponse {
   exist: boolean;
 }
 
+export interface CreateRequest {
+  email: string;
+  givenName: string;
+  familyName: string;
+}
+
+export interface CreateResponse {
+  user: User | undefined;
+}
+
 export interface GetRequest {
   id: string;
 }
@@ -275,6 +285,152 @@ export const CheckEmailResponse = {
   fromPartial<I extends Exact<DeepPartial<CheckEmailResponse>, I>>(object: I): CheckEmailResponse {
     const message = createBaseCheckEmailResponse();
     message.exist = object.exist ?? false;
+    return message;
+  },
+};
+
+function createBaseCreateRequest(): CreateRequest {
+  return { email: "", givenName: "", familyName: "" };
+}
+
+export const CreateRequest = {
+  encode(message: CreateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.email !== "") {
+      writer.uint32(10).string(message.email);
+    }
+    if (message.givenName !== "") {
+      writer.uint32(18).string(message.givenName);
+    }
+    if (message.familyName !== "") {
+      writer.uint32(26).string(message.familyName);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CreateRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.email = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.givenName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.familyName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CreateRequest {
+    return {
+      email: isSet(object.email) ? String(object.email) : "",
+      givenName: isSet(object.givenName) ? String(object.givenName) : "",
+      familyName: isSet(object.familyName) ? String(object.familyName) : "",
+    };
+  },
+
+  toJSON(message: CreateRequest): unknown {
+    const obj: any = {};
+    if (message.email !== "") {
+      obj.email = message.email;
+    }
+    if (message.givenName !== "") {
+      obj.givenName = message.givenName;
+    }
+    if (message.familyName !== "") {
+      obj.familyName = message.familyName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CreateRequest>, I>>(base?: I): CreateRequest {
+    return CreateRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateRequest>, I>>(object: I): CreateRequest {
+    const message = createBaseCreateRequest();
+    message.email = object.email ?? "";
+    message.givenName = object.givenName ?? "";
+    message.familyName = object.familyName ?? "";
+    return message;
+  },
+};
+
+function createBaseCreateResponse(): CreateResponse {
+  return { user: undefined };
+}
+
+export const CreateResponse = {
+  encode(message: CreateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.user !== undefined) {
+      User.encode(message.user, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CreateResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.user = User.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CreateResponse {
+    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
+  },
+
+  toJSON(message: CreateResponse): unknown {
+    const obj: any = {};
+    if (message.user !== undefined) {
+      obj.user = User.toJSON(message.user);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CreateResponse>, I>>(base?: I): CreateResponse {
+    return CreateResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateResponse>, I>>(object: I): CreateResponse {
+    const message = createBaseCreateResponse();
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
     return message;
   },
 };
@@ -915,6 +1071,8 @@ export interface UserSvc {
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
   /** CheckEmail checks if the account is already taken. */
   CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse>;
+  /** Create a user */
+  Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse>;
   /** List lists all users. */
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
   /** Get gets the details of a specific user. */
@@ -937,6 +1095,7 @@ export class UserSvcClientImpl implements UserSvc {
     this.rpc = rpc;
     this.Profile = this.Profile.bind(this);
     this.CheckEmail = this.CheckEmail.bind(this);
+    this.Create = this.Create.bind(this);
     this.List = this.List.bind(this);
     this.Get = this.Get.bind(this);
     this.Delete = this.Delete.bind(this);
@@ -951,6 +1110,10 @@ export class UserSvcClientImpl implements UserSvc {
 
   CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse> {
     return this.rpc.unary(UserSvcCheckEmailDesc, CheckEmailRequest.fromPartial(request), metadata);
+  }
+
+  Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse> {
+    return this.rpc.unary(UserSvcCreateDesc, CreateRequest.fromPartial(request), metadata);
   }
 
   List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse> {
@@ -1019,6 +1182,29 @@ export const UserSvcCheckEmailDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = CheckEmailResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const UserSvcCreateDesc: UnaryMethodDefinitionish = {
+  methodName: "Create",
+  service: UserSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return CreateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = CreateResponse.decode(data);
       return {
         ...value,
         toObject() {

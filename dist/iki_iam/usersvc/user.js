@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcDeactivateUserDesc = exports.UserSvcActivateUserDesc = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcCheckEmailDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.DeactivateUserResponse = exports.DeactivateUserRequest = exports.ActivateUserResponse = exports.ActivateUserRequest = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CheckEmailResponse = exports.CheckEmailRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcDeactivateUserDesc = exports.UserSvcActivateUserDesc = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcCreateDesc = exports.UserSvcCheckEmailDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.DeactivateUserResponse = exports.DeactivateUserRequest = exports.ActivateUserResponse = exports.ActivateUserRequest = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CreateResponse = exports.CreateRequest = exports.CheckEmailResponse = exports.CheckEmailRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -196,6 +196,137 @@ exports.CheckEmailResponse = {
         var _a;
         const message = createBaseCheckEmailResponse();
         message.exist = (_a = object.exist) !== null && _a !== void 0 ? _a : false;
+        return message;
+    },
+};
+function createBaseCreateRequest() {
+    return { email: "", givenName: "", familyName: "" };
+}
+exports.CreateRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.email !== "") {
+            writer.uint32(10).string(message.email);
+        }
+        if (message.givenName !== "") {
+            writer.uint32(18).string(message.givenName);
+        }
+        if (message.familyName !== "") {
+            writer.uint32(26).string(message.familyName);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseCreateRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.email = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.givenName = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.familyName = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            email: isSet(object.email) ? String(object.email) : "",
+            givenName: isSet(object.givenName) ? String(object.givenName) : "",
+            familyName: isSet(object.familyName) ? String(object.familyName) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.email !== "") {
+            obj.email = message.email;
+        }
+        if (message.givenName !== "") {
+            obj.givenName = message.givenName;
+        }
+        if (message.familyName !== "") {
+            obj.familyName = message.familyName;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.CreateRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c;
+        const message = createBaseCreateRequest();
+        message.email = (_a = object.email) !== null && _a !== void 0 ? _a : "";
+        message.givenName = (_b = object.givenName) !== null && _b !== void 0 ? _b : "";
+        message.familyName = (_c = object.familyName) !== null && _c !== void 0 ? _c : "";
+        return message;
+    },
+};
+function createBaseCreateResponse() {
+    return { user: undefined };
+}
+exports.CreateResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.user !== undefined) {
+            iam_1.User.encode(message.user, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseCreateResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.user = iam_1.User.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { user: isSet(object.user) ? iam_1.User.fromJSON(object.user) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.user !== undefined) {
+            obj.user = iam_1.User.toJSON(message.user);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.CreateResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        const message = createBaseCreateResponse();
+        message.user = (object.user !== undefined && object.user !== null) ? iam_1.User.fromPartial(object.user) : undefined;
         return message;
     },
 };
@@ -763,6 +894,7 @@ class UserSvcClientImpl {
         this.rpc = rpc;
         this.Profile = this.Profile.bind(this);
         this.CheckEmail = this.CheckEmail.bind(this);
+        this.Create = this.Create.bind(this);
         this.List = this.List.bind(this);
         this.Get = this.Get.bind(this);
         this.Delete = this.Delete.bind(this);
@@ -775,6 +907,9 @@ class UserSvcClientImpl {
     }
     CheckEmail(request, metadata) {
         return this.rpc.unary(exports.UserSvcCheckEmailDesc, exports.CheckEmailRequest.fromPartial(request), metadata);
+    }
+    Create(request, metadata) {
+        return this.rpc.unary(exports.UserSvcCreateDesc, exports.CreateRequest.fromPartial(request), metadata);
     }
     List(request, metadata) {
         return this.rpc.unary(exports.UserSvcListDesc, exports.ListRequest.fromPartial(request), metadata);
@@ -829,6 +964,25 @@ exports.UserSvcCheckEmailDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.CheckEmailResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.UserSvcCreateDesc = {
+    methodName: "Create",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.CreateRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.CreateResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

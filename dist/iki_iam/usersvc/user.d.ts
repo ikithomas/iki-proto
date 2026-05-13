@@ -13,6 +13,14 @@ export interface CheckEmailRequest {
 export interface CheckEmailResponse {
     exist: boolean;
 }
+export interface CreateRequest {
+    email: string;
+    givenName: string;
+    familyName: string;
+}
+export interface CreateResponse {
+    user: User | undefined;
+}
 export interface GetRequest {
     id: string;
 }
@@ -190,6 +198,136 @@ export declare const CheckEmailResponse: {
     } & {
         exist?: boolean;
     } & { [K_1 in Exclude<keyof I_1, "exist">]: never; }>(object: I_1): CheckEmailResponse;
+};
+export declare const CreateRequest: {
+    encode(message: CreateRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CreateRequest;
+    fromJSON(object: any): CreateRequest;
+    toJSON(message: CreateRequest): unknown;
+    create<I extends {
+        email?: string;
+        givenName?: string;
+        familyName?: string;
+    } & {
+        email?: string;
+        givenName?: string;
+        familyName?: string;
+    } & { [K in Exclude<keyof I, keyof CreateRequest>]: never; }>(base?: I): CreateRequest;
+    fromPartial<I_1 extends {
+        email?: string;
+        givenName?: string;
+        familyName?: string;
+    } & {
+        email?: string;
+        givenName?: string;
+        familyName?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof CreateRequest>]: never; }>(object: I_1): CreateRequest;
+};
+export declare const CreateResponse: {
+    encode(message: CreateResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CreateResponse;
+    fromJSON(object: any): CreateResponse;
+    toJSON(message: CreateResponse): unknown;
+    create<I extends {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        };
+    } & {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K in Exclude<keyof I["user"]["roles"][number], keyof import("../iam").Group>]: never; })[] & { [K_1 in Exclude<keyof I["user"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & { [K_2 in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I, "user">]: never; }>(base?: I): CreateResponse;
+    fromPartial<I_1 extends {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        };
+    } & {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_4 in Exclude<keyof I_1["user"]["roles"][number], keyof import("../iam").Group>]: never; })[] & { [K_5 in Exclude<keyof I_1["user"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_7 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): CreateResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;
@@ -580,6 +718,8 @@ export interface UserSvc {
     Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
     /** CheckEmail checks if the account is already taken. */
     CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse>;
+    /** Create a user */
+    Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse>;
     /** List lists all users. */
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     /** Get gets the details of a specific user. */
@@ -596,6 +736,7 @@ export declare class UserSvcClientImpl implements UserSvc {
     constructor(rpc: Rpc);
     Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
     CheckEmail(request: DeepPartial<CheckEmailRequest>, metadata?: grpc.Metadata): Promise<CheckEmailResponse>;
+    Create(request: DeepPartial<CreateRequest>, metadata?: grpc.Metadata): Promise<CreateResponse>;
     List(request: DeepPartial<ListRequest>, metadata?: grpc.Metadata): Promise<ListResponse>;
     Get(request: DeepPartial<GetRequest>, metadata?: grpc.Metadata): Promise<GetResponse>;
     Delete(request: DeepPartial<DeleteRequest>, metadata?: grpc.Metadata): Promise<DeleteResponse>;
@@ -608,6 +749,7 @@ export declare const UserSvcDesc: {
 };
 export declare const UserSvcProfileDesc: UnaryMethodDefinitionish;
 export declare const UserSvcCheckEmailDesc: UnaryMethodDefinitionish;
+export declare const UserSvcCreateDesc: UnaryMethodDefinitionish;
 export declare const UserSvcListDesc: UnaryMethodDefinitionish;
 export declare const UserSvcGetDesc: UnaryMethodDefinitionish;
 export declare const UserSvcDeleteDesc: UnaryMethodDefinitionish;

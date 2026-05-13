@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	UserSvc_Profile_FullMethodName        = "/usersvc.UserSvc/Profile"
 	UserSvc_CheckEmail_FullMethodName     = "/usersvc.UserSvc/CheckEmail"
+	UserSvc_Create_FullMethodName         = "/usersvc.UserSvc/Create"
 	UserSvc_List_FullMethodName           = "/usersvc.UserSvc/List"
 	UserSvc_Get_FullMethodName            = "/usersvc.UserSvc/Get"
 	UserSvc_Delete_FullMethodName         = "/usersvc.UserSvc/Delete"
@@ -37,6 +38,8 @@ type UserSvcClient interface {
 	Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
 	// CheckEmail checks if the account is already taken.
 	CheckEmail(ctx context.Context, in *CheckEmailRequest, opts ...grpc.CallOption) (*CheckEmailResponse, error)
+	// Create a user
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	// List lists all users.
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	// Get gets the details of a specific user.
@@ -69,6 +72,15 @@ func (c *userSvcClient) Profile(ctx context.Context, in *ProfileRequest, opts ..
 func (c *userSvcClient) CheckEmail(ctx context.Context, in *CheckEmailRequest, opts ...grpc.CallOption) (*CheckEmailResponse, error) {
 	out := new(CheckEmailResponse)
 	err := c.cc.Invoke(ctx, UserSvc_CheckEmail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userSvcClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, UserSvc_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -137,6 +149,8 @@ type UserSvcServer interface {
 	Profile(context.Context, *ProfileRequest) (*ProfileResponse, error)
 	// CheckEmail checks if the account is already taken.
 	CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error)
+	// Create a user
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	// List lists all users.
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	// Get gets the details of a specific user.
@@ -159,6 +173,9 @@ func (UnimplementedUserSvcServer) Profile(context.Context, *ProfileRequest) (*Pr
 }
 func (UnimplementedUserSvcServer) CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckEmail not implemented")
+}
+func (UnimplementedUserSvcServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedUserSvcServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -223,6 +240,24 @@ func _UserSvc_CheckEmail_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserSvcServer).CheckEmail(ctx, req.(*CheckEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserSvc_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserSvc_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -349,6 +384,10 @@ var UserSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckEmail",
 			Handler:    _UserSvc_CheckEmail_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _UserSvc_Create_Handler,
 		},
 		{
 			MethodName: "List",
