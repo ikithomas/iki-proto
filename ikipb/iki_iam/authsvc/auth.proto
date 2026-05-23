@@ -14,6 +14,14 @@ service AuthSvc {
   rpc ServiceLogin (ServiceLoginRequest) returns (ServiceLoginResponse) {}
 
   rpc Signout (SignoutRequest) returns (SignoutResponse) {}
+
+  // Passkey (WebAuthn) registration — requires an active session.
+  rpc BeginPasskeyRegistration (BeginPasskeyRegistrationRequest) returns (BeginPasskeyRegistrationResponse) {}
+  rpc FinishPasskeyRegistration (FinishPasskeyRegistrationRequest) returns (FinishPasskeyRegistrationResponse) {}
+
+  // Passkey (WebAuthn) authentication.
+  rpc BeginPasskeyLogin (BeginPasskeyLoginRequest) returns (BeginPasskeyLoginResponse) {}
+  rpc FinishPasskeyLogin (FinishPasskeyLoginRequest) returns (FinishPasskeyLoginResponse) {}
 }
 
 message GoogleLoginRequest {
@@ -38,3 +46,33 @@ message ServiceLoginResponse {
 
 message SignoutRequest {}
 message SignoutResponse {}
+
+message BeginPasskeyRegistrationRequest {}
+message BeginPasskeyRegistrationResponse {
+  string options_json = 1;
+  string session_id = 2;
+}
+
+message FinishPasskeyRegistrationRequest {
+  string session_id = 1;
+  string credential_json = 2;
+}
+message FinishPasskeyRegistrationResponse {}
+
+message BeginPasskeyLoginRequest {
+  string email = 1;
+}
+message BeginPasskeyLoginResponse {
+  string options_json = 1;
+  string session_id = 2;
+}
+
+message FinishPasskeyLoginRequest {
+  string session_id = 1;
+  string credential_json = 2;
+}
+message FinishPasskeyLoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  iam.User user = 3;
+}

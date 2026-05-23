@@ -22,6 +22,34 @@ export interface SignoutRequest {
 }
 export interface SignoutResponse {
 }
+export interface BeginPasskeyRegistrationRequest {
+}
+export interface BeginPasskeyRegistrationResponse {
+    optionsJson: string;
+    sessionId: string;
+}
+export interface FinishPasskeyRegistrationRequest {
+    sessionId: string;
+    credentialJson: string;
+}
+export interface FinishPasskeyRegistrationResponse {
+}
+export interface BeginPasskeyLoginRequest {
+    email: string;
+}
+export interface BeginPasskeyLoginResponse {
+    optionsJson: string;
+    sessionId: string;
+}
+export interface FinishPasskeyLoginRequest {
+    sessionId: string;
+    credentialJson: string;
+}
+export interface FinishPasskeyLoginResponse {
+    accessToken: string;
+    refreshToken: string;
+    user: User | undefined;
+}
 export declare const GoogleLoginRequest: {
     encode(message: GoogleLoginRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): GoogleLoginRequest;
@@ -208,6 +236,232 @@ export declare const SignoutResponse: {
     create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): SignoutResponse;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): SignoutResponse;
 };
+export declare const BeginPasskeyRegistrationRequest: {
+    encode(_: BeginPasskeyRegistrationRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): BeginPasskeyRegistrationRequest;
+    fromJSON(_: any): BeginPasskeyRegistrationRequest;
+    toJSON(_: BeginPasskeyRegistrationRequest): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): BeginPasskeyRegistrationRequest;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): BeginPasskeyRegistrationRequest;
+};
+export declare const BeginPasskeyRegistrationResponse: {
+    encode(message: BeginPasskeyRegistrationResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): BeginPasskeyRegistrationResponse;
+    fromJSON(object: any): BeginPasskeyRegistrationResponse;
+    toJSON(message: BeginPasskeyRegistrationResponse): unknown;
+    create<I extends {
+        optionsJson?: string;
+        sessionId?: string;
+    } & {
+        optionsJson?: string;
+        sessionId?: string;
+    } & { [K in Exclude<keyof I, keyof BeginPasskeyRegistrationResponse>]: never; }>(base?: I): BeginPasskeyRegistrationResponse;
+    fromPartial<I_1 extends {
+        optionsJson?: string;
+        sessionId?: string;
+    } & {
+        optionsJson?: string;
+        sessionId?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof BeginPasskeyRegistrationResponse>]: never; }>(object: I_1): BeginPasskeyRegistrationResponse;
+};
+export declare const FinishPasskeyRegistrationRequest: {
+    encode(message: FinishPasskeyRegistrationRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): FinishPasskeyRegistrationRequest;
+    fromJSON(object: any): FinishPasskeyRegistrationRequest;
+    toJSON(message: FinishPasskeyRegistrationRequest): unknown;
+    create<I extends {
+        sessionId?: string;
+        credentialJson?: string;
+    } & {
+        sessionId?: string;
+        credentialJson?: string;
+    } & { [K in Exclude<keyof I, keyof FinishPasskeyRegistrationRequest>]: never; }>(base?: I): FinishPasskeyRegistrationRequest;
+    fromPartial<I_1 extends {
+        sessionId?: string;
+        credentialJson?: string;
+    } & {
+        sessionId?: string;
+        credentialJson?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof FinishPasskeyRegistrationRequest>]: never; }>(object: I_1): FinishPasskeyRegistrationRequest;
+};
+export declare const FinishPasskeyRegistrationResponse: {
+    encode(_: FinishPasskeyRegistrationResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): FinishPasskeyRegistrationResponse;
+    fromJSON(_: any): FinishPasskeyRegistrationResponse;
+    toJSON(_: FinishPasskeyRegistrationResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): FinishPasskeyRegistrationResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): FinishPasskeyRegistrationResponse;
+};
+export declare const BeginPasskeyLoginRequest: {
+    encode(message: BeginPasskeyLoginRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): BeginPasskeyLoginRequest;
+    fromJSON(object: any): BeginPasskeyLoginRequest;
+    toJSON(message: BeginPasskeyLoginRequest): unknown;
+    create<I extends {
+        email?: string;
+    } & {
+        email?: string;
+    } & { [K in Exclude<keyof I, "email">]: never; }>(base?: I): BeginPasskeyLoginRequest;
+    fromPartial<I_1 extends {
+        email?: string;
+    } & {
+        email?: string;
+    } & { [K_1 in Exclude<keyof I_1, "email">]: never; }>(object: I_1): BeginPasskeyLoginRequest;
+};
+export declare const BeginPasskeyLoginResponse: {
+    encode(message: BeginPasskeyLoginResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): BeginPasskeyLoginResponse;
+    fromJSON(object: any): BeginPasskeyLoginResponse;
+    toJSON(message: BeginPasskeyLoginResponse): unknown;
+    create<I extends {
+        optionsJson?: string;
+        sessionId?: string;
+    } & {
+        optionsJson?: string;
+        sessionId?: string;
+    } & { [K in Exclude<keyof I, keyof BeginPasskeyLoginResponse>]: never; }>(base?: I): BeginPasskeyLoginResponse;
+    fromPartial<I_1 extends {
+        optionsJson?: string;
+        sessionId?: string;
+    } & {
+        optionsJson?: string;
+        sessionId?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof BeginPasskeyLoginResponse>]: never; }>(object: I_1): BeginPasskeyLoginResponse;
+};
+export declare const FinishPasskeyLoginRequest: {
+    encode(message: FinishPasskeyLoginRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): FinishPasskeyLoginRequest;
+    fromJSON(object: any): FinishPasskeyLoginRequest;
+    toJSON(message: FinishPasskeyLoginRequest): unknown;
+    create<I extends {
+        sessionId?: string;
+        credentialJson?: string;
+    } & {
+        sessionId?: string;
+        credentialJson?: string;
+    } & { [K in Exclude<keyof I, keyof FinishPasskeyLoginRequest>]: never; }>(base?: I): FinishPasskeyLoginRequest;
+    fromPartial<I_1 extends {
+        sessionId?: string;
+        credentialJson?: string;
+    } & {
+        sessionId?: string;
+        credentialJson?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof FinishPasskeyLoginRequest>]: never; }>(object: I_1): FinishPasskeyLoginRequest;
+};
+export declare const FinishPasskeyLoginResponse: {
+    encode(message: FinishPasskeyLoginResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): FinishPasskeyLoginResponse;
+    fromJSON(object: any): FinishPasskeyLoginResponse;
+    toJSON(message: FinishPasskeyLoginResponse): unknown;
+    create<I extends {
+        accessToken?: string;
+        refreshToken?: string;
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        };
+    } & {
+        accessToken?: string;
+        refreshToken?: string;
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K in Exclude<keyof I["user"]["roles"][number], keyof import("../iam").Group>]: never; })[] & { [K_1 in Exclude<keyof I["user"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & { [K_2 in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I, keyof FinishPasskeyLoginResponse>]: never; }>(base?: I): FinishPasskeyLoginResponse;
+    fromPartial<I_1 extends {
+        accessToken?: string;
+        refreshToken?: string;
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        };
+    } & {
+        accessToken?: string;
+        refreshToken?: string;
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_4 in Exclude<keyof I_1["user"]["roles"][number], keyof import("../iam").Group>]: never; })[] & { [K_5 in Exclude<keyof I_1["user"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+        } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_7 in Exclude<keyof I_1, keyof FinishPasskeyLoginResponse>]: never; }>(object: I_1): FinishPasskeyLoginResponse;
+};
 export interface AuthSvc {
     /**
      * Login or signup with google.
@@ -216,6 +470,12 @@ export interface AuthSvc {
     GoogleLogin(request: DeepPartial<GoogleLoginRequest>, metadata?: grpc.Metadata): Promise<GoogleLoginResponse>;
     ServiceLogin(request: DeepPartial<ServiceLoginRequest>, metadata?: grpc.Metadata): Promise<ServiceLoginResponse>;
     Signout(request: DeepPartial<SignoutRequest>, metadata?: grpc.Metadata): Promise<SignoutResponse>;
+    /** Passkey (WebAuthn) registration — requires an active session. */
+    BeginPasskeyRegistration(request: DeepPartial<BeginPasskeyRegistrationRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyRegistrationResponse>;
+    FinishPasskeyRegistration(request: DeepPartial<FinishPasskeyRegistrationRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyRegistrationResponse>;
+    /** Passkey (WebAuthn) authentication. */
+    BeginPasskeyLogin(request: DeepPartial<BeginPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyLoginResponse>;
+    FinishPasskeyLogin(request: DeepPartial<FinishPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyLoginResponse>;
 }
 export declare class AuthSvcClientImpl implements AuthSvc {
     private readonly rpc;
@@ -223,6 +483,10 @@ export declare class AuthSvcClientImpl implements AuthSvc {
     GoogleLogin(request: DeepPartial<GoogleLoginRequest>, metadata?: grpc.Metadata): Promise<GoogleLoginResponse>;
     ServiceLogin(request: DeepPartial<ServiceLoginRequest>, metadata?: grpc.Metadata): Promise<ServiceLoginResponse>;
     Signout(request: DeepPartial<SignoutRequest>, metadata?: grpc.Metadata): Promise<SignoutResponse>;
+    BeginPasskeyRegistration(request: DeepPartial<BeginPasskeyRegistrationRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyRegistrationResponse>;
+    FinishPasskeyRegistration(request: DeepPartial<FinishPasskeyRegistrationRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyRegistrationResponse>;
+    BeginPasskeyLogin(request: DeepPartial<BeginPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyLoginResponse>;
+    FinishPasskeyLogin(request: DeepPartial<FinishPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyLoginResponse>;
 }
 export declare const AuthSvcDesc: {
     serviceName: string;
@@ -230,6 +494,10 @@ export declare const AuthSvcDesc: {
 export declare const AuthSvcGoogleLoginDesc: UnaryMethodDefinitionish;
 export declare const AuthSvcServiceLoginDesc: UnaryMethodDefinitionish;
 export declare const AuthSvcSignoutDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcBeginPasskeyRegistrationDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcFinishPasskeyRegistrationDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcBeginPasskeyLoginDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcFinishPasskeyLoginDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

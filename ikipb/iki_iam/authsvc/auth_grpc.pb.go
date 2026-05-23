@@ -19,9 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AuthSvc_GoogleLogin_FullMethodName  = "/authsvc.AuthSvc/GoogleLogin"
-	AuthSvc_ServiceLogin_FullMethodName = "/authsvc.AuthSvc/ServiceLogin"
-	AuthSvc_Signout_FullMethodName      = "/authsvc.AuthSvc/Signout"
+	AuthSvc_GoogleLogin_FullMethodName               = "/authsvc.AuthSvc/GoogleLogin"
+	AuthSvc_ServiceLogin_FullMethodName              = "/authsvc.AuthSvc/ServiceLogin"
+	AuthSvc_Signout_FullMethodName                   = "/authsvc.AuthSvc/Signout"
+	AuthSvc_BeginPasskeyRegistration_FullMethodName  = "/authsvc.AuthSvc/BeginPasskeyRegistration"
+	AuthSvc_FinishPasskeyRegistration_FullMethodName = "/authsvc.AuthSvc/FinishPasskeyRegistration"
+	AuthSvc_BeginPasskeyLogin_FullMethodName         = "/authsvc.AuthSvc/BeginPasskeyLogin"
+	AuthSvc_FinishPasskeyLogin_FullMethodName        = "/authsvc.AuthSvc/FinishPasskeyLogin"
 )
 
 // AuthSvcClient is the client API for AuthSvc service.
@@ -33,6 +37,12 @@ type AuthSvcClient interface {
 	GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
 	ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error)
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
+	// Passkey (WebAuthn) registration — requires an active session.
+	BeginPasskeyRegistration(ctx context.Context, in *BeginPasskeyRegistrationRequest, opts ...grpc.CallOption) (*BeginPasskeyRegistrationResponse, error)
+	FinishPasskeyRegistration(ctx context.Context, in *FinishPasskeyRegistrationRequest, opts ...grpc.CallOption) (*FinishPasskeyRegistrationResponse, error)
+	// Passkey (WebAuthn) authentication.
+	BeginPasskeyLogin(ctx context.Context, in *BeginPasskeyLoginRequest, opts ...grpc.CallOption) (*BeginPasskeyLoginResponse, error)
+	FinishPasskeyLogin(ctx context.Context, in *FinishPasskeyLoginRequest, opts ...grpc.CallOption) (*FinishPasskeyLoginResponse, error)
 }
 
 type authSvcClient struct {
@@ -70,6 +80,42 @@ func (c *authSvcClient) Signout(ctx context.Context, in *SignoutRequest, opts ..
 	return out, nil
 }
 
+func (c *authSvcClient) BeginPasskeyRegistration(ctx context.Context, in *BeginPasskeyRegistrationRequest, opts ...grpc.CallOption) (*BeginPasskeyRegistrationResponse, error) {
+	out := new(BeginPasskeyRegistrationResponse)
+	err := c.cc.Invoke(ctx, AuthSvc_BeginPasskeyRegistration_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authSvcClient) FinishPasskeyRegistration(ctx context.Context, in *FinishPasskeyRegistrationRequest, opts ...grpc.CallOption) (*FinishPasskeyRegistrationResponse, error) {
+	out := new(FinishPasskeyRegistrationResponse)
+	err := c.cc.Invoke(ctx, AuthSvc_FinishPasskeyRegistration_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authSvcClient) BeginPasskeyLogin(ctx context.Context, in *BeginPasskeyLoginRequest, opts ...grpc.CallOption) (*BeginPasskeyLoginResponse, error) {
+	out := new(BeginPasskeyLoginResponse)
+	err := c.cc.Invoke(ctx, AuthSvc_BeginPasskeyLogin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authSvcClient) FinishPasskeyLogin(ctx context.Context, in *FinishPasskeyLoginRequest, opts ...grpc.CallOption) (*FinishPasskeyLoginResponse, error) {
+	out := new(FinishPasskeyLoginResponse)
+	err := c.cc.Invoke(ctx, AuthSvc_FinishPasskeyLogin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthSvcServer is the server API for AuthSvc service.
 // All implementations must embed UnimplementedAuthSvcServer
 // for forward compatibility
@@ -79,6 +125,12 @@ type AuthSvcServer interface {
 	GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error)
 	ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
+	// Passkey (WebAuthn) registration — requires an active session.
+	BeginPasskeyRegistration(context.Context, *BeginPasskeyRegistrationRequest) (*BeginPasskeyRegistrationResponse, error)
+	FinishPasskeyRegistration(context.Context, *FinishPasskeyRegistrationRequest) (*FinishPasskeyRegistrationResponse, error)
+	// Passkey (WebAuthn) authentication.
+	BeginPasskeyLogin(context.Context, *BeginPasskeyLoginRequest) (*BeginPasskeyLoginResponse, error)
+	FinishPasskeyLogin(context.Context, *FinishPasskeyLoginRequest) (*FinishPasskeyLoginResponse, error)
 	mustEmbedUnimplementedAuthSvcServer()
 }
 
@@ -94,6 +146,18 @@ func (UnimplementedAuthSvcServer) ServiceLogin(context.Context, *ServiceLoginReq
 }
 func (UnimplementedAuthSvcServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signout not implemented")
+}
+func (UnimplementedAuthSvcServer) BeginPasskeyRegistration(context.Context, *BeginPasskeyRegistrationRequest) (*BeginPasskeyRegistrationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BeginPasskeyRegistration not implemented")
+}
+func (UnimplementedAuthSvcServer) FinishPasskeyRegistration(context.Context, *FinishPasskeyRegistrationRequest) (*FinishPasskeyRegistrationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinishPasskeyRegistration not implemented")
+}
+func (UnimplementedAuthSvcServer) BeginPasskeyLogin(context.Context, *BeginPasskeyLoginRequest) (*BeginPasskeyLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BeginPasskeyLogin not implemented")
+}
+func (UnimplementedAuthSvcServer) FinishPasskeyLogin(context.Context, *FinishPasskeyLoginRequest) (*FinishPasskeyLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinishPasskeyLogin not implemented")
 }
 func (UnimplementedAuthSvcServer) mustEmbedUnimplementedAuthSvcServer() {}
 
@@ -162,6 +226,78 @@ func _AuthSvc_Signout_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthSvc_BeginPasskeyRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BeginPasskeyRegistrationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthSvcServer).BeginPasskeyRegistration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthSvc_BeginPasskeyRegistration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthSvcServer).BeginPasskeyRegistration(ctx, req.(*BeginPasskeyRegistrationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthSvc_FinishPasskeyRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinishPasskeyRegistrationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthSvcServer).FinishPasskeyRegistration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthSvc_FinishPasskeyRegistration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthSvcServer).FinishPasskeyRegistration(ctx, req.(*FinishPasskeyRegistrationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthSvc_BeginPasskeyLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BeginPasskeyLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthSvcServer).BeginPasskeyLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthSvc_BeginPasskeyLogin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthSvcServer).BeginPasskeyLogin(ctx, req.(*BeginPasskeyLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthSvc_FinishPasskeyLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinishPasskeyLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthSvcServer).FinishPasskeyLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthSvc_FinishPasskeyLogin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthSvcServer).FinishPasskeyLogin(ctx, req.(*FinishPasskeyLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthSvc_ServiceDesc is the grpc.ServiceDesc for AuthSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +316,22 @@ var AuthSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Signout",
 			Handler:    _AuthSvc_Signout_Handler,
+		},
+		{
+			MethodName: "BeginPasskeyRegistration",
+			Handler:    _AuthSvc_BeginPasskeyRegistration_Handler,
+		},
+		{
+			MethodName: "FinishPasskeyRegistration",
+			Handler:    _AuthSvc_FinishPasskeyRegistration_Handler,
+		},
+		{
+			MethodName: "BeginPasskeyLogin",
+			Handler:    _AuthSvc_BeginPasskeyLogin_Handler,
+		},
+		{
+			MethodName: "FinishPasskeyLogin",
+			Handler:    _AuthSvc_FinishPasskeyLogin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
