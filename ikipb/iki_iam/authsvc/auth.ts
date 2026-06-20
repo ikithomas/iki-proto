@@ -76,6 +76,7 @@ export interface Passkey {
   identifier: string;
   createdAt: number;
   lastUsedAt?: number | undefined;
+  ownerEmail: string;
 }
 
 export interface ListPasskeysRequest {
@@ -1013,7 +1014,7 @@ export const FinishPasskeyLoginResponse = {
 };
 
 function createBasePasskey(): Passkey {
-  return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined };
+  return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined, ownerEmail: "" };
 }
 
 export const Passkey = {
@@ -1035,6 +1036,9 @@ export const Passkey = {
     }
     if (message.lastUsedAt !== undefined) {
       writer.uint32(48).int64(message.lastUsedAt);
+    }
+    if (message.ownerEmail !== "") {
+      writer.uint32(58).string(message.ownerEmail);
     }
     return writer;
   },
@@ -1088,6 +1092,13 @@ export const Passkey = {
 
           message.lastUsedAt = longToNumber(reader.int64() as Long);
           continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.ownerEmail = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1105,6 +1116,7 @@ export const Passkey = {
       identifier: isSet(object.identifier) ? String(object.identifier) : "",
       createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
       lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
+      ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
     };
   },
 
@@ -1128,6 +1140,9 @@ export const Passkey = {
     if (message.lastUsedAt !== undefined) {
       obj.lastUsedAt = Math.round(message.lastUsedAt);
     }
+    if (message.ownerEmail !== "") {
+      obj.ownerEmail = message.ownerEmail;
+    }
     return obj;
   },
 
@@ -1142,6 +1157,7 @@ export const Passkey = {
     message.identifier = object.identifier ?? "";
     message.createdAt = object.createdAt ?? 0;
     message.lastUsedAt = object.lastUsedAt ?? undefined;
+    message.ownerEmail = object.ownerEmail ?? "";
     return message;
   },
 };

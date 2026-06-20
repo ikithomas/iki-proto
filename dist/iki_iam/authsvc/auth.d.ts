@@ -57,6 +57,7 @@ export interface Passkey {
     identifier: string;
     createdAt: number;
     lastUsedAt?: number | undefined;
+    ownerEmail: string;
 }
 export interface ListPasskeysRequest {
 }
@@ -492,6 +493,7 @@ export declare const Passkey: {
         identifier?: string;
         createdAt?: number;
         lastUsedAt?: number | undefined;
+        ownerEmail?: string;
     } & {
         id?: string;
         ownerId?: string;
@@ -499,6 +501,7 @@ export declare const Passkey: {
         identifier?: string;
         createdAt?: number;
         lastUsedAt?: number | undefined;
+        ownerEmail?: string;
     } & { [K in Exclude<keyof I, keyof Passkey>]: never; }>(base?: I): Passkey;
     fromPartial<I_1 extends {
         id?: string;
@@ -507,6 +510,7 @@ export declare const Passkey: {
         identifier?: string;
         createdAt?: number;
         lastUsedAt?: number | undefined;
+        ownerEmail?: string;
     } & {
         id?: string;
         ownerId?: string;
@@ -514,6 +518,7 @@ export declare const Passkey: {
         identifier?: string;
         createdAt?: number;
         lastUsedAt?: number | undefined;
+        ownerEmail?: string;
     } & { [K_1 in Exclude<keyof I_1, keyof Passkey>]: never; }>(object: I_1): Passkey;
 };
 export declare const ListPasskeysRequest: {
@@ -537,6 +542,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[];
     } & {
         passkeys?: {
@@ -546,6 +552,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[] & ({
             id?: string;
             ownerId?: string;
@@ -553,6 +560,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         } & {
             id?: string;
             ownerId?: string;
@@ -560,6 +568,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         } & { [K in Exclude<keyof I["passkeys"][number], keyof Passkey>]: never; })[] & { [K_1 in Exclude<keyof I["passkeys"], keyof {
             id?: string;
             ownerId?: string;
@@ -567,6 +576,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[]>]: never; };
     } & { [K_2 in Exclude<keyof I, "passkeys">]: never; }>(base?: I): ListPasskeysResponse;
     fromPartial<I_1 extends {
@@ -577,6 +587,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[];
     } & {
         passkeys?: {
@@ -586,6 +597,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[] & ({
             id?: string;
             ownerId?: string;
@@ -593,6 +605,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         } & {
             id?: string;
             ownerId?: string;
@@ -600,6 +613,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         } & { [K_3 in Exclude<keyof I_1["passkeys"][number], keyof Passkey>]: never; })[] & { [K_4 in Exclude<keyof I_1["passkeys"], keyof {
             id?: string;
             ownerId?: string;
@@ -607,6 +621,7 @@ export declare const ListPasskeysResponse: {
             identifier?: string;
             createdAt?: number;
             lastUsedAt?: number | undefined;
+            ownerEmail?: string;
         }[]>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "passkeys">]: never; }>(object: I_1): ListPasskeysResponse;
 };

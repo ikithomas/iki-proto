@@ -826,7 +826,7 @@ exports.FinishPasskeyLoginResponse = {
     },
 };
 function createBasePasskey() {
-    return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined };
+    return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined, ownerEmail: "" };
 }
 exports.Passkey = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -847,6 +847,9 @@ exports.Passkey = {
         }
         if (message.lastUsedAt !== undefined) {
             writer.uint32(48).int64(message.lastUsedAt);
+        }
+        if (message.ownerEmail !== "") {
+            writer.uint32(58).string(message.ownerEmail);
         }
         return writer;
     },
@@ -893,6 +896,12 @@ exports.Passkey = {
                     }
                     message.lastUsedAt = longToNumber(reader.int64());
                     continue;
+                case 7:
+                    if (tag !== 58) {
+                        break;
+                    }
+                    message.ownerEmail = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -909,6 +918,7 @@ exports.Passkey = {
             identifier: isSet(object.identifier) ? String(object.identifier) : "",
             createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
             lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
+            ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
         };
     },
     toJSON(message) {
@@ -931,13 +941,16 @@ exports.Passkey = {
         if (message.lastUsedAt !== undefined) {
             obj.lastUsedAt = Math.round(message.lastUsedAt);
         }
+        if (message.ownerEmail !== "") {
+            obj.ownerEmail = message.ownerEmail;
+        }
         return obj;
     },
     create(base) {
         return exports.Passkey.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         const message = createBasePasskey();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.ownerId = (_b = object.ownerId) !== null && _b !== void 0 ? _b : "";
@@ -945,6 +958,7 @@ exports.Passkey = {
         message.identifier = (_d = object.identifier) !== null && _d !== void 0 ? _d : "";
         message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
         message.lastUsedAt = (_f = object.lastUsedAt) !== null && _f !== void 0 ? _f : undefined;
+        message.ownerEmail = (_g = object.ownerEmail) !== null && _g !== void 0 ? _g : "";
         return message;
     },
 };
