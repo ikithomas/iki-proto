@@ -949,13 +949,10 @@ exports.Passkey = {
     },
 };
 function createBaseListPasskeysRequest() {
-    return { userId: undefined };
+    return {};
 }
 exports.ListPasskeysRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.userId !== undefined) {
-            writer.uint32(10).string(message.userId);
-        }
+    encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
@@ -965,12 +962,6 @@ exports.ListPasskeysRequest = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.userId = reader.string();
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -979,23 +970,18 @@ exports.ListPasskeysRequest = {
         }
         return message;
     },
-    fromJSON(object) {
-        return { userId: isSet(object.userId) ? String(object.userId) : undefined };
+    fromJSON(_) {
+        return {};
     },
-    toJSON(message) {
+    toJSON(_) {
         const obj = {};
-        if (message.userId !== undefined) {
-            obj.userId = message.userId;
-        }
         return obj;
     },
     create(base) {
         return exports.ListPasskeysRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
-    fromPartial(object) {
-        var _a;
+    fromPartial(_) {
         const message = createBaseListPasskeysRequest();
-        message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : undefined;
         return message;
     },
 };

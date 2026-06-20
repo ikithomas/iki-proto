@@ -93,7 +93,6 @@ message Passkey {
 }
 
 message ListPasskeysRequest {
-  optional string user_id = 1;
 }
 
 message ListPasskeysResponse {

@@ -59,7 +59,6 @@ export interface Passkey {
     lastUsedAt?: number | undefined;
 }
 export interface ListPasskeysRequest {
-    userId?: string | undefined;
 }
 export interface ListPasskeysResponse {
     passkeys: Passkey[];
@@ -518,20 +517,12 @@ export declare const Passkey: {
     } & { [K_1 in Exclude<keyof I_1, keyof Passkey>]: never; }>(object: I_1): Passkey;
 };
 export declare const ListPasskeysRequest: {
-    encode(message: ListPasskeysRequest, writer?: _m0.Writer): _m0.Writer;
+    encode(_: ListPasskeysRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest;
-    fromJSON(object: any): ListPasskeysRequest;
-    toJSON(message: ListPasskeysRequest): unknown;
-    create<I extends {
-        userId?: string | undefined;
-    } & {
-        userId?: string | undefined;
-    } & { [K in Exclude<keyof I, "userId">]: never; }>(base?: I): ListPasskeysRequest;
-    fromPartial<I_1 extends {
-        userId?: string | undefined;
-    } & {
-        userId?: string | undefined;
-    } & { [K_1 in Exclude<keyof I_1, "userId">]: never; }>(object: I_1): ListPasskeysRequest;
+    fromJSON(_: any): ListPasskeysRequest;
+    toJSON(_: ListPasskeysRequest): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListPasskeysRequest;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListPasskeysRequest;
 };
 export declare const ListPasskeysResponse: {
     encode(message: ListPasskeysResponse, writer?: _m0.Writer): _m0.Writer;

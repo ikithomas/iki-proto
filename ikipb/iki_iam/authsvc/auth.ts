@@ -79,7 +79,6 @@ export interface Passkey {
 }
 
 export interface ListPasskeysRequest {
-  userId?: string | undefined;
 }
 
 export interface ListPasskeysResponse {
@@ -1148,14 +1147,11 @@ export const Passkey = {
 };
 
 function createBaseListPasskeysRequest(): ListPasskeysRequest {
-  return { userId: undefined };
+  return {};
 }
 
 export const ListPasskeysRequest = {
-  encode(message: ListPasskeysRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== undefined) {
-      writer.uint32(10).string(message.userId);
-    }
+  encode(_: ListPasskeysRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -1166,13 +1162,6 @@ export const ListPasskeysRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.userId = reader.string();
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1182,24 +1171,20 @@ export const ListPasskeysRequest = {
     return message;
   },
 
-  fromJSON(object: any): ListPasskeysRequest {
-    return { userId: isSet(object.userId) ? String(object.userId) : undefined };
+  fromJSON(_: any): ListPasskeysRequest {
+    return {};
   },
 
-  toJSON(message: ListPasskeysRequest): unknown {
+  toJSON(_: ListPasskeysRequest): unknown {
     const obj: any = {};
-    if (message.userId !== undefined) {
-      obj.userId = message.userId;
-    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(base?: I): ListPasskeysRequest {
     return ListPasskeysRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(object: I): ListPasskeysRequest {
+  fromPartial<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(_: I): ListPasskeysRequest {
     const message = createBaseListPasskeysRequest();
-    message.userId = object.userId ?? undefined;
     return message;
   },
 };
