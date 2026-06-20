@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { User } from "../iam";
 
@@ -74,30 +73,6 @@ export interface DeactivateUserRequest {
 }
 
 export interface DeactivateUserResponse {
-}
-
-export interface Passkey {
-  id: string;
-  ownerId: string;
-  ownerName: string;
-  identifier: string;
-  createdAt: number;
-  lastUsedAt?: number | undefined;
-}
-
-export interface ListPasskeysRequest {
-  userId?: string | undefined;
-}
-
-export interface ListPasskeysResponse {
-  passkeys: Passkey[];
-}
-
-export interface DeletePasskeyRequest {
-  id: string;
-}
-
-export interface DeletePasskeyResponse {
 }
 
 function createBaseProfileRequest(): ProfileRequest {
@@ -1091,354 +1066,6 @@ export const DeactivateUserResponse = {
   },
 };
 
-function createBasePasskey(): Passkey {
-  return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined };
-}
-
-export const Passkey = {
-  encode(message: Passkey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    if (message.ownerId !== "") {
-      writer.uint32(18).string(message.ownerId);
-    }
-    if (message.ownerName !== "") {
-      writer.uint32(26).string(message.ownerName);
-    }
-    if (message.identifier !== "") {
-      writer.uint32(34).string(message.identifier);
-    }
-    if (message.createdAt !== 0) {
-      writer.uint32(40).int64(message.createdAt);
-    }
-    if (message.lastUsedAt !== undefined) {
-      writer.uint32(48).int64(message.lastUsedAt);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Passkey {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePasskey();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.ownerId = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.ownerName = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.identifier = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.createdAt = longToNumber(reader.int64() as Long);
-          continue;
-        case 6:
-          if (tag !== 48) {
-            break;
-          }
-
-          message.lastUsedAt = longToNumber(reader.int64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Passkey {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      ownerId: isSet(object.ownerId) ? String(object.ownerId) : "",
-      ownerName: isSet(object.ownerName) ? String(object.ownerName) : "",
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
-      createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
-      lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
-    };
-  },
-
-  toJSON(message: Passkey): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.ownerId !== "") {
-      obj.ownerId = message.ownerId;
-    }
-    if (message.ownerName !== "") {
-      obj.ownerName = message.ownerName;
-    }
-    if (message.identifier !== "") {
-      obj.identifier = message.identifier;
-    }
-    if (message.createdAt !== 0) {
-      obj.createdAt = Math.round(message.createdAt);
-    }
-    if (message.lastUsedAt !== undefined) {
-      obj.lastUsedAt = Math.round(message.lastUsedAt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Passkey>, I>>(base?: I): Passkey {
-    return Passkey.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Passkey>, I>>(object: I): Passkey {
-    const message = createBasePasskey();
-    message.id = object.id ?? "";
-    message.ownerId = object.ownerId ?? "";
-    message.ownerName = object.ownerName ?? "";
-    message.identifier = object.identifier ?? "";
-    message.createdAt = object.createdAt ?? 0;
-    message.lastUsedAt = object.lastUsedAt ?? undefined;
-    return message;
-  },
-};
-
-function createBaseListPasskeysRequest(): ListPasskeysRequest {
-  return { userId: undefined };
-}
-
-export const ListPasskeysRequest = {
-  encode(message: ListPasskeysRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.userId !== undefined) {
-      writer.uint32(10).string(message.userId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListPasskeysRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.userId = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ListPasskeysRequest {
-    return { userId: isSet(object.userId) ? String(object.userId) : undefined };
-  },
-
-  toJSON(message: ListPasskeysRequest): unknown {
-    const obj: any = {};
-    if (message.userId !== undefined) {
-      obj.userId = message.userId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(base?: I): ListPasskeysRequest {
-    return ListPasskeysRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(object: I): ListPasskeysRequest {
-    const message = createBaseListPasskeysRequest();
-    message.userId = object.userId ?? undefined;
-    return message;
-  },
-};
-
-function createBaseListPasskeysResponse(): ListPasskeysResponse {
-  return { passkeys: [] };
-}
-
-export const ListPasskeysResponse = {
-  encode(message: ListPasskeysResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.passkeys) {
-      Passkey.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListPasskeysResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.passkeys.push(Passkey.decode(reader, reader.uint32()));
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ListPasskeysResponse {
-    return { passkeys: Array.isArray(object?.passkeys) ? object.passkeys.map((e: any) => Passkey.fromJSON(e)) : [] };
-  },
-
-  toJSON(message: ListPasskeysResponse): unknown {
-    const obj: any = {};
-    if (message.passkeys?.length) {
-      obj.passkeys = message.passkeys.map((e) => Passkey.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ListPasskeysResponse>, I>>(base?: I): ListPasskeysResponse {
-    return ListPasskeysResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListPasskeysResponse>, I>>(object: I): ListPasskeysResponse {
-    const message = createBaseListPasskeysResponse();
-    message.passkeys = object.passkeys?.map((e) => Passkey.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseDeletePasskeyRequest(): DeletePasskeyRequest {
-  return { id: "" };
-}
-
-export const DeletePasskeyRequest = {
-  encode(message: DeletePasskeyRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDeletePasskeyRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): DeletePasskeyRequest {
-    return { id: isSet(object.id) ? String(object.id) : "" };
-  },
-
-  toJSON(message: DeletePasskeyRequest): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<DeletePasskeyRequest>, I>>(base?: I): DeletePasskeyRequest {
-    return DeletePasskeyRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<DeletePasskeyRequest>, I>>(object: I): DeletePasskeyRequest {
-    const message = createBaseDeletePasskeyRequest();
-    message.id = object.id ?? "";
-    return message;
-  },
-};
-
-function createBaseDeletePasskeyResponse(): DeletePasskeyResponse {
-  return {};
-}
-
-export const DeletePasskeyResponse = {
-  encode(_: DeletePasskeyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDeletePasskeyResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(_: any): DeletePasskeyResponse {
-    return {};
-  },
-
-  toJSON(_: DeletePasskeyResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<DeletePasskeyResponse>, I>>(base?: I): DeletePasskeyResponse {
-    return DeletePasskeyResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<DeletePasskeyResponse>, I>>(_: I): DeletePasskeyResponse {
-    const message = createBaseDeletePasskeyResponse();
-    return message;
-  },
-};
-
 export interface UserSvc {
   /** Profile returns the user profile associated with the access token associated with the request. */
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse>;
@@ -1459,10 +1086,6 @@ export interface UserSvc {
     request: DeepPartial<DeactivateUserRequest>,
     metadata?: grpc.Metadata,
   ): Promise<DeactivateUserResponse>;
-  /** ListPasskeys lists all registered passkeys, optionally filtered by user. */
-  ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
-  /** DeletePasskey deletes a passkey by its ID. */
-  DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 
 export class UserSvcClientImpl implements UserSvc {
@@ -1479,8 +1102,6 @@ export class UserSvcClientImpl implements UserSvc {
     this.UpdateGroups = this.UpdateGroups.bind(this);
     this.ActivateUser = this.ActivateUser.bind(this);
     this.DeactivateUser = this.DeactivateUser.bind(this);
-    this.ListPasskeys = this.ListPasskeys.bind(this);
-    this.DeletePasskey = this.DeletePasskey.bind(this);
   }
 
   Profile(request: DeepPartial<ProfileRequest>, metadata?: grpc.Metadata): Promise<ProfileResponse> {
@@ -1520,14 +1141,6 @@ export class UserSvcClientImpl implements UserSvc {
     metadata?: grpc.Metadata,
   ): Promise<DeactivateUserResponse> {
     return this.rpc.unary(UserSvcDeactivateUserDesc, DeactivateUserRequest.fromPartial(request), metadata);
-  }
-
-  ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse> {
-    return this.rpc.unary(UserSvcListPasskeysDesc, ListPasskeysRequest.fromPartial(request), metadata);
-  }
-
-  DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse> {
-    return this.rpc.unary(UserSvcDeletePasskeyDesc, DeletePasskeyRequest.fromPartial(request), metadata);
   }
 }
 
@@ -1740,52 +1353,6 @@ export const UserSvcDeactivateUserDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const UserSvcListPasskeysDesc: UnaryMethodDefinitionish = {
-  methodName: "ListPasskeys",
-  service: UserSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return ListPasskeysRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = ListPasskeysResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const UserSvcDeletePasskeyDesc: UnaryMethodDefinitionish = {
-  methodName: "DeletePasskey",
-  service: UserSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return DeletePasskeyRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = DeletePasskeyResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
   requestStream: any;
   responseStream: any;
@@ -1883,18 +1450,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

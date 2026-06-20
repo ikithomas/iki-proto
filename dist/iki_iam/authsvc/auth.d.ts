@@ -50,6 +50,25 @@ export interface FinishPasskeyLoginResponse {
     refreshToken: string;
     user: User | undefined;
 }
+export interface Passkey {
+    id: string;
+    ownerId: string;
+    ownerName: string;
+    identifier: string;
+    createdAt: number;
+    lastUsedAt?: number | undefined;
+}
+export interface ListPasskeysRequest {
+    userId?: string | undefined;
+}
+export interface ListPasskeysResponse {
+    passkeys: Passkey[];
+}
+export interface DeletePasskeyRequest {
+    id: string;
+}
+export interface DeletePasskeyResponse {
+}
 export declare const GoogleLoginRequest: {
     encode(message: GoogleLoginRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): GoogleLoginRequest;
@@ -462,6 +481,168 @@ export declare const FinishPasskeyLoginResponse: {
         } & { [K_6 in Exclude<keyof I_1["user"], keyof User>]: never; };
     } & { [K_7 in Exclude<keyof I_1, keyof FinishPasskeyLoginResponse>]: never; }>(object: I_1): FinishPasskeyLoginResponse;
 };
+export declare const Passkey: {
+    encode(message: Passkey, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Passkey;
+    fromJSON(object: any): Passkey;
+    toJSON(message: Passkey): unknown;
+    create<I extends {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+    } & {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+    } & { [K in Exclude<keyof I, keyof Passkey>]: never; }>(base?: I): Passkey;
+    fromPartial<I_1 extends {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+    } & {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof Passkey>]: never; }>(object: I_1): Passkey;
+};
+export declare const ListPasskeysRequest: {
+    encode(message: ListPasskeysRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest;
+    fromJSON(object: any): ListPasskeysRequest;
+    toJSON(message: ListPasskeysRequest): unknown;
+    create<I extends {
+        userId?: string | undefined;
+    } & {
+        userId?: string | undefined;
+    } & { [K in Exclude<keyof I, "userId">]: never; }>(base?: I): ListPasskeysRequest;
+    fromPartial<I_1 extends {
+        userId?: string | undefined;
+    } & {
+        userId?: string | undefined;
+    } & { [K_1 in Exclude<keyof I_1, "userId">]: never; }>(object: I_1): ListPasskeysRequest;
+};
+export declare const ListPasskeysResponse: {
+    encode(message: ListPasskeysResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysResponse;
+    fromJSON(object: any): ListPasskeysResponse;
+    toJSON(message: ListPasskeysResponse): unknown;
+    create<I extends {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[];
+    } & {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[] & ({
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        } & {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        } & { [K in Exclude<keyof I["passkeys"][number], keyof Passkey>]: never; })[] & { [K_1 in Exclude<keyof I["passkeys"], keyof {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[]>]: never; };
+    } & { [K_2 in Exclude<keyof I, "passkeys">]: never; }>(base?: I): ListPasskeysResponse;
+    fromPartial<I_1 extends {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[];
+    } & {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[] & ({
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        } & {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        } & { [K_3 in Exclude<keyof I_1["passkeys"][number], keyof Passkey>]: never; })[] & { [K_4 in Exclude<keyof I_1["passkeys"], keyof {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number | undefined;
+        }[]>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, "passkeys">]: never; }>(object: I_1): ListPasskeysResponse;
+};
+export declare const DeletePasskeyRequest: {
+    encode(message: DeletePasskeyRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyRequest;
+    fromJSON(object: any): DeletePasskeyRequest;
+    toJSON(message: DeletePasskeyRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeletePasskeyRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeletePasskeyRequest;
+};
+export declare const DeletePasskeyResponse: {
+    encode(_: DeletePasskeyResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyResponse;
+    fromJSON(_: any): DeletePasskeyResponse;
+    toJSON(_: DeletePasskeyResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeletePasskeyResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeletePasskeyResponse;
+};
 export interface AuthSvc {
     /**
      * Login or signup with google.
@@ -476,6 +657,10 @@ export interface AuthSvc {
     /** Passkey (WebAuthn) authentication. */
     BeginPasskeyLogin(request: DeepPartial<BeginPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyLoginResponse>;
     FinishPasskeyLogin(request: DeepPartial<FinishPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyLoginResponse>;
+    /** List all registered passkeys, optionally filtered by user_id. */
+    ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
+    /** Delete a registered passkey by its ID. */
+    DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 export declare class AuthSvcClientImpl implements AuthSvc {
     private readonly rpc;
@@ -487,6 +672,8 @@ export declare class AuthSvcClientImpl implements AuthSvc {
     FinishPasskeyRegistration(request: DeepPartial<FinishPasskeyRegistrationRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyRegistrationResponse>;
     BeginPasskeyLogin(request: DeepPartial<BeginPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<BeginPasskeyLoginResponse>;
     FinishPasskeyLogin(request: DeepPartial<FinishPasskeyLoginRequest>, metadata?: grpc.Metadata): Promise<FinishPasskeyLoginResponse>;
+    ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
+    DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 export declare const AuthSvcDesc: {
     serviceName: string;
@@ -498,6 +685,8 @@ export declare const AuthSvcBeginPasskeyRegistrationDesc: UnaryMethodDefinitioni
 export declare const AuthSvcFinishPasskeyRegistrationDesc: UnaryMethodDefinitionish;
 export declare const AuthSvcBeginPasskeyLoginDesc: UnaryMethodDefinitionish;
 export declare const AuthSvcFinishPasskeyLoginDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcListPasskeysDesc: UnaryMethodDefinitionish;
+export declare const AuthSvcDeletePasskeyDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;
