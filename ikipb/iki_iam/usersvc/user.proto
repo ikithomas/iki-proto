@@ -31,6 +31,12 @@ service UserSvc {
   rpc ActivateUser (ActivateUserRequest) returns (ActivateUserResponse) {}
 
   rpc DeactivateUser (DeactivateUserRequest) returns (DeactivateUserResponse) {}
+
+  // ListPasskeys lists all registered passkeys, optionally filtered by user.
+  rpc ListPasskeys(ListPasskeysRequest) returns (ListPasskeysResponse) {}
+
+  // DeletePasskey deletes a passkey by its ID.
+  rpc DeletePasskey(DeletePasskeyRequest) returns (DeletePasskeyResponse) {}
 }
 
 message ProfileRequest {}
@@ -94,3 +100,26 @@ message DeactivateUserRequest {
 }
 
 message DeactivateUserResponse {}
+
+message Passkey {
+  string id = 1;
+  string owner_id = 2;
+  string owner_name = 3;
+  string identifier = 4;
+  int64 created_at = 5;
+  optional int64 last_used_at = 6;
+}
+
+message ListPasskeysRequest {
+  optional string user_id = 1;
+}
+
+message ListPasskeysResponse {
+  repeated Passkey passkeys = 1;
+}
+
+message DeletePasskeyRequest {
+  string id = 1;
+}
+
+message DeletePasskeyResponse {}

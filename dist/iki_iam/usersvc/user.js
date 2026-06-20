@@ -3,10 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcDeactivateUserDesc = exports.UserSvcActivateUserDesc = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcCreateDesc = exports.UserSvcCheckEmailDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.DeactivateUserResponse = exports.DeactivateUserRequest = exports.ActivateUserResponse = exports.ActivateUserRequest = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CreateResponse = exports.CreateRequest = exports.CheckEmailResponse = exports.CheckEmailRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.UserSvcDeletePasskeyDesc = exports.UserSvcListPasskeysDesc = exports.UserSvcDeactivateUserDesc = exports.UserSvcActivateUserDesc = exports.UserSvcUpdateGroupsDesc = exports.UserSvcDeleteDesc = exports.UserSvcGetDesc = exports.UserSvcListDesc = exports.UserSvcCreateDesc = exports.UserSvcCheckEmailDesc = exports.UserSvcProfileDesc = exports.UserSvcDesc = exports.UserSvcClientImpl = exports.DeletePasskeyResponse = exports.DeletePasskeyRequest = exports.ListPasskeysResponse = exports.ListPasskeysRequest = exports.Passkey = exports.DeactivateUserResponse = exports.DeactivateUserRequest = exports.ActivateUserResponse = exports.ActivateUserRequest = exports.UpdateGroupResponse = exports.UpdateGroupRequest = exports.DeleteResponse = exports.DeleteRequest = exports.ListResponse = exports.ListRequest = exports.GetResponse = exports.GetRequest = exports.CreateResponse = exports.CreateRequest = exports.CheckEmailResponse = exports.CheckEmailRequest = exports.ProfileResponse = exports.ProfileRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
+const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const iam_1 = require("../iam");
 exports.protobufPackage = "usersvc";
@@ -889,6 +890,320 @@ exports.DeactivateUserResponse = {
         return message;
     },
 };
+function createBasePasskey() {
+    return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined };
+}
+exports.Passkey = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.ownerId !== "") {
+            writer.uint32(18).string(message.ownerId);
+        }
+        if (message.ownerName !== "") {
+            writer.uint32(26).string(message.ownerName);
+        }
+        if (message.identifier !== "") {
+            writer.uint32(34).string(message.identifier);
+        }
+        if (message.createdAt !== 0) {
+            writer.uint32(40).int64(message.createdAt);
+        }
+        if (message.lastUsedAt !== undefined) {
+            writer.uint32(48).int64(message.lastUsedAt);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePasskey();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.ownerId = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.ownerName = reader.string();
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.identifier = reader.string();
+                    continue;
+                case 5:
+                    if (tag !== 40) {
+                        break;
+                    }
+                    message.createdAt = longToNumber(reader.int64());
+                    continue;
+                case 6:
+                    if (tag !== 48) {
+                        break;
+                    }
+                    message.lastUsedAt = longToNumber(reader.int64());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            ownerId: isSet(object.ownerId) ? String(object.ownerId) : "",
+            ownerName: isSet(object.ownerName) ? String(object.ownerName) : "",
+            identifier: isSet(object.identifier) ? String(object.identifier) : "",
+            createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
+            lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.ownerId !== "") {
+            obj.ownerId = message.ownerId;
+        }
+        if (message.ownerName !== "") {
+            obj.ownerName = message.ownerName;
+        }
+        if (message.identifier !== "") {
+            obj.identifier = message.identifier;
+        }
+        if (message.createdAt !== 0) {
+            obj.createdAt = Math.round(message.createdAt);
+        }
+        if (message.lastUsedAt !== undefined) {
+            obj.lastUsedAt = Math.round(message.lastUsedAt);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Passkey.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c, _d, _e, _f;
+        const message = createBasePasskey();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.ownerId = (_b = object.ownerId) !== null && _b !== void 0 ? _b : "";
+        message.ownerName = (_c = object.ownerName) !== null && _c !== void 0 ? _c : "";
+        message.identifier = (_d = object.identifier) !== null && _d !== void 0 ? _d : "";
+        message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
+        message.lastUsedAt = (_f = object.lastUsedAt) !== null && _f !== void 0 ? _f : undefined;
+        return message;
+    },
+};
+function createBaseListPasskeysRequest() {
+    return { userId: undefined };
+}
+exports.ListPasskeysRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.userId !== undefined) {
+            writer.uint32(10).string(message.userId);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseListPasskeysRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.userId = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { userId: isSet(object.userId) ? String(object.userId) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.userId !== undefined) {
+            obj.userId = message.userId;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ListPasskeysRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseListPasskeysRequest();
+        message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : undefined;
+        return message;
+    },
+};
+function createBaseListPasskeysResponse() {
+    return { passkeys: [] };
+}
+exports.ListPasskeysResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        for (const v of message.passkeys) {
+            exports.Passkey.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseListPasskeysResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.passkeys.push(exports.Passkey.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { passkeys: Array.isArray(object === null || object === void 0 ? void 0 : object.passkeys) ? object.passkeys.map((e) => exports.Passkey.fromJSON(e)) : [] };
+    },
+    toJSON(message) {
+        var _a;
+        const obj = {};
+        if ((_a = message.passkeys) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.passkeys = message.passkeys.map((e) => exports.Passkey.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ListPasskeysResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseListPasskeysResponse();
+        message.passkeys = ((_a = object.passkeys) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Passkey.fromPartial(e))) || [];
+        return message;
+    },
+};
+function createBaseDeletePasskeyRequest() {
+    return { id: "" };
+}
+exports.DeletePasskeyRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseDeletePasskeyRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.DeletePasskeyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseDeletePasskeyRequest();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseDeletePasskeyResponse() {
+    return {};
+}
+exports.DeletePasskeyResponse = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseDeletePasskeyResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.DeletePasskeyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(_) {
+        const message = createBaseDeletePasskeyResponse();
+        return message;
+    },
+};
 class UserSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
@@ -901,6 +1216,8 @@ class UserSvcClientImpl {
         this.UpdateGroups = this.UpdateGroups.bind(this);
         this.ActivateUser = this.ActivateUser.bind(this);
         this.DeactivateUser = this.DeactivateUser.bind(this);
+        this.ListPasskeys = this.ListPasskeys.bind(this);
+        this.DeletePasskey = this.DeletePasskey.bind(this);
     }
     Profile(request, metadata) {
         return this.rpc.unary(exports.UserSvcProfileDesc, exports.ProfileRequest.fromPartial(request), metadata);
@@ -928,6 +1245,12 @@ class UserSvcClientImpl {
     }
     DeactivateUser(request, metadata) {
         return this.rpc.unary(exports.UserSvcDeactivateUserDesc, exports.DeactivateUserRequest.fromPartial(request), metadata);
+    }
+    ListPasskeys(request, metadata) {
+        return this.rpc.unary(exports.UserSvcListPasskeysDesc, exports.ListPasskeysRequest.fromPartial(request), metadata);
+    }
+    DeletePasskey(request, metadata) {
+        return this.rpc.unary(exports.UserSvcDeletePasskeyDesc, exports.DeletePasskeyRequest.fromPartial(request), metadata);
     }
 }
 exports.UserSvcClientImpl = UserSvcClientImpl;
@@ -1103,6 +1426,44 @@ exports.UserSvcDeactivateUserDesc = {
         },
     },
 };
+exports.UserSvcListPasskeysDesc = {
+    methodName: "ListPasskeys",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.ListPasskeysRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.ListPasskeysResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.UserSvcDeletePasskeyDesc = {
+    methodName: "DeletePasskey",
+    service: exports.UserSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.DeletePasskeyRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.DeletePasskeyResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
 class GrpcWebImpl {
     constructor(host, options) {
         this.host = host;
@@ -1144,6 +1505,16 @@ const tsProtoGlobalThis = (() => {
     }
     throw "Unable to locate global object";
 })();
+function longToNumber(long) {
+    if (long.gt(Number.MAX_SAFE_INTEGER)) {
+        throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    }
+    return long.toNumber();
+}
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
+}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

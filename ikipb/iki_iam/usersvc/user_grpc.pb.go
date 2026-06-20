@@ -28,6 +28,8 @@ const (
 	UserSvc_UpdateGroups_FullMethodName   = "/usersvc.UserSvc/UpdateGroups"
 	UserSvc_ActivateUser_FullMethodName   = "/usersvc.UserSvc/ActivateUser"
 	UserSvc_DeactivateUser_FullMethodName = "/usersvc.UserSvc/DeactivateUser"
+	UserSvc_ListPasskeys_FullMethodName   = "/usersvc.UserSvc/ListPasskeys"
+	UserSvc_DeletePasskey_FullMethodName  = "/usersvc.UserSvc/DeletePasskey"
 )
 
 // UserSvcClient is the client API for UserSvc service.
@@ -50,6 +52,10 @@ type UserSvcClient interface {
 	UpdateGroups(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
 	ActivateUser(ctx context.Context, in *ActivateUserRequest, opts ...grpc.CallOption) (*ActivateUserResponse, error)
 	DeactivateUser(ctx context.Context, in *DeactivateUserRequest, opts ...grpc.CallOption) (*DeactivateUserResponse, error)
+	// ListPasskeys lists all registered passkeys, optionally filtered by user.
+	ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error)
+	// DeletePasskey deletes a passkey by its ID.
+	DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error)
 }
 
 type userSvcClient struct {
@@ -141,6 +147,24 @@ func (c *userSvcClient) DeactivateUser(ctx context.Context, in *DeactivateUserRe
 	return out, nil
 }
 
+func (c *userSvcClient) ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error) {
+	out := new(ListPasskeysResponse)
+	err := c.cc.Invoke(ctx, UserSvc_ListPasskeys_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userSvcClient) DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error) {
+	out := new(DeletePasskeyResponse)
+	err := c.cc.Invoke(ctx, UserSvc_DeletePasskey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserSvcServer is the server API for UserSvc service.
 // All implementations must embed UnimplementedUserSvcServer
 // for forward compatibility
@@ -161,6 +185,10 @@ type UserSvcServer interface {
 	UpdateGroups(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
 	ActivateUser(context.Context, *ActivateUserRequest) (*ActivateUserResponse, error)
 	DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error)
+	// ListPasskeys lists all registered passkeys, optionally filtered by user.
+	ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error)
+	// DeletePasskey deletes a passkey by its ID.
+	DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error)
 	mustEmbedUnimplementedUserSvcServer()
 }
 
@@ -194,6 +222,12 @@ func (UnimplementedUserSvcServer) ActivateUser(context.Context, *ActivateUserReq
 }
 func (UnimplementedUserSvcServer) DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeactivateUser not implemented")
+}
+func (UnimplementedUserSvcServer) ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPasskeys not implemented")
+}
+func (UnimplementedUserSvcServer) DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePasskey not implemented")
 }
 func (UnimplementedUserSvcServer) mustEmbedUnimplementedUserSvcServer() {}
 
@@ -370,6 +404,42 @@ func _UserSvc_DeactivateUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserSvc_ListPasskeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPasskeysRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).ListPasskeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserSvc_ListPasskeys_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).ListPasskeys(ctx, req.(*ListPasskeysRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserSvc_DeletePasskey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePasskeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserSvcServer).DeletePasskey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserSvc_DeletePasskey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserSvcServer).DeletePasskey(ctx, req.(*DeletePasskeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserSvc_ServiceDesc is the grpc.ServiceDesc for UserSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -412,6 +482,14 @@ var UserSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeactivateUser",
 			Handler:    _UserSvc_DeactivateUser_Handler,
+		},
+		{
+			MethodName: "ListPasskeys",
+			Handler:    _UserSvc_ListPasskeys_Handler,
+		},
+		{
+			MethodName: "DeletePasskey",
+			Handler:    _UserSvc_DeletePasskey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
