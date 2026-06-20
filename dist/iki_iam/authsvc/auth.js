@@ -456,7 +456,7 @@ exports.BeginPasskeyRegistrationResponse = {
     },
 };
 function createBaseFinishPasskeyRegistrationRequest() {
-    return { sessionId: "", credentialJson: "" };
+    return { sessionId: "", credentialJson: "", name: "" };
 }
 exports.FinishPasskeyRegistrationRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -465,6 +465,9 @@ exports.FinishPasskeyRegistrationRequest = {
         }
         if (message.credentialJson !== "") {
             writer.uint32(18).string(message.credentialJson);
+        }
+        if (message.name !== "") {
+            writer.uint32(26).string(message.name);
         }
         return writer;
     },
@@ -487,6 +490,12 @@ exports.FinishPasskeyRegistrationRequest = {
                     }
                     message.credentialJson = reader.string();
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.name = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -499,6 +508,7 @@ exports.FinishPasskeyRegistrationRequest = {
         return {
             sessionId: isSet(object.sessionId) ? String(object.sessionId) : "",
             credentialJson: isSet(object.credentialJson) ? String(object.credentialJson) : "",
+            name: isSet(object.name) ? String(object.name) : "",
         };
     },
     toJSON(message) {
@@ -509,16 +519,20 @@ exports.FinishPasskeyRegistrationRequest = {
         if (message.credentialJson !== "") {
             obj.credentialJson = message.credentialJson;
         }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
         return obj;
     },
     create(base) {
         return exports.FinishPasskeyRegistrationRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseFinishPasskeyRegistrationRequest();
         message.sessionId = (_a = object.sessionId) !== null && _a !== void 0 ? _a : "";
         message.credentialJson = (_b = object.credentialJson) !== null && _b !== void 0 ? _b : "";
+        message.name = (_c = object.name) !== null && _c !== void 0 ? _c : "";
         return message;
     },
 };
@@ -826,7 +840,16 @@ exports.FinishPasskeyLoginResponse = {
     },
 };
 function createBasePasskey() {
-    return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined, ownerEmail: "" };
+    return {
+        id: "",
+        ownerId: "",
+        ownerName: "",
+        identifier: "",
+        createdAt: 0,
+        lastUsedAt: undefined,
+        ownerEmail: "",
+        name: "",
+    };
 }
 exports.Passkey = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -850,6 +873,9 @@ exports.Passkey = {
         }
         if (message.ownerEmail !== "") {
             writer.uint32(58).string(message.ownerEmail);
+        }
+        if (message.name !== "") {
+            writer.uint32(66).string(message.name);
         }
         return writer;
     },
@@ -902,6 +928,12 @@ exports.Passkey = {
                     }
                     message.ownerEmail = reader.string();
                     continue;
+                case 8:
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.name = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -919,6 +951,7 @@ exports.Passkey = {
             createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
             lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
             ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
+            name: isSet(object.name) ? String(object.name) : "",
         };
     },
     toJSON(message) {
@@ -944,13 +977,16 @@ exports.Passkey = {
         if (message.ownerEmail !== "") {
             obj.ownerEmail = message.ownerEmail;
         }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
         return obj;
     },
     create(base) {
         return exports.Passkey.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         const message = createBasePasskey();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.ownerId = (_b = object.ownerId) !== null && _b !== void 0 ? _b : "";
@@ -959,6 +995,7 @@ exports.Passkey = {
         message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
         message.lastUsedAt = (_f = object.lastUsedAt) !== null && _f !== void 0 ? _f : undefined;
         message.ownerEmail = (_g = object.ownerEmail) !== null && _g !== void 0 ? _g : "";
+        message.name = (_h = object.name) !== null && _h !== void 0 ? _h : "";
         return message;
     },
 };

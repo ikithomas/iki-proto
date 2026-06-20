@@ -44,6 +44,7 @@ export interface BeginPasskeyRegistrationResponse {
 export interface FinishPasskeyRegistrationRequest {
   sessionId: string;
   credentialJson: string;
+  name: string;
 }
 
 export interface FinishPasskeyRegistrationResponse {
@@ -77,6 +78,7 @@ export interface Passkey {
   createdAt: number;
   lastUsedAt?: number | undefined;
   ownerEmail: string;
+  name: string;
 }
 
 export interface ListPasskeysRequest {
@@ -595,7 +597,7 @@ export const BeginPasskeyRegistrationResponse = {
 };
 
 function createBaseFinishPasskeyRegistrationRequest(): FinishPasskeyRegistrationRequest {
-  return { sessionId: "", credentialJson: "" };
+  return { sessionId: "", credentialJson: "", name: "" };
 }
 
 export const FinishPasskeyRegistrationRequest = {
@@ -605,6 +607,9 @@ export const FinishPasskeyRegistrationRequest = {
     }
     if (message.credentialJson !== "") {
       writer.uint32(18).string(message.credentialJson);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
     }
     return writer;
   },
@@ -630,6 +635,13 @@ export const FinishPasskeyRegistrationRequest = {
 
           message.credentialJson = reader.string();
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -643,6 +655,7 @@ export const FinishPasskeyRegistrationRequest = {
     return {
       sessionId: isSet(object.sessionId) ? String(object.sessionId) : "",
       credentialJson: isSet(object.credentialJson) ? String(object.credentialJson) : "",
+      name: isSet(object.name) ? String(object.name) : "",
     };
   },
 
@@ -653,6 +666,9 @@ export const FinishPasskeyRegistrationRequest = {
     }
     if (message.credentialJson !== "") {
       obj.credentialJson = message.credentialJson;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
     }
     return obj;
   },
@@ -668,6 +684,7 @@ export const FinishPasskeyRegistrationRequest = {
     const message = createBaseFinishPasskeyRegistrationRequest();
     message.sessionId = object.sessionId ?? "";
     message.credentialJson = object.credentialJson ?? "";
+    message.name = object.name ?? "";
     return message;
   },
 };
@@ -1014,7 +1031,16 @@ export const FinishPasskeyLoginResponse = {
 };
 
 function createBasePasskey(): Passkey {
-  return { id: "", ownerId: "", ownerName: "", identifier: "", createdAt: 0, lastUsedAt: undefined, ownerEmail: "" };
+  return {
+    id: "",
+    ownerId: "",
+    ownerName: "",
+    identifier: "",
+    createdAt: 0,
+    lastUsedAt: undefined,
+    ownerEmail: "",
+    name: "",
+  };
 }
 
 export const Passkey = {
@@ -1039,6 +1065,9 @@ export const Passkey = {
     }
     if (message.ownerEmail !== "") {
       writer.uint32(58).string(message.ownerEmail);
+    }
+    if (message.name !== "") {
+      writer.uint32(66).string(message.name);
     }
     return writer;
   },
@@ -1099,6 +1128,13 @@ export const Passkey = {
 
           message.ownerEmail = reader.string();
           continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1117,6 +1153,7 @@ export const Passkey = {
       createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
       lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
       ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
+      name: isSet(object.name) ? String(object.name) : "",
     };
   },
 
@@ -1143,6 +1180,9 @@ export const Passkey = {
     if (message.ownerEmail !== "") {
       obj.ownerEmail = message.ownerEmail;
     }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
     return obj;
   },
 
@@ -1158,6 +1198,7 @@ export const Passkey = {
     message.createdAt = object.createdAt ?? 0;
     message.lastUsedAt = object.lastUsedAt ?? undefined;
     message.ownerEmail = object.ownerEmail ?? "";
+    message.name = object.name ?? "";
     return message;
   },
 };
