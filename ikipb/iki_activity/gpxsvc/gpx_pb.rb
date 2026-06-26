@@ -7,9 +7,9 @@ require 'google/protobuf'
 require 'ikipb/iki_activity/activity_pb'
 
 
-descriptor_data = "\n#ikipb/iki_activity/gpxsvc/gpx.proto\x12\x06gpxsvc\x1a!ikipb/iki_activity/activity.proto\"#\n\x0cGetMyRequest\x12\x13\n\x0b\x61\x63tivity_id\x18\x01 \x01(\t\"2\n\nGetRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x13\n\x0b\x61\x63tivity_id\x18\x02 \x01(\t\"l\n\x0bGetResponse\x12\x13\n\x0b\x61\x63tivity_id\x18\x01 \x01(\t\x12\x11\n\tstrava_id\x18\x02 \x01(\x03\x12\x19\n\x11strava_athlete_id\x18\x03 \x01(\x03\x12\x1a\n\x03gpx\x18\x04 \x01(\x0b\x32\r.activity.Gpx2<\n\x08MyGpxSvc\x12\x30\n\x03Get\x12\x14.gpxsvc.GetMyRequest\x1a\x0f.activity.Chunk\"\x00\x30\x01\x32:\n\x06GpxSvc\x12\x30\n\x03Get\x12\x12.gpxsvc.GetRequest\x1a\x13.gpxsvc.GetResponse\"\x00\x42\tZ\x07/gpxsvcb\x06proto3"
+descriptor_data = "\n#ikipb/iki_activity/gpxsvc/gpx.proto\x12\x06gpxsvc\x1a!ikipb/iki_activity/activity.proto\"/\n\x0cGetMyRequest\x12\x1f\n\x0b\x61\x63tivity_id\x18\x01 \x01(\tR\nactivityId\"F\n\nGetRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n\x0b\x61\x63tivity_id\x18\x02 \x01(\tR\nactivityId\"\x98\x01\n\x0bGetResponse\x12\x1f\n\x0b\x61\x63tivity_id\x18\x01 \x01(\tR\nactivityId\x12\x1b\n\tstrava_id\x18\x02 \x01(\x03R\x08stravaId\x12*\n\x11strava_athlete_id\x18\x03 \x01(\x03R\x0fstravaAthleteId\x12\x1f\n\x03gpx\x18\x04 \x01(\x0b\x32\r.activity.GpxR\x03gpx2<\n\x08MyGpxSvc\x12\x30\n\x03Get\x12\x14.gpxsvc.GetMyRequest\x1a\x0f.activity.Chunk\"\x00\x30\x01\x32:\n\x06GpxSvc\x12\x30\n\x03Get\x12\x12.gpxsvc.GetRequest\x1a\x13.gpxsvc.GetResponse\"\x00\x42\tZ\x07/gpxsvcb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Gpxsvc

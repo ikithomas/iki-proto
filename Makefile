@@ -1,4 +1,4 @@
-.PHONY: build sh pb
+.PHONY: build sh pb dep
 
 build:
 	@docker-compose build app
@@ -8,3 +8,6 @@ sh:
 
 pb:
 	@bin/genall.sh
+
+dep:
+	@buf dep update

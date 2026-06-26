@@ -1,0 +1,9 @@
+version: v2
+modules:
+  - path: .
+    excludes:
+      - google
+      - dist
+      - node_modules
+deps:
+  - buf.build/googleapis/googleapis

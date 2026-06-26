@@ -5,9 +5,9 @@
 require 'google/protobuf'
 
 
-descriptor_data = "\n$ikipb/iki_blog/filesvc/filesvc.proto\x12\x07\x66ilesvc\";\n\x0fUploadMyRequest\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\t\"\x1f\n\x10UploadMyResponse\x12\x0b\n\x03url\x18\x01 \x01(\t2L\n\tMyFileSvc\x12?\n\x06Upload\x12\x18.filesvc.UploadMyRequest\x1a\x19.filesvc.UploadMyResponse\"\x00\x42\nZ\x08/filesvcb\x06proto3"
+descriptor_data = "\n$ikipb/iki_blog/filesvc/filesvc.proto\x12\x07\x66ilesvc\"M\n\x0fUploadMyRequest\x12\x12\n\x04type\x18\x01 \x01(\tR\x04type\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n\x04\x62ody\x18\x03 \x01(\tR\x04\x62ody\"$\n\x10UploadMyResponse\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url2L\n\tMyFileSvc\x12?\n\x06Upload\x12\x18.filesvc.UploadMyRequest\x1a\x19.filesvc.UploadMyResponse\"\x00\x42\nZ\x08/filesvcb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Filesvc

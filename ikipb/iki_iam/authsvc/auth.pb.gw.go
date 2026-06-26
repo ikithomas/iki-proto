@@ -10,6 +10,7 @@ package authsvc
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,262 +25,272 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_AuthSvc_GoogleLogin_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GoogleLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GoogleLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GoogleLogin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_GoogleLogin_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GoogleLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GoogleLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GoogleLogin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_ServiceLogin_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ServiceLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ServiceLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.ServiceLogin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_ServiceLogin_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ServiceLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ServiceLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ServiceLogin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_Signout_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SignoutRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SignoutRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.Signout(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_Signout_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SignoutRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SignoutRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.Signout(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_BeginPasskeyRegistration_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BeginPasskeyRegistrationRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq BeginPasskeyRegistrationRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.BeginPasskeyRegistration(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_BeginPasskeyRegistration_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BeginPasskeyRegistrationRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq BeginPasskeyRegistrationRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.BeginPasskeyRegistration(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_FinishPasskeyRegistration_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FinishPasskeyRegistrationRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq FinishPasskeyRegistrationRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.FinishPasskeyRegistration(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_FinishPasskeyRegistration_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FinishPasskeyRegistrationRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq FinishPasskeyRegistrationRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.FinishPasskeyRegistration(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_BeginPasskeyLogin_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BeginPasskeyLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq BeginPasskeyLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.BeginPasskeyLogin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_BeginPasskeyLogin_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BeginPasskeyLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq BeginPasskeyLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.BeginPasskeyLogin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_FinishPasskeyLogin_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FinishPasskeyLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq FinishPasskeyLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.FinishPasskeyLogin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_FinishPasskeyLogin_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FinishPasskeyLoginRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq FinishPasskeyLoginRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.FinishPasskeyLogin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_ListPasskeys_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListPasskeysRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListPasskeysRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.ListPasskeys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_ListPasskeys_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListPasskeysRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListPasskeysRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ListPasskeys(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_AuthSvc_DeletePasskey_0(ctx context.Context, marshaler runtime.Marshaler, client AuthSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeletePasskeyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeletePasskeyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.DeletePasskey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_AuthSvc_DeletePasskey_0(ctx context.Context, marshaler runtime.Marshaler, server AuthSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeletePasskeyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeletePasskeyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.DeletePasskey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterAuthSvcHandlerServer registers the http handlers for service AuthSvc to "mux".
 // UnaryRPC     :call AuthSvcServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAuthSvcHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AuthSvcServer) error {
-
-	mux.Handle("POST", pattern_AuthSvc_GoogleLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_GoogleLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/GoogleLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/GoogleLogin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/GoogleLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/GoogleLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -291,20 +302,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_GoogleLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_ServiceLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_ServiceLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/ServiceLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ServiceLogin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/ServiceLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ServiceLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -316,20 +322,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_ServiceLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_Signout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_Signout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/Signout", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/Signout"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/Signout", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/Signout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -341,20 +342,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_Signout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_BeginPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_BeginPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyRegistration"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyRegistration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -366,20 +362,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_BeginPasskeyRegistration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_FinishPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_FinishPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyRegistration"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyRegistration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -391,20 +382,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_FinishPasskeyRegistration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_BeginPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_BeginPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyLogin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -416,20 +402,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_BeginPasskeyLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_FinishPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_FinishPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyLogin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -441,20 +422,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_FinishPasskeyLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_ListPasskeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_ListPasskeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/ListPasskeys", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ListPasskeys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/ListPasskeys", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ListPasskeys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -466,20 +442,15 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_ListPasskeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_DeletePasskey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_DeletePasskey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/DeletePasskey", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/DeletePasskey"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authsvc.AuthSvc/DeletePasskey", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/DeletePasskey"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -491,9 +462,7 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_DeletePasskey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -502,25 +471,24 @@ func RegisterAuthSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // RegisterAuthSvcHandlerFromEndpoint is same as RegisterAuthSvcHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterAuthSvcHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
-
 	return RegisterAuthSvcHandler(ctx, mux, conn)
 }
 
@@ -534,16 +502,13 @@ func RegisterAuthSvcHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AuthSvcClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AuthSvcClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "AuthSvcClient" to call the correct interceptors.
+// "AuthSvcClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AuthSvcClient) error {
-
-	mux.Handle("POST", pattern_AuthSvc_GoogleLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_GoogleLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/GoogleLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/GoogleLogin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/GoogleLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/GoogleLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -554,18 +519,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_GoogleLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_ServiceLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_ServiceLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/ServiceLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ServiceLogin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/ServiceLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ServiceLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -576,18 +536,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_ServiceLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_Signout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_Signout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/Signout", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/Signout"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/Signout", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/Signout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -598,18 +553,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_Signout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_BeginPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_BeginPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyRegistration"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyRegistration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -620,18 +570,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_BeginPasskeyRegistration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_FinishPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_FinishPasskeyRegistration_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyRegistration"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyRegistration", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyRegistration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -642,18 +587,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_FinishPasskeyRegistration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_BeginPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_BeginPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyLogin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/BeginPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/BeginPasskeyLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -664,18 +604,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_BeginPasskeyLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_FinishPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_FinishPasskeyLogin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyLogin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/FinishPasskeyLogin", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/FinishPasskeyLogin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -686,18 +621,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_FinishPasskeyLogin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_ListPasskeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_ListPasskeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/ListPasskeys", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ListPasskeys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/ListPasskeys", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/ListPasskeys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -708,18 +638,13 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_ListPasskeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_AuthSvc_DeletePasskey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AuthSvc_DeletePasskey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/DeletePasskey", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/DeletePasskey"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authsvc.AuthSvc/DeletePasskey", runtime.WithHTTPPathPattern("/authsvc.AuthSvc/DeletePasskey"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -730,50 +655,31 @@ func RegisterAuthSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_AuthSvc_DeletePasskey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_AuthSvc_GoogleLogin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "GoogleLogin"}, ""))
-
-	pattern_AuthSvc_ServiceLogin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "ServiceLogin"}, ""))
-
-	pattern_AuthSvc_Signout_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "Signout"}, ""))
-
-	pattern_AuthSvc_BeginPasskeyRegistration_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "BeginPasskeyRegistration"}, ""))
-
+	pattern_AuthSvc_GoogleLogin_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "GoogleLogin"}, ""))
+	pattern_AuthSvc_ServiceLogin_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "ServiceLogin"}, ""))
+	pattern_AuthSvc_Signout_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "Signout"}, ""))
+	pattern_AuthSvc_BeginPasskeyRegistration_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "BeginPasskeyRegistration"}, ""))
 	pattern_AuthSvc_FinishPasskeyRegistration_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "FinishPasskeyRegistration"}, ""))
-
-	pattern_AuthSvc_BeginPasskeyLogin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "BeginPasskeyLogin"}, ""))
-
-	pattern_AuthSvc_FinishPasskeyLogin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "FinishPasskeyLogin"}, ""))
-
-	pattern_AuthSvc_ListPasskeys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "ListPasskeys"}, ""))
-
-	pattern_AuthSvc_DeletePasskey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "DeletePasskey"}, ""))
+	pattern_AuthSvc_BeginPasskeyLogin_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "BeginPasskeyLogin"}, ""))
+	pattern_AuthSvc_FinishPasskeyLogin_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "FinishPasskeyLogin"}, ""))
+	pattern_AuthSvc_ListPasskeys_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "ListPasskeys"}, ""))
+	pattern_AuthSvc_DeletePasskey_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"authsvc.AuthSvc", "DeletePasskey"}, ""))
 )
 
 var (
-	forward_AuthSvc_GoogleLogin_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_ServiceLogin_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_Signout_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_BeginPasskeyRegistration_0 = runtime.ForwardResponseMessage
-
+	forward_AuthSvc_GoogleLogin_0               = runtime.ForwardResponseMessage
+	forward_AuthSvc_ServiceLogin_0              = runtime.ForwardResponseMessage
+	forward_AuthSvc_Signout_0                   = runtime.ForwardResponseMessage
+	forward_AuthSvc_BeginPasskeyRegistration_0  = runtime.ForwardResponseMessage
 	forward_AuthSvc_FinishPasskeyRegistration_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_BeginPasskeyLogin_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_FinishPasskeyLogin_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_ListPasskeys_0 = runtime.ForwardResponseMessage
-
-	forward_AuthSvc_DeletePasskey_0 = runtime.ForwardResponseMessage
+	forward_AuthSvc_BeginPasskeyLogin_0         = runtime.ForwardResponseMessage
+	forward_AuthSvc_FinishPasskeyLogin_0        = runtime.ForwardResponseMessage
+	forward_AuthSvc_ListPasskeys_0              = runtime.ForwardResponseMessage
+	forward_AuthSvc_DeletePasskey_0             = runtime.ForwardResponseMessage
 )

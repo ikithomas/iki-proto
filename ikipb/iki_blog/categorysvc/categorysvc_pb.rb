@@ -7,9 +7,9 @@ require 'google/protobuf'
 require 'google/api/annotations_pb'
 
 
-descriptor_data = "\n,ikipb/iki_blog/categorysvc/categorysvc.proto\x12\x0b\x63\x61tegorysvc\x1a\x1cgoogle/api/annotations.proto\"\r\n\x0bListRequest\"\"\n\x0cListResponse\x12\x12\n\ncategories\x18\x01 \x03(\t2b\n\x0b\x43\x61tegorySvc\x12S\n\x04List\x12\x18.categorysvc.ListRequest\x1a\x19.categorysvc.ListResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/category/listB\x0eZ\x0c/categorysvcb\x06proto3"
+descriptor_data = "\n,ikipb/iki_blog/categorysvc/categorysvc.proto\x12\x0b\x63\x61tegorysvc\x1a\x1cgoogle/api/annotations.proto\"\r\n\x0bListRequest\".\n\x0cListResponse\x12\x1e\n\ncategories\x18\x01 \x03(\tR\ncategories2b\n\x0b\x43\x61tegorySvc\x12S\n\x04List\x12\x18.categorysvc.ListRequest\x1a\x19.categorysvc.ListResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/category/listB\x0eZ\x0c/categorysvcb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Categorysvc

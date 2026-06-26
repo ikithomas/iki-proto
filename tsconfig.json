@@ -5,9 +5,10 @@
     "moduleResolution": "NodeNext",
     "declaration": true,
     "outDir": "./dist",
+    "rootDir": "./ikipb",
     "lib": [
       "ES2016",
-      "DOM",
+      "DOM"
     ]
   },
   "include": [

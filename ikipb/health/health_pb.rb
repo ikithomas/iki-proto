@@ -5,9 +5,9 @@
 require 'google/protobuf'
 
 
-descriptor_data = "\n\x19ikipb/health/health.proto\x12\x06health\"%\n\x12HealthCheckRequest\x12\x0f\n\x07service\x18\x01 \x01(\t\"\xa1\x01\n\x13HealthCheckResponse\x12\x39\n\x06status\x18\x01 \x01(\x0e\x32).health.HealthCheckResponse.ServingStatus\"O\n\rServingStatus\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SERVING\x10\x01\x12\x0f\n\x0bNOT_SERVING\x10\x02\x12\x13\n\x0fSERVICE_UNKNOWN\x10\x03\x32\x91\x01\n\tHealthSvc\x12@\n\x05\x43heck\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse\x12\x42\n\x05Watch\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse0\x01\x42\tZ\x07/healthb\x06proto3"
+descriptor_data = "\n\x19ikipb/health/health.proto\x12\x06health\".\n\x12HealthCheckRequest\x12\x18\n\x07service\x18\x01 \x01(\tR\x07service\"\xa9\x01\n\x13HealthCheckResponse\x12\x41\n\x06status\x18\x01 \x01(\x0e\x32).health.HealthCheckResponse.ServingStatusR\x06status\"O\n\rServingStatus\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SERVING\x10\x01\x12\x0f\n\x0bNOT_SERVING\x10\x02\x12\x13\n\x0fSERVICE_UNKNOWN\x10\x03\x32\x91\x01\n\tHealthSvc\x12@\n\x05\x43heck\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse\x12\x42\n\x05Watch\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse0\x01\x42\tZ\x07/healthb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Health

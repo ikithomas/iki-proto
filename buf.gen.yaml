@@ -1,0 +1,26 @@
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: .
+    opt: paths=source_relative
+  - remote: buf.build/grpc/go
+    out: .
+    opt: paths=source_relative
+  - remote: buf.build/grpc-ecosystem/gateway
+    out: .
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
+  - local: node_modules/ts-proto/protoc-gen-ts_proto
+    out: .
+    opt:
+      - env=browser
+      - outputClientImpl=grpc-web
+      - forceLong=number
+      - esModuleInterop=true
+  - remote: buf.build/protocolbuffers/ruby
+    out: .
+inputs:
+  - directory: .
+    paths:
+      - ikipb

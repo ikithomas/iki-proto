@@ -7,9 +7,9 @@ require 'google/protobuf'
 require 'ikipb/iki_iam/iam_pb'
 
 
-descriptor_data = "\n\"ikipb/iki_iam/groupsvc/group.proto\x12\x08groupsvc\x1a\x17ikipb/iki_iam/iam.proto\"\x18\n\nGetRequest\x12\n\n\x02id\x18\x01 \x01(\t\"(\n\x0bGetResponse\x12\x19\n\x05group\x18\x01 \x01(\x0b\x32\n.iam.Group\"\r\n\x0bListRequest\"*\n\x0cListResponse\x12\x1a\n\x06groups\x18\x01 \x03(\x0b\x32\n.iam.Group\"\x1d\n\rCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"+\n\x0e\x43reateResponse\x12\x19\n\x05group\x18\x01 \x01(\x0b\x32\n.iam.Group\"\x1b\n\rDeleteRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x10\n\x0e\x44\x65leteResponse2\xf7\x01\n\x08GroupSvc\x12\x34\n\x03Get\x12\x14.groupsvc.GetRequest\x1a\x15.groupsvc.GetResponse\"\x00\x12\x37\n\x04List\x12\x15.groupsvc.ListRequest\x1a\x16.groupsvc.ListResponse\"\x00\x12=\n\x06\x43reate\x12\x17.groupsvc.CreateRequest\x1a\x18.groupsvc.CreateResponse\"\x00\x12=\n\x06\x44\x65lete\x12\x17.groupsvc.DeleteRequest\x1a\x18.groupsvc.DeleteResponse\"\x00\x42\x0bZ\t/groupsvcb\x06proto3"
+descriptor_data = "\n\"ikipb/iki_iam/groupsvc/group.proto\x12\x08groupsvc\x1a\x17ikipb/iki_iam/iam.proto\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"/\n\x0bGetResponse\x12 \n\x05group\x18\x01 \x01(\x0b\x32\n.iam.GroupR\x05group\"\r\n\x0bListRequest\"2\n\x0cListResponse\x12\"\n\x06groups\x18\x01 \x03(\x0b\x32\n.iam.GroupR\x06groups\"#\n\rCreateRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"2\n\x0e\x43reateResponse\x12 \n\x05group\x18\x01 \x01(\x0b\x32\n.iam.GroupR\x05group\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse2\xf7\x01\n\x08GroupSvc\x12\x34\n\x03Get\x12\x14.groupsvc.GetRequest\x1a\x15.groupsvc.GetResponse\"\x00\x12\x37\n\x04List\x12\x15.groupsvc.ListRequest\x1a\x16.groupsvc.ListResponse\"\x00\x12=\n\x06\x43reate\x12\x17.groupsvc.CreateRequest\x1a\x18.groupsvc.CreateResponse\"\x00\x12=\n\x06\x44\x65lete\x12\x17.groupsvc.DeleteRequest\x1a\x18.groupsvc.DeleteResponse\"\x00\x42\x0bZ\t/groupsvcb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Groupsvc

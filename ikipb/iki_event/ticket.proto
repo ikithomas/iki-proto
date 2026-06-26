@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_event";
+
+package ticket;
+
+message TicketEvent {
+  int64 event_time = 1;
+
+  oneof data {
+    Created created = 2;
+    Updated updated = 3;
+    StateChanged state_changed = 4;
+    Commented commented = 5;
+  }
+
+  message Created {
+    string ticket_id = 1;
+    string title = 2;
+    optional string content = 3;
+    string state_key = 4;
+    string creator_id = 5;
+    optional string assignee_id = 6;
+    optional int64 due_at = 7;
+  }
+
+  message Updated {
+    string ticket_id = 1;
+    string title = 2;
+    optional string content = 3;
+    optional string assignee_id = 4;
+    optional int64 due_at = 5;
+  }
+
+  message StateChanged {
+    string ticket_id = 1;
+    string from_state_key = 2;
+    string to_state_key = 3;
+    int64 state_updated_at = 4;
+  }
+
+  message Commented {
+    string ticket_id = 1;
+    string comment_id = 2;
+    string content = 3;
+    string author_id = 4;
+  }
+}

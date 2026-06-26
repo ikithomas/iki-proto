@@ -5,9 +5,9 @@
 require 'google/protobuf'
 
 
-descriptor_data = "\n\x1fikipb/iki_workers/workers.proto\x12\x07workers\"\x19\n\x07\x43puWork\x12\x0e\n\x06length\x18\x01 \x01(\x03\"\x1c\n\nMemoryWork\x12\x0e\n\x06length\x18\x01 \x01(\x03\x42\x32Z0github.com/ikithomas/iki-proto/ikipb/iki_workersb\x06proto3"
+descriptor_data = "\n\x1fikipb/iki_workers/workers.proto\x12\x07workers\"!\n\x07\x43puWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06length\"$\n\nMemoryWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06lengthB2Z0github.com/ikithomas/iki-proto/ikipb/iki_workersb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Workers
