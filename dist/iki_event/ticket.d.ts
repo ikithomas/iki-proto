@@ -1,343 +1,960 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "ticket";
-export interface TicketEvent {
-    eventTime: number;
-    created?: TicketEvent_Created | undefined;
-    updated?: TicketEvent_Updated | undefined;
-    stateChanged?: TicketEvent_StateChanged | undefined;
-    commented?: TicketEvent_Commented | undefined;
+export interface User {
+    id: string;
+    firstname: string;
+    lastname: string;
+    email: string;
 }
-export interface TicketEvent_Created {
-    ticketId: string;
+export interface Comment {
+    id: string;
+    content: string;
+    author: User | undefined;
+}
+export interface Ticket {
+    id: string;
     title: string;
     content?: string | undefined;
     stateKey: string;
-    creatorId: string;
-    assigneeId?: string | undefined;
     dueAt?: number | undefined;
+    creator: User | undefined;
+    assignee?: User | undefined;
+    comments: Comment[];
 }
-export interface TicketEvent_Updated {
+export interface EventTicketCreated {
+    ticket: Ticket | undefined;
+}
+export interface EventTicketUpdated {
+    ticket: Ticket | undefined;
+}
+export interface EventTicketStateUpdated {
     ticketId: string;
-    title: string;
-    content?: string | undefined;
-    assigneeId?: string | undefined;
-    dueAt?: number | undefined;
 }
-export interface TicketEvent_StateChanged {
+export interface EventTicketCommented {
     ticketId: string;
-    fromStateKey: string;
-    toStateKey: string;
-    stateUpdatedAt: number;
+    comment: Comment | undefined;
 }
-export interface TicketEvent_Commented {
-    ticketId: string;
-    commentId: string;
-    content: string;
-    authorId: string;
-}
-export declare const TicketEvent: {
-    encode(message: TicketEvent, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent;
-    fromJSON(object: any): TicketEvent;
-    toJSON(message: TicketEvent): unknown;
+export declare const User: {
+    encode(message: User, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): User;
+    fromJSON(object: any): User;
+    toJSON(message: User): unknown;
     create<I extends {
-        eventTime?: number;
-        created?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        };
-        updated?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        };
-        stateChanged?: {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        };
-        commented?: {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
-        };
+        id?: string;
+        firstname?: string;
+        lastname?: string;
+        email?: string;
     } & {
-        eventTime?: number;
-        created?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & { [K in Exclude<keyof I["created"], keyof TicketEvent_Created>]: never; };
-        updated?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & { [K_1 in Exclude<keyof I["updated"], keyof TicketEvent_Updated>]: never; };
-        stateChanged?: {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        } & {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        } & { [K_2 in Exclude<keyof I["stateChanged"], keyof TicketEvent_StateChanged>]: never; };
-        commented?: {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
-        } & {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
-        } & { [K_3 in Exclude<keyof I["commented"], keyof TicketEvent_Commented>]: never; };
-    } & { [K_4 in Exclude<keyof I, keyof TicketEvent>]: never; }>(base?: I): TicketEvent;
+        id?: string;
+        firstname?: string;
+        lastname?: string;
+        email?: string;
+    } & { [K in Exclude<keyof I, keyof User>]: never; }>(base?: I): User;
     fromPartial<I_1 extends {
-        eventTime?: number;
-        created?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        };
-        updated?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        };
-        stateChanged?: {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        };
-        commented?: {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
+        id?: string;
+        firstname?: string;
+        lastname?: string;
+        email?: string;
+    } & {
+        id?: string;
+        firstname?: string;
+        lastname?: string;
+        email?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof User>]: never; }>(object: I_1): User;
+};
+export declare const Comment: {
+    encode(message: Comment, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Comment;
+    fromJSON(object: any): Comment;
+    toJSON(message: Comment): unknown;
+    create<I extends {
+        id?: string;
+        content?: string;
+        author?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
         };
     } & {
-        eventTime?: number;
-        created?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
+        id?: string;
+        content?: string;
+        author?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
         } & {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            stateKey?: string;
-            creatorId?: string;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & { [K_5 in Exclude<keyof I_1["created"], keyof TicketEvent_Created>]: never; };
-        updated?: {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K in Exclude<keyof I["author"], keyof User>]: never; };
+    } & { [K_1 in Exclude<keyof I, keyof Comment>]: never; }>(base?: I): Comment;
+    fromPartial<I_1 extends {
+        id?: string;
+        content?: string;
+        author?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        };
+    } & {
+        id?: string;
+        content?: string;
+        author?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
         } & {
-            ticketId?: string;
-            title?: string;
-            content?: string | undefined;
-            assigneeId?: string | undefined;
-            dueAt?: number | undefined;
-        } & { [K_6 in Exclude<keyof I_1["updated"], keyof TicketEvent_Updated>]: never; };
-        stateChanged?: {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        } & {
-            ticketId?: string;
-            fromStateKey?: string;
-            toStateKey?: string;
-            stateUpdatedAt?: number;
-        } & { [K_7 in Exclude<keyof I_1["stateChanged"], keyof TicketEvent_StateChanged>]: never; };
-        commented?: {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
-        } & {
-            ticketId?: string;
-            commentId?: string;
-            content?: string;
-            authorId?: string;
-        } & { [K_8 in Exclude<keyof I_1["commented"], keyof TicketEvent_Commented>]: never; };
-    } & { [K_9 in Exclude<keyof I_1, keyof TicketEvent>]: never; }>(object: I_1): TicketEvent;
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K_2 in Exclude<keyof I_1["author"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, keyof Comment>]: never; }>(object: I_1): Comment;
 };
-export declare const TicketEvent_Created: {
-    encode(message: TicketEvent_Created, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Created;
-    fromJSON(object: any): TicketEvent_Created;
-    toJSON(message: TicketEvent_Created): unknown;
+export declare const Ticket: {
+    encode(message: Ticket, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Ticket;
+    fromJSON(object: any): Ticket;
+    toJSON(message: Ticket): unknown;
     create<I extends {
-        ticketId?: string;
+        id?: string;
         title?: string;
         content?: string | undefined;
         stateKey?: string;
-        creatorId?: string;
-        assigneeId?: string | undefined;
         dueAt?: number | undefined;
+        creator?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        };
+        assignee?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        };
+        comments?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[];
     } & {
-        ticketId?: string;
+        id?: string;
         title?: string;
         content?: string | undefined;
         stateKey?: string;
-        creatorId?: string;
-        assigneeId?: string | undefined;
         dueAt?: number | undefined;
-    } & { [K in Exclude<keyof I, keyof TicketEvent_Created>]: never; }>(base?: I): TicketEvent_Created;
+        creator?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K in Exclude<keyof I["creator"], keyof User>]: never; };
+        assignee?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K_1 in Exclude<keyof I["assignee"], keyof User>]: never; };
+        comments?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[] & ({
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        } & {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_2 in Exclude<keyof I["comments"][number]["author"], keyof User>]: never; };
+        } & { [K_3 in Exclude<keyof I["comments"][number], keyof Comment>]: never; })[] & { [K_4 in Exclude<keyof I["comments"], keyof {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[]>]: never; };
+    } & { [K_5 in Exclude<keyof I, keyof Ticket>]: never; }>(base?: I): Ticket;
     fromPartial<I_1 extends {
-        ticketId?: string;
+        id?: string;
         title?: string;
         content?: string | undefined;
         stateKey?: string;
-        creatorId?: string;
-        assigneeId?: string | undefined;
         dueAt?: number | undefined;
+        creator?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        };
+        assignee?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        };
+        comments?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[];
     } & {
-        ticketId?: string;
+        id?: string;
         title?: string;
         content?: string | undefined;
         stateKey?: string;
-        creatorId?: string;
-        assigneeId?: string | undefined;
         dueAt?: number | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof TicketEvent_Created>]: never; }>(object: I_1): TicketEvent_Created;
+        creator?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K_6 in Exclude<keyof I_1["creator"], keyof User>]: never; };
+        assignee?: {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & {
+            id?: string;
+            firstname?: string;
+            lastname?: string;
+            email?: string;
+        } & { [K_7 in Exclude<keyof I_1["assignee"], keyof User>]: never; };
+        comments?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[] & ({
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        } & {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_8 in Exclude<keyof I_1["comments"][number]["author"], keyof User>]: never; };
+        } & { [K_9 in Exclude<keyof I_1["comments"][number], keyof Comment>]: never; })[] & { [K_10 in Exclude<keyof I_1["comments"], keyof {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        }[]>]: never; };
+    } & { [K_11 in Exclude<keyof I_1, keyof Ticket>]: never; }>(object: I_1): Ticket;
 };
-export declare const TicketEvent_Updated: {
-    encode(message: TicketEvent_Updated, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Updated;
-    fromJSON(object: any): TicketEvent_Updated;
-    toJSON(message: TicketEvent_Updated): unknown;
+export declare const EventTicketCreated: {
+    encode(message: EventTicketCreated, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketCreated;
+    fromJSON(object: any): EventTicketCreated;
+    toJSON(message: EventTicketCreated): unknown;
+    create<I extends {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        };
+    } & {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        } & {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K in Exclude<keyof I["ticket"]["creator"], keyof User>]: never; };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_1 in Exclude<keyof I["ticket"]["assignee"], keyof User>]: never; };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[] & ({
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            } & {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & { [K_2 in Exclude<keyof I["ticket"]["comments"][number]["author"], keyof User>]: never; };
+            } & { [K_3 in Exclude<keyof I["ticket"]["comments"][number], keyof Comment>]: never; })[] & { [K_4 in Exclude<keyof I["ticket"]["comments"], keyof {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[]>]: never; };
+        } & { [K_5 in Exclude<keyof I["ticket"], keyof Ticket>]: never; };
+    } & { [K_6 in Exclude<keyof I, "ticket">]: never; }>(base?: I): EventTicketCreated;
+    fromPartial<I_1 extends {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        };
+    } & {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        } & {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_7 in Exclude<keyof I_1["ticket"]["creator"], keyof User>]: never; };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_8 in Exclude<keyof I_1["ticket"]["assignee"], keyof User>]: never; };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[] & ({
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            } & {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & { [K_9 in Exclude<keyof I_1["ticket"]["comments"][number]["author"], keyof User>]: never; };
+            } & { [K_10 in Exclude<keyof I_1["ticket"]["comments"][number], keyof Comment>]: never; })[] & { [K_11 in Exclude<keyof I_1["ticket"]["comments"], keyof {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[]>]: never; };
+        } & { [K_12 in Exclude<keyof I_1["ticket"], keyof Ticket>]: never; };
+    } & { [K_13 in Exclude<keyof I_1, "ticket">]: never; }>(object: I_1): EventTicketCreated;
+};
+export declare const EventTicketUpdated: {
+    encode(message: EventTicketUpdated, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketUpdated;
+    fromJSON(object: any): EventTicketUpdated;
+    toJSON(message: EventTicketUpdated): unknown;
+    create<I extends {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        };
+    } & {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        } & {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K in Exclude<keyof I["ticket"]["creator"], keyof User>]: never; };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_1 in Exclude<keyof I["ticket"]["assignee"], keyof User>]: never; };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[] & ({
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            } & {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & { [K_2 in Exclude<keyof I["ticket"]["comments"][number]["author"], keyof User>]: never; };
+            } & { [K_3 in Exclude<keyof I["ticket"]["comments"][number], keyof Comment>]: never; })[] & { [K_4 in Exclude<keyof I["ticket"]["comments"], keyof {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[]>]: never; };
+        } & { [K_5 in Exclude<keyof I["ticket"], keyof Ticket>]: never; };
+    } & { [K_6 in Exclude<keyof I, "ticket">]: never; }>(base?: I): EventTicketUpdated;
+    fromPartial<I_1 extends {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        };
+    } & {
+        ticket?: {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[];
+        } & {
+            id?: string;
+            title?: string;
+            content?: string | undefined;
+            stateKey?: string;
+            dueAt?: number | undefined;
+            creator?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_7 in Exclude<keyof I_1["ticket"]["creator"], keyof User>]: never; };
+            assignee?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_8 in Exclude<keyof I_1["ticket"]["assignee"], keyof User>]: never; };
+            comments?: {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[] & ({
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            } & {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                } & { [K_9 in Exclude<keyof I_1["ticket"]["comments"][number]["author"], keyof User>]: never; };
+            } & { [K_10 in Exclude<keyof I_1["ticket"]["comments"][number], keyof Comment>]: never; })[] & { [K_11 in Exclude<keyof I_1["ticket"]["comments"], keyof {
+                id?: string;
+                content?: string;
+                author?: {
+                    id?: string;
+                    firstname?: string;
+                    lastname?: string;
+                    email?: string;
+                };
+            }[]>]: never; };
+        } & { [K_12 in Exclude<keyof I_1["ticket"], keyof Ticket>]: never; };
+    } & { [K_13 in Exclude<keyof I_1, "ticket">]: never; }>(object: I_1): EventTicketUpdated;
+};
+export declare const EventTicketStateUpdated: {
+    encode(message: EventTicketStateUpdated, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketStateUpdated;
+    fromJSON(object: any): EventTicketStateUpdated;
+    toJSON(message: EventTicketStateUpdated): unknown;
     create<I extends {
         ticketId?: string;
-        title?: string;
-        content?: string | undefined;
-        assigneeId?: string | undefined;
-        dueAt?: number | undefined;
     } & {
         ticketId?: string;
-        title?: string;
-        content?: string | undefined;
-        assigneeId?: string | undefined;
-        dueAt?: number | undefined;
-    } & { [K in Exclude<keyof I, keyof TicketEvent_Updated>]: never; }>(base?: I): TicketEvent_Updated;
+    } & { [K in Exclude<keyof I, "ticketId">]: never; }>(base?: I): EventTicketStateUpdated;
     fromPartial<I_1 extends {
         ticketId?: string;
-        title?: string;
-        content?: string | undefined;
-        assigneeId?: string | undefined;
-        dueAt?: number | undefined;
     } & {
         ticketId?: string;
-        title?: string;
-        content?: string | undefined;
-        assigneeId?: string | undefined;
-        dueAt?: number | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof TicketEvent_Updated>]: never; }>(object: I_1): TicketEvent_Updated;
+    } & { [K_1 in Exclude<keyof I_1, "ticketId">]: never; }>(object: I_1): EventTicketStateUpdated;
 };
-export declare const TicketEvent_StateChanged: {
-    encode(message: TicketEvent_StateChanged, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_StateChanged;
-    fromJSON(object: any): TicketEvent_StateChanged;
-    toJSON(message: TicketEvent_StateChanged): unknown;
+export declare const EventTicketCommented: {
+    encode(message: EventTicketCommented, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketCommented;
+    fromJSON(object: any): EventTicketCommented;
+    toJSON(message: EventTicketCommented): unknown;
     create<I extends {
         ticketId?: string;
-        fromStateKey?: string;
-        toStateKey?: string;
-        stateUpdatedAt?: number;
+        comment?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        };
     } & {
         ticketId?: string;
-        fromStateKey?: string;
-        toStateKey?: string;
-        stateUpdatedAt?: number;
-    } & { [K in Exclude<keyof I, keyof TicketEvent_StateChanged>]: never; }>(base?: I): TicketEvent_StateChanged;
+        comment?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        } & {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K in Exclude<keyof I["comment"]["author"], keyof User>]: never; };
+        } & { [K_1 in Exclude<keyof I["comment"], keyof Comment>]: never; };
+    } & { [K_2 in Exclude<keyof I, keyof EventTicketCommented>]: never; }>(base?: I): EventTicketCommented;
     fromPartial<I_1 extends {
         ticketId?: string;
-        fromStateKey?: string;
-        toStateKey?: string;
-        stateUpdatedAt?: number;
+        comment?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        };
     } & {
         ticketId?: string;
-        fromStateKey?: string;
-        toStateKey?: string;
-        stateUpdatedAt?: number;
-    } & { [K_1 in Exclude<keyof I_1, keyof TicketEvent_StateChanged>]: never; }>(object: I_1): TicketEvent_StateChanged;
-};
-export declare const TicketEvent_Commented: {
-    encode(message: TicketEvent_Commented, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Commented;
-    fromJSON(object: any): TicketEvent_Commented;
-    toJSON(message: TicketEvent_Commented): unknown;
-    create<I extends {
-        ticketId?: string;
-        commentId?: string;
-        content?: string;
-        authorId?: string;
-    } & {
-        ticketId?: string;
-        commentId?: string;
-        content?: string;
-        authorId?: string;
-    } & { [K in Exclude<keyof I, keyof TicketEvent_Commented>]: never; }>(base?: I): TicketEvent_Commented;
-    fromPartial<I_1 extends {
-        ticketId?: string;
-        commentId?: string;
-        content?: string;
-        authorId?: string;
-    } & {
-        ticketId?: string;
-        commentId?: string;
-        content?: string;
-        authorId?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof TicketEvent_Commented>]: never; }>(object: I_1): TicketEvent_Commented;
+        comment?: {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            };
+        } & {
+            id?: string;
+            content?: string;
+            author?: {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & {
+                id?: string;
+                firstname?: string;
+                lastname?: string;
+                email?: string;
+            } & { [K_3 in Exclude<keyof I_1["comment"]["author"], keyof User>]: never; };
+        } & { [K_4 in Exclude<keyof I_1["comment"], keyof Comment>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, keyof EventTicketCommented>]: never; }>(object: I_1): EventTicketCommented;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

@@ -3,69 +3,60 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TicketEvent_Commented = exports.TicketEvent_StateChanged = exports.TicketEvent_Updated = exports.TicketEvent_Created = exports.TicketEvent = exports.protobufPackage = void 0;
+exports.EventTicketCommented = exports.EventTicketStateUpdated = exports.EventTicketUpdated = exports.EventTicketCreated = exports.Ticket = exports.Comment = exports.User = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "ticket";
-function createBaseTicketEvent() {
-    return { eventTime: 0, created: undefined, updated: undefined, stateChanged: undefined, commented: undefined };
+function createBaseUser() {
+    return { id: "", firstname: "", lastname: "", email: "" };
 }
-exports.TicketEvent = {
+exports.User = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.eventTime !== 0) {
-            writer.uint32(8).int64(message.eventTime);
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
         }
-        if (message.created !== undefined) {
-            exports.TicketEvent_Created.encode(message.created, writer.uint32(18).fork()).ldelim();
+        if (message.firstname !== "") {
+            writer.uint32(18).string(message.firstname);
         }
-        if (message.updated !== undefined) {
-            exports.TicketEvent_Updated.encode(message.updated, writer.uint32(26).fork()).ldelim();
+        if (message.lastname !== "") {
+            writer.uint32(26).string(message.lastname);
         }
-        if (message.stateChanged !== undefined) {
-            exports.TicketEvent_StateChanged.encode(message.stateChanged, writer.uint32(34).fork()).ldelim();
-        }
-        if (message.commented !== undefined) {
-            exports.TicketEvent_Commented.encode(message.commented, writer.uint32(42).fork()).ldelim();
+        if (message.email !== "") {
+            writer.uint32(34).string(message.email);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTicketEvent();
+        const message = createBaseUser();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.eventTime = longToNumber(reader.int64());
+                    message.id = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
                         break;
                     }
-                    message.created = exports.TicketEvent_Created.decode(reader, reader.uint32());
+                    message.firstname = reader.string();
                     continue;
                 case 3:
                     if (tag !== 26) {
                         break;
                     }
-                    message.updated = exports.TicketEvent_Updated.decode(reader, reader.uint32());
+                    message.lastname = reader.string();
                     continue;
                 case 4:
                     if (tag !== 34) {
                         break;
                     }
-                    message.stateChanged = exports.TicketEvent_StateChanged.decode(reader, reader.uint32());
-                    continue;
-                case 5:
-                    if (tag !== 42) {
-                        break;
-                    }
-                    message.commented = exports.TicketEvent_Commented.decode(reader, reader.uint32());
+                    message.email = reader.string();
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -77,69 +68,140 @@ exports.TicketEvent = {
     },
     fromJSON(object) {
         return {
-            eventTime: isSet(object.eventTime) ? Number(object.eventTime) : 0,
-            created: isSet(object.created) ? exports.TicketEvent_Created.fromJSON(object.created) : undefined,
-            updated: isSet(object.updated) ? exports.TicketEvent_Updated.fromJSON(object.updated) : undefined,
-            stateChanged: isSet(object.stateChanged) ? exports.TicketEvent_StateChanged.fromJSON(object.stateChanged) : undefined,
-            commented: isSet(object.commented) ? exports.TicketEvent_Commented.fromJSON(object.commented) : undefined,
+            id: isSet(object.id) ? String(object.id) : "",
+            firstname: isSet(object.firstname) ? String(object.firstname) : "",
+            lastname: isSet(object.lastname) ? String(object.lastname) : "",
+            email: isSet(object.email) ? String(object.email) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.eventTime !== 0) {
-            obj.eventTime = Math.round(message.eventTime);
+        if (message.id !== "") {
+            obj.id = message.id;
         }
-        if (message.created !== undefined) {
-            obj.created = exports.TicketEvent_Created.toJSON(message.created);
+        if (message.firstname !== "") {
+            obj.firstname = message.firstname;
         }
-        if (message.updated !== undefined) {
-            obj.updated = exports.TicketEvent_Updated.toJSON(message.updated);
+        if (message.lastname !== "") {
+            obj.lastname = message.lastname;
         }
-        if (message.stateChanged !== undefined) {
-            obj.stateChanged = exports.TicketEvent_StateChanged.toJSON(message.stateChanged);
-        }
-        if (message.commented !== undefined) {
-            obj.commented = exports.TicketEvent_Commented.toJSON(message.commented);
+        if (message.email !== "") {
+            obj.email = message.email;
         }
         return obj;
     },
     create(base) {
-        return exports.TicketEvent.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.User.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
-        const message = createBaseTicketEvent();
-        message.eventTime = (_a = object.eventTime) !== null && _a !== void 0 ? _a : 0;
-        message.created = (object.created !== undefined && object.created !== null)
-            ? exports.TicketEvent_Created.fromPartial(object.created)
-            : undefined;
-        message.updated = (object.updated !== undefined && object.updated !== null)
-            ? exports.TicketEvent_Updated.fromPartial(object.updated)
-            : undefined;
-        message.stateChanged = (object.stateChanged !== undefined && object.stateChanged !== null)
-            ? exports.TicketEvent_StateChanged.fromPartial(object.stateChanged)
-            : undefined;
-        message.commented = (object.commented !== undefined && object.commented !== null)
-            ? exports.TicketEvent_Commented.fromPartial(object.commented)
+        var _a, _b, _c, _d;
+        const message = createBaseUser();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.firstname = (_b = object.firstname) !== null && _b !== void 0 ? _b : "";
+        message.lastname = (_c = object.lastname) !== null && _c !== void 0 ? _c : "";
+        message.email = (_d = object.email) !== null && _d !== void 0 ? _d : "";
+        return message;
+    },
+};
+function createBaseComment() {
+    return { id: "", content: "", author: undefined };
+}
+exports.Comment = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.content !== "") {
+            writer.uint32(18).string(message.content);
+        }
+        if (message.author !== undefined) {
+            exports.User.encode(message.author, writer.uint32(26).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseComment();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.content = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.author = exports.User.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            content: isSet(object.content) ? String(object.content) : "",
+            author: isSet(object.author) ? exports.User.fromJSON(object.author) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.content !== "") {
+            obj.content = message.content;
+        }
+        if (message.author !== undefined) {
+            obj.author = exports.User.toJSON(message.author);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Comment.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseComment();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.content = (_b = object.content) !== null && _b !== void 0 ? _b : "";
+        message.author = (object.author !== undefined && object.author !== null)
+            ? exports.User.fromPartial(object.author)
             : undefined;
         return message;
     },
 };
-function createBaseTicketEvent_Created() {
+function createBaseTicket() {
     return {
-        ticketId: "",
+        id: "",
         title: "",
         content: undefined,
         stateKey: "",
-        creatorId: "",
-        assigneeId: undefined,
         dueAt: undefined,
+        creator: undefined,
+        assignee: undefined,
+        comments: [],
     };
 }
-exports.TicketEvent_Created = {
+exports.Ticket = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticketId !== "") {
-            writer.uint32(10).string(message.ticketId);
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
         }
         if (message.title !== "") {
             writer.uint32(18).string(message.title);
@@ -150,21 +212,24 @@ exports.TicketEvent_Created = {
         if (message.stateKey !== "") {
             writer.uint32(34).string(message.stateKey);
         }
-        if (message.creatorId !== "") {
-            writer.uint32(42).string(message.creatorId);
-        }
-        if (message.assigneeId !== undefined) {
-            writer.uint32(50).string(message.assigneeId);
-        }
         if (message.dueAt !== undefined) {
-            writer.uint32(56).int64(message.dueAt);
+            writer.uint32(40).int64(message.dueAt);
+        }
+        if (message.creator !== undefined) {
+            exports.User.encode(message.creator, writer.uint32(50).fork()).ldelim();
+        }
+        if (message.assignee !== undefined) {
+            exports.User.encode(message.assignee, writer.uint32(58).fork()).ldelim();
+        }
+        for (const v of message.comments) {
+            exports.Comment.encode(v, writer.uint32(66).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTicketEvent_Created();
+        const message = createBaseTicket();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -172,7 +237,7 @@ exports.TicketEvent_Created = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.ticketId = reader.string();
+                    message.id = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -193,22 +258,28 @@ exports.TicketEvent_Created = {
                     message.stateKey = reader.string();
                     continue;
                 case 5:
-                    if (tag !== 42) {
+                    if (tag !== 40) {
                         break;
                     }
-                    message.creatorId = reader.string();
+                    message.dueAt = longToNumber(reader.int64());
                     continue;
                 case 6:
                     if (tag !== 50) {
                         break;
                     }
-                    message.assigneeId = reader.string();
+                    message.creator = exports.User.decode(reader, reader.uint32());
                     continue;
                 case 7:
-                    if (tag !== 56) {
+                    if (tag !== 58) {
                         break;
                     }
-                    message.dueAt = longToNumber(reader.int64());
+                    message.assignee = exports.User.decode(reader, reader.uint32());
+                    continue;
+                case 8:
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.comments.push(exports.Comment.decode(reader, reader.uint32()));
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -220,19 +291,21 @@ exports.TicketEvent_Created = {
     },
     fromJSON(object) {
         return {
-            ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
+            id: isSet(object.id) ? String(object.id) : "",
             title: isSet(object.title) ? String(object.title) : "",
             content: isSet(object.content) ? String(object.content) : undefined,
             stateKey: isSet(object.stateKey) ? String(object.stateKey) : "",
-            creatorId: isSet(object.creatorId) ? String(object.creatorId) : "",
-            assigneeId: isSet(object.assigneeId) ? String(object.assigneeId) : undefined,
             dueAt: isSet(object.dueAt) ? Number(object.dueAt) : undefined,
+            creator: isSet(object.creator) ? exports.User.fromJSON(object.creator) : undefined,
+            assignee: isSet(object.assignee) ? exports.User.fromJSON(object.assignee) : undefined,
+            comments: Array.isArray(object === null || object === void 0 ? void 0 : object.comments) ? object.comments.map((e) => exports.Comment.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
-        if (message.ticketId !== "") {
-            obj.ticketId = message.ticketId;
+        if (message.id !== "") {
+            obj.id = message.id;
         }
         if (message.title !== "") {
             obj.title = message.title;
@@ -243,165 +316,213 @@ exports.TicketEvent_Created = {
         if (message.stateKey !== "") {
             obj.stateKey = message.stateKey;
         }
-        if (message.creatorId !== "") {
-            obj.creatorId = message.creatorId;
-        }
-        if (message.assigneeId !== undefined) {
-            obj.assigneeId = message.assigneeId;
-        }
         if (message.dueAt !== undefined) {
             obj.dueAt = Math.round(message.dueAt);
+        }
+        if (message.creator !== undefined) {
+            obj.creator = exports.User.toJSON(message.creator);
+        }
+        if (message.assignee !== undefined) {
+            obj.assignee = exports.User.toJSON(message.assignee);
+        }
+        if ((_a = message.comments) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.comments = message.comments.map((e) => exports.Comment.toJSON(e));
         }
         return obj;
     },
     create(base) {
-        return exports.TicketEvent_Created.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.Ticket.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g;
-        const message = createBaseTicketEvent_Created();
-        message.ticketId = (_a = object.ticketId) !== null && _a !== void 0 ? _a : "";
+        var _a, _b, _c, _d, _e, _f;
+        const message = createBaseTicket();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.title = (_b = object.title) !== null && _b !== void 0 ? _b : "";
         message.content = (_c = object.content) !== null && _c !== void 0 ? _c : undefined;
         message.stateKey = (_d = object.stateKey) !== null && _d !== void 0 ? _d : "";
-        message.creatorId = (_e = object.creatorId) !== null && _e !== void 0 ? _e : "";
-        message.assigneeId = (_f = object.assigneeId) !== null && _f !== void 0 ? _f : undefined;
-        message.dueAt = (_g = object.dueAt) !== null && _g !== void 0 ? _g : undefined;
-        return message;
-    },
-};
-function createBaseTicketEvent_Updated() {
-    return { ticketId: "", title: "", content: undefined, assigneeId: undefined, dueAt: undefined };
-}
-exports.TicketEvent_Updated = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticketId !== "") {
-            writer.uint32(10).string(message.ticketId);
-        }
-        if (message.title !== "") {
-            writer.uint32(18).string(message.title);
-        }
-        if (message.content !== undefined) {
-            writer.uint32(26).string(message.content);
-        }
-        if (message.assigneeId !== undefined) {
-            writer.uint32(34).string(message.assigneeId);
-        }
-        if (message.dueAt !== undefined) {
-            writer.uint32(40).int64(message.dueAt);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTicketEvent_Updated();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.ticketId = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.title = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.content = reader.string();
-                    continue;
-                case 4:
-                    if (tag !== 34) {
-                        break;
-                    }
-                    message.assigneeId = reader.string();
-                    continue;
-                case 5:
-                    if (tag !== 40) {
-                        break;
-                    }
-                    message.dueAt = longToNumber(reader.int64());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-            title: isSet(object.title) ? String(object.title) : "",
-            content: isSet(object.content) ? String(object.content) : undefined,
-            assigneeId: isSet(object.assigneeId) ? String(object.assigneeId) : undefined,
-            dueAt: isSet(object.dueAt) ? Number(object.dueAt) : undefined,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.ticketId !== "") {
-            obj.ticketId = message.ticketId;
-        }
-        if (message.title !== "") {
-            obj.title = message.title;
-        }
-        if (message.content !== undefined) {
-            obj.content = message.content;
-        }
-        if (message.assigneeId !== undefined) {
-            obj.assigneeId = message.assigneeId;
-        }
-        if (message.dueAt !== undefined) {
-            obj.dueAt = Math.round(message.dueAt);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.TicketEvent_Updated.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a, _b, _c, _d, _e;
-        const message = createBaseTicketEvent_Updated();
-        message.ticketId = (_a = object.ticketId) !== null && _a !== void 0 ? _a : "";
-        message.title = (_b = object.title) !== null && _b !== void 0 ? _b : "";
-        message.content = (_c = object.content) !== null && _c !== void 0 ? _c : undefined;
-        message.assigneeId = (_d = object.assigneeId) !== null && _d !== void 0 ? _d : undefined;
         message.dueAt = (_e = object.dueAt) !== null && _e !== void 0 ? _e : undefined;
+        message.creator = (object.creator !== undefined && object.creator !== null)
+            ? exports.User.fromPartial(object.creator)
+            : undefined;
+        message.assignee = (object.assignee !== undefined && object.assignee !== null)
+            ? exports.User.fromPartial(object.assignee)
+            : undefined;
+        message.comments = ((_f = object.comments) === null || _f === void 0 ? void 0 : _f.map((e) => exports.Comment.fromPartial(e))) || [];
         return message;
     },
 };
-function createBaseTicketEvent_StateChanged() {
-    return { ticketId: "", fromStateKey: "", toStateKey: "", stateUpdatedAt: 0 };
+function createBaseEventTicketCreated() {
+    return { ticket: undefined };
 }
-exports.TicketEvent_StateChanged = {
+exports.EventTicketCreated = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticketId !== "") {
-            writer.uint32(10).string(message.ticketId);
-        }
-        if (message.fromStateKey !== "") {
-            writer.uint32(18).string(message.fromStateKey);
-        }
-        if (message.toStateKey !== "") {
-            writer.uint32(26).string(message.toStateKey);
-        }
-        if (message.stateUpdatedAt !== 0) {
-            writer.uint32(32).int64(message.stateUpdatedAt);
+        if (message.ticket !== undefined) {
+            exports.Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTicketEvent_StateChanged();
+        const message = createBaseEventTicketCreated();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ticket = exports.Ticket.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { ticket: isSet(object.ticket) ? exports.Ticket.fromJSON(object.ticket) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ticket !== undefined) {
+            obj.ticket = exports.Ticket.toJSON(message.ticket);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.EventTicketCreated.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        const message = createBaseEventTicketCreated();
+        message.ticket = (object.ticket !== undefined && object.ticket !== null)
+            ? exports.Ticket.fromPartial(object.ticket)
+            : undefined;
+        return message;
+    },
+};
+function createBaseEventTicketUpdated() {
+    return { ticket: undefined };
+}
+exports.EventTicketUpdated = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ticket !== undefined) {
+            exports.Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseEventTicketUpdated();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ticket = exports.Ticket.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { ticket: isSet(object.ticket) ? exports.Ticket.fromJSON(object.ticket) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ticket !== undefined) {
+            obj.ticket = exports.Ticket.toJSON(message.ticket);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.EventTicketUpdated.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        const message = createBaseEventTicketUpdated();
+        message.ticket = (object.ticket !== undefined && object.ticket !== null)
+            ? exports.Ticket.fromPartial(object.ticket)
+            : undefined;
+        return message;
+    },
+};
+function createBaseEventTicketStateUpdated() {
+    return { ticketId: "" };
+}
+exports.EventTicketStateUpdated = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ticketId !== "") {
+            writer.uint32(10).string(message.ticketId);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseEventTicketStateUpdated();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.ticketId = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { ticketId: isSet(object.ticketId) ? String(object.ticketId) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.ticketId !== "") {
+            obj.ticketId = message.ticketId;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.EventTicketStateUpdated.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseEventTicketStateUpdated();
+        message.ticketId = (_a = object.ticketId) !== null && _a !== void 0 ? _a : "";
+        return message;
+    },
+};
+function createBaseEventTicketCommented() {
+    return { ticketId: "", comment: undefined };
+}
+exports.EventTicketCommented = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.ticketId !== "") {
+            writer.uint32(10).string(message.ticketId);
+        }
+        if (message.comment !== undefined) {
+            exports.Comment.encode(message.comment, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseEventTicketCommented();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -415,19 +536,7 @@ exports.TicketEvent_StateChanged = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.fromStateKey = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.toStateKey = reader.string();
-                    continue;
-                case 4:
-                    if (tag !== 32) {
-                        break;
-                    }
-                    message.stateUpdatedAt = longToNumber(reader.int64());
+                    message.comment = exports.Comment.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -440,9 +549,7 @@ exports.TicketEvent_StateChanged = {
     fromJSON(object) {
         return {
             ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-            fromStateKey: isSet(object.fromStateKey) ? String(object.fromStateKey) : "",
-            toStateKey: isSet(object.toStateKey) ? String(object.toStateKey) : "",
-            stateUpdatedAt: isSet(object.stateUpdatedAt) ? Number(object.stateUpdatedAt) : 0,
+            comment: isSet(object.comment) ? exports.Comment.fromJSON(object.comment) : undefined,
         };
     },
     toJSON(message) {
@@ -450,122 +557,21 @@ exports.TicketEvent_StateChanged = {
         if (message.ticketId !== "") {
             obj.ticketId = message.ticketId;
         }
-        if (message.fromStateKey !== "") {
-            obj.fromStateKey = message.fromStateKey;
-        }
-        if (message.toStateKey !== "") {
-            obj.toStateKey = message.toStateKey;
-        }
-        if (message.stateUpdatedAt !== 0) {
-            obj.stateUpdatedAt = Math.round(message.stateUpdatedAt);
+        if (message.comment !== undefined) {
+            obj.comment = exports.Comment.toJSON(message.comment);
         }
         return obj;
     },
     create(base) {
-        return exports.TicketEvent_StateChanged.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.EventTicketCommented.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d;
-        const message = createBaseTicketEvent_StateChanged();
+        var _a;
+        const message = createBaseEventTicketCommented();
         message.ticketId = (_a = object.ticketId) !== null && _a !== void 0 ? _a : "";
-        message.fromStateKey = (_b = object.fromStateKey) !== null && _b !== void 0 ? _b : "";
-        message.toStateKey = (_c = object.toStateKey) !== null && _c !== void 0 ? _c : "";
-        message.stateUpdatedAt = (_d = object.stateUpdatedAt) !== null && _d !== void 0 ? _d : 0;
-        return message;
-    },
-};
-function createBaseTicketEvent_Commented() {
-    return { ticketId: "", commentId: "", content: "", authorId: "" };
-}
-exports.TicketEvent_Commented = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticketId !== "") {
-            writer.uint32(10).string(message.ticketId);
-        }
-        if (message.commentId !== "") {
-            writer.uint32(18).string(message.commentId);
-        }
-        if (message.content !== "") {
-            writer.uint32(26).string(message.content);
-        }
-        if (message.authorId !== "") {
-            writer.uint32(34).string(message.authorId);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTicketEvent_Commented();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.ticketId = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.commentId = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.content = reader.string();
-                    continue;
-                case 4:
-                    if (tag !== 34) {
-                        break;
-                    }
-                    message.authorId = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-            commentId: isSet(object.commentId) ? String(object.commentId) : "",
-            content: isSet(object.content) ? String(object.content) : "",
-            authorId: isSet(object.authorId) ? String(object.authorId) : "",
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.ticketId !== "") {
-            obj.ticketId = message.ticketId;
-        }
-        if (message.commentId !== "") {
-            obj.commentId = message.commentId;
-        }
-        if (message.content !== "") {
-            obj.content = message.content;
-        }
-        if (message.authorId !== "") {
-            obj.authorId = message.authorId;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.TicketEvent_Commented.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a, _b, _c, _d;
-        const message = createBaseTicketEvent_Commented();
-        message.ticketId = (_a = object.ticketId) !== null && _a !== void 0 ? _a : "";
-        message.commentId = (_b = object.commentId) !== null && _b !== void 0 ? _b : "";
-        message.content = (_c = object.content) !== null && _c !== void 0 ? _c : "";
-        message.authorId = (_d = object.authorId) !== null && _d !== void 0 ? _d : "";
+        message.comment = (object.comment !== undefined && object.comment !== null)
+            ? exports.Comment.fromPartial(object.comment)
+            : undefined;
         return message;
     },
 };

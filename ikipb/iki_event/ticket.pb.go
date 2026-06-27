@@ -21,34 +21,30 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type TicketEvent struct {
-	state     protoimpl.MessageState `protogen:"open.v1"`
-	EventTime int64                  `protobuf:"varint,1,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
-	// Types that are valid to be assigned to Data:
-	//
-	//	*TicketEvent_Created_
-	//	*TicketEvent_Updated_
-	//	*TicketEvent_StateChanged_
-	//	*TicketEvent_Commented_
-	Data          isTicketEvent_Data `protobuf_oneof:"data"`
+type User struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Firstname     string                 `protobuf:"bytes,2,opt,name=firstname,proto3" json:"firstname,omitempty"`
+	Lastname      string                 `protobuf:"bytes,3,opt,name=lastname,proto3" json:"lastname,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TicketEvent) Reset() {
-	*x = TicketEvent{}
+func (x *User) Reset() {
+	*x = User{}
 	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TicketEvent) String() string {
+func (x *User) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TicketEvent) ProtoMessage() {}
+func (*User) ProtoMessage() {}
 
-func (x *TicketEvent) ProtoReflect() protoreflect.Message {
+func (x *User) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -60,116 +56,62 @@ func (x *TicketEvent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TicketEvent.ProtoReflect.Descriptor instead.
-func (*TicketEvent) Descriptor() ([]byte, []int) {
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TicketEvent) GetEventTime() int64 {
+func (x *User) GetId() string {
 	if x != nil {
-		return x.EventTime
+		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *TicketEvent) GetData() isTicketEvent_Data {
+func (x *User) GetFirstname() string {
 	if x != nil {
-		return x.Data
+		return x.Firstname
 	}
-	return nil
+	return ""
 }
 
-func (x *TicketEvent) GetCreated() *TicketEvent_Created {
+func (x *User) GetLastname() string {
 	if x != nil {
-		if x, ok := x.Data.(*TicketEvent_Created_); ok {
-			return x.Created
-		}
+		return x.Lastname
 	}
-	return nil
+	return ""
 }
 
-func (x *TicketEvent) GetUpdated() *TicketEvent_Updated {
+func (x *User) GetEmail() string {
 	if x != nil {
-		if x, ok := x.Data.(*TicketEvent_Updated_); ok {
-			return x.Updated
-		}
+		return x.Email
 	}
-	return nil
+	return ""
 }
 
-func (x *TicketEvent) GetStateChanged() *TicketEvent_StateChanged {
-	if x != nil {
-		if x, ok := x.Data.(*TicketEvent_StateChanged_); ok {
-			return x.StateChanged
-		}
-	}
-	return nil
-}
-
-func (x *TicketEvent) GetCommented() *TicketEvent_Commented {
-	if x != nil {
-		if x, ok := x.Data.(*TicketEvent_Commented_); ok {
-			return x.Commented
-		}
-	}
-	return nil
-}
-
-type isTicketEvent_Data interface {
-	isTicketEvent_Data()
-}
-
-type TicketEvent_Created_ struct {
-	Created *TicketEvent_Created `protobuf:"bytes,2,opt,name=created,proto3,oneof"`
-}
-
-type TicketEvent_Updated_ struct {
-	Updated *TicketEvent_Updated `protobuf:"bytes,3,opt,name=updated,proto3,oneof"`
-}
-
-type TicketEvent_StateChanged_ struct {
-	StateChanged *TicketEvent_StateChanged `protobuf:"bytes,4,opt,name=state_changed,json=stateChanged,proto3,oneof"`
-}
-
-type TicketEvent_Commented_ struct {
-	Commented *TicketEvent_Commented `protobuf:"bytes,5,opt,name=commented,proto3,oneof"`
-}
-
-func (*TicketEvent_Created_) isTicketEvent_Data() {}
-
-func (*TicketEvent_Updated_) isTicketEvent_Data() {}
-
-func (*TicketEvent_StateChanged_) isTicketEvent_Data() {}
-
-func (*TicketEvent_Commented_) isTicketEvent_Data() {}
-
-type TicketEvent_Created struct {
+type Comment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content       *string                `protobuf:"bytes,3,opt,name=content,proto3,oneof" json:"content,omitempty"`
-	StateKey      string                 `protobuf:"bytes,4,opt,name=state_key,json=stateKey,proto3" json:"state_key,omitempty"`
-	CreatorId     string                 `protobuf:"bytes,5,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
-	AssigneeId    *string                `protobuf:"bytes,6,opt,name=assignee_id,json=assigneeId,proto3,oneof" json:"assignee_id,omitempty"`
-	DueAt         *int64                 `protobuf:"varint,7,opt,name=due_at,json=dueAt,proto3,oneof" json:"due_at,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Author        *User                  `protobuf:"bytes,3,opt,name=author,proto3" json:"author,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TicketEvent_Created) Reset() {
-	*x = TicketEvent_Created{}
+func (x *Comment) Reset() {
+	*x = Comment{}
 	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TicketEvent_Created) String() string {
+func (x *Comment) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TicketEvent_Created) ProtoMessage() {}
+func (*Comment) ProtoMessage() {}
 
-func (x *TicketEvent_Created) ProtoReflect() protoreflect.Message {
+func (x *Comment) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -181,322 +123,352 @@ func (x *TicketEvent_Created) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TicketEvent_Created.ProtoReflect.Descriptor instead.
-func (*TicketEvent_Created) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{0, 0}
+// Deprecated: Use Comment.ProtoReflect.Descriptor instead.
+func (*Comment) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *TicketEvent_Created) GetTicketId() string {
+func (x *Comment) GetId() string {
 	if x != nil {
-		return x.TicketId
+		return x.Id
 	}
 	return ""
 }
 
-func (x *TicketEvent_Created) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *TicketEvent_Created) GetContent() string {
-	if x != nil && x.Content != nil {
-		return *x.Content
-	}
-	return ""
-}
-
-func (x *TicketEvent_Created) GetStateKey() string {
-	if x != nil {
-		return x.StateKey
-	}
-	return ""
-}
-
-func (x *TicketEvent_Created) GetCreatorId() string {
-	if x != nil {
-		return x.CreatorId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Created) GetAssigneeId() string {
-	if x != nil && x.AssigneeId != nil {
-		return *x.AssigneeId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Created) GetDueAt() int64 {
-	if x != nil && x.DueAt != nil {
-		return *x.DueAt
-	}
-	return 0
-}
-
-type TicketEvent_Updated struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content       *string                `protobuf:"bytes,3,opt,name=content,proto3,oneof" json:"content,omitempty"`
-	AssigneeId    *string                `protobuf:"bytes,4,opt,name=assignee_id,json=assigneeId,proto3,oneof" json:"assignee_id,omitempty"`
-	DueAt         *int64                 `protobuf:"varint,5,opt,name=due_at,json=dueAt,proto3,oneof" json:"due_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TicketEvent_Updated) Reset() {
-	*x = TicketEvent_Updated{}
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TicketEvent_Updated) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TicketEvent_Updated) ProtoMessage() {}
-
-func (x *TicketEvent_Updated) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TicketEvent_Updated.ProtoReflect.Descriptor instead.
-func (*TicketEvent_Updated) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{0, 1}
-}
-
-func (x *TicketEvent_Updated) GetTicketId() string {
-	if x != nil {
-		return x.TicketId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Updated) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *TicketEvent_Updated) GetContent() string {
-	if x != nil && x.Content != nil {
-		return *x.Content
-	}
-	return ""
-}
-
-func (x *TicketEvent_Updated) GetAssigneeId() string {
-	if x != nil && x.AssigneeId != nil {
-		return *x.AssigneeId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Updated) GetDueAt() int64 {
-	if x != nil && x.DueAt != nil {
-		return *x.DueAt
-	}
-	return 0
-}
-
-type TicketEvent_StateChanged struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	TicketId       string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
-	FromStateKey   string                 `protobuf:"bytes,2,opt,name=from_state_key,json=fromStateKey,proto3" json:"from_state_key,omitempty"`
-	ToStateKey     string                 `protobuf:"bytes,3,opt,name=to_state_key,json=toStateKey,proto3" json:"to_state_key,omitempty"`
-	StateUpdatedAt int64                  `protobuf:"varint,4,opt,name=state_updated_at,json=stateUpdatedAt,proto3" json:"state_updated_at,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *TicketEvent_StateChanged) Reset() {
-	*x = TicketEvent_StateChanged{}
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TicketEvent_StateChanged) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TicketEvent_StateChanged) ProtoMessage() {}
-
-func (x *TicketEvent_StateChanged) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TicketEvent_StateChanged.ProtoReflect.Descriptor instead.
-func (*TicketEvent_StateChanged) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{0, 2}
-}
-
-func (x *TicketEvent_StateChanged) GetTicketId() string {
-	if x != nil {
-		return x.TicketId
-	}
-	return ""
-}
-
-func (x *TicketEvent_StateChanged) GetFromStateKey() string {
-	if x != nil {
-		return x.FromStateKey
-	}
-	return ""
-}
-
-func (x *TicketEvent_StateChanged) GetToStateKey() string {
-	if x != nil {
-		return x.ToStateKey
-	}
-	return ""
-}
-
-func (x *TicketEvent_StateChanged) GetStateUpdatedAt() int64 {
-	if x != nil {
-		return x.StateUpdatedAt
-	}
-	return 0
-}
-
-type TicketEvent_Commented struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
-	CommentId     string                 `protobuf:"bytes,2,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
-	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	AuthorId      string                 `protobuf:"bytes,4,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TicketEvent_Commented) Reset() {
-	*x = TicketEvent_Commented{}
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TicketEvent_Commented) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TicketEvent_Commented) ProtoMessage() {}
-
-func (x *TicketEvent_Commented) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TicketEvent_Commented.ProtoReflect.Descriptor instead.
-func (*TicketEvent_Commented) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{0, 3}
-}
-
-func (x *TicketEvent_Commented) GetTicketId() string {
-	if x != nil {
-		return x.TicketId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Commented) GetCommentId() string {
-	if x != nil {
-		return x.CommentId
-	}
-	return ""
-}
-
-func (x *TicketEvent_Commented) GetContent() string {
+func (x *Comment) GetContent() string {
 	if x != nil {
 		return x.Content
 	}
 	return ""
 }
 
-func (x *TicketEvent_Commented) GetAuthorId() string {
+func (x *Comment) GetAuthor() *User {
 	if x != nil {
-		return x.AuthorId
+		return x.Author
+	}
+	return nil
+}
+
+type Ticket struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Content       *string                `protobuf:"bytes,3,opt,name=content,proto3,oneof" json:"content,omitempty"`
+	StateKey      string                 `protobuf:"bytes,4,opt,name=state_key,json=stateKey,proto3" json:"state_key,omitempty"`
+	DueAt         *int64                 `protobuf:"varint,5,opt,name=due_at,json=dueAt,proto3,oneof" json:"due_at,omitempty"`
+	Creator       *User                  `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Assignee      *User                  `protobuf:"bytes,7,opt,name=assignee,proto3,oneof" json:"assignee,omitempty"`
+	Comments      []*Comment             `protobuf:"bytes,8,rep,name=comments,proto3" json:"comments,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Ticket) Reset() {
+	*x = Ticket{}
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Ticket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ticket) ProtoMessage() {}
+
+func (x *Ticket) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ticket.ProtoReflect.Descriptor instead.
+func (*Ticket) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Ticket) GetId() string {
+	if x != nil {
+		return x.Id
 	}
 	return ""
+}
+
+func (x *Ticket) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Ticket) GetContent() string {
+	if x != nil && x.Content != nil {
+		return *x.Content
+	}
+	return ""
+}
+
+func (x *Ticket) GetStateKey() string {
+	if x != nil {
+		return x.StateKey
+	}
+	return ""
+}
+
+func (x *Ticket) GetDueAt() int64 {
+	if x != nil && x.DueAt != nil {
+		return *x.DueAt
+	}
+	return 0
+}
+
+func (x *Ticket) GetCreator() *User {
+	if x != nil {
+		return x.Creator
+	}
+	return nil
+}
+
+func (x *Ticket) GetAssignee() *User {
+	if x != nil {
+		return x.Assignee
+	}
+	return nil
+}
+
+func (x *Ticket) GetComments() []*Comment {
+	if x != nil {
+		return x.Comments
+	}
+	return nil
+}
+
+type EventTicketCreated struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ticket        *Ticket                `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventTicketCreated) Reset() {
+	*x = EventTicketCreated{}
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventTicketCreated) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventTicketCreated) ProtoMessage() {}
+
+func (x *EventTicketCreated) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventTicketCreated.ProtoReflect.Descriptor instead.
+func (*EventTicketCreated) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *EventTicketCreated) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type EventTicketUpdated struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ticket        *Ticket                `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventTicketUpdated) Reset() {
+	*x = EventTicketUpdated{}
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventTicketUpdated) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventTicketUpdated) ProtoMessage() {}
+
+func (x *EventTicketUpdated) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventTicketUpdated.ProtoReflect.Descriptor instead.
+func (*EventTicketUpdated) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *EventTicketUpdated) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type EventTicketStateUpdated struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventTicketStateUpdated) Reset() {
+	*x = EventTicketStateUpdated{}
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventTicketStateUpdated) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventTicketStateUpdated) ProtoMessage() {}
+
+func (x *EventTicketStateUpdated) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventTicketStateUpdated.ProtoReflect.Descriptor instead.
+func (*EventTicketStateUpdated) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *EventTicketStateUpdated) GetTicketId() string {
+	if x != nil {
+		return x.TicketId
+	}
+	return ""
+}
+
+type EventTicketCommented struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
+	Comment       *Comment               `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventTicketCommented) Reset() {
+	*x = EventTicketCommented{}
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventTicketCommented) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventTicketCommented) ProtoMessage() {}
+
+func (x *EventTicketCommented) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_event_ticket_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventTicketCommented.ProtoReflect.Descriptor instead.
+func (*EventTicketCommented) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *EventTicketCommented) GetTicketId() string {
+	if x != nil {
+		return x.TicketId
+	}
+	return ""
+}
+
+func (x *EventTicketCommented) GetComment() *Comment {
+	if x != nil {
+		return x.Comment
+	}
+	return nil
 }
 
 var File_ikipb_iki_event_ticket_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_event_ticket_proto_rawDesc = "" +
 	"\n" +
-	"\x1cikipb/iki_event/ticket.proto\x12\x06ticket\"\x98\b\n" +
-	"\vTicketEvent\x12\x1d\n" +
-	"\n" +
-	"event_time\x18\x01 \x01(\x03R\teventTime\x127\n" +
-	"\acreated\x18\x02 \x01(\v2\x1b.ticket.TicketEvent.CreatedH\x00R\acreated\x127\n" +
-	"\aupdated\x18\x03 \x01(\v2\x1b.ticket.TicketEvent.UpdatedH\x00R\aupdated\x12G\n" +
-	"\rstate_changed\x18\x04 \x01(\v2 .ticket.TicketEvent.StateChangedH\x00R\fstateChanged\x12=\n" +
-	"\tcommented\x18\x05 \x01(\v2\x1d.ticket.TicketEvent.CommentedH\x00R\tcommented\x1a\x80\x02\n" +
-	"\aCreated\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12\x14\n" +
+	"\x1cikipb/iki_event/ticket.proto\x12\x06ticket\"f\n" +
+	"\x04User\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
+	"\tfirstname\x18\x02 \x01(\tR\tfirstname\x12\x1a\n" +
+	"\blastname\x18\x03 \x01(\tR\blastname\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\"Y\n" +
+	"\aComment\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\x12$\n" +
+	"\x06author\x18\x03 \x01(\v2\f.ticket.UserR\x06author\"\xae\x02\n" +
+	"\x06Ticket\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
 	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12\x1b\n" +
-	"\tstate_key\x18\x04 \x01(\tR\bstateKey\x12\x1d\n" +
+	"\tstate_key\x18\x04 \x01(\tR\bstateKey\x12\x1a\n" +
+	"\x06due_at\x18\x05 \x01(\x03H\x01R\x05dueAt\x88\x01\x01\x12&\n" +
+	"\acreator\x18\x06 \x01(\v2\f.ticket.UserR\acreator\x12-\n" +
+	"\bassignee\x18\a \x01(\v2\f.ticket.UserH\x02R\bassignee\x88\x01\x01\x12+\n" +
+	"\bcomments\x18\b \x03(\v2\x0f.ticket.CommentR\bcommentsB\n" +
 	"\n" +
-	"creator_id\x18\x05 \x01(\tR\tcreatorId\x12$\n" +
-	"\vassignee_id\x18\x06 \x01(\tH\x01R\n" +
-	"assigneeId\x88\x01\x01\x12\x1a\n" +
-	"\x06due_at\x18\a \x01(\x03H\x02R\x05dueAt\x88\x01\x01B\n" +
-	"\n" +
-	"\b_contentB\x0e\n" +
-	"\f_assignee_idB\t\n" +
-	"\a_due_at\x1a\xc4\x01\n" +
-	"\aUpdated\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
-	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12$\n" +
-	"\vassignee_id\x18\x04 \x01(\tH\x01R\n" +
-	"assigneeId\x88\x01\x01\x12\x1a\n" +
-	"\x06due_at\x18\x05 \x01(\x03H\x02R\x05dueAt\x88\x01\x01B\n" +
-	"\n" +
-	"\b_contentB\x0e\n" +
-	"\f_assignee_idB\t\n" +
-	"\a_due_at\x1a\x9d\x01\n" +
-	"\fStateChanged\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12$\n" +
-	"\x0efrom_state_key\x18\x02 \x01(\tR\ffromStateKey\x12 \n" +
-	"\fto_state_key\x18\x03 \x01(\tR\n" +
-	"toStateKey\x12(\n" +
-	"\x10state_updated_at\x18\x04 \x01(\x03R\x0estateUpdatedAt\x1a~\n" +
-	"\tCommented\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12\x1d\n" +
-	"\n" +
-	"comment_id\x18\x02 \x01(\tR\tcommentId\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\x12\x1b\n" +
-	"\tauthor_id\x18\x04 \x01(\tR\bauthorIdB\x06\n" +
-	"\x04dataB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+	"\b_contentB\t\n" +
+	"\a_due_atB\v\n" +
+	"\t_assignee\"<\n" +
+	"\x12EventTicketCreated\x12&\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"<\n" +
+	"\x12EventTicketUpdated\x12&\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"6\n" +
+	"\x17EventTicketStateUpdated\x12\x1b\n" +
+	"\tticket_id\x18\x01 \x01(\tR\bticketId\"^\n" +
+	"\x14EventTicketCommented\x12\x1b\n" +
+	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12)\n" +
+	"\acomment\x18\x02 \x01(\v2\x0f.ticket.CommentR\acommentB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
 
 var (
 	file_ikipb_iki_event_ticket_proto_rawDescOnce sync.Once
@@ -510,24 +482,29 @@ func file_ikipb_iki_event_ticket_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_event_ticket_proto_rawDescData
 }
 
-var file_ikipb_iki_event_ticket_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_ikipb_iki_event_ticket_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_ikipb_iki_event_ticket_proto_goTypes = []any{
-	(*TicketEvent)(nil),              // 0: ticket.TicketEvent
-	(*TicketEvent_Created)(nil),      // 1: ticket.TicketEvent.Created
-	(*TicketEvent_Updated)(nil),      // 2: ticket.TicketEvent.Updated
-	(*TicketEvent_StateChanged)(nil), // 3: ticket.TicketEvent.StateChanged
-	(*TicketEvent_Commented)(nil),    // 4: ticket.TicketEvent.Commented
+	(*User)(nil),                    // 0: ticket.User
+	(*Comment)(nil),                 // 1: ticket.Comment
+	(*Ticket)(nil),                  // 2: ticket.Ticket
+	(*EventTicketCreated)(nil),      // 3: ticket.EventTicketCreated
+	(*EventTicketUpdated)(nil),      // 4: ticket.EventTicketUpdated
+	(*EventTicketStateUpdated)(nil), // 5: ticket.EventTicketStateUpdated
+	(*EventTicketCommented)(nil),    // 6: ticket.EventTicketCommented
 }
 var file_ikipb_iki_event_ticket_proto_depIdxs = []int32{
-	1, // 0: ticket.TicketEvent.created:type_name -> ticket.TicketEvent.Created
-	2, // 1: ticket.TicketEvent.updated:type_name -> ticket.TicketEvent.Updated
-	3, // 2: ticket.TicketEvent.state_changed:type_name -> ticket.TicketEvent.StateChanged
-	4, // 3: ticket.TicketEvent.commented:type_name -> ticket.TicketEvent.Commented
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0, // 0: ticket.Comment.author:type_name -> ticket.User
+	0, // 1: ticket.Ticket.creator:type_name -> ticket.User
+	0, // 2: ticket.Ticket.assignee:type_name -> ticket.User
+	1, // 3: ticket.Ticket.comments:type_name -> ticket.Comment
+	2, // 4: ticket.EventTicketCreated.ticket:type_name -> ticket.Ticket
+	2, // 5: ticket.EventTicketUpdated.ticket:type_name -> ticket.Ticket
+	1, // 6: ticket.EventTicketCommented.comment:type_name -> ticket.Comment
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_event_ticket_proto_init() }
@@ -535,13 +512,6 @@ func file_ikipb_iki_event_ticket_proto_init() {
 	if File_ikipb_iki_event_ticket_proto != nil {
 		return
 	}
-	file_ikipb_iki_event_ticket_proto_msgTypes[0].OneofWrappers = []any{
-		(*TicketEvent_Created_)(nil),
-		(*TicketEvent_Updated_)(nil),
-		(*TicketEvent_StateChanged_)(nil),
-		(*TicketEvent_Commented_)(nil),
-	}
-	file_ikipb_iki_event_ticket_proto_msgTypes[1].OneofWrappers = []any{}
 	file_ikipb_iki_event_ticket_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -549,7 +519,7 @@ func file_ikipb_iki_event_ticket_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ikipb_iki_event_ticket_proto_rawDesc), len(file_ikipb_iki_event_ticket_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -4,111 +4,102 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "ticket";
 
-export interface TicketEvent {
-  eventTime: number;
-  created?: TicketEvent_Created | undefined;
-  updated?: TicketEvent_Updated | undefined;
-  stateChanged?: TicketEvent_StateChanged | undefined;
-  commented?: TicketEvent_Commented | undefined;
+export interface User {
+  id: string;
+  firstname: string;
+  lastname: string;
+  email: string;
 }
 
-export interface TicketEvent_Created {
-  ticketId: string;
+export interface Comment {
+  id: string;
+  content: string;
+  author: User | undefined;
+}
+
+export interface Ticket {
+  id: string;
   title: string;
   content?: string | undefined;
   stateKey: string;
-  creatorId: string;
-  assigneeId?: string | undefined;
   dueAt?: number | undefined;
+  creator: User | undefined;
+  assignee?: User | undefined;
+  comments: Comment[];
 }
 
-export interface TicketEvent_Updated {
+export interface EventTicketCreated {
+  ticket: Ticket | undefined;
+}
+
+export interface EventTicketUpdated {
+  ticket: Ticket | undefined;
+}
+
+export interface EventTicketStateUpdated {
   ticketId: string;
-  title: string;
-  content?: string | undefined;
-  assigneeId?: string | undefined;
-  dueAt?: number | undefined;
 }
 
-export interface TicketEvent_StateChanged {
+export interface EventTicketCommented {
   ticketId: string;
-  fromStateKey: string;
-  toStateKey: string;
-  stateUpdatedAt: number;
+  comment: Comment | undefined;
 }
 
-export interface TicketEvent_Commented {
-  ticketId: string;
-  commentId: string;
-  content: string;
-  authorId: string;
+function createBaseUser(): User {
+  return { id: "", firstname: "", lastname: "", email: "" };
 }
 
-function createBaseTicketEvent(): TicketEvent {
-  return { eventTime: 0, created: undefined, updated: undefined, stateChanged: undefined, commented: undefined };
-}
-
-export const TicketEvent = {
-  encode(message: TicketEvent, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.eventTime !== 0) {
-      writer.uint32(8).int64(message.eventTime);
+export const User = {
+  encode(message: User, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
     }
-    if (message.created !== undefined) {
-      TicketEvent_Created.encode(message.created, writer.uint32(18).fork()).ldelim();
+    if (message.firstname !== "") {
+      writer.uint32(18).string(message.firstname);
     }
-    if (message.updated !== undefined) {
-      TicketEvent_Updated.encode(message.updated, writer.uint32(26).fork()).ldelim();
+    if (message.lastname !== "") {
+      writer.uint32(26).string(message.lastname);
     }
-    if (message.stateChanged !== undefined) {
-      TicketEvent_StateChanged.encode(message.stateChanged, writer.uint32(34).fork()).ldelim();
-    }
-    if (message.commented !== undefined) {
-      TicketEvent_Commented.encode(message.commented, writer.uint32(42).fork()).ldelim();
+    if (message.email !== "") {
+      writer.uint32(34).string(message.email);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent {
+  decode(input: _m0.Reader | Uint8Array, length?: number): User {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTicketEvent();
+    const message = createBaseUser();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.eventTime = longToNumber(reader.int64() as Long);
+          message.id = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.created = TicketEvent_Created.decode(reader, reader.uint32());
+          message.firstname = reader.string();
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.updated = TicketEvent_Updated.decode(reader, reader.uint32());
+          message.lastname = reader.string();
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
-          message.stateChanged = TicketEvent_StateChanged.decode(reader, reader.uint32());
-          continue;
-        case 5:
-          if (tag !== 42) {
-            break;
-          }
-
-          message.commented = TicketEvent_Commented.decode(reader, reader.uint32());
+          message.email = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -119,74 +110,153 @@ export const TicketEvent = {
     return message;
   },
 
-  fromJSON(object: any): TicketEvent {
+  fromJSON(object: any): User {
     return {
-      eventTime: isSet(object.eventTime) ? Number(object.eventTime) : 0,
-      created: isSet(object.created) ? TicketEvent_Created.fromJSON(object.created) : undefined,
-      updated: isSet(object.updated) ? TicketEvent_Updated.fromJSON(object.updated) : undefined,
-      stateChanged: isSet(object.stateChanged) ? TicketEvent_StateChanged.fromJSON(object.stateChanged) : undefined,
-      commented: isSet(object.commented) ? TicketEvent_Commented.fromJSON(object.commented) : undefined,
+      id: isSet(object.id) ? String(object.id) : "",
+      firstname: isSet(object.firstname) ? String(object.firstname) : "",
+      lastname: isSet(object.lastname) ? String(object.lastname) : "",
+      email: isSet(object.email) ? String(object.email) : "",
     };
   },
 
-  toJSON(message: TicketEvent): unknown {
+  toJSON(message: User): unknown {
     const obj: any = {};
-    if (message.eventTime !== 0) {
-      obj.eventTime = Math.round(message.eventTime);
+    if (message.id !== "") {
+      obj.id = message.id;
     }
-    if (message.created !== undefined) {
-      obj.created = TicketEvent_Created.toJSON(message.created);
+    if (message.firstname !== "") {
+      obj.firstname = message.firstname;
     }
-    if (message.updated !== undefined) {
-      obj.updated = TicketEvent_Updated.toJSON(message.updated);
+    if (message.lastname !== "") {
+      obj.lastname = message.lastname;
     }
-    if (message.stateChanged !== undefined) {
-      obj.stateChanged = TicketEvent_StateChanged.toJSON(message.stateChanged);
-    }
-    if (message.commented !== undefined) {
-      obj.commented = TicketEvent_Commented.toJSON(message.commented);
+    if (message.email !== "") {
+      obj.email = message.email;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<TicketEvent>, I>>(base?: I): TicketEvent {
-    return TicketEvent.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<User>, I>>(base?: I): User {
+    return User.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<TicketEvent>, I>>(object: I): TicketEvent {
-    const message = createBaseTicketEvent();
-    message.eventTime = object.eventTime ?? 0;
-    message.created = (object.created !== undefined && object.created !== null)
-      ? TicketEvent_Created.fromPartial(object.created)
-      : undefined;
-    message.updated = (object.updated !== undefined && object.updated !== null)
-      ? TicketEvent_Updated.fromPartial(object.updated)
-      : undefined;
-    message.stateChanged = (object.stateChanged !== undefined && object.stateChanged !== null)
-      ? TicketEvent_StateChanged.fromPartial(object.stateChanged)
-      : undefined;
-    message.commented = (object.commented !== undefined && object.commented !== null)
-      ? TicketEvent_Commented.fromPartial(object.commented)
+  fromPartial<I extends Exact<DeepPartial<User>, I>>(object: I): User {
+    const message = createBaseUser();
+    message.id = object.id ?? "";
+    message.firstname = object.firstname ?? "";
+    message.lastname = object.lastname ?? "";
+    message.email = object.email ?? "";
+    return message;
+  },
+};
+
+function createBaseComment(): Comment {
+  return { id: "", content: "", author: undefined };
+}
+
+export const Comment = {
+  encode(message: Comment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.content !== "") {
+      writer.uint32(18).string(message.content);
+    }
+    if (message.author !== undefined) {
+      User.encode(message.author, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Comment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.content = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.author = User.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Comment {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      content: isSet(object.content) ? String(object.content) : "",
+      author: isSet(object.author) ? User.fromJSON(object.author) : undefined,
+    };
+  },
+
+  toJSON(message: Comment): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.content !== "") {
+      obj.content = message.content;
+    }
+    if (message.author !== undefined) {
+      obj.author = User.toJSON(message.author);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Comment>, I>>(base?: I): Comment {
+    return Comment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Comment>, I>>(object: I): Comment {
+    const message = createBaseComment();
+    message.id = object.id ?? "";
+    message.content = object.content ?? "";
+    message.author = (object.author !== undefined && object.author !== null)
+      ? User.fromPartial(object.author)
       : undefined;
     return message;
   },
 };
 
-function createBaseTicketEvent_Created(): TicketEvent_Created {
+function createBaseTicket(): Ticket {
   return {
-    ticketId: "",
+    id: "",
     title: "",
     content: undefined,
     stateKey: "",
-    creatorId: "",
-    assigneeId: undefined,
     dueAt: undefined,
+    creator: undefined,
+    assignee: undefined,
+    comments: [],
   };
 }
 
-export const TicketEvent_Created = {
-  encode(message: TicketEvent_Created, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
+export const Ticket = {
+  encode(message: Ticket, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
     }
     if (message.title !== "") {
       writer.uint32(18).string(message.title);
@@ -197,22 +267,25 @@ export const TicketEvent_Created = {
     if (message.stateKey !== "") {
       writer.uint32(34).string(message.stateKey);
     }
-    if (message.creatorId !== "") {
-      writer.uint32(42).string(message.creatorId);
-    }
-    if (message.assigneeId !== undefined) {
-      writer.uint32(50).string(message.assigneeId);
-    }
     if (message.dueAt !== undefined) {
-      writer.uint32(56).int64(message.dueAt);
+      writer.uint32(40).int64(message.dueAt);
+    }
+    if (message.creator !== undefined) {
+      User.encode(message.creator, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.assignee !== undefined) {
+      User.encode(message.assignee, writer.uint32(58).fork()).ldelim();
+    }
+    for (const v of message.comments) {
+      Comment.encode(v!, writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Created {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Ticket {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTicketEvent_Created();
+    const message = createBaseTicket();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -221,7 +294,7 @@ export const TicketEvent_Created = {
             break;
           }
 
-          message.ticketId = reader.string();
+          message.id = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -245,25 +318,32 @@ export const TicketEvent_Created = {
           message.stateKey = reader.string();
           continue;
         case 5:
-          if (tag !== 42) {
+          if (tag !== 40) {
             break;
           }
 
-          message.creatorId = reader.string();
+          message.dueAt = longToNumber(reader.int64() as Long);
           continue;
         case 6:
           if (tag !== 50) {
             break;
           }
 
-          message.assigneeId = reader.string();
+          message.creator = User.decode(reader, reader.uint32());
           continue;
         case 7:
-          if (tag !== 56) {
+          if (tag !== 58) {
             break;
           }
 
-          message.dueAt = longToNumber(reader.int64() as Long);
+          message.assignee = User.decode(reader, reader.uint32());
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.comments.push(Comment.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -274,22 +354,23 @@ export const TicketEvent_Created = {
     return message;
   },
 
-  fromJSON(object: any): TicketEvent_Created {
+  fromJSON(object: any): Ticket {
     return {
-      ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
+      id: isSet(object.id) ? String(object.id) : "",
       title: isSet(object.title) ? String(object.title) : "",
       content: isSet(object.content) ? String(object.content) : undefined,
       stateKey: isSet(object.stateKey) ? String(object.stateKey) : "",
-      creatorId: isSet(object.creatorId) ? String(object.creatorId) : "",
-      assigneeId: isSet(object.assigneeId) ? String(object.assigneeId) : undefined,
       dueAt: isSet(object.dueAt) ? Number(object.dueAt) : undefined,
+      creator: isSet(object.creator) ? User.fromJSON(object.creator) : undefined,
+      assignee: isSet(object.assignee) ? User.fromJSON(object.assignee) : undefined,
+      comments: Array.isArray(object?.comments) ? object.comments.map((e: any) => Comment.fromJSON(e)) : [],
     };
   },
 
-  toJSON(message: TicketEvent_Created): unknown {
+  toJSON(message: Ticket): unknown {
     const obj: any = {};
-    if (message.ticketId !== "") {
-      obj.ticketId = message.ticketId;
+    if (message.id !== "") {
+      obj.id = message.id;
     }
     if (message.title !== "") {
       obj.title = message.title;
@@ -300,62 +381,236 @@ export const TicketEvent_Created = {
     if (message.stateKey !== "") {
       obj.stateKey = message.stateKey;
     }
-    if (message.creatorId !== "") {
-      obj.creatorId = message.creatorId;
-    }
-    if (message.assigneeId !== undefined) {
-      obj.assigneeId = message.assigneeId;
-    }
     if (message.dueAt !== undefined) {
       obj.dueAt = Math.round(message.dueAt);
+    }
+    if (message.creator !== undefined) {
+      obj.creator = User.toJSON(message.creator);
+    }
+    if (message.assignee !== undefined) {
+      obj.assignee = User.toJSON(message.assignee);
+    }
+    if (message.comments?.length) {
+      obj.comments = message.comments.map((e) => Comment.toJSON(e));
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<TicketEvent_Created>, I>>(base?: I): TicketEvent_Created {
-    return TicketEvent_Created.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<Ticket>, I>>(base?: I): Ticket {
+    return Ticket.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<TicketEvent_Created>, I>>(object: I): TicketEvent_Created {
-    const message = createBaseTicketEvent_Created();
-    message.ticketId = object.ticketId ?? "";
+  fromPartial<I extends Exact<DeepPartial<Ticket>, I>>(object: I): Ticket {
+    const message = createBaseTicket();
+    message.id = object.id ?? "";
     message.title = object.title ?? "";
     message.content = object.content ?? undefined;
     message.stateKey = object.stateKey ?? "";
-    message.creatorId = object.creatorId ?? "";
-    message.assigneeId = object.assigneeId ?? undefined;
     message.dueAt = object.dueAt ?? undefined;
+    message.creator = (object.creator !== undefined && object.creator !== null)
+      ? User.fromPartial(object.creator)
+      : undefined;
+    message.assignee = (object.assignee !== undefined && object.assignee !== null)
+      ? User.fromPartial(object.assignee)
+      : undefined;
+    message.comments = object.comments?.map((e) => Comment.fromPartial(e)) || [];
     return message;
   },
 };
 
-function createBaseTicketEvent_Updated(): TicketEvent_Updated {
-  return { ticketId: "", title: "", content: undefined, assigneeId: undefined, dueAt: undefined };
+function createBaseEventTicketCreated(): EventTicketCreated {
+  return { ticket: undefined };
 }
 
-export const TicketEvent_Updated = {
-  encode(message: TicketEvent_Updated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
-    }
-    if (message.title !== "") {
-      writer.uint32(18).string(message.title);
-    }
-    if (message.content !== undefined) {
-      writer.uint32(26).string(message.content);
-    }
-    if (message.assigneeId !== undefined) {
-      writer.uint32(34).string(message.assigneeId);
-    }
-    if (message.dueAt !== undefined) {
-      writer.uint32(40).int64(message.dueAt);
+export const EventTicketCreated = {
+  encode(message: EventTicketCreated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ticket !== undefined) {
+      Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Updated {
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketCreated {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTicketEvent_Updated();
+    const message = createBaseEventTicketCreated();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ticket = Ticket.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventTicketCreated {
+    return { ticket: isSet(object.ticket) ? Ticket.fromJSON(object.ticket) : undefined };
+  },
+
+  toJSON(message: EventTicketCreated): unknown {
+    const obj: any = {};
+    if (message.ticket !== undefined) {
+      obj.ticket = Ticket.toJSON(message.ticket);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EventTicketCreated>, I>>(base?: I): EventTicketCreated {
+    return EventTicketCreated.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EventTicketCreated>, I>>(object: I): EventTicketCreated {
+    const message = createBaseEventTicketCreated();
+    message.ticket = (object.ticket !== undefined && object.ticket !== null)
+      ? Ticket.fromPartial(object.ticket)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseEventTicketUpdated(): EventTicketUpdated {
+  return { ticket: undefined };
+}
+
+export const EventTicketUpdated = {
+  encode(message: EventTicketUpdated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ticket !== undefined) {
+      Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketUpdated {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventTicketUpdated();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ticket = Ticket.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventTicketUpdated {
+    return { ticket: isSet(object.ticket) ? Ticket.fromJSON(object.ticket) : undefined };
+  },
+
+  toJSON(message: EventTicketUpdated): unknown {
+    const obj: any = {};
+    if (message.ticket !== undefined) {
+      obj.ticket = Ticket.toJSON(message.ticket);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EventTicketUpdated>, I>>(base?: I): EventTicketUpdated {
+    return EventTicketUpdated.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EventTicketUpdated>, I>>(object: I): EventTicketUpdated {
+    const message = createBaseEventTicketUpdated();
+    message.ticket = (object.ticket !== undefined && object.ticket !== null)
+      ? Ticket.fromPartial(object.ticket)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseEventTicketStateUpdated(): EventTicketStateUpdated {
+  return { ticketId: "" };
+}
+
+export const EventTicketStateUpdated = {
+  encode(message: EventTicketStateUpdated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ticketId !== "") {
+      writer.uint32(10).string(message.ticketId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketStateUpdated {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventTicketStateUpdated();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ticketId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventTicketStateUpdated {
+    return { ticketId: isSet(object.ticketId) ? String(object.ticketId) : "" };
+  },
+
+  toJSON(message: EventTicketStateUpdated): unknown {
+    const obj: any = {};
+    if (message.ticketId !== "") {
+      obj.ticketId = message.ticketId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EventTicketStateUpdated>, I>>(base?: I): EventTicketStateUpdated {
+    return EventTicketStateUpdated.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EventTicketStateUpdated>, I>>(object: I): EventTicketStateUpdated {
+    const message = createBaseEventTicketStateUpdated();
+    message.ticketId = object.ticketId ?? "";
+    return message;
+  },
+};
+
+function createBaseEventTicketCommented(): EventTicketCommented {
+  return { ticketId: "", comment: undefined };
+}
+
+export const EventTicketCommented = {
+  encode(message: EventTicketCommented, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ticketId !== "") {
+      writer.uint32(10).string(message.ticketId);
+    }
+    if (message.comment !== undefined) {
+      Comment.encode(message.comment, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventTicketCommented {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventTicketCommented();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -371,28 +626,7 @@ export const TicketEvent_Updated = {
             break;
           }
 
-          message.title = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.content = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.assigneeId = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.dueAt = longToNumber(reader.int64() as Long);
+          message.comment = Comment.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -403,254 +637,33 @@ export const TicketEvent_Updated = {
     return message;
   },
 
-  fromJSON(object: any): TicketEvent_Updated {
+  fromJSON(object: any): EventTicketCommented {
     return {
       ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-      title: isSet(object.title) ? String(object.title) : "",
-      content: isSet(object.content) ? String(object.content) : undefined,
-      assigneeId: isSet(object.assigneeId) ? String(object.assigneeId) : undefined,
-      dueAt: isSet(object.dueAt) ? Number(object.dueAt) : undefined,
+      comment: isSet(object.comment) ? Comment.fromJSON(object.comment) : undefined,
     };
   },
 
-  toJSON(message: TicketEvent_Updated): unknown {
+  toJSON(message: EventTicketCommented): unknown {
     const obj: any = {};
     if (message.ticketId !== "") {
       obj.ticketId = message.ticketId;
     }
-    if (message.title !== "") {
-      obj.title = message.title;
-    }
-    if (message.content !== undefined) {
-      obj.content = message.content;
-    }
-    if (message.assigneeId !== undefined) {
-      obj.assigneeId = message.assigneeId;
-    }
-    if (message.dueAt !== undefined) {
-      obj.dueAt = Math.round(message.dueAt);
+    if (message.comment !== undefined) {
+      obj.comment = Comment.toJSON(message.comment);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<TicketEvent_Updated>, I>>(base?: I): TicketEvent_Updated {
-    return TicketEvent_Updated.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<EventTicketCommented>, I>>(base?: I): EventTicketCommented {
+    return EventTicketCommented.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<TicketEvent_Updated>, I>>(object: I): TicketEvent_Updated {
-    const message = createBaseTicketEvent_Updated();
+  fromPartial<I extends Exact<DeepPartial<EventTicketCommented>, I>>(object: I): EventTicketCommented {
+    const message = createBaseEventTicketCommented();
     message.ticketId = object.ticketId ?? "";
-    message.title = object.title ?? "";
-    message.content = object.content ?? undefined;
-    message.assigneeId = object.assigneeId ?? undefined;
-    message.dueAt = object.dueAt ?? undefined;
-    return message;
-  },
-};
-
-function createBaseTicketEvent_StateChanged(): TicketEvent_StateChanged {
-  return { ticketId: "", fromStateKey: "", toStateKey: "", stateUpdatedAt: 0 };
-}
-
-export const TicketEvent_StateChanged = {
-  encode(message: TicketEvent_StateChanged, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
-    }
-    if (message.fromStateKey !== "") {
-      writer.uint32(18).string(message.fromStateKey);
-    }
-    if (message.toStateKey !== "") {
-      writer.uint32(26).string(message.toStateKey);
-    }
-    if (message.stateUpdatedAt !== 0) {
-      writer.uint32(32).int64(message.stateUpdatedAt);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_StateChanged {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTicketEvent_StateChanged();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.ticketId = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.fromStateKey = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.toStateKey = reader.string();
-          continue;
-        case 4:
-          if (tag !== 32) {
-            break;
-          }
-
-          message.stateUpdatedAt = longToNumber(reader.int64() as Long);
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): TicketEvent_StateChanged {
-    return {
-      ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-      fromStateKey: isSet(object.fromStateKey) ? String(object.fromStateKey) : "",
-      toStateKey: isSet(object.toStateKey) ? String(object.toStateKey) : "",
-      stateUpdatedAt: isSet(object.stateUpdatedAt) ? Number(object.stateUpdatedAt) : 0,
-    };
-  },
-
-  toJSON(message: TicketEvent_StateChanged): unknown {
-    const obj: any = {};
-    if (message.ticketId !== "") {
-      obj.ticketId = message.ticketId;
-    }
-    if (message.fromStateKey !== "") {
-      obj.fromStateKey = message.fromStateKey;
-    }
-    if (message.toStateKey !== "") {
-      obj.toStateKey = message.toStateKey;
-    }
-    if (message.stateUpdatedAt !== 0) {
-      obj.stateUpdatedAt = Math.round(message.stateUpdatedAt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<TicketEvent_StateChanged>, I>>(base?: I): TicketEvent_StateChanged {
-    return TicketEvent_StateChanged.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TicketEvent_StateChanged>, I>>(object: I): TicketEvent_StateChanged {
-    const message = createBaseTicketEvent_StateChanged();
-    message.ticketId = object.ticketId ?? "";
-    message.fromStateKey = object.fromStateKey ?? "";
-    message.toStateKey = object.toStateKey ?? "";
-    message.stateUpdatedAt = object.stateUpdatedAt ?? 0;
-    return message;
-  },
-};
-
-function createBaseTicketEvent_Commented(): TicketEvent_Commented {
-  return { ticketId: "", commentId: "", content: "", authorId: "" };
-}
-
-export const TicketEvent_Commented = {
-  encode(message: TicketEvent_Commented, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
-    }
-    if (message.commentId !== "") {
-      writer.uint32(18).string(message.commentId);
-    }
-    if (message.content !== "") {
-      writer.uint32(26).string(message.content);
-    }
-    if (message.authorId !== "") {
-      writer.uint32(34).string(message.authorId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TicketEvent_Commented {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTicketEvent_Commented();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.ticketId = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.commentId = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.content = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.authorId = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): TicketEvent_Commented {
-    return {
-      ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-      commentId: isSet(object.commentId) ? String(object.commentId) : "",
-      content: isSet(object.content) ? String(object.content) : "",
-      authorId: isSet(object.authorId) ? String(object.authorId) : "",
-    };
-  },
-
-  toJSON(message: TicketEvent_Commented): unknown {
-    const obj: any = {};
-    if (message.ticketId !== "") {
-      obj.ticketId = message.ticketId;
-    }
-    if (message.commentId !== "") {
-      obj.commentId = message.commentId;
-    }
-    if (message.content !== "") {
-      obj.content = message.content;
-    }
-    if (message.authorId !== "") {
-      obj.authorId = message.authorId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<TicketEvent_Commented>, I>>(base?: I): TicketEvent_Commented {
-    return TicketEvent_Commented.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TicketEvent_Commented>, I>>(object: I): TicketEvent_Commented {
-    const message = createBaseTicketEvent_Commented();
-    message.ticketId = object.ticketId ?? "";
-    message.commentId = object.commentId ?? "";
-    message.content = object.content ?? "";
-    message.authorId = object.authorId ?? "";
+    message.comment = (object.comment !== undefined && object.comment !== null)
+      ? Comment.fromPartial(object.comment)
+      : undefined;
     return message;
   },
 };
