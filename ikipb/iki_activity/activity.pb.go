@@ -922,7 +922,7 @@ const file_ikipb_iki_activity_activity_proto_rawDesc = "" +
 	"\x13EventActivityUpload\x12\x1f\n" +
 	"\vactivity_id\x18\x01 \x01(\tR\n" +
 	"activityId\x12\x1e\n" +
-	"\viki_user_id\x18\x02 \x01(\tR\tikiUserIdB3Z1github.com/ikithomas/iki-proto/ikipb/iki_activityb\x06proto3"
+	"\viki_user_id\x18\x02 \x01(\tR\tikiUserIdBCZ1github.com/ikithomas/iki-proto/ikipb/iki_activity\xea\x02\rIki::Activityb\x06proto3"
 
 var (
 	file_ikipb_iki_activity_activity_proto_rawDescOnce sync.Once

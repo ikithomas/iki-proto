@@ -214,7 +214,7 @@ const file_ikipb_iki_iam_tokensvc_token_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken2\xa0\x01\n" +
 	"\bTokenSvc\x12F\n" +
 	"\tGetJwkset\x12\x1a.tokensvc.GetJwksetRequest\x1a\x1b.tokensvc.GetJwksetResponse\"\x00\x12L\n" +
-	"\vAccessToken\x12\x1c.tokensvc.AccessTokenRequest\x1a\x1d.tokensvc.AccessTokenResponse\"\x00B\vZ\t/tokensvcb\x06proto3"
+	"\vAccessToken\x12\x1c.tokensvc.AccessTokenRequest\x1a\x1d.tokensvc.AccessTokenResponse\"\x00B Z\t/tokensvc\xea\x02\x12Iki::Iam::TokenSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_tokensvc_token_proto_rawDescOnce sync.Once

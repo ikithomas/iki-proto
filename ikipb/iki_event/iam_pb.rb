@@ -7,18 +7,22 @@ require 'google/protobuf'
 require 'ikipb/iki_iam/iam_pb'
 
 
-descriptor_data = "\n\x19ikipb/iki_event/iam.proto\x12\x03iam\x1a\x17ikipb/iki_iam/iam.proto\"\xbf\x07\n\x0b\x45ventEntity\x12\x14\n\x05topic\x18\x01 \x01(\tR\x05topic\x12\x16\n\x06origin\x18\x02 \x01(\tR\x06origin\x12\x1b\n\tentity_id\x18\x03 \x01(\tR\x08\x65ntityId\x12\x1f\n\x0b\x65ntity_name\x18\x04 \x01(\tR\nentityName\x12\x30\n\x0b\x65ntity_type\x18\x05 \x01(\x0e\x32\x0f.iam.EntityTypeR\nentityType\x12\x32\n\x07\x63ontent\x18\x06 \x01(\x0b\x32\x18.iam.EventEntity.ContentR\x07\x63ontent\x1a\xdd\x05\n\x07\x43ontent\x12J\n\rrefresh_token\x18\x01 \x01(\x0b\x32%.iam.EventEntity.Content.RefreshTokenR\x0crefreshToken\x12\x34\n\x05login\x18\x02 \x01(\x0b\x32\x1e.iam.EventEntity.Content.LoginR\x05login\x12:\n\x07signout\x18\x03 \x01(\x0b\x32 .iam.EventEntity.Content.SignoutR\x07signout\x1a\xb7\x01\n\x0cRefreshToken\x12\x44\n\x06result\x18\x01 \x01(\x0e\x32,.iam.EventEntity.Content.RefreshToken.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x1a\xa9\x01\n\x05Login\x12=\n\x06result\x18\x01 \x01(\x0e\x32%.iam.EventEntity.Content.Login.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x1a\xad\x01\n\x07Signout\x12?\n\x06result\x18\x01 \x01(\x0e\x32\'.iam.EventEntity.Content.Signout.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x42\x30Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+descriptor_data = "\n\x19ikipb/iki_event/iam.proto\x12\x03iam\x1a\x17ikipb/iki_iam/iam.proto\"\xbf\x07\n\x0b\x45ventEntity\x12\x14\n\x05topic\x18\x01 \x01(\tR\x05topic\x12\x16\n\x06origin\x18\x02 \x01(\tR\x06origin\x12\x1b\n\tentity_id\x18\x03 \x01(\tR\x08\x65ntityId\x12\x1f\n\x0b\x65ntity_name\x18\x04 \x01(\tR\nentityName\x12\x30\n\x0b\x65ntity_type\x18\x05 \x01(\x0e\x32\x0f.iam.EntityTypeR\nentityType\x12\x32\n\x07\x63ontent\x18\x06 \x01(\x0b\x32\x18.iam.EventEntity.ContentR\x07\x63ontent\x1a\xdd\x05\n\x07\x43ontent\x12J\n\rrefresh_token\x18\x01 \x01(\x0b\x32%.iam.EventEntity.Content.RefreshTokenR\x0crefreshToken\x12\x34\n\x05login\x18\x02 \x01(\x0b\x32\x1e.iam.EventEntity.Content.LoginR\x05login\x12:\n\x07signout\x18\x03 \x01(\x0b\x32 .iam.EventEntity.Content.SignoutR\x07signout\x1a\xb7\x01\n\x0cRefreshToken\x12\x44\n\x06result\x18\x01 \x01(\x0e\x32,.iam.EventEntity.Content.RefreshToken.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x1a\xa9\x01\n\x05Login\x12=\n\x06result\x18\x01 \x01(\x0e\x32%.iam.EventEntity.Content.Login.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x1a\xad\x01\n\x07Signout\x12?\n\x06result\x18\x01 \x01(\x0e\x32\'.iam.EventEntity.Content.Signout.ResultR\x06result\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"G\n\x06Result\x12\x16\n\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02\x42\x42Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\x0fIki::Event::Iamb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Iam
-  EventEntity = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity").msgclass
-  EventEntity::Content = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content").msgclass
-  EventEntity::Content::RefreshToken = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.RefreshToken").msgclass
-  EventEntity::Content::RefreshToken::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.RefreshToken.Result").enummodule
-  EventEntity::Content::Login = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Login").msgclass
-  EventEntity::Content::Login::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Login.Result").enummodule
-  EventEntity::Content::Signout = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Signout").msgclass
-  EventEntity::Content::Signout::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Signout.Result").enummodule
+module Iki
+  module Event
+    module Iam
+      EventEntity = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity").msgclass
+      EventEntity::Content = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content").msgclass
+      EventEntity::Content::RefreshToken = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.RefreshToken").msgclass
+      EventEntity::Content::RefreshToken::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.RefreshToken.Result").enummodule
+      EventEntity::Content::Login = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Login").msgclass
+      EventEntity::Content::Login::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Login.Result").enummodule
+      EventEntity::Content::Signout = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Signout").msgclass
+      EventEntity::Content::Signout::Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("iam.EventEntity.Content.Signout.Result").enummodule
+    end
+  end
 end

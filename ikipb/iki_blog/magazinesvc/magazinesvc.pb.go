@@ -924,7 +924,7 @@ const file_ikipb_iki_blog_magazinesvc_magazinesvc_proto_rawDesc = "" +
 	"\x03Get\x12\x19.magazinesvc.GetMyRequest\x1a\x1a.magazinesvc.GetMyResponse\"\x00\x12G\n" +
 	"\x06Delete\x12\x1c.magazinesvc.DeleteMyRequest\x1a\x1d.magazinesvc.DeleteMyResponse\"\x00\x12A\n" +
 	"\x04List\x12\x1a.magazinesvc.ListMyRequest\x1a\x1b.magazinesvc.ListMyResponse\"\x00\x12U\n" +
-	"\x0eListByCategory\x12$.magazinesvc.ListMyByCategoryRequest\x1a\x1b.magazinesvc.ListMyResponse\"\x00B\x0eZ\f/magazinesvcb\x06proto3"
+	"\x0eListByCategory\x12$.magazinesvc.ListMyByCategoryRequest\x1a\x1b.magazinesvc.ListMyResponse\"\x00B'Z\f/magazinesvc\xea\x02\x16Iki::Blog::MagazineSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_magazinesvc_magazinesvc_proto_rawDescOnce sync.Once

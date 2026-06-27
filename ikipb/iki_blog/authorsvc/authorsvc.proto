@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_blog/blog.proto";
 
 option go_package = "/authorsvc";
+option ruby_package = "Iki::Blog::AuthorSvc";
 
 package authorsvc;
 

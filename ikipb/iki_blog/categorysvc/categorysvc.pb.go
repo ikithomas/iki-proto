@@ -113,7 +113,7 @@ const file_ikipb_iki_blog_categorysvc_categorysvc_proto_rawDesc = "" +
 	"categories\x18\x01 \x03(\tR\n" +
 	"categories2b\n" +
 	"\vCategorySvc\x12S\n" +
-	"\x04List\x12\x18.categorysvc.ListRequest\x1a\x19.categorysvc.ListResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/category/listB\x0eZ\f/categorysvcb\x06proto3"
+	"\x04List\x12\x18.categorysvc.ListRequest\x1a\x19.categorysvc.ListResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/category/listB'Z\f/categorysvc\xea\x02\x16Iki::Blog::CategorySvcb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_categorysvc_categorysvc_proto_rawDescOnce sync.Once

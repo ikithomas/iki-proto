@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_iam/iam.proto";
 
 option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_event";
+option ruby_package = "Iki::Event::Iam";
 
 package iam;
 

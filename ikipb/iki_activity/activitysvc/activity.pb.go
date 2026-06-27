@@ -620,7 +620,7 @@ const file_ikipb_iki_activity_activitysvc_activity_proto_rawDesc = "" +
 	"\vActivitySvc\x12:\n" +
 	"\x03Get\x12\x17.activitysvc.GetRequest\x1a\x18.activitysvc.GetResponse\"\x00\x12=\n" +
 	"\x04List\x12\x18.activitysvc.ListRequest\x1a\x19.activitysvc.ListResponse\"\x00\x12[\n" +
-	"\x0eCalculateStats\x12\".activitysvc.CalculateStatsRequest\x1a#.activitysvc.CalculateStatsResponse\"\x00B\x0eZ\f/activitysvcb\x06proto3"
+	"\x0eCalculateStats\x12\".activitysvc.CalculateStatsRequest\x1a#.activitysvc.CalculateStatsResponse\"\x00B+Z\f/activitysvc\xea\x02\x1aIki::Activity::ActivitySvcb\x06proto3"
 
 var (
 	file_ikipb_iki_activity_activitysvc_activity_proto_rawDescOnce sync.Once

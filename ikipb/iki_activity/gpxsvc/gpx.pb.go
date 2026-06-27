@@ -208,7 +208,7 @@ const file_ikipb_iki_activity_gpxsvc_gpx_proto_rawDesc = "" +
 	"\bMyGpxSvc\x120\n" +
 	"\x03Get\x12\x14.gpxsvc.GetMyRequest\x1a\x0f.activity.Chunk\"\x000\x012:\n" +
 	"\x06GpxSvc\x120\n" +
-	"\x03Get\x12\x12.gpxsvc.GetRequest\x1a\x13.gpxsvc.GetResponse\"\x00B\tZ\a/gpxsvcb\x06proto3"
+	"\x03Get\x12\x12.gpxsvc.GetRequest\x1a\x13.gpxsvc.GetResponse\"\x00B!Z\a/gpxsvc\xea\x02\x15Iki::Activity::GpxSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_activity_gpxsvc_gpx_proto_rawDescOnce sync.Once

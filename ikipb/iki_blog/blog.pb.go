@@ -379,7 +379,7 @@ const file_ikipb_iki_blog_blog_proto_rawDesc = "" +
 	"\n" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x05R\bpageSizeB/Z-github.com/ikithomas/iki-proto/ikipb/iki_blogb\x06proto3"
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSizeB;Z-github.com/ikithomas/iki-proto/ikipb/iki_blog\xea\x02\tIki::Blogb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_blog_proto_rawDescOnce sync.Once

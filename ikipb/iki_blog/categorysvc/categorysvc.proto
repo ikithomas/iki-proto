@@ -3,6 +3,7 @@ syntax = "proto3";
 import "google/api/annotations.proto";
 
 option go_package = "/categorysvc";
+option ruby_package = "Iki::Blog::CategorySvc";
 
 package categorysvc;
 

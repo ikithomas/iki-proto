@@ -91,7 +91,8 @@ const file_ikipb_iki_event_envelope_proto_rawDesc = "" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x1d\n" +
 	"\n" +
 	"event_type\x18\x02 \x01(\tR\teventType\x12.\n" +
-	"\apayload\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\apayloadB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+	"\apayload\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\apayloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\n" +
+	"Iki::Eventb\x06proto3"
 
 var (
 	file_ikipb_iki_event_envelope_proto_rawDescOnce sync.Once

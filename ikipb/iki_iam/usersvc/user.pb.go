@@ -841,8 +841,7 @@ const file_ikipb_iki_iam_usersvc_user_proto_rawDesc = "" +
 	"\x06Delete\x12\x16.usersvc.DeleteRequest\x1a\x17.usersvc.DeleteResponse\"\x00\x12K\n" +
 	"\fUpdateGroups\x12\x1b.usersvc.UpdateGroupRequest\x1a\x1c.usersvc.UpdateGroupResponse\"\x00\x12M\n" +
 	"\fActivateUser\x12\x1c.usersvc.ActivateUserRequest\x1a\x1d.usersvc.ActivateUserResponse\"\x00\x12S\n" +
-	"\x0eDeactivateUser\x12\x1e.usersvc.DeactivateUserRequest\x1a\x1f.usersvc.DeactivateUserResponse\"\x00B\n" +
-	"Z\b/usersvcb\x06proto3"
+	"\x0eDeactivateUser\x12\x1e.usersvc.DeactivateUserRequest\x1a\x1f.usersvc.DeactivateUserResponse\"\x00B\x1eZ\b/usersvc\xea\x02\x11Iki::Iam::UserSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_usersvc_user_proto_rawDescOnce sync.Once

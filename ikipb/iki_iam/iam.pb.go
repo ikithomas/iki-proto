@@ -400,7 +400,7 @@ const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"EntityType\x12\x1b\n" +
 	"\x17ENTITY_TYPE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10ENTITY_TYPE_USER\x10\x01\x12\x17\n" +
-	"\x13ENTITY_TYPE_SERVICE\x10\x02B.Z,github.com/ikithomas/iki-proto/ikipb/iki_iamb\x06proto3"
+	"\x13ENTITY_TYPE_SERVICE\x10\x02B9Z,github.com/ikithomas/iki-proto/ikipb/iki_iam\xea\x02\bIki::Iamb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_iam_proto_rawDescOnce sync.Once

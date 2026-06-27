@@ -1268,8 +1268,7 @@ const file_ikipb_iki_blog_postsvc_postsvc_proto_rawDesc = "" +
 	"\x06Delete\x12\x18.postsvc.DeleteMyRequest\x1a\x19.postsvc.DeleteMyResponse\"\x00\x129\n" +
 	"\x04List\x12\x16.postsvc.ListMyRequest\x1a\x17.postsvc.ListMyResponse\"\x00\x12M\n" +
 	"\x0eListByCategory\x12 .postsvc.ListMyByCategoryRequest\x1a\x17.postsvc.ListMyResponse\"\x00\x12C\n" +
-	"\tListByTag\x12\x1b.postsvc.ListMyByTagRequest\x1a\x17.postsvc.ListMyResponse\"\x00B\n" +
-	"Z\b/postsvcb\x06proto3"
+	"\tListByTag\x12\x1b.postsvc.ListMyByTagRequest\x1a\x17.postsvc.ListMyResponse\"\x00B\x1fZ\b/postsvc\xea\x02\x12Iki::Blog::PostSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_postsvc_postsvc_proto_rawDescOnce sync.Once

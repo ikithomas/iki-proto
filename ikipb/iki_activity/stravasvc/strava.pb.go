@@ -132,8 +132,8 @@ const file_ikipb_iki_activity_stravasvc_strava_proto_rawDesc = "" +
 	"\rAuthzResponse\x12+\n" +
 	"\aathlete\x18\x01 \x01(\v2\x11.activity.AthleteR\aathlete2I\n" +
 	"\tStravaSvc\x12<\n" +
-	"\x05Authz\x12\x17.stravasvc.AuthzRequest\x1a\x18.stravasvc.AuthzResponse\"\x00B\fZ\n" +
-	"/stravasvcb\x06proto3"
+	"\x05Authz\x12\x17.stravasvc.AuthzRequest\x1a\x18.stravasvc.AuthzResponse\"\x00B'Z\n" +
+	"/stravasvc\xea\x02\x18Iki::Activity::StravaSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_activity_stravasvc_strava_proto_rawDescOnce sync.Once

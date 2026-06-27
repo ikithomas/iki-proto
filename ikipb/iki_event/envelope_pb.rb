@@ -7,11 +7,13 @@ require 'google/protobuf'
 require 'google/protobuf/any_pb'
 
 
-descriptor_data = "\n\x1eikipb/iki_event/envelope.proto\x12\x05\x65vent\x1a\x19google/protobuf/any.proto\"t\n\x08\x45nvelope\x12\x19\n\x08\x65vent_id\x18\x01 \x01(\tR\x07\x65ventId\x12\x1d\n\nevent_type\x18\x02 \x01(\tR\teventType\x12.\n\x07payload\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyR\x07payloadB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+descriptor_data = "\n\x1eikipb/iki_event/envelope.proto\x12\x05\x65vent\x1a\x19google/protobuf/any.proto\"t\n\x08\x45nvelope\x12\x19\n\x08\x65vent_id\x18\x01 \x01(\tR\x07\x65ventId\x12\x1d\n\nevent_type\x18\x02 \x01(\tR\teventType\x12.\n\x07payload\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyR\x07payloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\nIki::Eventb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Event
-  Envelope = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("event.Envelope").msgclass
+module Iki
+  module Event
+    Envelope = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("event.Envelope").msgclass
+  end
 end

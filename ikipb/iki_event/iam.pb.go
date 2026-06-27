@@ -510,7 +510,7 @@ const file_ikipb_iki_event_iam_proto_rawDesc = "" +
 	"\x06Result\x12\x16\n" +
 	"\x12RESULT_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eRESULT_SUCCESS\x10\x01\x12\x11\n" +
-	"\rRESULT_FAILED\x10\x02B0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+	"\rRESULT_FAILED\x10\x02BBZ.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\x0fIki::Event::Iamb\x06proto3"
 
 var (
 	file_ikipb_iki_event_iam_proto_rawDescOnce sync.Once

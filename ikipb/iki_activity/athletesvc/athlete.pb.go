@@ -387,7 +387,7 @@ const file_ikipb_iki_activity_athletesvc_athlete_proto_rawDesc = "" +
 	"AthleteSvc\x128\n" +
 	"\x03Get\x12\x16.athletesvc.GetRequest\x1a\x17.athletesvc.GetResponse\"\x00\x12M\n" +
 	"\n" +
-	"SetFitness\x12\x1d.athletesvc.SetFitnessRequest\x1a\x1e.athletesvc.SetFitnessResponse\"\x00B\rZ\v/athletesvcb\x06proto3"
+	"SetFitness\x12\x1d.athletesvc.SetFitnessRequest\x1a\x1e.athletesvc.SetFitnessResponse\"\x00B)Z\v/athletesvc\xea\x02\x19Iki::Activity::AthleteSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_activity_athletesvc_athlete_proto_rawDescOnce sync.Once

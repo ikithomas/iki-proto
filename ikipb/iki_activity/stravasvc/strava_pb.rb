@@ -7,12 +7,16 @@ require 'google/protobuf'
 require 'ikipb/iki_activity/activity_pb'
 
 
-descriptor_data = "\n)ikipb/iki_activity/stravasvc/strava.proto\x12\tstravasvc\x1a!ikipb/iki_activity/activity.proto\"E\n\x0c\x41uthzRequest\x12\x1d\n\nauthz_code\x18\x01 \x01(\tR\tauthzCode\x12\x16\n\x06scopes\x18\x02 \x01(\tR\x06scopes\"<\n\rAuthzResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete2I\n\tStravaSvc\x12<\n\x05\x41uthz\x12\x17.stravasvc.AuthzRequest\x1a\x18.stravasvc.AuthzResponse\"\x00\x42\x0cZ\n/stravasvcb\x06proto3"
+descriptor_data = "\n)ikipb/iki_activity/stravasvc/strava.proto\x12\tstravasvc\x1a!ikipb/iki_activity/activity.proto\"E\n\x0c\x41uthzRequest\x12\x1d\n\nauthz_code\x18\x01 \x01(\tR\tauthzCode\x12\x16\n\x06scopes\x18\x02 \x01(\tR\x06scopes\"<\n\rAuthzResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete2I\n\tStravaSvc\x12<\n\x05\x41uthz\x12\x17.stravasvc.AuthzRequest\x1a\x18.stravasvc.AuthzResponse\"\x00\x42\'Z\n/stravasvc\xea\x02\x18Iki::Activity::StravaSvcb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Stravasvc
-  AuthzRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("stravasvc.AuthzRequest").msgclass
-  AuthzResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("stravasvc.AuthzResponse").msgclass
+module Iki
+  module Activity
+    module StravaSvc
+      AuthzRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("stravasvc.AuthzRequest").msgclass
+      AuthzResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("stravasvc.AuthzResponse").msgclass
+    end
+  end
 end

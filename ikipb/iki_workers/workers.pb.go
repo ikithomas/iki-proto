@@ -119,7 +119,7 @@ const file_ikipb_iki_workers_workers_proto_rawDesc = "" +
 	"\x06length\x18\x01 \x01(\x03R\x06length\"$\n" +
 	"\n" +
 	"MemoryWork\x12\x16\n" +
-	"\x06length\x18\x01 \x01(\x03R\x06lengthB2Z0github.com/ikithomas/iki-proto/ikipb/iki_workersb\x06proto3"
+	"\x06length\x18\x01 \x01(\x03R\x06lengthBAZ0github.com/ikithomas/iki-proto/ikipb/iki_workers\xea\x02\fIki::Workersb\x06proto3"
 
 var (
 	file_ikipb_iki_workers_workers_proto_rawDescOnce sync.Once

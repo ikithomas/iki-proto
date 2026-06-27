@@ -5,12 +5,14 @@
 require 'google/protobuf'
 
 
-descriptor_data = "\n\x1fikipb/iki_workers/workers.proto\x12\x07workers\"!\n\x07\x43puWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06length\"$\n\nMemoryWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06lengthB2Z0github.com/ikithomas/iki-proto/ikipb/iki_workersb\x06proto3"
+descriptor_data = "\n\x1fikipb/iki_workers/workers.proto\x12\x07workers\"!\n\x07\x43puWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06length\"$\n\nMemoryWork\x12\x16\n\x06length\x18\x01 \x01(\x03R\x06lengthBAZ0github.com/ikithomas/iki-proto/ikipb/iki_workers\xea\x02\x0cIki::Workersb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Workers
-  CpuWork = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("workers.CpuWork").msgclass
-  MemoryWork = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("workers.MemoryWork").msgclass
+module Iki
+  module Workers
+    CpuWork = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("workers.CpuWork").msgclass
+    MemoryWork = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("workers.MemoryWork").msgclass
+  end
 end

@@ -7,18 +7,22 @@ require 'google/protobuf'
 require 'ikipb/iki_activity/activity_pb'
 
 
-descriptor_data = "\n+ikipb/iki_activity/athletesvc/athlete.proto\x12\nathletesvc\x1a!ikipb/iki_activity/activity.proto\"\x0e\n\x0cGetMyRequest\"<\n\rGetMyResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete\"I\n\x13SetMyFitnessRequest\x12\x32\n\x07\x66itness\x18\x01 \x01(\x0b\x32\x18.activity.AthleteFitnessR\x07\x66itness\"\x16\n\x14SetMyFitnessResponse\"%\n\nGetRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\":\n\x0bGetResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete\"`\n\x11SetFitnessRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\x12\x32\n\x07\x66itness\x18\x02 \x01(\x0b\x32\x18.activity.AthleteFitnessR\x07\x66itness\"\x14\n\x12SetFitnessResponse2\x9f\x01\n\x0cMyAthleteSvc\x12<\n\x03Get\x12\x18.athletesvc.GetMyRequest\x1a\x19.athletesvc.GetMyResponse\"\x00\x12Q\n\nSetFitness\x12\x1f.athletesvc.SetMyFitnessRequest\x1a .athletesvc.SetMyFitnessResponse\"\x00\x32\x95\x01\n\nAthleteSvc\x12\x38\n\x03Get\x12\x16.athletesvc.GetRequest\x1a\x17.athletesvc.GetResponse\"\x00\x12M\n\nSetFitness\x12\x1d.athletesvc.SetFitnessRequest\x1a\x1e.athletesvc.SetFitnessResponse\"\x00\x42\rZ\x0b/athletesvcb\x06proto3"
+descriptor_data = "\n+ikipb/iki_activity/athletesvc/athlete.proto\x12\nathletesvc\x1a!ikipb/iki_activity/activity.proto\"\x0e\n\x0cGetMyRequest\"<\n\rGetMyResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete\"I\n\x13SetMyFitnessRequest\x12\x32\n\x07\x66itness\x18\x01 \x01(\x0b\x32\x18.activity.AthleteFitnessR\x07\x66itness\"\x16\n\x14SetMyFitnessResponse\"%\n\nGetRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\":\n\x0bGetResponse\x12+\n\x07\x61thlete\x18\x01 \x01(\x0b\x32\x11.activity.AthleteR\x07\x61thlete\"`\n\x11SetFitnessRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\x12\x32\n\x07\x66itness\x18\x02 \x01(\x0b\x32\x18.activity.AthleteFitnessR\x07\x66itness\"\x14\n\x12SetFitnessResponse2\x9f\x01\n\x0cMyAthleteSvc\x12<\n\x03Get\x12\x18.athletesvc.GetMyRequest\x1a\x19.athletesvc.GetMyResponse\"\x00\x12Q\n\nSetFitness\x12\x1f.athletesvc.SetMyFitnessRequest\x1a .athletesvc.SetMyFitnessResponse\"\x00\x32\x95\x01\n\nAthleteSvc\x12\x38\n\x03Get\x12\x16.athletesvc.GetRequest\x1a\x17.athletesvc.GetResponse\"\x00\x12M\n\nSetFitness\x12\x1d.athletesvc.SetFitnessRequest\x1a\x1e.athletesvc.SetFitnessResponse\"\x00\x42)Z\x0b/athletesvc\xea\x02\x19Iki::Activity::AthleteSvcb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Athletesvc
-  GetMyRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetMyRequest").msgclass
-  GetMyResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetMyResponse").msgclass
-  SetMyFitnessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetMyFitnessRequest").msgclass
-  SetMyFitnessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetMyFitnessResponse").msgclass
-  GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetRequest").msgclass
-  GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetResponse").msgclass
-  SetFitnessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetFitnessRequest").msgclass
-  SetFitnessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetFitnessResponse").msgclass
+module Iki
+  module Activity
+    module AthleteSvc
+      GetMyRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetMyRequest").msgclass
+      GetMyResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetMyResponse").msgclass
+      SetMyFitnessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetMyFitnessRequest").msgclass
+      SetMyFitnessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetMyFitnessResponse").msgclass
+      GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetRequest").msgclass
+      GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.GetResponse").msgclass
+      SetFitnessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetFitnessRequest").msgclass
+      SetFitnessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("athletesvc.SetFitnessResponse").msgclass
+    end
+  end
 end

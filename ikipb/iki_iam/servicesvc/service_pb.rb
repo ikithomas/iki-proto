@@ -7,26 +7,30 @@ require 'google/protobuf'
 require 'ikipb/iki_iam/iam_pb'
 
 
-descriptor_data = "\n&ikipb/iki_iam/servicesvc/service.proto\x12\nservicesvc\x1a\x17ikipb/iki_iam/iam.proto\"#\n\rCreateRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"8\n\x0e\x43reateResponse\x12&\n\x07service\x18\x01 \x01(\x0b\x32\x0c.iam.ServiceR\x07service\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"5\n\x0bGetResponse\x12&\n\x07service\x18\x01 \x01(\x0b\x32\x0c.iam.ServiceR\x07service\"\r\n\x0bListRequest\"8\n\x0cListResponse\x12(\n\x08services\x18\x01 \x03(\x0b\x32\x0c.iam.ServiceR\x08services\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"\"\n\x10\x41\x64\x64SecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"8\n\x11\x41\x64\x64SecretResponse\x12#\n\x06secret\x18\x01 \x01(\x0b\x32\x0b.iam.SecretR\x06secret\"\'\n\x15\x41\x63tivateSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x18\n\x16\x41\x63tivateSecretResponse\")\n\x17\x44\x65\x61\x63tivateSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x1a\n\x18\x44\x65\x61\x63tivateSecretResponse\"%\n\x13\x44\x65leteSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x16\n\x14\x44\x65leteSecretResponse2\xe6\x04\n\nServiceSvc\x12\x41\n\x06\x43reate\x12\x19.servicesvc.CreateRequest\x1a\x1a.servicesvc.CreateResponse\"\x00\x12\x41\n\x06\x44\x65lete\x12\x19.servicesvc.DeleteRequest\x1a\x1a.servicesvc.DeleteResponse\"\x00\x12\x38\n\x03Get\x12\x16.servicesvc.GetRequest\x1a\x17.servicesvc.GetResponse\"\x00\x12;\n\x04List\x12\x17.servicesvc.ListRequest\x1a\x18.servicesvc.ListResponse\"\x00\x12J\n\tAddSecret\x12\x1c.servicesvc.AddSecretRequest\x1a\x1d.servicesvc.AddSecretResponse\"\x00\x12Y\n\x0e\x41\x63tivateSecret\x12!.servicesvc.ActivateSecretRequest\x1a\".servicesvc.ActivateSecretResponse\"\x00\x12_\n\x10\x44\x65\x61\x63tivateSecret\x12#.servicesvc.DeactivateSecretRequest\x1a$.servicesvc.DeactivateSecretResponse\"\x00\x12S\n\x0c\x44\x65leteSecret\x12\x1f.servicesvc.DeleteSecretRequest\x1a .servicesvc.DeleteSecretResponse\"\x00\x42\rZ\x0b/servicesvcb\x06proto3"
+descriptor_data = "\n&ikipb/iki_iam/servicesvc/service.proto\x12\nservicesvc\x1a\x17ikipb/iki_iam/iam.proto\"#\n\rCreateRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"8\n\x0e\x43reateResponse\x12&\n\x07service\x18\x01 \x01(\x0b\x32\x0c.iam.ServiceR\x07service\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"5\n\x0bGetResponse\x12&\n\x07service\x18\x01 \x01(\x0b\x32\x0c.iam.ServiceR\x07service\"\r\n\x0bListRequest\"8\n\x0cListResponse\x12(\n\x08services\x18\x01 \x03(\x0b\x32\x0c.iam.ServiceR\x08services\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"\"\n\x10\x41\x64\x64SecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"8\n\x11\x41\x64\x64SecretResponse\x12#\n\x06secret\x18\x01 \x01(\x0b\x32\x0b.iam.SecretR\x06secret\"\'\n\x15\x41\x63tivateSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x18\n\x16\x41\x63tivateSecretResponse\")\n\x17\x44\x65\x61\x63tivateSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x1a\n\x18\x44\x65\x61\x63tivateSecretResponse\"%\n\x13\x44\x65leteSecretRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x16\n\x14\x44\x65leteSecretResponse2\xe6\x04\n\nServiceSvc\x12\x41\n\x06\x43reate\x12\x19.servicesvc.CreateRequest\x1a\x1a.servicesvc.CreateResponse\"\x00\x12\x41\n\x06\x44\x65lete\x12\x19.servicesvc.DeleteRequest\x1a\x1a.servicesvc.DeleteResponse\"\x00\x12\x38\n\x03Get\x12\x16.servicesvc.GetRequest\x1a\x17.servicesvc.GetResponse\"\x00\x12;\n\x04List\x12\x17.servicesvc.ListRequest\x1a\x18.servicesvc.ListResponse\"\x00\x12J\n\tAddSecret\x12\x1c.servicesvc.AddSecretRequest\x1a\x1d.servicesvc.AddSecretResponse\"\x00\x12Y\n\x0e\x41\x63tivateSecret\x12!.servicesvc.ActivateSecretRequest\x1a\".servicesvc.ActivateSecretResponse\"\x00\x12_\n\x10\x44\x65\x61\x63tivateSecret\x12#.servicesvc.DeactivateSecretRequest\x1a$.servicesvc.DeactivateSecretResponse\"\x00\x12S\n\x0c\x44\x65leteSecret\x12\x1f.servicesvc.DeleteSecretRequest\x1a .servicesvc.DeleteSecretResponse\"\x00\x42$Z\x0b/servicesvc\xea\x02\x14Iki::Iam::ServiceSvcb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Servicesvc
-  CreateRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.CreateRequest").msgclass
-  CreateResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.CreateResponse").msgclass
-  GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.GetRequest").msgclass
-  GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.GetResponse").msgclass
-  ListRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ListRequest").msgclass
-  ListResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ListResponse").msgclass
-  DeleteRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteRequest").msgclass
-  DeleteResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteResponse").msgclass
-  AddSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.AddSecretRequest").msgclass
-  AddSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.AddSecretResponse").msgclass
-  ActivateSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ActivateSecretRequest").msgclass
-  ActivateSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ActivateSecretResponse").msgclass
-  DeactivateSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeactivateSecretRequest").msgclass
-  DeactivateSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeactivateSecretResponse").msgclass
-  DeleteSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteSecretRequest").msgclass
-  DeleteSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteSecretResponse").msgclass
+module Iki
+  module Iam
+    module ServiceSvc
+      CreateRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.CreateRequest").msgclass
+      CreateResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.CreateResponse").msgclass
+      GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.GetRequest").msgclass
+      GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.GetResponse").msgclass
+      ListRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ListRequest").msgclass
+      ListResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ListResponse").msgclass
+      DeleteRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteRequest").msgclass
+      DeleteResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteResponse").msgclass
+      AddSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.AddSecretRequest").msgclass
+      AddSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.AddSecretResponse").msgclass
+      ActivateSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ActivateSecretRequest").msgclass
+      ActivateSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.ActivateSecretResponse").msgclass
+      DeactivateSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeactivateSecretRequest").msgclass
+      DeactivateSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeactivateSecretResponse").msgclass
+      DeleteSecretRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteSecretRequest").msgclass
+      DeleteSecretResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("servicesvc.DeleteSecretResponse").msgclass
+    end
+  end
 end

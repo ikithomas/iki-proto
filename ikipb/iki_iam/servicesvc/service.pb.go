@@ -729,7 +729,7 @@ const file_ikipb_iki_iam_servicesvc_service_proto_rawDesc = "" +
 	"\tAddSecret\x12\x1c.servicesvc.AddSecretRequest\x1a\x1d.servicesvc.AddSecretResponse\"\x00\x12Y\n" +
 	"\x0eActivateSecret\x12!.servicesvc.ActivateSecretRequest\x1a\".servicesvc.ActivateSecretResponse\"\x00\x12_\n" +
 	"\x10DeactivateSecret\x12#.servicesvc.DeactivateSecretRequest\x1a$.servicesvc.DeactivateSecretResponse\"\x00\x12S\n" +
-	"\fDeleteSecret\x12\x1f.servicesvc.DeleteSecretRequest\x1a .servicesvc.DeleteSecretResponse\"\x00B\rZ\v/servicesvcb\x06proto3"
+	"\fDeleteSecret\x12\x1f.servicesvc.DeleteSecretRequest\x1a .servicesvc.DeleteSecretResponse\"\x00B$Z\v/servicesvc\xea\x02\x14Iki::Iam::ServiceSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_servicesvc_service_proto_rawDescOnce sync.Once

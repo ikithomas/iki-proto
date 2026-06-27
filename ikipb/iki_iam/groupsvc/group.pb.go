@@ -385,7 +385,7 @@ const file_ikipb_iki_iam_groupsvc_group_proto_rawDesc = "" +
 	"\x03Get\x12\x14.groupsvc.GetRequest\x1a\x15.groupsvc.GetResponse\"\x00\x127\n" +
 	"\x04List\x12\x15.groupsvc.ListRequest\x1a\x16.groupsvc.ListResponse\"\x00\x12=\n" +
 	"\x06Create\x12\x17.groupsvc.CreateRequest\x1a\x18.groupsvc.CreateResponse\"\x00\x12=\n" +
-	"\x06Delete\x12\x17.groupsvc.DeleteRequest\x1a\x18.groupsvc.DeleteResponse\"\x00B\vZ\t/groupsvcb\x06proto3"
+	"\x06Delete\x12\x17.groupsvc.DeleteRequest\x1a\x18.groupsvc.DeleteResponse\"\x00B Z\t/groupsvc\xea\x02\x12Iki::Iam::GroupSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_groupsvc_group_proto_rawDescOnce sync.Once

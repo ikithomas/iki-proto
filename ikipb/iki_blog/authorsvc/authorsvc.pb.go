@@ -411,8 +411,8 @@ const file_ikipb_iki_blog_authorsvc_authorsvc_proto_rawDesc = "" +
 	"\x03Get\x12\x15.authorsvc.GetRequest\x1a\x16.authorsvc.GetResponse\"\x002\x92\x01\n" +
 	"\vMyAuthorSvc\x12?\n" +
 	"\x06Create\x12\x18.authorsvc.CreateRequest\x1a\x19.authorsvc.CreateResponse\"\x00\x12B\n" +
-	"\aProfile\x12\x19.authorsvc.ProfileRequest\x1a\x1a.authorsvc.ProfileResponse\"\x00B\fZ\n" +
-	"/authorsvcb\x06proto3"
+	"\aProfile\x12\x19.authorsvc.ProfileRequest\x1a\x1a.authorsvc.ProfileResponse\"\x00B#Z\n" +
+	"/authorsvc\xea\x02\x14Iki::Blog::AuthorSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_authorsvc_authorsvc_proto_rawDescOnce sync.Once

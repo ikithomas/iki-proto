@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_iam/iam.proto";
 
 option go_package = "/usersvc";
+option ruby_package = "Iki::Iam::UserSvc";
 
 package usersvc;
 

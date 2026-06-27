@@ -177,7 +177,7 @@ const file_ikipb_health_health_proto_rawDesc = "" +
 	"\x0fSERVICE_UNKNOWN\x10\x032\x91\x01\n" +
 	"\tHealthSvc\x12@\n" +
 	"\x05Check\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse\x12B\n" +
-	"\x05Watch\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse0\x01B\tZ\a/healthb\x06proto3"
+	"\x05Watch\x12\x1a.health.HealthCheckRequest\x1a\x1b.health.HealthCheckResponse0\x01B\x17Z\a/health\xea\x02\vIki::Healthb\x06proto3"
 
 var (
 	file_ikipb_health_health_proto_rawDescOnce sync.Once

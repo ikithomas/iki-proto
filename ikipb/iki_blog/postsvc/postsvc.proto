@@ -4,6 +4,7 @@ import "google/api/annotations.proto";
 import "ikipb/iki_blog/blog.proto";
 
 option go_package = "/postsvc";
+option ruby_package = "Iki::Blog::PostSvc";
 
 package postsvc;
 

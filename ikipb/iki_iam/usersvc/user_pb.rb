@@ -7,28 +7,32 @@ require 'google/protobuf'
 require 'ikipb/iki_iam/iam_pb'
 
 
-descriptor_data = "\n ikipb/iki_iam/usersvc/user.proto\x12\x07usersvc\x1a\x17ikipb/iki_iam/iam.proto\"\x10\n\x0eProfileRequest\"0\n\x0fProfileResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\")\n\x11\x43heckEmailRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"*\n\x12\x43heckEmailResponse\x12\x14\n\x05\x65xist\x18\x01 \x01(\x08R\x05\x65xist\"e\n\rCreateRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x1d\n\ngiven_name\x18\x02 \x01(\tR\tgivenName\x12\x1f\n\x0b\x66\x61mily_name\x18\x03 \x01(\tR\nfamilyName\"/\n\x0e\x43reateResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\",\n\x0bGetResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\"\r\n\x0bListRequest\"/\n\x0cListResponse\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\t.iam.UserR\x05users\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"J\n\x12UpdateGroupRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n\tgroup_ids\x18\x02 \x03(\tR\x08groupIds\"\x15\n\x13UpdateGroupResponse\"%\n\x13\x41\x63tivateUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x16\n\x14\x41\x63tivateUserResponse\"\'\n\x15\x44\x65\x61\x63tivateUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x18\n\x16\x44\x65\x61\x63tivateUserResponse2\xe8\x04\n\x07UserSvc\x12>\n\x07Profile\x12\x17.usersvc.ProfileRequest\x1a\x18.usersvc.ProfileResponse\"\x00\x12G\n\nCheckEmail\x12\x1a.usersvc.CheckEmailRequest\x1a\x1b.usersvc.CheckEmailResponse\"\x00\x12;\n\x06\x43reate\x12\x16.usersvc.CreateRequest\x1a\x17.usersvc.CreateResponse\"\x00\x12\x35\n\x04List\x12\x14.usersvc.ListRequest\x1a\x15.usersvc.ListResponse\"\x00\x12\x32\n\x03Get\x12\x13.usersvc.GetRequest\x1a\x14.usersvc.GetResponse\"\x00\x12;\n\x06\x44\x65lete\x12\x16.usersvc.DeleteRequest\x1a\x17.usersvc.DeleteResponse\"\x00\x12K\n\x0cUpdateGroups\x12\x1b.usersvc.UpdateGroupRequest\x1a\x1c.usersvc.UpdateGroupResponse\"\x00\x12M\n\x0c\x41\x63tivateUser\x12\x1c.usersvc.ActivateUserRequest\x1a\x1d.usersvc.ActivateUserResponse\"\x00\x12S\n\x0e\x44\x65\x61\x63tivateUser\x12\x1e.usersvc.DeactivateUserRequest\x1a\x1f.usersvc.DeactivateUserResponse\"\x00\x42\nZ\x08/usersvcb\x06proto3"
+descriptor_data = "\n ikipb/iki_iam/usersvc/user.proto\x12\x07usersvc\x1a\x17ikipb/iki_iam/iam.proto\"\x10\n\x0eProfileRequest\"0\n\x0fProfileResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\")\n\x11\x43heckEmailRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"*\n\x12\x43heckEmailResponse\x12\x14\n\x05\x65xist\x18\x01 \x01(\x08R\x05\x65xist\"e\n\rCreateRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x1d\n\ngiven_name\x18\x02 \x01(\tR\tgivenName\x12\x1f\n\x0b\x66\x61mily_name\x18\x03 \x01(\tR\nfamilyName\"/\n\x0e\x43reateResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\",\n\x0bGetResponse\x12\x1d\n\x04user\x18\x01 \x01(\x0b\x32\t.iam.UserR\x04user\"\r\n\x0bListRequest\"/\n\x0cListResponse\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\t.iam.UserR\x05users\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"J\n\x12UpdateGroupRequest\x12\x17\n\x07user_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n\tgroup_ids\x18\x02 \x03(\tR\x08groupIds\"\x15\n\x13UpdateGroupResponse\"%\n\x13\x41\x63tivateUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x16\n\x14\x41\x63tivateUserResponse\"\'\n\x15\x44\x65\x61\x63tivateUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x18\n\x16\x44\x65\x61\x63tivateUserResponse2\xe8\x04\n\x07UserSvc\x12>\n\x07Profile\x12\x17.usersvc.ProfileRequest\x1a\x18.usersvc.ProfileResponse\"\x00\x12G\n\nCheckEmail\x12\x1a.usersvc.CheckEmailRequest\x1a\x1b.usersvc.CheckEmailResponse\"\x00\x12;\n\x06\x43reate\x12\x16.usersvc.CreateRequest\x1a\x17.usersvc.CreateResponse\"\x00\x12\x35\n\x04List\x12\x14.usersvc.ListRequest\x1a\x15.usersvc.ListResponse\"\x00\x12\x32\n\x03Get\x12\x13.usersvc.GetRequest\x1a\x14.usersvc.GetResponse\"\x00\x12;\n\x06\x44\x65lete\x12\x16.usersvc.DeleteRequest\x1a\x17.usersvc.DeleteResponse\"\x00\x12K\n\x0cUpdateGroups\x12\x1b.usersvc.UpdateGroupRequest\x1a\x1c.usersvc.UpdateGroupResponse\"\x00\x12M\n\x0c\x41\x63tivateUser\x12\x1c.usersvc.ActivateUserRequest\x1a\x1d.usersvc.ActivateUserResponse\"\x00\x12S\n\x0e\x44\x65\x61\x63tivateUser\x12\x1e.usersvc.DeactivateUserRequest\x1a\x1f.usersvc.DeactivateUserResponse\"\x00\x42\x1eZ\x08/usersvc\xea\x02\x11Iki::Iam::UserSvcb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Usersvc
-  ProfileRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ProfileRequest").msgclass
-  ProfileResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ProfileResponse").msgclass
-  CheckEmailRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CheckEmailRequest").msgclass
-  CheckEmailResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CheckEmailResponse").msgclass
-  CreateRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CreateRequest").msgclass
-  CreateResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CreateResponse").msgclass
-  GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.GetRequest").msgclass
-  GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.GetResponse").msgclass
-  ListRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ListRequest").msgclass
-  ListResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ListResponse").msgclass
-  DeleteRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeleteRequest").msgclass
-  DeleteResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeleteResponse").msgclass
-  UpdateGroupRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.UpdateGroupRequest").msgclass
-  UpdateGroupResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.UpdateGroupResponse").msgclass
-  ActivateUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ActivateUserRequest").msgclass
-  ActivateUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ActivateUserResponse").msgclass
-  DeactivateUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeactivateUserRequest").msgclass
-  DeactivateUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeactivateUserResponse").msgclass
+module Iki
+  module Iam
+    module UserSvc
+      ProfileRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ProfileRequest").msgclass
+      ProfileResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ProfileResponse").msgclass
+      CheckEmailRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CheckEmailRequest").msgclass
+      CheckEmailResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CheckEmailResponse").msgclass
+      CreateRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CreateRequest").msgclass
+      CreateResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.CreateResponse").msgclass
+      GetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.GetRequest").msgclass
+      GetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.GetResponse").msgclass
+      ListRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ListRequest").msgclass
+      ListResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ListResponse").msgclass
+      DeleteRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeleteRequest").msgclass
+      DeleteResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeleteResponse").msgclass
+      UpdateGroupRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.UpdateGroupRequest").msgclass
+      UpdateGroupResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.UpdateGroupResponse").msgclass
+      ActivateUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ActivateUserRequest").msgclass
+      ActivateUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.ActivateUserResponse").msgclass
+      DeactivateUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeactivateUserRequest").msgclass
+      DeactivateUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("usersvc.DeactivateUserResponse").msgclass
+    end
+  end
 end

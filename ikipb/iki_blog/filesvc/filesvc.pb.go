@@ -138,8 +138,7 @@ const file_ikipb_iki_blog_filesvc_filesvc_proto_rawDesc = "" +
 	"\x10UploadMyResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url2L\n" +
 	"\tMyFileSvc\x12?\n" +
-	"\x06Upload\x12\x18.filesvc.UploadMyRequest\x1a\x19.filesvc.UploadMyResponse\"\x00B\n" +
-	"Z\b/filesvcb\x06proto3"
+	"\x06Upload\x12\x18.filesvc.UploadMyRequest\x1a\x19.filesvc.UploadMyResponse\"\x00B\x1fZ\b/filesvc\xea\x02\x12Iki::Blog::FileSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_blog_filesvc_filesvc_proto_rawDescOnce sync.Once

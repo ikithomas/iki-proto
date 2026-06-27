@@ -1029,8 +1029,7 @@ const file_ikipb_iki_iam_authsvc_auth_proto_rawDesc = "" +
 	"\x11BeginPasskeyLogin\x12!.authsvc.BeginPasskeyLoginRequest\x1a\".authsvc.BeginPasskeyLoginResponse\"\x00\x12_\n" +
 	"\x12FinishPasskeyLogin\x12\".authsvc.FinishPasskeyLoginRequest\x1a#.authsvc.FinishPasskeyLoginResponse\"\x00\x12M\n" +
 	"\fListPasskeys\x12\x1c.authsvc.ListPasskeysRequest\x1a\x1d.authsvc.ListPasskeysResponse\"\x00\x12P\n" +
-	"\rDeletePasskey\x12\x1d.authsvc.DeletePasskeyRequest\x1a\x1e.authsvc.DeletePasskeyResponse\"\x00B\n" +
-	"Z\b/authsvcb\x06proto3"
+	"\rDeletePasskey\x12\x1d.authsvc.DeletePasskeyRequest\x1a\x1e.authsvc.DeletePasskeyResponse\"\x00B\x1eZ\b/authsvc\xea\x02\x11Iki::Iam::AuthSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_authsvc_auth_proto_rawDescOnce sync.Once

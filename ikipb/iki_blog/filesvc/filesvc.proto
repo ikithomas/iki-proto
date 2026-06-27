@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 option go_package = "/filesvc";
+option ruby_package = "Iki::Blog::FileSvc";
 
 package filesvc;
 

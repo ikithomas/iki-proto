@@ -459,7 +459,7 @@ const file_ikipb_iki_event_ticket_proto_rawDesc = "" +
 	"\x17EventTicketStateUpdated\x12&\n" +
 	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\">\n" +
 	"\x14EventTicketCommented\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticketB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticketBEZ.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\x12Iki::Event::Ticketb\x06proto3"
 
 var (
 	file_ikipb_iki_event_ticket_proto_rawDescOnce sync.Once

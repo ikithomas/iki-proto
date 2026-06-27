@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_activity/activity.proto";
 
 option go_package = "/stravasvc";
+option ruby_package = "Iki::Activity::StravaSvc";
 
 package stravasvc;
 

@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_iam/iam.proto";
 
 option go_package = "/servicesvc";
+option ruby_package = "Iki::Iam::ServiceSvc";
 
 package servicesvc;
 

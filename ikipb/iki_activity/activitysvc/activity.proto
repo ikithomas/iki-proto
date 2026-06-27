@@ -3,6 +3,7 @@ syntax = "proto3";
 import "ikipb/iki_activity/activity.proto";
 
 option go_package = "/activitysvc";
+option ruby_package = "Iki::Activity::ActivitySvc";
 
 package activitysvc;
 
