@@ -37,9 +37,9 @@ message EventTicketUpdated {
 }
 
 message EventTicketStateUpdated {
-  string ticket = 1;
+  Ticket ticket = 1;
 }
 
 message EventTicketCommented {
-  string ticket = 1;
+  Ticket ticket = 1;
 }
