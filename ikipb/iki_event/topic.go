@@ -1,7 +1,8 @@
 package iki_event
 
 const (
-	TopicEntityRefreshToken = "iki-iam.entity.refresh-token"
-	TopicEntityLogin        = "iki-iam.entity.login"
-	TopicEntitySignout      = "iki-iam.entity.signout"
+	TopicIkiIamEntityRefreshToken = "iki-iam.entity.refresh-token"
+	TopicIkiIamEntityLogin        = "iki-iam.entity.login"
+	TopicIkiIamEntitySignout      = "iki-iam.entity.signout"
+	TopicIkiApiMonoTicket         = "iki-api-mono.ticket"
 )
