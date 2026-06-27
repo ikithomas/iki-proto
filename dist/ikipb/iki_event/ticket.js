@@ -456,12 +456,12 @@ exports.EventTicketUpdated = {
     },
 };
 function createBaseEventTicketStateUpdated() {
-    return { ticket: "" };
+    return { ticket: undefined };
 }
 exports.EventTicketStateUpdated = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticket !== "") {
-            writer.uint32(10).string(message.ticket);
+        if (message.ticket !== undefined) {
+            exports.Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -476,7 +476,7 @@ exports.EventTicketStateUpdated = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.ticket = reader.string();
+                    message.ticket = exports.Ticket.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -487,12 +487,12 @@ exports.EventTicketStateUpdated = {
         return message;
     },
     fromJSON(object) {
-        return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
+        return { ticket: isSet(object.ticket) ? exports.Ticket.fromJSON(object.ticket) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.ticket !== "") {
-            obj.ticket = message.ticket;
+        if (message.ticket !== undefined) {
+            obj.ticket = exports.Ticket.toJSON(message.ticket);
         }
         return obj;
     },
@@ -500,19 +500,20 @@ exports.EventTicketStateUpdated = {
         return exports.EventTicketStateUpdated.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
         const message = createBaseEventTicketStateUpdated();
-        message.ticket = (_a = object.ticket) !== null && _a !== void 0 ? _a : "";
+        message.ticket = (object.ticket !== undefined && object.ticket !== null)
+            ? exports.Ticket.fromPartial(object.ticket)
+            : undefined;
         return message;
     },
 };
 function createBaseEventTicketCommented() {
-    return { ticket: "" };
+    return { ticket: undefined };
 }
 exports.EventTicketCommented = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ticket !== "") {
-            writer.uint32(10).string(message.ticket);
+        if (message.ticket !== undefined) {
+            exports.Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -527,7 +528,7 @@ exports.EventTicketCommented = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.ticket = reader.string();
+                    message.ticket = exports.Ticket.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -538,12 +539,12 @@ exports.EventTicketCommented = {
         return message;
     },
     fromJSON(object) {
-        return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
+        return { ticket: isSet(object.ticket) ? exports.Ticket.fromJSON(object.ticket) : undefined };
     },
     toJSON(message) {
         const obj = {};
-        if (message.ticket !== "") {
-            obj.ticket = message.ticket;
+        if (message.ticket !== undefined) {
+            obj.ticket = exports.Ticket.toJSON(message.ticket);
         }
         return obj;
     },
@@ -551,9 +552,10 @@ exports.EventTicketCommented = {
         return exports.EventTicketCommented.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a;
         const message = createBaseEventTicketCommented();
-        message.ticket = (_a = object.ticket) !== null && _a !== void 0 ? _a : "";
+        message.ticket = (object.ticket !== undefined && object.ticket !== null)
+            ? exports.Ticket.fromPartial(object.ticket)
+            : undefined;
         return message;
     },
 };

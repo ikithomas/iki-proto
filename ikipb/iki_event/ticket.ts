@@ -37,11 +37,11 @@ export interface EventTicketUpdated {
 }
 
 export interface EventTicketStateUpdated {
-  ticket: string;
+  ticket: Ticket | undefined;
 }
 
 export interface EventTicketCommented {
-  ticket: string;
+  ticket: Ticket | undefined;
 }
 
 function createBaseUser(): User {
@@ -535,13 +535,13 @@ export const EventTicketUpdated = {
 };
 
 function createBaseEventTicketStateUpdated(): EventTicketStateUpdated {
-  return { ticket: "" };
+  return { ticket: undefined };
 }
 
 export const EventTicketStateUpdated = {
   encode(message: EventTicketStateUpdated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticket !== "") {
-      writer.uint32(10).string(message.ticket);
+    if (message.ticket !== undefined) {
+      Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -558,7 +558,7 @@ export const EventTicketStateUpdated = {
             break;
           }
 
-          message.ticket = reader.string();
+          message.ticket = Ticket.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -570,13 +570,13 @@ export const EventTicketStateUpdated = {
   },
 
   fromJSON(object: any): EventTicketStateUpdated {
-    return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
+    return { ticket: isSet(object.ticket) ? Ticket.fromJSON(object.ticket) : undefined };
   },
 
   toJSON(message: EventTicketStateUpdated): unknown {
     const obj: any = {};
-    if (message.ticket !== "") {
-      obj.ticket = message.ticket;
+    if (message.ticket !== undefined) {
+      obj.ticket = Ticket.toJSON(message.ticket);
     }
     return obj;
   },
@@ -586,19 +586,21 @@ export const EventTicketStateUpdated = {
   },
   fromPartial<I extends Exact<DeepPartial<EventTicketStateUpdated>, I>>(object: I): EventTicketStateUpdated {
     const message = createBaseEventTicketStateUpdated();
-    message.ticket = object.ticket ?? "";
+    message.ticket = (object.ticket !== undefined && object.ticket !== null)
+      ? Ticket.fromPartial(object.ticket)
+      : undefined;
     return message;
   },
 };
 
 function createBaseEventTicketCommented(): EventTicketCommented {
-  return { ticket: "" };
+  return { ticket: undefined };
 }
 
 export const EventTicketCommented = {
   encode(message: EventTicketCommented, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticket !== "") {
-      writer.uint32(10).string(message.ticket);
+    if (message.ticket !== undefined) {
+      Ticket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -615,7 +617,7 @@ export const EventTicketCommented = {
             break;
           }
 
-          message.ticket = reader.string();
+          message.ticket = Ticket.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -627,13 +629,13 @@ export const EventTicketCommented = {
   },
 
   fromJSON(object: any): EventTicketCommented {
-    return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
+    return { ticket: isSet(object.ticket) ? Ticket.fromJSON(object.ticket) : undefined };
   },
 
   toJSON(message: EventTicketCommented): unknown {
     const obj: any = {};
-    if (message.ticket !== "") {
-      obj.ticket = message.ticket;
+    if (message.ticket !== undefined) {
+      obj.ticket = Ticket.toJSON(message.ticket);
     }
     return obj;
   },
@@ -643,7 +645,9 @@ export const EventTicketCommented = {
   },
   fromPartial<I extends Exact<DeepPartial<EventTicketCommented>, I>>(object: I): EventTicketCommented {
     const message = createBaseEventTicketCommented();
-    message.ticket = object.ticket ?? "";
+    message.ticket = (object.ticket !== undefined && object.ticket !== null)
+      ? Ticket.fromPartial(object.ticket)
+      : undefined;
     return message;
   },
 };
