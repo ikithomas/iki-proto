@@ -28,11 +28,10 @@ export interface EventTicketUpdated {
     ticket: Ticket | undefined;
 }
 export interface EventTicketStateUpdated {
-    ticketId: string;
+    ticket: string;
 }
 export interface EventTicketCommented {
-    ticketId: string;
-    comment: Comment | undefined;
+    ticket: string;
 }
 export declare const User: {
     encode(message: User, writer?: _m0.Writer): _m0.Writer;
@@ -862,15 +861,15 @@ export declare const EventTicketStateUpdated: {
     fromJSON(object: any): EventTicketStateUpdated;
     toJSON(message: EventTicketStateUpdated): unknown;
     create<I extends {
-        ticketId?: string;
+        ticket?: string;
     } & {
-        ticketId?: string;
-    } & { [K in Exclude<keyof I, "ticketId">]: never; }>(base?: I): EventTicketStateUpdated;
+        ticket?: string;
+    } & { [K in Exclude<keyof I, "ticket">]: never; }>(base?: I): EventTicketStateUpdated;
     fromPartial<I_1 extends {
-        ticketId?: string;
+        ticket?: string;
     } & {
-        ticketId?: string;
-    } & { [K_1 in Exclude<keyof I_1, "ticketId">]: never; }>(object: I_1): EventTicketStateUpdated;
+        ticket?: string;
+    } & { [K_1 in Exclude<keyof I_1, "ticket">]: never; }>(object: I_1): EventTicketStateUpdated;
 };
 export declare const EventTicketCommented: {
     encode(message: EventTicketCommented, writer?: _m0.Writer): _m0.Writer;
@@ -878,83 +877,15 @@ export declare const EventTicketCommented: {
     fromJSON(object: any): EventTicketCommented;
     toJSON(message: EventTicketCommented): unknown;
     create<I extends {
-        ticketId?: string;
-        comment?: {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            };
-        };
+        ticket?: string;
     } & {
-        ticketId?: string;
-        comment?: {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            };
-        } & {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            } & {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            } & { [K in Exclude<keyof I["comment"]["author"], keyof User>]: never; };
-        } & { [K_1 in Exclude<keyof I["comment"], keyof Comment>]: never; };
-    } & { [K_2 in Exclude<keyof I, keyof EventTicketCommented>]: never; }>(base?: I): EventTicketCommented;
+        ticket?: string;
+    } & { [K in Exclude<keyof I, "ticket">]: never; }>(base?: I): EventTicketCommented;
     fromPartial<I_1 extends {
-        ticketId?: string;
-        comment?: {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            };
-        };
+        ticket?: string;
     } & {
-        ticketId?: string;
-        comment?: {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            };
-        } & {
-            id?: string;
-            content?: string;
-            author?: {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            } & {
-                id?: string;
-                firstname?: string;
-                lastname?: string;
-                email?: string;
-            } & { [K_3 in Exclude<keyof I_1["comment"]["author"], keyof User>]: never; };
-        } & { [K_4 in Exclude<keyof I_1["comment"], keyof Comment>]: never; };
-    } & { [K_5 in Exclude<keyof I_1, keyof EventTicketCommented>]: never; }>(object: I_1): EventTicketCommented;
+        ticket?: string;
+    } & { [K_1 in Exclude<keyof I_1, "ticket">]: never; }>(object: I_1): EventTicketCommented;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

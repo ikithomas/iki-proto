@@ -339,7 +339,7 @@ func (x *EventTicketUpdated) GetTicket() *Ticket {
 
 type EventTicketStateUpdated struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
+	Ticket        string                 `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -374,17 +374,16 @@ func (*EventTicketStateUpdated) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *EventTicketStateUpdated) GetTicketId() string {
+func (x *EventTicketStateUpdated) GetTicket() string {
 	if x != nil {
-		return x.TicketId
+		return x.Ticket
 	}
 	return ""
 }
 
 type EventTicketCommented struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TicketId      string                 `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
-	Comment       *Comment               `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	Ticket        string                 `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -419,18 +418,11 @@ func (*EventTicketCommented) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *EventTicketCommented) GetTicketId() string {
+func (x *EventTicketCommented) GetTicket() string {
 	if x != nil {
-		return x.TicketId
+		return x.Ticket
 	}
 	return ""
-}
-
-func (x *EventTicketCommented) GetComment() *Comment {
-	if x != nil {
-		return x.Comment
-	}
-	return nil
 }
 
 var File_ikipb_iki_event_ticket_proto protoreflect.FileDescriptor
@@ -463,12 +455,11 @@ const file_ikipb_iki_event_ticket_proto_rawDesc = "" +
 	"\x12EventTicketCreated\x12&\n" +
 	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"<\n" +
 	"\x12EventTicketUpdated\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"6\n" +
-	"\x17EventTicketStateUpdated\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\"^\n" +
-	"\x14EventTicketCommented\x12\x1b\n" +
-	"\tticket_id\x18\x01 \x01(\tR\bticketId\x12)\n" +
-	"\acomment\x18\x02 \x01(\v2\x0f.ticket.CommentR\acommentB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"1\n" +
+	"\x17EventTicketStateUpdated\x12\x16\n" +
+	"\x06ticket\x18\x01 \x01(\tR\x06ticket\".\n" +
+	"\x14EventTicketCommented\x12\x16\n" +
+	"\x06ticket\x18\x01 \x01(\tR\x06ticketB0Z.github.com/ikithomas/iki-proto/ikipb/iki_eventb\x06proto3"
 
 var (
 	file_ikipb_iki_event_ticket_proto_rawDescOnce sync.Once
@@ -499,12 +490,11 @@ var file_ikipb_iki_event_ticket_proto_depIdxs = []int32{
 	1, // 3: ticket.Ticket.comments:type_name -> ticket.Comment
 	2, // 4: ticket.EventTicketCreated.ticket:type_name -> ticket.Ticket
 	2, // 5: ticket.EventTicketUpdated.ticket:type_name -> ticket.Ticket
-	1, // 6: ticket.EventTicketCommented.comment:type_name -> ticket.Comment
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_event_ticket_proto_init() }

@@ -37,12 +37,11 @@ export interface EventTicketUpdated {
 }
 
 export interface EventTicketStateUpdated {
-  ticketId: string;
+  ticket: string;
 }
 
 export interface EventTicketCommented {
-  ticketId: string;
-  comment: Comment | undefined;
+  ticket: string;
 }
 
 function createBaseUser(): User {
@@ -536,13 +535,13 @@ export const EventTicketUpdated = {
 };
 
 function createBaseEventTicketStateUpdated(): EventTicketStateUpdated {
-  return { ticketId: "" };
+  return { ticket: "" };
 }
 
 export const EventTicketStateUpdated = {
   encode(message: EventTicketStateUpdated, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
+    if (message.ticket !== "") {
+      writer.uint32(10).string(message.ticket);
     }
     return writer;
   },
@@ -559,7 +558,7 @@ export const EventTicketStateUpdated = {
             break;
           }
 
-          message.ticketId = reader.string();
+          message.ticket = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -571,13 +570,13 @@ export const EventTicketStateUpdated = {
   },
 
   fromJSON(object: any): EventTicketStateUpdated {
-    return { ticketId: isSet(object.ticketId) ? String(object.ticketId) : "" };
+    return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
   },
 
   toJSON(message: EventTicketStateUpdated): unknown {
     const obj: any = {};
-    if (message.ticketId !== "") {
-      obj.ticketId = message.ticketId;
+    if (message.ticket !== "") {
+      obj.ticket = message.ticket;
     }
     return obj;
   },
@@ -587,22 +586,19 @@ export const EventTicketStateUpdated = {
   },
   fromPartial<I extends Exact<DeepPartial<EventTicketStateUpdated>, I>>(object: I): EventTicketStateUpdated {
     const message = createBaseEventTicketStateUpdated();
-    message.ticketId = object.ticketId ?? "";
+    message.ticket = object.ticket ?? "";
     return message;
   },
 };
 
 function createBaseEventTicketCommented(): EventTicketCommented {
-  return { ticketId: "", comment: undefined };
+  return { ticket: "" };
 }
 
 export const EventTicketCommented = {
   encode(message: EventTicketCommented, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ticketId !== "") {
-      writer.uint32(10).string(message.ticketId);
-    }
-    if (message.comment !== undefined) {
-      Comment.encode(message.comment, writer.uint32(18).fork()).ldelim();
+    if (message.ticket !== "") {
+      writer.uint32(10).string(message.ticket);
     }
     return writer;
   },
@@ -619,14 +615,7 @@ export const EventTicketCommented = {
             break;
           }
 
-          message.ticketId = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.comment = Comment.decode(reader, reader.uint32());
+          message.ticket = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -638,19 +627,13 @@ export const EventTicketCommented = {
   },
 
   fromJSON(object: any): EventTicketCommented {
-    return {
-      ticketId: isSet(object.ticketId) ? String(object.ticketId) : "",
-      comment: isSet(object.comment) ? Comment.fromJSON(object.comment) : undefined,
-    };
+    return { ticket: isSet(object.ticket) ? String(object.ticket) : "" };
   },
 
   toJSON(message: EventTicketCommented): unknown {
     const obj: any = {};
-    if (message.ticketId !== "") {
-      obj.ticketId = message.ticketId;
-    }
-    if (message.comment !== undefined) {
-      obj.comment = Comment.toJSON(message.comment);
+    if (message.ticket !== "") {
+      obj.ticket = message.ticket;
     }
     return obj;
   },
@@ -660,10 +643,7 @@ export const EventTicketCommented = {
   },
   fromPartial<I extends Exact<DeepPartial<EventTicketCommented>, I>>(object: I): EventTicketCommented {
     const message = createBaseEventTicketCommented();
-    message.ticketId = object.ticketId ?? "";
-    message.comment = (object.comment !== undefined && object.comment !== null)
-      ? Comment.fromPartial(object.comment)
-      : undefined;
+    message.ticket = object.ticket ?? "";
     return message;
   },
 };
