@@ -78,8 +78,8 @@ type User struct {
 	GivenName        string                 `protobuf:"bytes,3,opt,name=given_name,json=givenName,proto3" json:"given_name,omitempty"`
 	FamilyName       string                 `protobuf:"bytes,4,opt,name=family_name,json=familyName,proto3" json:"family_name,omitempty"`
 	Active           bool                   `protobuf:"varint,9,opt,name=active,proto3" json:"active,omitempty"`
-	LastLoginAt      int64                  `protobuf:"varint,10,opt,name=last_login_at,json=lastLoginAt,proto3" json:"last_login_at,omitempty"`
-	LastActivityAt   int64                  `protobuf:"varint,11,opt,name=last_activity_at,json=lastActivityAt,proto3" json:"last_activity_at,omitempty"`
+	LastLoginAt      *int64                 `protobuf:"varint,10,opt,name=last_login_at,json=lastLoginAt,proto3,oneof" json:"last_login_at,omitempty"`
+	LastActivityAt   *int64                 `protobuf:"varint,11,opt,name=last_activity_at,json=lastActivityAt,proto3,oneof" json:"last_activity_at,omitempty"`
 	ScimLastSyncedAt *int64                 `protobuf:"varint,12,opt,name=scim_last_synced_at,json=scimLastSyncedAt,proto3,oneof" json:"scim_last_synced_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -151,15 +151,15 @@ func (x *User) GetActive() bool {
 }
 
 func (x *User) GetLastLoginAt() int64 {
-	if x != nil {
-		return x.LastLoginAt
+	if x != nil && x.LastLoginAt != nil {
+		return *x.LastLoginAt
 	}
 	return 0
 }
 
 func (x *User) GetLastActivityAt() int64 {
-	if x != nil {
-		return x.LastActivityAt
+	if x != nil && x.LastActivityAt != nil {
+		return *x.LastActivityAt
 	}
 	return 0
 }
@@ -575,7 +575,7 @@ var File_ikipb_iki_iam_iam_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"\n" +
-	"\x17ikipb/iki_iam/iam.proto\x12\x03iam\"\xb6\x02\n" +
+	"\x17ikipb/iki_iam/iam.proto\x12\x03iam\"\xe7\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1d\n" +
@@ -583,11 +583,13 @@ const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"given_name\x18\x03 \x01(\tR\tgivenName\x12\x1f\n" +
 	"\vfamily_name\x18\x04 \x01(\tR\n" +
 	"familyName\x12\x16\n" +
-	"\x06active\x18\t \x01(\bR\x06active\x12\"\n" +
+	"\x06active\x18\t \x01(\bR\x06active\x12'\n" +
 	"\rlast_login_at\x18\n" +
-	" \x01(\x03R\vlastLoginAt\x12(\n" +
-	"\x10last_activity_at\x18\v \x01(\x03R\x0elastActivityAt\x122\n" +
-	"\x13scim_last_synced_at\x18\f \x01(\x03H\x00R\x10scimLastSyncedAt\x88\x01\x01B\x16\n" +
+	" \x01(\x03H\x00R\vlastLoginAt\x88\x01\x01\x12-\n" +
+	"\x10last_activity_at\x18\v \x01(\x03H\x01R\x0elastActivityAt\x88\x01\x01\x122\n" +
+	"\x13scim_last_synced_at\x18\f \x01(\x03H\x02R\x10scimLastSyncedAt\x88\x01\x01B\x10\n" +
+	"\x0e_last_login_atB\x13\n" +
+	"\x11_last_activity_atB\x16\n" +
 	"\x14_scim_last_synced_atJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\t\"\xf7\x01\n" +
 	"\n" +
 	"UserDetail\x12\x1d\n" +

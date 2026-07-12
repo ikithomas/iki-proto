@@ -54,8 +54,8 @@ function createBaseUser() {
         givenName: "",
         familyName: "",
         active: false,
-        lastLoginAt: 0,
-        lastActivityAt: 0,
+        lastLoginAt: undefined,
+        lastActivityAt: undefined,
         scimLastSyncedAt: undefined,
     };
 }
@@ -76,10 +76,10 @@ exports.User = {
         if (message.active === true) {
             writer.uint32(72).bool(message.active);
         }
-        if (message.lastLoginAt !== 0) {
+        if (message.lastLoginAt !== undefined) {
             writer.uint32(80).int64(message.lastLoginAt);
         }
-        if (message.lastActivityAt !== 0) {
+        if (message.lastActivityAt !== undefined) {
             writer.uint32(88).int64(message.lastActivityAt);
         }
         if (message.scimLastSyncedAt !== undefined) {
@@ -157,8 +157,8 @@ exports.User = {
             givenName: isSet(object.givenName) ? String(object.givenName) : "",
             familyName: isSet(object.familyName) ? String(object.familyName) : "",
             active: isSet(object.active) ? Boolean(object.active) : false,
-            lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
-            lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
+            lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : undefined,
+            lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : undefined,
             scimLastSyncedAt: isSet(object.scimLastSyncedAt) ? Number(object.scimLastSyncedAt) : undefined,
         };
     },
@@ -179,10 +179,10 @@ exports.User = {
         if (message.active === true) {
             obj.active = message.active;
         }
-        if (message.lastLoginAt !== 0) {
+        if (message.lastLoginAt !== undefined) {
             obj.lastLoginAt = Math.round(message.lastLoginAt);
         }
-        if (message.lastActivityAt !== 0) {
+        if (message.lastActivityAt !== undefined) {
             obj.lastActivityAt = Math.round(message.lastActivityAt);
         }
         if (message.scimLastSyncedAt !== undefined) {
@@ -201,8 +201,8 @@ exports.User = {
         message.givenName = (_c = object.givenName) !== null && _c !== void 0 ? _c : "";
         message.familyName = (_d = object.familyName) !== null && _d !== void 0 ? _d : "";
         message.active = (_e = object.active) !== null && _e !== void 0 ? _e : false;
-        message.lastLoginAt = (_f = object.lastLoginAt) !== null && _f !== void 0 ? _f : 0;
-        message.lastActivityAt = (_g = object.lastActivityAt) !== null && _g !== void 0 ? _g : 0;
+        message.lastLoginAt = (_f = object.lastLoginAt) !== null && _f !== void 0 ? _f : undefined;
+        message.lastActivityAt = (_g = object.lastActivityAt) !== null && _g !== void 0 ? _g : undefined;
         message.scimLastSyncedAt = (_h = object.scimLastSyncedAt) !== null && _h !== void 0 ? _h : undefined;
         return message;
     },

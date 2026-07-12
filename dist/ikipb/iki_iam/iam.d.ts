@@ -15,8 +15,8 @@ export interface User {
     givenName: string;
     familyName: string;
     active: boolean;
-    lastLoginAt: number;
-    lastActivityAt: number;
+    lastLoginAt?: number | undefined;
+    lastActivityAt?: number | undefined;
     scimLastSyncedAt?: number | undefined;
 }
 export interface UserDetail {
@@ -72,8 +72,8 @@ export declare const User: {
         givenName?: string;
         familyName?: string;
         active?: boolean;
-        lastLoginAt?: number;
-        lastActivityAt?: number;
+        lastLoginAt?: number | undefined;
+        lastActivityAt?: number | undefined;
         scimLastSyncedAt?: number | undefined;
     } & {
         id?: string;
@@ -81,8 +81,8 @@ export declare const User: {
         givenName?: string;
         familyName?: string;
         active?: boolean;
-        lastLoginAt?: number;
-        lastActivityAt?: number;
+        lastLoginAt?: number | undefined;
+        lastActivityAt?: number | undefined;
         scimLastSyncedAt?: number | undefined;
     } & { [K in Exclude<keyof I, keyof User>]: never; }>(base?: I): User;
     fromPartial<I_1 extends {
@@ -91,8 +91,8 @@ export declare const User: {
         givenName?: string;
         familyName?: string;
         active?: boolean;
-        lastLoginAt?: number;
-        lastActivityAt?: number;
+        lastLoginAt?: number | undefined;
+        lastActivityAt?: number | undefined;
         scimLastSyncedAt?: number | undefined;
     } & {
         id?: string;
@@ -100,8 +100,8 @@ export declare const User: {
         givenName?: string;
         familyName?: string;
         active?: boolean;
-        lastLoginAt?: number;
-        lastActivityAt?: number;
+        lastLoginAt?: number | undefined;
+        lastActivityAt?: number | undefined;
         scimLastSyncedAt?: number | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof User>]: never; }>(object: I_1): User;
 };
@@ -117,8 +117,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         };
         groups?: {
@@ -164,8 +164,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         } & {
             id?: string;
@@ -173,8 +173,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
         groups?: {
@@ -377,8 +377,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         };
         groups?: {
@@ -424,8 +424,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         } & {
             id?: string;
@@ -433,8 +433,8 @@ export declare const UserDetail: {
             givenName?: string;
             familyName?: string;
             active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
+            lastLoginAt?: number | undefined;
+            lastActivityAt?: number | undefined;
             scimLastSyncedAt?: number | undefined;
         } & { [K_18 in Exclude<keyof I_1["user"], keyof User>]: never; };
         groups?: {

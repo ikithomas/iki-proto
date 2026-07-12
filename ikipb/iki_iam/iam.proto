@@ -15,8 +15,8 @@ message User {
   string family_name = 4;
 
   bool active = 9;
-  int64 last_login_at = 10;
-  int64 last_activity_at = 11;
+  optional int64 last_login_at = 10;
+  optional int64 last_activity_at = 11;
   optional int64 scim_last_synced_at = 12;
 }
 
