@@ -179,10 +179,8 @@ type UserDetail struct {
 	DirectRoles []*Role `protobuf:"bytes,3,rep,name=direct_roles,json=directRoles,proto3" json:"direct_roles,omitempty"`
 	// Union of all roles from group memberships and direct assignments.
 	EffectiveRoles []*Role `protobuf:"bytes,4,rep,name=effective_roles,json=effectiveRoles,proto3" json:"effective_roles,omitempty"`
-	// Flattened permissions derived from all effective roles.
-	EffectivePermissions []*Permission `protobuf:"bytes,5,rep,name=effective_permissions,json=effectivePermissions,proto3" json:"effective_permissions,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UserDetail) Reset() {
@@ -239,13 +237,6 @@ func (x *UserDetail) GetDirectRoles() []*Role {
 func (x *UserDetail) GetEffectiveRoles() []*Role {
 	if x != nil {
 		return x.EffectiveRoles
-	}
-	return nil
-}
-
-func (x *UserDetail) GetEffectivePermissions() []*Permission {
-	if x != nil {
-		return x.EffectivePermissions
 	}
 	return nil
 }
@@ -590,15 +581,14 @@ const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"\x13scim_last_synced_at\x18\f \x01(\x03H\x02R\x10scimLastSyncedAt\x88\x01\x01B\x10\n" +
 	"\x0e_last_login_atB\x13\n" +
 	"\x11_last_activity_atB\x16\n" +
-	"\x14_scim_last_synced_atJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\t\"\xf7\x01\n" +
+	"\x14_scim_last_synced_atJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\t\"\xb1\x01\n" +
 	"\n" +
 	"UserDetail\x12\x1d\n" +
 	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\x12\"\n" +
 	"\x06groups\x18\x02 \x03(\v2\n" +
 	".iam.GroupR\x06groups\x12,\n" +
 	"\fdirect_roles\x18\x03 \x03(\v2\t.iam.RoleR\vdirectRoles\x122\n" +
-	"\x0feffective_roles\x18\x04 \x03(\v2\t.iam.RoleR\x0eeffectiveRoles\x12D\n" +
-	"\x15effective_permissions\x18\x05 \x03(\v2\x0f.iam.PermissionR\x14effectivePermissions\"Q\n" +
+	"\x0feffective_roles\x18\x04 \x03(\v2\t.iam.RoleR\x0eeffectiveRoles\"Q\n" +
 	"\n" +
 	"Permission\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
@@ -659,15 +649,14 @@ var file_ikipb_iki_iam_iam_proto_depIdxs = []int32{
 	5, // 1: iam.UserDetail.groups:type_name -> iam.Group
 	4, // 2: iam.UserDetail.direct_roles:type_name -> iam.Role
 	4, // 3: iam.UserDetail.effective_roles:type_name -> iam.Role
-	3, // 4: iam.UserDetail.effective_permissions:type_name -> iam.Permission
-	3, // 5: iam.Role.permissions:type_name -> iam.Permission
-	4, // 6: iam.Group.roles:type_name -> iam.Role
-	7, // 7: iam.Service.secrets:type_name -> iam.Secret
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	3, // 4: iam.Role.permissions:type_name -> iam.Permission
+	4, // 5: iam.Group.roles:type_name -> iam.Role
+	7, // 6: iam.Service.secrets:type_name -> iam.Secret
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_iam_iam_proto_init() }

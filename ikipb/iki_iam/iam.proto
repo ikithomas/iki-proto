@@ -30,9 +30,6 @@ message UserDetail {
 
   // Union of all roles from group memberships and direct assignments.
   repeated Role effective_roles = 4;
-
-  // Flattened permissions derived from all effective roles.
-  repeated Permission effective_permissions = 5;
 }
 
 message Permission {
