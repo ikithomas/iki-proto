@@ -596,7 +596,7 @@ func (x *GetRoleRequest) GetId() string {
 
 type GetRoleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Role          *iki_iam.Role          `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
+	Role          *iki_iam.RoleDetail    `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -631,7 +631,7 @@ func (*GetRoleResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *GetRoleResponse) GetRole() *iki_iam.Role {
+func (x *GetRoleResponse) GetRole() *iki_iam.RoleDetail {
 	if x != nil {
 		return x.Role
 	}
@@ -956,7 +956,7 @@ func (x *SetRolePermissionsRequest) GetPermissionIds() []string {
 
 type SetRolePermissionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Role          *iki_iam.Role          `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
+	Role          *iki_iam.RoleDetail    `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -991,7 +991,7 @@ func (*SetRolePermissionsResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *SetRolePermissionsResponse) GetRole() *iki_iam.Role {
+func (x *SetRolePermissionsResponse) GetRole() *iki_iam.RoleDetail {
 	if x != nil {
 		return x.Role
 	}
@@ -1124,7 +1124,7 @@ func (x *GetGroupRequest) GetId() string {
 
 type GetGroupResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *iki_iam.Group         `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	Group         *iki_iam.GroupDetail   `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1159,7 +1159,7 @@ func (*GetGroupResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *GetGroupResponse) GetGroup() *iki_iam.Group {
+func (x *GetGroupResponse) GetGroup() *iki_iam.GroupDetail {
 	if x != nil {
 		return x.Group
 	}
@@ -1484,7 +1484,7 @@ func (x *SetGroupRolesRequest) GetRoleIds() []string {
 
 type SetGroupRolesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *iki_iam.Group         `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	Group         *iki_iam.GroupDetail   `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1519,7 +1519,7 @@ func (*SetGroupRolesResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{33}
 }
 
-func (x *SetGroupRolesResponse) GetGroup() *iki_iam.Group {
+func (x *SetGroupRolesResponse) GetGroup() *iki_iam.GroupDetail {
 	if x != nil {
 		return x.Group
 	}
@@ -2494,9 +2494,9 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x11ListRolesResponse\x12\x1f\n" +
 	"\x05roles\x18\x01 \x03(\v2\t.iam.RoleR\x05roles\" \n" +
 	"\x0eGetRoleRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
-	"\x0fGetRoleResponse\x12\x1d\n" +
-	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"'\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"6\n" +
+	"\x0fGetRoleResponse\x12#\n" +
+	"\x04role\x18\x01 \x01(\v2\x0f.iam.RoleDetailR\x04role\"'\n" +
 	"\x11CreateRoleRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"3\n" +
 	"\x12CreateRoleResponse\x12\x1d\n" +
@@ -2512,18 +2512,17 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x12DeleteRoleResponse\"[\n" +
 	"\x19SetRolePermissionsRequest\x12\x17\n" +
 	"\arole_id\x18\x01 \x01(\tR\x06roleId\x12%\n" +
-	"\x0epermission_ids\x18\x02 \x03(\tR\rpermissionIds\";\n" +
-	"\x1aSetRolePermissionsResponse\x12\x1d\n" +
-	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"\x13\n" +
+	"\x0epermission_ids\x18\x02 \x03(\tR\rpermissionIds\"A\n" +
+	"\x1aSetRolePermissionsResponse\x12#\n" +
+	"\x04role\x18\x01 \x01(\v2\x0f.iam.RoleDetailR\x04role\"\x13\n" +
 	"\x11ListGroupsRequest\"8\n" +
 	"\x12ListGroupsResponse\x12\"\n" +
 	"\x06groups\x18\x01 \x03(\v2\n" +
 	".iam.GroupR\x06groups\"!\n" +
 	"\x0fGetGroupRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
-	"\x10GetGroupResponse\x12 \n" +
-	"\x05group\x18\x01 \x01(\v2\n" +
-	".iam.GroupR\x05group\"(\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\":\n" +
+	"\x10GetGroupResponse\x12&\n" +
+	"\x05group\x18\x01 \x01(\v2\x10.iam.GroupDetailR\x05group\"(\n" +
 	"\x12CreateGroupRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"7\n" +
 	"\x13CreateGroupResponse\x12 \n" +
@@ -2541,10 +2540,9 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x13DeleteGroupResponse\"L\n" +
 	"\x14SetGroupRolesRequest\x12\x19\n" +
 	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\brole_ids\x18\x02 \x03(\tR\aroleIds\"9\n" +
-	"\x15SetGroupRolesResponse\x12 \n" +
-	"\x05group\x18\x01 \x01(\v2\n" +
-	".iam.GroupR\x05group\"\x12\n" +
+	"\brole_ids\x18\x02 \x03(\tR\aroleIds\"?\n" +
+	"\x15SetGroupRolesResponse\x12&\n" +
+	"\x05group\x18\x01 \x01(\v2\x10.iam.GroupDetailR\x05group\"\x12\n" +
 	"\x10ListUsersRequest\"4\n" +
 	"\x11ListUsersResponse\x12\x1f\n" +
 	"\x05users\x18\x01 \x03(\v2\t.iam.UserR\x05users\"\xd8\x01\n" +
@@ -2704,9 +2702,11 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
 	(*SetUserGroupsResponse)(nil),       // 53: adminsvc.SetUserGroupsResponse
 	(*iki_iam.Permission)(nil),          // 54: iam.Permission
 	(*iki_iam.Role)(nil),                // 55: iam.Role
-	(*iki_iam.Group)(nil),               // 56: iam.Group
-	(*iki_iam.User)(nil),                // 57: iam.User
-	(*iki_iam.UserDetail)(nil),          // 58: iam.UserDetail
+	(*iki_iam.RoleDetail)(nil),          // 56: iam.RoleDetail
+	(*iki_iam.Group)(nil),               // 57: iam.Group
+	(*iki_iam.GroupDetail)(nil),         // 58: iam.GroupDetail
+	(*iki_iam.User)(nil),                // 59: iam.User
+	(*iki_iam.UserDetail)(nil),          // 60: iam.UserDetail
 }
 var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	54, // 0: adminsvc.ListPermissionsResponse.permissions:type_name -> iam.Permission
@@ -2714,22 +2714,22 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	54, // 2: adminsvc.CreatePermissionResponse.permission:type_name -> iam.Permission
 	54, // 3: adminsvc.PatchPermissionResponse.permission:type_name -> iam.Permission
 	55, // 4: adminsvc.ListRolesResponse.roles:type_name -> iam.Role
-	55, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.Role
+	56, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.RoleDetail
 	55, // 6: adminsvc.CreateRoleResponse.role:type_name -> iam.Role
 	55, // 7: adminsvc.PatchRoleResponse.role:type_name -> iam.Role
-	55, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.Role
-	56, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
-	56, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.Group
-	56, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
-	56, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
-	56, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.Group
-	57, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
-	57, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
-	57, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
-	58, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
-	57, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
-	58, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
-	58, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
+	56, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.RoleDetail
+	57, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
+	58, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.GroupDetail
+	57, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
+	57, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
+	58, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
+	59, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
+	59, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
+	59, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
+	60, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
+	59, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
+	60, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
+	60, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
 	34, // 21: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
 	40, // 22: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
 	36, // 23: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest

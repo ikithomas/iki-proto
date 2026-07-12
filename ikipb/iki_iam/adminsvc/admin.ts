@@ -2,7 +2,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import _m0 from "protobufjs/minimal";
-import { Group, Permission, Role, User, UserDetail } from "../iam";
+import { Group, GroupDetail, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
 
 export const protobufPackage = "adminsvc";
 
@@ -59,7 +59,7 @@ export interface GetRoleRequest {
 }
 
 export interface GetRoleResponse {
-  role: Role | undefined;
+  role: RoleDetail | undefined;
 }
 
 export interface CreateRoleRequest {
@@ -92,7 +92,7 @@ export interface SetRolePermissionsRequest {
 }
 
 export interface SetRolePermissionsResponse {
-  role: Role | undefined;
+  role: RoleDetail | undefined;
 }
 
 export interface ListGroupsRequest {
@@ -107,7 +107,7 @@ export interface GetGroupRequest {
 }
 
 export interface GetGroupResponse {
-  group: Group | undefined;
+  group: GroupDetail | undefined;
 }
 
 export interface CreateGroupRequest {
@@ -140,7 +140,7 @@ export interface SetGroupRolesRequest {
 }
 
 export interface SetGroupRolesResponse {
-  group: Group | undefined;
+  group: GroupDetail | undefined;
 }
 
 export interface ListUsersRequest {
@@ -992,7 +992,7 @@ function createBaseGetRoleResponse(): GetRoleResponse {
 export const GetRoleResponse = {
   encode(message: GetRoleResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.role !== undefined) {
-      Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+      RoleDetail.encode(message.role, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1009,7 +1009,7 @@ export const GetRoleResponse = {
             break;
           }
 
-          message.role = Role.decode(reader, reader.uint32());
+          message.role = RoleDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1021,13 +1021,13 @@ export const GetRoleResponse = {
   },
 
   fromJSON(object: any): GetRoleResponse {
-    return { role: isSet(object.role) ? Role.fromJSON(object.role) : undefined };
+    return { role: isSet(object.role) ? RoleDetail.fromJSON(object.role) : undefined };
   },
 
   toJSON(message: GetRoleResponse): unknown {
     const obj: any = {};
     if (message.role !== undefined) {
-      obj.role = Role.toJSON(message.role);
+      obj.role = RoleDetail.toJSON(message.role);
     }
     return obj;
   },
@@ -1037,7 +1037,9 @@ export const GetRoleResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetRoleResponse>, I>>(object: I): GetRoleResponse {
     const message = createBaseGetRoleResponse();
-    message.role = (object.role !== undefined && object.role !== null) ? Role.fromPartial(object.role) : undefined;
+    message.role = (object.role !== undefined && object.role !== null)
+      ? RoleDetail.fromPartial(object.role)
+      : undefined;
     return message;
   },
 };
@@ -1468,7 +1470,7 @@ function createBaseSetRolePermissionsResponse(): SetRolePermissionsResponse {
 export const SetRolePermissionsResponse = {
   encode(message: SetRolePermissionsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.role !== undefined) {
-      Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+      RoleDetail.encode(message.role, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1485,7 +1487,7 @@ export const SetRolePermissionsResponse = {
             break;
           }
 
-          message.role = Role.decode(reader, reader.uint32());
+          message.role = RoleDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1497,13 +1499,13 @@ export const SetRolePermissionsResponse = {
   },
 
   fromJSON(object: any): SetRolePermissionsResponse {
-    return { role: isSet(object.role) ? Role.fromJSON(object.role) : undefined };
+    return { role: isSet(object.role) ? RoleDetail.fromJSON(object.role) : undefined };
   },
 
   toJSON(message: SetRolePermissionsResponse): unknown {
     const obj: any = {};
     if (message.role !== undefined) {
-      obj.role = Role.toJSON(message.role);
+      obj.role = RoleDetail.toJSON(message.role);
     }
     return obj;
   },
@@ -1513,7 +1515,9 @@ export const SetRolePermissionsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<SetRolePermissionsResponse>, I>>(object: I): SetRolePermissionsResponse {
     const message = createBaseSetRolePermissionsResponse();
-    message.role = (object.role !== undefined && object.role !== null) ? Role.fromPartial(object.role) : undefined;
+    message.role = (object.role !== undefined && object.role !== null)
+      ? RoleDetail.fromPartial(object.role)
+      : undefined;
     return message;
   },
 };
@@ -1682,7 +1686,7 @@ function createBaseGetGroupResponse(): GetGroupResponse {
 export const GetGroupResponse = {
   encode(message: GetGroupResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.group !== undefined) {
-      Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+      GroupDetail.encode(message.group, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1699,7 +1703,7 @@ export const GetGroupResponse = {
             break;
           }
 
-          message.group = Group.decode(reader, reader.uint32());
+          message.group = GroupDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -1711,13 +1715,13 @@ export const GetGroupResponse = {
   },
 
   fromJSON(object: any): GetGroupResponse {
-    return { group: isSet(object.group) ? Group.fromJSON(object.group) : undefined };
+    return { group: isSet(object.group) ? GroupDetail.fromJSON(object.group) : undefined };
   },
 
   toJSON(message: GetGroupResponse): unknown {
     const obj: any = {};
     if (message.group !== undefined) {
-      obj.group = Group.toJSON(message.group);
+      obj.group = GroupDetail.toJSON(message.group);
     }
     return obj;
   },
@@ -1727,7 +1731,9 @@ export const GetGroupResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetGroupResponse>, I>>(object: I): GetGroupResponse {
     const message = createBaseGetGroupResponse();
-    message.group = (object.group !== undefined && object.group !== null) ? Group.fromPartial(object.group) : undefined;
+    message.group = (object.group !== undefined && object.group !== null)
+      ? GroupDetail.fromPartial(object.group)
+      : undefined;
     return message;
   },
 };
@@ -2158,7 +2164,7 @@ function createBaseSetGroupRolesResponse(): SetGroupRolesResponse {
 export const SetGroupRolesResponse = {
   encode(message: SetGroupRolesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.group !== undefined) {
-      Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+      GroupDetail.encode(message.group, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -2175,7 +2181,7 @@ export const SetGroupRolesResponse = {
             break;
           }
 
-          message.group = Group.decode(reader, reader.uint32());
+          message.group = GroupDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2187,13 +2193,13 @@ export const SetGroupRolesResponse = {
   },
 
   fromJSON(object: any): SetGroupRolesResponse {
-    return { group: isSet(object.group) ? Group.fromJSON(object.group) : undefined };
+    return { group: isSet(object.group) ? GroupDetail.fromJSON(object.group) : undefined };
   },
 
   toJSON(message: SetGroupRolesResponse): unknown {
     const obj: any = {};
     if (message.group !== undefined) {
-      obj.group = Group.toJSON(message.group);
+      obj.group = GroupDetail.toJSON(message.group);
     }
     return obj;
   },
@@ -2203,7 +2209,9 @@ export const SetGroupRolesResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<SetGroupRolesResponse>, I>>(object: I): SetGroupRolesResponse {
     const message = createBaseSetGroupRolesResponse();
-    message.group = (object.group !== undefined && object.group !== null) ? Group.fromPartial(object.group) : undefined;
+    message.group = (object.group !== undefined && object.group !== null)
+      ? GroupDetail.fromPartial(object.group)
+      : undefined;
     return message;
   },
 };

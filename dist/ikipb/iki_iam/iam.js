@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Secret = exports.Service = exports.Group = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Secret = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -387,7 +387,7 @@ exports.Permission = {
     },
 };
 function createBaseRole() {
-    return { id: "", name: "", permissions: [] };
+    return { id: "", name: "" };
 }
 exports.Role = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -396,9 +396,6 @@ exports.Role = {
         }
         if (message.name !== "") {
             writer.uint32(18).string(message.name);
-        }
-        for (const v of message.permissions) {
-            exports.Permission.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -421,8 +418,66 @@ exports.Role = {
                     }
                     message.name = reader.string();
                     continue;
-                case 3:
-                    if (tag !== 26) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Role.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseRole();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        return message;
+    },
+};
+function createBaseRoleDetail() {
+    return { role: undefined, permissions: [] };
+}
+exports.RoleDetail = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.role !== undefined) {
+            exports.Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.permissions) {
+            exports.Permission.encode(v, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseRoleDetail();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.role = exports.Role.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
                         break;
                     }
                     message.permissions.push(exports.Permission.decode(reader, reader.uint32()));
@@ -437,19 +492,15 @@ exports.Role = {
     },
     fromJSON(object) {
         return {
-            id: isSet(object.id) ? String(object.id) : "",
-            name: isSet(object.name) ? String(object.name) : "",
+            role: isSet(object.role) ? exports.Role.fromJSON(object.role) : undefined,
             permissions: Array.isArray(object === null || object === void 0 ? void 0 : object.permissions) ? object.permissions.map((e) => exports.Permission.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if (message.id !== "") {
-            obj.id = message.id;
-        }
-        if (message.name !== "") {
-            obj.name = message.name;
+        if (message.role !== undefined) {
+            obj.role = exports.Role.toJSON(message.role);
         }
         if ((_a = message.permissions) === null || _a === void 0 ? void 0 : _a.length) {
             obj.permissions = message.permissions.map((e) => exports.Permission.toJSON(e));
@@ -457,19 +508,18 @@ exports.Role = {
         return obj;
     },
     create(base) {
-        return exports.Role.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.RoleDetail.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c;
-        const message = createBaseRole();
-        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
-        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
-        message.permissions = ((_c = object.permissions) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Permission.fromPartial(e))) || [];
+        var _a;
+        const message = createBaseRoleDetail();
+        message.role = (object.role !== undefined && object.role !== null) ? exports.Role.fromPartial(object.role) : undefined;
+        message.permissions = ((_a = object.permissions) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Permission.fromPartial(e))) || [];
         return message;
     },
 };
 function createBaseGroup() {
-    return { id: "", name: "", roles: [] };
+    return { id: "", name: "" };
 }
 exports.Group = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -478,9 +528,6 @@ exports.Group = {
         }
         if (message.name !== "") {
             writer.uint32(18).string(message.name);
-        }
-        for (const v of message.roles) {
-            exports.Role.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -503,8 +550,66 @@ exports.Group = {
                     }
                     message.name = reader.string();
                     continue;
-                case 3:
-                    if (tag !== 26) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Group.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseGroup();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        return message;
+    },
+};
+function createBaseGroupDetail() {
+    return { group: undefined, roles: [] };
+}
+exports.GroupDetail = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.group !== undefined) {
+            exports.Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.roles) {
+            exports.Role.encode(v, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseGroupDetail();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.group = exports.Group.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
                         break;
                     }
                     message.roles.push(exports.Role.decode(reader, reader.uint32()));
@@ -519,19 +624,15 @@ exports.Group = {
     },
     fromJSON(object) {
         return {
-            id: isSet(object.id) ? String(object.id) : "",
-            name: isSet(object.name) ? String(object.name) : "",
+            group: isSet(object.group) ? exports.Group.fromJSON(object.group) : undefined,
             roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Role.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
         var _a;
         const obj = {};
-        if (message.id !== "") {
-            obj.id = message.id;
-        }
-        if (message.name !== "") {
-            obj.name = message.name;
+        if (message.group !== undefined) {
+            obj.group = exports.Group.toJSON(message.group);
         }
         if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
             obj.roles = message.roles.map((e) => exports.Role.toJSON(e));
@@ -539,14 +640,13 @@ exports.Group = {
         return obj;
     },
     create(base) {
-        return exports.Group.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.GroupDetail.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c;
-        const message = createBaseGroup();
-        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
-        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
-        message.roles = ((_c = object.roles) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Role.fromPartial(e))) || [];
+        var _a;
+        const message = createBaseGroupDetail();
+        message.group = (object.group !== undefined && object.group !== null) ? exports.Group.fromPartial(object.group) : undefined;
+        message.roles = ((_a = object.roles) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Role.fromPartial(e))) || [];
         return message;
     },
 };

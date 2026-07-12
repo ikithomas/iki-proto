@@ -109,7 +109,7 @@ message GetRoleRequest {
 }
 
 message GetRoleResponse {
-  iam.Role role = 1;
+  iam.RoleDetail role = 1;
 }
 
 message CreateRoleRequest {
@@ -145,7 +145,7 @@ message SetRolePermissionsRequest {
 }
 
 message SetRolePermissionsResponse {
-  iam.Role role = 1;
+  iam.RoleDetail role = 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -163,7 +163,7 @@ message GetGroupRequest {
 }
 
 message GetGroupResponse {
-  iam.Group group = 1;
+  iam.GroupDetail group = 1;
 }
 
 message CreateGroupRequest {
@@ -199,7 +199,7 @@ message SetGroupRolesRequest {
 }
 
 message SetGroupRolesResponse {
-  iam.Group group = 1;
+  iam.GroupDetail group = 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

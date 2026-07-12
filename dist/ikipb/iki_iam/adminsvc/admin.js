@@ -691,7 +691,7 @@ function createBaseGetRoleResponse() {
 exports.GetRoleResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.role !== undefined) {
-            iam_1.Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+            iam_1.RoleDetail.encode(message.role, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -706,7 +706,7 @@ exports.GetRoleResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.role = iam_1.Role.decode(reader, reader.uint32());
+                    message.role = iam_1.RoleDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -717,12 +717,12 @@ exports.GetRoleResponse = {
         return message;
     },
     fromJSON(object) {
-        return { role: isSet(object.role) ? iam_1.Role.fromJSON(object.role) : undefined };
+        return { role: isSet(object.role) ? iam_1.RoleDetail.fromJSON(object.role) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.role !== undefined) {
-            obj.role = iam_1.Role.toJSON(message.role);
+            obj.role = iam_1.RoleDetail.toJSON(message.role);
         }
         return obj;
     },
@@ -731,7 +731,9 @@ exports.GetRoleResponse = {
     },
     fromPartial(object) {
         const message = createBaseGetRoleResponse();
-        message.role = (object.role !== undefined && object.role !== null) ? iam_1.Role.fromPartial(object.role) : undefined;
+        message.role = (object.role !== undefined && object.role !== null)
+            ? iam_1.RoleDetail.fromPartial(object.role)
+            : undefined;
         return message;
     },
 };
@@ -1115,7 +1117,7 @@ function createBaseSetRolePermissionsResponse() {
 exports.SetRolePermissionsResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.role !== undefined) {
-            iam_1.Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+            iam_1.RoleDetail.encode(message.role, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -1130,7 +1132,7 @@ exports.SetRolePermissionsResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.role = iam_1.Role.decode(reader, reader.uint32());
+                    message.role = iam_1.RoleDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -1141,12 +1143,12 @@ exports.SetRolePermissionsResponse = {
         return message;
     },
     fromJSON(object) {
-        return { role: isSet(object.role) ? iam_1.Role.fromJSON(object.role) : undefined };
+        return { role: isSet(object.role) ? iam_1.RoleDetail.fromJSON(object.role) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.role !== undefined) {
-            obj.role = iam_1.Role.toJSON(message.role);
+            obj.role = iam_1.RoleDetail.toJSON(message.role);
         }
         return obj;
     },
@@ -1155,7 +1157,9 @@ exports.SetRolePermissionsResponse = {
     },
     fromPartial(object) {
         const message = createBaseSetRolePermissionsResponse();
-        message.role = (object.role !== undefined && object.role !== null) ? iam_1.Role.fromPartial(object.role) : undefined;
+        message.role = (object.role !== undefined && object.role !== null)
+            ? iam_1.RoleDetail.fromPartial(object.role)
+            : undefined;
         return message;
     },
 };
@@ -1305,7 +1309,7 @@ function createBaseGetGroupResponse() {
 exports.GetGroupResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.group !== undefined) {
-            iam_1.Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+            iam_1.GroupDetail.encode(message.group, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -1320,7 +1324,7 @@ exports.GetGroupResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.group = iam_1.Group.decode(reader, reader.uint32());
+                    message.group = iam_1.GroupDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -1331,12 +1335,12 @@ exports.GetGroupResponse = {
         return message;
     },
     fromJSON(object) {
-        return { group: isSet(object.group) ? iam_1.Group.fromJSON(object.group) : undefined };
+        return { group: isSet(object.group) ? iam_1.GroupDetail.fromJSON(object.group) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.group !== undefined) {
-            obj.group = iam_1.Group.toJSON(message.group);
+            obj.group = iam_1.GroupDetail.toJSON(message.group);
         }
         return obj;
     },
@@ -1345,7 +1349,9 @@ exports.GetGroupResponse = {
     },
     fromPartial(object) {
         const message = createBaseGetGroupResponse();
-        message.group = (object.group !== undefined && object.group !== null) ? iam_1.Group.fromPartial(object.group) : undefined;
+        message.group = (object.group !== undefined && object.group !== null)
+            ? iam_1.GroupDetail.fromPartial(object.group)
+            : undefined;
         return message;
     },
 };
@@ -1729,7 +1735,7 @@ function createBaseSetGroupRolesResponse() {
 exports.SetGroupRolesResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.group !== undefined) {
-            iam_1.Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+            iam_1.GroupDetail.encode(message.group, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -1744,7 +1750,7 @@ exports.SetGroupRolesResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.group = iam_1.Group.decode(reader, reader.uint32());
+                    message.group = iam_1.GroupDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -1755,12 +1761,12 @@ exports.SetGroupRolesResponse = {
         return message;
     },
     fromJSON(object) {
-        return { group: isSet(object.group) ? iam_1.Group.fromJSON(object.group) : undefined };
+        return { group: isSet(object.group) ? iam_1.GroupDetail.fromJSON(object.group) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.group !== undefined) {
-            obj.group = iam_1.Group.toJSON(message.group);
+            obj.group = iam_1.GroupDetail.toJSON(message.group);
         }
         return obj;
     },
@@ -1769,7 +1775,9 @@ exports.SetGroupRolesResponse = {
     },
     fromPartial(object) {
         const message = createBaseSetGroupRolesResponse();
-        message.group = (object.group !== undefined && object.group !== null) ? iam_1.Group.fromPartial(object.group) : undefined;
+        message.group = (object.group !== undefined && object.group !== null)
+            ? iam_1.GroupDetail.fromPartial(object.group)
+            : undefined;
         return message;
     },
 };

@@ -73,12 +73,20 @@ export interface Permission {
 export interface Role {
   id: string;
   name: string;
+}
+
+export interface RoleDetail {
+  role: Role | undefined;
   permissions: Permission[];
 }
 
 export interface Group {
   id: string;
   name: string;
+}
+
+export interface GroupDetail {
+  group: Group | undefined;
   roles: Role[];
 }
 
@@ -470,7 +478,7 @@ export const Permission = {
 };
 
 function createBaseRole(): Role {
-  return { id: "", name: "", permissions: [] };
+  return { id: "", name: "" };
 }
 
 export const Role = {
@@ -480,9 +488,6 @@ export const Role = {
     }
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
-    }
-    for (const v of message.permissions) {
-      Permission.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -508,8 +513,72 @@ export const Role = {
 
           message.name = reader.string();
           continue;
-        case 3:
-          if (tag !== 26) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Role {
+    return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+  },
+
+  toJSON(message: Role): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Role>, I>>(base?: I): Role {
+    return Role.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Role>, I>>(object: I): Role {
+    const message = createBaseRole();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseRoleDetail(): RoleDetail {
+  return { role: undefined, permissions: [] };
+}
+
+export const RoleDetail = {
+  encode(message: RoleDetail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.role !== undefined) {
+      Role.encode(message.role, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.permissions) {
+      Permission.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): RoleDetail {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRoleDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.role = Role.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
             break;
           }
 
@@ -524,21 +593,17 @@ export const Role = {
     return message;
   },
 
-  fromJSON(object: any): Role {
+  fromJSON(object: any): RoleDetail {
     return {
-      id: isSet(object.id) ? String(object.id) : "",
-      name: isSet(object.name) ? String(object.name) : "",
+      role: isSet(object.role) ? Role.fromJSON(object.role) : undefined,
       permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => Permission.fromJSON(e)) : [],
     };
   },
 
-  toJSON(message: Role): unknown {
+  toJSON(message: RoleDetail): unknown {
     const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.name !== "") {
-      obj.name = message.name;
+    if (message.role !== undefined) {
+      obj.role = Role.toJSON(message.role);
     }
     if (message.permissions?.length) {
       obj.permissions = message.permissions.map((e) => Permission.toJSON(e));
@@ -546,20 +611,19 @@ export const Role = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Role>, I>>(base?: I): Role {
-    return Role.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<RoleDetail>, I>>(base?: I): RoleDetail {
+    return RoleDetail.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Role>, I>>(object: I): Role {
-    const message = createBaseRole();
-    message.id = object.id ?? "";
-    message.name = object.name ?? "";
+  fromPartial<I extends Exact<DeepPartial<RoleDetail>, I>>(object: I): RoleDetail {
+    const message = createBaseRoleDetail();
+    message.role = (object.role !== undefined && object.role !== null) ? Role.fromPartial(object.role) : undefined;
     message.permissions = object.permissions?.map((e) => Permission.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseGroup(): Group {
-  return { id: "", name: "", roles: [] };
+  return { id: "", name: "" };
 }
 
 export const Group = {
@@ -569,9 +633,6 @@ export const Group = {
     }
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
-    }
-    for (const v of message.roles) {
-      Role.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -597,8 +658,72 @@ export const Group = {
 
           message.name = reader.string();
           continue;
-        case 3:
-          if (tag !== 26) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Group {
+    return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+  },
+
+  toJSON(message: Group): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Group>, I>>(base?: I): Group {
+    return Group.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Group>, I>>(object: I): Group {
+    const message = createBaseGroup();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseGroupDetail(): GroupDetail {
+  return { group: undefined, roles: [] };
+}
+
+export const GroupDetail = {
+  encode(message: GroupDetail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.group !== undefined) {
+      Group.encode(message.group, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.roles) {
+      Role.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GroupDetail {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGroupDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.group = Group.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
             break;
           }
 
@@ -613,21 +738,17 @@ export const Group = {
     return message;
   },
 
-  fromJSON(object: any): Group {
+  fromJSON(object: any): GroupDetail {
     return {
-      id: isSet(object.id) ? String(object.id) : "",
-      name: isSet(object.name) ? String(object.name) : "",
+      group: isSet(object.group) ? Group.fromJSON(object.group) : undefined,
       roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Role.fromJSON(e)) : [],
     };
   },
 
-  toJSON(message: Group): unknown {
+  toJSON(message: GroupDetail): unknown {
     const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.name !== "") {
-      obj.name = message.name;
+    if (message.group !== undefined) {
+      obj.group = Group.toJSON(message.group);
     }
     if (message.roles?.length) {
       obj.roles = message.roles.map((e) => Role.toJSON(e));
@@ -635,13 +756,12 @@ export const Group = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Group>, I>>(base?: I): Group {
-    return Group.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<GroupDetail>, I>>(base?: I): GroupDetail {
+    return GroupDetail.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Group>, I>>(object: I): Group {
-    const message = createBaseGroup();
-    message.id = object.id ?? "";
-    message.name = object.name ?? "";
+  fromPartial<I extends Exact<DeepPartial<GroupDetail>, I>>(object: I): GroupDetail {
+    const message = createBaseGroupDetail();
+    message.group = (object.group !== undefined && object.group !== null) ? Group.fromPartial(object.group) : undefined;
     message.roles = object.roles?.map((e) => Role.fromPartial(e)) || [];
     return message;
   },
