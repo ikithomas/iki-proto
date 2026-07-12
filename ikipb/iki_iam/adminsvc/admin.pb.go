@@ -1876,7 +1876,7 @@ func (x *GetUserRequest) GetId() string {
 
 type GetUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *iki_iam.User          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User          *iki_iam.UserDetail    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1911,7 +1911,7 @@ func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{41}
 }
 
-func (x *GetUserResponse) GetUser() *iki_iam.User {
+func (x *GetUserResponse) GetUser() *iki_iam.UserDetail {
 	if x != nil {
 		return x.User
 	}
@@ -2555,9 +2555,9 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x12CreateUserResponse\x12\x1d\n" +
 	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
-	"\x0fGetUserResponse\x12\x1d\n" +
-	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\"#\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"6\n" +
+	"\x0fGetUserResponse\x12#\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
 	"\x12DeleteUserResponse\"2\n" +
@@ -2688,6 +2688,7 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
 	(*iki_iam.Role)(nil),                // 55: iam.Role
 	(*iki_iam.Group)(nil),               // 56: iam.Group
 	(*iki_iam.User)(nil),                // 57: iam.User
+	(*iki_iam.UserDetail)(nil),          // 58: iam.UserDetail
 }
 var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	54, // 0: adminsvc.ListPermissionsResponse.permissions:type_name -> iam.Permission
@@ -2707,7 +2708,7 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	57, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
 	57, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
 	57, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
-	57, // 17: adminsvc.GetUserResponse.user:type_name -> iam.User
+	58, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
 	57, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
 	34, // 19: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
 	40, // 20: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest

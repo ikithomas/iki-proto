@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Secret = exports.Service = exports.Group = exports.Role = exports.Permission = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Secret = exports.Service = exports.Group = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -57,8 +57,6 @@ function createBaseUser() {
         lastLoginAt: 0,
         lastActivityAt: 0,
         scimLastSyncedAt: undefined,
-        roles: [],
-        permissions: [],
     };
 }
 exports.User = {
@@ -86,12 +84,6 @@ exports.User = {
         }
         if (message.scimLastSyncedAt !== undefined) {
             writer.uint32(96).int64(message.scimLastSyncedAt);
-        }
-        for (const v of message.roles) {
-            exports.Role.encode(v, writer.uint32(106).fork()).ldelim();
-        }
-        for (const v of message.permissions) {
-            exports.Permission.encode(v, writer.uint32(114).fork()).ldelim();
         }
         return writer;
     },
@@ -150,18 +142,6 @@ exports.User = {
                     }
                     message.scimLastSyncedAt = longToNumber(reader.int64());
                     continue;
-                case 13:
-                    if (tag !== 106) {
-                        break;
-                    }
-                    message.roles.push(exports.Role.decode(reader, reader.uint32()));
-                    continue;
-                case 14:
-                    if (tag !== 114) {
-                        break;
-                    }
-                    message.permissions.push(exports.Permission.decode(reader, reader.uint32()));
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -180,12 +160,9 @@ exports.User = {
             lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
             lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
             scimLastSyncedAt: isSet(object.scimLastSyncedAt) ? Number(object.scimLastSyncedAt) : undefined,
-            roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Role.fromJSON(e)) : [],
-            permissions: Array.isArray(object === null || object === void 0 ? void 0 : object.permissions) ? object.permissions.map((e) => exports.Permission.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
-        var _a, _b;
         const obj = {};
         if (message.id !== "") {
             obj.id = message.id;
@@ -211,19 +188,13 @@ exports.User = {
         if (message.scimLastSyncedAt !== undefined) {
             obj.scimLastSyncedAt = Math.round(message.scimLastSyncedAt);
         }
-        if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.roles = message.roles.map((e) => exports.Role.toJSON(e));
-        }
-        if ((_b = message.permissions) === null || _b === void 0 ? void 0 : _b.length) {
-            obj.permissions = message.permissions.map((e) => exports.Permission.toJSON(e));
-        }
         return obj;
     },
     create(base) {
         return exports.User.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         const message = createBaseUser();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.email = (_b = object.email) !== null && _b !== void 0 ? _b : "";
@@ -233,8 +204,120 @@ exports.User = {
         message.lastLoginAt = (_f = object.lastLoginAt) !== null && _f !== void 0 ? _f : 0;
         message.lastActivityAt = (_g = object.lastActivityAt) !== null && _g !== void 0 ? _g : 0;
         message.scimLastSyncedAt = (_h = object.scimLastSyncedAt) !== null && _h !== void 0 ? _h : undefined;
-        message.roles = ((_j = object.roles) === null || _j === void 0 ? void 0 : _j.map((e) => exports.Role.fromPartial(e))) || [];
-        message.permissions = ((_k = object.permissions) === null || _k === void 0 ? void 0 : _k.map((e) => exports.Permission.fromPartial(e))) || [];
+        return message;
+    },
+};
+function createBaseUserDetail() {
+    return { user: undefined, groups: [], directRoles: [], effectiveRoles: [], effectivePermissions: [] };
+}
+exports.UserDetail = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.user !== undefined) {
+            exports.User.encode(message.user, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.groups) {
+            exports.Group.encode(v, writer.uint32(18).fork()).ldelim();
+        }
+        for (const v of message.directRoles) {
+            exports.Role.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        for (const v of message.effectiveRoles) {
+            exports.Role.encode(v, writer.uint32(34).fork()).ldelim();
+        }
+        for (const v of message.effectivePermissions) {
+            exports.Permission.encode(v, writer.uint32(42).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseUserDetail();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.user = exports.User.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.groups.push(exports.Group.decode(reader, reader.uint32()));
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.directRoles.push(exports.Role.decode(reader, reader.uint32()));
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.effectiveRoles.push(exports.Role.decode(reader, reader.uint32()));
+                    continue;
+                case 5:
+                    if (tag !== 42) {
+                        break;
+                    }
+                    message.effectivePermissions.push(exports.Permission.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            user: isSet(object.user) ? exports.User.fromJSON(object.user) : undefined,
+            groups: Array.isArray(object === null || object === void 0 ? void 0 : object.groups) ? object.groups.map((e) => exports.Group.fromJSON(e)) : [],
+            directRoles: Array.isArray(object === null || object === void 0 ? void 0 : object.directRoles) ? object.directRoles.map((e) => exports.Role.fromJSON(e)) : [],
+            effectiveRoles: Array.isArray(object === null || object === void 0 ? void 0 : object.effectiveRoles)
+                ? object.effectiveRoles.map((e) => exports.Role.fromJSON(e))
+                : [],
+            effectivePermissions: Array.isArray(object === null || object === void 0 ? void 0 : object.effectivePermissions)
+                ? object.effectivePermissions.map((e) => exports.Permission.fromJSON(e))
+                : [],
+        };
+    },
+    toJSON(message) {
+        var _a, _b, _c, _d;
+        const obj = {};
+        if (message.user !== undefined) {
+            obj.user = exports.User.toJSON(message.user);
+        }
+        if ((_a = message.groups) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.groups = message.groups.map((e) => exports.Group.toJSON(e));
+        }
+        if ((_b = message.directRoles) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.directRoles = message.directRoles.map((e) => exports.Role.toJSON(e));
+        }
+        if ((_c = message.effectiveRoles) === null || _c === void 0 ? void 0 : _c.length) {
+            obj.effectiveRoles = message.effectiveRoles.map((e) => exports.Role.toJSON(e));
+        }
+        if ((_d = message.effectivePermissions) === null || _d === void 0 ? void 0 : _d.length) {
+            obj.effectivePermissions = message.effectivePermissions.map((e) => exports.Permission.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.UserDetail.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c, _d;
+        const message = createBaseUserDetail();
+        message.user = (object.user !== undefined && object.user !== null) ? exports.User.fromPartial(object.user) : undefined;
+        message.groups = ((_a = object.groups) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Group.fromPartial(e))) || [];
+        message.directRoles = ((_b = object.directRoles) === null || _b === void 0 ? void 0 : _b.map((e) => exports.Role.fromPartial(e))) || [];
+        message.effectiveRoles = ((_c = object.effectiveRoles) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Role.fromPartial(e))) || [];
+        message.effectivePermissions = ((_d = object.effectivePermissions) === null || _d === void 0 ? void 0 : _d.map((e) => exports.Permission.fromPartial(e))) || [];
         return message;
     },
 };

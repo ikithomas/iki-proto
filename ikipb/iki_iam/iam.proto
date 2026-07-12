@@ -18,10 +18,21 @@ message User {
   int64 last_login_at = 10;
   int64 last_activity_at = 11;
   optional int64 scim_last_synced_at = 12;
+}
 
-  // Effective roles and permissions derived from all group memberships and direct role assignments.
-  repeated Role roles = 13;
-  repeated Permission permissions = 14;
+message UserDetail {
+  User user = 1;
+
+  repeated Group groups = 2;
+
+  // Roles assigned directly to the user (via account_iam_role).
+  repeated Role direct_roles = 3;
+
+  // Union of all roles from group memberships and direct assignments.
+  repeated Role effective_roles = 4;
+
+  // Flattened permissions derived from all effective roles.
+  repeated Permission effective_permissions = 5;
 }
 
 message Permission {

@@ -52,12 +52,18 @@ export interface User {
   active: boolean;
   lastLoginAt: number;
   lastActivityAt: number;
-  scimLastSyncedAt?:
-    | number
-    | undefined;
-  /** Effective roles and permissions derived from all group memberships and direct role assignments. */
-  roles: Role[];
-  permissions: Permission[];
+  scimLastSyncedAt?: number | undefined;
+}
+
+export interface UserDetail {
+  user: User | undefined;
+  groups: Group[];
+  /** Roles assigned directly to the user (via account_iam_role). */
+  directRoles: Role[];
+  /** Union of all roles from group memberships and direct assignments. */
+  effectiveRoles: Role[];
+  /** Flattened permissions derived from all effective roles. */
+  effectivePermissions: Permission[];
 }
 
 export interface Permission {
@@ -107,8 +113,6 @@ function createBaseUser(): User {
     lastLoginAt: 0,
     lastActivityAt: 0,
     scimLastSyncedAt: undefined,
-    roles: [],
-    permissions: [],
   };
 }
 
@@ -137,12 +141,6 @@ export const User = {
     }
     if (message.scimLastSyncedAt !== undefined) {
       writer.uint32(96).int64(message.scimLastSyncedAt);
-    }
-    for (const v of message.roles) {
-      Role.encode(v!, writer.uint32(106).fork()).ldelim();
-    }
-    for (const v of message.permissions) {
-      Permission.encode(v!, writer.uint32(114).fork()).ldelim();
     }
     return writer;
   },
@@ -210,20 +208,6 @@ export const User = {
 
           message.scimLastSyncedAt = longToNumber(reader.int64() as Long);
           continue;
-        case 13:
-          if (tag !== 106) {
-            break;
-          }
-
-          message.roles.push(Role.decode(reader, reader.uint32()));
-          continue;
-        case 14:
-          if (tag !== 114) {
-            break;
-          }
-
-          message.permissions.push(Permission.decode(reader, reader.uint32()));
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -243,8 +227,6 @@ export const User = {
       lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
       lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
       scimLastSyncedAt: isSet(object.scimLastSyncedAt) ? Number(object.scimLastSyncedAt) : undefined,
-      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Role.fromJSON(e)) : [],
-      permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => Permission.fromJSON(e)) : [],
     };
   },
 
@@ -274,12 +256,6 @@ export const User = {
     if (message.scimLastSyncedAt !== undefined) {
       obj.scimLastSyncedAt = Math.round(message.scimLastSyncedAt);
     }
-    if (message.roles?.length) {
-      obj.roles = message.roles.map((e) => Role.toJSON(e));
-    }
-    if (message.permissions?.length) {
-      obj.permissions = message.permissions.map((e) => Permission.toJSON(e));
-    }
     return obj;
   },
 
@@ -296,8 +272,129 @@ export const User = {
     message.lastLoginAt = object.lastLoginAt ?? 0;
     message.lastActivityAt = object.lastActivityAt ?? 0;
     message.scimLastSyncedAt = object.scimLastSyncedAt ?? undefined;
-    message.roles = object.roles?.map((e) => Role.fromPartial(e)) || [];
-    message.permissions = object.permissions?.map((e) => Permission.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserDetail(): UserDetail {
+  return { user: undefined, groups: [], directRoles: [], effectiveRoles: [], effectivePermissions: [] };
+}
+
+export const UserDetail = {
+  encode(message: UserDetail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.user !== undefined) {
+      User.encode(message.user, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.groups) {
+      Group.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.directRoles) {
+      Role.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.effectiveRoles) {
+      Role.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.effectivePermissions) {
+      Permission.encode(v!, writer.uint32(42).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): UserDetail {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.user = User.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groups.push(Group.decode(reader, reader.uint32()));
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.directRoles.push(Role.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.effectiveRoles.push(Role.decode(reader, reader.uint32()));
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.effectivePermissions.push(Permission.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserDetail {
+    return {
+      user: isSet(object.user) ? User.fromJSON(object.user) : undefined,
+      groups: Array.isArray(object?.groups) ? object.groups.map((e: any) => Group.fromJSON(e)) : [],
+      directRoles: Array.isArray(object?.directRoles) ? object.directRoles.map((e: any) => Role.fromJSON(e)) : [],
+      effectiveRoles: Array.isArray(object?.effectiveRoles)
+        ? object.effectiveRoles.map((e: any) => Role.fromJSON(e))
+        : [],
+      effectivePermissions: Array.isArray(object?.effectivePermissions)
+        ? object.effectivePermissions.map((e: any) => Permission.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserDetail): unknown {
+    const obj: any = {};
+    if (message.user !== undefined) {
+      obj.user = User.toJSON(message.user);
+    }
+    if (message.groups?.length) {
+      obj.groups = message.groups.map((e) => Group.toJSON(e));
+    }
+    if (message.directRoles?.length) {
+      obj.directRoles = message.directRoles.map((e) => Role.toJSON(e));
+    }
+    if (message.effectiveRoles?.length) {
+      obj.effectiveRoles = message.effectiveRoles.map((e) => Role.toJSON(e));
+    }
+    if (message.effectivePermissions?.length) {
+      obj.effectivePermissions = message.effectivePermissions.map((e) => Permission.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserDetail>, I>>(base?: I): UserDetail {
+    return UserDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserDetail>, I>>(object: I): UserDetail {
+    const message = createBaseUserDetail();
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
+    message.groups = object.groups?.map((e) => Group.fromPartial(e)) || [];
+    message.directRoles = object.directRoles?.map((e) => Role.fromPartial(e)) || [];
+    message.effectiveRoles = object.effectiveRoles?.map((e) => Role.fromPartial(e)) || [];
+    message.effectivePermissions = object.effectivePermissions?.map((e) => Permission.fromPartial(e)) || [];
     return message;
   },
 };

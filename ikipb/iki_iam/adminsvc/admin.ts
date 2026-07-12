@@ -2,7 +2,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import _m0 from "protobufjs/minimal";
-import { Group, Permission, Role, User } from "../iam";
+import { Group, Permission, Role, User, UserDetail } from "../iam";
 
 export const protobufPackage = "adminsvc";
 
@@ -177,7 +177,7 @@ export interface GetUserRequest {
 }
 
 export interface GetUserResponse {
-  user: User | undefined;
+  user: UserDetail | undefined;
 }
 
 export interface DeleteUserRequest {
@@ -2692,7 +2692,7 @@ function createBaseGetUserResponse(): GetUserResponse {
 export const GetUserResponse = {
   encode(message: GetUserResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.user !== undefined) {
-      User.encode(message.user, writer.uint32(10).fork()).ldelim();
+      UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -2709,7 +2709,7 @@ export const GetUserResponse = {
             break;
           }
 
-          message.user = User.decode(reader, reader.uint32());
+          message.user = UserDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2721,13 +2721,13 @@ export const GetUserResponse = {
   },
 
   fromJSON(object: any): GetUserResponse {
-    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
+    return { user: isSet(object.user) ? UserDetail.fromJSON(object.user) : undefined };
   },
 
   toJSON(message: GetUserResponse): unknown {
     const obj: any = {};
     if (message.user !== undefined) {
-      obj.user = User.toJSON(message.user);
+      obj.user = UserDetail.toJSON(message.user);
     }
     return obj;
   },
@@ -2737,7 +2737,9 @@ export const GetUserResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetUserResponse>, I>>(object: I): GetUserResponse {
     const message = createBaseGetUserResponse();
-    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
+    message.user = (object.user !== undefined && object.user !== null)
+      ? UserDetail.fromPartial(object.user)
+      : undefined;
     return message;
   },
 };

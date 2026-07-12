@@ -81,11 +81,8 @@ type User struct {
 	LastLoginAt      int64                  `protobuf:"varint,10,opt,name=last_login_at,json=lastLoginAt,proto3" json:"last_login_at,omitempty"`
 	LastActivityAt   int64                  `protobuf:"varint,11,opt,name=last_activity_at,json=lastActivityAt,proto3" json:"last_activity_at,omitempty"`
 	ScimLastSyncedAt *int64                 `protobuf:"varint,12,opt,name=scim_last_synced_at,json=scimLastSyncedAt,proto3,oneof" json:"scim_last_synced_at,omitempty"`
-	// Effective roles and permissions derived from all group memberships and direct role assignments.
-	Roles         []*Role       `protobuf:"bytes,13,rep,name=roles,proto3" json:"roles,omitempty"`
-	Permissions   []*Permission `protobuf:"bytes,14,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
@@ -174,16 +171,81 @@ func (x *User) GetScimLastSyncedAt() int64 {
 	return 0
 }
 
-func (x *User) GetRoles() []*Role {
+type UserDetail struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	User   *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Groups []*Group               `protobuf:"bytes,2,rep,name=groups,proto3" json:"groups,omitempty"`
+	// Roles assigned directly to the user (via account_iam_role).
+	DirectRoles []*Role `protobuf:"bytes,3,rep,name=direct_roles,json=directRoles,proto3" json:"direct_roles,omitempty"`
+	// Union of all roles from group memberships and direct assignments.
+	EffectiveRoles []*Role `protobuf:"bytes,4,rep,name=effective_roles,json=effectiveRoles,proto3" json:"effective_roles,omitempty"`
+	// Flattened permissions derived from all effective roles.
+	EffectivePermissions []*Permission `protobuf:"bytes,5,rep,name=effective_permissions,json=effectivePermissions,proto3" json:"effective_permissions,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *UserDetail) Reset() {
+	*x = UserDetail{}
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserDetail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserDetail) ProtoMessage() {}
+
+func (x *UserDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[1]
 	if x != nil {
-		return x.Roles
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserDetail.ProtoReflect.Descriptor instead.
+func (*UserDetail) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserDetail) GetUser() *User {
+	if x != nil {
+		return x.User
 	}
 	return nil
 }
 
-func (x *User) GetPermissions() []*Permission {
+func (x *UserDetail) GetGroups() []*Group {
 	if x != nil {
-		return x.Permissions
+		return x.Groups
+	}
+	return nil
+}
+
+func (x *UserDetail) GetDirectRoles() []*Role {
+	if x != nil {
+		return x.DirectRoles
+	}
+	return nil
+}
+
+func (x *UserDetail) GetEffectiveRoles() []*Role {
+	if x != nil {
+		return x.EffectiveRoles
+	}
+	return nil
+}
+
+func (x *UserDetail) GetEffectivePermissions() []*Permission {
+	if x != nil {
+		return x.EffectivePermissions
 	}
 	return nil
 }
@@ -199,7 +261,7 @@ type Permission struct {
 
 func (x *Permission) Reset() {
 	*x = Permission{}
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[1]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -211,7 +273,7 @@ func (x *Permission) String() string {
 func (*Permission) ProtoMessage() {}
 
 func (x *Permission) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[1]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -224,7 +286,7 @@ func (x *Permission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Permission.ProtoReflect.Descriptor instead.
 func (*Permission) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{1}
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Permission) GetId() string {
@@ -259,7 +321,7 @@ type Role struct {
 
 func (x *Role) Reset() {
 	*x = Role{}
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[2]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -271,7 +333,7 @@ func (x *Role) String() string {
 func (*Role) ProtoMessage() {}
 
 func (x *Role) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[2]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -284,7 +346,7 @@ func (x *Role) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Role.ProtoReflect.Descriptor instead.
 func (*Role) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{2}
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Role) GetId() string {
@@ -319,7 +381,7 @@ type Group struct {
 
 func (x *Group) Reset() {
 	*x = Group{}
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[3]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -331,7 +393,7 @@ func (x *Group) String() string {
 func (*Group) ProtoMessage() {}
 
 func (x *Group) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[3]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -344,7 +406,7 @@ func (x *Group) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Group.ProtoReflect.Descriptor instead.
 func (*Group) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{3}
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Group) GetId() string {
@@ -385,7 +447,7 @@ type Service struct {
 
 func (x *Service) Reset() {
 	*x = Service{}
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[4]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -397,7 +459,7 @@ func (x *Service) String() string {
 func (*Service) ProtoMessage() {}
 
 func (x *Service) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[4]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,7 +472,7 @@ func (x *Service) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Service.ProtoReflect.Descriptor instead.
 func (*Service) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{4}
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Service) GetId() string {
@@ -453,7 +515,7 @@ type Secret struct {
 
 func (x *Secret) Reset() {
 	*x = Secret{}
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[5]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -465,7 +527,7 @@ func (x *Secret) String() string {
 func (*Secret) ProtoMessage() {}
 
 func (x *Secret) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[5]
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -478,7 +540,7 @@ func (x *Secret) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Secret.ProtoReflect.Descriptor instead.
 func (*Secret) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{5}
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Secret) GetId() string {
@@ -513,7 +575,7 @@ var File_ikipb_iki_iam_iam_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"\n" +
-	"\x17ikipb/iki_iam/iam.proto\x12\x03iam\"\x8a\x03\n" +
+	"\x17ikipb/iki_iam/iam.proto\x12\x03iam\"\xb6\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1d\n" +
@@ -525,10 +587,16 @@ const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"\rlast_login_at\x18\n" +
 	" \x01(\x03R\vlastLoginAt\x12(\n" +
 	"\x10last_activity_at\x18\v \x01(\x03R\x0elastActivityAt\x122\n" +
-	"\x13scim_last_synced_at\x18\f \x01(\x03H\x00R\x10scimLastSyncedAt\x88\x01\x01\x12\x1f\n" +
-	"\x05roles\x18\r \x03(\v2\t.iam.RoleR\x05roles\x121\n" +
-	"\vpermissions\x18\x0e \x03(\v2\x0f.iam.PermissionR\vpermissionsB\x16\n" +
-	"\x14_scim_last_synced_atJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\t\"Q\n" +
+	"\x13scim_last_synced_at\x18\f \x01(\x03H\x00R\x10scimLastSyncedAt\x88\x01\x01B\x16\n" +
+	"\x14_scim_last_synced_atJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\t\"\xf7\x01\n" +
+	"\n" +
+	"UserDetail\x12\x1d\n" +
+	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\x12\"\n" +
+	"\x06groups\x18\x02 \x03(\v2\n" +
+	".iam.GroupR\x06groups\x12,\n" +
+	"\fdirect_roles\x18\x03 \x03(\v2\t.iam.RoleR\vdirectRoles\x122\n" +
+	"\x0feffective_roles\x18\x04 \x03(\v2\t.iam.RoleR\x0eeffectiveRoles\x12D\n" +
+	"\x15effective_permissions\x18\x05 \x03(\v2\x0f.iam.PermissionR\x14effectivePermissions\"Q\n" +
 	"\n" +
 	"Permission\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
@@ -573,27 +641,31 @@ func file_ikipb_iki_iam_iam_proto_rawDescGZIP() []byte {
 }
 
 var file_ikipb_iki_iam_iam_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_ikipb_iki_iam_iam_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_ikipb_iki_iam_iam_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_ikipb_iki_iam_iam_proto_goTypes = []any{
 	(EntityType)(0),    // 0: iam.EntityType
 	(*User)(nil),       // 1: iam.User
-	(*Permission)(nil), // 2: iam.Permission
-	(*Role)(nil),       // 3: iam.Role
-	(*Group)(nil),      // 4: iam.Group
-	(*Service)(nil),    // 5: iam.Service
-	(*Secret)(nil),     // 6: iam.Secret
+	(*UserDetail)(nil), // 2: iam.UserDetail
+	(*Permission)(nil), // 3: iam.Permission
+	(*Role)(nil),       // 4: iam.Role
+	(*Group)(nil),      // 5: iam.Group
+	(*Service)(nil),    // 6: iam.Service
+	(*Secret)(nil),     // 7: iam.Secret
 }
 var file_ikipb_iki_iam_iam_proto_depIdxs = []int32{
-	3, // 0: iam.User.roles:type_name -> iam.Role
-	2, // 1: iam.User.permissions:type_name -> iam.Permission
-	2, // 2: iam.Role.permissions:type_name -> iam.Permission
-	3, // 3: iam.Group.roles:type_name -> iam.Role
-	6, // 4: iam.Service.secrets:type_name -> iam.Secret
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	1, // 0: iam.UserDetail.user:type_name -> iam.User
+	5, // 1: iam.UserDetail.groups:type_name -> iam.Group
+	4, // 2: iam.UserDetail.direct_roles:type_name -> iam.Role
+	4, // 3: iam.UserDetail.effective_roles:type_name -> iam.Role
+	3, // 4: iam.UserDetail.effective_permissions:type_name -> iam.Permission
+	3, // 5: iam.Role.permissions:type_name -> iam.Permission
+	4, // 6: iam.Group.roles:type_name -> iam.Role
+	7, // 7: iam.Service.secrets:type_name -> iam.Secret
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_iam_iam_proto_init() }
@@ -608,7 +680,7 @@ func file_ikipb_iki_iam_iam_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ikipb_iki_iam_iam_proto_rawDesc), len(file_ikipb_iki_iam_iam_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

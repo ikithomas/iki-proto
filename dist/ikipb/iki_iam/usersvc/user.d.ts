@@ -76,20 +76,6 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -101,20 +87,6 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -124,70 +96,8 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K in Exclude<keyof I["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_1 in Exclude<keyof I["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_2 in Exclude<keyof I["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_3 in Exclude<keyof I["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_4 in Exclude<keyof I["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_5 in Exclude<keyof I["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_6 in Exclude<keyof I["user"], keyof User>]: never; };
-    } & { [K_7 in Exclude<keyof I, "user">]: never; }>(base?: I): ProfileResponse;
+        } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_1 in Exclude<keyof I, "user">]: never; }>(base?: I): ProfileResponse;
     fromPartial<I_1 extends {
         user?: {
             id?: string;
@@ -198,20 +108,6 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -223,20 +119,6 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -246,70 +128,8 @@ export declare const ProfileResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K_8 in Exclude<keyof I_1["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_9 in Exclude<keyof I_1["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_10 in Exclude<keyof I_1["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_11 in Exclude<keyof I_1["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_12 in Exclude<keyof I_1["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_13 in Exclude<keyof I_1["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_14 in Exclude<keyof I_1["user"], keyof User>]: never; };
-    } & { [K_15 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): ProfileResponse;
+        } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): ProfileResponse;
 };
 export declare const CheckEmailRequest: {
     encode(message: CheckEmailRequest, writer?: _m0.Writer): _m0.Writer;
@@ -382,20 +202,6 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -407,20 +213,6 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -430,70 +222,8 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K in Exclude<keyof I["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_1 in Exclude<keyof I["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_2 in Exclude<keyof I["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_3 in Exclude<keyof I["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_4 in Exclude<keyof I["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_5 in Exclude<keyof I["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_6 in Exclude<keyof I["user"], keyof User>]: never; };
-    } & { [K_7 in Exclude<keyof I, "user">]: never; }>(base?: I): CreateResponse;
+        } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_1 in Exclude<keyof I, "user">]: never; }>(base?: I): CreateResponse;
     fromPartial<I_1 extends {
         user?: {
             id?: string;
@@ -504,20 +234,6 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -529,20 +245,6 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -552,70 +254,8 @@ export declare const CreateResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K_8 in Exclude<keyof I_1["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_9 in Exclude<keyof I_1["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_10 in Exclude<keyof I_1["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_11 in Exclude<keyof I_1["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_12 in Exclude<keyof I_1["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_13 in Exclude<keyof I_1["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_14 in Exclude<keyof I_1["user"], keyof User>]: never; };
-    } & { [K_15 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): CreateResponse;
+        } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): CreateResponse;
 };
 export declare const GetRequest: {
     encode(message: GetRequest, writer?: _m0.Writer): _m0.Writer;
@@ -648,20 +288,6 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -673,20 +299,6 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -696,70 +308,8 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K in Exclude<keyof I["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_1 in Exclude<keyof I["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_2 in Exclude<keyof I["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_3 in Exclude<keyof I["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_4 in Exclude<keyof I["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_5 in Exclude<keyof I["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_6 in Exclude<keyof I["user"], keyof User>]: never; };
-    } & { [K_7 in Exclude<keyof I, "user">]: never; }>(base?: I): GetResponse;
+        } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_1 in Exclude<keyof I, "user">]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
         user?: {
             id?: string;
@@ -770,20 +320,6 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         };
     } & {
         user?: {
@@ -795,20 +331,6 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -818,70 +340,8 @@ export declare const GetResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K_8 in Exclude<keyof I_1["user"]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_9 in Exclude<keyof I_1["user"]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_10 in Exclude<keyof I_1["user"]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_11 in Exclude<keyof I_1["user"]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_12 in Exclude<keyof I_1["user"]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_13 in Exclude<keyof I_1["user"]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_14 in Exclude<keyof I_1["user"], keyof User>]: never; };
-    } & { [K_15 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetResponse;
+        } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetResponse;
 };
 export declare const ListRequest: {
     encode(_: ListRequest, writer?: _m0.Writer): _m0.Writer;
@@ -906,20 +366,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[];
     } & {
         users?: {
@@ -931,20 +377,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[] & ({
             id?: string;
             email?: string;
@@ -954,20 +386,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -977,69 +395,7 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K in Exclude<keyof I["users"][number]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_1 in Exclude<keyof I["users"][number]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_2 in Exclude<keyof I["users"][number]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_3 in Exclude<keyof I["users"][number]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_4 in Exclude<keyof I["users"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_5 in Exclude<keyof I["users"][number]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_6 in Exclude<keyof I["users"][number], keyof User>]: never; })[] & { [K_7 in Exclude<keyof I["users"], keyof {
+        } & { [K in Exclude<keyof I["users"][number], keyof User>]: never; })[] & { [K_1 in Exclude<keyof I["users"], keyof {
             id?: string;
             email?: string;
             givenName?: string;
@@ -1048,22 +404,8 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[]>]: never; };
-    } & { [K_8 in Exclude<keyof I, "users">]: never; }>(base?: I): ListResponse;
+    } & { [K_2 in Exclude<keyof I, "users">]: never; }>(base?: I): ListResponse;
     fromPartial<I_1 extends {
         users?: {
             id?: string;
@@ -1074,20 +416,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[];
     } & {
         users?: {
@@ -1099,20 +427,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[] & ({
             id?: string;
             email?: string;
@@ -1122,20 +436,6 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         } & {
             id?: string;
             email?: string;
@@ -1145,69 +445,7 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[] & ({
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            } & {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[] & ({
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                } & { [K_9 in Exclude<keyof I_1["users"][number]["roles"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_10 in Exclude<keyof I_1["users"][number]["roles"][number]["permissions"], keyof {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[]>]: never; };
-            } & { [K_11 in Exclude<keyof I_1["users"][number]["roles"][number], keyof import("../iam").Role>]: never; })[] & { [K_12 in Exclude<keyof I_1["users"][number]["roles"], keyof {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[]>]: never; };
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[] & ({
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            } & { [K_13 in Exclude<keyof I_1["users"][number]["permissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_14 in Exclude<keyof I_1["users"][number]["permissions"], keyof {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[]>]: never; };
-        } & { [K_15 in Exclude<keyof I_1["users"][number], keyof User>]: never; })[] & { [K_16 in Exclude<keyof I_1["users"], keyof {
+        } & { [K_3 in Exclude<keyof I_1["users"][number], keyof User>]: never; })[] & { [K_4 in Exclude<keyof I_1["users"], keyof {
             id?: string;
             email?: string;
             givenName?: string;
@@ -1216,22 +454,8 @@ export declare const ListResponse: {
             lastLoginAt?: number;
             lastActivityAt?: number;
             scimLastSyncedAt?: number;
-            roles?: {
-                id?: string;
-                name?: string;
-                permissions?: {
-                    id?: string;
-                    name?: string;
-                    externalId?: string;
-                }[];
-            }[];
-            permissions?: {
-                id?: string;
-                name?: string;
-                externalId?: string;
-            }[];
         }[]>]: never; };
-    } & { [K_17 in Exclude<keyof I_1, "users">]: never; }>(object: I_1): ListResponse;
+    } & { [K_5 in Exclude<keyof I_1, "users">]: never; }>(object: I_1): ListResponse;
 };
 export declare const DeleteRequest: {
     encode(message: DeleteRequest, writer?: _m0.Writer): _m0.Writer;

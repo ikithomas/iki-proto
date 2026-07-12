@@ -241,7 +241,7 @@ message GetUserRequest {
 }
 
 message GetUserResponse {
-  iam.User user = 1;
+  iam.UserDetail user = 1;
 }
 
 message DeleteUserRequest {

@@ -2209,7 +2209,7 @@ function createBaseGetUserResponse() {
 exports.GetUserResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.user !== undefined) {
-            iam_1.User.encode(message.user, writer.uint32(10).fork()).ldelim();
+            iam_1.UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -2224,7 +2224,7 @@ exports.GetUserResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.user = iam_1.User.decode(reader, reader.uint32());
+                    message.user = iam_1.UserDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -2235,12 +2235,12 @@ exports.GetUserResponse = {
         return message;
     },
     fromJSON(object) {
-        return { user: isSet(object.user) ? iam_1.User.fromJSON(object.user) : undefined };
+        return { user: isSet(object.user) ? iam_1.UserDetail.fromJSON(object.user) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.user !== undefined) {
-            obj.user = iam_1.User.toJSON(message.user);
+            obj.user = iam_1.UserDetail.toJSON(message.user);
         }
         return obj;
     },
@@ -2249,7 +2249,9 @@ exports.GetUserResponse = {
     },
     fromPartial(object) {
         const message = createBaseGetUserResponse();
-        message.user = (object.user !== undefined && object.user !== null) ? iam_1.User.fromPartial(object.user) : undefined;
+        message.user = (object.user !== undefined && object.user !== null)
+            ? iam_1.UserDetail.fromPartial(object.user)
+            : undefined;
         return message;
     },
 };
