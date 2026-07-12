@@ -1,0 +1,299 @@
+syntax = "proto3";
+
+import "ikipb/iki_iam/iam.proto";
+
+option go_package = "/adminsvc";
+option ruby_package = "Iki::Iam::AdminSvc";
+
+package adminsvc;
+
+service AdminSvc {
+  // User management
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse) {}
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+  rpc PatchUser (PatchUserRequest) returns (PatchUserResponse) {}
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+
+  // Permission management
+  rpc ListPermissions (ListPermissionsRequest) returns (ListPermissionsResponse) {}
+  rpc GetPermission (GetPermissionRequest) returns (GetPermissionResponse) {}
+  rpc CreatePermission (CreatePermissionRequest) returns (CreatePermissionResponse) {}
+  rpc PatchPermission (PatchPermissionRequest) returns (PatchPermissionResponse) {}
+  rpc DeletePermission (DeletePermissionRequest) returns (DeletePermissionResponse) {}
+
+  // Group management
+  rpc ListGroups (ListGroupsRequest) returns (ListGroupsResponse) {}
+  rpc GetGroup (GetGroupRequest) returns (GetGroupResponse) {}
+  rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse) {}
+  rpc PatchGroup (PatchGroupRequest) returns (PatchGroupResponse) {}
+  rpc DeleteGroup (DeleteGroupRequest) returns (DeleteGroupResponse) {}
+
+  // Role management
+  rpc ListRoles (ListRolesRequest) returns (ListRolesResponse) {}
+  rpc GetRole (GetRoleRequest) returns (GetRoleResponse) {}
+  rpc CreateRole (CreateRoleRequest) returns (CreateRoleResponse) {}
+  rpc PatchRole (PatchRoleRequest) returns (PatchRoleResponse) {}
+  rpc DeleteRole (DeleteRoleRequest) returns (DeleteRoleResponse) {}
+
+  // Role ↔ Permission bindings
+  rpc SetRolePermissions (SetRolePermissionsRequest) returns (SetRolePermissionsResponse) {}
+
+  // Group ↔ Role bindings
+  rpc SetGroupRoles (SetGroupRolesRequest) returns (SetGroupRolesResponse) {}
+
+  // User ↔ Group bindings
+  rpc AddUserToGroup (AddUserToGroupRequest) returns (AddUserToGroupResponse) {}
+  rpc RemoveUserFromGroup (RemoveUserFromGroupRequest) returns (RemoveUserFromGroupResponse) {}
+  rpc ListGroupUsers (ListGroupUsersRequest) returns (ListGroupUsersResponse) {}
+
+  // User ↔ Role bindings (direct)
+  rpc AssignRoleToUser (AssignRoleToUserRequest) returns (AssignRoleToUserResponse) {}
+  rpc RevokeRoleFromUser (RevokeRoleFromUserRequest) returns (RevokeRoleFromUserResponse) {}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Permission management
+//////
+
+message ListPermissionsRequest {}
+
+message ListPermissionsResponse {
+  repeated iam.Permission permissions = 1;
+}
+
+message GetPermissionRequest {
+  string id = 1;
+}
+
+message GetPermissionResponse {
+  iam.Permission permission = 1;
+}
+
+message CreatePermissionRequest {
+  string name        = 1;
+  string external_id = 2;
+}
+
+message CreatePermissionResponse {
+  iam.Permission permission = 1;
+}
+
+message PatchPermissionRequest {
+  string id                   = 1;
+  optional string name        = 2;
+  optional string external_id = 3;
+}
+
+message PatchPermissionResponse {
+  iam.Permission permission = 1;
+}
+
+message DeletePermissionRequest {
+  string id = 1;
+}
+
+message DeletePermissionResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// Role management
+//////
+
+message ListRolesRequest {}
+
+message ListRolesResponse {
+  repeated iam.Role roles = 1;
+}
+
+message GetRoleRequest {
+  string id = 1;
+}
+
+message GetRoleResponse {
+  iam.Role role = 1;
+}
+
+message CreateRoleRequest {
+  string name = 1;
+}
+
+message CreateRoleResponse {
+  iam.Role role = 1;
+}
+
+message PatchRoleRequest {
+  string id            = 1;
+  optional string name = 2;
+}
+
+message PatchRoleResponse {
+  iam.Role role = 1;
+}
+
+message DeleteRoleRequest {
+  string id = 1;
+}
+
+message DeleteRoleResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// Role ↔ Permission bindings
+//////
+
+message SetRolePermissionsRequest {
+  string role_id                 = 1;
+  repeated string permission_ids = 2;
+}
+
+message SetRolePermissionsResponse {
+  iam.Role role = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Group management
+//////
+
+message ListGroupsRequest {}
+
+message ListGroupsResponse {
+  repeated iam.Group groups = 1;
+}
+
+message GetGroupRequest {
+  string id = 1;
+}
+
+message GetGroupResponse {
+  iam.Group group = 1;
+}
+
+message CreateGroupRequest {
+  string name = 1;
+}
+
+message CreateGroupResponse {
+  iam.Group group = 1;
+}
+
+message PatchGroupRequest {
+  string id            = 1;
+  optional string name = 2;
+}
+
+message PatchGroupResponse {
+  iam.Group group = 1;
+}
+
+message DeleteGroupRequest {
+  string id = 1;
+}
+
+message DeleteGroupResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// Group ↔ Role bindings
+//////
+
+message SetGroupRolesRequest {
+  string group_id          = 1;
+  repeated string role_ids = 2;
+}
+
+message SetGroupRolesResponse {
+  iam.Group group = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// User management
+//////
+
+message ListUsersRequest {}
+
+message ListUsersResponse {
+  repeated iam.User users = 1;
+}
+
+message PatchUserRequest {
+  string id                  = 1;
+  optional string given_name  = 2;
+  optional string family_name = 3;
+  optional string email       = 4;
+  optional bool active        = 5;
+}
+
+message PatchUserResponse {
+  iam.User user = 1;
+}
+
+
+message CreateUserRequest {
+  string email       = 1;
+  string given_name  = 2;
+  string family_name = 3;
+}
+
+message CreateUserResponse {
+  iam.User user = 1;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  iam.User user = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// Group members
+//////
+
+message ListGroupUsersRequest {
+  string group_id = 1;
+}
+
+message ListGroupUsersResponse {
+  repeated iam.User users = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// User ↔ Group bindings
+//////
+
+message AddUserToGroupRequest {
+  string user_id  = 1;
+  string group_id = 2;
+}
+
+message AddUserToGroupResponse {}
+
+message RemoveUserFromGroupRequest {
+  string user_id  = 1;
+  string group_id = 2;
+}
+
+message RemoveUserFromGroupResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// User ↔ Role bindings (direct)
+//////
+
+message AssignRoleToUserRequest {
+  string user_id = 1;
+  string role_id = 2;
+}
+
+message AssignRoleToUserResponse {}
+
+message RevokeRoleFromUserRequest {
+  string user_id = 1;
+  string role_id = 2;
+}
+
+message RevokeRoleFromUserResponse {}

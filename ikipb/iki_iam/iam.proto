@@ -7,22 +7,39 @@ package iam;
 
 // User is a human user
 message User {
-  reserved 5, 6, 7;
+  reserved 5, 6, 7, 8;
 
   string id = 1;
   string email = 2;
   string given_name = 3;
   string family_name = 4;
-  repeated Group roles = 8;
 
   bool active = 9;
   int64 last_login_at = 10;
   int64 last_activity_at = 11;
+  optional int64 scim_last_synced_at = 12;
+
+  // Effective roles and permissions derived from all group memberships and direct role assignments.
+  repeated Role roles = 13;
+  repeated Permission permissions = 14;
+}
+
+message Permission {
+  string id          = 1;
+  string name        = 2;
+  string external_id = 3;
+}
+
+message Role {
+  string id                    = 1;
+  string name                  = 2;
+  repeated Permission permissions = 3;
 }
 
 message Group {
-  string id = 1;
-  string name = 2;
+  string id           = 1;
+  string name         = 2;
+  repeated Role roles = 3;
 }
 
 // Service is a microservice
