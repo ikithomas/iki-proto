@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Secret = exports.Service = exports.Group = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Secret = exports.Service = exports.Group = exports.Role = exports.Permission = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -53,10 +53,12 @@ function createBaseUser() {
         email: "",
         givenName: "",
         familyName: "",
-        roles: [],
         active: false,
         lastLoginAt: 0,
         lastActivityAt: 0,
+        scimLastSyncedAt: undefined,
+        roles: [],
+        permissions: [],
     };
 }
 exports.User = {
@@ -73,9 +75,6 @@ exports.User = {
         if (message.familyName !== "") {
             writer.uint32(34).string(message.familyName);
         }
-        for (const v of message.roles) {
-            exports.Group.encode(v, writer.uint32(66).fork()).ldelim();
-        }
         if (message.active === true) {
             writer.uint32(72).bool(message.active);
         }
@@ -84,6 +83,15 @@ exports.User = {
         }
         if (message.lastActivityAt !== 0) {
             writer.uint32(88).int64(message.lastActivityAt);
+        }
+        if (message.scimLastSyncedAt !== undefined) {
+            writer.uint32(96).int64(message.scimLastSyncedAt);
+        }
+        for (const v of message.roles) {
+            exports.Role.encode(v, writer.uint32(106).fork()).ldelim();
+        }
+        for (const v of message.permissions) {
+            exports.Permission.encode(v, writer.uint32(114).fork()).ldelim();
         }
         return writer;
     },
@@ -118,12 +126,6 @@ exports.User = {
                     }
                     message.familyName = reader.string();
                     continue;
-                case 8:
-                    if (tag !== 66) {
-                        break;
-                    }
-                    message.roles.push(exports.Group.decode(reader, reader.uint32()));
-                    continue;
                 case 9:
                     if (tag !== 72) {
                         break;
@@ -142,6 +144,24 @@ exports.User = {
                     }
                     message.lastActivityAt = longToNumber(reader.int64());
                     continue;
+                case 12:
+                    if (tag !== 96) {
+                        break;
+                    }
+                    message.scimLastSyncedAt = longToNumber(reader.int64());
+                    continue;
+                case 13:
+                    if (tag !== 106) {
+                        break;
+                    }
+                    message.roles.push(exports.Role.decode(reader, reader.uint32()));
+                    continue;
+                case 14:
+                    if (tag !== 114) {
+                        break;
+                    }
+                    message.permissions.push(exports.Permission.decode(reader, reader.uint32()));
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -156,14 +176,16 @@ exports.User = {
             email: isSet(object.email) ? String(object.email) : "",
             givenName: isSet(object.givenName) ? String(object.givenName) : "",
             familyName: isSet(object.familyName) ? String(object.familyName) : "",
-            roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Group.fromJSON(e)) : [],
             active: isSet(object.active) ? Boolean(object.active) : false,
             lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
             lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
+            scimLastSyncedAt: isSet(object.scimLastSyncedAt) ? Number(object.scimLastSyncedAt) : undefined,
+            roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Role.fromJSON(e)) : [],
+            permissions: Array.isArray(object === null || object === void 0 ? void 0 : object.permissions) ? object.permissions.map((e) => exports.Permission.fromJSON(e)) : [],
         };
     },
     toJSON(message) {
-        var _a;
+        var _a, _b;
         const obj = {};
         if (message.id !== "") {
             obj.id = message.id;
@@ -177,9 +199,6 @@ exports.User = {
         if (message.familyName !== "") {
             obj.familyName = message.familyName;
         }
-        if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.roles = message.roles.map((e) => exports.Group.toJSON(e));
-        }
         if (message.active === true) {
             obj.active = message.active;
         }
@@ -189,27 +208,201 @@ exports.User = {
         if (message.lastActivityAt !== 0) {
             obj.lastActivityAt = Math.round(message.lastActivityAt);
         }
+        if (message.scimLastSyncedAt !== undefined) {
+            obj.scimLastSyncedAt = Math.round(message.scimLastSyncedAt);
+        }
+        if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.roles = message.roles.map((e) => exports.Role.toJSON(e));
+        }
+        if ((_b = message.permissions) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.permissions = message.permissions.map((e) => exports.Permission.toJSON(e));
+        }
         return obj;
     },
     create(base) {
         return exports.User.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         const message = createBaseUser();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.email = (_b = object.email) !== null && _b !== void 0 ? _b : "";
         message.givenName = (_c = object.givenName) !== null && _c !== void 0 ? _c : "";
         message.familyName = (_d = object.familyName) !== null && _d !== void 0 ? _d : "";
-        message.roles = ((_e = object.roles) === null || _e === void 0 ? void 0 : _e.map((e) => exports.Group.fromPartial(e))) || [];
-        message.active = (_f = object.active) !== null && _f !== void 0 ? _f : false;
-        message.lastLoginAt = (_g = object.lastLoginAt) !== null && _g !== void 0 ? _g : 0;
-        message.lastActivityAt = (_h = object.lastActivityAt) !== null && _h !== void 0 ? _h : 0;
+        message.active = (_e = object.active) !== null && _e !== void 0 ? _e : false;
+        message.lastLoginAt = (_f = object.lastLoginAt) !== null && _f !== void 0 ? _f : 0;
+        message.lastActivityAt = (_g = object.lastActivityAt) !== null && _g !== void 0 ? _g : 0;
+        message.scimLastSyncedAt = (_h = object.scimLastSyncedAt) !== null && _h !== void 0 ? _h : undefined;
+        message.roles = ((_j = object.roles) === null || _j === void 0 ? void 0 : _j.map((e) => exports.Role.fromPartial(e))) || [];
+        message.permissions = ((_k = object.permissions) === null || _k === void 0 ? void 0 : _k.map((e) => exports.Permission.fromPartial(e))) || [];
+        return message;
+    },
+};
+function createBasePermission() {
+    return { id: "", name: "", externalId: "" };
+}
+exports.Permission = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.name !== "") {
+            writer.uint32(18).string(message.name);
+        }
+        if (message.externalId !== "") {
+            writer.uint32(26).string(message.externalId);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePermission();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.name = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.externalId = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            name: isSet(object.name) ? String(object.name) : "",
+            externalId: isSet(object.externalId) ? String(object.externalId) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
+        if (message.externalId !== "") {
+            obj.externalId = message.externalId;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Permission.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c;
+        const message = createBasePermission();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        message.externalId = (_c = object.externalId) !== null && _c !== void 0 ? _c : "";
+        return message;
+    },
+};
+function createBaseRole() {
+    return { id: "", name: "", permissions: [] };
+}
+exports.Role = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.name !== "") {
+            writer.uint32(18).string(message.name);
+        }
+        for (const v of message.permissions) {
+            exports.Permission.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseRole();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.name = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.permissions.push(exports.Permission.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            name: isSet(object.name) ? String(object.name) : "",
+            permissions: Array.isArray(object === null || object === void 0 ? void 0 : object.permissions) ? object.permissions.map((e) => exports.Permission.fromJSON(e)) : [],
+        };
+    },
+    toJSON(message) {
+        var _a;
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
+        if ((_a = message.permissions) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.permissions = message.permissions.map((e) => exports.Permission.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Role.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c;
+        const message = createBaseRole();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        message.permissions = ((_c = object.permissions) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Permission.fromPartial(e))) || [];
         return message;
     },
 };
 function createBaseGroup() {
-    return { id: "", name: "" };
+    return { id: "", name: "", roles: [] };
 }
 exports.Group = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -218,6 +411,9 @@ exports.Group = {
         }
         if (message.name !== "") {
             writer.uint32(18).string(message.name);
+        }
+        for (const v of message.roles) {
+            exports.Role.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
@@ -240,6 +436,12 @@ exports.Group = {
                     }
                     message.name = reader.string();
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.roles.push(exports.Role.decode(reader, reader.uint32()));
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -249,9 +451,14 @@ exports.Group = {
         return message;
     },
     fromJSON(object) {
-        return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            name: isSet(object.name) ? String(object.name) : "",
+            roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Role.fromJSON(e)) : [],
+        };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
         if (message.id !== "") {
             obj.id = message.id;
@@ -259,16 +466,20 @@ exports.Group = {
         if (message.name !== "") {
             obj.name = message.name;
         }
+        if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.roles = message.roles.map((e) => exports.Role.toJSON(e));
+        }
         return obj;
     },
     create(base) {
         return exports.Group.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseGroup();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        message.roles = ((_c = object.roles) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Role.fromPartial(e))) || [];
         return message;
     },
 };

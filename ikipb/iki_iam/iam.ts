@@ -49,15 +49,33 @@ export interface User {
   email: string;
   givenName: string;
   familyName: string;
-  roles: Group[];
   active: boolean;
   lastLoginAt: number;
   lastActivityAt: number;
+  scimLastSyncedAt?:
+    | number
+    | undefined;
+  /** Effective roles and permissions derived from all group memberships and direct role assignments. */
+  roles: Role[];
+  permissions: Permission[];
+}
+
+export interface Permission {
+  id: string;
+  name: string;
+  externalId: string;
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  permissions: Permission[];
 }
 
 export interface Group {
   id: string;
   name: string;
+  roles: Role[];
 }
 
 /** Service is a microservice */
@@ -85,10 +103,12 @@ function createBaseUser(): User {
     email: "",
     givenName: "",
     familyName: "",
-    roles: [],
     active: false,
     lastLoginAt: 0,
     lastActivityAt: 0,
+    scimLastSyncedAt: undefined,
+    roles: [],
+    permissions: [],
   };
 }
 
@@ -106,9 +126,6 @@ export const User = {
     if (message.familyName !== "") {
       writer.uint32(34).string(message.familyName);
     }
-    for (const v of message.roles) {
-      Group.encode(v!, writer.uint32(66).fork()).ldelim();
-    }
     if (message.active === true) {
       writer.uint32(72).bool(message.active);
     }
@@ -117,6 +134,15 @@ export const User = {
     }
     if (message.lastActivityAt !== 0) {
       writer.uint32(88).int64(message.lastActivityAt);
+    }
+    if (message.scimLastSyncedAt !== undefined) {
+      writer.uint32(96).int64(message.scimLastSyncedAt);
+    }
+    for (const v of message.roles) {
+      Role.encode(v!, writer.uint32(106).fork()).ldelim();
+    }
+    for (const v of message.permissions) {
+      Permission.encode(v!, writer.uint32(114).fork()).ldelim();
     }
     return writer;
   },
@@ -156,13 +182,6 @@ export const User = {
 
           message.familyName = reader.string();
           continue;
-        case 8:
-          if (tag !== 66) {
-            break;
-          }
-
-          message.roles.push(Group.decode(reader, reader.uint32()));
-          continue;
         case 9:
           if (tag !== 72) {
             break;
@@ -184,6 +203,27 @@ export const User = {
 
           message.lastActivityAt = longToNumber(reader.int64() as Long);
           continue;
+        case 12:
+          if (tag !== 96) {
+            break;
+          }
+
+          message.scimLastSyncedAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 13:
+          if (tag !== 106) {
+            break;
+          }
+
+          message.roles.push(Role.decode(reader, reader.uint32()));
+          continue;
+        case 14:
+          if (tag !== 114) {
+            break;
+          }
+
+          message.permissions.push(Permission.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -199,10 +239,12 @@ export const User = {
       email: isSet(object.email) ? String(object.email) : "",
       givenName: isSet(object.givenName) ? String(object.givenName) : "",
       familyName: isSet(object.familyName) ? String(object.familyName) : "",
-      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Group.fromJSON(e)) : [],
       active: isSet(object.active) ? Boolean(object.active) : false,
       lastLoginAt: isSet(object.lastLoginAt) ? Number(object.lastLoginAt) : 0,
       lastActivityAt: isSet(object.lastActivityAt) ? Number(object.lastActivityAt) : 0,
+      scimLastSyncedAt: isSet(object.scimLastSyncedAt) ? Number(object.scimLastSyncedAt) : undefined,
+      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Role.fromJSON(e)) : [],
+      permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => Permission.fromJSON(e)) : [],
     };
   },
 
@@ -220,9 +262,6 @@ export const User = {
     if (message.familyName !== "") {
       obj.familyName = message.familyName;
     }
-    if (message.roles?.length) {
-      obj.roles = message.roles.map((e) => Group.toJSON(e));
-    }
     if (message.active === true) {
       obj.active = message.active;
     }
@@ -231,6 +270,15 @@ export const User = {
     }
     if (message.lastActivityAt !== 0) {
       obj.lastActivityAt = Math.round(message.lastActivityAt);
+    }
+    if (message.scimLastSyncedAt !== undefined) {
+      obj.scimLastSyncedAt = Math.round(message.scimLastSyncedAt);
+    }
+    if (message.roles?.length) {
+      obj.roles = message.roles.map((e) => Role.toJSON(e));
+    }
+    if (message.permissions?.length) {
+      obj.permissions = message.permissions.map((e) => Permission.toJSON(e));
     }
     return obj;
   },
@@ -244,16 +292,196 @@ export const User = {
     message.email = object.email ?? "";
     message.givenName = object.givenName ?? "";
     message.familyName = object.familyName ?? "";
-    message.roles = object.roles?.map((e) => Group.fromPartial(e)) || [];
     message.active = object.active ?? false;
     message.lastLoginAt = object.lastLoginAt ?? 0;
     message.lastActivityAt = object.lastActivityAt ?? 0;
+    message.scimLastSyncedAt = object.scimLastSyncedAt ?? undefined;
+    message.roles = object.roles?.map((e) => Role.fromPartial(e)) || [];
+    message.permissions = object.permissions?.map((e) => Permission.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBasePermission(): Permission {
+  return { id: "", name: "", externalId: "" };
+}
+
+export const Permission = {
+  encode(message: Permission, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.externalId !== "") {
+      writer.uint32(26).string(message.externalId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Permission {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePermission();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.externalId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Permission {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      externalId: isSet(object.externalId) ? String(object.externalId) : "",
+    };
+  },
+
+  toJSON(message: Permission): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.externalId !== "") {
+      obj.externalId = message.externalId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Permission>, I>>(base?: I): Permission {
+    return Permission.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Permission>, I>>(object: I): Permission {
+    const message = createBasePermission();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    message.externalId = object.externalId ?? "";
+    return message;
+  },
+};
+
+function createBaseRole(): Role {
+  return { id: "", name: "", permissions: [] };
+}
+
+export const Role = {
+  encode(message: Role, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    for (const v of message.permissions) {
+      Permission.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Role {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRole();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.permissions.push(Permission.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Role {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => Permission.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: Role): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.permissions?.length) {
+      obj.permissions = message.permissions.map((e) => Permission.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Role>, I>>(base?: I): Role {
+    return Role.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Role>, I>>(object: I): Role {
+    const message = createBaseRole();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    message.permissions = object.permissions?.map((e) => Permission.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseGroup(): Group {
-  return { id: "", name: "" };
+  return { id: "", name: "", roles: [] };
 }
 
 export const Group = {
@@ -263,6 +491,9 @@ export const Group = {
     }
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
+    }
+    for (const v of message.roles) {
+      Role.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -288,6 +519,13 @@ export const Group = {
 
           message.name = reader.string();
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.roles.push(Role.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -298,7 +536,11 @@ export const Group = {
   },
 
   fromJSON(object: any): Group {
-    return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Role.fromJSON(e)) : [],
+    };
   },
 
   toJSON(message: Group): unknown {
@@ -308,6 +550,9 @@ export const Group = {
     }
     if (message.name !== "") {
       obj.name = message.name;
+    }
+    if (message.roles?.length) {
+      obj.roles = message.roles.map((e) => Role.toJSON(e));
     }
     return obj;
   },
@@ -319,6 +564,7 @@ export const Group = {
     const message = createBaseGroup();
     message.id = object.id ?? "";
     message.name = object.name ?? "";
+    message.roles = object.roles?.map((e) => Role.fromPartial(e)) || [];
     return message;
   },
 };

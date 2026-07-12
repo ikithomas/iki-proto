@@ -14,14 +14,28 @@ export interface User {
     email: string;
     givenName: string;
     familyName: string;
-    roles: Group[];
     active: boolean;
     lastLoginAt: number;
     lastActivityAt: number;
+    scimLastSyncedAt?: number | undefined;
+    /** Effective roles and permissions derived from all group memberships and direct role assignments. */
+    roles: Role[];
+    permissions: Permission[];
+}
+export interface Permission {
+    id: string;
+    name: string;
+    externalId: string;
+}
+export interface Role {
+    id: string;
+    name: string;
+    permissions: Permission[];
 }
 export interface Group {
     id: string;
     name: string;
+    roles: Role[];
 }
 /** Service is a microservice */
 export interface Service {
@@ -50,69 +64,279 @@ export declare const User: {
         email?: string;
         givenName?: string;
         familyName?: string;
-        roles?: {
-            id?: string;
-            name?: string;
-        }[];
         active?: boolean;
         lastLoginAt?: number;
         lastActivityAt?: number;
+        scimLastSyncedAt?: number | undefined;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[];
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[];
     } & {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        roles?: {
-            id?: string;
-            name?: string;
-        }[] & ({
-            id?: string;
-            name?: string;
-        } & {
-            id?: string;
-            name?: string;
-        } & { [K in Exclude<keyof I["roles"][number], keyof Group>]: never; })[] & { [K_1 in Exclude<keyof I["roles"], keyof {
-            id?: string;
-            name?: string;
-        }[]>]: never; };
         active?: boolean;
         lastLoginAt?: number;
         lastActivityAt?: number;
-    } & { [K_2 in Exclude<keyof I, keyof User>]: never; }>(base?: I): User;
+        scimLastSyncedAt?: number | undefined;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[] & ({
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K in Exclude<keyof I["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_1 in Exclude<keyof I["roles"][number]["permissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_2 in Exclude<keyof I["roles"][number], keyof Role>]: never; })[] & { [K_3 in Exclude<keyof I["roles"], keyof {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[]>]: never; };
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[] & ({
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & { [K_4 in Exclude<keyof I["permissions"][number], keyof Permission>]: never; })[] & { [K_5 in Exclude<keyof I["permissions"], keyof {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[]>]: never; };
+    } & { [K_6 in Exclude<keyof I, keyof User>]: never; }>(base?: I): User;
     fromPartial<I_1 extends {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        roles?: {
-            id?: string;
-            name?: string;
-        }[];
         active?: boolean;
         lastLoginAt?: number;
         lastActivityAt?: number;
+        scimLastSyncedAt?: number | undefined;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[];
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[];
     } & {
         id?: string;
         email?: string;
         givenName?: string;
         familyName?: string;
-        roles?: {
-            id?: string;
-            name?: string;
-        }[] & ({
-            id?: string;
-            name?: string;
-        } & {
-            id?: string;
-            name?: string;
-        } & { [K_3 in Exclude<keyof I_1["roles"][number], keyof Group>]: never; })[] & { [K_4 in Exclude<keyof I_1["roles"], keyof {
-            id?: string;
-            name?: string;
-        }[]>]: never; };
         active?: boolean;
         lastLoginAt?: number;
         lastActivityAt?: number;
-    } & { [K_5 in Exclude<keyof I_1, keyof User>]: never; }>(object: I_1): User;
+        scimLastSyncedAt?: number | undefined;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[] & ({
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_7 in Exclude<keyof I_1["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_8 in Exclude<keyof I_1["roles"][number]["permissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_9 in Exclude<keyof I_1["roles"][number], keyof Role>]: never; })[] & { [K_10 in Exclude<keyof I_1["roles"], keyof {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[]>]: never; };
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[] & ({
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & { [K_11 in Exclude<keyof I_1["permissions"][number], keyof Permission>]: never; })[] & { [K_12 in Exclude<keyof I_1["permissions"], keyof {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[]>]: never; };
+    } & { [K_13 in Exclude<keyof I_1, keyof User>]: never; }>(object: I_1): User;
+};
+export declare const Permission: {
+    encode(message: Permission, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Permission;
+    fromJSON(object: any): Permission;
+    toJSON(message: Permission): unknown;
+    create<I extends {
+        id?: string;
+        name?: string;
+        externalId?: string;
+    } & {
+        id?: string;
+        name?: string;
+        externalId?: string;
+    } & { [K in Exclude<keyof I, keyof Permission>]: never; }>(base?: I): Permission;
+    fromPartial<I_1 extends {
+        id?: string;
+        name?: string;
+        externalId?: string;
+    } & {
+        id?: string;
+        name?: string;
+        externalId?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof Permission>]: never; }>(object: I_1): Permission;
+};
+export declare const Role: {
+    encode(message: Role, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Role;
+    fromJSON(object: any): Role;
+    toJSON(message: Role): unknown;
+    create<I extends {
+        id?: string;
+        name?: string;
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[];
+    } & {
+        id?: string;
+        name?: string;
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[] & ({
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & { [K in Exclude<keyof I["permissions"][number], keyof Permission>]: never; })[] & { [K_1 in Exclude<keyof I["permissions"], keyof {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[]>]: never; };
+    } & { [K_2 in Exclude<keyof I, keyof Role>]: never; }>(base?: I): Role;
+    fromPartial<I_1 extends {
+        id?: string;
+        name?: string;
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[];
+    } & {
+        id?: string;
+        name?: string;
+        permissions?: {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[] & ({
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        } & { [K_3 in Exclude<keyof I_1["permissions"][number], keyof Permission>]: never; })[] & { [K_4 in Exclude<keyof I_1["permissions"], keyof {
+            id?: string;
+            name?: string;
+            externalId?: string;
+        }[]>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, keyof Role>]: never; }>(object: I_1): Role;
 };
 export declare const Group: {
     encode(message: Group, writer?: _m0.Writer): _m0.Writer;
@@ -122,17 +346,125 @@ export declare const Group: {
     create<I extends {
         id?: string;
         name?: string;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[];
     } & {
         id?: string;
         name?: string;
-    } & { [K in Exclude<keyof I, keyof Group>]: never; }>(base?: I): Group;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[] & ({
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K in Exclude<keyof I["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_1 in Exclude<keyof I["roles"][number]["permissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_2 in Exclude<keyof I["roles"][number], keyof Role>]: never; })[] & { [K_3 in Exclude<keyof I["roles"], keyof {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[]>]: never; };
+    } & { [K_4 in Exclude<keyof I, keyof Group>]: never; }>(base?: I): Group;
     fromPartial<I_1 extends {
         id?: string;
         name?: string;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[];
     } & {
         id?: string;
         name?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof Group>]: never; }>(object: I_1): Group;
+        roles?: {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[] & ({
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_5 in Exclude<keyof I_1["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_6 in Exclude<keyof I_1["roles"][number]["permissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_7 in Exclude<keyof I_1["roles"][number], keyof Role>]: never; })[] & { [K_8 in Exclude<keyof I_1["roles"], keyof {
+            id?: string;
+            name?: string;
+            permissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        }[]>]: never; };
+    } & { [K_9 in Exclude<keyof I_1, keyof Group>]: never; }>(object: I_1): Group;
 };
 export declare const Service: {
     encode(message: Service, writer?: _m0.Writer): _m0.Writer;
