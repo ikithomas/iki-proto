@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RemoveUserFromGroupRequest = exports.AddUserToGroupResponse = exports.AddUserToGroupRequest = exports.ListGroupUsersResponse = exports.ListGroupUsersRequest = exports.DeleteUserResponse = exports.DeleteUserRequest = exports.GetUserResponse = exports.GetUserRequest = exports.CreateUserResponse = exports.CreateUserRequest = exports.PatchUserResponse = exports.PatchUserRequest = exports.ListUsersResponse = exports.ListUsersRequest = exports.SetGroupRolesResponse = exports.SetGroupRolesRequest = exports.DeleteGroupResponse = exports.DeleteGroupRequest = exports.PatchGroupResponse = exports.PatchGroupRequest = exports.CreateGroupResponse = exports.CreateGroupRequest = exports.GetGroupResponse = exports.GetGroupRequest = exports.ListGroupsResponse = exports.ListGroupsRequest = exports.SetRolePermissionsResponse = exports.SetRolePermissionsRequest = exports.DeleteRoleResponse = exports.DeleteRoleRequest = exports.PatchRoleResponse = exports.PatchRoleRequest = exports.CreateRoleResponse = exports.CreateRoleRequest = exports.GetRoleResponse = exports.GetRoleRequest = exports.ListRolesResponse = exports.ListRolesRequest = exports.DeletePermissionResponse = exports.DeletePermissionRequest = exports.PatchPermissionResponse = exports.PatchPermissionRequest = exports.CreatePermissionResponse = exports.CreatePermissionRequest = exports.GetPermissionResponse = exports.GetPermissionRequest = exports.ListPermissionsResponse = exports.ListPermissionsRequest = exports.protobufPackage = void 0;
-exports.GrpcWebError = exports.GrpcWebImpl = exports.AdminSvcRevokeRoleFromUserDesc = exports.AdminSvcAssignRoleToUserDesc = exports.AdminSvcListGroupUsersDesc = exports.AdminSvcRemoveUserFromGroupDesc = exports.AdminSvcAddUserToGroupDesc = exports.AdminSvcSetGroupRolesDesc = exports.AdminSvcSetRolePermissionsDesc = exports.AdminSvcDeleteRoleDesc = exports.AdminSvcPatchRoleDesc = exports.AdminSvcCreateRoleDesc = exports.AdminSvcGetRoleDesc = exports.AdminSvcListRolesDesc = exports.AdminSvcDeleteGroupDesc = exports.AdminSvcPatchGroupDesc = exports.AdminSvcCreateGroupDesc = exports.AdminSvcGetGroupDesc = exports.AdminSvcListGroupsDesc = exports.AdminSvcDeletePermissionDesc = exports.AdminSvcPatchPermissionDesc = exports.AdminSvcCreatePermissionDesc = exports.AdminSvcGetPermissionDesc = exports.AdminSvcListPermissionsDesc = exports.AdminSvcDeleteUserDesc = exports.AdminSvcCreateUserDesc = exports.AdminSvcPatchUserDesc = exports.AdminSvcGetUserDesc = exports.AdminSvcListUsersDesc = exports.AdminSvcDesc = exports.AdminSvcClientImpl = exports.RevokeRoleFromUserResponse = exports.RevokeRoleFromUserRequest = exports.AssignRoleToUserResponse = exports.AssignRoleToUserRequest = exports.RemoveUserFromGroupResponse = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.AdminSvcListGroupUsersDesc = exports.AdminSvcRemoveUserFromGroupDesc = exports.AdminSvcAddUserToGroupDesc = exports.AdminSvcSetGroupRolesDesc = exports.AdminSvcSetRolePermissionsDesc = exports.AdminSvcDeleteRoleDesc = exports.AdminSvcPatchRoleDesc = exports.AdminSvcCreateRoleDesc = exports.AdminSvcGetRoleDesc = exports.AdminSvcListRolesDesc = exports.AdminSvcDeleteGroupDesc = exports.AdminSvcPatchGroupDesc = exports.AdminSvcCreateGroupDesc = exports.AdminSvcGetGroupDesc = exports.AdminSvcListGroupsDesc = exports.AdminSvcDeletePermissionDesc = exports.AdminSvcPatchPermissionDesc = exports.AdminSvcCreatePermissionDesc = exports.AdminSvcGetPermissionDesc = exports.AdminSvcListPermissionsDesc = exports.AdminSvcSetUserGroupsDesc = exports.AdminSvcSetUserRolesDesc = exports.AdminSvcDeleteUserDesc = exports.AdminSvcCreateUserDesc = exports.AdminSvcPatchUserDesc = exports.AdminSvcGetUserDesc = exports.AdminSvcListUsersDesc = exports.AdminSvcDesc = exports.AdminSvcClientImpl = exports.SetUserGroupsResponse = exports.SetUserGroupsRequest = exports.SetUserRolesResponse = exports.SetUserRolesRequest = exports.RemoveUserFromGroupResponse = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -2654,23 +2654,23 @@ exports.RemoveUserFromGroupResponse = {
         return message;
     },
 };
-function createBaseAssignRoleToUserRequest() {
-    return { userId: "", roleId: "" };
+function createBaseSetUserRolesRequest() {
+    return { userId: "", roleIds: [] };
 }
-exports.AssignRoleToUserRequest = {
+exports.SetUserRolesRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.userId !== "") {
             writer.uint32(10).string(message.userId);
         }
-        if (message.roleId !== "") {
-            writer.uint32(18).string(message.roleId);
+        for (const v of message.roleIds) {
+            writer.uint32(18).string(v);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseAssignRoleToUserRequest();
+        const message = createBaseSetUserRolesRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -2684,7 +2684,7 @@ exports.AssignRoleToUserRequest = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.roleId = reader.string();
+                    message.roleIds.push(reader.string());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -2697,44 +2697,54 @@ exports.AssignRoleToUserRequest = {
     fromJSON(object) {
         return {
             userId: isSet(object.userId) ? String(object.userId) : "",
-            roleId: isSet(object.roleId) ? String(object.roleId) : "",
+            roleIds: Array.isArray(object === null || object === void 0 ? void 0 : object.roleIds) ? object.roleIds.map((e) => String(e)) : [],
         };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
         if (message.userId !== "") {
             obj.userId = message.userId;
         }
-        if (message.roleId !== "") {
-            obj.roleId = message.roleId;
+        if ((_a = message.roleIds) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.roleIds = message.roleIds;
         }
         return obj;
     },
     create(base) {
-        return exports.AssignRoleToUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetUserRolesRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a, _b;
-        const message = createBaseAssignRoleToUserRequest();
+        const message = createBaseSetUserRolesRequest();
         message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
-        message.roleId = (_b = object.roleId) !== null && _b !== void 0 ? _b : "";
+        message.roleIds = ((_b = object.roleIds) === null || _b === void 0 ? void 0 : _b.map((e) => e)) || [];
         return message;
     },
 };
-function createBaseAssignRoleToUserResponse() {
-    return {};
+function createBaseSetUserRolesResponse() {
+    return { user: undefined };
 }
-exports.AssignRoleToUserResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
+exports.SetUserRolesResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.user !== undefined) {
+            iam_1.UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
+        }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseAssignRoleToUserResponse();
+        const message = createBaseSetUserRolesResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.user = iam_1.UserDetail.decode(reader, reader.uint32());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -2743,38 +2753,44 @@ exports.AssignRoleToUserResponse = {
         }
         return message;
     },
-    fromJSON(_) {
-        return {};
+    fromJSON(object) {
+        return { user: isSet(object.user) ? iam_1.UserDetail.fromJSON(object.user) : undefined };
     },
-    toJSON(_) {
+    toJSON(message) {
         const obj = {};
+        if (message.user !== undefined) {
+            obj.user = iam_1.UserDetail.toJSON(message.user);
+        }
         return obj;
     },
     create(base) {
-        return exports.AssignRoleToUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetUserRolesResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
-    fromPartial(_) {
-        const message = createBaseAssignRoleToUserResponse();
+    fromPartial(object) {
+        const message = createBaseSetUserRolesResponse();
+        message.user = (object.user !== undefined && object.user !== null)
+            ? iam_1.UserDetail.fromPartial(object.user)
+            : undefined;
         return message;
     },
 };
-function createBaseRevokeRoleFromUserRequest() {
-    return { userId: "", roleId: "" };
+function createBaseSetUserGroupsRequest() {
+    return { userId: "", groupIds: [] };
 }
-exports.RevokeRoleFromUserRequest = {
+exports.SetUserGroupsRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.userId !== "") {
             writer.uint32(10).string(message.userId);
         }
-        if (message.roleId !== "") {
-            writer.uint32(18).string(message.roleId);
+        for (const v of message.groupIds) {
+            writer.uint32(18).string(v);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseRevokeRoleFromUserRequest();
+        const message = createBaseSetUserGroupsRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -2788,7 +2804,7 @@ exports.RevokeRoleFromUserRequest = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.roleId = reader.string();
+                    message.groupIds.push(reader.string());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -2801,44 +2817,54 @@ exports.RevokeRoleFromUserRequest = {
     fromJSON(object) {
         return {
             userId: isSet(object.userId) ? String(object.userId) : "",
-            roleId: isSet(object.roleId) ? String(object.roleId) : "",
+            groupIds: Array.isArray(object === null || object === void 0 ? void 0 : object.groupIds) ? object.groupIds.map((e) => String(e)) : [],
         };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
         if (message.userId !== "") {
             obj.userId = message.userId;
         }
-        if (message.roleId !== "") {
-            obj.roleId = message.roleId;
+        if ((_a = message.groupIds) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.groupIds = message.groupIds;
         }
         return obj;
     },
     create(base) {
-        return exports.RevokeRoleFromUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetUserGroupsRequest.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a, _b;
-        const message = createBaseRevokeRoleFromUserRequest();
+        const message = createBaseSetUserGroupsRequest();
         message.userId = (_a = object.userId) !== null && _a !== void 0 ? _a : "";
-        message.roleId = (_b = object.roleId) !== null && _b !== void 0 ? _b : "";
+        message.groupIds = ((_b = object.groupIds) === null || _b === void 0 ? void 0 : _b.map((e) => e)) || [];
         return message;
     },
 };
-function createBaseRevokeRoleFromUserResponse() {
-    return {};
+function createBaseSetUserGroupsResponse() {
+    return { user: undefined };
 }
-exports.RevokeRoleFromUserResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
+exports.SetUserGroupsResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.user !== undefined) {
+            iam_1.UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
+        }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseRevokeRoleFromUserResponse();
+        const message = createBaseSetUserGroupsResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.user = iam_1.UserDetail.decode(reader, reader.uint32());
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -2847,18 +2873,24 @@ exports.RevokeRoleFromUserResponse = {
         }
         return message;
     },
-    fromJSON(_) {
-        return {};
+    fromJSON(object) {
+        return { user: isSet(object.user) ? iam_1.UserDetail.fromJSON(object.user) : undefined };
     },
-    toJSON(_) {
+    toJSON(message) {
         const obj = {};
+        if (message.user !== undefined) {
+            obj.user = iam_1.UserDetail.toJSON(message.user);
+        }
         return obj;
     },
     create(base) {
-        return exports.RevokeRoleFromUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.SetUserGroupsResponse.fromPartial(base !== null && base !== void 0 ? base : {});
     },
-    fromPartial(_) {
-        const message = createBaseRevokeRoleFromUserResponse();
+    fromPartial(object) {
+        const message = createBaseSetUserGroupsResponse();
+        message.user = (object.user !== undefined && object.user !== null)
+            ? iam_1.UserDetail.fromPartial(object.user)
+            : undefined;
         return message;
     },
 };
@@ -2870,6 +2902,8 @@ class AdminSvcClientImpl {
         this.PatchUser = this.PatchUser.bind(this);
         this.CreateUser = this.CreateUser.bind(this);
         this.DeleteUser = this.DeleteUser.bind(this);
+        this.SetUserRoles = this.SetUserRoles.bind(this);
+        this.SetUserGroups = this.SetUserGroups.bind(this);
         this.ListPermissions = this.ListPermissions.bind(this);
         this.GetPermission = this.GetPermission.bind(this);
         this.CreatePermission = this.CreatePermission.bind(this);
@@ -2890,8 +2924,6 @@ class AdminSvcClientImpl {
         this.AddUserToGroup = this.AddUserToGroup.bind(this);
         this.RemoveUserFromGroup = this.RemoveUserFromGroup.bind(this);
         this.ListGroupUsers = this.ListGroupUsers.bind(this);
-        this.AssignRoleToUser = this.AssignRoleToUser.bind(this);
-        this.RevokeRoleFromUser = this.RevokeRoleFromUser.bind(this);
     }
     ListUsers(request, metadata) {
         return this.rpc.unary(exports.AdminSvcListUsersDesc, exports.ListUsersRequest.fromPartial(request), metadata);
@@ -2907,6 +2939,12 @@ class AdminSvcClientImpl {
     }
     DeleteUser(request, metadata) {
         return this.rpc.unary(exports.AdminSvcDeleteUserDesc, exports.DeleteUserRequest.fromPartial(request), metadata);
+    }
+    SetUserRoles(request, metadata) {
+        return this.rpc.unary(exports.AdminSvcSetUserRolesDesc, exports.SetUserRolesRequest.fromPartial(request), metadata);
+    }
+    SetUserGroups(request, metadata) {
+        return this.rpc.unary(exports.AdminSvcSetUserGroupsDesc, exports.SetUserGroupsRequest.fromPartial(request), metadata);
     }
     ListPermissions(request, metadata) {
         return this.rpc.unary(exports.AdminSvcListPermissionsDesc, exports.ListPermissionsRequest.fromPartial(request), metadata);
@@ -2967,12 +3005,6 @@ class AdminSvcClientImpl {
     }
     ListGroupUsers(request, metadata) {
         return this.rpc.unary(exports.AdminSvcListGroupUsersDesc, exports.ListGroupUsersRequest.fromPartial(request), metadata);
-    }
-    AssignRoleToUser(request, metadata) {
-        return this.rpc.unary(exports.AdminSvcAssignRoleToUserDesc, exports.AssignRoleToUserRequest.fromPartial(request), metadata);
-    }
-    RevokeRoleFromUser(request, metadata) {
-        return this.rpc.unary(exports.AdminSvcRevokeRoleFromUserDesc, exports.RevokeRoleFromUserRequest.fromPartial(request), metadata);
     }
 }
 exports.AdminSvcClientImpl = AdminSvcClientImpl;
@@ -3066,6 +3098,44 @@ exports.AdminSvcDeleteUserDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.DeleteUserResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.AdminSvcSetUserRolesDesc = {
+    methodName: "SetUserRoles",
+    service: exports.AdminSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.SetUserRolesRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.SetUserRolesResponse.decode(data);
+            return Object.assign(Object.assign({}, value), { toObject() {
+                    return value;
+                } });
+        },
+    },
+};
+exports.AdminSvcSetUserGroupsDesc = {
+    methodName: "SetUserGroups",
+    service: exports.AdminSvcDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.SetUserGroupsRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            const value = exports.SetUserGroupsResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });
@@ -3446,44 +3516,6 @@ exports.AdminSvcListGroupUsersDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.ListGroupUsersResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AdminSvcAssignRoleToUserDesc = {
-    methodName: "AssignRoleToUser",
-    service: exports.AdminSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.AssignRoleToUserRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.AssignRoleToUserResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AdminSvcRevokeRoleFromUserDesc = {
-    methodName: "RevokeRoleFromUser",
-    service: exports.AdminSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.RevokeRoleFromUserRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.RevokeRoleFromUserResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

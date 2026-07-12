@@ -14,6 +14,8 @@ service AdminSvc {
   rpc PatchUser (PatchUserRequest) returns (PatchUserResponse) {}
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+  rpc SetUserRoles (SetUserRolesRequest) returns (SetUserRolesResponse) {}
+  rpc SetUserGroups (SetUserGroupsRequest) returns (SetUserGroupsResponse) {}
 
   // Permission management
   rpc ListPermissions (ListPermissionsRequest) returns (ListPermissionsResponse) {}
@@ -47,9 +49,6 @@ service AdminSvc {
   rpc RemoveUserFromGroup (RemoveUserFromGroupRequest) returns (RemoveUserFromGroupResponse) {}
   rpc ListGroupUsers (ListGroupUsersRequest) returns (ListGroupUsersResponse) {}
 
-  // User ↔ Role bindings (direct)
-  rpc AssignRoleToUser (AssignRoleToUserRequest) returns (AssignRoleToUserResponse) {}
-  rpc RevokeRoleFromUser (RevokeRoleFromUserRequest) returns (RevokeRoleFromUserResponse) {}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -281,19 +280,23 @@ message RemoveUserFromGroupRequest {
 message RemoveUserFromGroupResponse {}
 
 ////////////////////////////////////////////////////////////////////////////////
-// User ↔ Role bindings (direct)
+// User ↔ Role / Group (set)
 //////
 
-message AssignRoleToUserRequest {
-  string user_id = 1;
-  string role_id = 2;
+message SetUserRolesRequest {
+  string user_id           = 1;
+  repeated string role_ids = 2;
 }
 
-message AssignRoleToUserResponse {}
-
-message RevokeRoleFromUserRequest {
-  string user_id = 1;
-  string role_id = 2;
+message SetUserRolesResponse {
+  iam.UserDetail user = 1;
 }
 
-message RevokeRoleFromUserResponse {}
+message SetUserGroupsRequest {
+  string user_id            = 1;
+  repeated string group_ids = 2;
+}
+
+message SetUserGroupsResponse {
+  iam.UserDetail user = 1;
+}

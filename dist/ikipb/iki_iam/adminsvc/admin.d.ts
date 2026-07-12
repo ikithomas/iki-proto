@@ -157,17 +157,19 @@ export interface RemoveUserFromGroupRequest {
 }
 export interface RemoveUserFromGroupResponse {
 }
-export interface AssignRoleToUserRequest {
+export interface SetUserRolesRequest {
     userId: string;
-    roleId: string;
+    roleIds: string[];
 }
-export interface AssignRoleToUserResponse {
+export interface SetUserRolesResponse {
+    user: UserDetail | undefined;
 }
-export interface RevokeRoleFromUserRequest {
+export interface SetUserGroupsRequest {
     userId: string;
-    roleId: string;
+    groupIds: string[];
 }
-export interface RevokeRoleFromUserResponse {
+export interface SetUserGroupsResponse {
+    user: UserDetail | undefined;
 }
 export declare const ListPermissionsRequest: {
     encode(_: ListPermissionsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -3121,61 +3123,1301 @@ export declare const RemoveUserFromGroupResponse: {
     create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): RemoveUserFromGroupResponse;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): RemoveUserFromGroupResponse;
 };
-export declare const AssignRoleToUserRequest: {
-    encode(message: AssignRoleToUserRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AssignRoleToUserRequest;
-    fromJSON(object: any): AssignRoleToUserRequest;
-    toJSON(message: AssignRoleToUserRequest): unknown;
+export declare const SetUserRolesRequest: {
+    encode(message: SetUserRolesRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetUserRolesRequest;
+    fromJSON(object: any): SetUserRolesRequest;
+    toJSON(message: SetUserRolesRequest): unknown;
     create<I extends {
         userId?: string;
-        roleId?: string;
+        roleIds?: string[];
     } & {
         userId?: string;
-        roleId?: string;
-    } & { [K in Exclude<keyof I, keyof AssignRoleToUserRequest>]: never; }>(base?: I): AssignRoleToUserRequest;
+        roleIds?: string[] & string[] & { [K in Exclude<keyof I["roleIds"], keyof string[]>]: never; };
+    } & { [K_1 in Exclude<keyof I, keyof SetUserRolesRequest>]: never; }>(base?: I): SetUserRolesRequest;
     fromPartial<I_1 extends {
         userId?: string;
-        roleId?: string;
+        roleIds?: string[];
     } & {
         userId?: string;
-        roleId?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof AssignRoleToUserRequest>]: never; }>(object: I_1): AssignRoleToUserRequest;
+        roleIds?: string[] & string[] & { [K_2 in Exclude<keyof I_1["roleIds"], keyof string[]>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, keyof SetUserRolesRequest>]: never; }>(object: I_1): SetUserRolesRequest;
 };
-export declare const AssignRoleToUserResponse: {
-    encode(_: AssignRoleToUserResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): AssignRoleToUserResponse;
-    fromJSON(_: any): AssignRoleToUserResponse;
-    toJSON(_: AssignRoleToUserResponse): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): AssignRoleToUserResponse;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): AssignRoleToUserResponse;
+export declare const SetUserRolesResponse: {
+    encode(message: SetUserRolesResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetUserRolesResponse;
+    fromJSON(object: any): SetUserRolesResponse;
+    toJSON(message: SetUserRolesResponse): unknown;
+    create<I extends {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        };
+    } & {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K in Exclude<keyof I["user"]["user"], keyof User>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                } & {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[] & ({
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & { [K_1 in Exclude<keyof I["user"]["groups"][number]["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_2 in Exclude<keyof I["user"]["groups"][number]["roles"][number]["permissions"], keyof {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[]>]: never; };
+                } & { [K_3 in Exclude<keyof I["user"]["groups"][number]["roles"][number], keyof Role>]: never; })[] & { [K_4 in Exclude<keyof I["user"]["groups"][number]["roles"], keyof {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[]>]: never; };
+            } & { [K_5 in Exclude<keyof I["user"]["groups"][number], keyof Group>]: never; })[] & { [K_6 in Exclude<keyof I["user"]["groups"], keyof {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[]>]: never; };
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_7 in Exclude<keyof I["user"]["directRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_8 in Exclude<keyof I["user"]["directRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_9 in Exclude<keyof I["user"]["directRoles"][number], keyof Role>]: never; })[] & { [K_10 in Exclude<keyof I["user"]["directRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_11 in Exclude<keyof I["user"]["effectiveRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_12 in Exclude<keyof I["user"]["effectiveRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_13 in Exclude<keyof I["user"]["effectiveRoles"][number], keyof Role>]: never; })[] & { [K_14 in Exclude<keyof I["user"]["effectiveRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_15 in Exclude<keyof I["user"]["effectivePermissions"][number], keyof Permission>]: never; })[] & { [K_16 in Exclude<keyof I["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_17 in Exclude<keyof I["user"], keyof UserDetail>]: never; };
+    } & { [K_18 in Exclude<keyof I, "user">]: never; }>(base?: I): SetUserRolesResponse;
+    fromPartial<I_1 extends {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        };
+    } & {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K_19 in Exclude<keyof I_1["user"]["user"], keyof User>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                } & {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[] & ({
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & { [K_20 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_21 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number]["permissions"], keyof {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[]>]: never; };
+                } & { [K_22 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number], keyof Role>]: never; })[] & { [K_23 in Exclude<keyof I_1["user"]["groups"][number]["roles"], keyof {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[]>]: never; };
+            } & { [K_24 in Exclude<keyof I_1["user"]["groups"][number], keyof Group>]: never; })[] & { [K_25 in Exclude<keyof I_1["user"]["groups"], keyof {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[]>]: never; };
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_26 in Exclude<keyof I_1["user"]["directRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_27 in Exclude<keyof I_1["user"]["directRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_28 in Exclude<keyof I_1["user"]["directRoles"][number], keyof Role>]: never; })[] & { [K_29 in Exclude<keyof I_1["user"]["directRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_30 in Exclude<keyof I_1["user"]["effectiveRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_31 in Exclude<keyof I_1["user"]["effectiveRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_32 in Exclude<keyof I_1["user"]["effectiveRoles"][number], keyof Role>]: never; })[] & { [K_33 in Exclude<keyof I_1["user"]["effectiveRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_34 in Exclude<keyof I_1["user"]["effectivePermissions"][number], keyof Permission>]: never; })[] & { [K_35 in Exclude<keyof I_1["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_36 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
+    } & { [K_37 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): SetUserRolesResponse;
 };
-export declare const RevokeRoleFromUserRequest: {
-    encode(message: RevokeRoleFromUserRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): RevokeRoleFromUserRequest;
-    fromJSON(object: any): RevokeRoleFromUserRequest;
-    toJSON(message: RevokeRoleFromUserRequest): unknown;
+export declare const SetUserGroupsRequest: {
+    encode(message: SetUserGroupsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetUserGroupsRequest;
+    fromJSON(object: any): SetUserGroupsRequest;
+    toJSON(message: SetUserGroupsRequest): unknown;
     create<I extends {
         userId?: string;
-        roleId?: string;
+        groupIds?: string[];
     } & {
         userId?: string;
-        roleId?: string;
-    } & { [K in Exclude<keyof I, keyof RevokeRoleFromUserRequest>]: never; }>(base?: I): RevokeRoleFromUserRequest;
+        groupIds?: string[] & string[] & { [K in Exclude<keyof I["groupIds"], keyof string[]>]: never; };
+    } & { [K_1 in Exclude<keyof I, keyof SetUserGroupsRequest>]: never; }>(base?: I): SetUserGroupsRequest;
     fromPartial<I_1 extends {
         userId?: string;
-        roleId?: string;
+        groupIds?: string[];
     } & {
         userId?: string;
-        roleId?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof RevokeRoleFromUserRequest>]: never; }>(object: I_1): RevokeRoleFromUserRequest;
+        groupIds?: string[] & string[] & { [K_2 in Exclude<keyof I_1["groupIds"], keyof string[]>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, keyof SetUserGroupsRequest>]: never; }>(object: I_1): SetUserGroupsRequest;
 };
-export declare const RevokeRoleFromUserResponse: {
-    encode(_: RevokeRoleFromUserResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): RevokeRoleFromUserResponse;
-    fromJSON(_: any): RevokeRoleFromUserResponse;
-    toJSON(_: RevokeRoleFromUserResponse): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): RevokeRoleFromUserResponse;
-    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): RevokeRoleFromUserResponse;
+export declare const SetUserGroupsResponse: {
+    encode(message: SetUserGroupsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SetUserGroupsResponse;
+    fromJSON(object: any): SetUserGroupsResponse;
+    toJSON(message: SetUserGroupsResponse): unknown;
+    create<I extends {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        };
+    } & {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K in Exclude<keyof I["user"]["user"], keyof User>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                } & {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[] & ({
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & { [K_1 in Exclude<keyof I["user"]["groups"][number]["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_2 in Exclude<keyof I["user"]["groups"][number]["roles"][number]["permissions"], keyof {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[]>]: never; };
+                } & { [K_3 in Exclude<keyof I["user"]["groups"][number]["roles"][number], keyof Role>]: never; })[] & { [K_4 in Exclude<keyof I["user"]["groups"][number]["roles"], keyof {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[]>]: never; };
+            } & { [K_5 in Exclude<keyof I["user"]["groups"][number], keyof Group>]: never; })[] & { [K_6 in Exclude<keyof I["user"]["groups"], keyof {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[]>]: never; };
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_7 in Exclude<keyof I["user"]["directRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_8 in Exclude<keyof I["user"]["directRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_9 in Exclude<keyof I["user"]["directRoles"][number], keyof Role>]: never; })[] & { [K_10 in Exclude<keyof I["user"]["directRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_11 in Exclude<keyof I["user"]["effectiveRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_12 in Exclude<keyof I["user"]["effectiveRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_13 in Exclude<keyof I["user"]["effectiveRoles"][number], keyof Role>]: never; })[] & { [K_14 in Exclude<keyof I["user"]["effectiveRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_15 in Exclude<keyof I["user"]["effectivePermissions"][number], keyof Permission>]: never; })[] & { [K_16 in Exclude<keyof I["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_17 in Exclude<keyof I["user"], keyof UserDetail>]: never; };
+    } & { [K_18 in Exclude<keyof I, "user">]: never; }>(base?: I): SetUserGroupsResponse;
+    fromPartial<I_1 extends {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        };
+    } & {
+        user?: {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[];
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
+        } & {
+            user?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K_19 in Exclude<keyof I_1["user"]["user"], keyof User>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                } & {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[] & ({
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    } & { [K_20 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_21 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number]["permissions"], keyof {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[]>]: never; };
+                } & { [K_22 in Exclude<keyof I_1["user"]["groups"][number]["roles"][number], keyof Role>]: never; })[] & { [K_23 in Exclude<keyof I_1["user"]["groups"][number]["roles"], keyof {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[]>]: never; };
+            } & { [K_24 in Exclude<keyof I_1["user"]["groups"][number], keyof Group>]: never; })[] & { [K_25 in Exclude<keyof I_1["user"]["groups"], keyof {
+                id?: string;
+                name?: string;
+                roles?: {
+                    id?: string;
+                    name?: string;
+                    permissions?: {
+                        id?: string;
+                        name?: string;
+                        externalId?: string;
+                    }[];
+                }[];
+            }[]>]: never; };
+            directRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_26 in Exclude<keyof I_1["user"]["directRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_27 in Exclude<keyof I_1["user"]["directRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_28 in Exclude<keyof I_1["user"]["directRoles"][number], keyof Role>]: never; })[] & { [K_29 in Exclude<keyof I_1["user"]["directRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectiveRoles?: {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[] & ({
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            } & {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[] & ({
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                } & { [K_30 in Exclude<keyof I_1["user"]["effectiveRoles"][number]["permissions"][number], keyof Permission>]: never; })[] & { [K_31 in Exclude<keyof I_1["user"]["effectiveRoles"][number]["permissions"], keyof {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[]>]: never; };
+            } & { [K_32 in Exclude<keyof I_1["user"]["effectiveRoles"][number], keyof Role>]: never; })[] & { [K_33 in Exclude<keyof I_1["user"]["effectiveRoles"], keyof {
+                id?: string;
+                name?: string;
+                permissions?: {
+                    id?: string;
+                    name?: string;
+                    externalId?: string;
+                }[];
+            }[]>]: never; };
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_34 in Exclude<keyof I_1["user"]["effectivePermissions"][number], keyof Permission>]: never; })[] & { [K_35 in Exclude<keyof I_1["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_36 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
+    } & { [K_37 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): SetUserGroupsResponse;
 };
 export interface AdminSvc {
     /** User management */
@@ -3184,6 +4426,8 @@ export interface AdminSvc {
     PatchUser(request: DeepPartial<PatchUserRequest>, metadata?: grpc.Metadata): Promise<PatchUserResponse>;
     CreateUser(request: DeepPartial<CreateUserRequest>, metadata?: grpc.Metadata): Promise<CreateUserResponse>;
     DeleteUser(request: DeepPartial<DeleteUserRequest>, metadata?: grpc.Metadata): Promise<DeleteUserResponse>;
+    SetUserRoles(request: DeepPartial<SetUserRolesRequest>, metadata?: grpc.Metadata): Promise<SetUserRolesResponse>;
+    SetUserGroups(request: DeepPartial<SetUserGroupsRequest>, metadata?: grpc.Metadata): Promise<SetUserGroupsResponse>;
     /** Permission management */
     ListPermissions(request: DeepPartial<ListPermissionsRequest>, metadata?: grpc.Metadata): Promise<ListPermissionsResponse>;
     GetPermission(request: DeepPartial<GetPermissionRequest>, metadata?: grpc.Metadata): Promise<GetPermissionResponse>;
@@ -3210,9 +4454,6 @@ export interface AdminSvc {
     AddUserToGroup(request: DeepPartial<AddUserToGroupRequest>, metadata?: grpc.Metadata): Promise<AddUserToGroupResponse>;
     RemoveUserFromGroup(request: DeepPartial<RemoveUserFromGroupRequest>, metadata?: grpc.Metadata): Promise<RemoveUserFromGroupResponse>;
     ListGroupUsers(request: DeepPartial<ListGroupUsersRequest>, metadata?: grpc.Metadata): Promise<ListGroupUsersResponse>;
-    /** User ↔ Role bindings (direct) */
-    AssignRoleToUser(request: DeepPartial<AssignRoleToUserRequest>, metadata?: grpc.Metadata): Promise<AssignRoleToUserResponse>;
-    RevokeRoleFromUser(request: DeepPartial<RevokeRoleFromUserRequest>, metadata?: grpc.Metadata): Promise<RevokeRoleFromUserResponse>;
 }
 export declare class AdminSvcClientImpl implements AdminSvc {
     private readonly rpc;
@@ -3222,6 +4463,8 @@ export declare class AdminSvcClientImpl implements AdminSvc {
     PatchUser(request: DeepPartial<PatchUserRequest>, metadata?: grpc.Metadata): Promise<PatchUserResponse>;
     CreateUser(request: DeepPartial<CreateUserRequest>, metadata?: grpc.Metadata): Promise<CreateUserResponse>;
     DeleteUser(request: DeepPartial<DeleteUserRequest>, metadata?: grpc.Metadata): Promise<DeleteUserResponse>;
+    SetUserRoles(request: DeepPartial<SetUserRolesRequest>, metadata?: grpc.Metadata): Promise<SetUserRolesResponse>;
+    SetUserGroups(request: DeepPartial<SetUserGroupsRequest>, metadata?: grpc.Metadata): Promise<SetUserGroupsResponse>;
     ListPermissions(request: DeepPartial<ListPermissionsRequest>, metadata?: grpc.Metadata): Promise<ListPermissionsResponse>;
     GetPermission(request: DeepPartial<GetPermissionRequest>, metadata?: grpc.Metadata): Promise<GetPermissionResponse>;
     CreatePermission(request: DeepPartial<CreatePermissionRequest>, metadata?: grpc.Metadata): Promise<CreatePermissionResponse>;
@@ -3242,8 +4485,6 @@ export declare class AdminSvcClientImpl implements AdminSvc {
     AddUserToGroup(request: DeepPartial<AddUserToGroupRequest>, metadata?: grpc.Metadata): Promise<AddUserToGroupResponse>;
     RemoveUserFromGroup(request: DeepPartial<RemoveUserFromGroupRequest>, metadata?: grpc.Metadata): Promise<RemoveUserFromGroupResponse>;
     ListGroupUsers(request: DeepPartial<ListGroupUsersRequest>, metadata?: grpc.Metadata): Promise<ListGroupUsersResponse>;
-    AssignRoleToUser(request: DeepPartial<AssignRoleToUserRequest>, metadata?: grpc.Metadata): Promise<AssignRoleToUserResponse>;
-    RevokeRoleFromUser(request: DeepPartial<RevokeRoleFromUserRequest>, metadata?: grpc.Metadata): Promise<RevokeRoleFromUserResponse>;
 }
 export declare const AdminSvcDesc: {
     serviceName: string;
@@ -3253,6 +4494,8 @@ export declare const AdminSvcGetUserDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcPatchUserDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcCreateUserDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcDeleteUserDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcSetUserRolesDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcSetUserGroupsDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcListPermissionsDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcGetPermissionDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcCreatePermissionDesc: UnaryMethodDefinitionish;
@@ -3273,8 +4516,6 @@ export declare const AdminSvcSetGroupRolesDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcAddUserToGroupDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcRemoveUserFromGroupDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcListGroupUsersDesc: UnaryMethodDefinitionish;
-export declare const AdminSvcAssignRoleToUserDesc: UnaryMethodDefinitionish;
-export declare const AdminSvcRevokeRoleFromUserDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

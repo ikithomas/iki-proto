@@ -24,6 +24,8 @@ const (
 	AdminSvc_PatchUser_FullMethodName           = "/adminsvc.AdminSvc/PatchUser"
 	AdminSvc_CreateUser_FullMethodName          = "/adminsvc.AdminSvc/CreateUser"
 	AdminSvc_DeleteUser_FullMethodName          = "/adminsvc.AdminSvc/DeleteUser"
+	AdminSvc_SetUserRoles_FullMethodName        = "/adminsvc.AdminSvc/SetUserRoles"
+	AdminSvc_SetUserGroups_FullMethodName       = "/adminsvc.AdminSvc/SetUserGroups"
 	AdminSvc_ListPermissions_FullMethodName     = "/adminsvc.AdminSvc/ListPermissions"
 	AdminSvc_GetPermission_FullMethodName       = "/adminsvc.AdminSvc/GetPermission"
 	AdminSvc_CreatePermission_FullMethodName    = "/adminsvc.AdminSvc/CreatePermission"
@@ -44,8 +46,6 @@ const (
 	AdminSvc_AddUserToGroup_FullMethodName      = "/adminsvc.AdminSvc/AddUserToGroup"
 	AdminSvc_RemoveUserFromGroup_FullMethodName = "/adminsvc.AdminSvc/RemoveUserFromGroup"
 	AdminSvc_ListGroupUsers_FullMethodName      = "/adminsvc.AdminSvc/ListGroupUsers"
-	AdminSvc_AssignRoleToUser_FullMethodName    = "/adminsvc.AdminSvc/AssignRoleToUser"
-	AdminSvc_RevokeRoleFromUser_FullMethodName  = "/adminsvc.AdminSvc/RevokeRoleFromUser"
 )
 
 // AdminSvcClient is the client API for AdminSvc service.
@@ -58,6 +58,8 @@ type AdminSvcClient interface {
 	PatchUser(ctx context.Context, in *PatchUserRequest, opts ...grpc.CallOption) (*PatchUserResponse, error)
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
+	SetUserRoles(ctx context.Context, in *SetUserRolesRequest, opts ...grpc.CallOption) (*SetUserRolesResponse, error)
+	SetUserGroups(ctx context.Context, in *SetUserGroupsRequest, opts ...grpc.CallOption) (*SetUserGroupsResponse, error)
 	// Permission management
 	ListPermissions(ctx context.Context, in *ListPermissionsRequest, opts ...grpc.CallOption) (*ListPermissionsResponse, error)
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
@@ -84,9 +86,6 @@ type AdminSvcClient interface {
 	AddUserToGroup(ctx context.Context, in *AddUserToGroupRequest, opts ...grpc.CallOption) (*AddUserToGroupResponse, error)
 	RemoveUserFromGroup(ctx context.Context, in *RemoveUserFromGroupRequest, opts ...grpc.CallOption) (*RemoveUserFromGroupResponse, error)
 	ListGroupUsers(ctx context.Context, in *ListGroupUsersRequest, opts ...grpc.CallOption) (*ListGroupUsersResponse, error)
-	// User ↔ Role bindings (direct)
-	AssignRoleToUser(ctx context.Context, in *AssignRoleToUserRequest, opts ...grpc.CallOption) (*AssignRoleToUserResponse, error)
-	RevokeRoleFromUser(ctx context.Context, in *RevokeRoleFromUserRequest, opts ...grpc.CallOption) (*RevokeRoleFromUserResponse, error)
 }
 
 type adminSvcClient struct {
@@ -141,6 +140,26 @@ func (c *adminSvcClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteUserResponse)
 	err := c.cc.Invoke(ctx, AdminSvc_DeleteUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) SetUserRoles(ctx context.Context, in *SetUserRolesRequest, opts ...grpc.CallOption) (*SetUserRolesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetUserRolesResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_SetUserRoles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) SetUserGroups(ctx context.Context, in *SetUserGroupsRequest, opts ...grpc.CallOption) (*SetUserGroupsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetUserGroupsResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_SetUserGroups_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -347,26 +366,6 @@ func (c *adminSvcClient) ListGroupUsers(ctx context.Context, in *ListGroupUsersR
 	return out, nil
 }
 
-func (c *adminSvcClient) AssignRoleToUser(ctx context.Context, in *AssignRoleToUserRequest, opts ...grpc.CallOption) (*AssignRoleToUserResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AssignRoleToUserResponse)
-	err := c.cc.Invoke(ctx, AdminSvc_AssignRoleToUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *adminSvcClient) RevokeRoleFromUser(ctx context.Context, in *RevokeRoleFromUserRequest, opts ...grpc.CallOption) (*RevokeRoleFromUserResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RevokeRoleFromUserResponse)
-	err := c.cc.Invoke(ctx, AdminSvc_RevokeRoleFromUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AdminSvcServer is the server API for AdminSvc service.
 // All implementations must embed UnimplementedAdminSvcServer
 // for forward compatibility.
@@ -377,6 +376,8 @@ type AdminSvcServer interface {
 	PatchUser(context.Context, *PatchUserRequest) (*PatchUserResponse, error)
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
+	SetUserRoles(context.Context, *SetUserRolesRequest) (*SetUserRolesResponse, error)
+	SetUserGroups(context.Context, *SetUserGroupsRequest) (*SetUserGroupsResponse, error)
 	// Permission management
 	ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error)
 	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
@@ -403,9 +404,6 @@ type AdminSvcServer interface {
 	AddUserToGroup(context.Context, *AddUserToGroupRequest) (*AddUserToGroupResponse, error)
 	RemoveUserFromGroup(context.Context, *RemoveUserFromGroupRequest) (*RemoveUserFromGroupResponse, error)
 	ListGroupUsers(context.Context, *ListGroupUsersRequest) (*ListGroupUsersResponse, error)
-	// User ↔ Role bindings (direct)
-	AssignRoleToUser(context.Context, *AssignRoleToUserRequest) (*AssignRoleToUserResponse, error)
-	RevokeRoleFromUser(context.Context, *RevokeRoleFromUserRequest) (*RevokeRoleFromUserResponse, error)
 	mustEmbedUnimplementedAdminSvcServer()
 }
 
@@ -430,6 +428,12 @@ func (UnimplementedAdminSvcServer) CreateUser(context.Context, *CreateUserReques
 }
 func (UnimplementedAdminSvcServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (UnimplementedAdminSvcServer) SetUserRoles(context.Context, *SetUserRolesRequest) (*SetUserRolesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetUserRoles not implemented")
+}
+func (UnimplementedAdminSvcServer) SetUserGroups(context.Context, *SetUserGroupsRequest) (*SetUserGroupsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetUserGroups not implemented")
 }
 func (UnimplementedAdminSvcServer) ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListPermissions not implemented")
@@ -490,12 +494,6 @@ func (UnimplementedAdminSvcServer) RemoveUserFromGroup(context.Context, *RemoveU
 }
 func (UnimplementedAdminSvcServer) ListGroupUsers(context.Context, *ListGroupUsersRequest) (*ListGroupUsersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListGroupUsers not implemented")
-}
-func (UnimplementedAdminSvcServer) AssignRoleToUser(context.Context, *AssignRoleToUserRequest) (*AssignRoleToUserResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method AssignRoleToUser not implemented")
-}
-func (UnimplementedAdminSvcServer) RevokeRoleFromUser(context.Context, *RevokeRoleFromUserRequest) (*RevokeRoleFromUserResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method RevokeRoleFromUser not implemented")
 }
 func (UnimplementedAdminSvcServer) mustEmbedUnimplementedAdminSvcServer() {}
 func (UnimplementedAdminSvcServer) testEmbeddedByValue()                  {}
@@ -604,6 +602,42 @@ func _AdminSvc_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdminSvcServer).DeleteUser(ctx, req.(*DeleteUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_SetUserRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetUserRolesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).SetUserRoles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_SetUserRoles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).SetUserRoles(ctx, req.(*SetUserRolesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_SetUserGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetUserGroupsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).SetUserGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_SetUserGroups_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).SetUserGroups(ctx, req.(*SetUserGroupsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -968,42 +1002,6 @@ func _AdminSvc_ListGroupUsers_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AdminSvc_AssignRoleToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AssignRoleToUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AdminSvcServer).AssignRoleToUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AdminSvc_AssignRoleToUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminSvcServer).AssignRoleToUser(ctx, req.(*AssignRoleToUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AdminSvc_RevokeRoleFromUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokeRoleFromUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AdminSvcServer).RevokeRoleFromUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AdminSvc_RevokeRoleFromUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminSvcServer).RevokeRoleFromUser(ctx, req.(*RevokeRoleFromUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AdminSvc_ServiceDesc is the grpc.ServiceDesc for AdminSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1030,6 +1028,14 @@ var AdminSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUser",
 			Handler:    _AdminSvc_DeleteUser_Handler,
+		},
+		{
+			MethodName: "SetUserRoles",
+			Handler:    _AdminSvc_SetUserRoles_Handler,
+		},
+		{
+			MethodName: "SetUserGroups",
+			Handler:    _AdminSvc_SetUserGroups_Handler,
 		},
 		{
 			MethodName: "ListPermissions",
@@ -1110,14 +1116,6 @@ var AdminSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListGroupUsers",
 			Handler:    _AdminSvc_ListGroupUsers_Handler,
-		},
-		{
-			MethodName: "AssignRoleToUser",
-			Handler:    _AdminSvc_AssignRoleToUser_Handler,
-		},
-		{
-			MethodName: "RevokeRoleFromUser",
-			Handler:    _AdminSvc_RevokeRoleFromUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -211,20 +211,22 @@ export interface RemoveUserFromGroupRequest {
 export interface RemoveUserFromGroupResponse {
 }
 
-export interface AssignRoleToUserRequest {
+export interface SetUserRolesRequest {
   userId: string;
-  roleId: string;
+  roleIds: string[];
 }
 
-export interface AssignRoleToUserResponse {
+export interface SetUserRolesResponse {
+  user: UserDetail | undefined;
 }
 
-export interface RevokeRoleFromUserRequest {
+export interface SetUserGroupsRequest {
   userId: string;
-  roleId: string;
+  groupIds: string[];
 }
 
-export interface RevokeRoleFromUserResponse {
+export interface SetUserGroupsResponse {
+  user: UserDetail | undefined;
 }
 
 function createBaseListPermissionsRequest(): ListPermissionsRequest {
@@ -3192,25 +3194,25 @@ export const RemoveUserFromGroupResponse = {
   },
 };
 
-function createBaseAssignRoleToUserRequest(): AssignRoleToUserRequest {
-  return { userId: "", roleId: "" };
+function createBaseSetUserRolesRequest(): SetUserRolesRequest {
+  return { userId: "", roleIds: [] };
 }
 
-export const AssignRoleToUserRequest = {
-  encode(message: AssignRoleToUserRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetUserRolesRequest = {
+  encode(message: SetUserRolesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
     }
-    if (message.roleId !== "") {
-      writer.uint32(18).string(message.roleId);
+    for (const v of message.roleIds) {
+      writer.uint32(18).string(v!);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AssignRoleToUserRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetUserRolesRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAssignRoleToUserRequest();
+    const message = createBaseSetUserRolesRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -3226,7 +3228,7 @@ export const AssignRoleToUserRequest = {
             break;
           }
 
-          message.roleId = reader.string();
+          message.roleIds.push(reader.string());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -3237,51 +3239,61 @@ export const AssignRoleToUserRequest = {
     return message;
   },
 
-  fromJSON(object: any): AssignRoleToUserRequest {
+  fromJSON(object: any): SetUserRolesRequest {
     return {
       userId: isSet(object.userId) ? String(object.userId) : "",
-      roleId: isSet(object.roleId) ? String(object.roleId) : "",
+      roleIds: Array.isArray(object?.roleIds) ? object.roleIds.map((e: any) => String(e)) : [],
     };
   },
 
-  toJSON(message: AssignRoleToUserRequest): unknown {
+  toJSON(message: SetUserRolesRequest): unknown {
     const obj: any = {};
     if (message.userId !== "") {
       obj.userId = message.userId;
     }
-    if (message.roleId !== "") {
-      obj.roleId = message.roleId;
+    if (message.roleIds?.length) {
+      obj.roleIds = message.roleIds;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AssignRoleToUserRequest>, I>>(base?: I): AssignRoleToUserRequest {
-    return AssignRoleToUserRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetUserRolesRequest>, I>>(base?: I): SetUserRolesRequest {
+    return SetUserRolesRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AssignRoleToUserRequest>, I>>(object: I): AssignRoleToUserRequest {
-    const message = createBaseAssignRoleToUserRequest();
+  fromPartial<I extends Exact<DeepPartial<SetUserRolesRequest>, I>>(object: I): SetUserRolesRequest {
+    const message = createBaseSetUserRolesRequest();
     message.userId = object.userId ?? "";
-    message.roleId = object.roleId ?? "";
+    message.roleIds = object.roleIds?.map((e) => e) || [];
     return message;
   },
 };
 
-function createBaseAssignRoleToUserResponse(): AssignRoleToUserResponse {
-  return {};
+function createBaseSetUserRolesResponse(): SetUserRolesResponse {
+  return { user: undefined };
 }
 
-export const AssignRoleToUserResponse = {
-  encode(_: AssignRoleToUserResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetUserRolesResponse = {
+  encode(message: SetUserRolesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.user !== undefined) {
+      UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AssignRoleToUserResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetUserRolesResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAssignRoleToUserResponse();
+    const message = createBaseSetUserRolesResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.user = UserDetail.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -3291,43 +3303,49 @@ export const AssignRoleToUserResponse = {
     return message;
   },
 
-  fromJSON(_: any): AssignRoleToUserResponse {
-    return {};
+  fromJSON(object: any): SetUserRolesResponse {
+    return { user: isSet(object.user) ? UserDetail.fromJSON(object.user) : undefined };
   },
 
-  toJSON(_: AssignRoleToUserResponse): unknown {
+  toJSON(message: SetUserRolesResponse): unknown {
     const obj: any = {};
+    if (message.user !== undefined) {
+      obj.user = UserDetail.toJSON(message.user);
+    }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AssignRoleToUserResponse>, I>>(base?: I): AssignRoleToUserResponse {
-    return AssignRoleToUserResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetUserRolesResponse>, I>>(base?: I): SetUserRolesResponse {
+    return SetUserRolesResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AssignRoleToUserResponse>, I>>(_: I): AssignRoleToUserResponse {
-    const message = createBaseAssignRoleToUserResponse();
+  fromPartial<I extends Exact<DeepPartial<SetUserRolesResponse>, I>>(object: I): SetUserRolesResponse {
+    const message = createBaseSetUserRolesResponse();
+    message.user = (object.user !== undefined && object.user !== null)
+      ? UserDetail.fromPartial(object.user)
+      : undefined;
     return message;
   },
 };
 
-function createBaseRevokeRoleFromUserRequest(): RevokeRoleFromUserRequest {
-  return { userId: "", roleId: "" };
+function createBaseSetUserGroupsRequest(): SetUserGroupsRequest {
+  return { userId: "", groupIds: [] };
 }
 
-export const RevokeRoleFromUserRequest = {
-  encode(message: RevokeRoleFromUserRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetUserGroupsRequest = {
+  encode(message: SetUserGroupsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.userId !== "") {
       writer.uint32(10).string(message.userId);
     }
-    if (message.roleId !== "") {
-      writer.uint32(18).string(message.roleId);
+    for (const v of message.groupIds) {
+      writer.uint32(18).string(v!);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): RevokeRoleFromUserRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetUserGroupsRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRevokeRoleFromUserRequest();
+    const message = createBaseSetUserGroupsRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -3343,7 +3361,7 @@ export const RevokeRoleFromUserRequest = {
             break;
           }
 
-          message.roleId = reader.string();
+          message.groupIds.push(reader.string());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -3354,51 +3372,61 @@ export const RevokeRoleFromUserRequest = {
     return message;
   },
 
-  fromJSON(object: any): RevokeRoleFromUserRequest {
+  fromJSON(object: any): SetUserGroupsRequest {
     return {
       userId: isSet(object.userId) ? String(object.userId) : "",
-      roleId: isSet(object.roleId) ? String(object.roleId) : "",
+      groupIds: Array.isArray(object?.groupIds) ? object.groupIds.map((e: any) => String(e)) : [],
     };
   },
 
-  toJSON(message: RevokeRoleFromUserRequest): unknown {
+  toJSON(message: SetUserGroupsRequest): unknown {
     const obj: any = {};
     if (message.userId !== "") {
       obj.userId = message.userId;
     }
-    if (message.roleId !== "") {
-      obj.roleId = message.roleId;
+    if (message.groupIds?.length) {
+      obj.groupIds = message.groupIds;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RevokeRoleFromUserRequest>, I>>(base?: I): RevokeRoleFromUserRequest {
-    return RevokeRoleFromUserRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetUserGroupsRequest>, I>>(base?: I): SetUserGroupsRequest {
+    return SetUserGroupsRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<RevokeRoleFromUserRequest>, I>>(object: I): RevokeRoleFromUserRequest {
-    const message = createBaseRevokeRoleFromUserRequest();
+  fromPartial<I extends Exact<DeepPartial<SetUserGroupsRequest>, I>>(object: I): SetUserGroupsRequest {
+    const message = createBaseSetUserGroupsRequest();
     message.userId = object.userId ?? "";
-    message.roleId = object.roleId ?? "";
+    message.groupIds = object.groupIds?.map((e) => e) || [];
     return message;
   },
 };
 
-function createBaseRevokeRoleFromUserResponse(): RevokeRoleFromUserResponse {
-  return {};
+function createBaseSetUserGroupsResponse(): SetUserGroupsResponse {
+  return { user: undefined };
 }
 
-export const RevokeRoleFromUserResponse = {
-  encode(_: RevokeRoleFromUserResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const SetUserGroupsResponse = {
+  encode(message: SetUserGroupsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.user !== undefined) {
+      UserDetail.encode(message.user, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): RevokeRoleFromUserResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): SetUserGroupsResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRevokeRoleFromUserResponse();
+    const message = createBaseSetUserGroupsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.user = UserDetail.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -3408,20 +3436,26 @@ export const RevokeRoleFromUserResponse = {
     return message;
   },
 
-  fromJSON(_: any): RevokeRoleFromUserResponse {
-    return {};
+  fromJSON(object: any): SetUserGroupsResponse {
+    return { user: isSet(object.user) ? UserDetail.fromJSON(object.user) : undefined };
   },
 
-  toJSON(_: RevokeRoleFromUserResponse): unknown {
+  toJSON(message: SetUserGroupsResponse): unknown {
     const obj: any = {};
+    if (message.user !== undefined) {
+      obj.user = UserDetail.toJSON(message.user);
+    }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RevokeRoleFromUserResponse>, I>>(base?: I): RevokeRoleFromUserResponse {
-    return RevokeRoleFromUserResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<SetUserGroupsResponse>, I>>(base?: I): SetUserGroupsResponse {
+    return SetUserGroupsResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<RevokeRoleFromUserResponse>, I>>(_: I): RevokeRoleFromUserResponse {
-    const message = createBaseRevokeRoleFromUserResponse();
+  fromPartial<I extends Exact<DeepPartial<SetUserGroupsResponse>, I>>(object: I): SetUserGroupsResponse {
+    const message = createBaseSetUserGroupsResponse();
+    message.user = (object.user !== undefined && object.user !== null)
+      ? UserDetail.fromPartial(object.user)
+      : undefined;
     return message;
   },
 };
@@ -3433,6 +3467,8 @@ export interface AdminSvc {
   PatchUser(request: DeepPartial<PatchUserRequest>, metadata?: grpc.Metadata): Promise<PatchUserResponse>;
   CreateUser(request: DeepPartial<CreateUserRequest>, metadata?: grpc.Metadata): Promise<CreateUserResponse>;
   DeleteUser(request: DeepPartial<DeleteUserRequest>, metadata?: grpc.Metadata): Promise<DeleteUserResponse>;
+  SetUserRoles(request: DeepPartial<SetUserRolesRequest>, metadata?: grpc.Metadata): Promise<SetUserRolesResponse>;
+  SetUserGroups(request: DeepPartial<SetUserGroupsRequest>, metadata?: grpc.Metadata): Promise<SetUserGroupsResponse>;
   /** Permission management */
   ListPermissions(
     request: DeepPartial<ListPermissionsRequest>,
@@ -3483,15 +3519,6 @@ export interface AdminSvc {
     request: DeepPartial<ListGroupUsersRequest>,
     metadata?: grpc.Metadata,
   ): Promise<ListGroupUsersResponse>;
-  /** User ↔ Role bindings (direct) */
-  AssignRoleToUser(
-    request: DeepPartial<AssignRoleToUserRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<AssignRoleToUserResponse>;
-  RevokeRoleFromUser(
-    request: DeepPartial<RevokeRoleFromUserRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<RevokeRoleFromUserResponse>;
 }
 
 export class AdminSvcClientImpl implements AdminSvc {
@@ -3504,6 +3531,8 @@ export class AdminSvcClientImpl implements AdminSvc {
     this.PatchUser = this.PatchUser.bind(this);
     this.CreateUser = this.CreateUser.bind(this);
     this.DeleteUser = this.DeleteUser.bind(this);
+    this.SetUserRoles = this.SetUserRoles.bind(this);
+    this.SetUserGroups = this.SetUserGroups.bind(this);
     this.ListPermissions = this.ListPermissions.bind(this);
     this.GetPermission = this.GetPermission.bind(this);
     this.CreatePermission = this.CreatePermission.bind(this);
@@ -3524,8 +3553,6 @@ export class AdminSvcClientImpl implements AdminSvc {
     this.AddUserToGroup = this.AddUserToGroup.bind(this);
     this.RemoveUserFromGroup = this.RemoveUserFromGroup.bind(this);
     this.ListGroupUsers = this.ListGroupUsers.bind(this);
-    this.AssignRoleToUser = this.AssignRoleToUser.bind(this);
-    this.RevokeRoleFromUser = this.RevokeRoleFromUser.bind(this);
   }
 
   ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse> {
@@ -3546,6 +3573,14 @@ export class AdminSvcClientImpl implements AdminSvc {
 
   DeleteUser(request: DeepPartial<DeleteUserRequest>, metadata?: grpc.Metadata): Promise<DeleteUserResponse> {
     return this.rpc.unary(AdminSvcDeleteUserDesc, DeleteUserRequest.fromPartial(request), metadata);
+  }
+
+  SetUserRoles(request: DeepPartial<SetUserRolesRequest>, metadata?: grpc.Metadata): Promise<SetUserRolesResponse> {
+    return this.rpc.unary(AdminSvcSetUserRolesDesc, SetUserRolesRequest.fromPartial(request), metadata);
+  }
+
+  SetUserGroups(request: DeepPartial<SetUserGroupsRequest>, metadata?: grpc.Metadata): Promise<SetUserGroupsResponse> {
+    return this.rpc.unary(AdminSvcSetUserGroupsDesc, SetUserGroupsRequest.fromPartial(request), metadata);
   }
 
   ListPermissions(
@@ -3650,20 +3685,6 @@ export class AdminSvcClientImpl implements AdminSvc {
     metadata?: grpc.Metadata,
   ): Promise<ListGroupUsersResponse> {
     return this.rpc.unary(AdminSvcListGroupUsersDesc, ListGroupUsersRequest.fromPartial(request), metadata);
-  }
-
-  AssignRoleToUser(
-    request: DeepPartial<AssignRoleToUserRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<AssignRoleToUserResponse> {
-    return this.rpc.unary(AdminSvcAssignRoleToUserDesc, AssignRoleToUserRequest.fromPartial(request), metadata);
-  }
-
-  RevokeRoleFromUser(
-    request: DeepPartial<RevokeRoleFromUserRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<RevokeRoleFromUserResponse> {
-    return this.rpc.unary(AdminSvcRevokeRoleFromUserDesc, RevokeRoleFromUserRequest.fromPartial(request), metadata);
   }
 }
 
@@ -3774,6 +3795,52 @@ export const AdminSvcDeleteUserDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = DeleteUserResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcSetUserRolesDesc: UnaryMethodDefinitionish = {
+  methodName: "SetUserRoles",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return SetUserRolesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = SetUserRolesResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcSetUserGroupsDesc: UnaryMethodDefinitionish = {
+  methodName: "SetUserGroups",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return SetUserGroupsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = SetUserGroupsResponse.decode(data);
       return {
         ...value,
         toObject() {
@@ -4234,52 +4301,6 @@ export const AdminSvcListGroupUsersDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = ListGroupUsersResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const AdminSvcAssignRoleToUserDesc: UnaryMethodDefinitionish = {
-  methodName: "AssignRoleToUser",
-  service: AdminSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return AssignRoleToUserRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = AssignRoleToUserResponse.decode(data);
-      return {
-        ...value,
-        toObject() {
-          return value;
-        },
-      };
-    },
-  } as any,
-};
-
-export const AdminSvcRevokeRoleFromUserDesc: UnaryMethodDefinitionish = {
-  methodName: "RevokeRoleFromUser",
-  service: AdminSvcDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return RevokeRoleFromUserRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      const value = RevokeRoleFromUserResponse.decode(data);
       return {
         ...value,
         toObject() {

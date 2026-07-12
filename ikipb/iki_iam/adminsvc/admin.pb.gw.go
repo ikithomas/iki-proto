@@ -170,6 +170,60 @@ func local_request_AdminSvc_DeleteUser_0(ctx context.Context, marshaler runtime.
 	return msg, metadata, err
 }
 
+func request_AdminSvc_SetUserRoles_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetUserRolesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.SetUserRoles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_SetUserRoles_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetUserRolesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SetUserRoles(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_SetUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetUserGroupsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.SetUserGroups(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_SetUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetUserGroupsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SetUserGroups(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_AdminSvc_ListPermissions_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListPermissionsRequest
@@ -710,60 +764,6 @@ func local_request_AdminSvc_ListGroupUsers_0(ctx context.Context, marshaler runt
 	return msg, metadata, err
 }
 
-func request_AdminSvc_AssignRoleToUser_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq AssignRoleToUserRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.AssignRoleToUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_AdminSvc_AssignRoleToUser_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq AssignRoleToUserRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.AssignRoleToUser(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_AdminSvc_RevokeRoleFromUser_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq RevokeRoleFromUserRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.RevokeRoleFromUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_AdminSvc_RevokeRoleFromUser_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq RevokeRoleFromUserRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.RevokeRoleFromUser(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 // RegisterAdminSvcHandlerServer registers the http handlers for service AdminSvc to "mux".
 // UnaryRPC     :call AdminSvcServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -869,6 +869,46 @@ func RegisterAdminSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 		forward_AdminSvc_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_SetUserRoles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/SetUserRoles", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/SetUserRoles"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_SetUserRoles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_SetUserRoles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_SetUserGroups_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/SetUserGroups", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/SetUserGroups"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_SetUserGroups_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_SetUserGroups_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_AdminSvc_ListPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1270,46 +1310,6 @@ func RegisterAdminSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		}
 		forward_AdminSvc_ListGroupUsers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_AdminSvc_AssignRoleToUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/AssignRoleToUser", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/AssignRoleToUser"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_AdminSvc_AssignRoleToUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_AdminSvc_AssignRoleToUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_AdminSvc_RevokeRoleFromUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/RevokeRoleFromUser", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/RevokeRoleFromUser"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_AdminSvc_RevokeRoleFromUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_AdminSvc_RevokeRoleFromUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 
 	return nil
 }
@@ -1434,6 +1434,40 @@ func RegisterAdminSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			return
 		}
 		forward_AdminSvc_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_SetUserRoles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/SetUserRoles", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/SetUserRoles"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_SetUserRoles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_SetUserRoles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_SetUserGroups_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/SetUserGroups", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/SetUserGroups"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_SetUserGroups_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_SetUserGroups_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_AdminSvc_ListPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1775,40 +1809,6 @@ func RegisterAdminSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		}
 		forward_AdminSvc_ListGroupUsers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_AdminSvc_AssignRoleToUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/AssignRoleToUser", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/AssignRoleToUser"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_AdminSvc_AssignRoleToUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_AdminSvc_AssignRoleToUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_AdminSvc_RevokeRoleFromUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/RevokeRoleFromUser", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/RevokeRoleFromUser"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_AdminSvc_RevokeRoleFromUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_AdminSvc_RevokeRoleFromUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	return nil
 }
 
@@ -1818,6 +1818,8 @@ var (
 	pattern_AdminSvc_PatchUser_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchUser"}, ""))
 	pattern_AdminSvc_CreateUser_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateUser"}, ""))
 	pattern_AdminSvc_DeleteUser_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteUser"}, ""))
+	pattern_AdminSvc_SetUserRoles_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserRoles"}, ""))
+	pattern_AdminSvc_SetUserGroups_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserGroups"}, ""))
 	pattern_AdminSvc_ListPermissions_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListPermissions"}, ""))
 	pattern_AdminSvc_GetPermission_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetPermission"}, ""))
 	pattern_AdminSvc_CreatePermission_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreatePermission"}, ""))
@@ -1838,8 +1840,6 @@ var (
 	pattern_AdminSvc_AddUserToGroup_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "AddUserToGroup"}, ""))
 	pattern_AdminSvc_RemoveUserFromGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "RemoveUserFromGroup"}, ""))
 	pattern_AdminSvc_ListGroupUsers_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListGroupUsers"}, ""))
-	pattern_AdminSvc_AssignRoleToUser_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "AssignRoleToUser"}, ""))
-	pattern_AdminSvc_RevokeRoleFromUser_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "RevokeRoleFromUser"}, ""))
 )
 
 var (
@@ -1848,6 +1848,8 @@ var (
 	forward_AdminSvc_PatchUser_0           = runtime.ForwardResponseMessage
 	forward_AdminSvc_CreateUser_0          = runtime.ForwardResponseMessage
 	forward_AdminSvc_DeleteUser_0          = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetUserRoles_0        = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetUserGroups_0       = runtime.ForwardResponseMessage
 	forward_AdminSvc_ListPermissions_0     = runtime.ForwardResponseMessage
 	forward_AdminSvc_GetPermission_0       = runtime.ForwardResponseMessage
 	forward_AdminSvc_CreatePermission_0    = runtime.ForwardResponseMessage
@@ -1868,6 +1870,4 @@ var (
 	forward_AdminSvc_AddUserToGroup_0      = runtime.ForwardResponseMessage
 	forward_AdminSvc_RemoveUserFromGroup_0 = runtime.ForwardResponseMessage
 	forward_AdminSvc_ListGroupUsers_0      = runtime.ForwardResponseMessage
-	forward_AdminSvc_AssignRoleToUser_0    = runtime.ForwardResponseMessage
-	forward_AdminSvc_RevokeRoleFromUser_0  = runtime.ForwardResponseMessage
 )

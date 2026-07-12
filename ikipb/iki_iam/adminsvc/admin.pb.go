@@ -2262,28 +2262,28 @@ func (*RemoveUserFromGroupResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{49}
 }
 
-type AssignRoleToUserRequest struct {
+type SetUserRolesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	RoleId        string                 `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	RoleIds       []string               `protobuf:"bytes,2,rep,name=role_ids,json=roleIds,proto3" json:"role_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AssignRoleToUserRequest) Reset() {
-	*x = AssignRoleToUserRequest{}
+func (x *SetUserRolesRequest) Reset() {
+	*x = SetUserRolesRequest{}
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AssignRoleToUserRequest) String() string {
+func (x *SetUserRolesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AssignRoleToUserRequest) ProtoMessage() {}
+func (*SetUserRolesRequest) ProtoMessage() {}
 
-func (x *AssignRoleToUserRequest) ProtoReflect() protoreflect.Message {
+func (x *SetUserRolesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2295,45 +2295,46 @@ func (x *AssignRoleToUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AssignRoleToUserRequest.ProtoReflect.Descriptor instead.
-func (*AssignRoleToUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetUserRolesRequest.ProtoReflect.Descriptor instead.
+func (*SetUserRolesRequest) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *AssignRoleToUserRequest) GetUserId() string {
+func (x *SetUserRolesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *AssignRoleToUserRequest) GetRoleId() string {
+func (x *SetUserRolesRequest) GetRoleIds() []string {
 	if x != nil {
-		return x.RoleId
+		return x.RoleIds
 	}
-	return ""
+	return nil
 }
 
-type AssignRoleToUserResponse struct {
+type SetUserRolesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *iki_iam.UserDetail    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AssignRoleToUserResponse) Reset() {
-	*x = AssignRoleToUserResponse{}
+func (x *SetUserRolesResponse) Reset() {
+	*x = SetUserRolesResponse{}
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AssignRoleToUserResponse) String() string {
+func (x *SetUserRolesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AssignRoleToUserResponse) ProtoMessage() {}
+func (*SetUserRolesResponse) ProtoMessage() {}
 
-func (x *AssignRoleToUserResponse) ProtoReflect() protoreflect.Message {
+func (x *SetUserRolesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2345,33 +2346,40 @@ func (x *AssignRoleToUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AssignRoleToUserResponse.ProtoReflect.Descriptor instead.
-func (*AssignRoleToUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetUserRolesResponse.ProtoReflect.Descriptor instead.
+func (*SetUserRolesResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{51}
 }
 
-type RevokeRoleFromUserRequest struct {
+func (x *SetUserRolesResponse) GetUser() *iki_iam.UserDetail {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type SetUserGroupsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	RoleId        string                 `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	GroupIds      []string               `protobuf:"bytes,2,rep,name=group_ids,json=groupIds,proto3" json:"group_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RevokeRoleFromUserRequest) Reset() {
-	*x = RevokeRoleFromUserRequest{}
+func (x *SetUserGroupsRequest) Reset() {
+	*x = SetUserGroupsRequest{}
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RevokeRoleFromUserRequest) String() string {
+func (x *SetUserGroupsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RevokeRoleFromUserRequest) ProtoMessage() {}
+func (*SetUserGroupsRequest) ProtoMessage() {}
 
-func (x *RevokeRoleFromUserRequest) ProtoReflect() protoreflect.Message {
+func (x *SetUserGroupsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2383,45 +2391,46 @@ func (x *RevokeRoleFromUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RevokeRoleFromUserRequest.ProtoReflect.Descriptor instead.
-func (*RevokeRoleFromUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetUserGroupsRequest.ProtoReflect.Descriptor instead.
+func (*SetUserGroupsRequest) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{52}
 }
 
-func (x *RevokeRoleFromUserRequest) GetUserId() string {
+func (x *SetUserGroupsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *RevokeRoleFromUserRequest) GetRoleId() string {
+func (x *SetUserGroupsRequest) GetGroupIds() []string {
 	if x != nil {
-		return x.RoleId
+		return x.GroupIds
 	}
-	return ""
+	return nil
 }
 
-type RevokeRoleFromUserResponse struct {
+type SetUserGroupsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *iki_iam.UserDetail    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RevokeRoleFromUserResponse) Reset() {
-	*x = RevokeRoleFromUserResponse{}
+func (x *SetUserGroupsResponse) Reset() {
+	*x = SetUserGroupsResponse{}
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RevokeRoleFromUserResponse) String() string {
+func (x *SetUserGroupsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RevokeRoleFromUserResponse) ProtoMessage() {}
+func (*SetUserGroupsResponse) ProtoMessage() {}
 
-func (x *RevokeRoleFromUserResponse) ProtoReflect() protoreflect.Message {
+func (x *SetUserGroupsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2433,9 +2442,16 @@ func (x *RevokeRoleFromUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RevokeRoleFromUserResponse.ProtoReflect.Descriptor instead.
-func (*RevokeRoleFromUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetUserGroupsResponse.ProtoReflect.Descriptor instead.
+func (*SetUserGroupsResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *SetUserGroupsResponse) GetUser() *iki_iam.UserDetail {
+	if x != nil {
+		return x.User
+	}
+	return nil
 }
 
 var File_ikipb_iki_iam_adminsvc_admin_proto protoreflect.FileDescriptor
@@ -2572,15 +2588,17 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x1aRemoveUserFromGroupRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\bgroup_id\x18\x02 \x01(\tR\agroupId\"\x1d\n" +
-	"\x1bRemoveUserFromGroupResponse\"K\n" +
-	"\x17AssignRoleToUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\arole_id\x18\x02 \x01(\tR\x06roleId\"\x1a\n" +
-	"\x18AssignRoleToUserResponse\"M\n" +
-	"\x19RevokeRoleFromUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\arole_id\x18\x02 \x01(\tR\x06roleId\"\x1c\n" +
-	"\x1aRevokeRoleFromUserResponse2\x9e\x11\n" +
+	"\x1bRemoveUserFromGroupResponse\"I\n" +
+	"\x13SetUserRolesRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\brole_ids\x18\x02 \x03(\tR\aroleIds\";\n" +
+	"\x14SetUserRolesResponse\x12#\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"L\n" +
+	"\x14SetUserGroupsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
+	"\tgroup_ids\x18\x02 \x03(\tR\bgroupIds\"<\n" +
+	"\x15SetUserGroupsResponse\x12#\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user2\x83\x11\n" +
 	"\bAdminSvc\x12F\n" +
 	"\tListUsers\x12\x1a.adminsvc.ListUsersRequest\x1a\x1b.adminsvc.ListUsersResponse\"\x00\x12@\n" +
 	"\aGetUser\x12\x18.adminsvc.GetUserRequest\x1a\x19.adminsvc.GetUserResponse\"\x00\x12F\n" +
@@ -2588,7 +2606,9 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\n" +
 	"CreateUser\x12\x1b.adminsvc.CreateUserRequest\x1a\x1c.adminsvc.CreateUserResponse\"\x00\x12I\n" +
 	"\n" +
-	"DeleteUser\x12\x1b.adminsvc.DeleteUserRequest\x1a\x1c.adminsvc.DeleteUserResponse\"\x00\x12X\n" +
+	"DeleteUser\x12\x1b.adminsvc.DeleteUserRequest\x1a\x1c.adminsvc.DeleteUserResponse\"\x00\x12O\n" +
+	"\fSetUserRoles\x12\x1d.adminsvc.SetUserRolesRequest\x1a\x1e.adminsvc.SetUserRolesResponse\"\x00\x12R\n" +
+	"\rSetUserGroups\x12\x1e.adminsvc.SetUserGroupsRequest\x1a\x1f.adminsvc.SetUserGroupsResponse\"\x00\x12X\n" +
 	"\x0fListPermissions\x12 .adminsvc.ListPermissionsRequest\x1a!.adminsvc.ListPermissionsResponse\"\x00\x12R\n" +
 	"\rGetPermission\x12\x1e.adminsvc.GetPermissionRequest\x1a\x1f.adminsvc.GetPermissionResponse\"\x00\x12[\n" +
 	"\x10CreatePermission\x12!.adminsvc.CreatePermissionRequest\x1a\".adminsvc.CreatePermissionResponse\"\x00\x12X\n" +
@@ -2612,9 +2632,7 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\rSetGroupRoles\x12\x1e.adminsvc.SetGroupRolesRequest\x1a\x1f.adminsvc.SetGroupRolesResponse\"\x00\x12U\n" +
 	"\x0eAddUserToGroup\x12\x1f.adminsvc.AddUserToGroupRequest\x1a .adminsvc.AddUserToGroupResponse\"\x00\x12d\n" +
 	"\x13RemoveUserFromGroup\x12$.adminsvc.RemoveUserFromGroupRequest\x1a%.adminsvc.RemoveUserFromGroupResponse\"\x00\x12U\n" +
-	"\x0eListGroupUsers\x12\x1f.adminsvc.ListGroupUsersRequest\x1a .adminsvc.ListGroupUsersResponse\"\x00\x12[\n" +
-	"\x10AssignRoleToUser\x12!.adminsvc.AssignRoleToUserRequest\x1a\".adminsvc.AssignRoleToUserResponse\"\x00\x12a\n" +
-	"\x12RevokeRoleFromUser\x12#.adminsvc.RevokeRoleFromUserRequest\x1a$.adminsvc.RevokeRoleFromUserResponse\"\x00B Z\t/adminsvc\xea\x02\x12Iki::Iam::AdminSvcb\x06proto3"
+	"\x0eListGroupUsers\x12\x1f.adminsvc.ListGroupUsersRequest\x1a .adminsvc.ListGroupUsersResponse\"\x00B Z\t/adminsvc\xea\x02\x12Iki::Iam::AdminSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_adminsvc_admin_proto_rawDescOnce sync.Once
@@ -2680,10 +2698,10 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
 	(*AddUserToGroupResponse)(nil),      // 47: adminsvc.AddUserToGroupResponse
 	(*RemoveUserFromGroupRequest)(nil),  // 48: adminsvc.RemoveUserFromGroupRequest
 	(*RemoveUserFromGroupResponse)(nil), // 49: adminsvc.RemoveUserFromGroupResponse
-	(*AssignRoleToUserRequest)(nil),     // 50: adminsvc.AssignRoleToUserRequest
-	(*AssignRoleToUserResponse)(nil),    // 51: adminsvc.AssignRoleToUserResponse
-	(*RevokeRoleFromUserRequest)(nil),   // 52: adminsvc.RevokeRoleFromUserRequest
-	(*RevokeRoleFromUserResponse)(nil),  // 53: adminsvc.RevokeRoleFromUserResponse
+	(*SetUserRolesRequest)(nil),         // 50: adminsvc.SetUserRolesRequest
+	(*SetUserRolesResponse)(nil),        // 51: adminsvc.SetUserRolesResponse
+	(*SetUserGroupsRequest)(nil),        // 52: adminsvc.SetUserGroupsRequest
+	(*SetUserGroupsResponse)(nil),       // 53: adminsvc.SetUserGroupsResponse
 	(*iki_iam.Permission)(nil),          // 54: iam.Permission
 	(*iki_iam.Role)(nil),                // 55: iam.Role
 	(*iki_iam.Group)(nil),               // 56: iam.Group
@@ -2710,65 +2728,67 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	57, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
 	58, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
 	57, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
-	34, // 19: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
-	40, // 20: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
-	36, // 21: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
-	38, // 22: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
-	42, // 23: adminsvc.AdminSvc.DeleteUser:input_type -> adminsvc.DeleteUserRequest
-	0,  // 24: adminsvc.AdminSvc.ListPermissions:input_type -> adminsvc.ListPermissionsRequest
-	2,  // 25: adminsvc.AdminSvc.GetPermission:input_type -> adminsvc.GetPermissionRequest
-	4,  // 26: adminsvc.AdminSvc.CreatePermission:input_type -> adminsvc.CreatePermissionRequest
-	6,  // 27: adminsvc.AdminSvc.PatchPermission:input_type -> adminsvc.PatchPermissionRequest
-	8,  // 28: adminsvc.AdminSvc.DeletePermission:input_type -> adminsvc.DeletePermissionRequest
-	22, // 29: adminsvc.AdminSvc.ListGroups:input_type -> adminsvc.ListGroupsRequest
-	24, // 30: adminsvc.AdminSvc.GetGroup:input_type -> adminsvc.GetGroupRequest
-	26, // 31: adminsvc.AdminSvc.CreateGroup:input_type -> adminsvc.CreateGroupRequest
-	28, // 32: adminsvc.AdminSvc.PatchGroup:input_type -> adminsvc.PatchGroupRequest
-	30, // 33: adminsvc.AdminSvc.DeleteGroup:input_type -> adminsvc.DeleteGroupRequest
-	10, // 34: adminsvc.AdminSvc.ListRoles:input_type -> adminsvc.ListRolesRequest
-	12, // 35: adminsvc.AdminSvc.GetRole:input_type -> adminsvc.GetRoleRequest
-	14, // 36: adminsvc.AdminSvc.CreateRole:input_type -> adminsvc.CreateRoleRequest
-	16, // 37: adminsvc.AdminSvc.PatchRole:input_type -> adminsvc.PatchRoleRequest
-	18, // 38: adminsvc.AdminSvc.DeleteRole:input_type -> adminsvc.DeleteRoleRequest
-	20, // 39: adminsvc.AdminSvc.SetRolePermissions:input_type -> adminsvc.SetRolePermissionsRequest
-	32, // 40: adminsvc.AdminSvc.SetGroupRoles:input_type -> adminsvc.SetGroupRolesRequest
-	46, // 41: adminsvc.AdminSvc.AddUserToGroup:input_type -> adminsvc.AddUserToGroupRequest
-	48, // 42: adminsvc.AdminSvc.RemoveUserFromGroup:input_type -> adminsvc.RemoveUserFromGroupRequest
-	44, // 43: adminsvc.AdminSvc.ListGroupUsers:input_type -> adminsvc.ListGroupUsersRequest
-	50, // 44: adminsvc.AdminSvc.AssignRoleToUser:input_type -> adminsvc.AssignRoleToUserRequest
-	52, // 45: adminsvc.AdminSvc.RevokeRoleFromUser:input_type -> adminsvc.RevokeRoleFromUserRequest
-	35, // 46: adminsvc.AdminSvc.ListUsers:output_type -> adminsvc.ListUsersResponse
-	41, // 47: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
-	37, // 48: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
-	39, // 49: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
-	43, // 50: adminsvc.AdminSvc.DeleteUser:output_type -> adminsvc.DeleteUserResponse
-	1,  // 51: adminsvc.AdminSvc.ListPermissions:output_type -> adminsvc.ListPermissionsResponse
-	3,  // 52: adminsvc.AdminSvc.GetPermission:output_type -> adminsvc.GetPermissionResponse
-	5,  // 53: adminsvc.AdminSvc.CreatePermission:output_type -> adminsvc.CreatePermissionResponse
-	7,  // 54: adminsvc.AdminSvc.PatchPermission:output_type -> adminsvc.PatchPermissionResponse
-	9,  // 55: adminsvc.AdminSvc.DeletePermission:output_type -> adminsvc.DeletePermissionResponse
-	23, // 56: adminsvc.AdminSvc.ListGroups:output_type -> adminsvc.ListGroupsResponse
-	25, // 57: adminsvc.AdminSvc.GetGroup:output_type -> adminsvc.GetGroupResponse
-	27, // 58: adminsvc.AdminSvc.CreateGroup:output_type -> adminsvc.CreateGroupResponse
-	29, // 59: adminsvc.AdminSvc.PatchGroup:output_type -> adminsvc.PatchGroupResponse
-	31, // 60: adminsvc.AdminSvc.DeleteGroup:output_type -> adminsvc.DeleteGroupResponse
-	11, // 61: adminsvc.AdminSvc.ListRoles:output_type -> adminsvc.ListRolesResponse
-	13, // 62: adminsvc.AdminSvc.GetRole:output_type -> adminsvc.GetRoleResponse
-	15, // 63: adminsvc.AdminSvc.CreateRole:output_type -> adminsvc.CreateRoleResponse
-	17, // 64: adminsvc.AdminSvc.PatchRole:output_type -> adminsvc.PatchRoleResponse
-	19, // 65: adminsvc.AdminSvc.DeleteRole:output_type -> adminsvc.DeleteRoleResponse
-	21, // 66: adminsvc.AdminSvc.SetRolePermissions:output_type -> adminsvc.SetRolePermissionsResponse
-	33, // 67: adminsvc.AdminSvc.SetGroupRoles:output_type -> adminsvc.SetGroupRolesResponse
-	47, // 68: adminsvc.AdminSvc.AddUserToGroup:output_type -> adminsvc.AddUserToGroupResponse
-	49, // 69: adminsvc.AdminSvc.RemoveUserFromGroup:output_type -> adminsvc.RemoveUserFromGroupResponse
-	45, // 70: adminsvc.AdminSvc.ListGroupUsers:output_type -> adminsvc.ListGroupUsersResponse
-	51, // 71: adminsvc.AdminSvc.AssignRoleToUser:output_type -> adminsvc.AssignRoleToUserResponse
-	53, // 72: adminsvc.AdminSvc.RevokeRoleFromUser:output_type -> adminsvc.RevokeRoleFromUserResponse
-	46, // [46:73] is the sub-list for method output_type
-	19, // [19:46] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	58, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
+	58, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
+	34, // 21: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
+	40, // 22: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
+	36, // 23: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
+	38, // 24: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
+	42, // 25: adminsvc.AdminSvc.DeleteUser:input_type -> adminsvc.DeleteUserRequest
+	50, // 26: adminsvc.AdminSvc.SetUserRoles:input_type -> adminsvc.SetUserRolesRequest
+	52, // 27: adminsvc.AdminSvc.SetUserGroups:input_type -> adminsvc.SetUserGroupsRequest
+	0,  // 28: adminsvc.AdminSvc.ListPermissions:input_type -> adminsvc.ListPermissionsRequest
+	2,  // 29: adminsvc.AdminSvc.GetPermission:input_type -> adminsvc.GetPermissionRequest
+	4,  // 30: adminsvc.AdminSvc.CreatePermission:input_type -> adminsvc.CreatePermissionRequest
+	6,  // 31: adminsvc.AdminSvc.PatchPermission:input_type -> adminsvc.PatchPermissionRequest
+	8,  // 32: adminsvc.AdminSvc.DeletePermission:input_type -> adminsvc.DeletePermissionRequest
+	22, // 33: adminsvc.AdminSvc.ListGroups:input_type -> adminsvc.ListGroupsRequest
+	24, // 34: adminsvc.AdminSvc.GetGroup:input_type -> adminsvc.GetGroupRequest
+	26, // 35: adminsvc.AdminSvc.CreateGroup:input_type -> adminsvc.CreateGroupRequest
+	28, // 36: adminsvc.AdminSvc.PatchGroup:input_type -> adminsvc.PatchGroupRequest
+	30, // 37: adminsvc.AdminSvc.DeleteGroup:input_type -> adminsvc.DeleteGroupRequest
+	10, // 38: adminsvc.AdminSvc.ListRoles:input_type -> adminsvc.ListRolesRequest
+	12, // 39: adminsvc.AdminSvc.GetRole:input_type -> adminsvc.GetRoleRequest
+	14, // 40: adminsvc.AdminSvc.CreateRole:input_type -> adminsvc.CreateRoleRequest
+	16, // 41: adminsvc.AdminSvc.PatchRole:input_type -> adminsvc.PatchRoleRequest
+	18, // 42: adminsvc.AdminSvc.DeleteRole:input_type -> adminsvc.DeleteRoleRequest
+	20, // 43: adminsvc.AdminSvc.SetRolePermissions:input_type -> adminsvc.SetRolePermissionsRequest
+	32, // 44: adminsvc.AdminSvc.SetGroupRoles:input_type -> adminsvc.SetGroupRolesRequest
+	46, // 45: adminsvc.AdminSvc.AddUserToGroup:input_type -> adminsvc.AddUserToGroupRequest
+	48, // 46: adminsvc.AdminSvc.RemoveUserFromGroup:input_type -> adminsvc.RemoveUserFromGroupRequest
+	44, // 47: adminsvc.AdminSvc.ListGroupUsers:input_type -> adminsvc.ListGroupUsersRequest
+	35, // 48: adminsvc.AdminSvc.ListUsers:output_type -> adminsvc.ListUsersResponse
+	41, // 49: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
+	37, // 50: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
+	39, // 51: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
+	43, // 52: adminsvc.AdminSvc.DeleteUser:output_type -> adminsvc.DeleteUserResponse
+	51, // 53: adminsvc.AdminSvc.SetUserRoles:output_type -> adminsvc.SetUserRolesResponse
+	53, // 54: adminsvc.AdminSvc.SetUserGroups:output_type -> adminsvc.SetUserGroupsResponse
+	1,  // 55: adminsvc.AdminSvc.ListPermissions:output_type -> adminsvc.ListPermissionsResponse
+	3,  // 56: adminsvc.AdminSvc.GetPermission:output_type -> adminsvc.GetPermissionResponse
+	5,  // 57: adminsvc.AdminSvc.CreatePermission:output_type -> adminsvc.CreatePermissionResponse
+	7,  // 58: adminsvc.AdminSvc.PatchPermission:output_type -> adminsvc.PatchPermissionResponse
+	9,  // 59: adminsvc.AdminSvc.DeletePermission:output_type -> adminsvc.DeletePermissionResponse
+	23, // 60: adminsvc.AdminSvc.ListGroups:output_type -> adminsvc.ListGroupsResponse
+	25, // 61: adminsvc.AdminSvc.GetGroup:output_type -> adminsvc.GetGroupResponse
+	27, // 62: adminsvc.AdminSvc.CreateGroup:output_type -> adminsvc.CreateGroupResponse
+	29, // 63: adminsvc.AdminSvc.PatchGroup:output_type -> adminsvc.PatchGroupResponse
+	31, // 64: adminsvc.AdminSvc.DeleteGroup:output_type -> adminsvc.DeleteGroupResponse
+	11, // 65: adminsvc.AdminSvc.ListRoles:output_type -> adminsvc.ListRolesResponse
+	13, // 66: adminsvc.AdminSvc.GetRole:output_type -> adminsvc.GetRoleResponse
+	15, // 67: adminsvc.AdminSvc.CreateRole:output_type -> adminsvc.CreateRoleResponse
+	17, // 68: adminsvc.AdminSvc.PatchRole:output_type -> adminsvc.PatchRoleResponse
+	19, // 69: adminsvc.AdminSvc.DeleteRole:output_type -> adminsvc.DeleteRoleResponse
+	21, // 70: adminsvc.AdminSvc.SetRolePermissions:output_type -> adminsvc.SetRolePermissionsResponse
+	33, // 71: adminsvc.AdminSvc.SetGroupRoles:output_type -> adminsvc.SetGroupRolesResponse
+	47, // 72: adminsvc.AdminSvc.AddUserToGroup:output_type -> adminsvc.AddUserToGroupResponse
+	49, // 73: adminsvc.AdminSvc.RemoveUserFromGroup:output_type -> adminsvc.RemoveUserFromGroupResponse
+	45, // 74: adminsvc.AdminSvc.ListGroupUsers:output_type -> adminsvc.ListGroupUsersResponse
+	48, // [48:75] is the sub-list for method output_type
+	21, // [21:48] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_iam_adminsvc_admin_proto_init() }
