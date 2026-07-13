@@ -92,14 +92,14 @@ export interface GroupDetail {
 
 /** Service is a microservice */
 export interface Service {
-  /** Internal ID of the service. */
   id: string;
-  /** Client ID of the service. Used for authentication. */
   clientId: string;
-  /** secret to authenticate to. */
-  secrets: Secret[];
-  /** Friendly name */
   name: string;
+}
+
+export interface ServiceDetail {
+  service: Service | undefined;
+  secrets: Secret[];
 }
 
 export interface Secret {
@@ -779,7 +779,7 @@ export const GroupDetail = {
 };
 
 function createBaseService(): Service {
-  return { id: "", clientId: "", secrets: [], name: "" };
+  return { id: "", clientId: "", name: "" };
 }
 
 export const Service = {
@@ -789,9 +789,6 @@ export const Service = {
     }
     if (message.clientId !== "") {
       writer.uint32(18).string(message.clientId);
-    }
-    for (const v of message.secrets) {
-      Secret.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     if (message.name !== "") {
       writer.uint32(34).string(message.name);
@@ -820,13 +817,6 @@ export const Service = {
 
           message.clientId = reader.string();
           continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.secrets.push(Secret.decode(reader, reader.uint32()));
-          continue;
         case 4:
           if (tag !== 34) {
             break;
@@ -847,7 +837,6 @@ export const Service = {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      secrets: Array.isArray(object?.secrets) ? object.secrets.map((e: any) => Secret.fromJSON(e)) : [],
       name: isSet(object.name) ? String(object.name) : "",
     };
   },
@@ -859,9 +848,6 @@ export const Service = {
     }
     if (message.clientId !== "") {
       obj.clientId = message.clientId;
-    }
-    if (message.secrets?.length) {
-      obj.secrets = message.secrets.map((e) => Secret.toJSON(e));
     }
     if (message.name !== "") {
       obj.name = message.name;
@@ -876,8 +862,83 @@ export const Service = {
     const message = createBaseService();
     message.id = object.id ?? "";
     message.clientId = object.clientId ?? "";
-    message.secrets = object.secrets?.map((e) => Secret.fromPartial(e)) || [];
     message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseServiceDetail(): ServiceDetail {
+  return { service: undefined, secrets: [] };
+}
+
+export const ServiceDetail = {
+  encode(message: ServiceDetail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.service !== undefined) {
+      Service.encode(message.service, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.secrets) {
+      Secret.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ServiceDetail {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseServiceDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.service = Service.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.secrets.push(Secret.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ServiceDetail {
+    return {
+      service: isSet(object.service) ? Service.fromJSON(object.service) : undefined,
+      secrets: Array.isArray(object?.secrets) ? object.secrets.map((e: any) => Secret.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: ServiceDetail): unknown {
+    const obj: any = {};
+    if (message.service !== undefined) {
+      obj.service = Service.toJSON(message.service);
+    }
+    if (message.secrets?.length) {
+      obj.secrets = message.secrets.map((e) => Secret.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ServiceDetail>, I>>(base?: I): ServiceDetail {
+    return ServiceDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ServiceDetail>, I>>(object: I): ServiceDetail {
+    const message = createBaseServiceDetail();
+    message.service = (object.service !== undefined && object.service !== null)
+      ? Service.fromPartial(object.service)
+      : undefined;
+    message.secrets = object.secrets?.map((e) => Secret.fromPartial(e)) || [];
     return message;
   },
 };

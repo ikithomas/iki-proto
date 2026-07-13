@@ -818,6 +818,222 @@ func local_request_AdminSvc_DeletePasskey_0(ctx context.Context, marshaler runti
 	return msg, metadata, err
 }
 
+func request_AdminSvc_ListServices_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListServicesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListServices(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_ListServices_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListServicesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListServices(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_GetService_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetService(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_GetService_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetService(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_CreateService_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateService(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_CreateService_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateService(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_DeleteService_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeleteService(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_DeleteService_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteServiceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.DeleteService(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_AddServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.AddServiceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_AddServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.AddServiceSecret(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_ActivateServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ActivateServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ActivateServiceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_ActivateServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ActivateServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ActivateServiceSecret(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_DeactivateServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeactivateServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeactivateServiceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_DeactivateServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeactivateServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.DeactivateServiceSecret(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminSvc_DeleteServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AdminSvcClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.DeleteServiceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminSvc_DeleteServiceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AdminSvcServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteServiceSecretRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.DeleteServiceSecret(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterAdminSvcHandlerServer registers the http handlers for service AdminSvc to "mux".
 // UnaryRPC     :call AdminSvcServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1404,6 +1620,166 @@ func RegisterAdminSvcHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		}
 		forward_AdminSvc_DeletePasskey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_ListServices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/ListServices", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/ListServices"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_ListServices_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_ListServices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_GetService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/GetService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/GetService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_GetService_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_GetService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_CreateService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/CreateService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/CreateService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_CreateService_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_CreateService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeleteService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/DeleteService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeleteService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_DeleteService_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeleteService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_AddServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/AddServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/AddServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_AddServiceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_AddServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_ActivateServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/ActivateServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/ActivateServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_ActivateServiceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_ActivateServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeactivateServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/DeactivateServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeactivateServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_DeactivateServiceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeactivateServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeleteServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/adminsvc.AdminSvc/DeleteServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeleteServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminSvc_DeleteServiceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeleteServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -1937,69 +2313,221 @@ func RegisterAdminSvcHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		}
 		forward_AdminSvc_DeletePasskey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_ListServices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/ListServices", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/ListServices"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_ListServices_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_ListServices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_GetService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/GetService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/GetService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_GetService_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_GetService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_CreateService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/CreateService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/CreateService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_CreateService_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_CreateService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeleteService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/DeleteService", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeleteService"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_DeleteService_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeleteService_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_AddServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/AddServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/AddServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_AddServiceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_AddServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_ActivateServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/ActivateServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/ActivateServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_ActivateServiceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_ActivateServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeactivateServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/DeactivateServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeactivateServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_DeactivateServiceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeactivateServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminSvc_DeleteServiceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/adminsvc.AdminSvc/DeleteServiceSecret", runtime.WithHTTPPathPattern("/adminsvc.AdminSvc/DeleteServiceSecret"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminSvc_DeleteServiceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminSvc_DeleteServiceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_AdminSvc_ListUsers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListUsers"}, ""))
-	pattern_AdminSvc_GetUser_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetUser"}, ""))
-	pattern_AdminSvc_PatchUser_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchUser"}, ""))
-	pattern_AdminSvc_CreateUser_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateUser"}, ""))
-	pattern_AdminSvc_DeleteUser_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteUser"}, ""))
-	pattern_AdminSvc_SetUserRoles_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserRoles"}, ""))
-	pattern_AdminSvc_SetUserGroups_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserGroups"}, ""))
-	pattern_AdminSvc_ListPermissions_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListPermissions"}, ""))
-	pattern_AdminSvc_GetPermission_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetPermission"}, ""))
-	pattern_AdminSvc_CreatePermission_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreatePermission"}, ""))
-	pattern_AdminSvc_PatchPermission_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchPermission"}, ""))
-	pattern_AdminSvc_DeletePermission_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeletePermission"}, ""))
-	pattern_AdminSvc_ListGroups_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListGroups"}, ""))
-	pattern_AdminSvc_GetGroup_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetGroup"}, ""))
-	pattern_AdminSvc_CreateGroup_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateGroup"}, ""))
-	pattern_AdminSvc_PatchGroup_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchGroup"}, ""))
-	pattern_AdminSvc_DeleteGroup_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteGroup"}, ""))
-	pattern_AdminSvc_ListRoles_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListRoles"}, ""))
-	pattern_AdminSvc_GetRole_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetRole"}, ""))
-	pattern_AdminSvc_CreateRole_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateRole"}, ""))
-	pattern_AdminSvc_PatchRole_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchRole"}, ""))
-	pattern_AdminSvc_DeleteRole_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteRole"}, ""))
-	pattern_AdminSvc_SetRolePermissions_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetRolePermissions"}, ""))
-	pattern_AdminSvc_SetGroupRoles_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetGroupRoles"}, ""))
-	pattern_AdminSvc_AddUserToGroup_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "AddUserToGroup"}, ""))
-	pattern_AdminSvc_RemoveUserFromGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "RemoveUserFromGroup"}, ""))
-	pattern_AdminSvc_ListGroupUsers_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListGroupUsers"}, ""))
-	pattern_AdminSvc_ListPasskeys_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListPasskeys"}, ""))
-	pattern_AdminSvc_DeletePasskey_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeletePasskey"}, ""))
+	pattern_AdminSvc_ListUsers_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListUsers"}, ""))
+	pattern_AdminSvc_GetUser_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetUser"}, ""))
+	pattern_AdminSvc_PatchUser_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchUser"}, ""))
+	pattern_AdminSvc_CreateUser_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateUser"}, ""))
+	pattern_AdminSvc_DeleteUser_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteUser"}, ""))
+	pattern_AdminSvc_SetUserRoles_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserRoles"}, ""))
+	pattern_AdminSvc_SetUserGroups_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetUserGroups"}, ""))
+	pattern_AdminSvc_ListPermissions_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListPermissions"}, ""))
+	pattern_AdminSvc_GetPermission_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetPermission"}, ""))
+	pattern_AdminSvc_CreatePermission_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreatePermission"}, ""))
+	pattern_AdminSvc_PatchPermission_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchPermission"}, ""))
+	pattern_AdminSvc_DeletePermission_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeletePermission"}, ""))
+	pattern_AdminSvc_ListGroups_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListGroups"}, ""))
+	pattern_AdminSvc_GetGroup_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetGroup"}, ""))
+	pattern_AdminSvc_CreateGroup_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateGroup"}, ""))
+	pattern_AdminSvc_PatchGroup_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchGroup"}, ""))
+	pattern_AdminSvc_DeleteGroup_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteGroup"}, ""))
+	pattern_AdminSvc_ListRoles_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListRoles"}, ""))
+	pattern_AdminSvc_GetRole_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetRole"}, ""))
+	pattern_AdminSvc_CreateRole_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateRole"}, ""))
+	pattern_AdminSvc_PatchRole_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "PatchRole"}, ""))
+	pattern_AdminSvc_DeleteRole_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteRole"}, ""))
+	pattern_AdminSvc_SetRolePermissions_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetRolePermissions"}, ""))
+	pattern_AdminSvc_SetGroupRoles_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "SetGroupRoles"}, ""))
+	pattern_AdminSvc_AddUserToGroup_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "AddUserToGroup"}, ""))
+	pattern_AdminSvc_RemoveUserFromGroup_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "RemoveUserFromGroup"}, ""))
+	pattern_AdminSvc_ListGroupUsers_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListGroupUsers"}, ""))
+	pattern_AdminSvc_ListPasskeys_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListPasskeys"}, ""))
+	pattern_AdminSvc_DeletePasskey_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeletePasskey"}, ""))
+	pattern_AdminSvc_ListServices_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ListServices"}, ""))
+	pattern_AdminSvc_GetService_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "GetService"}, ""))
+	pattern_AdminSvc_CreateService_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "CreateService"}, ""))
+	pattern_AdminSvc_DeleteService_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteService"}, ""))
+	pattern_AdminSvc_AddServiceSecret_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "AddServiceSecret"}, ""))
+	pattern_AdminSvc_ActivateServiceSecret_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "ActivateServiceSecret"}, ""))
+	pattern_AdminSvc_DeactivateServiceSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeactivateServiceSecret"}, ""))
+	pattern_AdminSvc_DeleteServiceSecret_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"adminsvc.AdminSvc", "DeleteServiceSecret"}, ""))
 )
 
 var (
-	forward_AdminSvc_ListUsers_0           = runtime.ForwardResponseMessage
-	forward_AdminSvc_GetUser_0             = runtime.ForwardResponseMessage
-	forward_AdminSvc_PatchUser_0           = runtime.ForwardResponseMessage
-	forward_AdminSvc_CreateUser_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_DeleteUser_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_SetUserRoles_0        = runtime.ForwardResponseMessage
-	forward_AdminSvc_SetUserGroups_0       = runtime.ForwardResponseMessage
-	forward_AdminSvc_ListPermissions_0     = runtime.ForwardResponseMessage
-	forward_AdminSvc_GetPermission_0       = runtime.ForwardResponseMessage
-	forward_AdminSvc_CreatePermission_0    = runtime.ForwardResponseMessage
-	forward_AdminSvc_PatchPermission_0     = runtime.ForwardResponseMessage
-	forward_AdminSvc_DeletePermission_0    = runtime.ForwardResponseMessage
-	forward_AdminSvc_ListGroups_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_GetGroup_0            = runtime.ForwardResponseMessage
-	forward_AdminSvc_CreateGroup_0         = runtime.ForwardResponseMessage
-	forward_AdminSvc_PatchGroup_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_DeleteGroup_0         = runtime.ForwardResponseMessage
-	forward_AdminSvc_ListRoles_0           = runtime.ForwardResponseMessage
-	forward_AdminSvc_GetRole_0             = runtime.ForwardResponseMessage
-	forward_AdminSvc_CreateRole_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_PatchRole_0           = runtime.ForwardResponseMessage
-	forward_AdminSvc_DeleteRole_0          = runtime.ForwardResponseMessage
-	forward_AdminSvc_SetRolePermissions_0  = runtime.ForwardResponseMessage
-	forward_AdminSvc_SetGroupRoles_0       = runtime.ForwardResponseMessage
-	forward_AdminSvc_AddUserToGroup_0      = runtime.ForwardResponseMessage
-	forward_AdminSvc_RemoveUserFromGroup_0 = runtime.ForwardResponseMessage
-	forward_AdminSvc_ListGroupUsers_0      = runtime.ForwardResponseMessage
-	forward_AdminSvc_ListPasskeys_0        = runtime.ForwardResponseMessage
-	forward_AdminSvc_DeletePasskey_0       = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListUsers_0               = runtime.ForwardResponseMessage
+	forward_AdminSvc_GetUser_0                 = runtime.ForwardResponseMessage
+	forward_AdminSvc_PatchUser_0               = runtime.ForwardResponseMessage
+	forward_AdminSvc_CreateUser_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeleteUser_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetUserRoles_0            = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetUserGroups_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListPermissions_0         = runtime.ForwardResponseMessage
+	forward_AdminSvc_GetPermission_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_CreatePermission_0        = runtime.ForwardResponseMessage
+	forward_AdminSvc_PatchPermission_0         = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeletePermission_0        = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListGroups_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_GetGroup_0                = runtime.ForwardResponseMessage
+	forward_AdminSvc_CreateGroup_0             = runtime.ForwardResponseMessage
+	forward_AdminSvc_PatchGroup_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeleteGroup_0             = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListRoles_0               = runtime.ForwardResponseMessage
+	forward_AdminSvc_GetRole_0                 = runtime.ForwardResponseMessage
+	forward_AdminSvc_CreateRole_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_PatchRole_0               = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeleteRole_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetRolePermissions_0      = runtime.ForwardResponseMessage
+	forward_AdminSvc_SetGroupRoles_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_AddUserToGroup_0          = runtime.ForwardResponseMessage
+	forward_AdminSvc_RemoveUserFromGroup_0     = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListGroupUsers_0          = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListPasskeys_0            = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeletePasskey_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_ListServices_0            = runtime.ForwardResponseMessage
+	forward_AdminSvc_GetService_0              = runtime.ForwardResponseMessage
+	forward_AdminSvc_CreateService_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeleteService_0           = runtime.ForwardResponseMessage
+	forward_AdminSvc_AddServiceSecret_0        = runtime.ForwardResponseMessage
+	forward_AdminSvc_ActivateServiceSecret_0   = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeactivateServiceSecret_0 = runtime.ForwardResponseMessage
+	forward_AdminSvc_DeleteServiceSecret_0     = runtime.ForwardResponseMessage
 )

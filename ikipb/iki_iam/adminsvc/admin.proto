@@ -52,6 +52,16 @@ service AdminSvc {
   // Passkey management
   rpc ListPasskeys (ListPasskeysRequest) returns (ListPasskeysResponse) {}
   rpc DeletePasskey (DeletePasskeyRequest) returns (DeletePasskeyResponse) {}
+
+  // Service management
+  rpc ListServices (ListServicesRequest) returns (ListServicesResponse) {}
+  rpc GetService (GetServiceRequest) returns (GetServiceResponse) {}
+  rpc CreateService (CreateServiceRequest) returns (CreateServiceResponse) {}
+  rpc DeleteService (DeleteServiceRequest) returns (DeleteServiceResponse) {}
+  rpc AddServiceSecret (AddServiceSecretRequest) returns (AddServiceSecretResponse) {}
+  rpc ActivateServiceSecret (ActivateServiceSecretRequest) returns (ActivateServiceSecretResponse) {}
+  rpc DeactivateServiceSecret (DeactivateServiceSecretRequest) returns (DeactivateServiceSecretResponse) {}
+  rpc DeleteServiceSecret (DeleteServiceSecretRequest) returns (DeleteServiceSecretResponse) {}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -321,3 +331,61 @@ message DeletePasskeyRequest {
 }
 
 message DeletePasskeyResponse {}
+
+////////////////////////////////////////////////////////////////////////////////
+// Service management
+//////
+
+message ListServicesRequest {}
+
+message ListServicesResponse {
+  repeated iam.Service services = 1;
+}
+
+message GetServiceRequest {
+  string id = 1;
+}
+
+message GetServiceResponse {
+  iam.ServiceDetail service = 1;
+}
+
+message CreateServiceRequest {
+  string name = 1;
+}
+
+message CreateServiceResponse {
+  iam.Service service = 1;
+}
+
+message DeleteServiceRequest {
+  string id = 1;
+}
+
+message DeleteServiceResponse {}
+
+message AddServiceSecretRequest {
+  string id = 1;
+}
+
+message AddServiceSecretResponse {
+  iam.ServiceDetail service = 1;
+}
+
+message ActivateServiceSecretRequest {
+  string id = 1;
+}
+
+message ActivateServiceSecretResponse {}
+
+message DeactivateServiceSecretRequest {
+  string id = 1;
+}
+
+message DeactivateServiceSecretResponse {}
+
+message DeleteServiceSecretRequest {
+  string id = 1;
+}
+
+message DeleteServiceSecretResponse {}

@@ -50,14 +50,13 @@ export interface GroupDetail {
 }
 /** Service is a microservice */
 export interface Service {
-    /** Internal ID of the service. */
     id: string;
-    /** Client ID of the service. Used for authentication. */
     clientId: string;
-    /** secret to authenticate to. */
-    secrets: Secret[];
-    /** Friendly name */
     name: string;
+}
+export interface ServiceDetail {
+    service: Service | undefined;
+    secrets: Secret[];
 }
 export interface Secret {
     id: string;
@@ -509,52 +508,49 @@ export declare const Service: {
     create<I extends {
         id?: string;
         clientId?: string;
-        secrets?: {
-            id?: string;
-            secret?: string;
-            lastUsedAt?: number;
-            active?: boolean;
-        }[];
         name?: string;
     } & {
         id?: string;
         clientId?: string;
-        secrets?: {
-            id?: string;
-            secret?: string;
-            lastUsedAt?: number;
-            active?: boolean;
-        }[] & ({
-            id?: string;
-            secret?: string;
-            lastUsedAt?: number;
-            active?: boolean;
-        } & {
-            id?: string;
-            secret?: string;
-            lastUsedAt?: number;
-            active?: boolean;
-        } & { [K in Exclude<keyof I["secrets"][number], keyof Secret>]: never; })[] & { [K_1 in Exclude<keyof I["secrets"], keyof {
-            id?: string;
-            secret?: string;
-            lastUsedAt?: number;
-            active?: boolean;
-        }[]>]: never; };
         name?: string;
-    } & { [K_2 in Exclude<keyof I, keyof Service>]: never; }>(base?: I): Service;
+    } & { [K in Exclude<keyof I, keyof Service>]: never; }>(base?: I): Service;
     fromPartial<I_1 extends {
         id?: string;
         clientId?: string;
+        name?: string;
+    } & {
+        id?: string;
+        clientId?: string;
+        name?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof Service>]: never; }>(object: I_1): Service;
+};
+export declare const ServiceDetail: {
+    encode(message: ServiceDetail, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ServiceDetail;
+    fromJSON(object: any): ServiceDetail;
+    toJSON(message: ServiceDetail): unknown;
+    create<I extends {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        };
         secrets?: {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
             active?: boolean;
         }[];
-        name?: string;
     } & {
-        id?: string;
-        clientId?: string;
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K in Exclude<keyof I["service"], keyof Service>]: never; };
         secrets?: {
             id?: string;
             secret?: string;
@@ -570,14 +566,57 @@ export declare const Service: {
             secret?: string;
             lastUsedAt?: number;
             active?: boolean;
-        } & { [K_3 in Exclude<keyof I_1["secrets"][number], keyof Secret>]: never; })[] & { [K_4 in Exclude<keyof I_1["secrets"], keyof {
+        } & { [K_1 in Exclude<keyof I["secrets"][number], keyof Secret>]: never; })[] & { [K_2 in Exclude<keyof I["secrets"], keyof {
             id?: string;
             secret?: string;
             lastUsedAt?: number;
             active?: boolean;
         }[]>]: never; };
-        name?: string;
-    } & { [K_5 in Exclude<keyof I_1, keyof Service>]: never; }>(object: I_1): Service;
+    } & { [K_3 in Exclude<keyof I, keyof ServiceDetail>]: never; }>(base?: I): ServiceDetail;
+    fromPartial<I_1 extends {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        };
+        secrets?: {
+            id?: string;
+            secret?: string;
+            lastUsedAt?: number;
+            active?: boolean;
+        }[];
+    } & {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K_4 in Exclude<keyof I_1["service"], keyof Service>]: never; };
+        secrets?: {
+            id?: string;
+            secret?: string;
+            lastUsedAt?: number;
+            active?: boolean;
+        }[] & ({
+            id?: string;
+            secret?: string;
+            lastUsedAt?: number;
+            active?: boolean;
+        } & {
+            id?: string;
+            secret?: string;
+            lastUsedAt?: number;
+            active?: boolean;
+        } & { [K_5 in Exclude<keyof I_1["secrets"][number], keyof Secret>]: never; })[] & { [K_6 in Exclude<keyof I_1["secrets"], keyof {
+            id?: string;
+            secret?: string;
+            lastUsedAt?: number;
+            active?: boolean;
+        }[]>]: never; };
+    } & { [K_7 in Exclude<keyof I_1, keyof ServiceDetail>]: never; }>(object: I_1): ServiceDetail;
 };
 export declare const Secret: {
     encode(message: Secret, writer?: _m0.Writer): _m0.Writer;

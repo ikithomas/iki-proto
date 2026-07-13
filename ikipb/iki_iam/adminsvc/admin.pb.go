@@ -2622,6 +2622,670 @@ func (*DeletePasskeyResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{57}
 }
 
+type ListServicesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesRequest) Reset() {
+	*x = ListServicesRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesRequest) ProtoMessage() {}
+
+func (x *ListServicesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesRequest.ProtoReflect.Descriptor instead.
+func (*ListServicesRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{58}
+}
+
+type ListServicesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Services      []*iki_iam.Service     `protobuf:"bytes,1,rep,name=services,proto3" json:"services,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesResponse) Reset() {
+	*x = ListServicesResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[59]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesResponse) ProtoMessage() {}
+
+func (x *ListServicesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[59]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesResponse.ProtoReflect.Descriptor instead.
+func (*ListServicesResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{59}
+}
+
+func (x *ListServicesResponse) GetServices() []*iki_iam.Service {
+	if x != nil {
+		return x.Services
+	}
+	return nil
+}
+
+type GetServiceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetServiceRequest) Reset() {
+	*x = GetServiceRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetServiceRequest) ProtoMessage() {}
+
+func (x *GetServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetServiceRequest.ProtoReflect.Descriptor instead.
+func (*GetServiceRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *GetServiceRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetServiceResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Service       *iki_iam.ServiceDetail `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetServiceResponse) Reset() {
+	*x = GetServiceResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetServiceResponse) ProtoMessage() {}
+
+func (x *GetServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetServiceResponse.ProtoReflect.Descriptor instead.
+func (*GetServiceResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{61}
+}
+
+func (x *GetServiceResponse) GetService() *iki_iam.ServiceDetail {
+	if x != nil {
+		return x.Service
+	}
+	return nil
+}
+
+type CreateServiceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateServiceRequest) Reset() {
+	*x = CreateServiceRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[62]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateServiceRequest) ProtoMessage() {}
+
+func (x *CreateServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[62]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateServiceRequest.ProtoReflect.Descriptor instead.
+func (*CreateServiceRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *CreateServiceRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CreateServiceResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Service       *iki_iam.Service       `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateServiceResponse) Reset() {
+	*x = CreateServiceResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateServiceResponse) ProtoMessage() {}
+
+func (x *CreateServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateServiceResponse.ProtoReflect.Descriptor instead.
+func (*CreateServiceResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *CreateServiceResponse) GetService() *iki_iam.Service {
+	if x != nil {
+		return x.Service
+	}
+	return nil
+}
+
+type DeleteServiceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteServiceRequest) Reset() {
+	*x = DeleteServiceRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[64]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteServiceRequest) ProtoMessage() {}
+
+func (x *DeleteServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[64]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteServiceRequest.ProtoReflect.Descriptor instead.
+func (*DeleteServiceRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *DeleteServiceRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteServiceResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteServiceResponse) Reset() {
+	*x = DeleteServiceResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[65]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteServiceResponse) ProtoMessage() {}
+
+func (x *DeleteServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[65]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteServiceResponse.ProtoReflect.Descriptor instead.
+func (*DeleteServiceResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{65}
+}
+
+type AddServiceSecretRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddServiceSecretRequest) Reset() {
+	*x = AddServiceSecretRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[66]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddServiceSecretRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddServiceSecretRequest) ProtoMessage() {}
+
+func (x *AddServiceSecretRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[66]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddServiceSecretRequest.ProtoReflect.Descriptor instead.
+func (*AddServiceSecretRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{66}
+}
+
+func (x *AddServiceSecretRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type AddServiceSecretResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Service       *iki_iam.ServiceDetail `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddServiceSecretResponse) Reset() {
+	*x = AddServiceSecretResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[67]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddServiceSecretResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddServiceSecretResponse) ProtoMessage() {}
+
+func (x *AddServiceSecretResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[67]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddServiceSecretResponse.ProtoReflect.Descriptor instead.
+func (*AddServiceSecretResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{67}
+}
+
+func (x *AddServiceSecretResponse) GetService() *iki_iam.ServiceDetail {
+	if x != nil {
+		return x.Service
+	}
+	return nil
+}
+
+type ActivateServiceSecretRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ActivateServiceSecretRequest) Reset() {
+	*x = ActivateServiceSecretRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[68]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActivateServiceSecretRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActivateServiceSecretRequest) ProtoMessage() {}
+
+func (x *ActivateServiceSecretRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[68]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActivateServiceSecretRequest.ProtoReflect.Descriptor instead.
+func (*ActivateServiceSecretRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{68}
+}
+
+func (x *ActivateServiceSecretRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ActivateServiceSecretResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ActivateServiceSecretResponse) Reset() {
+	*x = ActivateServiceSecretResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[69]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActivateServiceSecretResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActivateServiceSecretResponse) ProtoMessage() {}
+
+func (x *ActivateServiceSecretResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[69]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActivateServiceSecretResponse.ProtoReflect.Descriptor instead.
+func (*ActivateServiceSecretResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{69}
+}
+
+type DeactivateServiceSecretRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeactivateServiceSecretRequest) Reset() {
+	*x = DeactivateServiceSecretRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[70]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeactivateServiceSecretRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeactivateServiceSecretRequest) ProtoMessage() {}
+
+func (x *DeactivateServiceSecretRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[70]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeactivateServiceSecretRequest.ProtoReflect.Descriptor instead.
+func (*DeactivateServiceSecretRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{70}
+}
+
+func (x *DeactivateServiceSecretRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeactivateServiceSecretResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeactivateServiceSecretResponse) Reset() {
+	*x = DeactivateServiceSecretResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[71]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeactivateServiceSecretResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeactivateServiceSecretResponse) ProtoMessage() {}
+
+func (x *DeactivateServiceSecretResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[71]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeactivateServiceSecretResponse.ProtoReflect.Descriptor instead.
+func (*DeactivateServiceSecretResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{71}
+}
+
+type DeleteServiceSecretRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteServiceSecretRequest) Reset() {
+	*x = DeleteServiceSecretRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[72]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteServiceSecretRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteServiceSecretRequest) ProtoMessage() {}
+
+func (x *DeleteServiceSecretRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[72]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteServiceSecretRequest.ProtoReflect.Descriptor instead.
+func (*DeleteServiceSecretRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{72}
+}
+
+func (x *DeleteServiceSecretRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteServiceSecretResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteServiceSecretResponse) Reset() {
+	*x = DeleteServiceSecretResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[73]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteServiceSecretResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteServiceSecretResponse) ProtoMessage() {}
+
+func (x *DeleteServiceSecretResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[73]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteServiceSecretResponse.ProtoReflect.Descriptor instead.
+func (*DeleteServiceSecretResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{73}
+}
+
 var File_ikipb_iki_iam_adminsvc_admin_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
@@ -2773,7 +3437,34 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\bpasskeys\x18\x01 \x03(\v2\f.iam.PasskeyR\bpasskeys\"&\n" +
 	"\x14DeletePasskeyRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
-	"\x15DeletePasskeyResponse2\xa8\x12\n" +
+	"\x15DeletePasskeyResponse\"\x15\n" +
+	"\x13ListServicesRequest\"@\n" +
+	"\x14ListServicesResponse\x12(\n" +
+	"\bservices\x18\x01 \x03(\v2\f.iam.ServiceR\bservices\"#\n" +
+	"\x11GetServiceRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"B\n" +
+	"\x12GetServiceResponse\x12,\n" +
+	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\"*\n" +
+	"\x14CreateServiceRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"?\n" +
+	"\x15CreateServiceResponse\x12&\n" +
+	"\aservice\x18\x01 \x01(\v2\f.iam.ServiceR\aservice\"&\n" +
+	"\x14DeleteServiceRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
+	"\x15DeleteServiceResponse\")\n" +
+	"\x17AddServiceSecretRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"H\n" +
+	"\x18AddServiceSecretResponse\x12,\n" +
+	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\".\n" +
+	"\x1cActivateServiceSecretRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x1f\n" +
+	"\x1dActivateServiceSecretResponse\"0\n" +
+	"\x1eDeactivateServiceSecretRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
+	"\x1fDeactivateServiceSecretResponse\",\n" +
+	"\x1aDeleteServiceSecretRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x1d\n" +
+	"\x1bDeleteServiceSecretResponse2\x8d\x18\n" +
 	"\bAdminSvc\x12F\n" +
 	"\tListUsers\x12\x1a.adminsvc.ListUsersRequest\x1a\x1b.adminsvc.ListUsersResponse\"\x00\x12@\n" +
 	"\aGetUser\x12\x18.adminsvc.GetUserRequest\x1a\x19.adminsvc.GetUserResponse\"\x00\x12F\n" +
@@ -2809,7 +3500,16 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x13RemoveUserFromGroup\x12$.adminsvc.RemoveUserFromGroupRequest\x1a%.adminsvc.RemoveUserFromGroupResponse\"\x00\x12U\n" +
 	"\x0eListGroupUsers\x12\x1f.adminsvc.ListGroupUsersRequest\x1a .adminsvc.ListGroupUsersResponse\"\x00\x12O\n" +
 	"\fListPasskeys\x12\x1d.adminsvc.ListPasskeysRequest\x1a\x1e.adminsvc.ListPasskeysResponse\"\x00\x12R\n" +
-	"\rDeletePasskey\x12\x1e.adminsvc.DeletePasskeyRequest\x1a\x1f.adminsvc.DeletePasskeyResponse\"\x00B Z\t/adminsvc\xea\x02\x12Iki::Iam::AdminSvcb\x06proto3"
+	"\rDeletePasskey\x12\x1e.adminsvc.DeletePasskeyRequest\x1a\x1f.adminsvc.DeletePasskeyResponse\"\x00\x12O\n" +
+	"\fListServices\x12\x1d.adminsvc.ListServicesRequest\x1a\x1e.adminsvc.ListServicesResponse\"\x00\x12I\n" +
+	"\n" +
+	"GetService\x12\x1b.adminsvc.GetServiceRequest\x1a\x1c.adminsvc.GetServiceResponse\"\x00\x12R\n" +
+	"\rCreateService\x12\x1e.adminsvc.CreateServiceRequest\x1a\x1f.adminsvc.CreateServiceResponse\"\x00\x12R\n" +
+	"\rDeleteService\x12\x1e.adminsvc.DeleteServiceRequest\x1a\x1f.adminsvc.DeleteServiceResponse\"\x00\x12[\n" +
+	"\x10AddServiceSecret\x12!.adminsvc.AddServiceSecretRequest\x1a\".adminsvc.AddServiceSecretResponse\"\x00\x12j\n" +
+	"\x15ActivateServiceSecret\x12&.adminsvc.ActivateServiceSecretRequest\x1a'.adminsvc.ActivateServiceSecretResponse\"\x00\x12p\n" +
+	"\x17DeactivateServiceSecret\x12(.adminsvc.DeactivateServiceSecretRequest\x1a).adminsvc.DeactivateServiceSecretResponse\"\x00\x12d\n" +
+	"\x13DeleteServiceSecret\x12$.adminsvc.DeleteServiceSecretRequest\x1a%.adminsvc.DeleteServiceSecretResponse\"\x00B Z\t/adminsvc\xea\x02\x12Iki::Iam::AdminSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_adminsvc_admin_proto_rawDescOnce sync.Once
@@ -2823,161 +3523,199 @@ func file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescData
 }
 
-var file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 58)
+var file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 74)
 var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
-	(*ListPermissionsRequest)(nil),      // 0: adminsvc.ListPermissionsRequest
-	(*ListPermissionsResponse)(nil),     // 1: adminsvc.ListPermissionsResponse
-	(*GetPermissionRequest)(nil),        // 2: adminsvc.GetPermissionRequest
-	(*GetPermissionResponse)(nil),       // 3: adminsvc.GetPermissionResponse
-	(*CreatePermissionRequest)(nil),     // 4: adminsvc.CreatePermissionRequest
-	(*CreatePermissionResponse)(nil),    // 5: adminsvc.CreatePermissionResponse
-	(*PatchPermissionRequest)(nil),      // 6: adminsvc.PatchPermissionRequest
-	(*PatchPermissionResponse)(nil),     // 7: adminsvc.PatchPermissionResponse
-	(*DeletePermissionRequest)(nil),     // 8: adminsvc.DeletePermissionRequest
-	(*DeletePermissionResponse)(nil),    // 9: adminsvc.DeletePermissionResponse
-	(*ListRolesRequest)(nil),            // 10: adminsvc.ListRolesRequest
-	(*ListRolesResponse)(nil),           // 11: adminsvc.ListRolesResponse
-	(*GetRoleRequest)(nil),              // 12: adminsvc.GetRoleRequest
-	(*GetRoleResponse)(nil),             // 13: adminsvc.GetRoleResponse
-	(*CreateRoleRequest)(nil),           // 14: adminsvc.CreateRoleRequest
-	(*CreateRoleResponse)(nil),          // 15: adminsvc.CreateRoleResponse
-	(*PatchRoleRequest)(nil),            // 16: adminsvc.PatchRoleRequest
-	(*PatchRoleResponse)(nil),           // 17: adminsvc.PatchRoleResponse
-	(*DeleteRoleRequest)(nil),           // 18: adminsvc.DeleteRoleRequest
-	(*DeleteRoleResponse)(nil),          // 19: adminsvc.DeleteRoleResponse
-	(*SetRolePermissionsRequest)(nil),   // 20: adminsvc.SetRolePermissionsRequest
-	(*SetRolePermissionsResponse)(nil),  // 21: adminsvc.SetRolePermissionsResponse
-	(*ListGroupsRequest)(nil),           // 22: adminsvc.ListGroupsRequest
-	(*ListGroupsResponse)(nil),          // 23: adminsvc.ListGroupsResponse
-	(*GetGroupRequest)(nil),             // 24: adminsvc.GetGroupRequest
-	(*GetGroupResponse)(nil),            // 25: adminsvc.GetGroupResponse
-	(*CreateGroupRequest)(nil),          // 26: adminsvc.CreateGroupRequest
-	(*CreateGroupResponse)(nil),         // 27: adminsvc.CreateGroupResponse
-	(*PatchGroupRequest)(nil),           // 28: adminsvc.PatchGroupRequest
-	(*PatchGroupResponse)(nil),          // 29: adminsvc.PatchGroupResponse
-	(*DeleteGroupRequest)(nil),          // 30: adminsvc.DeleteGroupRequest
-	(*DeleteGroupResponse)(nil),         // 31: adminsvc.DeleteGroupResponse
-	(*SetGroupRolesRequest)(nil),        // 32: adminsvc.SetGroupRolesRequest
-	(*SetGroupRolesResponse)(nil),       // 33: adminsvc.SetGroupRolesResponse
-	(*ListUsersRequest)(nil),            // 34: adminsvc.ListUsersRequest
-	(*ListUsersResponse)(nil),           // 35: adminsvc.ListUsersResponse
-	(*PatchUserRequest)(nil),            // 36: adminsvc.PatchUserRequest
-	(*PatchUserResponse)(nil),           // 37: adminsvc.PatchUserResponse
-	(*CreateUserRequest)(nil),           // 38: adminsvc.CreateUserRequest
-	(*CreateUserResponse)(nil),          // 39: adminsvc.CreateUserResponse
-	(*GetUserRequest)(nil),              // 40: adminsvc.GetUserRequest
-	(*GetUserResponse)(nil),             // 41: adminsvc.GetUserResponse
-	(*DeleteUserRequest)(nil),           // 42: adminsvc.DeleteUserRequest
-	(*DeleteUserResponse)(nil),          // 43: adminsvc.DeleteUserResponse
-	(*ListGroupUsersRequest)(nil),       // 44: adminsvc.ListGroupUsersRequest
-	(*ListGroupUsersResponse)(nil),      // 45: adminsvc.ListGroupUsersResponse
-	(*AddUserToGroupRequest)(nil),       // 46: adminsvc.AddUserToGroupRequest
-	(*AddUserToGroupResponse)(nil),      // 47: adminsvc.AddUserToGroupResponse
-	(*RemoveUserFromGroupRequest)(nil),  // 48: adminsvc.RemoveUserFromGroupRequest
-	(*RemoveUserFromGroupResponse)(nil), // 49: adminsvc.RemoveUserFromGroupResponse
-	(*SetUserRolesRequest)(nil),         // 50: adminsvc.SetUserRolesRequest
-	(*SetUserRolesResponse)(nil),        // 51: adminsvc.SetUserRolesResponse
-	(*SetUserGroupsRequest)(nil),        // 52: adminsvc.SetUserGroupsRequest
-	(*SetUserGroupsResponse)(nil),       // 53: adminsvc.SetUserGroupsResponse
-	(*ListPasskeysRequest)(nil),         // 54: adminsvc.ListPasskeysRequest
-	(*ListPasskeysResponse)(nil),        // 55: adminsvc.ListPasskeysResponse
-	(*DeletePasskeyRequest)(nil),        // 56: adminsvc.DeletePasskeyRequest
-	(*DeletePasskeyResponse)(nil),       // 57: adminsvc.DeletePasskeyResponse
-	(*iki_iam.Permission)(nil),          // 58: iam.Permission
-	(*iki_iam.Role)(nil),                // 59: iam.Role
-	(*iki_iam.RoleDetail)(nil),          // 60: iam.RoleDetail
-	(*iki_iam.Group)(nil),               // 61: iam.Group
-	(*iki_iam.GroupDetail)(nil),         // 62: iam.GroupDetail
-	(*iki_iam.User)(nil),                // 63: iam.User
-	(*iki_iam.UserDetail)(nil),          // 64: iam.UserDetail
-	(*iki_iam.Passkey)(nil),             // 65: iam.Passkey
+	(*ListPermissionsRequest)(nil),          // 0: adminsvc.ListPermissionsRequest
+	(*ListPermissionsResponse)(nil),         // 1: adminsvc.ListPermissionsResponse
+	(*GetPermissionRequest)(nil),            // 2: adminsvc.GetPermissionRequest
+	(*GetPermissionResponse)(nil),           // 3: adminsvc.GetPermissionResponse
+	(*CreatePermissionRequest)(nil),         // 4: adminsvc.CreatePermissionRequest
+	(*CreatePermissionResponse)(nil),        // 5: adminsvc.CreatePermissionResponse
+	(*PatchPermissionRequest)(nil),          // 6: adminsvc.PatchPermissionRequest
+	(*PatchPermissionResponse)(nil),         // 7: adminsvc.PatchPermissionResponse
+	(*DeletePermissionRequest)(nil),         // 8: adminsvc.DeletePermissionRequest
+	(*DeletePermissionResponse)(nil),        // 9: adminsvc.DeletePermissionResponse
+	(*ListRolesRequest)(nil),                // 10: adminsvc.ListRolesRequest
+	(*ListRolesResponse)(nil),               // 11: adminsvc.ListRolesResponse
+	(*GetRoleRequest)(nil),                  // 12: adminsvc.GetRoleRequest
+	(*GetRoleResponse)(nil),                 // 13: adminsvc.GetRoleResponse
+	(*CreateRoleRequest)(nil),               // 14: adminsvc.CreateRoleRequest
+	(*CreateRoleResponse)(nil),              // 15: adminsvc.CreateRoleResponse
+	(*PatchRoleRequest)(nil),                // 16: adminsvc.PatchRoleRequest
+	(*PatchRoleResponse)(nil),               // 17: adminsvc.PatchRoleResponse
+	(*DeleteRoleRequest)(nil),               // 18: adminsvc.DeleteRoleRequest
+	(*DeleteRoleResponse)(nil),              // 19: adminsvc.DeleteRoleResponse
+	(*SetRolePermissionsRequest)(nil),       // 20: adminsvc.SetRolePermissionsRequest
+	(*SetRolePermissionsResponse)(nil),      // 21: adminsvc.SetRolePermissionsResponse
+	(*ListGroupsRequest)(nil),               // 22: adminsvc.ListGroupsRequest
+	(*ListGroupsResponse)(nil),              // 23: adminsvc.ListGroupsResponse
+	(*GetGroupRequest)(nil),                 // 24: adminsvc.GetGroupRequest
+	(*GetGroupResponse)(nil),                // 25: adminsvc.GetGroupResponse
+	(*CreateGroupRequest)(nil),              // 26: adminsvc.CreateGroupRequest
+	(*CreateGroupResponse)(nil),             // 27: adminsvc.CreateGroupResponse
+	(*PatchGroupRequest)(nil),               // 28: adminsvc.PatchGroupRequest
+	(*PatchGroupResponse)(nil),              // 29: adminsvc.PatchGroupResponse
+	(*DeleteGroupRequest)(nil),              // 30: adminsvc.DeleteGroupRequest
+	(*DeleteGroupResponse)(nil),             // 31: adminsvc.DeleteGroupResponse
+	(*SetGroupRolesRequest)(nil),            // 32: adminsvc.SetGroupRolesRequest
+	(*SetGroupRolesResponse)(nil),           // 33: adminsvc.SetGroupRolesResponse
+	(*ListUsersRequest)(nil),                // 34: adminsvc.ListUsersRequest
+	(*ListUsersResponse)(nil),               // 35: adminsvc.ListUsersResponse
+	(*PatchUserRequest)(nil),                // 36: adminsvc.PatchUserRequest
+	(*PatchUserResponse)(nil),               // 37: adminsvc.PatchUserResponse
+	(*CreateUserRequest)(nil),               // 38: adminsvc.CreateUserRequest
+	(*CreateUserResponse)(nil),              // 39: adminsvc.CreateUserResponse
+	(*GetUserRequest)(nil),                  // 40: adminsvc.GetUserRequest
+	(*GetUserResponse)(nil),                 // 41: adminsvc.GetUserResponse
+	(*DeleteUserRequest)(nil),               // 42: adminsvc.DeleteUserRequest
+	(*DeleteUserResponse)(nil),              // 43: adminsvc.DeleteUserResponse
+	(*ListGroupUsersRequest)(nil),           // 44: adminsvc.ListGroupUsersRequest
+	(*ListGroupUsersResponse)(nil),          // 45: adminsvc.ListGroupUsersResponse
+	(*AddUserToGroupRequest)(nil),           // 46: adminsvc.AddUserToGroupRequest
+	(*AddUserToGroupResponse)(nil),          // 47: adminsvc.AddUserToGroupResponse
+	(*RemoveUserFromGroupRequest)(nil),      // 48: adminsvc.RemoveUserFromGroupRequest
+	(*RemoveUserFromGroupResponse)(nil),     // 49: adminsvc.RemoveUserFromGroupResponse
+	(*SetUserRolesRequest)(nil),             // 50: adminsvc.SetUserRolesRequest
+	(*SetUserRolesResponse)(nil),            // 51: adminsvc.SetUserRolesResponse
+	(*SetUserGroupsRequest)(nil),            // 52: adminsvc.SetUserGroupsRequest
+	(*SetUserGroupsResponse)(nil),           // 53: adminsvc.SetUserGroupsResponse
+	(*ListPasskeysRequest)(nil),             // 54: adminsvc.ListPasskeysRequest
+	(*ListPasskeysResponse)(nil),            // 55: adminsvc.ListPasskeysResponse
+	(*DeletePasskeyRequest)(nil),            // 56: adminsvc.DeletePasskeyRequest
+	(*DeletePasskeyResponse)(nil),           // 57: adminsvc.DeletePasskeyResponse
+	(*ListServicesRequest)(nil),             // 58: adminsvc.ListServicesRequest
+	(*ListServicesResponse)(nil),            // 59: adminsvc.ListServicesResponse
+	(*GetServiceRequest)(nil),               // 60: adminsvc.GetServiceRequest
+	(*GetServiceResponse)(nil),              // 61: adminsvc.GetServiceResponse
+	(*CreateServiceRequest)(nil),            // 62: adminsvc.CreateServiceRequest
+	(*CreateServiceResponse)(nil),           // 63: adminsvc.CreateServiceResponse
+	(*DeleteServiceRequest)(nil),            // 64: adminsvc.DeleteServiceRequest
+	(*DeleteServiceResponse)(nil),           // 65: adminsvc.DeleteServiceResponse
+	(*AddServiceSecretRequest)(nil),         // 66: adminsvc.AddServiceSecretRequest
+	(*AddServiceSecretResponse)(nil),        // 67: adminsvc.AddServiceSecretResponse
+	(*ActivateServiceSecretRequest)(nil),    // 68: adminsvc.ActivateServiceSecretRequest
+	(*ActivateServiceSecretResponse)(nil),   // 69: adminsvc.ActivateServiceSecretResponse
+	(*DeactivateServiceSecretRequest)(nil),  // 70: adminsvc.DeactivateServiceSecretRequest
+	(*DeactivateServiceSecretResponse)(nil), // 71: adminsvc.DeactivateServiceSecretResponse
+	(*DeleteServiceSecretRequest)(nil),      // 72: adminsvc.DeleteServiceSecretRequest
+	(*DeleteServiceSecretResponse)(nil),     // 73: adminsvc.DeleteServiceSecretResponse
+	(*iki_iam.Permission)(nil),              // 74: iam.Permission
+	(*iki_iam.Role)(nil),                    // 75: iam.Role
+	(*iki_iam.RoleDetail)(nil),              // 76: iam.RoleDetail
+	(*iki_iam.Group)(nil),                   // 77: iam.Group
+	(*iki_iam.GroupDetail)(nil),             // 78: iam.GroupDetail
+	(*iki_iam.User)(nil),                    // 79: iam.User
+	(*iki_iam.UserDetail)(nil),              // 80: iam.UserDetail
+	(*iki_iam.Passkey)(nil),                 // 81: iam.Passkey
+	(*iki_iam.Service)(nil),                 // 82: iam.Service
+	(*iki_iam.ServiceDetail)(nil),           // 83: iam.ServiceDetail
 }
 var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
-	58, // 0: adminsvc.ListPermissionsResponse.permissions:type_name -> iam.Permission
-	58, // 1: adminsvc.GetPermissionResponse.permission:type_name -> iam.Permission
-	58, // 2: adminsvc.CreatePermissionResponse.permission:type_name -> iam.Permission
-	58, // 3: adminsvc.PatchPermissionResponse.permission:type_name -> iam.Permission
-	59, // 4: adminsvc.ListRolesResponse.roles:type_name -> iam.Role
-	60, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.RoleDetail
-	59, // 6: adminsvc.CreateRoleResponse.role:type_name -> iam.Role
-	59, // 7: adminsvc.PatchRoleResponse.role:type_name -> iam.Role
-	60, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.RoleDetail
-	61, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
-	62, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.GroupDetail
-	61, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
-	61, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
-	62, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
-	63, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
-	63, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
-	63, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
-	64, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
-	63, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
-	64, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
-	64, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
-	65, // 21: adminsvc.ListPasskeysResponse.passkeys:type_name -> iam.Passkey
-	34, // 22: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
-	40, // 23: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
-	36, // 24: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
-	38, // 25: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
-	42, // 26: adminsvc.AdminSvc.DeleteUser:input_type -> adminsvc.DeleteUserRequest
-	50, // 27: adminsvc.AdminSvc.SetUserRoles:input_type -> adminsvc.SetUserRolesRequest
-	52, // 28: adminsvc.AdminSvc.SetUserGroups:input_type -> adminsvc.SetUserGroupsRequest
-	0,  // 29: adminsvc.AdminSvc.ListPermissions:input_type -> adminsvc.ListPermissionsRequest
-	2,  // 30: adminsvc.AdminSvc.GetPermission:input_type -> adminsvc.GetPermissionRequest
-	4,  // 31: adminsvc.AdminSvc.CreatePermission:input_type -> adminsvc.CreatePermissionRequest
-	6,  // 32: adminsvc.AdminSvc.PatchPermission:input_type -> adminsvc.PatchPermissionRequest
-	8,  // 33: adminsvc.AdminSvc.DeletePermission:input_type -> adminsvc.DeletePermissionRequest
-	22, // 34: adminsvc.AdminSvc.ListGroups:input_type -> adminsvc.ListGroupsRequest
-	24, // 35: adminsvc.AdminSvc.GetGroup:input_type -> adminsvc.GetGroupRequest
-	26, // 36: adminsvc.AdminSvc.CreateGroup:input_type -> adminsvc.CreateGroupRequest
-	28, // 37: adminsvc.AdminSvc.PatchGroup:input_type -> adminsvc.PatchGroupRequest
-	30, // 38: adminsvc.AdminSvc.DeleteGroup:input_type -> adminsvc.DeleteGroupRequest
-	10, // 39: adminsvc.AdminSvc.ListRoles:input_type -> adminsvc.ListRolesRequest
-	12, // 40: adminsvc.AdminSvc.GetRole:input_type -> adminsvc.GetRoleRequest
-	14, // 41: adminsvc.AdminSvc.CreateRole:input_type -> adminsvc.CreateRoleRequest
-	16, // 42: adminsvc.AdminSvc.PatchRole:input_type -> adminsvc.PatchRoleRequest
-	18, // 43: adminsvc.AdminSvc.DeleteRole:input_type -> adminsvc.DeleteRoleRequest
-	20, // 44: adminsvc.AdminSvc.SetRolePermissions:input_type -> adminsvc.SetRolePermissionsRequest
-	32, // 45: adminsvc.AdminSvc.SetGroupRoles:input_type -> adminsvc.SetGroupRolesRequest
-	46, // 46: adminsvc.AdminSvc.AddUserToGroup:input_type -> adminsvc.AddUserToGroupRequest
-	48, // 47: adminsvc.AdminSvc.RemoveUserFromGroup:input_type -> adminsvc.RemoveUserFromGroupRequest
-	44, // 48: adminsvc.AdminSvc.ListGroupUsers:input_type -> adminsvc.ListGroupUsersRequest
-	54, // 49: adminsvc.AdminSvc.ListPasskeys:input_type -> adminsvc.ListPasskeysRequest
-	56, // 50: adminsvc.AdminSvc.DeletePasskey:input_type -> adminsvc.DeletePasskeyRequest
-	35, // 51: adminsvc.AdminSvc.ListUsers:output_type -> adminsvc.ListUsersResponse
-	41, // 52: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
-	37, // 53: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
-	39, // 54: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
-	43, // 55: adminsvc.AdminSvc.DeleteUser:output_type -> adminsvc.DeleteUserResponse
-	51, // 56: adminsvc.AdminSvc.SetUserRoles:output_type -> adminsvc.SetUserRolesResponse
-	53, // 57: adminsvc.AdminSvc.SetUserGroups:output_type -> adminsvc.SetUserGroupsResponse
-	1,  // 58: adminsvc.AdminSvc.ListPermissions:output_type -> adminsvc.ListPermissionsResponse
-	3,  // 59: adminsvc.AdminSvc.GetPermission:output_type -> adminsvc.GetPermissionResponse
-	5,  // 60: adminsvc.AdminSvc.CreatePermission:output_type -> adminsvc.CreatePermissionResponse
-	7,  // 61: adminsvc.AdminSvc.PatchPermission:output_type -> adminsvc.PatchPermissionResponse
-	9,  // 62: adminsvc.AdminSvc.DeletePermission:output_type -> adminsvc.DeletePermissionResponse
-	23, // 63: adminsvc.AdminSvc.ListGroups:output_type -> adminsvc.ListGroupsResponse
-	25, // 64: adminsvc.AdminSvc.GetGroup:output_type -> adminsvc.GetGroupResponse
-	27, // 65: adminsvc.AdminSvc.CreateGroup:output_type -> adminsvc.CreateGroupResponse
-	29, // 66: adminsvc.AdminSvc.PatchGroup:output_type -> adminsvc.PatchGroupResponse
-	31, // 67: adminsvc.AdminSvc.DeleteGroup:output_type -> adminsvc.DeleteGroupResponse
-	11, // 68: adminsvc.AdminSvc.ListRoles:output_type -> adminsvc.ListRolesResponse
-	13, // 69: adminsvc.AdminSvc.GetRole:output_type -> adminsvc.GetRoleResponse
-	15, // 70: adminsvc.AdminSvc.CreateRole:output_type -> adminsvc.CreateRoleResponse
-	17, // 71: adminsvc.AdminSvc.PatchRole:output_type -> adminsvc.PatchRoleResponse
-	19, // 72: adminsvc.AdminSvc.DeleteRole:output_type -> adminsvc.DeleteRoleResponse
-	21, // 73: adminsvc.AdminSvc.SetRolePermissions:output_type -> adminsvc.SetRolePermissionsResponse
-	33, // 74: adminsvc.AdminSvc.SetGroupRoles:output_type -> adminsvc.SetGroupRolesResponse
-	47, // 75: adminsvc.AdminSvc.AddUserToGroup:output_type -> adminsvc.AddUserToGroupResponse
-	49, // 76: adminsvc.AdminSvc.RemoveUserFromGroup:output_type -> adminsvc.RemoveUserFromGroupResponse
-	45, // 77: adminsvc.AdminSvc.ListGroupUsers:output_type -> adminsvc.ListGroupUsersResponse
-	55, // 78: adminsvc.AdminSvc.ListPasskeys:output_type -> adminsvc.ListPasskeysResponse
-	57, // 79: adminsvc.AdminSvc.DeletePasskey:output_type -> adminsvc.DeletePasskeyResponse
-	51, // [51:80] is the sub-list for method output_type
-	22, // [22:51] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	74, // 0: adminsvc.ListPermissionsResponse.permissions:type_name -> iam.Permission
+	74, // 1: adminsvc.GetPermissionResponse.permission:type_name -> iam.Permission
+	74, // 2: adminsvc.CreatePermissionResponse.permission:type_name -> iam.Permission
+	74, // 3: adminsvc.PatchPermissionResponse.permission:type_name -> iam.Permission
+	75, // 4: adminsvc.ListRolesResponse.roles:type_name -> iam.Role
+	76, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.RoleDetail
+	75, // 6: adminsvc.CreateRoleResponse.role:type_name -> iam.Role
+	75, // 7: adminsvc.PatchRoleResponse.role:type_name -> iam.Role
+	76, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.RoleDetail
+	77, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
+	78, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.GroupDetail
+	77, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
+	77, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
+	78, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
+	79, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
+	79, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
+	79, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
+	80, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
+	79, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
+	80, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
+	80, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
+	81, // 21: adminsvc.ListPasskeysResponse.passkeys:type_name -> iam.Passkey
+	82, // 22: adminsvc.ListServicesResponse.services:type_name -> iam.Service
+	83, // 23: adminsvc.GetServiceResponse.service:type_name -> iam.ServiceDetail
+	82, // 24: adminsvc.CreateServiceResponse.service:type_name -> iam.Service
+	83, // 25: adminsvc.AddServiceSecretResponse.service:type_name -> iam.ServiceDetail
+	34, // 26: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
+	40, // 27: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
+	36, // 28: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
+	38, // 29: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
+	42, // 30: adminsvc.AdminSvc.DeleteUser:input_type -> adminsvc.DeleteUserRequest
+	50, // 31: adminsvc.AdminSvc.SetUserRoles:input_type -> adminsvc.SetUserRolesRequest
+	52, // 32: adminsvc.AdminSvc.SetUserGroups:input_type -> adminsvc.SetUserGroupsRequest
+	0,  // 33: adminsvc.AdminSvc.ListPermissions:input_type -> adminsvc.ListPermissionsRequest
+	2,  // 34: adminsvc.AdminSvc.GetPermission:input_type -> adminsvc.GetPermissionRequest
+	4,  // 35: adminsvc.AdminSvc.CreatePermission:input_type -> adminsvc.CreatePermissionRequest
+	6,  // 36: adminsvc.AdminSvc.PatchPermission:input_type -> adminsvc.PatchPermissionRequest
+	8,  // 37: adminsvc.AdminSvc.DeletePermission:input_type -> adminsvc.DeletePermissionRequest
+	22, // 38: adminsvc.AdminSvc.ListGroups:input_type -> adminsvc.ListGroupsRequest
+	24, // 39: adminsvc.AdminSvc.GetGroup:input_type -> adminsvc.GetGroupRequest
+	26, // 40: adminsvc.AdminSvc.CreateGroup:input_type -> adminsvc.CreateGroupRequest
+	28, // 41: adminsvc.AdminSvc.PatchGroup:input_type -> adminsvc.PatchGroupRequest
+	30, // 42: adminsvc.AdminSvc.DeleteGroup:input_type -> adminsvc.DeleteGroupRequest
+	10, // 43: adminsvc.AdminSvc.ListRoles:input_type -> adminsvc.ListRolesRequest
+	12, // 44: adminsvc.AdminSvc.GetRole:input_type -> adminsvc.GetRoleRequest
+	14, // 45: adminsvc.AdminSvc.CreateRole:input_type -> adminsvc.CreateRoleRequest
+	16, // 46: adminsvc.AdminSvc.PatchRole:input_type -> adminsvc.PatchRoleRequest
+	18, // 47: adminsvc.AdminSvc.DeleteRole:input_type -> adminsvc.DeleteRoleRequest
+	20, // 48: adminsvc.AdminSvc.SetRolePermissions:input_type -> adminsvc.SetRolePermissionsRequest
+	32, // 49: adminsvc.AdminSvc.SetGroupRoles:input_type -> adminsvc.SetGroupRolesRequest
+	46, // 50: adminsvc.AdminSvc.AddUserToGroup:input_type -> adminsvc.AddUserToGroupRequest
+	48, // 51: adminsvc.AdminSvc.RemoveUserFromGroup:input_type -> adminsvc.RemoveUserFromGroupRequest
+	44, // 52: adminsvc.AdminSvc.ListGroupUsers:input_type -> adminsvc.ListGroupUsersRequest
+	54, // 53: adminsvc.AdminSvc.ListPasskeys:input_type -> adminsvc.ListPasskeysRequest
+	56, // 54: adminsvc.AdminSvc.DeletePasskey:input_type -> adminsvc.DeletePasskeyRequest
+	58, // 55: adminsvc.AdminSvc.ListServices:input_type -> adminsvc.ListServicesRequest
+	60, // 56: adminsvc.AdminSvc.GetService:input_type -> adminsvc.GetServiceRequest
+	62, // 57: adminsvc.AdminSvc.CreateService:input_type -> adminsvc.CreateServiceRequest
+	64, // 58: adminsvc.AdminSvc.DeleteService:input_type -> adminsvc.DeleteServiceRequest
+	66, // 59: adminsvc.AdminSvc.AddServiceSecret:input_type -> adminsvc.AddServiceSecretRequest
+	68, // 60: adminsvc.AdminSvc.ActivateServiceSecret:input_type -> adminsvc.ActivateServiceSecretRequest
+	70, // 61: adminsvc.AdminSvc.DeactivateServiceSecret:input_type -> adminsvc.DeactivateServiceSecretRequest
+	72, // 62: adminsvc.AdminSvc.DeleteServiceSecret:input_type -> adminsvc.DeleteServiceSecretRequest
+	35, // 63: adminsvc.AdminSvc.ListUsers:output_type -> adminsvc.ListUsersResponse
+	41, // 64: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
+	37, // 65: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
+	39, // 66: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
+	43, // 67: adminsvc.AdminSvc.DeleteUser:output_type -> adminsvc.DeleteUserResponse
+	51, // 68: adminsvc.AdminSvc.SetUserRoles:output_type -> adminsvc.SetUserRolesResponse
+	53, // 69: adminsvc.AdminSvc.SetUserGroups:output_type -> adminsvc.SetUserGroupsResponse
+	1,  // 70: adminsvc.AdminSvc.ListPermissions:output_type -> adminsvc.ListPermissionsResponse
+	3,  // 71: adminsvc.AdminSvc.GetPermission:output_type -> adminsvc.GetPermissionResponse
+	5,  // 72: adminsvc.AdminSvc.CreatePermission:output_type -> adminsvc.CreatePermissionResponse
+	7,  // 73: adminsvc.AdminSvc.PatchPermission:output_type -> adminsvc.PatchPermissionResponse
+	9,  // 74: adminsvc.AdminSvc.DeletePermission:output_type -> adminsvc.DeletePermissionResponse
+	23, // 75: adminsvc.AdminSvc.ListGroups:output_type -> adminsvc.ListGroupsResponse
+	25, // 76: adminsvc.AdminSvc.GetGroup:output_type -> adminsvc.GetGroupResponse
+	27, // 77: adminsvc.AdminSvc.CreateGroup:output_type -> adminsvc.CreateGroupResponse
+	29, // 78: adminsvc.AdminSvc.PatchGroup:output_type -> adminsvc.PatchGroupResponse
+	31, // 79: adminsvc.AdminSvc.DeleteGroup:output_type -> adminsvc.DeleteGroupResponse
+	11, // 80: adminsvc.AdminSvc.ListRoles:output_type -> adminsvc.ListRolesResponse
+	13, // 81: adminsvc.AdminSvc.GetRole:output_type -> adminsvc.GetRoleResponse
+	15, // 82: adminsvc.AdminSvc.CreateRole:output_type -> adminsvc.CreateRoleResponse
+	17, // 83: adminsvc.AdminSvc.PatchRole:output_type -> adminsvc.PatchRoleResponse
+	19, // 84: adminsvc.AdminSvc.DeleteRole:output_type -> adminsvc.DeleteRoleResponse
+	21, // 85: adminsvc.AdminSvc.SetRolePermissions:output_type -> adminsvc.SetRolePermissionsResponse
+	33, // 86: adminsvc.AdminSvc.SetGroupRoles:output_type -> adminsvc.SetGroupRolesResponse
+	47, // 87: adminsvc.AdminSvc.AddUserToGroup:output_type -> adminsvc.AddUserToGroupResponse
+	49, // 88: adminsvc.AdminSvc.RemoveUserFromGroup:output_type -> adminsvc.RemoveUserFromGroupResponse
+	45, // 89: adminsvc.AdminSvc.ListGroupUsers:output_type -> adminsvc.ListGroupUsersResponse
+	55, // 90: adminsvc.AdminSvc.ListPasskeys:output_type -> adminsvc.ListPasskeysResponse
+	57, // 91: adminsvc.AdminSvc.DeletePasskey:output_type -> adminsvc.DeletePasskeyResponse
+	59, // 92: adminsvc.AdminSvc.ListServices:output_type -> adminsvc.ListServicesResponse
+	61, // 93: adminsvc.AdminSvc.GetService:output_type -> adminsvc.GetServiceResponse
+	63, // 94: adminsvc.AdminSvc.CreateService:output_type -> adminsvc.CreateServiceResponse
+	65, // 95: adminsvc.AdminSvc.DeleteService:output_type -> adminsvc.DeleteServiceResponse
+	67, // 96: adminsvc.AdminSvc.AddServiceSecret:output_type -> adminsvc.AddServiceSecretResponse
+	69, // 97: adminsvc.AdminSvc.ActivateServiceSecret:output_type -> adminsvc.ActivateServiceSecretResponse
+	71, // 98: adminsvc.AdminSvc.DeactivateServiceSecret:output_type -> adminsvc.DeactivateServiceSecretResponse
+	73, // 99: adminsvc.AdminSvc.DeleteServiceSecret:output_type -> adminsvc.DeleteServiceSecretResponse
+	63, // [63:100] is the sub-list for method output_type
+	26, // [26:63] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_iam_adminsvc_admin_proto_init() }
@@ -2996,7 +3734,7 @@ func file_ikipb_iki_iam_adminsvc_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc), len(file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   58,
+			NumMessages:   74,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

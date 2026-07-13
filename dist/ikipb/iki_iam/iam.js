@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Passkey = exports.Secret = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Passkey = exports.Secret = exports.ServiceDetail = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -651,7 +651,7 @@ exports.GroupDetail = {
     },
 };
 function createBaseService() {
-    return { id: "", clientId: "", secrets: [], name: "" };
+    return { id: "", clientId: "", name: "" };
 }
 exports.Service = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -660,9 +660,6 @@ exports.Service = {
         }
         if (message.clientId !== "") {
             writer.uint32(18).string(message.clientId);
-        }
-        for (const v of message.secrets) {
-            exports.Secret.encode(v, writer.uint32(26).fork()).ldelim();
         }
         if (message.name !== "") {
             writer.uint32(34).string(message.name);
@@ -688,12 +685,6 @@ exports.Service = {
                     }
                     message.clientId = reader.string();
                     continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.secrets.push(exports.Secret.decode(reader, reader.uint32()));
-                    continue;
                 case 4:
                     if (tag !== 34) {
                         break;
@@ -712,21 +703,16 @@ exports.Service = {
         return {
             id: isSet(object.id) ? String(object.id) : "",
             clientId: isSet(object.clientId) ? String(object.clientId) : "",
-            secrets: Array.isArray(object === null || object === void 0 ? void 0 : object.secrets) ? object.secrets.map((e) => exports.Secret.fromJSON(e)) : [],
             name: isSet(object.name) ? String(object.name) : "",
         };
     },
     toJSON(message) {
-        var _a;
         const obj = {};
         if (message.id !== "") {
             obj.id = message.id;
         }
         if (message.clientId !== "") {
             obj.clientId = message.clientId;
-        }
-        if ((_a = message.secrets) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.secrets = message.secrets.map((e) => exports.Secret.toJSON(e));
         }
         if (message.name !== "") {
             obj.name = message.name;
@@ -737,12 +723,81 @@ exports.Service = {
         return exports.Service.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d;
+        var _a, _b, _c;
         const message = createBaseService();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.clientId = (_b = object.clientId) !== null && _b !== void 0 ? _b : "";
-        message.secrets = ((_c = object.secrets) === null || _c === void 0 ? void 0 : _c.map((e) => exports.Secret.fromPartial(e))) || [];
-        message.name = (_d = object.name) !== null && _d !== void 0 ? _d : "";
+        message.name = (_c = object.name) !== null && _c !== void 0 ? _c : "";
+        return message;
+    },
+};
+function createBaseServiceDetail() {
+    return { service: undefined, secrets: [] };
+}
+exports.ServiceDetail = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.service !== undefined) {
+            exports.Service.encode(message.service, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.secrets) {
+            exports.Secret.encode(v, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseServiceDetail();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.service = exports.Service.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.secrets.push(exports.Secret.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            service: isSet(object.service) ? exports.Service.fromJSON(object.service) : undefined,
+            secrets: Array.isArray(object === null || object === void 0 ? void 0 : object.secrets) ? object.secrets.map((e) => exports.Secret.fromJSON(e)) : [],
+        };
+    },
+    toJSON(message) {
+        var _a;
+        const obj = {};
+        if (message.service !== undefined) {
+            obj.service = exports.Service.toJSON(message.service);
+        }
+        if ((_a = message.secrets) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.secrets = message.secrets.map((e) => exports.Secret.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.ServiceDetail.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a;
+        const message = createBaseServiceDetail();
+        message.service = (object.service !== undefined && object.service !== null)
+            ? exports.Service.fromPartial(object.service)
+            : undefined;
+        message.secrets = ((_a = object.secrets) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Secret.fromPartial(e))) || [];
         return message;
     },
 };

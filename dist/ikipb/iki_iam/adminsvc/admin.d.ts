@@ -1,6 +1,6 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
+import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, Service, ServiceDetail, User, UserDetail } from "../iam";
 export declare const protobufPackage = "adminsvc";
 export interface ListPermissionsRequest {
 }
@@ -181,6 +181,49 @@ export interface DeletePasskeyRequest {
     id: string;
 }
 export interface DeletePasskeyResponse {
+}
+export interface ListServicesRequest {
+}
+export interface ListServicesResponse {
+    services: Service[];
+}
+export interface GetServiceRequest {
+    id: string;
+}
+export interface GetServiceResponse {
+    service: ServiceDetail | undefined;
+}
+export interface CreateServiceRequest {
+    name: string;
+}
+export interface CreateServiceResponse {
+    service: Service | undefined;
+}
+export interface DeleteServiceRequest {
+    id: string;
+}
+export interface DeleteServiceResponse {
+}
+export interface AddServiceSecretRequest {
+    id: string;
+}
+export interface AddServiceSecretResponse {
+    service: ServiceDetail | undefined;
+}
+export interface ActivateServiceSecretRequest {
+    id: string;
+}
+export interface ActivateServiceSecretResponse {
+}
+export interface DeactivateServiceSecretRequest {
+    id: string;
+}
+export interface DeactivateServiceSecretResponse {
+}
+export interface DeleteServiceSecretRequest {
+    id: string;
+}
+export interface DeleteServiceSecretResponse {
 }
 export declare const ListPermissionsRequest: {
     encode(_: ListPermissionsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -2678,6 +2721,506 @@ export declare const DeletePasskeyResponse: {
     create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeletePasskeyResponse;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeletePasskeyResponse;
 };
+export declare const ListServicesRequest: {
+    encode(_: ListServicesRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListServicesRequest;
+    fromJSON(_: any): ListServicesRequest;
+    toJSON(_: ListServicesRequest): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListServicesRequest;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListServicesRequest;
+};
+export declare const ListServicesResponse: {
+    encode(message: ListServicesResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListServicesResponse;
+    fromJSON(object: any): ListServicesResponse;
+    toJSON(message: ListServicesResponse): unknown;
+    create<I extends {
+        services?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[];
+    } & {
+        services?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[] & ({
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K in Exclude<keyof I["services"][number], keyof Service>]: never; })[] & { [K_1 in Exclude<keyof I["services"], keyof {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[]>]: never; };
+    } & { [K_2 in Exclude<keyof I, "services">]: never; }>(base?: I): ListServicesResponse;
+    fromPartial<I_1 extends {
+        services?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[];
+    } & {
+        services?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[] & ({
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K_3 in Exclude<keyof I_1["services"][number], keyof Service>]: never; })[] & { [K_4 in Exclude<keyof I_1["services"], keyof {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        }[]>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, "services">]: never; }>(object: I_1): ListServicesResponse;
+};
+export declare const GetServiceRequest: {
+    encode(message: GetServiceRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetServiceRequest;
+    fromJSON(object: any): GetServiceRequest;
+    toJSON(message: GetServiceRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): GetServiceRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): GetServiceRequest;
+};
+export declare const GetServiceResponse: {
+    encode(message: GetServiceResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetServiceResponse;
+    fromJSON(object: any): GetServiceResponse;
+    toJSON(message: GetServiceResponse): unknown;
+    create<I extends {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        };
+    } & {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        } & {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & { [K in Exclude<keyof I["service"]["service"], keyof Service>]: never; };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[] & ({
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & { [K_1 in Exclude<keyof I["service"]["secrets"][number], keyof import("../iam").Secret>]: never; })[] & { [K_2 in Exclude<keyof I["service"]["secrets"], keyof {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[]>]: never; };
+        } & { [K_3 in Exclude<keyof I["service"], keyof ServiceDetail>]: never; };
+    } & { [K_4 in Exclude<keyof I, "service">]: never; }>(base?: I): GetServiceResponse;
+    fromPartial<I_1 extends {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        };
+    } & {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        } & {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & { [K_5 in Exclude<keyof I_1["service"]["service"], keyof Service>]: never; };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[] & ({
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & { [K_6 in Exclude<keyof I_1["service"]["secrets"][number], keyof import("../iam").Secret>]: never; })[] & { [K_7 in Exclude<keyof I_1["service"]["secrets"], keyof {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[]>]: never; };
+        } & { [K_8 in Exclude<keyof I_1["service"], keyof ServiceDetail>]: never; };
+    } & { [K_9 in Exclude<keyof I_1, "service">]: never; }>(object: I_1): GetServiceResponse;
+};
+export declare const CreateServiceRequest: {
+    encode(message: CreateServiceRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CreateServiceRequest;
+    fromJSON(object: any): CreateServiceRequest;
+    toJSON(message: CreateServiceRequest): unknown;
+    create<I extends {
+        name?: string;
+    } & {
+        name?: string;
+    } & { [K in Exclude<keyof I, "name">]: never; }>(base?: I): CreateServiceRequest;
+    fromPartial<I_1 extends {
+        name?: string;
+    } & {
+        name?: string;
+    } & { [K_1 in Exclude<keyof I_1, "name">]: never; }>(object: I_1): CreateServiceRequest;
+};
+export declare const CreateServiceResponse: {
+    encode(message: CreateServiceResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CreateServiceResponse;
+    fromJSON(object: any): CreateServiceResponse;
+    toJSON(message: CreateServiceResponse): unknown;
+    create<I extends {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        };
+    } & {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K in Exclude<keyof I["service"], keyof Service>]: never; };
+    } & { [K_1 in Exclude<keyof I, "service">]: never; }>(base?: I): CreateServiceResponse;
+    fromPartial<I_1 extends {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        };
+    } & {
+        service?: {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & {
+            id?: string;
+            clientId?: string;
+            name?: string;
+        } & { [K_2 in Exclude<keyof I_1["service"], keyof Service>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "service">]: never; }>(object: I_1): CreateServiceResponse;
+};
+export declare const DeleteServiceRequest: {
+    encode(message: DeleteServiceRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceRequest;
+    fromJSON(object: any): DeleteServiceRequest;
+    toJSON(message: DeleteServiceRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeleteServiceRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeleteServiceRequest;
+};
+export declare const DeleteServiceResponse: {
+    encode(_: DeleteServiceResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceResponse;
+    fromJSON(_: any): DeleteServiceResponse;
+    toJSON(_: DeleteServiceResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeleteServiceResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeleteServiceResponse;
+};
+export declare const AddServiceSecretRequest: {
+    encode(message: AddServiceSecretRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): AddServiceSecretRequest;
+    fromJSON(object: any): AddServiceSecretRequest;
+    toJSON(message: AddServiceSecretRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): AddServiceSecretRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): AddServiceSecretRequest;
+};
+export declare const AddServiceSecretResponse: {
+    encode(message: AddServiceSecretResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): AddServiceSecretResponse;
+    fromJSON(object: any): AddServiceSecretResponse;
+    toJSON(message: AddServiceSecretResponse): unknown;
+    create<I extends {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        };
+    } & {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        } & {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & { [K in Exclude<keyof I["service"]["service"], keyof Service>]: never; };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[] & ({
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & { [K_1 in Exclude<keyof I["service"]["secrets"][number], keyof import("../iam").Secret>]: never; })[] & { [K_2 in Exclude<keyof I["service"]["secrets"], keyof {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[]>]: never; };
+        } & { [K_3 in Exclude<keyof I["service"], keyof ServiceDetail>]: never; };
+    } & { [K_4 in Exclude<keyof I, "service">]: never; }>(base?: I): AddServiceSecretResponse;
+    fromPartial<I_1 extends {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        };
+    } & {
+        service?: {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[];
+        } & {
+            service?: {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & {
+                id?: string;
+                clientId?: string;
+                name?: string;
+            } & { [K_5 in Exclude<keyof I_1["service"]["service"], keyof Service>]: never; };
+            secrets?: {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[] & ({
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            } & { [K_6 in Exclude<keyof I_1["service"]["secrets"][number], keyof import("../iam").Secret>]: never; })[] & { [K_7 in Exclude<keyof I_1["service"]["secrets"], keyof {
+                id?: string;
+                secret?: string;
+                lastUsedAt?: number;
+                active?: boolean;
+            }[]>]: never; };
+        } & { [K_8 in Exclude<keyof I_1["service"], keyof ServiceDetail>]: never; };
+    } & { [K_9 in Exclude<keyof I_1, "service">]: never; }>(object: I_1): AddServiceSecretResponse;
+};
+export declare const ActivateServiceSecretRequest: {
+    encode(message: ActivateServiceSecretRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateServiceSecretRequest;
+    fromJSON(object: any): ActivateServiceSecretRequest;
+    toJSON(message: ActivateServiceSecretRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): ActivateServiceSecretRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): ActivateServiceSecretRequest;
+};
+export declare const ActivateServiceSecretResponse: {
+    encode(_: ActivateServiceSecretResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ActivateServiceSecretResponse;
+    fromJSON(_: any): ActivateServiceSecretResponse;
+    toJSON(_: ActivateServiceSecretResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ActivateServiceSecretResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ActivateServiceSecretResponse;
+};
+export declare const DeactivateServiceSecretRequest: {
+    encode(message: DeactivateServiceSecretRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateServiceSecretRequest;
+    fromJSON(object: any): DeactivateServiceSecretRequest;
+    toJSON(message: DeactivateServiceSecretRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeactivateServiceSecretRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeactivateServiceSecretRequest;
+};
+export declare const DeactivateServiceSecretResponse: {
+    encode(_: DeactivateServiceSecretResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateServiceSecretResponse;
+    fromJSON(_: any): DeactivateServiceSecretResponse;
+    toJSON(_: DeactivateServiceSecretResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeactivateServiceSecretResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeactivateServiceSecretResponse;
+};
+export declare const DeleteServiceSecretRequest: {
+    encode(message: DeleteServiceSecretRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceSecretRequest;
+    fromJSON(object: any): DeleteServiceSecretRequest;
+    toJSON(message: DeleteServiceSecretRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeleteServiceSecretRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeleteServiceSecretRequest;
+};
+export declare const DeleteServiceSecretResponse: {
+    encode(_: DeleteServiceSecretResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceSecretResponse;
+    fromJSON(_: any): DeleteServiceSecretResponse;
+    toJSON(_: DeleteServiceSecretResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeleteServiceSecretResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeleteServiceSecretResponse;
+};
 export interface AdminSvc {
     /** User management */
     ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse>;
@@ -2716,6 +3259,15 @@ export interface AdminSvc {
     /** Passkey management */
     ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
     DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
+    /** Service management */
+    ListServices(request: DeepPartial<ListServicesRequest>, metadata?: grpc.Metadata): Promise<ListServicesResponse>;
+    GetService(request: DeepPartial<GetServiceRequest>, metadata?: grpc.Metadata): Promise<GetServiceResponse>;
+    CreateService(request: DeepPartial<CreateServiceRequest>, metadata?: grpc.Metadata): Promise<CreateServiceResponse>;
+    DeleteService(request: DeepPartial<DeleteServiceRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceResponse>;
+    AddServiceSecret(request: DeepPartial<AddServiceSecretRequest>, metadata?: grpc.Metadata): Promise<AddServiceSecretResponse>;
+    ActivateServiceSecret(request: DeepPartial<ActivateServiceSecretRequest>, metadata?: grpc.Metadata): Promise<ActivateServiceSecretResponse>;
+    DeactivateServiceSecret(request: DeepPartial<DeactivateServiceSecretRequest>, metadata?: grpc.Metadata): Promise<DeactivateServiceSecretResponse>;
+    DeleteServiceSecret(request: DeepPartial<DeleteServiceSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceSecretResponse>;
 }
 export declare class AdminSvcClientImpl implements AdminSvc {
     private readonly rpc;
@@ -2749,6 +3301,14 @@ export declare class AdminSvcClientImpl implements AdminSvc {
     ListGroupUsers(request: DeepPartial<ListGroupUsersRequest>, metadata?: grpc.Metadata): Promise<ListGroupUsersResponse>;
     ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
     DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
+    ListServices(request: DeepPartial<ListServicesRequest>, metadata?: grpc.Metadata): Promise<ListServicesResponse>;
+    GetService(request: DeepPartial<GetServiceRequest>, metadata?: grpc.Metadata): Promise<GetServiceResponse>;
+    CreateService(request: DeepPartial<CreateServiceRequest>, metadata?: grpc.Metadata): Promise<CreateServiceResponse>;
+    DeleteService(request: DeepPartial<DeleteServiceRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceResponse>;
+    AddServiceSecret(request: DeepPartial<AddServiceSecretRequest>, metadata?: grpc.Metadata): Promise<AddServiceSecretResponse>;
+    ActivateServiceSecret(request: DeepPartial<ActivateServiceSecretRequest>, metadata?: grpc.Metadata): Promise<ActivateServiceSecretResponse>;
+    DeactivateServiceSecret(request: DeepPartial<DeactivateServiceSecretRequest>, metadata?: grpc.Metadata): Promise<DeactivateServiceSecretResponse>;
+    DeleteServiceSecret(request: DeepPartial<DeleteServiceSecretRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceSecretResponse>;
 }
 export declare const AdminSvcDesc: {
     serviceName: string;
@@ -2782,6 +3342,14 @@ export declare const AdminSvcRemoveUserFromGroupDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcListGroupUsersDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcListPasskeysDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcDeletePasskeyDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcListServicesDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcGetServiceDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcCreateServiceDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcDeleteServiceDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcAddServiceSecretDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcActivateServiceSecretDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcDeactivateServiceSecretDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcDeleteServiceSecretDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

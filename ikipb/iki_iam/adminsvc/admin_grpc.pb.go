@@ -19,35 +19,43 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AdminSvc_ListUsers_FullMethodName           = "/adminsvc.AdminSvc/ListUsers"
-	AdminSvc_GetUser_FullMethodName             = "/adminsvc.AdminSvc/GetUser"
-	AdminSvc_PatchUser_FullMethodName           = "/adminsvc.AdminSvc/PatchUser"
-	AdminSvc_CreateUser_FullMethodName          = "/adminsvc.AdminSvc/CreateUser"
-	AdminSvc_DeleteUser_FullMethodName          = "/adminsvc.AdminSvc/DeleteUser"
-	AdminSvc_SetUserRoles_FullMethodName        = "/adminsvc.AdminSvc/SetUserRoles"
-	AdminSvc_SetUserGroups_FullMethodName       = "/adminsvc.AdminSvc/SetUserGroups"
-	AdminSvc_ListPermissions_FullMethodName     = "/adminsvc.AdminSvc/ListPermissions"
-	AdminSvc_GetPermission_FullMethodName       = "/adminsvc.AdminSvc/GetPermission"
-	AdminSvc_CreatePermission_FullMethodName    = "/adminsvc.AdminSvc/CreatePermission"
-	AdminSvc_PatchPermission_FullMethodName     = "/adminsvc.AdminSvc/PatchPermission"
-	AdminSvc_DeletePermission_FullMethodName    = "/adminsvc.AdminSvc/DeletePermission"
-	AdminSvc_ListGroups_FullMethodName          = "/adminsvc.AdminSvc/ListGroups"
-	AdminSvc_GetGroup_FullMethodName            = "/adminsvc.AdminSvc/GetGroup"
-	AdminSvc_CreateGroup_FullMethodName         = "/adminsvc.AdminSvc/CreateGroup"
-	AdminSvc_PatchGroup_FullMethodName          = "/adminsvc.AdminSvc/PatchGroup"
-	AdminSvc_DeleteGroup_FullMethodName         = "/adminsvc.AdminSvc/DeleteGroup"
-	AdminSvc_ListRoles_FullMethodName           = "/adminsvc.AdminSvc/ListRoles"
-	AdminSvc_GetRole_FullMethodName             = "/adminsvc.AdminSvc/GetRole"
-	AdminSvc_CreateRole_FullMethodName          = "/adminsvc.AdminSvc/CreateRole"
-	AdminSvc_PatchRole_FullMethodName           = "/adminsvc.AdminSvc/PatchRole"
-	AdminSvc_DeleteRole_FullMethodName          = "/adminsvc.AdminSvc/DeleteRole"
-	AdminSvc_SetRolePermissions_FullMethodName  = "/adminsvc.AdminSvc/SetRolePermissions"
-	AdminSvc_SetGroupRoles_FullMethodName       = "/adminsvc.AdminSvc/SetGroupRoles"
-	AdminSvc_AddUserToGroup_FullMethodName      = "/adminsvc.AdminSvc/AddUserToGroup"
-	AdminSvc_RemoveUserFromGroup_FullMethodName = "/adminsvc.AdminSvc/RemoveUserFromGroup"
-	AdminSvc_ListGroupUsers_FullMethodName      = "/adminsvc.AdminSvc/ListGroupUsers"
-	AdminSvc_ListPasskeys_FullMethodName        = "/adminsvc.AdminSvc/ListPasskeys"
-	AdminSvc_DeletePasskey_FullMethodName       = "/adminsvc.AdminSvc/DeletePasskey"
+	AdminSvc_ListUsers_FullMethodName               = "/adminsvc.AdminSvc/ListUsers"
+	AdminSvc_GetUser_FullMethodName                 = "/adminsvc.AdminSvc/GetUser"
+	AdminSvc_PatchUser_FullMethodName               = "/adminsvc.AdminSvc/PatchUser"
+	AdminSvc_CreateUser_FullMethodName              = "/adminsvc.AdminSvc/CreateUser"
+	AdminSvc_DeleteUser_FullMethodName              = "/adminsvc.AdminSvc/DeleteUser"
+	AdminSvc_SetUserRoles_FullMethodName            = "/adminsvc.AdminSvc/SetUserRoles"
+	AdminSvc_SetUserGroups_FullMethodName           = "/adminsvc.AdminSvc/SetUserGroups"
+	AdminSvc_ListPermissions_FullMethodName         = "/adminsvc.AdminSvc/ListPermissions"
+	AdminSvc_GetPermission_FullMethodName           = "/adminsvc.AdminSvc/GetPermission"
+	AdminSvc_CreatePermission_FullMethodName        = "/adminsvc.AdminSvc/CreatePermission"
+	AdminSvc_PatchPermission_FullMethodName         = "/adminsvc.AdminSvc/PatchPermission"
+	AdminSvc_DeletePermission_FullMethodName        = "/adminsvc.AdminSvc/DeletePermission"
+	AdminSvc_ListGroups_FullMethodName              = "/adminsvc.AdminSvc/ListGroups"
+	AdminSvc_GetGroup_FullMethodName                = "/adminsvc.AdminSvc/GetGroup"
+	AdminSvc_CreateGroup_FullMethodName             = "/adminsvc.AdminSvc/CreateGroup"
+	AdminSvc_PatchGroup_FullMethodName              = "/adminsvc.AdminSvc/PatchGroup"
+	AdminSvc_DeleteGroup_FullMethodName             = "/adminsvc.AdminSvc/DeleteGroup"
+	AdminSvc_ListRoles_FullMethodName               = "/adminsvc.AdminSvc/ListRoles"
+	AdminSvc_GetRole_FullMethodName                 = "/adminsvc.AdminSvc/GetRole"
+	AdminSvc_CreateRole_FullMethodName              = "/adminsvc.AdminSvc/CreateRole"
+	AdminSvc_PatchRole_FullMethodName               = "/adminsvc.AdminSvc/PatchRole"
+	AdminSvc_DeleteRole_FullMethodName              = "/adminsvc.AdminSvc/DeleteRole"
+	AdminSvc_SetRolePermissions_FullMethodName      = "/adminsvc.AdminSvc/SetRolePermissions"
+	AdminSvc_SetGroupRoles_FullMethodName           = "/adminsvc.AdminSvc/SetGroupRoles"
+	AdminSvc_AddUserToGroup_FullMethodName          = "/adminsvc.AdminSvc/AddUserToGroup"
+	AdminSvc_RemoveUserFromGroup_FullMethodName     = "/adminsvc.AdminSvc/RemoveUserFromGroup"
+	AdminSvc_ListGroupUsers_FullMethodName          = "/adminsvc.AdminSvc/ListGroupUsers"
+	AdminSvc_ListPasskeys_FullMethodName            = "/adminsvc.AdminSvc/ListPasskeys"
+	AdminSvc_DeletePasskey_FullMethodName           = "/adminsvc.AdminSvc/DeletePasskey"
+	AdminSvc_ListServices_FullMethodName            = "/adminsvc.AdminSvc/ListServices"
+	AdminSvc_GetService_FullMethodName              = "/adminsvc.AdminSvc/GetService"
+	AdminSvc_CreateService_FullMethodName           = "/adminsvc.AdminSvc/CreateService"
+	AdminSvc_DeleteService_FullMethodName           = "/adminsvc.AdminSvc/DeleteService"
+	AdminSvc_AddServiceSecret_FullMethodName        = "/adminsvc.AdminSvc/AddServiceSecret"
+	AdminSvc_ActivateServiceSecret_FullMethodName   = "/adminsvc.AdminSvc/ActivateServiceSecret"
+	AdminSvc_DeactivateServiceSecret_FullMethodName = "/adminsvc.AdminSvc/DeactivateServiceSecret"
+	AdminSvc_DeleteServiceSecret_FullMethodName     = "/adminsvc.AdminSvc/DeleteServiceSecret"
 )
 
 // AdminSvcClient is the client API for AdminSvc service.
@@ -91,6 +99,15 @@ type AdminSvcClient interface {
 	// Passkey management
 	ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error)
 	DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error)
+	// Service management
+	ListServices(ctx context.Context, in *ListServicesRequest, opts ...grpc.CallOption) (*ListServicesResponse, error)
+	GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error)
+	CreateService(ctx context.Context, in *CreateServiceRequest, opts ...grpc.CallOption) (*CreateServiceResponse, error)
+	DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*DeleteServiceResponse, error)
+	AddServiceSecret(ctx context.Context, in *AddServiceSecretRequest, opts ...grpc.CallOption) (*AddServiceSecretResponse, error)
+	ActivateServiceSecret(ctx context.Context, in *ActivateServiceSecretRequest, opts ...grpc.CallOption) (*ActivateServiceSecretResponse, error)
+	DeactivateServiceSecret(ctx context.Context, in *DeactivateServiceSecretRequest, opts ...grpc.CallOption) (*DeactivateServiceSecretResponse, error)
+	DeleteServiceSecret(ctx context.Context, in *DeleteServiceSecretRequest, opts ...grpc.CallOption) (*DeleteServiceSecretResponse, error)
 }
 
 type adminSvcClient struct {
@@ -391,6 +408,86 @@ func (c *adminSvcClient) DeletePasskey(ctx context.Context, in *DeletePasskeyReq
 	return out, nil
 }
 
+func (c *adminSvcClient) ListServices(ctx context.Context, in *ListServicesRequest, opts ...grpc.CallOption) (*ListServicesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListServicesResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_ListServices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetServiceResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_GetService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) CreateService(ctx context.Context, in *CreateServiceRequest, opts ...grpc.CallOption) (*CreateServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateServiceResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_CreateService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*DeleteServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteServiceResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_DeleteService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) AddServiceSecret(ctx context.Context, in *AddServiceSecretRequest, opts ...grpc.CallOption) (*AddServiceSecretResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddServiceSecretResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_AddServiceSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) ActivateServiceSecret(ctx context.Context, in *ActivateServiceSecretRequest, opts ...grpc.CallOption) (*ActivateServiceSecretResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ActivateServiceSecretResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_ActivateServiceSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) DeactivateServiceSecret(ctx context.Context, in *DeactivateServiceSecretRequest, opts ...grpc.CallOption) (*DeactivateServiceSecretResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeactivateServiceSecretResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_DeactivateServiceSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) DeleteServiceSecret(ctx context.Context, in *DeleteServiceSecretRequest, opts ...grpc.CallOption) (*DeleteServiceSecretResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteServiceSecretResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_DeleteServiceSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminSvcServer is the server API for AdminSvc service.
 // All implementations must embed UnimplementedAdminSvcServer
 // for forward compatibility.
@@ -432,6 +529,15 @@ type AdminSvcServer interface {
 	// Passkey management
 	ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error)
 	DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error)
+	// Service management
+	ListServices(context.Context, *ListServicesRequest) (*ListServicesResponse, error)
+	GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error)
+	CreateService(context.Context, *CreateServiceRequest) (*CreateServiceResponse, error)
+	DeleteService(context.Context, *DeleteServiceRequest) (*DeleteServiceResponse, error)
+	AddServiceSecret(context.Context, *AddServiceSecretRequest) (*AddServiceSecretResponse, error)
+	ActivateServiceSecret(context.Context, *ActivateServiceSecretRequest) (*ActivateServiceSecretResponse, error)
+	DeactivateServiceSecret(context.Context, *DeactivateServiceSecretRequest) (*DeactivateServiceSecretResponse, error)
+	DeleteServiceSecret(context.Context, *DeleteServiceSecretRequest) (*DeleteServiceSecretResponse, error)
 	mustEmbedUnimplementedAdminSvcServer()
 }
 
@@ -528,6 +634,30 @@ func (UnimplementedAdminSvcServer) ListPasskeys(context.Context, *ListPasskeysRe
 }
 func (UnimplementedAdminSvcServer) DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeletePasskey not implemented")
+}
+func (UnimplementedAdminSvcServer) ListServices(context.Context, *ListServicesRequest) (*ListServicesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListServices not implemented")
+}
+func (UnimplementedAdminSvcServer) GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetService not implemented")
+}
+func (UnimplementedAdminSvcServer) CreateService(context.Context, *CreateServiceRequest) (*CreateServiceResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateService not implemented")
+}
+func (UnimplementedAdminSvcServer) DeleteService(context.Context, *DeleteServiceRequest) (*DeleteServiceResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteService not implemented")
+}
+func (UnimplementedAdminSvcServer) AddServiceSecret(context.Context, *AddServiceSecretRequest) (*AddServiceSecretResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddServiceSecret not implemented")
+}
+func (UnimplementedAdminSvcServer) ActivateServiceSecret(context.Context, *ActivateServiceSecretRequest) (*ActivateServiceSecretResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ActivateServiceSecret not implemented")
+}
+func (UnimplementedAdminSvcServer) DeactivateServiceSecret(context.Context, *DeactivateServiceSecretRequest) (*DeactivateServiceSecretResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeactivateServiceSecret not implemented")
+}
+func (UnimplementedAdminSvcServer) DeleteServiceSecret(context.Context, *DeleteServiceSecretRequest) (*DeleteServiceSecretResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteServiceSecret not implemented")
 }
 func (UnimplementedAdminSvcServer) mustEmbedUnimplementedAdminSvcServer() {}
 func (UnimplementedAdminSvcServer) testEmbeddedByValue()                  {}
@@ -1072,6 +1202,150 @@ func _AdminSvc_DeletePasskey_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminSvc_ListServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListServicesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).ListServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_ListServices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).ListServices(ctx, req.(*ListServicesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_GetService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).GetService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_GetService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).GetService(ctx, req.(*GetServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_CreateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).CreateService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_CreateService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).CreateService(ctx, req.(*CreateServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_DeleteService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).DeleteService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_DeleteService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).DeleteService(ctx, req.(*DeleteServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_AddServiceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddServiceSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).AddServiceSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_AddServiceSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).AddServiceSecret(ctx, req.(*AddServiceSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_ActivateServiceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ActivateServiceSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).ActivateServiceSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_ActivateServiceSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).ActivateServiceSecret(ctx, req.(*ActivateServiceSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_DeactivateServiceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeactivateServiceSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).DeactivateServiceSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_DeactivateServiceSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).DeactivateServiceSecret(ctx, req.(*DeactivateServiceSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_DeleteServiceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServiceSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).DeleteServiceSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_DeleteServiceSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).DeleteServiceSecret(ctx, req.(*DeleteServiceSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminSvc_ServiceDesc is the grpc.ServiceDesc for AdminSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1194,6 +1468,38 @@ var AdminSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePasskey",
 			Handler:    _AdminSvc_DeletePasskey_Handler,
+		},
+		{
+			MethodName: "ListServices",
+			Handler:    _AdminSvc_ListServices_Handler,
+		},
+		{
+			MethodName: "GetService",
+			Handler:    _AdminSvc_GetService_Handler,
+		},
+		{
+			MethodName: "CreateService",
+			Handler:    _AdminSvc_CreateService_Handler,
+		},
+		{
+			MethodName: "DeleteService",
+			Handler:    _AdminSvc_DeleteService_Handler,
+		},
+		{
+			MethodName: "AddServiceSecret",
+			Handler:    _AdminSvc_AddServiceSecret_Handler,
+		},
+		{
+			MethodName: "ActivateServiceSecret",
+			Handler:    _AdminSvc_ActivateServiceSecret_Handler,
+		},
+		{
+			MethodName: "DeactivateServiceSecret",
+			Handler:    _AdminSvc_DeactivateServiceSecret_Handler,
+		},
+		{
+			MethodName: "DeleteServiceSecret",
+			Handler:    _AdminSvc_DeleteServiceSecret_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

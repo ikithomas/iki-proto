@@ -60,17 +60,14 @@ message GroupDetail {
 
 // Service is a microservice
 message Service {
-  // Internal ID of the service.
-  string id = 1;
-
-  // Client ID of the service. Used for authentication.
+  string id        = 1;
   string client_id = 2;
+  string name      = 4;
+}
 
-  // secret to authenticate to.
-  repeated Secret secrets = 3;
-
-  // Friendly name
-  string name = 4;
+message ServiceDetail {
+  Service service          = 1;
+  repeated Secret secrets  = 2;
 }
 
 message Secret {

@@ -2,7 +2,18 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import _m0 from "protobufjs/minimal";
-import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
+import {
+  Group,
+  GroupDetail,
+  Passkey,
+  Permission,
+  Role,
+  RoleDetail,
+  Service,
+  ServiceDetail,
+  User,
+  UserDetail,
+} from "../iam";
 
 export const protobufPackage = "adminsvc";
 
@@ -242,6 +253,65 @@ export interface DeletePasskeyRequest {
 }
 
 export interface DeletePasskeyResponse {
+}
+
+export interface ListServicesRequest {
+}
+
+export interface ListServicesResponse {
+  services: Service[];
+}
+
+export interface GetServiceRequest {
+  id: string;
+}
+
+export interface GetServiceResponse {
+  service: ServiceDetail | undefined;
+}
+
+export interface CreateServiceRequest {
+  name: string;
+}
+
+export interface CreateServiceResponse {
+  service: Service | undefined;
+}
+
+export interface DeleteServiceRequest {
+  id: string;
+}
+
+export interface DeleteServiceResponse {
+}
+
+export interface AddServiceSecretRequest {
+  id: string;
+}
+
+export interface AddServiceSecretResponse {
+  service: ServiceDetail | undefined;
+}
+
+export interface ActivateServiceSecretRequest {
+  id: string;
+}
+
+export interface ActivateServiceSecretResponse {
+}
+
+export interface DeactivateServiceSecretRequest {
+  id: string;
+}
+
+export interface DeactivateServiceSecretResponse {
+}
+
+export interface DeleteServiceSecretRequest {
+  id: string;
+}
+
+export interface DeleteServiceSecretResponse {
 }
 
 function createBaseListPermissionsRequest(): ListPermissionsRequest {
@@ -3697,6 +3767,856 @@ export const DeletePasskeyResponse = {
   },
 };
 
+function createBaseListServicesRequest(): ListServicesRequest {
+  return {};
+}
+
+export const ListServicesRequest = {
+  encode(_: ListServicesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListServicesRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListServicesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): ListServicesRequest {
+    return {};
+  },
+
+  toJSON(_: ListServicesRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListServicesRequest>, I>>(base?: I): ListServicesRequest {
+    return ListServicesRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListServicesRequest>, I>>(_: I): ListServicesRequest {
+    const message = createBaseListServicesRequest();
+    return message;
+  },
+};
+
+function createBaseListServicesResponse(): ListServicesResponse {
+  return { services: [] };
+}
+
+export const ListServicesResponse = {
+  encode(message: ListServicesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.services) {
+      Service.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListServicesResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListServicesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.services.push(Service.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListServicesResponse {
+    return { services: Array.isArray(object?.services) ? object.services.map((e: any) => Service.fromJSON(e)) : [] };
+  },
+
+  toJSON(message: ListServicesResponse): unknown {
+    const obj: any = {};
+    if (message.services?.length) {
+      obj.services = message.services.map((e) => Service.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListServicesResponse>, I>>(base?: I): ListServicesResponse {
+    return ListServicesResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListServicesResponse>, I>>(object: I): ListServicesResponse {
+    const message = createBaseListServicesResponse();
+    message.services = object.services?.map((e) => Service.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseGetServiceRequest(): GetServiceRequest {
+  return { id: "" };
+}
+
+export const GetServiceRequest = {
+  encode(message: GetServiceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetServiceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetServiceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetServiceRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: GetServiceRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetServiceRequest>, I>>(base?: I): GetServiceRequest {
+    return GetServiceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetServiceRequest>, I>>(object: I): GetServiceRequest {
+    const message = createBaseGetServiceRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseGetServiceResponse(): GetServiceResponse {
+  return { service: undefined };
+}
+
+export const GetServiceResponse = {
+  encode(message: GetServiceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.service !== undefined) {
+      ServiceDetail.encode(message.service, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetServiceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetServiceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.service = ServiceDetail.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetServiceResponse {
+    return { service: isSet(object.service) ? ServiceDetail.fromJSON(object.service) : undefined };
+  },
+
+  toJSON(message: GetServiceResponse): unknown {
+    const obj: any = {};
+    if (message.service !== undefined) {
+      obj.service = ServiceDetail.toJSON(message.service);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetServiceResponse>, I>>(base?: I): GetServiceResponse {
+    return GetServiceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetServiceResponse>, I>>(object: I): GetServiceResponse {
+    const message = createBaseGetServiceResponse();
+    message.service = (object.service !== undefined && object.service !== null)
+      ? ServiceDetail.fromPartial(object.service)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseCreateServiceRequest(): CreateServiceRequest {
+  return { name: "" };
+}
+
+export const CreateServiceRequest = {
+  encode(message: CreateServiceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CreateServiceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateServiceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CreateServiceRequest {
+    return { name: isSet(object.name) ? String(object.name) : "" };
+  },
+
+  toJSON(message: CreateServiceRequest): unknown {
+    const obj: any = {};
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CreateServiceRequest>, I>>(base?: I): CreateServiceRequest {
+    return CreateServiceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateServiceRequest>, I>>(object: I): CreateServiceRequest {
+    const message = createBaseCreateServiceRequest();
+    message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseCreateServiceResponse(): CreateServiceResponse {
+  return { service: undefined };
+}
+
+export const CreateServiceResponse = {
+  encode(message: CreateServiceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.service !== undefined) {
+      Service.encode(message.service, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CreateServiceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateServiceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.service = Service.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CreateServiceResponse {
+    return { service: isSet(object.service) ? Service.fromJSON(object.service) : undefined };
+  },
+
+  toJSON(message: CreateServiceResponse): unknown {
+    const obj: any = {};
+    if (message.service !== undefined) {
+      obj.service = Service.toJSON(message.service);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CreateServiceResponse>, I>>(base?: I): CreateServiceResponse {
+    return CreateServiceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateServiceResponse>, I>>(object: I): CreateServiceResponse {
+    const message = createBaseCreateServiceResponse();
+    message.service = (object.service !== undefined && object.service !== null)
+      ? Service.fromPartial(object.service)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseDeleteServiceRequest(): DeleteServiceRequest {
+  return { id: "" };
+}
+
+export const DeleteServiceRequest = {
+  encode(message: DeleteServiceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteServiceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeleteServiceRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: DeleteServiceRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteServiceRequest>, I>>(base?: I): DeleteServiceRequest {
+    return DeleteServiceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteServiceRequest>, I>>(object: I): DeleteServiceRequest {
+    const message = createBaseDeleteServiceRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDeleteServiceResponse(): DeleteServiceResponse {
+  return {};
+}
+
+export const DeleteServiceResponse = {
+  encode(_: DeleteServiceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteServiceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeleteServiceResponse {
+    return {};
+  },
+
+  toJSON(_: DeleteServiceResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteServiceResponse>, I>>(base?: I): DeleteServiceResponse {
+    return DeleteServiceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteServiceResponse>, I>>(_: I): DeleteServiceResponse {
+    const message = createBaseDeleteServiceResponse();
+    return message;
+  },
+};
+
+function createBaseAddServiceSecretRequest(): AddServiceSecretRequest {
+  return { id: "" };
+}
+
+export const AddServiceSecretRequest = {
+  encode(message: AddServiceSecretRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): AddServiceSecretRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAddServiceSecretRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AddServiceSecretRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: AddServiceSecretRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AddServiceSecretRequest>, I>>(base?: I): AddServiceSecretRequest {
+    return AddServiceSecretRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AddServiceSecretRequest>, I>>(object: I): AddServiceSecretRequest {
+    const message = createBaseAddServiceSecretRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseAddServiceSecretResponse(): AddServiceSecretResponse {
+  return { service: undefined };
+}
+
+export const AddServiceSecretResponse = {
+  encode(message: AddServiceSecretResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.service !== undefined) {
+      ServiceDetail.encode(message.service, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): AddServiceSecretResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAddServiceSecretResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.service = ServiceDetail.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AddServiceSecretResponse {
+    return { service: isSet(object.service) ? ServiceDetail.fromJSON(object.service) : undefined };
+  },
+
+  toJSON(message: AddServiceSecretResponse): unknown {
+    const obj: any = {};
+    if (message.service !== undefined) {
+      obj.service = ServiceDetail.toJSON(message.service);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AddServiceSecretResponse>, I>>(base?: I): AddServiceSecretResponse {
+    return AddServiceSecretResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AddServiceSecretResponse>, I>>(object: I): AddServiceSecretResponse {
+    const message = createBaseAddServiceSecretResponse();
+    message.service = (object.service !== undefined && object.service !== null)
+      ? ServiceDetail.fromPartial(object.service)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseActivateServiceSecretRequest(): ActivateServiceSecretRequest {
+  return { id: "" };
+}
+
+export const ActivateServiceSecretRequest = {
+  encode(message: ActivateServiceSecretRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ActivateServiceSecretRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseActivateServiceSecretRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ActivateServiceSecretRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: ActivateServiceSecretRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ActivateServiceSecretRequest>, I>>(base?: I): ActivateServiceSecretRequest {
+    return ActivateServiceSecretRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ActivateServiceSecretRequest>, I>>(object: I): ActivateServiceSecretRequest {
+    const message = createBaseActivateServiceSecretRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseActivateServiceSecretResponse(): ActivateServiceSecretResponse {
+  return {};
+}
+
+export const ActivateServiceSecretResponse = {
+  encode(_: ActivateServiceSecretResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ActivateServiceSecretResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseActivateServiceSecretResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): ActivateServiceSecretResponse {
+    return {};
+  },
+
+  toJSON(_: ActivateServiceSecretResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ActivateServiceSecretResponse>, I>>(base?: I): ActivateServiceSecretResponse {
+    return ActivateServiceSecretResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ActivateServiceSecretResponse>, I>>(_: I): ActivateServiceSecretResponse {
+    const message = createBaseActivateServiceSecretResponse();
+    return message;
+  },
+};
+
+function createBaseDeactivateServiceSecretRequest(): DeactivateServiceSecretRequest {
+  return { id: "" };
+}
+
+export const DeactivateServiceSecretRequest = {
+  encode(message: DeactivateServiceSecretRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateServiceSecretRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeactivateServiceSecretRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeactivateServiceSecretRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: DeactivateServiceSecretRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeactivateServiceSecretRequest>, I>>(base?: I): DeactivateServiceSecretRequest {
+    return DeactivateServiceSecretRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeactivateServiceSecretRequest>, I>>(
+    object: I,
+  ): DeactivateServiceSecretRequest {
+    const message = createBaseDeactivateServiceSecretRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDeactivateServiceSecretResponse(): DeactivateServiceSecretResponse {
+  return {};
+}
+
+export const DeactivateServiceSecretResponse = {
+  encode(_: DeactivateServiceSecretResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeactivateServiceSecretResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeactivateServiceSecretResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeactivateServiceSecretResponse {
+    return {};
+  },
+
+  toJSON(_: DeactivateServiceSecretResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeactivateServiceSecretResponse>, I>>(base?: I): DeactivateServiceSecretResponse {
+    return DeactivateServiceSecretResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeactivateServiceSecretResponse>, I>>(_: I): DeactivateServiceSecretResponse {
+    const message = createBaseDeactivateServiceSecretResponse();
+    return message;
+  },
+};
+
+function createBaseDeleteServiceSecretRequest(): DeleteServiceSecretRequest {
+  return { id: "" };
+}
+
+export const DeleteServiceSecretRequest = {
+  encode(message: DeleteServiceSecretRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceSecretRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteServiceSecretRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeleteServiceSecretRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: DeleteServiceSecretRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteServiceSecretRequest>, I>>(base?: I): DeleteServiceSecretRequest {
+    return DeleteServiceSecretRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteServiceSecretRequest>, I>>(object: I): DeleteServiceSecretRequest {
+    const message = createBaseDeleteServiceSecretRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDeleteServiceSecretResponse(): DeleteServiceSecretResponse {
+  return {};
+}
+
+export const DeleteServiceSecretResponse = {
+  encode(_: DeleteServiceSecretResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteServiceSecretResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteServiceSecretResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeleteServiceSecretResponse {
+    return {};
+  },
+
+  toJSON(_: DeleteServiceSecretResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteServiceSecretResponse>, I>>(base?: I): DeleteServiceSecretResponse {
+    return DeleteServiceSecretResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteServiceSecretResponse>, I>>(_: I): DeleteServiceSecretResponse {
+    const message = createBaseDeleteServiceSecretResponse();
+    return message;
+  },
+};
+
 export interface AdminSvc {
   /** User management */
   ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse>;
@@ -3759,6 +4679,27 @@ export interface AdminSvc {
   /** Passkey management */
   ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
   DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
+  /** Service management */
+  ListServices(request: DeepPartial<ListServicesRequest>, metadata?: grpc.Metadata): Promise<ListServicesResponse>;
+  GetService(request: DeepPartial<GetServiceRequest>, metadata?: grpc.Metadata): Promise<GetServiceResponse>;
+  CreateService(request: DeepPartial<CreateServiceRequest>, metadata?: grpc.Metadata): Promise<CreateServiceResponse>;
+  DeleteService(request: DeepPartial<DeleteServiceRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceResponse>;
+  AddServiceSecret(
+    request: DeepPartial<AddServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<AddServiceSecretResponse>;
+  ActivateServiceSecret(
+    request: DeepPartial<ActivateServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ActivateServiceSecretResponse>;
+  DeactivateServiceSecret(
+    request: DeepPartial<DeactivateServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<DeactivateServiceSecretResponse>;
+  DeleteServiceSecret(
+    request: DeepPartial<DeleteServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<DeleteServiceSecretResponse>;
 }
 
 export class AdminSvcClientImpl implements AdminSvc {
@@ -3795,6 +4736,14 @@ export class AdminSvcClientImpl implements AdminSvc {
     this.ListGroupUsers = this.ListGroupUsers.bind(this);
     this.ListPasskeys = this.ListPasskeys.bind(this);
     this.DeletePasskey = this.DeletePasskey.bind(this);
+    this.ListServices = this.ListServices.bind(this);
+    this.GetService = this.GetService.bind(this);
+    this.CreateService = this.CreateService.bind(this);
+    this.DeleteService = this.DeleteService.bind(this);
+    this.AddServiceSecret = this.AddServiceSecret.bind(this);
+    this.ActivateServiceSecret = this.ActivateServiceSecret.bind(this);
+    this.DeactivateServiceSecret = this.DeactivateServiceSecret.bind(this);
+    this.DeleteServiceSecret = this.DeleteServiceSecret.bind(this);
   }
 
   ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse> {
@@ -3935,6 +4884,58 @@ export class AdminSvcClientImpl implements AdminSvc {
 
   DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse> {
     return this.rpc.unary(AdminSvcDeletePasskeyDesc, DeletePasskeyRequest.fromPartial(request), metadata);
+  }
+
+  ListServices(request: DeepPartial<ListServicesRequest>, metadata?: grpc.Metadata): Promise<ListServicesResponse> {
+    return this.rpc.unary(AdminSvcListServicesDesc, ListServicesRequest.fromPartial(request), metadata);
+  }
+
+  GetService(request: DeepPartial<GetServiceRequest>, metadata?: grpc.Metadata): Promise<GetServiceResponse> {
+    return this.rpc.unary(AdminSvcGetServiceDesc, GetServiceRequest.fromPartial(request), metadata);
+  }
+
+  CreateService(request: DeepPartial<CreateServiceRequest>, metadata?: grpc.Metadata): Promise<CreateServiceResponse> {
+    return this.rpc.unary(AdminSvcCreateServiceDesc, CreateServiceRequest.fromPartial(request), metadata);
+  }
+
+  DeleteService(request: DeepPartial<DeleteServiceRequest>, metadata?: grpc.Metadata): Promise<DeleteServiceResponse> {
+    return this.rpc.unary(AdminSvcDeleteServiceDesc, DeleteServiceRequest.fromPartial(request), metadata);
+  }
+
+  AddServiceSecret(
+    request: DeepPartial<AddServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<AddServiceSecretResponse> {
+    return this.rpc.unary(AdminSvcAddServiceSecretDesc, AddServiceSecretRequest.fromPartial(request), metadata);
+  }
+
+  ActivateServiceSecret(
+    request: DeepPartial<ActivateServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ActivateServiceSecretResponse> {
+    return this.rpc.unary(
+      AdminSvcActivateServiceSecretDesc,
+      ActivateServiceSecretRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  DeactivateServiceSecret(
+    request: DeepPartial<DeactivateServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<DeactivateServiceSecretResponse> {
+    return this.rpc.unary(
+      AdminSvcDeactivateServiceSecretDesc,
+      DeactivateServiceSecretRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  DeleteServiceSecret(
+    request: DeepPartial<DeleteServiceSecretRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<DeleteServiceSecretResponse> {
+    return this.rpc.unary(AdminSvcDeleteServiceSecretDesc, DeleteServiceSecretRequest.fromPartial(request), metadata);
   }
 }
 
@@ -4597,6 +5598,190 @@ export const AdminSvcDeletePasskeyDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = DeletePasskeyResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcListServicesDesc: UnaryMethodDefinitionish = {
+  methodName: "ListServices",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ListServicesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ListServicesResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcGetServiceDesc: UnaryMethodDefinitionish = {
+  methodName: "GetService",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetServiceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetServiceResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcCreateServiceDesc: UnaryMethodDefinitionish = {
+  methodName: "CreateService",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return CreateServiceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = CreateServiceResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcDeleteServiceDesc: UnaryMethodDefinitionish = {
+  methodName: "DeleteService",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeleteServiceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeleteServiceResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcAddServiceSecretDesc: UnaryMethodDefinitionish = {
+  methodName: "AddServiceSecret",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return AddServiceSecretRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = AddServiceSecretResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcActivateServiceSecretDesc: UnaryMethodDefinitionish = {
+  methodName: "ActivateServiceSecret",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ActivateServiceSecretRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ActivateServiceSecretResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcDeactivateServiceSecretDesc: UnaryMethodDefinitionish = {
+  methodName: "DeactivateServiceSecret",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeactivateServiceSecretRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeactivateServiceSecretResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcDeleteServiceSecretDesc: UnaryMethodDefinitionish = {
+  methodName: "DeleteServiceSecret",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeleteServiceSecretRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeleteServiceSecretResponse.decode(data);
       return {
         ...value,
         toObject() {
