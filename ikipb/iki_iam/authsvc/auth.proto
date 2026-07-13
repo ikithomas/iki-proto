@@ -85,22 +85,10 @@ message FinishPasskeyLoginResponse {
   iam.User user = 3;
 }
 
-message Passkey {
-  string id = 1;
-  string owner_id = 2;
-  string owner_name = 3;
-  string identifier = 4;
-  int64 created_at = 5;
-  optional int64 last_used_at = 6;
-  string owner_email = 7;
-  string name = 8;
-}
-
-message ListPasskeysRequest {
-}
+message ListPasskeysRequest {}
 
 message ListPasskeysResponse {
-  repeated Passkey passkeys = 1;
+  repeated iam.Passkey passkeys = 1;
 }
 
 message DeletePasskeyRequest {
