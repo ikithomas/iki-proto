@@ -650,6 +650,106 @@ func (x *Secret) GetActive() bool {
 	return false
 }
 
+type Passkey struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerName     string                 `protobuf:"bytes,3,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
+	Identifier    string                 `protobuf:"bytes,4,opt,name=identifier,proto3" json:"identifier,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	LastUsedAt    *int64                 `protobuf:"varint,6,opt,name=last_used_at,json=lastUsedAt,proto3,oneof" json:"last_used_at,omitempty"`
+	OwnerEmail    string                 `protobuf:"bytes,7,opt,name=owner_email,json=ownerEmail,proto3" json:"owner_email,omitempty"`
+	Name          string                 `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Passkey) Reset() {
+	*x = Passkey{}
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Passkey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Passkey) ProtoMessage() {}
+
+func (x *Passkey) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_iam_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Passkey.ProtoReflect.Descriptor instead.
+func (*Passkey) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_iam_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Passkey) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Passkey) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *Passkey) GetOwnerName() string {
+	if x != nil {
+		return x.OwnerName
+	}
+	return ""
+}
+
+func (x *Passkey) GetIdentifier() string {
+	if x != nil {
+		return x.Identifier
+	}
+	return ""
+}
+
+func (x *Passkey) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *Passkey) GetLastUsedAt() int64 {
+	if x != nil && x.LastUsedAt != nil {
+		return *x.LastUsedAt
+	}
+	return 0
+}
+
+func (x *Passkey) GetOwnerEmail() string {
+	if x != nil {
+		return x.OwnerEmail
+	}
+	return ""
+}
+
+func (x *Passkey) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_ikipb_iki_iam_iam_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
@@ -707,7 +807,23 @@ const file_ikipb_iki_iam_iam_proto_rawDesc = "" +
 	"\x06secret\x18\x02 \x01(\tR\x06secret\x12 \n" +
 	"\flast_used_at\x18\x03 \x01(\x03R\n" +
 	"lastUsedAt\x12\x16\n" +
-	"\x06active\x18\x04 \x01(\bR\x06active*X\n" +
+	"\x06active\x18\x04 \x01(\bR\x06active\"\xff\x01\n" +
+	"\aPasskey\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12\x1d\n" +
+	"\n" +
+	"owner_name\x18\x03 \x01(\tR\townerName\x12\x1e\n" +
+	"\n" +
+	"identifier\x18\x04 \x01(\tR\n" +
+	"identifier\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12%\n" +
+	"\flast_used_at\x18\x06 \x01(\x03H\x00R\n" +
+	"lastUsedAt\x88\x01\x01\x12\x1f\n" +
+	"\vowner_email\x18\a \x01(\tR\n" +
+	"ownerEmail\x12\x12\n" +
+	"\x04name\x18\b \x01(\tR\x04nameB\x0f\n" +
+	"\r_last_used_at*X\n" +
 	"\n" +
 	"EntityType\x12\x1b\n" +
 	"\x17ENTITY_TYPE_UNSPECIFIED\x10\x00\x12\x14\n" +
@@ -727,7 +843,7 @@ func file_ikipb_iki_iam_iam_proto_rawDescGZIP() []byte {
 }
 
 var file_ikipb_iki_iam_iam_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_ikipb_iki_iam_iam_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ikipb_iki_iam_iam_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_ikipb_iki_iam_iam_proto_goTypes = []any{
 	(EntityType)(0),     // 0: iam.EntityType
 	(*User)(nil),        // 1: iam.User
@@ -739,6 +855,7 @@ var file_ikipb_iki_iam_iam_proto_goTypes = []any{
 	(*GroupDetail)(nil), // 7: iam.GroupDetail
 	(*Service)(nil),     // 8: iam.Service
 	(*Secret)(nil),      // 9: iam.Secret
+	(*Passkey)(nil),     // 10: iam.Passkey
 }
 var file_ikipb_iki_iam_iam_proto_depIdxs = []int32{
 	1, // 0: iam.UserDetail.user:type_name -> iam.User
@@ -763,13 +880,14 @@ func file_ikipb_iki_iam_iam_proto_init() {
 		return
 	}
 	file_ikipb_iki_iam_iam_proto_msgTypes[0].OneofWrappers = []any{}
+	file_ikipb_iki_iam_iam_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ikipb_iki_iam_iam_proto_rawDesc), len(file_ikipb_iki_iam_iam_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

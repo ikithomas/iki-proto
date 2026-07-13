@@ -1,6 +1,6 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { User } from "../iam";
+import { Passkey, User } from "../iam";
 export declare const protobufPackage = "authsvc";
 export interface GoogleLoginRequest {
     idToken: string;
@@ -50,16 +50,6 @@ export interface FinishPasskeyLoginResponse {
     accessToken: string;
     refreshToken: string;
     user: User | undefined;
-}
-export interface Passkey {
-    id: string;
-    ownerId: string;
-    ownerName: string;
-    identifier: string;
-    createdAt: number;
-    lastUsedAt?: number | undefined;
-    ownerEmail: string;
-    name: string;
 }
 export interface ListPasskeysRequest {
 }
@@ -415,50 +405,6 @@ export declare const FinishPasskeyLoginResponse: {
         } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
     } & { [K_3 in Exclude<keyof I_1, keyof FinishPasskeyLoginResponse>]: never; }>(object: I_1): FinishPasskeyLoginResponse;
 };
-export declare const Passkey: {
-    encode(message: Passkey, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Passkey;
-    fromJSON(object: any): Passkey;
-    toJSON(message: Passkey): unknown;
-    create<I extends {
-        id?: string;
-        ownerId?: string;
-        ownerName?: string;
-        identifier?: string;
-        createdAt?: number;
-        lastUsedAt?: number | undefined;
-        ownerEmail?: string;
-        name?: string;
-    } & {
-        id?: string;
-        ownerId?: string;
-        ownerName?: string;
-        identifier?: string;
-        createdAt?: number;
-        lastUsedAt?: number | undefined;
-        ownerEmail?: string;
-        name?: string;
-    } & { [K in Exclude<keyof I, keyof Passkey>]: never; }>(base?: I): Passkey;
-    fromPartial<I_1 extends {
-        id?: string;
-        ownerId?: string;
-        ownerName?: string;
-        identifier?: string;
-        createdAt?: number;
-        lastUsedAt?: number | undefined;
-        ownerEmail?: string;
-        name?: string;
-    } & {
-        id?: string;
-        ownerId?: string;
-        ownerName?: string;
-        identifier?: string;
-        createdAt?: number;
-        lastUsedAt?: number | undefined;
-        ownerEmail?: string;
-        name?: string;
-    } & { [K_1 in Exclude<keyof I_1, keyof Passkey>]: never; }>(object: I_1): Passkey;
-};
 export declare const ListPasskeysRequest: {
     encode(_: ListPasskeysRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest;
@@ -479,7 +425,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[];
@@ -490,7 +436,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[] & ({
@@ -499,7 +445,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         } & {
@@ -508,7 +454,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         } & { [K in Exclude<keyof I["passkeys"][number], keyof Passkey>]: never; })[] & { [K_1 in Exclude<keyof I["passkeys"], keyof {
@@ -517,7 +463,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[]>]: never; };
@@ -529,7 +475,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[];
@@ -540,7 +486,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[] & ({
@@ -549,7 +495,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         } & {
@@ -558,7 +504,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         } & { [K_3 in Exclude<keyof I_1["passkeys"][number], keyof Passkey>]: never; })[] & { [K_4 in Exclude<keyof I_1["passkeys"], keyof {
@@ -567,7 +513,7 @@ export declare const ListPasskeysResponse: {
             ownerName?: string;
             identifier?: string;
             createdAt?: number;
-            lastUsedAt?: number | undefined;
+            lastUsedAt?: number;
             ownerEmail?: string;
             name?: string;
         }[]>]: never; };

@@ -65,6 +65,16 @@ export interface Secret {
     lastUsedAt: number;
     active: boolean;
 }
+export interface Passkey {
+    id: string;
+    ownerId: string;
+    ownerName: string;
+    identifier: string;
+    createdAt: number;
+    lastUsedAt?: number | undefined;
+    ownerEmail: string;
+    name: string;
+}
 export declare const User: {
     encode(message: User, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): User;
@@ -596,6 +606,50 @@ export declare const Secret: {
         lastUsedAt?: number;
         active?: boolean;
     } & { [K_1 in Exclude<keyof I_1, keyof Secret>]: never; }>(object: I_1): Secret;
+};
+export declare const Passkey: {
+    encode(message: Passkey, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Passkey;
+    fromJSON(object: any): Passkey;
+    toJSON(message: Passkey): unknown;
+    create<I extends {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+        ownerEmail?: string;
+        name?: string;
+    } & {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+        ownerEmail?: string;
+        name?: string;
+    } & { [K in Exclude<keyof I, keyof Passkey>]: never; }>(base?: I): Passkey;
+    fromPartial<I_1 extends {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+        ownerEmail?: string;
+        name?: string;
+    } & {
+        id?: string;
+        ownerId?: string;
+        ownerName?: string;
+        identifier?: string;
+        createdAt?: number;
+        lastUsedAt?: number | undefined;
+        ownerEmail?: string;
+        name?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof Passkey>]: never; }>(object: I_1): Passkey;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

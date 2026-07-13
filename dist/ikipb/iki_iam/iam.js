@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Secret = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Passkey = exports.Secret = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -838,6 +838,166 @@ exports.Secret = {
         message.secret = (_b = object.secret) !== null && _b !== void 0 ? _b : "";
         message.lastUsedAt = (_c = object.lastUsedAt) !== null && _c !== void 0 ? _c : 0;
         message.active = (_d = object.active) !== null && _d !== void 0 ? _d : false;
+        return message;
+    },
+};
+function createBasePasskey() {
+    return {
+        id: "",
+        ownerId: "",
+        ownerName: "",
+        identifier: "",
+        createdAt: 0,
+        lastUsedAt: undefined,
+        ownerEmail: "",
+        name: "",
+    };
+}
+exports.Passkey = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.ownerId !== "") {
+            writer.uint32(18).string(message.ownerId);
+        }
+        if (message.ownerName !== "") {
+            writer.uint32(26).string(message.ownerName);
+        }
+        if (message.identifier !== "") {
+            writer.uint32(34).string(message.identifier);
+        }
+        if (message.createdAt !== 0) {
+            writer.uint32(40).int64(message.createdAt);
+        }
+        if (message.lastUsedAt !== undefined) {
+            writer.uint32(48).int64(message.lastUsedAt);
+        }
+        if (message.ownerEmail !== "") {
+            writer.uint32(58).string(message.ownerEmail);
+        }
+        if (message.name !== "") {
+            writer.uint32(66).string(message.name);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePasskey();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.ownerId = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.ownerName = reader.string();
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.identifier = reader.string();
+                    continue;
+                case 5:
+                    if (tag !== 40) {
+                        break;
+                    }
+                    message.createdAt = longToNumber(reader.int64());
+                    continue;
+                case 6:
+                    if (tag !== 48) {
+                        break;
+                    }
+                    message.lastUsedAt = longToNumber(reader.int64());
+                    continue;
+                case 7:
+                    if (tag !== 58) {
+                        break;
+                    }
+                    message.ownerEmail = reader.string();
+                    continue;
+                case 8:
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.name = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            ownerId: isSet(object.ownerId) ? String(object.ownerId) : "",
+            ownerName: isSet(object.ownerName) ? String(object.ownerName) : "",
+            identifier: isSet(object.identifier) ? String(object.identifier) : "",
+            createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
+            lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
+            ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
+            name: isSet(object.name) ? String(object.name) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.ownerId !== "") {
+            obj.ownerId = message.ownerId;
+        }
+        if (message.ownerName !== "") {
+            obj.ownerName = message.ownerName;
+        }
+        if (message.identifier !== "") {
+            obj.identifier = message.identifier;
+        }
+        if (message.createdAt !== 0) {
+            obj.createdAt = Math.round(message.createdAt);
+        }
+        if (message.lastUsedAt !== undefined) {
+            obj.lastUsedAt = Math.round(message.lastUsedAt);
+        }
+        if (message.ownerEmail !== "") {
+            obj.ownerEmail = message.ownerEmail;
+        }
+        if (message.name !== "") {
+            obj.name = message.name;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Passkey.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        const message = createBasePasskey();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.ownerId = (_b = object.ownerId) !== null && _b !== void 0 ? _b : "";
+        message.ownerName = (_c = object.ownerName) !== null && _c !== void 0 ? _c : "";
+        message.identifier = (_d = object.identifier) !== null && _d !== void 0 ? _d : "";
+        message.createdAt = (_e = object.createdAt) !== null && _e !== void 0 ? _e : 0;
+        message.lastUsedAt = (_f = object.lastUsedAt) !== null && _f !== void 0 ? _f : undefined;
+        message.ownerEmail = (_g = object.ownerEmail) !== null && _g !== void 0 ? _g : "";
+        message.name = (_h = object.name) !== null && _h !== void 0 ? _h : "";
         return message;
     },
 };

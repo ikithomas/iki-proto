@@ -1,9 +1,8 @@
 /* eslint-disable */
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
-import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { User } from "../iam";
+import { Passkey, User } from "../iam";
 
 export const protobufPackage = "authsvc";
 
@@ -68,17 +67,6 @@ export interface FinishPasskeyLoginResponse {
   accessToken: string;
   refreshToken: string;
   user: User | undefined;
-}
-
-export interface Passkey {
-  id: string;
-  ownerId: string;
-  ownerName: string;
-  identifier: string;
-  createdAt: number;
-  lastUsedAt?: number | undefined;
-  ownerEmail: string;
-  name: string;
 }
 
 export interface ListPasskeysRequest {
@@ -1030,179 +1018,6 @@ export const FinishPasskeyLoginResponse = {
   },
 };
 
-function createBasePasskey(): Passkey {
-  return {
-    id: "",
-    ownerId: "",
-    ownerName: "",
-    identifier: "",
-    createdAt: 0,
-    lastUsedAt: undefined,
-    ownerEmail: "",
-    name: "",
-  };
-}
-
-export const Passkey = {
-  encode(message: Passkey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    if (message.ownerId !== "") {
-      writer.uint32(18).string(message.ownerId);
-    }
-    if (message.ownerName !== "") {
-      writer.uint32(26).string(message.ownerName);
-    }
-    if (message.identifier !== "") {
-      writer.uint32(34).string(message.identifier);
-    }
-    if (message.createdAt !== 0) {
-      writer.uint32(40).int64(message.createdAt);
-    }
-    if (message.lastUsedAt !== undefined) {
-      writer.uint32(48).int64(message.lastUsedAt);
-    }
-    if (message.ownerEmail !== "") {
-      writer.uint32(58).string(message.ownerEmail);
-    }
-    if (message.name !== "") {
-      writer.uint32(66).string(message.name);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Passkey {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePasskey();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.ownerId = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.ownerName = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.identifier = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.createdAt = longToNumber(reader.int64() as Long);
-          continue;
-        case 6:
-          if (tag !== 48) {
-            break;
-          }
-
-          message.lastUsedAt = longToNumber(reader.int64() as Long);
-          continue;
-        case 7:
-          if (tag !== 58) {
-            break;
-          }
-
-          message.ownerEmail = reader.string();
-          continue;
-        case 8:
-          if (tag !== 66) {
-            break;
-          }
-
-          message.name = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Passkey {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      ownerId: isSet(object.ownerId) ? String(object.ownerId) : "",
-      ownerName: isSet(object.ownerName) ? String(object.ownerName) : "",
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
-      createdAt: isSet(object.createdAt) ? Number(object.createdAt) : 0,
-      lastUsedAt: isSet(object.lastUsedAt) ? Number(object.lastUsedAt) : undefined,
-      ownerEmail: isSet(object.ownerEmail) ? String(object.ownerEmail) : "",
-      name: isSet(object.name) ? String(object.name) : "",
-    };
-  },
-
-  toJSON(message: Passkey): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.ownerId !== "") {
-      obj.ownerId = message.ownerId;
-    }
-    if (message.ownerName !== "") {
-      obj.ownerName = message.ownerName;
-    }
-    if (message.identifier !== "") {
-      obj.identifier = message.identifier;
-    }
-    if (message.createdAt !== 0) {
-      obj.createdAt = Math.round(message.createdAt);
-    }
-    if (message.lastUsedAt !== undefined) {
-      obj.lastUsedAt = Math.round(message.lastUsedAt);
-    }
-    if (message.ownerEmail !== "") {
-      obj.ownerEmail = message.ownerEmail;
-    }
-    if (message.name !== "") {
-      obj.name = message.name;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Passkey>, I>>(base?: I): Passkey {
-    return Passkey.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Passkey>, I>>(object: I): Passkey {
-    const message = createBasePasskey();
-    message.id = object.id ?? "";
-    message.ownerId = object.ownerId ?? "";
-    message.ownerName = object.ownerName ?? "";
-    message.identifier = object.identifier ?? "";
-    message.createdAt = object.createdAt ?? 0;
-    message.lastUsedAt = object.lastUsedAt ?? undefined;
-    message.ownerEmail = object.ownerEmail ?? "";
-    message.name = object.name ?? "";
-    return message;
-  },
-};
-
 function createBaseListPasskeysRequest(): ListPasskeysRequest {
   return {};
 }
@@ -1814,18 +1629,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
