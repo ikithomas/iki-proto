@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebError = exports.GrpcWebImpl = exports.AuthSvcDeletePasskeyDesc = exports.AuthSvcListPasskeysDesc = exports.AuthSvcFinishPasskeyLoginDesc = exports.AuthSvcBeginPasskeyLoginDesc = exports.AuthSvcFinishPasskeyRegistrationDesc = exports.AuthSvcBeginPasskeyRegistrationDesc = exports.AuthSvcSignoutDesc = exports.AuthSvcServiceLoginDesc = exports.AuthSvcGoogleLoginDesc = exports.AuthSvcDesc = exports.AuthSvcClientImpl = exports.DeletePasskeyResponse = exports.DeletePasskeyRequest = exports.ListPasskeysResponse = exports.ListPasskeysRequest = exports.FinishPasskeyLoginResponse = exports.FinishPasskeyLoginRequest = exports.BeginPasskeyLoginResponse = exports.BeginPasskeyLoginRequest = exports.FinishPasskeyRegistrationResponse = exports.FinishPasskeyRegistrationRequest = exports.BeginPasskeyRegistrationResponse = exports.BeginPasskeyRegistrationRequest = exports.SignoutResponse = exports.SignoutRequest = exports.ServiceLoginResponse = exports.ServiceLoginRequest = exports.GoogleLoginResponse = exports.GoogleLoginRequest = exports.protobufPackage = void 0;
+exports.GrpcWebError = exports.GrpcWebImpl = exports.AuthSvcFinishPasskeyLoginDesc = exports.AuthSvcBeginPasskeyLoginDesc = exports.AuthSvcSignoutDesc = exports.AuthSvcServiceLoginDesc = exports.AuthSvcGoogleLoginDesc = exports.AuthSvcDesc = exports.AuthSvcClientImpl = exports.FinishPasskeyLoginResponse = exports.FinishPasskeyLoginRequest = exports.BeginPasskeyLoginResponse = exports.BeginPasskeyLoginRequest = exports.SignoutResponse = exports.SignoutRequest = exports.ServiceLoginResponse = exports.ServiceLoginRequest = exports.GoogleLoginResponse = exports.GoogleLoginRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const browser_headers_1 = require("browser-headers");
@@ -350,228 +350,6 @@ exports.SignoutResponse = {
         return message;
     },
 };
-function createBaseBeginPasskeyRegistrationRequest() {
-    return {};
-}
-exports.BeginPasskeyRegistrationRequest = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseBeginPasskeyRegistrationRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.BeginPasskeyRegistrationRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(_) {
-        const message = createBaseBeginPasskeyRegistrationRequest();
-        return message;
-    },
-};
-function createBaseBeginPasskeyRegistrationResponse() {
-    return { optionsJson: "", sessionId: "" };
-}
-exports.BeginPasskeyRegistrationResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.optionsJson !== "") {
-            writer.uint32(10).string(message.optionsJson);
-        }
-        if (message.sessionId !== "") {
-            writer.uint32(18).string(message.sessionId);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseBeginPasskeyRegistrationResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.optionsJson = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.sessionId = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            optionsJson: isSet(object.optionsJson) ? String(object.optionsJson) : "",
-            sessionId: isSet(object.sessionId) ? String(object.sessionId) : "",
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.optionsJson !== "") {
-            obj.optionsJson = message.optionsJson;
-        }
-        if (message.sessionId !== "") {
-            obj.sessionId = message.sessionId;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.BeginPasskeyRegistrationResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a, _b;
-        const message = createBaseBeginPasskeyRegistrationResponse();
-        message.optionsJson = (_a = object.optionsJson) !== null && _a !== void 0 ? _a : "";
-        message.sessionId = (_b = object.sessionId) !== null && _b !== void 0 ? _b : "";
-        return message;
-    },
-};
-function createBaseFinishPasskeyRegistrationRequest() {
-    return { sessionId: "", credentialJson: "", name: "" };
-}
-exports.FinishPasskeyRegistrationRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.sessionId !== "") {
-            writer.uint32(10).string(message.sessionId);
-        }
-        if (message.credentialJson !== "") {
-            writer.uint32(18).string(message.credentialJson);
-        }
-        if (message.name !== "") {
-            writer.uint32(26).string(message.name);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseFinishPasskeyRegistrationRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.sessionId = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.credentialJson = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.name = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            sessionId: isSet(object.sessionId) ? String(object.sessionId) : "",
-            credentialJson: isSet(object.credentialJson) ? String(object.credentialJson) : "",
-            name: isSet(object.name) ? String(object.name) : "",
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.sessionId !== "") {
-            obj.sessionId = message.sessionId;
-        }
-        if (message.credentialJson !== "") {
-            obj.credentialJson = message.credentialJson;
-        }
-        if (message.name !== "") {
-            obj.name = message.name;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.FinishPasskeyRegistrationRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a, _b, _c;
-        const message = createBaseFinishPasskeyRegistrationRequest();
-        message.sessionId = (_a = object.sessionId) !== null && _a !== void 0 ? _a : "";
-        message.credentialJson = (_b = object.credentialJson) !== null && _b !== void 0 ? _b : "";
-        message.name = (_c = object.name) !== null && _c !== void 0 ? _c : "";
-        return message;
-    },
-};
-function createBaseFinishPasskeyRegistrationResponse() {
-    return {};
-}
-exports.FinishPasskeyRegistrationResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseFinishPasskeyRegistrationResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.FinishPasskeyRegistrationResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(_) {
-        const message = createBaseFinishPasskeyRegistrationResponse();
-        return message;
-    },
-};
 function createBaseBeginPasskeyLoginRequest() {
     return { email: "" };
 }
@@ -838,195 +616,14 @@ exports.FinishPasskeyLoginResponse = {
         return message;
     },
 };
-function createBaseListPasskeysRequest() {
-    return {};
-}
-exports.ListPasskeysRequest = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseListPasskeysRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.ListPasskeysRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(_) {
-        const message = createBaseListPasskeysRequest();
-        return message;
-    },
-};
-function createBaseListPasskeysResponse() {
-    return { passkeys: [] };
-}
-exports.ListPasskeysResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.passkeys) {
-            iam_1.Passkey.encode(v, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseListPasskeysResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.passkeys.push(iam_1.Passkey.decode(reader, reader.uint32()));
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { passkeys: Array.isArray(object === null || object === void 0 ? void 0 : object.passkeys) ? object.passkeys.map((e) => iam_1.Passkey.fromJSON(e)) : [] };
-    },
-    toJSON(message) {
-        var _a;
-        const obj = {};
-        if ((_a = message.passkeys) === null || _a === void 0 ? void 0 : _a.length) {
-            obj.passkeys = message.passkeys.map((e) => iam_1.Passkey.toJSON(e));
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.ListPasskeysResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a;
-        const message = createBaseListPasskeysResponse();
-        message.passkeys = ((_a = object.passkeys) === null || _a === void 0 ? void 0 : _a.map((e) => iam_1.Passkey.fromPartial(e))) || [];
-        return message;
-    },
-};
-function createBaseDeletePasskeyRequest() {
-    return { id: "" };
-}
-exports.DeletePasskeyRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== "") {
-            writer.uint32(10).string(message.id);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseDeletePasskeyRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.id = reader.string();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { id: isSet(object.id) ? String(object.id) : "" };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.id !== "") {
-            obj.id = message.id;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.DeletePasskeyRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a;
-        const message = createBaseDeletePasskeyRequest();
-        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
-        return message;
-    },
-};
-function createBaseDeletePasskeyResponse() {
-    return {};
-}
-exports.DeletePasskeyResponse = {
-    encode(_, writer = minimal_1.default.Writer.create()) {
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseDeletePasskeyResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(_) {
-        return {};
-    },
-    toJSON(_) {
-        const obj = {};
-        return obj;
-    },
-    create(base) {
-        return exports.DeletePasskeyResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(_) {
-        const message = createBaseDeletePasskeyResponse();
-        return message;
-    },
-};
 class AuthSvcClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.GoogleLogin = this.GoogleLogin.bind(this);
         this.ServiceLogin = this.ServiceLogin.bind(this);
         this.Signout = this.Signout.bind(this);
-        this.BeginPasskeyRegistration = this.BeginPasskeyRegistration.bind(this);
-        this.FinishPasskeyRegistration = this.FinishPasskeyRegistration.bind(this);
         this.BeginPasskeyLogin = this.BeginPasskeyLogin.bind(this);
         this.FinishPasskeyLogin = this.FinishPasskeyLogin.bind(this);
-        this.ListPasskeys = this.ListPasskeys.bind(this);
-        this.DeletePasskey = this.DeletePasskey.bind(this);
     }
     GoogleLogin(request, metadata) {
         return this.rpc.unary(exports.AuthSvcGoogleLoginDesc, exports.GoogleLoginRequest.fromPartial(request), metadata);
@@ -1037,23 +634,11 @@ class AuthSvcClientImpl {
     Signout(request, metadata) {
         return this.rpc.unary(exports.AuthSvcSignoutDesc, exports.SignoutRequest.fromPartial(request), metadata);
     }
-    BeginPasskeyRegistration(request, metadata) {
-        return this.rpc.unary(exports.AuthSvcBeginPasskeyRegistrationDesc, exports.BeginPasskeyRegistrationRequest.fromPartial(request), metadata);
-    }
-    FinishPasskeyRegistration(request, metadata) {
-        return this.rpc.unary(exports.AuthSvcFinishPasskeyRegistrationDesc, exports.FinishPasskeyRegistrationRequest.fromPartial(request), metadata);
-    }
     BeginPasskeyLogin(request, metadata) {
         return this.rpc.unary(exports.AuthSvcBeginPasskeyLoginDesc, exports.BeginPasskeyLoginRequest.fromPartial(request), metadata);
     }
     FinishPasskeyLogin(request, metadata) {
         return this.rpc.unary(exports.AuthSvcFinishPasskeyLoginDesc, exports.FinishPasskeyLoginRequest.fromPartial(request), metadata);
-    }
-    ListPasskeys(request, metadata) {
-        return this.rpc.unary(exports.AuthSvcListPasskeysDesc, exports.ListPasskeysRequest.fromPartial(request), metadata);
-    }
-    DeletePasskey(request, metadata) {
-        return this.rpc.unary(exports.AuthSvcDeletePasskeyDesc, exports.DeletePasskeyRequest.fromPartial(request), metadata);
     }
 }
 exports.AuthSvcClientImpl = AuthSvcClientImpl;
@@ -1115,44 +700,6 @@ exports.AuthSvcSignoutDesc = {
         },
     },
 };
-exports.AuthSvcBeginPasskeyRegistrationDesc = {
-    methodName: "BeginPasskeyRegistration",
-    service: exports.AuthSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.BeginPasskeyRegistrationRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.BeginPasskeyRegistrationResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AuthSvcFinishPasskeyRegistrationDesc = {
-    methodName: "FinishPasskeyRegistration",
-    service: exports.AuthSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.FinishPasskeyRegistrationRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.FinishPasskeyRegistrationResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
 exports.AuthSvcBeginPasskeyLoginDesc = {
     methodName: "BeginPasskeyLogin",
     service: exports.AuthSvcDesc,
@@ -1185,44 +732,6 @@ exports.AuthSvcFinishPasskeyLoginDesc = {
     responseType: {
         deserializeBinary(data) {
             const value = exports.FinishPasskeyLoginResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AuthSvcListPasskeysDesc = {
-    methodName: "ListPasskeys",
-    service: exports.AuthSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.ListPasskeysRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.ListPasskeysResponse.decode(data);
-            return Object.assign(Object.assign({}, value), { toObject() {
-                    return value;
-                } });
-        },
-    },
-};
-exports.AuthSvcDeletePasskeyDesc = {
-    methodName: "DeletePasskey",
-    service: exports.AuthSvcDesc,
-    requestStream: false,
-    responseStream: false,
-    requestType: {
-        serializeBinary() {
-            return exports.DeletePasskeyRequest.encode(this).finish();
-        },
-    },
-    responseType: {
-        deserializeBinary(data) {
-            const value = exports.DeletePasskeyResponse.decode(data);
             return Object.assign(Object.assign({}, value), { toObject() {
                     return value;
                 } });

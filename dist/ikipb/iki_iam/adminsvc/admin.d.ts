@@ -1,6 +1,6 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { Group, GroupDetail, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
+import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
 export declare const protobufPackage = "adminsvc";
 export interface ListPermissionsRequest {
 }
@@ -170,6 +170,17 @@ export interface SetUserGroupsRequest {
 }
 export interface SetUserGroupsResponse {
     user: UserDetail | undefined;
+}
+export interface ListPasskeysRequest {
+    userId?: string | undefined;
+}
+export interface ListPasskeysResponse {
+    passkeys: Passkey[];
+}
+export interface DeletePasskeyRequest {
+    id: string;
+}
+export interface DeletePasskeyResponse {
 }
 export declare const ListPermissionsRequest: {
     encode(_: ListPermissionsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -2521,6 +2532,152 @@ export declare const SetUserGroupsResponse: {
         } & { [K_16 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
     } & { [K_17 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): SetUserGroupsResponse;
 };
+export declare const ListPasskeysRequest: {
+    encode(message: ListPasskeysRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest;
+    fromJSON(object: any): ListPasskeysRequest;
+    toJSON(message: ListPasskeysRequest): unknown;
+    create<I extends {
+        userId?: string | undefined;
+    } & {
+        userId?: string | undefined;
+    } & { [K in Exclude<keyof I, "userId">]: never; }>(base?: I): ListPasskeysRequest;
+    fromPartial<I_1 extends {
+        userId?: string | undefined;
+    } & {
+        userId?: string | undefined;
+    } & { [K_1 in Exclude<keyof I_1, "userId">]: never; }>(object: I_1): ListPasskeysRequest;
+};
+export declare const ListPasskeysResponse: {
+    encode(message: ListPasskeysResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysResponse;
+    fromJSON(object: any): ListPasskeysResponse;
+    toJSON(message: ListPasskeysResponse): unknown;
+    create<I extends {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[];
+    } & {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[] & ({
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        } & {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        } & { [K in Exclude<keyof I["passkeys"][number], keyof Passkey>]: never; })[] & { [K_1 in Exclude<keyof I["passkeys"], keyof {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[]>]: never; };
+    } & { [K_2 in Exclude<keyof I, "passkeys">]: never; }>(base?: I): ListPasskeysResponse;
+    fromPartial<I_1 extends {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[];
+    } & {
+        passkeys?: {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[] & ({
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        } & {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        } & { [K_3 in Exclude<keyof I_1["passkeys"][number], keyof Passkey>]: never; })[] & { [K_4 in Exclude<keyof I_1["passkeys"], keyof {
+            id?: string;
+            ownerId?: string;
+            ownerName?: string;
+            identifier?: string;
+            createdAt?: number;
+            lastUsedAt?: number;
+            ownerEmail?: string;
+            name?: string;
+        }[]>]: never; };
+    } & { [K_5 in Exclude<keyof I_1, "passkeys">]: never; }>(object: I_1): ListPasskeysResponse;
+};
+export declare const DeletePasskeyRequest: {
+    encode(message: DeletePasskeyRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyRequest;
+    fromJSON(object: any): DeletePasskeyRequest;
+    toJSON(message: DeletePasskeyRequest): unknown;
+    create<I extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K in Exclude<keyof I, "id">]: never; }>(base?: I): DeletePasskeyRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+    } & {
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, "id">]: never; }>(object: I_1): DeletePasskeyRequest;
+};
+export declare const DeletePasskeyResponse: {
+    encode(_: DeletePasskeyResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyResponse;
+    fromJSON(_: any): DeletePasskeyResponse;
+    toJSON(_: DeletePasskeyResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): DeletePasskeyResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): DeletePasskeyResponse;
+};
 export interface AdminSvc {
     /** User management */
     ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse>;
@@ -2556,6 +2713,9 @@ export interface AdminSvc {
     AddUserToGroup(request: DeepPartial<AddUserToGroupRequest>, metadata?: grpc.Metadata): Promise<AddUserToGroupResponse>;
     RemoveUserFromGroup(request: DeepPartial<RemoveUserFromGroupRequest>, metadata?: grpc.Metadata): Promise<RemoveUserFromGroupResponse>;
     ListGroupUsers(request: DeepPartial<ListGroupUsersRequest>, metadata?: grpc.Metadata): Promise<ListGroupUsersResponse>;
+    /** Passkey management */
+    ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
+    DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 export declare class AdminSvcClientImpl implements AdminSvc {
     private readonly rpc;
@@ -2587,6 +2747,8 @@ export declare class AdminSvcClientImpl implements AdminSvc {
     AddUserToGroup(request: DeepPartial<AddUserToGroupRequest>, metadata?: grpc.Metadata): Promise<AddUserToGroupResponse>;
     RemoveUserFromGroup(request: DeepPartial<RemoveUserFromGroupRequest>, metadata?: grpc.Metadata): Promise<RemoveUserFromGroupResponse>;
     ListGroupUsers(request: DeepPartial<ListGroupUsersRequest>, metadata?: grpc.Metadata): Promise<ListGroupUsersResponse>;
+    ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
+    DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 export declare const AdminSvcDesc: {
     serviceName: string;
@@ -2618,6 +2780,8 @@ export declare const AdminSvcSetGroupRolesDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcAddUserToGroupDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcRemoveUserFromGroupDesc: UnaryMethodDefinitionish;
 export declare const AdminSvcListGroupUsersDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcListPasskeysDesc: UnaryMethodDefinitionish;
+export declare const AdminSvcDeletePasskeyDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;

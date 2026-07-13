@@ -19,15 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthSvc_GoogleLogin_FullMethodName               = "/authsvc.AuthSvc/GoogleLogin"
-	AuthSvc_ServiceLogin_FullMethodName              = "/authsvc.AuthSvc/ServiceLogin"
-	AuthSvc_Signout_FullMethodName                   = "/authsvc.AuthSvc/Signout"
-	AuthSvc_BeginPasskeyRegistration_FullMethodName  = "/authsvc.AuthSvc/BeginPasskeyRegistration"
-	AuthSvc_FinishPasskeyRegistration_FullMethodName = "/authsvc.AuthSvc/FinishPasskeyRegistration"
-	AuthSvc_BeginPasskeyLogin_FullMethodName         = "/authsvc.AuthSvc/BeginPasskeyLogin"
-	AuthSvc_FinishPasskeyLogin_FullMethodName        = "/authsvc.AuthSvc/FinishPasskeyLogin"
-	AuthSvc_ListPasskeys_FullMethodName              = "/authsvc.AuthSvc/ListPasskeys"
-	AuthSvc_DeletePasskey_FullMethodName             = "/authsvc.AuthSvc/DeletePasskey"
+	AuthSvc_GoogleLogin_FullMethodName        = "/authsvc.AuthSvc/GoogleLogin"
+	AuthSvc_ServiceLogin_FullMethodName       = "/authsvc.AuthSvc/ServiceLogin"
+	AuthSvc_Signout_FullMethodName            = "/authsvc.AuthSvc/Signout"
+	AuthSvc_BeginPasskeyLogin_FullMethodName  = "/authsvc.AuthSvc/BeginPasskeyLogin"
+	AuthSvc_FinishPasskeyLogin_FullMethodName = "/authsvc.AuthSvc/FinishPasskeyLogin"
 )
 
 // AuthSvcClient is the client API for AuthSvc service.
@@ -39,16 +35,9 @@ type AuthSvcClient interface {
 	GoogleLogin(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
 	ServiceLogin(ctx context.Context, in *ServiceLoginRequest, opts ...grpc.CallOption) (*ServiceLoginResponse, error)
 	Signout(ctx context.Context, in *SignoutRequest, opts ...grpc.CallOption) (*SignoutResponse, error)
-	// Passkey (WebAuthn) registration — requires an active session.
-	BeginPasskeyRegistration(ctx context.Context, in *BeginPasskeyRegistrationRequest, opts ...grpc.CallOption) (*BeginPasskeyRegistrationResponse, error)
-	FinishPasskeyRegistration(ctx context.Context, in *FinishPasskeyRegistrationRequest, opts ...grpc.CallOption) (*FinishPasskeyRegistrationResponse, error)
 	// Passkey (WebAuthn) authentication.
 	BeginPasskeyLogin(ctx context.Context, in *BeginPasskeyLoginRequest, opts ...grpc.CallOption) (*BeginPasskeyLoginResponse, error)
 	FinishPasskeyLogin(ctx context.Context, in *FinishPasskeyLoginRequest, opts ...grpc.CallOption) (*FinishPasskeyLoginResponse, error)
-	// List all registered passkeys, optionally filtered by user_id.
-	ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error)
-	// Delete a registered passkey by its ID.
-	DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error)
 }
 
 type authSvcClient struct {
@@ -89,26 +78,6 @@ func (c *authSvcClient) Signout(ctx context.Context, in *SignoutRequest, opts ..
 	return out, nil
 }
 
-func (c *authSvcClient) BeginPasskeyRegistration(ctx context.Context, in *BeginPasskeyRegistrationRequest, opts ...grpc.CallOption) (*BeginPasskeyRegistrationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BeginPasskeyRegistrationResponse)
-	err := c.cc.Invoke(ctx, AuthSvc_BeginPasskeyRegistration_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authSvcClient) FinishPasskeyRegistration(ctx context.Context, in *FinishPasskeyRegistrationRequest, opts ...grpc.CallOption) (*FinishPasskeyRegistrationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FinishPasskeyRegistrationResponse)
-	err := c.cc.Invoke(ctx, AuthSvc_FinishPasskeyRegistration_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *authSvcClient) BeginPasskeyLogin(ctx context.Context, in *BeginPasskeyLoginRequest, opts ...grpc.CallOption) (*BeginPasskeyLoginResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(BeginPasskeyLoginResponse)
@@ -129,26 +98,6 @@ func (c *authSvcClient) FinishPasskeyLogin(ctx context.Context, in *FinishPasske
 	return out, nil
 }
 
-func (c *authSvcClient) ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPasskeysResponse)
-	err := c.cc.Invoke(ctx, AuthSvc_ListPasskeys_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authSvcClient) DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeletePasskeyResponse)
-	err := c.cc.Invoke(ctx, AuthSvc_DeletePasskey_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AuthSvcServer is the server API for AuthSvc service.
 // All implementations must embed UnimplementedAuthSvcServer
 // for forward compatibility.
@@ -158,16 +107,9 @@ type AuthSvcServer interface {
 	GoogleLogin(context.Context, *GoogleLoginRequest) (*GoogleLoginResponse, error)
 	ServiceLogin(context.Context, *ServiceLoginRequest) (*ServiceLoginResponse, error)
 	Signout(context.Context, *SignoutRequest) (*SignoutResponse, error)
-	// Passkey (WebAuthn) registration — requires an active session.
-	BeginPasskeyRegistration(context.Context, *BeginPasskeyRegistrationRequest) (*BeginPasskeyRegistrationResponse, error)
-	FinishPasskeyRegistration(context.Context, *FinishPasskeyRegistrationRequest) (*FinishPasskeyRegistrationResponse, error)
 	// Passkey (WebAuthn) authentication.
 	BeginPasskeyLogin(context.Context, *BeginPasskeyLoginRequest) (*BeginPasskeyLoginResponse, error)
 	FinishPasskeyLogin(context.Context, *FinishPasskeyLoginRequest) (*FinishPasskeyLoginResponse, error)
-	// List all registered passkeys, optionally filtered by user_id.
-	ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error)
-	// Delete a registered passkey by its ID.
-	DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error)
 	mustEmbedUnimplementedAuthSvcServer()
 }
 
@@ -187,23 +129,11 @@ func (UnimplementedAuthSvcServer) ServiceLogin(context.Context, *ServiceLoginReq
 func (UnimplementedAuthSvcServer) Signout(context.Context, *SignoutRequest) (*SignoutResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Signout not implemented")
 }
-func (UnimplementedAuthSvcServer) BeginPasskeyRegistration(context.Context, *BeginPasskeyRegistrationRequest) (*BeginPasskeyRegistrationResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method BeginPasskeyRegistration not implemented")
-}
-func (UnimplementedAuthSvcServer) FinishPasskeyRegistration(context.Context, *FinishPasskeyRegistrationRequest) (*FinishPasskeyRegistrationResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method FinishPasskeyRegistration not implemented")
-}
 func (UnimplementedAuthSvcServer) BeginPasskeyLogin(context.Context, *BeginPasskeyLoginRequest) (*BeginPasskeyLoginResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method BeginPasskeyLogin not implemented")
 }
 func (UnimplementedAuthSvcServer) FinishPasskeyLogin(context.Context, *FinishPasskeyLoginRequest) (*FinishPasskeyLoginResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method FinishPasskeyLogin not implemented")
-}
-func (UnimplementedAuthSvcServer) ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListPasskeys not implemented")
-}
-func (UnimplementedAuthSvcServer) DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method DeletePasskey not implemented")
 }
 func (UnimplementedAuthSvcServer) mustEmbedUnimplementedAuthSvcServer() {}
 func (UnimplementedAuthSvcServer) testEmbeddedByValue()                 {}
@@ -280,42 +210,6 @@ func _AuthSvc_Signout_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthSvc_BeginPasskeyRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BeginPasskeyRegistrationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthSvcServer).BeginPasskeyRegistration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AuthSvc_BeginPasskeyRegistration_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthSvcServer).BeginPasskeyRegistration(ctx, req.(*BeginPasskeyRegistrationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AuthSvc_FinishPasskeyRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FinishPasskeyRegistrationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthSvcServer).FinishPasskeyRegistration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AuthSvc_FinishPasskeyRegistration_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthSvcServer).FinishPasskeyRegistration(ctx, req.(*FinishPasskeyRegistrationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _AuthSvc_BeginPasskeyLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BeginPasskeyLoginRequest)
 	if err := dec(in); err != nil {
@@ -352,42 +246,6 @@ func _AuthSvc_FinishPasskeyLogin_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthSvc_ListPasskeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPasskeysRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthSvcServer).ListPasskeys(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AuthSvc_ListPasskeys_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthSvcServer).ListPasskeys(ctx, req.(*ListPasskeysRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AuthSvc_DeletePasskey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePasskeyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthSvcServer).DeletePasskey(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AuthSvc_DeletePasskey_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthSvcServer).DeletePasskey(ctx, req.(*DeletePasskeyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AuthSvc_ServiceDesc is the grpc.ServiceDesc for AuthSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -408,28 +266,12 @@ var AuthSvc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthSvc_Signout_Handler,
 		},
 		{
-			MethodName: "BeginPasskeyRegistration",
-			Handler:    _AuthSvc_BeginPasskeyRegistration_Handler,
-		},
-		{
-			MethodName: "FinishPasskeyRegistration",
-			Handler:    _AuthSvc_FinishPasskeyRegistration_Handler,
-		},
-		{
 			MethodName: "BeginPasskeyLogin",
 			Handler:    _AuthSvc_BeginPasskeyLogin_Handler,
 		},
 		{
 			MethodName: "FinishPasskeyLogin",
 			Handler:    _AuthSvc_FinishPasskeyLogin_Handler,
-		},
-		{
-			MethodName: "ListPasskeys",
-			Handler:    _AuthSvc_ListPasskeys_Handler,
-		},
-		{
-			MethodName: "DeletePasskey",
-			Handler:    _AuthSvc_DeletePasskey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,19 +16,10 @@ service AuthSvc {
 
   rpc Signout (SignoutRequest) returns (SignoutResponse) {}
 
-  // Passkey (WebAuthn) registration — requires an active session.
-  rpc BeginPasskeyRegistration (BeginPasskeyRegistrationRequest) returns (BeginPasskeyRegistrationResponse) {}
-  rpc FinishPasskeyRegistration (FinishPasskeyRegistrationRequest) returns (FinishPasskeyRegistrationResponse) {}
-
   // Passkey (WebAuthn) authentication.
   rpc BeginPasskeyLogin (BeginPasskeyLoginRequest) returns (BeginPasskeyLoginResponse) {}
   rpc FinishPasskeyLogin (FinishPasskeyLoginRequest) returns (FinishPasskeyLoginResponse) {}
 
-  // List all registered passkeys, optionally filtered by user_id.
-  rpc ListPasskeys (ListPasskeysRequest) returns (ListPasskeysResponse) {}
-
-  // Delete a registered passkey by its ID.
-  rpc DeletePasskey (DeletePasskeyRequest) returns (DeletePasskeyResponse) {}
 }
 
 message GoogleLoginRequest {
@@ -54,19 +45,6 @@ message ServiceLoginResponse {
 message SignoutRequest {}
 message SignoutResponse {}
 
-message BeginPasskeyRegistrationRequest {}
-message BeginPasskeyRegistrationResponse {
-  string options_json = 1;
-  string session_id = 2;
-}
-
-message FinishPasskeyRegistrationRequest {
-  string session_id = 1;
-  string credential_json = 2;
-  string name = 3;
-}
-message FinishPasskeyRegistrationResponse {}
-
 message BeginPasskeyLoginRequest {
   string email = 1;
 }
@@ -85,14 +63,3 @@ message FinishPasskeyLoginResponse {
   iam.User user = 3;
 }
 
-message ListPasskeysRequest {}
-
-message ListPasskeysResponse {
-  repeated iam.Passkey passkeys = 1;
-}
-
-message DeletePasskeyRequest {
-  string id = 1;
-}
-
-message DeletePasskeyResponse {}

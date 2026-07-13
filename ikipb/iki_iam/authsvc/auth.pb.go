@@ -302,190 +302,6 @@ func (*SignoutResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{5}
 }
 
-type BeginPasskeyRegistrationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BeginPasskeyRegistrationRequest) Reset() {
-	*x = BeginPasskeyRegistrationRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BeginPasskeyRegistrationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BeginPasskeyRegistrationRequest) ProtoMessage() {}
-
-func (x *BeginPasskeyRegistrationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BeginPasskeyRegistrationRequest.ProtoReflect.Descriptor instead.
-func (*BeginPasskeyRegistrationRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{6}
-}
-
-type BeginPasskeyRegistrationResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OptionsJson   string                 `protobuf:"bytes,1,opt,name=options_json,json=optionsJson,proto3" json:"options_json,omitempty"`
-	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BeginPasskeyRegistrationResponse) Reset() {
-	*x = BeginPasskeyRegistrationResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BeginPasskeyRegistrationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BeginPasskeyRegistrationResponse) ProtoMessage() {}
-
-func (x *BeginPasskeyRegistrationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BeginPasskeyRegistrationResponse.ProtoReflect.Descriptor instead.
-func (*BeginPasskeyRegistrationResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *BeginPasskeyRegistrationResponse) GetOptionsJson() string {
-	if x != nil {
-		return x.OptionsJson
-	}
-	return ""
-}
-
-func (x *BeginPasskeyRegistrationResponse) GetSessionId() string {
-	if x != nil {
-		return x.SessionId
-	}
-	return ""
-}
-
-type FinishPasskeyRegistrationRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	SessionId      string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	CredentialJson string                 `protobuf:"bytes,2,opt,name=credential_json,json=credentialJson,proto3" json:"credential_json,omitempty"`
-	Name           string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *FinishPasskeyRegistrationRequest) Reset() {
-	*x = FinishPasskeyRegistrationRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FinishPasskeyRegistrationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FinishPasskeyRegistrationRequest) ProtoMessage() {}
-
-func (x *FinishPasskeyRegistrationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FinishPasskeyRegistrationRequest.ProtoReflect.Descriptor instead.
-func (*FinishPasskeyRegistrationRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *FinishPasskeyRegistrationRequest) GetSessionId() string {
-	if x != nil {
-		return x.SessionId
-	}
-	return ""
-}
-
-func (x *FinishPasskeyRegistrationRequest) GetCredentialJson() string {
-	if x != nil {
-		return x.CredentialJson
-	}
-	return ""
-}
-
-func (x *FinishPasskeyRegistrationRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type FinishPasskeyRegistrationResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *FinishPasskeyRegistrationResponse) Reset() {
-	*x = FinishPasskeyRegistrationResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FinishPasskeyRegistrationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FinishPasskeyRegistrationResponse) ProtoMessage() {}
-
-func (x *FinishPasskeyRegistrationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FinishPasskeyRegistrationResponse.ProtoReflect.Descriptor instead.
-func (*FinishPasskeyRegistrationResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{9}
-}
-
 type BeginPasskeyLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -495,7 +311,7 @@ type BeginPasskeyLoginRequest struct {
 
 func (x *BeginPasskeyLoginRequest) Reset() {
 	*x = BeginPasskeyLoginRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[10]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +323,7 @@ func (x *BeginPasskeyLoginRequest) String() string {
 func (*BeginPasskeyLoginRequest) ProtoMessage() {}
 
 func (x *BeginPasskeyLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[10]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +336,7 @@ func (x *BeginPasskeyLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BeginPasskeyLoginRequest.ProtoReflect.Descriptor instead.
 func (*BeginPasskeyLoginRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{10}
+	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BeginPasskeyLoginRequest) GetEmail() string {
@@ -540,7 +356,7 @@ type BeginPasskeyLoginResponse struct {
 
 func (x *BeginPasskeyLoginResponse) Reset() {
 	*x = BeginPasskeyLoginResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[11]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -552,7 +368,7 @@ func (x *BeginPasskeyLoginResponse) String() string {
 func (*BeginPasskeyLoginResponse) ProtoMessage() {}
 
 func (x *BeginPasskeyLoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[11]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -565,7 +381,7 @@ func (x *BeginPasskeyLoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BeginPasskeyLoginResponse.ProtoReflect.Descriptor instead.
 func (*BeginPasskeyLoginResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{11}
+	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *BeginPasskeyLoginResponse) GetOptionsJson() string {
@@ -592,7 +408,7 @@ type FinishPasskeyLoginRequest struct {
 
 func (x *FinishPasskeyLoginRequest) Reset() {
 	*x = FinishPasskeyLoginRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[12]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -604,7 +420,7 @@ func (x *FinishPasskeyLoginRequest) String() string {
 func (*FinishPasskeyLoginRequest) ProtoMessage() {}
 
 func (x *FinishPasskeyLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[12]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -617,7 +433,7 @@ func (x *FinishPasskeyLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FinishPasskeyLoginRequest.ProtoReflect.Descriptor instead.
 func (*FinishPasskeyLoginRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{12}
+	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *FinishPasskeyLoginRequest) GetSessionId() string {
@@ -645,7 +461,7 @@ type FinishPasskeyLoginResponse struct {
 
 func (x *FinishPasskeyLoginResponse) Reset() {
 	*x = FinishPasskeyLoginResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[13]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -657,7 +473,7 @@ func (x *FinishPasskeyLoginResponse) String() string {
 func (*FinishPasskeyLoginResponse) ProtoMessage() {}
 
 func (x *FinishPasskeyLoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[13]
+	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -670,7 +486,7 @@ func (x *FinishPasskeyLoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FinishPasskeyLoginResponse.ProtoReflect.Descriptor instead.
 func (*FinishPasskeyLoginResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{13}
+	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *FinishPasskeyLoginResponse) GetAccessToken() string {
@@ -694,166 +510,6 @@ func (x *FinishPasskeyLoginResponse) GetUser() *iki_iam.User {
 	return nil
 }
 
-type ListPasskeysRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListPasskeysRequest) Reset() {
-	*x = ListPasskeysRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListPasskeysRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListPasskeysRequest) ProtoMessage() {}
-
-func (x *ListPasskeysRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListPasskeysRequest.ProtoReflect.Descriptor instead.
-func (*ListPasskeysRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{14}
-}
-
-type ListPasskeysResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Passkeys      []*iki_iam.Passkey     `protobuf:"bytes,1,rep,name=passkeys,proto3" json:"passkeys,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListPasskeysResponse) Reset() {
-	*x = ListPasskeysResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListPasskeysResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListPasskeysResponse) ProtoMessage() {}
-
-func (x *ListPasskeysResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListPasskeysResponse.ProtoReflect.Descriptor instead.
-func (*ListPasskeysResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *ListPasskeysResponse) GetPasskeys() []*iki_iam.Passkey {
-	if x != nil {
-		return x.Passkeys
-	}
-	return nil
-}
-
-type DeletePasskeyRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePasskeyRequest) Reset() {
-	*x = DeletePasskeyRequest{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePasskeyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePasskeyRequest) ProtoMessage() {}
-
-func (x *DeletePasskeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePasskeyRequest.ProtoReflect.Descriptor instead.
-func (*DeletePasskeyRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *DeletePasskeyRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeletePasskeyResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePasskeyResponse) Reset() {
-	*x = DeletePasskeyResponse{}
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePasskeyResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePasskeyResponse) ProtoMessage() {}
-
-func (x *DeletePasskeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_authsvc_auth_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePasskeyResponse.ProtoReflect.Descriptor instead.
-func (*DeletePasskeyResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP(), []int{17}
-}
-
 var File_ikipb_iki_iam_authsvc_auth_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_authsvc_auth_proto_rawDesc = "" +
@@ -872,18 +528,7 @@ const file_ikipb_iki_iam_authsvc_auth_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"\x10\n" +
 	"\x0eSignoutRequest\"\x11\n" +
-	"\x0fSignoutResponse\"!\n" +
-	"\x1fBeginPasskeyRegistrationRequest\"d\n" +
-	" BeginPasskeyRegistrationResponse\x12!\n" +
-	"\foptions_json\x18\x01 \x01(\tR\voptionsJson\x12\x1d\n" +
-	"\n" +
-	"session_id\x18\x02 \x01(\tR\tsessionId\"~\n" +
-	" FinishPasskeyRegistrationRequest\x12\x1d\n" +
-	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12'\n" +
-	"\x0fcredential_json\x18\x02 \x01(\tR\x0ecredentialJson\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"#\n" +
-	"!FinishPasskeyRegistrationResponse\"0\n" +
+	"\x0fSignoutResponse\"0\n" +
 	"\x18BeginPasskeyLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"]\n" +
 	"\x19BeginPasskeyLoginResponse\x12!\n" +
@@ -897,23 +542,13 @@ const file_ikipb_iki_iam_authsvc_auth_proto_rawDesc = "" +
 	"\x1aFinishPasskeyLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12\x1d\n" +
-	"\x04user\x18\x03 \x01(\v2\t.iam.UserR\x04user\"\x15\n" +
-	"\x13ListPasskeysRequest\"@\n" +
-	"\x14ListPasskeysResponse\x12(\n" +
-	"\bpasskeys\x18\x01 \x03(\v2\f.iam.PasskeyR\bpasskeys\"&\n" +
-	"\x14DeletePasskeyRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
-	"\x15DeletePasskeyResponse2\xad\x06\n" +
+	"\x04user\x18\x03 \x01(\v2\t.iam.UserR\x04user2\xa3\x03\n" +
 	"\aAuthSvc\x12J\n" +
 	"\vGoogleLogin\x12\x1b.authsvc.GoogleLoginRequest\x1a\x1c.authsvc.GoogleLoginResponse\"\x00\x12M\n" +
 	"\fServiceLogin\x12\x1c.authsvc.ServiceLoginRequest\x1a\x1d.authsvc.ServiceLoginResponse\"\x00\x12>\n" +
-	"\aSignout\x12\x17.authsvc.SignoutRequest\x1a\x18.authsvc.SignoutResponse\"\x00\x12q\n" +
-	"\x18BeginPasskeyRegistration\x12(.authsvc.BeginPasskeyRegistrationRequest\x1a).authsvc.BeginPasskeyRegistrationResponse\"\x00\x12t\n" +
-	"\x19FinishPasskeyRegistration\x12).authsvc.FinishPasskeyRegistrationRequest\x1a*.authsvc.FinishPasskeyRegistrationResponse\"\x00\x12\\\n" +
+	"\aSignout\x12\x17.authsvc.SignoutRequest\x1a\x18.authsvc.SignoutResponse\"\x00\x12\\\n" +
 	"\x11BeginPasskeyLogin\x12!.authsvc.BeginPasskeyLoginRequest\x1a\".authsvc.BeginPasskeyLoginResponse\"\x00\x12_\n" +
-	"\x12FinishPasskeyLogin\x12\".authsvc.FinishPasskeyLoginRequest\x1a#.authsvc.FinishPasskeyLoginResponse\"\x00\x12M\n" +
-	"\fListPasskeys\x12\x1c.authsvc.ListPasskeysRequest\x1a\x1d.authsvc.ListPasskeysResponse\"\x00\x12P\n" +
-	"\rDeletePasskey\x12\x1d.authsvc.DeletePasskeyRequest\x1a\x1e.authsvc.DeletePasskeyResponse\"\x00B\x1eZ\b/authsvc\xea\x02\x11Iki::Iam::AuthSvcb\x06proto3"
+	"\x12FinishPasskeyLogin\x12\".authsvc.FinishPasskeyLoginRequest\x1a#.authsvc.FinishPasskeyLoginResponse\"\x00B\x1eZ\b/authsvc\xea\x02\x11Iki::Iam::AuthSvcb\x06proto3"
 
 var (
 	file_ikipb_iki_iam_authsvc_auth_proto_rawDescOnce sync.Once
@@ -927,56 +562,38 @@ func file_ikipb_iki_iam_authsvc_auth_proto_rawDescGZIP() []byte {
 	return file_ikipb_iki_iam_authsvc_auth_proto_rawDescData
 }
 
-var file_ikipb_iki_iam_authsvc_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_ikipb_iki_iam_authsvc_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_ikipb_iki_iam_authsvc_auth_proto_goTypes = []any{
-	(*GoogleLoginRequest)(nil),                // 0: authsvc.GoogleLoginRequest
-	(*GoogleLoginResponse)(nil),               // 1: authsvc.GoogleLoginResponse
-	(*ServiceLoginRequest)(nil),               // 2: authsvc.ServiceLoginRequest
-	(*ServiceLoginResponse)(nil),              // 3: authsvc.ServiceLoginResponse
-	(*SignoutRequest)(nil),                    // 4: authsvc.SignoutRequest
-	(*SignoutResponse)(nil),                   // 5: authsvc.SignoutResponse
-	(*BeginPasskeyRegistrationRequest)(nil),   // 6: authsvc.BeginPasskeyRegistrationRequest
-	(*BeginPasskeyRegistrationResponse)(nil),  // 7: authsvc.BeginPasskeyRegistrationResponse
-	(*FinishPasskeyRegistrationRequest)(nil),  // 8: authsvc.FinishPasskeyRegistrationRequest
-	(*FinishPasskeyRegistrationResponse)(nil), // 9: authsvc.FinishPasskeyRegistrationResponse
-	(*BeginPasskeyLoginRequest)(nil),          // 10: authsvc.BeginPasskeyLoginRequest
-	(*BeginPasskeyLoginResponse)(nil),         // 11: authsvc.BeginPasskeyLoginResponse
-	(*FinishPasskeyLoginRequest)(nil),         // 12: authsvc.FinishPasskeyLoginRequest
-	(*FinishPasskeyLoginResponse)(nil),        // 13: authsvc.FinishPasskeyLoginResponse
-	(*ListPasskeysRequest)(nil),               // 14: authsvc.ListPasskeysRequest
-	(*ListPasskeysResponse)(nil),              // 15: authsvc.ListPasskeysResponse
-	(*DeletePasskeyRequest)(nil),              // 16: authsvc.DeletePasskeyRequest
-	(*DeletePasskeyResponse)(nil),             // 17: authsvc.DeletePasskeyResponse
-	(*iki_iam.User)(nil),                      // 18: iam.User
-	(*iki_iam.Passkey)(nil),                   // 19: iam.Passkey
+	(*GoogleLoginRequest)(nil),         // 0: authsvc.GoogleLoginRequest
+	(*GoogleLoginResponse)(nil),        // 1: authsvc.GoogleLoginResponse
+	(*ServiceLoginRequest)(nil),        // 2: authsvc.ServiceLoginRequest
+	(*ServiceLoginResponse)(nil),       // 3: authsvc.ServiceLoginResponse
+	(*SignoutRequest)(nil),             // 4: authsvc.SignoutRequest
+	(*SignoutResponse)(nil),            // 5: authsvc.SignoutResponse
+	(*BeginPasskeyLoginRequest)(nil),   // 6: authsvc.BeginPasskeyLoginRequest
+	(*BeginPasskeyLoginResponse)(nil),  // 7: authsvc.BeginPasskeyLoginResponse
+	(*FinishPasskeyLoginRequest)(nil),  // 8: authsvc.FinishPasskeyLoginRequest
+	(*FinishPasskeyLoginResponse)(nil), // 9: authsvc.FinishPasskeyLoginResponse
+	(*iki_iam.User)(nil),               // 10: iam.User
 }
 var file_ikipb_iki_iam_authsvc_auth_proto_depIdxs = []int32{
-	18, // 0: authsvc.GoogleLoginResponse.user:type_name -> iam.User
-	18, // 1: authsvc.FinishPasskeyLoginResponse.user:type_name -> iam.User
-	19, // 2: authsvc.ListPasskeysResponse.passkeys:type_name -> iam.Passkey
-	0,  // 3: authsvc.AuthSvc.GoogleLogin:input_type -> authsvc.GoogleLoginRequest
-	2,  // 4: authsvc.AuthSvc.ServiceLogin:input_type -> authsvc.ServiceLoginRequest
-	4,  // 5: authsvc.AuthSvc.Signout:input_type -> authsvc.SignoutRequest
-	6,  // 6: authsvc.AuthSvc.BeginPasskeyRegistration:input_type -> authsvc.BeginPasskeyRegistrationRequest
-	8,  // 7: authsvc.AuthSvc.FinishPasskeyRegistration:input_type -> authsvc.FinishPasskeyRegistrationRequest
-	10, // 8: authsvc.AuthSvc.BeginPasskeyLogin:input_type -> authsvc.BeginPasskeyLoginRequest
-	12, // 9: authsvc.AuthSvc.FinishPasskeyLogin:input_type -> authsvc.FinishPasskeyLoginRequest
-	14, // 10: authsvc.AuthSvc.ListPasskeys:input_type -> authsvc.ListPasskeysRequest
-	16, // 11: authsvc.AuthSvc.DeletePasskey:input_type -> authsvc.DeletePasskeyRequest
-	1,  // 12: authsvc.AuthSvc.GoogleLogin:output_type -> authsvc.GoogleLoginResponse
-	3,  // 13: authsvc.AuthSvc.ServiceLogin:output_type -> authsvc.ServiceLoginResponse
-	5,  // 14: authsvc.AuthSvc.Signout:output_type -> authsvc.SignoutResponse
-	7,  // 15: authsvc.AuthSvc.BeginPasskeyRegistration:output_type -> authsvc.BeginPasskeyRegistrationResponse
-	9,  // 16: authsvc.AuthSvc.FinishPasskeyRegistration:output_type -> authsvc.FinishPasskeyRegistrationResponse
-	11, // 17: authsvc.AuthSvc.BeginPasskeyLogin:output_type -> authsvc.BeginPasskeyLoginResponse
-	13, // 18: authsvc.AuthSvc.FinishPasskeyLogin:output_type -> authsvc.FinishPasskeyLoginResponse
-	15, // 19: authsvc.AuthSvc.ListPasskeys:output_type -> authsvc.ListPasskeysResponse
-	17, // 20: authsvc.AuthSvc.DeletePasskey:output_type -> authsvc.DeletePasskeyResponse
-	12, // [12:21] is the sub-list for method output_type
-	3,  // [3:12] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	10, // 0: authsvc.GoogleLoginResponse.user:type_name -> iam.User
+	10, // 1: authsvc.FinishPasskeyLoginResponse.user:type_name -> iam.User
+	0,  // 2: authsvc.AuthSvc.GoogleLogin:input_type -> authsvc.GoogleLoginRequest
+	2,  // 3: authsvc.AuthSvc.ServiceLogin:input_type -> authsvc.ServiceLoginRequest
+	4,  // 4: authsvc.AuthSvc.Signout:input_type -> authsvc.SignoutRequest
+	6,  // 5: authsvc.AuthSvc.BeginPasskeyLogin:input_type -> authsvc.BeginPasskeyLoginRequest
+	8,  // 6: authsvc.AuthSvc.FinishPasskeyLogin:input_type -> authsvc.FinishPasskeyLoginRequest
+	1,  // 7: authsvc.AuthSvc.GoogleLogin:output_type -> authsvc.GoogleLoginResponse
+	3,  // 8: authsvc.AuthSvc.ServiceLogin:output_type -> authsvc.ServiceLoginResponse
+	5,  // 9: authsvc.AuthSvc.Signout:output_type -> authsvc.SignoutResponse
+	7,  // 10: authsvc.AuthSvc.BeginPasskeyLogin:output_type -> authsvc.BeginPasskeyLoginResponse
+	9,  // 11: authsvc.AuthSvc.FinishPasskeyLogin:output_type -> authsvc.FinishPasskeyLoginResponse
+	7,  // [7:12] is the sub-list for method output_type
+	2,  // [2:7] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_ikipb_iki_iam_authsvc_auth_proto_init() }
@@ -990,7 +607,7 @@ func file_ikipb_iki_iam_authsvc_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ikipb_iki_iam_authsvc_auth_proto_rawDesc), len(file_ikipb_iki_iam_authsvc_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

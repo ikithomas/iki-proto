@@ -46,6 +46,8 @@ const (
 	AdminSvc_AddUserToGroup_FullMethodName      = "/adminsvc.AdminSvc/AddUserToGroup"
 	AdminSvc_RemoveUserFromGroup_FullMethodName = "/adminsvc.AdminSvc/RemoveUserFromGroup"
 	AdminSvc_ListGroupUsers_FullMethodName      = "/adminsvc.AdminSvc/ListGroupUsers"
+	AdminSvc_ListPasskeys_FullMethodName        = "/adminsvc.AdminSvc/ListPasskeys"
+	AdminSvc_DeletePasskey_FullMethodName       = "/adminsvc.AdminSvc/DeletePasskey"
 )
 
 // AdminSvcClient is the client API for AdminSvc service.
@@ -86,6 +88,9 @@ type AdminSvcClient interface {
 	AddUserToGroup(ctx context.Context, in *AddUserToGroupRequest, opts ...grpc.CallOption) (*AddUserToGroupResponse, error)
 	RemoveUserFromGroup(ctx context.Context, in *RemoveUserFromGroupRequest, opts ...grpc.CallOption) (*RemoveUserFromGroupResponse, error)
 	ListGroupUsers(ctx context.Context, in *ListGroupUsersRequest, opts ...grpc.CallOption) (*ListGroupUsersResponse, error)
+	// Passkey management
+	ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error)
+	DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error)
 }
 
 type adminSvcClient struct {
@@ -366,6 +371,26 @@ func (c *adminSvcClient) ListGroupUsers(ctx context.Context, in *ListGroupUsersR
 	return out, nil
 }
 
+func (c *adminSvcClient) ListPasskeys(ctx context.Context, in *ListPasskeysRequest, opts ...grpc.CallOption) (*ListPasskeysResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPasskeysResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_ListPasskeys_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminSvcClient) DeletePasskey(ctx context.Context, in *DeletePasskeyRequest, opts ...grpc.CallOption) (*DeletePasskeyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeletePasskeyResponse)
+	err := c.cc.Invoke(ctx, AdminSvc_DeletePasskey_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminSvcServer is the server API for AdminSvc service.
 // All implementations must embed UnimplementedAdminSvcServer
 // for forward compatibility.
@@ -404,6 +429,9 @@ type AdminSvcServer interface {
 	AddUserToGroup(context.Context, *AddUserToGroupRequest) (*AddUserToGroupResponse, error)
 	RemoveUserFromGroup(context.Context, *RemoveUserFromGroupRequest) (*RemoveUserFromGroupResponse, error)
 	ListGroupUsers(context.Context, *ListGroupUsersRequest) (*ListGroupUsersResponse, error)
+	// Passkey management
+	ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error)
+	DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error)
 	mustEmbedUnimplementedAdminSvcServer()
 }
 
@@ -494,6 +522,12 @@ func (UnimplementedAdminSvcServer) RemoveUserFromGroup(context.Context, *RemoveU
 }
 func (UnimplementedAdminSvcServer) ListGroupUsers(context.Context, *ListGroupUsersRequest) (*ListGroupUsersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListGroupUsers not implemented")
+}
+func (UnimplementedAdminSvcServer) ListPasskeys(context.Context, *ListPasskeysRequest) (*ListPasskeysResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListPasskeys not implemented")
+}
+func (UnimplementedAdminSvcServer) DeletePasskey(context.Context, *DeletePasskeyRequest) (*DeletePasskeyResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeletePasskey not implemented")
 }
 func (UnimplementedAdminSvcServer) mustEmbedUnimplementedAdminSvcServer() {}
 func (UnimplementedAdminSvcServer) testEmbeddedByValue()                  {}
@@ -1002,6 +1036,42 @@ func _AdminSvc_ListGroupUsers_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminSvc_ListPasskeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPasskeysRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).ListPasskeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_ListPasskeys_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).ListPasskeys(ctx, req.(*ListPasskeysRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminSvc_DeletePasskey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePasskeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminSvcServer).DeletePasskey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminSvc_DeletePasskey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminSvcServer).DeletePasskey(ctx, req.(*DeletePasskeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminSvc_ServiceDesc is the grpc.ServiceDesc for AdminSvc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1116,6 +1186,14 @@ var AdminSvc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListGroupUsers",
 			Handler:    _AdminSvc_ListGroupUsers_Handler,
+		},
+		{
+			MethodName: "ListPasskeys",
+			Handler:    _AdminSvc_ListPasskeys_Handler,
+		},
+		{
+			MethodName: "DeletePasskey",
+			Handler:    _AdminSvc_DeletePasskey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

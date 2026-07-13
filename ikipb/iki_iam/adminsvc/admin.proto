@@ -49,6 +49,9 @@ service AdminSvc {
   rpc RemoveUserFromGroup (RemoveUserFromGroupRequest) returns (RemoveUserFromGroupResponse) {}
   rpc ListGroupUsers (ListGroupUsersRequest) returns (ListGroupUsersResponse) {}
 
+  // Passkey management
+  rpc ListPasskeys (ListPasskeysRequest) returns (ListPasskeysResponse) {}
+  rpc DeletePasskey (DeletePasskeyRequest) returns (DeletePasskeyResponse) {}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -300,3 +303,21 @@ message SetUserGroupsRequest {
 message SetUserGroupsResponse {
   iam.UserDetail user = 1;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Passkey management
+//////
+
+message ListPasskeysRequest {
+  optional string user_id = 1;
+}
+
+message ListPasskeysResponse {
+  repeated iam.Passkey passkeys = 1;
+}
+
+message DeletePasskeyRequest {
+  string id = 1;
+}
+
+message DeletePasskeyResponse {}

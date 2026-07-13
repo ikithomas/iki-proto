@@ -2,7 +2,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import _m0 from "protobufjs/minimal";
-import { Group, GroupDetail, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
+import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, User, UserDetail } from "../iam";
 
 export const protobufPackage = "adminsvc";
 
@@ -227,6 +227,21 @@ export interface SetUserGroupsRequest {
 
 export interface SetUserGroupsResponse {
   user: UserDetail | undefined;
+}
+
+export interface ListPasskeysRequest {
+  userId?: string | undefined;
+}
+
+export interface ListPasskeysResponse {
+  passkeys: Passkey[];
+}
+
+export interface DeletePasskeyRequest {
+  id: string;
+}
+
+export interface DeletePasskeyResponse {
 }
 
 function createBaseListPermissionsRequest(): ListPermissionsRequest {
@@ -3468,6 +3483,220 @@ export const SetUserGroupsResponse = {
   },
 };
 
+function createBaseListPasskeysRequest(): ListPasskeysRequest {
+  return { userId: undefined };
+}
+
+export const ListPasskeysRequest = {
+  encode(message: ListPasskeysRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.userId !== undefined) {
+      writer.uint32(10).string(message.userId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListPasskeysRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListPasskeysRequest {
+    return { userId: isSet(object.userId) ? String(object.userId) : undefined };
+  },
+
+  toJSON(message: ListPasskeysRequest): unknown {
+    const obj: any = {};
+    if (message.userId !== undefined) {
+      obj.userId = message.userId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(base?: I): ListPasskeysRequest {
+    return ListPasskeysRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListPasskeysRequest>, I>>(object: I): ListPasskeysRequest {
+    const message = createBaseListPasskeysRequest();
+    message.userId = object.userId ?? undefined;
+    return message;
+  },
+};
+
+function createBaseListPasskeysResponse(): ListPasskeysResponse {
+  return { passkeys: [] };
+}
+
+export const ListPasskeysResponse = {
+  encode(message: ListPasskeysResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.passkeys) {
+      Passkey.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ListPasskeysResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListPasskeysResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.passkeys.push(Passkey.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListPasskeysResponse {
+    return { passkeys: Array.isArray(object?.passkeys) ? object.passkeys.map((e: any) => Passkey.fromJSON(e)) : [] };
+  },
+
+  toJSON(message: ListPasskeysResponse): unknown {
+    const obj: any = {};
+    if (message.passkeys?.length) {
+      obj.passkeys = message.passkeys.map((e) => Passkey.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListPasskeysResponse>, I>>(base?: I): ListPasskeysResponse {
+    return ListPasskeysResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListPasskeysResponse>, I>>(object: I): ListPasskeysResponse {
+    const message = createBaseListPasskeysResponse();
+    message.passkeys = object.passkeys?.map((e) => Passkey.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseDeletePasskeyRequest(): DeletePasskeyRequest {
+  return { id: "" };
+}
+
+export const DeletePasskeyRequest = {
+  encode(message: DeletePasskeyRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeletePasskeyRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeletePasskeyRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: DeletePasskeyRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeletePasskeyRequest>, I>>(base?: I): DeletePasskeyRequest {
+    return DeletePasskeyRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeletePasskeyRequest>, I>>(object: I): DeletePasskeyRequest {
+    const message = createBaseDeletePasskeyRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDeletePasskeyResponse(): DeletePasskeyResponse {
+  return {};
+}
+
+export const DeletePasskeyResponse = {
+  encode(_: DeletePasskeyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeletePasskeyResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeletePasskeyResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeletePasskeyResponse {
+    return {};
+  },
+
+  toJSON(_: DeletePasskeyResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeletePasskeyResponse>, I>>(base?: I): DeletePasskeyResponse {
+    return DeletePasskeyResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeletePasskeyResponse>, I>>(_: I): DeletePasskeyResponse {
+    const message = createBaseDeletePasskeyResponse();
+    return message;
+  },
+};
+
 export interface AdminSvc {
   /** User management */
   ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse>;
@@ -3527,6 +3756,9 @@ export interface AdminSvc {
     request: DeepPartial<ListGroupUsersRequest>,
     metadata?: grpc.Metadata,
   ): Promise<ListGroupUsersResponse>;
+  /** Passkey management */
+  ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse>;
+  DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse>;
 }
 
 export class AdminSvcClientImpl implements AdminSvc {
@@ -3561,6 +3793,8 @@ export class AdminSvcClientImpl implements AdminSvc {
     this.AddUserToGroup = this.AddUserToGroup.bind(this);
     this.RemoveUserFromGroup = this.RemoveUserFromGroup.bind(this);
     this.ListGroupUsers = this.ListGroupUsers.bind(this);
+    this.ListPasskeys = this.ListPasskeys.bind(this);
+    this.DeletePasskey = this.DeletePasskey.bind(this);
   }
 
   ListUsers(request: DeepPartial<ListUsersRequest>, metadata?: grpc.Metadata): Promise<ListUsersResponse> {
@@ -3693,6 +3927,14 @@ export class AdminSvcClientImpl implements AdminSvc {
     metadata?: grpc.Metadata,
   ): Promise<ListGroupUsersResponse> {
     return this.rpc.unary(AdminSvcListGroupUsersDesc, ListGroupUsersRequest.fromPartial(request), metadata);
+  }
+
+  ListPasskeys(request: DeepPartial<ListPasskeysRequest>, metadata?: grpc.Metadata): Promise<ListPasskeysResponse> {
+    return this.rpc.unary(AdminSvcListPasskeysDesc, ListPasskeysRequest.fromPartial(request), metadata);
+  }
+
+  DeletePasskey(request: DeepPartial<DeletePasskeyRequest>, metadata?: grpc.Metadata): Promise<DeletePasskeyResponse> {
+    return this.rpc.unary(AdminSvcDeletePasskeyDesc, DeletePasskeyRequest.fromPartial(request), metadata);
   }
 }
 
@@ -4309,6 +4551,52 @@ export const AdminSvcListGroupUsersDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = ListGroupUsersResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcListPasskeysDesc: UnaryMethodDefinitionish = {
+  methodName: "ListPasskeys",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ListPasskeysRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ListPasskeysResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const AdminSvcDeletePasskeyDesc: UnaryMethodDefinitionish = {
+  methodName: "DeletePasskey",
+  service: AdminSvcDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeletePasskeyRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeletePasskeyResponse.decode(data);
       return {
         ...value,
         toObject() {
