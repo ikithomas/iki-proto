@@ -75,6 +75,11 @@ export declare const GetMyProfileResponse: {
                 id?: string;
                 name?: string;
             }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
         };
     } & {
         user?: {
@@ -99,6 +104,11 @@ export declare const GetMyProfileResponse: {
             effectiveRoles?: {
                 id?: string;
                 name?: string;
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
             }[];
         } & {
             user?: {
@@ -159,8 +169,25 @@ export declare const GetMyProfileResponse: {
                 id?: string;
                 name?: string;
             }[]>]: never; };
-        } & { [K_7 in Exclude<keyof I["user"], keyof UserDetail>]: never; };
-    } & { [K_8 in Exclude<keyof I, "user">]: never; }>(base?: I): GetMyProfileResponse;
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_7 in Exclude<keyof I["user"]["effectivePermissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_8 in Exclude<keyof I["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_9 in Exclude<keyof I["user"], keyof UserDetail>]: never; };
+    } & { [K_10 in Exclude<keyof I, "user">]: never; }>(base?: I): GetMyProfileResponse;
     fromPartial<I_1 extends {
         user?: {
             user?: {
@@ -184,6 +211,11 @@ export declare const GetMyProfileResponse: {
             effectiveRoles?: {
                 id?: string;
                 name?: string;
+            }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
             }[];
         };
     } & {
@@ -210,6 +242,11 @@ export declare const GetMyProfileResponse: {
                 id?: string;
                 name?: string;
             }[];
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[];
         } & {
             user?: {
                 id?: string;
@@ -229,7 +266,7 @@ export declare const GetMyProfileResponse: {
                 lastLoginAt?: number;
                 lastActivityAt?: number;
                 scimLastSyncedAt?: number;
-            } & { [K_9 in Exclude<keyof I_1["user"]["user"], keyof User>]: never; };
+            } & { [K_11 in Exclude<keyof I_1["user"]["user"], keyof User>]: never; };
             groups?: {
                 id?: string;
                 name?: string;
@@ -239,7 +276,7 @@ export declare const GetMyProfileResponse: {
             } & {
                 id?: string;
                 name?: string;
-            } & { [K_10 in Exclude<keyof I_1["user"]["groups"][number], keyof import("../iam").Group>]: never; })[] & { [K_11 in Exclude<keyof I_1["user"]["groups"], keyof {
+            } & { [K_12 in Exclude<keyof I_1["user"]["groups"][number], keyof import("../iam").Group>]: never; })[] & { [K_13 in Exclude<keyof I_1["user"]["groups"], keyof {
                 id?: string;
                 name?: string;
             }[]>]: never; };
@@ -252,7 +289,7 @@ export declare const GetMyProfileResponse: {
             } & {
                 id?: string;
                 name?: string;
-            } & { [K_12 in Exclude<keyof I_1["user"]["directRoles"][number], keyof import("../iam").Role>]: never; })[] & { [K_13 in Exclude<keyof I_1["user"]["directRoles"], keyof {
+            } & { [K_14 in Exclude<keyof I_1["user"]["directRoles"][number], keyof import("../iam").Role>]: never; })[] & { [K_15 in Exclude<keyof I_1["user"]["directRoles"], keyof {
                 id?: string;
                 name?: string;
             }[]>]: never; };
@@ -265,12 +302,29 @@ export declare const GetMyProfileResponse: {
             } & {
                 id?: string;
                 name?: string;
-            } & { [K_14 in Exclude<keyof I_1["user"]["effectiveRoles"][number], keyof import("../iam").Role>]: never; })[] & { [K_15 in Exclude<keyof I_1["user"]["effectiveRoles"], keyof {
+            } & { [K_16 in Exclude<keyof I_1["user"]["effectiveRoles"][number], keyof import("../iam").Role>]: never; })[] & { [K_17 in Exclude<keyof I_1["user"]["effectiveRoles"], keyof {
                 id?: string;
                 name?: string;
             }[]>]: never; };
-        } & { [K_16 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
-    } & { [K_17 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetMyProfileResponse;
+            effectivePermissions?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_18 in Exclude<keyof I_1["user"]["effectivePermissions"][number], keyof import("../iam").Permission>]: never; })[] & { [K_19 in Exclude<keyof I_1["user"]["effectivePermissions"], keyof {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            }[]>]: never; };
+        } & { [K_20 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
+    } & { [K_21 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetMyProfileResponse;
 };
 export declare const PatchMyProfileRequest: {
     encode(message: PatchMyProfileRequest, writer?: _m0.Writer): _m0.Writer;

@@ -62,6 +62,8 @@ export interface UserDetail {
   directRoles: Role[];
   /** Union of all roles from group memberships and direct assignments. */
   effectiveRoles: Role[];
+  /** Flattened permissions derived from all effective roles. */
+  effectivePermissions: Permission[];
 }
 
 export interface Permission {
@@ -306,7 +308,7 @@ export const User = {
 };
 
 function createBaseUserDetail(): UserDetail {
-  return { user: undefined, groups: [], directRoles: [], effectiveRoles: [] };
+  return { user: undefined, groups: [], directRoles: [], effectiveRoles: [], effectivePermissions: [] };
 }
 
 export const UserDetail = {
@@ -322,6 +324,9 @@ export const UserDetail = {
     }
     for (const v of message.effectiveRoles) {
       Role.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.effectivePermissions) {
+      Permission.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -361,6 +366,13 @@ export const UserDetail = {
 
           message.effectiveRoles.push(Role.decode(reader, reader.uint32()));
           continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.effectivePermissions.push(Permission.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -377,6 +389,9 @@ export const UserDetail = {
       directRoles: Array.isArray(object?.directRoles) ? object.directRoles.map((e: any) => Role.fromJSON(e)) : [],
       effectiveRoles: Array.isArray(object?.effectiveRoles)
         ? object.effectiveRoles.map((e: any) => Role.fromJSON(e))
+        : [],
+      effectivePermissions: Array.isArray(object?.effectivePermissions)
+        ? object.effectivePermissions.map((e: any) => Permission.fromJSON(e))
         : [],
     };
   },
@@ -395,6 +410,9 @@ export const UserDetail = {
     if (message.effectiveRoles?.length) {
       obj.effectiveRoles = message.effectiveRoles.map((e) => Role.toJSON(e));
     }
+    if (message.effectivePermissions?.length) {
+      obj.effectivePermissions = message.effectivePermissions.map((e) => Permission.toJSON(e));
+    }
     return obj;
   },
 
@@ -407,6 +425,7 @@ export const UserDetail = {
     message.groups = object.groups?.map((e) => Group.fromPartial(e)) || [];
     message.directRoles = object.directRoles?.map((e) => Role.fromPartial(e)) || [];
     message.effectiveRoles = object.effectiveRoles?.map((e) => Role.fromPartial(e)) || [];
+    message.effectivePermissions = object.effectivePermissions?.map((e) => Permission.fromPartial(e)) || [];
     return message;
   },
 };
