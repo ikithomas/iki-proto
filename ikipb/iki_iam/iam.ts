@@ -75,6 +75,18 @@ export interface Role {
   name: string;
 }
 
+export interface PermissionDetail {
+  permission:
+    | Permission
+    | undefined;
+  /** Roles that directly have this permission. */
+  roles: Role[];
+  /** Groups that have this permission via one of their roles. */
+  groups: Group[];
+  /** Users who have this permission via any group or direct role. */
+  users: User[];
+}
+
 export interface RoleDetail {
   role: Role | undefined;
   permissions: Permission[];
@@ -555,6 +567,112 @@ export const Role = {
     const message = createBaseRole();
     message.id = object.id ?? "";
     message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBasePermissionDetail(): PermissionDetail {
+  return { permission: undefined, roles: [], groups: [], users: [] };
+}
+
+export const PermissionDetail = {
+  encode(message: PermissionDetail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.permission !== undefined) {
+      Permission.encode(message.permission, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.roles) {
+      Role.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.groups) {
+      Group.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.users) {
+      User.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): PermissionDetail {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePermissionDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.permission = Permission.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.roles.push(Role.decode(reader, reader.uint32()));
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groups.push(Group.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.users.push(User.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PermissionDetail {
+    return {
+      permission: isSet(object.permission) ? Permission.fromJSON(object.permission) : undefined,
+      roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => Role.fromJSON(e)) : [],
+      groups: Array.isArray(object?.groups) ? object.groups.map((e: any) => Group.fromJSON(e)) : [],
+      users: Array.isArray(object?.users) ? object.users.map((e: any) => User.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: PermissionDetail): unknown {
+    const obj: any = {};
+    if (message.permission !== undefined) {
+      obj.permission = Permission.toJSON(message.permission);
+    }
+    if (message.roles?.length) {
+      obj.roles = message.roles.map((e) => Role.toJSON(e));
+    }
+    if (message.groups?.length) {
+      obj.groups = message.groups.map((e) => Group.toJSON(e));
+    }
+    if (message.users?.length) {
+      obj.users = message.users.map((e) => User.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<PermissionDetail>, I>>(base?: I): PermissionDetail {
+    return PermissionDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PermissionDetail>, I>>(object: I): PermissionDetail {
+    const message = createBasePermissionDetail();
+    message.permission = (object.permission !== undefined && object.permission !== null)
+      ? Permission.fromPartial(object.permission)
+      : undefined;
+    message.roles = object.roles?.map((e) => Role.fromPartial(e)) || [];
+    message.groups = object.groups?.map((e) => Group.fromPartial(e)) || [];
+    message.users = object.users?.map((e) => User.fromPartial(e)) || [];
     return message;
   },
 };

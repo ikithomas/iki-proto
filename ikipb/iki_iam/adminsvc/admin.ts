@@ -7,6 +7,7 @@ import {
   GroupDetail,
   Passkey,
   Permission,
+  PermissionDetail,
   Role,
   RoleDetail,
   Service,
@@ -29,7 +30,7 @@ export interface GetPermissionRequest {
 }
 
 export interface GetPermissionResponse {
-  permission: Permission | undefined;
+  permission: PermissionDetail | undefined;
 }
 
 export interface CreatePermissionRequest {
@@ -480,7 +481,7 @@ function createBaseGetPermissionResponse(): GetPermissionResponse {
 export const GetPermissionResponse = {
   encode(message: GetPermissionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.permission !== undefined) {
-      Permission.encode(message.permission, writer.uint32(10).fork()).ldelim();
+      PermissionDetail.encode(message.permission, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -497,7 +498,7 @@ export const GetPermissionResponse = {
             break;
           }
 
-          message.permission = Permission.decode(reader, reader.uint32());
+          message.permission = PermissionDetail.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -509,13 +510,13 @@ export const GetPermissionResponse = {
   },
 
   fromJSON(object: any): GetPermissionResponse {
-    return { permission: isSet(object.permission) ? Permission.fromJSON(object.permission) : undefined };
+    return { permission: isSet(object.permission) ? PermissionDetail.fromJSON(object.permission) : undefined };
   },
 
   toJSON(message: GetPermissionResponse): unknown {
     const obj: any = {};
     if (message.permission !== undefined) {
-      obj.permission = Permission.toJSON(message.permission);
+      obj.permission = PermissionDetail.toJSON(message.permission);
     }
     return obj;
   },
@@ -526,7 +527,7 @@ export const GetPermissionResponse = {
   fromPartial<I extends Exact<DeepPartial<GetPermissionResponse>, I>>(object: I): GetPermissionResponse {
     const message = createBaseGetPermissionResponse();
     message.permission = (object.permission !== undefined && object.permission !== null)
-      ? Permission.fromPartial(object.permission)
+      ? PermissionDetail.fromPartial(object.permission)
       : undefined;
     return message;
   },

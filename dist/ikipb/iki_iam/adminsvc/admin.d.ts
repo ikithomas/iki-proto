@@ -1,6 +1,6 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { Group, GroupDetail, Passkey, Permission, Role, RoleDetail, Service, ServiceDetail, User, UserDetail } from "../iam";
+import { Group, GroupDetail, Passkey, Permission, PermissionDetail, Role, RoleDetail, Service, ServiceDetail, User, UserDetail } from "../iam";
 export declare const protobufPackage = "adminsvc";
 export interface ListPermissionsRequest {
 }
@@ -11,7 +11,7 @@ export interface GetPermissionRequest {
     id: string;
 }
 export interface GetPermissionResponse {
-    permission: Permission | undefined;
+    permission: PermissionDetail | undefined;
 }
 export interface CreatePermissionRequest {
     name: string;
@@ -312,38 +312,256 @@ export declare const GetPermissionResponse: {
     toJSON(message: GetPermissionResponse): unknown;
     create<I extends {
         permission?: {
-            id?: string;
-            name?: string;
-            externalId?: string;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            groups?: {
+                id?: string;
+                name?: string;
+            }[];
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[];
         };
     } & {
         permission?: {
-            id?: string;
-            name?: string;
-            externalId?: string;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            groups?: {
+                id?: string;
+                name?: string;
+            }[];
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[];
         } & {
-            id?: string;
-            name?: string;
-            externalId?: string;
-        } & { [K in Exclude<keyof I["permission"], keyof Permission>]: never; };
-    } & { [K_1 in Exclude<keyof I, "permission">]: never; }>(base?: I): GetPermissionResponse;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K in Exclude<keyof I["permission"]["permission"], keyof Permission>]: never; };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_1 in Exclude<keyof I["permission"]["roles"][number], keyof Role>]: never; })[] & { [K_2 in Exclude<keyof I["permission"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_3 in Exclude<keyof I["permission"]["groups"][number], keyof Group>]: never; })[] & { [K_4 in Exclude<keyof I["permission"]["groups"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[] & ({
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K_5 in Exclude<keyof I["permission"]["users"][number], keyof User>]: never; })[] & { [K_6 in Exclude<keyof I["permission"]["users"], keyof {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[]>]: never; };
+        } & { [K_7 in Exclude<keyof I["permission"], keyof PermissionDetail>]: never; };
+    } & { [K_8 in Exclude<keyof I, "permission">]: never; }>(base?: I): GetPermissionResponse;
     fromPartial<I_1 extends {
         permission?: {
-            id?: string;
-            name?: string;
-            externalId?: string;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            groups?: {
+                id?: string;
+                name?: string;
+            }[];
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[];
         };
     } & {
         permission?: {
-            id?: string;
-            name?: string;
-            externalId?: string;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[];
+            groups?: {
+                id?: string;
+                name?: string;
+            }[];
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[];
         } & {
-            id?: string;
-            name?: string;
-            externalId?: string;
-        } & { [K_2 in Exclude<keyof I_1["permission"], keyof Permission>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, "permission">]: never; }>(object: I_1): GetPermissionResponse;
+            permission?: {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & {
+                id?: string;
+                name?: string;
+                externalId?: string;
+            } & { [K_9 in Exclude<keyof I_1["permission"]["permission"], keyof Permission>]: never; };
+            roles?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_10 in Exclude<keyof I_1["permission"]["roles"][number], keyof Role>]: never; })[] & { [K_11 in Exclude<keyof I_1["permission"]["roles"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            groups?: {
+                id?: string;
+                name?: string;
+            }[] & ({
+                id?: string;
+                name?: string;
+            } & {
+                id?: string;
+                name?: string;
+            } & { [K_12 in Exclude<keyof I_1["permission"]["groups"][number], keyof Group>]: never; })[] & { [K_13 in Exclude<keyof I_1["permission"]["groups"], keyof {
+                id?: string;
+                name?: string;
+            }[]>]: never; };
+            users?: {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[] & ({
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            } & { [K_14 in Exclude<keyof I_1["permission"]["users"][number], keyof User>]: never; })[] & { [K_15 in Exclude<keyof I_1["permission"]["users"], keyof {
+                id?: string;
+                email?: string;
+                givenName?: string;
+                familyName?: string;
+                active?: boolean;
+                lastLoginAt?: number;
+                lastActivityAt?: number;
+                scimLastSyncedAt?: number;
+            }[]>]: never; };
+        } & { [K_16 in Exclude<keyof I_1["permission"], keyof PermissionDetail>]: never; };
+    } & { [K_17 in Exclude<keyof I_1, "permission">]: never; }>(object: I_1): GetPermissionResponse;
 };
 export declare const CreatePermissionRequest: {
     encode(message: CreatePermissionRequest, writer?: _m0.Writer): _m0.Writer;

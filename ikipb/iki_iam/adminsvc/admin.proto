@@ -79,7 +79,7 @@ message GetPermissionRequest {
 }
 
 message GetPermissionResponse {
-  iam.Permission permission = 1;
+  iam.PermissionDetail permission = 1;
 }
 
 message CreatePermissionRequest {

@@ -160,7 +160,7 @@ function createBaseGetPermissionResponse() {
 exports.GetPermissionResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.permission !== undefined) {
-            iam_1.Permission.encode(message.permission, writer.uint32(10).fork()).ldelim();
+            iam_1.PermissionDetail.encode(message.permission, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -175,7 +175,7 @@ exports.GetPermissionResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.permission = iam_1.Permission.decode(reader, reader.uint32());
+                    message.permission = iam_1.PermissionDetail.decode(reader, reader.uint32());
                     continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
@@ -186,12 +186,12 @@ exports.GetPermissionResponse = {
         return message;
     },
     fromJSON(object) {
-        return { permission: isSet(object.permission) ? iam_1.Permission.fromJSON(object.permission) : undefined };
+        return { permission: isSet(object.permission) ? iam_1.PermissionDetail.fromJSON(object.permission) : undefined };
     },
     toJSON(message) {
         const obj = {};
         if (message.permission !== undefined) {
-            obj.permission = iam_1.Permission.toJSON(message.permission);
+            obj.permission = iam_1.PermissionDetail.toJSON(message.permission);
         }
         return obj;
     },
@@ -201,7 +201,7 @@ exports.GetPermissionResponse = {
     fromPartial(object) {
         const message = createBaseGetPermissionResponse();
         message.permission = (object.permission !== undefined && object.permission !== null)
-            ? iam_1.Permission.fromPartial(object.permission)
+            ? iam_1.PermissionDetail.fromPartial(object.permission)
             : undefined;
         return message;
     },

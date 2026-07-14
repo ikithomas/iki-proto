@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Passkey = exports.Secret = exports.ServiceDetail = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
+exports.Passkey = exports.Secret = exports.ServiceDetail = exports.Service = exports.GroupDetail = exports.Group = exports.RoleDetail = exports.PermissionDetail = exports.Role = exports.Permission = exports.UserDetail = exports.User = exports.entityTypeToJSON = exports.entityTypeFromJSON = exports.EntityType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -447,6 +447,104 @@ exports.Role = {
         const message = createBaseRole();
         message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
         message.name = (_b = object.name) !== null && _b !== void 0 ? _b : "";
+        return message;
+    },
+};
+function createBasePermissionDetail() {
+    return { permission: undefined, roles: [], groups: [], users: [] };
+}
+exports.PermissionDetail = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.permission !== undefined) {
+            exports.Permission.encode(message.permission, writer.uint32(10).fork()).ldelim();
+        }
+        for (const v of message.roles) {
+            exports.Role.encode(v, writer.uint32(18).fork()).ldelim();
+        }
+        for (const v of message.groups) {
+            exports.Group.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        for (const v of message.users) {
+            exports.User.encode(v, writer.uint32(34).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePermissionDetail();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.permission = exports.Permission.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.roles.push(exports.Role.decode(reader, reader.uint32()));
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.groups.push(exports.Group.decode(reader, reader.uint32()));
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.users.push(exports.User.decode(reader, reader.uint32()));
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            permission: isSet(object.permission) ? exports.Permission.fromJSON(object.permission) : undefined,
+            roles: Array.isArray(object === null || object === void 0 ? void 0 : object.roles) ? object.roles.map((e) => exports.Role.fromJSON(e)) : [],
+            groups: Array.isArray(object === null || object === void 0 ? void 0 : object.groups) ? object.groups.map((e) => exports.Group.fromJSON(e)) : [],
+            users: Array.isArray(object === null || object === void 0 ? void 0 : object.users) ? object.users.map((e) => exports.User.fromJSON(e)) : [],
+        };
+    },
+    toJSON(message) {
+        var _a, _b, _c;
+        const obj = {};
+        if (message.permission !== undefined) {
+            obj.permission = exports.Permission.toJSON(message.permission);
+        }
+        if ((_a = message.roles) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.roles = message.roles.map((e) => exports.Role.toJSON(e));
+        }
+        if ((_b = message.groups) === null || _b === void 0 ? void 0 : _b.length) {
+            obj.groups = message.groups.map((e) => exports.Group.toJSON(e));
+        }
+        if ((_c = message.users) === null || _c === void 0 ? void 0 : _c.length) {
+            obj.users = message.users.map((e) => exports.User.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.PermissionDetail.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c;
+        const message = createBasePermissionDetail();
+        message.permission = (object.permission !== undefined && object.permission !== null)
+            ? exports.Permission.fromPartial(object.permission)
+            : undefined;
+        message.roles = ((_a = object.roles) === null || _a === void 0 ? void 0 : _a.map((e) => exports.Role.fromPartial(e))) || [];
+        message.groups = ((_b = object.groups) === null || _b === void 0 ? void 0 : _b.map((e) => exports.Group.fromPartial(e))) || [];
+        message.users = ((_c = object.users) === null || _c === void 0 ? void 0 : _c.map((e) => exports.User.fromPartial(e))) || [];
         return message;
     },
 };

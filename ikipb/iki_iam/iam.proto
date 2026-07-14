@@ -43,6 +43,19 @@ message Role {
   string name = 2;
 }
 
+message PermissionDetail {
+  Permission permission    = 1;
+
+  // Roles that directly have this permission.
+  repeated Role roles      = 2;
+
+  // Groups that have this permission via one of their roles.
+  repeated Group groups    = 3;
+
+  // Users who have this permission via any group or direct role.
+  repeated User users      = 4;
+}
+
 message RoleDetail {
   Role role                        = 1;
   repeated Permission permissions  = 2;

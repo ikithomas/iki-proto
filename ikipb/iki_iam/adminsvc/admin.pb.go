@@ -147,8 +147,8 @@ func (x *GetPermissionRequest) GetId() string {
 }
 
 type GetPermissionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Permission    *iki_iam.Permission    `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"`
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Permission    *iki_iam.PermissionDetail `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,7 +183,7 @@ func (*GetPermissionResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetPermissionResponse) GetPermission() *iki_iam.Permission {
+func (x *GetPermissionResponse) GetPermission() *iki_iam.PermissionDetail {
 	if x != nil {
 		return x.Permission
 	}
@@ -3295,10 +3295,10 @@ const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\x17ListPermissionsResponse\x121\n" +
 	"\vpermissions\x18\x01 \x03(\v2\x0f.iam.PermissionR\vpermissions\"&\n" +
 	"\x14GetPermissionRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"H\n" +
-	"\x15GetPermissionResponse\x12/\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"N\n" +
+	"\x15GetPermissionResponse\x125\n" +
 	"\n" +
-	"permission\x18\x01 \x01(\v2\x0f.iam.PermissionR\n" +
+	"permission\x18\x01 \x01(\v2\x15.iam.PermissionDetailR\n" +
 	"permission\"N\n" +
 	"\x17CreatePermissionRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
@@ -3600,43 +3600,44 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
 	(*DeleteServiceSecretRequest)(nil),      // 72: adminsvc.DeleteServiceSecretRequest
 	(*DeleteServiceSecretResponse)(nil),     // 73: adminsvc.DeleteServiceSecretResponse
 	(*iki_iam.Permission)(nil),              // 74: iam.Permission
-	(*iki_iam.Role)(nil),                    // 75: iam.Role
-	(*iki_iam.RoleDetail)(nil),              // 76: iam.RoleDetail
-	(*iki_iam.Group)(nil),                   // 77: iam.Group
-	(*iki_iam.GroupDetail)(nil),             // 78: iam.GroupDetail
-	(*iki_iam.User)(nil),                    // 79: iam.User
-	(*iki_iam.UserDetail)(nil),              // 80: iam.UserDetail
-	(*iki_iam.Passkey)(nil),                 // 81: iam.Passkey
-	(*iki_iam.Service)(nil),                 // 82: iam.Service
-	(*iki_iam.ServiceDetail)(nil),           // 83: iam.ServiceDetail
+	(*iki_iam.PermissionDetail)(nil),        // 75: iam.PermissionDetail
+	(*iki_iam.Role)(nil),                    // 76: iam.Role
+	(*iki_iam.RoleDetail)(nil),              // 77: iam.RoleDetail
+	(*iki_iam.Group)(nil),                   // 78: iam.Group
+	(*iki_iam.GroupDetail)(nil),             // 79: iam.GroupDetail
+	(*iki_iam.User)(nil),                    // 80: iam.User
+	(*iki_iam.UserDetail)(nil),              // 81: iam.UserDetail
+	(*iki_iam.Passkey)(nil),                 // 82: iam.Passkey
+	(*iki_iam.Service)(nil),                 // 83: iam.Service
+	(*iki_iam.ServiceDetail)(nil),           // 84: iam.ServiceDetail
 }
 var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	74, // 0: adminsvc.ListPermissionsResponse.permissions:type_name -> iam.Permission
-	74, // 1: adminsvc.GetPermissionResponse.permission:type_name -> iam.Permission
+	75, // 1: adminsvc.GetPermissionResponse.permission:type_name -> iam.PermissionDetail
 	74, // 2: adminsvc.CreatePermissionResponse.permission:type_name -> iam.Permission
 	74, // 3: adminsvc.PatchPermissionResponse.permission:type_name -> iam.Permission
-	75, // 4: adminsvc.ListRolesResponse.roles:type_name -> iam.Role
-	76, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.RoleDetail
-	75, // 6: adminsvc.CreateRoleResponse.role:type_name -> iam.Role
-	75, // 7: adminsvc.PatchRoleResponse.role:type_name -> iam.Role
-	76, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.RoleDetail
-	77, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
-	78, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.GroupDetail
-	77, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
-	77, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
-	78, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
-	79, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
-	79, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
-	79, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
-	80, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
-	79, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
-	80, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
-	80, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
-	81, // 21: adminsvc.ListPasskeysResponse.passkeys:type_name -> iam.Passkey
-	82, // 22: adminsvc.ListServicesResponse.services:type_name -> iam.Service
-	83, // 23: adminsvc.GetServiceResponse.service:type_name -> iam.ServiceDetail
-	82, // 24: adminsvc.CreateServiceResponse.service:type_name -> iam.Service
-	83, // 25: adminsvc.AddServiceSecretResponse.service:type_name -> iam.ServiceDetail
+	76, // 4: adminsvc.ListRolesResponse.roles:type_name -> iam.Role
+	77, // 5: adminsvc.GetRoleResponse.role:type_name -> iam.RoleDetail
+	76, // 6: adminsvc.CreateRoleResponse.role:type_name -> iam.Role
+	76, // 7: adminsvc.PatchRoleResponse.role:type_name -> iam.Role
+	77, // 8: adminsvc.SetRolePermissionsResponse.role:type_name -> iam.RoleDetail
+	78, // 9: adminsvc.ListGroupsResponse.groups:type_name -> iam.Group
+	79, // 10: adminsvc.GetGroupResponse.group:type_name -> iam.GroupDetail
+	78, // 11: adminsvc.CreateGroupResponse.group:type_name -> iam.Group
+	78, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
+	79, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
+	80, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
+	80, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
+	80, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
+	81, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
+	80, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
+	81, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
+	81, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
+	82, // 21: adminsvc.ListPasskeysResponse.passkeys:type_name -> iam.Passkey
+	83, // 22: adminsvc.ListServicesResponse.services:type_name -> iam.Service
+	84, // 23: adminsvc.GetServiceResponse.service:type_name -> iam.ServiceDetail
+	83, // 24: adminsvc.CreateServiceResponse.service:type_name -> iam.Service
+	84, // 25: adminsvc.AddServiceSecretResponse.service:type_name -> iam.ServiceDetail
 	34, // 26: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
 	40, // 27: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
 	36, // 28: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
