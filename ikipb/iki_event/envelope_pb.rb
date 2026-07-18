@@ -4,10 +4,11 @@
 
 require 'google/protobuf'
 
+require 'buf/validate/validate_pb'
 require 'google/protobuf/any_pb'
 
 
-descriptor_data = "\n\x1eikipb/iki_event/envelope.proto\x12\x05\x65vent\x1a\x19google/protobuf/any.proto\"t\n\x08\x45nvelope\x12\x19\n\x08\x65vent_id\x18\x01 \x01(\tR\x07\x65ventId\x12\x1d\n\nevent_type\x18\x02 \x01(\tR\teventType\x12.\n\x07payload\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyR\x07payloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\nIki::Eventb\x06proto3"
+descriptor_data = "\n\x1eikipb/iki_event/envelope.proto\x12\x05\x65vent\x1a\x1b\x62uf/validate/validate.proto\x1a\x19google/protobuf/any.proto\"\x8f\x01\n\x08\x45nvelope\x12#\n\x08\x65vent_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x07\x65ventId\x12&\n\nevent_type\x18\x02 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\teventType\x12\x36\n\x07payload\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyB\x06\xbaH\x03\xc8\x01\x01R\x07payloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\nIki::Eventb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)

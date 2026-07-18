@@ -7,6 +7,7 @@
 package iki_event
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -429,37 +430,38 @@ var File_ikipb_iki_event_ticket_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_event_ticket_proto_rawDesc = "" +
 	"\n" +
-	"\x1cikipb/iki_event/ticket.proto\x12\x06ticket\"f\n" +
-	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
-	"\tfirstname\x18\x02 \x01(\tR\tfirstname\x12\x1a\n" +
-	"\blastname\x18\x03 \x01(\tR\blastname\x12\x14\n" +
-	"\x05email\x18\x04 \x01(\tR\x05email\"Y\n" +
-	"\aComment\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\x12$\n" +
-	"\x06author\x18\x03 \x01(\v2\f.ticket.UserR\x06author\"\xae\x02\n" +
-	"\x06Ticket\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
-	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12\x1b\n" +
-	"\tstate_key\x18\x04 \x01(\tR\bstateKey\x12\x1a\n" +
-	"\x06due_at\x18\x05 \x01(\x03H\x01R\x05dueAt\x88\x01\x01\x12&\n" +
-	"\acreator\x18\x06 \x01(\v2\f.ticket.UserR\acreator\x12-\n" +
+	"\x1cikipb/iki_event/ticket.proto\x12\x06ticket\x1a\x1bbuf/validate/validate.proto\"\x8d\x01\n" +
+	"\x04User\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12&\n" +
+	"\tfirstname\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\tfirstname\x12$\n" +
+	"\blastname\x18\x03 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\blastname\x12\x1d\n" +
+	"\x05email\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"k\n" +
+	"\aComment\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\x12,\n" +
+	"\x06author\x18\x03 \x01(\v2\f.ticket.UserB\x06\xbaH\x03\xc8\x01\x01R\x06author\"\xd5\x02\n" +
+	"\x06Ticket\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
+	"\x05title\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05title\x12\x1d\n" +
+	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12$\n" +
+	"\tstate_key\x18\x04 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\bstateKey\x12\x1a\n" +
+	"\x06due_at\x18\x05 \x01(\x03H\x01R\x05dueAt\x88\x01\x01\x12.\n" +
+	"\acreator\x18\x06 \x01(\v2\f.ticket.UserB\x06\xbaH\x03\xc8\x01\x01R\acreator\x12-\n" +
 	"\bassignee\x18\a \x01(\v2\f.ticket.UserH\x02R\bassignee\x88\x01\x01\x12+\n" +
 	"\bcomments\x18\b \x03(\v2\x0f.ticket.CommentR\bcommentsB\n" +
 	"\n" +
 	"\b_contentB\t\n" +
 	"\a_due_atB\v\n" +
-	"\t_assignee\"<\n" +
-	"\x12EventTicketCreated\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"<\n" +
-	"\x12EventTicketUpdated\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\"A\n" +
-	"\x17EventTicketStateUpdated\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticket\">\n" +
-	"\x14EventTicketCommented\x12&\n" +
-	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketR\x06ticketBEZ.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\x12Iki::Event::Ticketb\x06proto3"
+	"\t_assignee\"D\n" +
+	"\x12EventTicketCreated\x12.\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketB\x06\xbaH\x03\xc8\x01\x01R\x06ticket\"D\n" +
+	"\x12EventTicketUpdated\x12.\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketB\x06\xbaH\x03\xc8\x01\x01R\x06ticket\"I\n" +
+	"\x17EventTicketStateUpdated\x12.\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketB\x06\xbaH\x03\xc8\x01\x01R\x06ticket\"F\n" +
+	"\x14EventTicketCommented\x12.\n" +
+	"\x06ticket\x18\x01 \x01(\v2\x0e.ticket.TicketB\x06\xbaH\x03\xc8\x01\x01R\x06ticketBEZ.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\x12Iki::Event::Ticketb\x06proto3"
 
 var (
 	file_ikipb_iki_event_ticket_proto_rawDescOnce sync.Once

@@ -7,6 +7,7 @@
 package iki_event
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -86,12 +87,12 @@ var File_ikipb_iki_event_envelope_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_event_envelope_proto_rawDesc = "" +
 	"\n" +
-	"\x1eikipb/iki_event/envelope.proto\x12\x05event\x1a\x19google/protobuf/any.proto\"t\n" +
-	"\bEnvelope\x12\x19\n" +
-	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x1d\n" +
+	"\x1eikipb/iki_event/envelope.proto\x12\x05event\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\"\x8f\x01\n" +
+	"\bEnvelope\x12#\n" +
+	"\bevent_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aeventId\x12&\n" +
 	"\n" +
-	"event_type\x18\x02 \x01(\tR\teventType\x12.\n" +
-	"\apayload\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\apayloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\n" +
+	"event_type\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\teventType\x126\n" +
+	"\apayload\x18\x03 \x01(\v2\x14.google.protobuf.AnyB\x06\xbaH\x03\xc8\x01\x01R\apayloadB=Z.github.com/ikithomas/iki-proto/ikipb/iki_event\xea\x02\n" +
 	"Iki::Eventb\x06proto3"
 
 var (

@@ -1,46 +1,48 @@
 syntax = "proto3";
 
+import "buf/validate/validate.proto";
+
 option go_package = "github.com/ikithomas/iki-proto/ikipb/iki_event";
 option ruby_package = "Iki::Event::Ticket";
 
 package ticket;
 
 message User {
-  string id = 1;
-  string firstname = 2;
-  string lastname = 3;
-  string email = 4;
+  string id        = 1 [(buf.validate.field).string.uuid = true];
+  string firstname = 2 [(buf.validate.field).string.max_len = 255];
+  string lastname  = 3 [(buf.validate.field).string.max_len = 255];
+  string email     = 4 [(buf.validate.field).string.email = true];
 }
 
 message Comment {
-  string id = 1;
+  string id      = 1 [(buf.validate.field).string.uuid = true];
   string content = 2;
-  User author = 3;
+  User author    = 3 [(buf.validate.field).required = true];
 }
 
 message Ticket {
-  string id = 1;
-  string title = 2;
-  optional string content = 3;
-  string state_key = 4;
-  optional int64 due_at = 5;
-  User creator = 6;
-  optional User assignee = 7;
+  string id                = 1 [(buf.validate.field).string.uuid = true];
+  string title             = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  optional string content  = 3;
+  string state_key         = 4 [(buf.validate.field).string.min_len = 1];
+  optional int64 due_at    = 5;
+  User creator             = 6 [(buf.validate.field).required = true];
+  optional User assignee   = 7;
   repeated Comment comments = 8;
 }
 
 message EventTicketCreated {
-  Ticket ticket = 1;
+  Ticket ticket = 1 [(buf.validate.field).required = true];
 }
 
 message EventTicketUpdated {
-  Ticket ticket = 1;
+  Ticket ticket = 1 [(buf.validate.field).required = true];
 }
 
 message EventTicketStateUpdated {
-  Ticket ticket = 1;
+  Ticket ticket = 1 [(buf.validate.field).required = true];
 }
 
 message EventTicketCommented {
-  Ticket ticket = 1;
+  Ticket ticket = 1 [(buf.validate.field).required = true];
 }
