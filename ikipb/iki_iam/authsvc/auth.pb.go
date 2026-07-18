@@ -7,6 +7,7 @@
 package authsvc
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	iki_iam "github.com/ikithomas/iki-proto/ikipb/iki_iam"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -514,31 +515,31 @@ var File_ikipb_iki_iam_authsvc_auth_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_authsvc_auth_proto_rawDesc = "" +
 	"\n" +
-	" ikipb/iki_iam/authsvc/auth.proto\x12\aauthsvc\x1a\x17ikipb/iki_iam/iam.proto\"/\n" +
-	"\x12GoogleLoginRequest\x12\x19\n" +
-	"\bid_token\x18\x01 \x01(\tR\aidToken\"|\n" +
+	" ikipb/iki_iam/authsvc/auth.proto\x12\aauthsvc\x1a\x1bbuf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"8\n" +
+	"\x12GoogleLoginRequest\x12\"\n" +
+	"\bid_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\aidToken\"|\n" +
 	"\x13GoogleLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12\x1d\n" +
-	"\x04user\x18\x03 \x01(\v2\t.iam.UserR\x04user\"W\n" +
-	"\x13ServiceLoginRequest\x12\x1b\n" +
-	"\tclient_id\x18\x01 \x01(\tR\bclientId\x12#\n" +
-	"\rclient_secret\x18\x02 \x01(\tR\fclientSecret\"^\n" +
+	"\x04user\x18\x03 \x01(\v2\t.iam.UserR\x04user\"i\n" +
+	"\x13ServiceLoginRequest\x12$\n" +
+	"\tclient_id\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\bclientId\x12,\n" +
+	"\rclient_secret\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\fclientSecret\"^\n" +
 	"\x14ServiceLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"\x10\n" +
 	"\x0eSignoutRequest\"\x11\n" +
-	"\x0fSignoutResponse\"0\n" +
-	"\x18BeginPasskeyLoginRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"]\n" +
+	"\x0fSignoutResponse\"9\n" +
+	"\x18BeginPasskeyLoginRequest\x12\x1d\n" +
+	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"]\n" +
 	"\x19BeginPasskeyLoginResponse\x12!\n" +
 	"\foptions_json\x18\x01 \x01(\tR\voptionsJson\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x02 \x01(\tR\tsessionId\"c\n" +
-	"\x19FinishPasskeyLoginRequest\x12\x1d\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"u\n" +
+	"\x19FinishPasskeyLoginRequest\x12&\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12'\n" +
-	"\x0fcredential_json\x18\x02 \x01(\tR\x0ecredentialJson\"\x83\x01\n" +
+	"session_id\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\tsessionId\x120\n" +
+	"\x0fcredential_json\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x0ecredentialJson\"\x83\x01\n" +
 	"\x1aFinishPasskeyLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12\x1d\n" +

@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "buf/validate/validate.proto";
 import "ikipb/iki_iam/iam.proto";
 
 option go_package = "/adminsvc";
@@ -75,7 +76,7 @@ message ListPermissionsResponse {
 }
 
 message GetPermissionRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetPermissionResponse {
@@ -83,8 +84,8 @@ message GetPermissionResponse {
 }
 
 message CreatePermissionRequest {
-  string name        = 1;
-  string external_id = 2;
+  string name        = 1 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  string external_id = 2 [(buf.validate.field).string.max_len = 255];
 }
 
 message CreatePermissionResponse {
@@ -92,9 +93,9 @@ message CreatePermissionResponse {
 }
 
 message PatchPermissionRequest {
-  string id                   = 1;
-  optional string name        = 2;
-  optional string external_id = 3;
+  string id                   = 1 [(buf.validate.field).string.uuid = true];
+  optional string name        = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  optional string external_id = 3 [(buf.validate.field).string = {max_len: 255}];
 }
 
 message PatchPermissionResponse {
@@ -102,7 +103,7 @@ message PatchPermissionResponse {
 }
 
 message DeletePermissionRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeletePermissionResponse {}
@@ -118,7 +119,7 @@ message ListRolesResponse {
 }
 
 message GetRoleRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetRoleResponse {
@@ -126,7 +127,7 @@ message GetRoleResponse {
 }
 
 message CreateRoleRequest {
-  string name = 1;
+  string name = 1 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message CreateRoleResponse {
@@ -134,8 +135,8 @@ message CreateRoleResponse {
 }
 
 message PatchRoleRequest {
-  string id            = 1;
-  optional string name = 2;
+  string id            = 1 [(buf.validate.field).string.uuid = true];
+  optional string name = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message PatchRoleResponse {
@@ -143,7 +144,7 @@ message PatchRoleResponse {
 }
 
 message DeleteRoleRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteRoleResponse {}
@@ -153,8 +154,8 @@ message DeleteRoleResponse {}
 //////
 
 message SetRolePermissionsRequest {
-  string role_id                 = 1;
-  repeated string permission_ids = 2;
+  string role_id                 = 1 [(buf.validate.field).string.uuid = true];
+  repeated string permission_ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
 }
 
 message SetRolePermissionsResponse {
@@ -172,7 +173,7 @@ message ListGroupsResponse {
 }
 
 message GetGroupRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetGroupResponse {
@@ -180,7 +181,7 @@ message GetGroupResponse {
 }
 
 message CreateGroupRequest {
-  string name = 1;
+  string name = 1 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message CreateGroupResponse {
@@ -188,8 +189,8 @@ message CreateGroupResponse {
 }
 
 message PatchGroupRequest {
-  string id            = 1;
-  optional string name = 2;
+  string id            = 1 [(buf.validate.field).string.uuid = true];
+  optional string name = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message PatchGroupResponse {
@@ -197,7 +198,7 @@ message PatchGroupResponse {
 }
 
 message DeleteGroupRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteGroupResponse {}
@@ -207,8 +208,8 @@ message DeleteGroupResponse {}
 //////
 
 message SetGroupRolesRequest {
-  string group_id          = 1;
-  repeated string role_ids = 2;
+  string group_id          = 1 [(buf.validate.field).string.uuid = true];
+  repeated string role_ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
 }
 
 message SetGroupRolesResponse {
@@ -225,23 +226,10 @@ message ListUsersResponse {
   repeated iam.User users = 1;
 }
 
-message PatchUserRequest {
-  string id                  = 1;
-  optional string given_name  = 2;
-  optional string family_name = 3;
-  optional string email       = 4;
-  optional bool active        = 5;
-}
-
-message PatchUserResponse {
-  iam.User user = 1;
-}
-
-
 message CreateUserRequest {
-  string email       = 1;
-  string given_name  = 2;
-  string family_name = 3;
+  string email       = 1 [(buf.validate.field).string.email = true];
+  string given_name  = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  string family_name = 3 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message CreateUserResponse {
@@ -249,15 +237,27 @@ message CreateUserResponse {
 }
 
 message GetUserRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetUserResponse {
   iam.UserDetail user = 1;
 }
 
+message PatchUserRequest {
+  string id                   = 1 [(buf.validate.field).string.uuid = true];
+  optional string given_name  = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  optional string family_name = 3 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
+  optional string email       = 4 [(buf.validate.field).string = {email: true}];
+  optional bool active        = 5;
+}
+
+message PatchUserResponse {
+  iam.User user = 1;
+}
+
 message DeleteUserRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteUserResponse {}
@@ -267,7 +267,7 @@ message DeleteUserResponse {}
 //////
 
 message ListGroupUsersRequest {
-  string group_id = 1;
+  string group_id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message ListGroupUsersResponse {
@@ -279,15 +279,15 @@ message ListGroupUsersResponse {
 //////
 
 message AddUserToGroupRequest {
-  string user_id  = 1;
-  string group_id = 2;
+  string user_id  = 1 [(buf.validate.field).string.uuid = true];
+  string group_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
 message AddUserToGroupResponse {}
 
 message RemoveUserFromGroupRequest {
-  string user_id  = 1;
-  string group_id = 2;
+  string user_id  = 1 [(buf.validate.field).string.uuid = true];
+  string group_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
 message RemoveUserFromGroupResponse {}
@@ -297,8 +297,8 @@ message RemoveUserFromGroupResponse {}
 //////
 
 message SetUserRolesRequest {
-  string user_id           = 1;
-  repeated string role_ids = 2;
+  string user_id           = 1 [(buf.validate.field).string.uuid = true];
+  repeated string role_ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
 }
 
 message SetUserRolesResponse {
@@ -306,8 +306,8 @@ message SetUserRolesResponse {
 }
 
 message SetUserGroupsRequest {
-  string user_id            = 1;
-  repeated string group_ids = 2;
+  string user_id            = 1 [(buf.validate.field).string.uuid = true];
+  repeated string group_ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
 }
 
 message SetUserGroupsResponse {
@@ -319,7 +319,7 @@ message SetUserGroupsResponse {
 //////
 
 message ListPasskeysRequest {
-  optional string user_id = 1;
+  optional string user_id = 1 [(buf.validate.field).string = {uuid: true}];
 }
 
 message ListPasskeysResponse {
@@ -327,7 +327,7 @@ message ListPasskeysResponse {
 }
 
 message DeletePasskeyRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeletePasskeyResponse {}
@@ -343,7 +343,7 @@ message ListServicesResponse {
 }
 
 message GetServiceRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetServiceResponse {
@@ -351,7 +351,7 @@ message GetServiceResponse {
 }
 
 message CreateServiceRequest {
-  string name = 1;
+  string name = 1 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
 }
 
 message CreateServiceResponse {
@@ -359,13 +359,13 @@ message CreateServiceResponse {
 }
 
 message DeleteServiceRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteServiceResponse {}
 
 message AddServiceSecretRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message AddServiceSecretResponse {
@@ -373,19 +373,19 @@ message AddServiceSecretResponse {
 }
 
 message ActivateServiceSecretRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message ActivateServiceSecretResponse {}
 
 message DeactivateServiceSecretRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeactivateServiceSecretResponse {}
 
 message DeleteServiceSecretRequest {
-  string id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteServiceSecretResponse {}

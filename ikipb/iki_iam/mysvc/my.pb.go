@@ -7,6 +7,7 @@
 package mysvc
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	iki_iam "github.com/ikithomas/iki-proto/ikipb/iki_iam"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -554,14 +555,16 @@ var File_ikipb_iki_iam_mysvc_my_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_mysvc_my_proto_rawDesc = "" +
 	"\n" +
-	"\x1cikipb/iki_iam/mysvc/my.proto\x12\x05mysvc\x1a\x17ikipb/iki_iam/iam.proto\"\x15\n" +
+	"\x1cikipb/iki_iam/mysvc/my.proto\x12\x05mysvc\x1a\x1bbuf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"\x15\n" +
 	"\x13GetMyProfileRequest\";\n" +
 	"\x14GetMyProfileResponse\x12#\n" +
-	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"\x80\x01\n" +
-	"\x15PatchMyProfileRequest\x12\"\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"\x98\x01\n" +
+	"\x15PatchMyProfileRequest\x12.\n" +
 	"\n" +
-	"given_name\x18\x01 \x01(\tH\x00R\tgivenName\x88\x01\x01\x12$\n" +
-	"\vfamily_name\x18\x02 \x01(\tH\x01R\n" +
+	"given_name\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x00R\tgivenName\x88\x01\x01\x120\n" +
+	"\vfamily_name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x01R\n" +
 	"familyName\x88\x01\x01B\r\n" +
 	"\v_given_nameB\x0e\n" +
 	"\f_family_name\"7\n" +
@@ -574,16 +577,17 @@ const file_ikipb_iki_iam_mysvc_my_proto_rawDesc = "" +
 	" BeginPasskeyRegistrationResponse\x12!\n" +
 	"\foptions_json\x18\x01 \x01(\tR\voptionsJson\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x02 \x01(\tR\tsessionId\"~\n" +
-	" FinishPasskeyRegistrationRequest\x12\x1d\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"\x9c\x01\n" +
+	" FinishPasskeyRegistrationRequest\x12&\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12'\n" +
-	"\x0fcredential_json\x18\x02 \x01(\tR\x0ecredentialJson\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"K\n" +
+	"session_id\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\tsessionId\x120\n" +
+	"\x0fcredential_json\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x0ecredentialJson\x12\x1e\n" +
+	"\x04name\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x04name\"K\n" +
 	"!FinishPasskeyRegistrationResponse\x12&\n" +
-	"\apasskey\x18\x01 \x01(\v2\f.iam.PasskeyR\apasskey\"(\n" +
-	"\x16DeleteMyPasskeyRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x19\n" +
+	"\apasskey\x18\x01 \x01(\v2\f.iam.PasskeyR\apasskey\"2\n" +
+	"\x16DeleteMyPasskeyRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x19\n" +
 	"\x17DeleteMyPasskeyResponse2\xa9\x04\n" +
 	"\x05MySvc\x12I\n" +
 	"\fGetMyProfile\x12\x1a.mysvc.GetMyProfileRequest\x1a\x1b.mysvc.GetMyProfileResponse\"\x00\x12O\n" +

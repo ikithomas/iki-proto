@@ -4,10 +4,11 @@
 
 require 'google/protobuf'
 
+require 'buf/validate/validate_pb'
 require 'ikipb/iki_iam/iam_pb'
 
 
-descriptor_data = "\n\"ikipb/iki_iam/tokensvc/token.proto\x12\x08tokensvc\x1a\x17ikipb/iki_iam/iam.proto\"\x12\n\x10GetJwksetRequest\"+\n\x11GetJwksetResponse\x12\x16\n\x06jwkset\x18\x01 \x01(\x0cR\x06jwkset\"k\n\x12\x41\x63\x63\x65ssTokenRequest\x12#\n\rrefresh_token\x18\x01 \x01(\tR\x0crefreshToken\x12\x30\n\x0b\x65ntity_type\x18\x02 \x01(\x0e\x32\x0f.iam.EntityTypeR\nentityType\"8\n\x13\x41\x63\x63\x65ssTokenResponse\x12!\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssToken2\xa0\x01\n\x08TokenSvc\x12\x46\n\tGetJwkset\x12\x1a.tokensvc.GetJwksetRequest\x1a\x1b.tokensvc.GetJwksetResponse\"\x00\x12L\n\x0b\x41\x63\x63\x65ssToken\x12\x1c.tokensvc.AccessTokenRequest\x1a\x1d.tokensvc.AccessTokenResponse\"\x00\x42 Z\t/tokensvc\xea\x02\x12Iki::Iam::TokenSvcb\x06proto3"
+descriptor_data = "\n\"ikipb/iki_iam/tokensvc/token.proto\x12\x08tokensvc\x1a\x1b\x62uf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"\x12\n\x10GetJwksetRequest\"+\n\x11GetJwksetResponse\x12\x16\n\x06jwkset\x18\x01 \x01(\x0cR\x06jwkset\"~\n\x12\x41\x63\x63\x65ssTokenRequest\x12,\n\rrefresh_token\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0crefreshToken\x12:\n\x0b\x65ntity_type\x18\x02 \x01(\x0e\x32\x0f.iam.EntityTypeB\x08\xbaH\x05\x82\x01\x02\x10\x01R\nentityType\"8\n\x13\x41\x63\x63\x65ssTokenResponse\x12!\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssToken2\xa0\x01\n\x08TokenSvc\x12\x46\n\tGetJwkset\x12\x1a.tokensvc.GetJwksetRequest\x1a\x1b.tokensvc.GetJwksetResponse\"\x00\x12L\n\x0b\x41\x63\x63\x65ssToken\x12\x1c.tokensvc.AccessTokenRequest\x1a\x1d.tokensvc.AccessTokenResponse\"\x00\x42 Z\t/tokensvc\xea\x02\x12Iki::Iam::TokenSvcb\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)

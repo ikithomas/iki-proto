@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "buf/validate/validate.proto";
 import "ikipb/iki_iam/iam.proto";
 
 option go_package = "/tokensvc";
@@ -18,8 +19,8 @@ message GetJwksetResponse{
 }
 
 message AccessTokenRequest {
-  string refresh_token = 1;
-  iam.EntityType entity_type = 2;
+  string refresh_token       = 1 [(buf.validate.field).string.min_len = 1];
+  iam.EntityType entity_type = 2 [(buf.validate.field).enum.defined_only = true];
 }
 
 message AccessTokenResponse {

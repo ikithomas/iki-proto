@@ -162,18 +162,6 @@ export interface ListUsersResponse {
   users: User[];
 }
 
-export interface PatchUserRequest {
-  id: string;
-  givenName?: string | undefined;
-  familyName?: string | undefined;
-  email?: string | undefined;
-  active?: boolean | undefined;
-}
-
-export interface PatchUserResponse {
-  user: User | undefined;
-}
-
 export interface CreateUserRequest {
   email: string;
   givenName: string;
@@ -190,6 +178,18 @@ export interface GetUserRequest {
 
 export interface GetUserResponse {
   user: UserDetail | undefined;
+}
+
+export interface PatchUserRequest {
+  id: string;
+  givenName?: string | undefined;
+  familyName?: string | undefined;
+  email?: string | undefined;
+  active?: boolean | undefined;
+}
+
+export interface PatchUserResponse {
+  user: User | undefined;
 }
 
 export interface DeleteUserRequest {
@@ -2402,182 +2402,6 @@ export const ListUsersResponse = {
   },
 };
 
-function createBasePatchUserRequest(): PatchUserRequest {
-  return { id: "", givenName: undefined, familyName: undefined, email: undefined, active: undefined };
-}
-
-export const PatchUserRequest = {
-  encode(message: PatchUserRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    if (message.givenName !== undefined) {
-      writer.uint32(18).string(message.givenName);
-    }
-    if (message.familyName !== undefined) {
-      writer.uint32(26).string(message.familyName);
-    }
-    if (message.email !== undefined) {
-      writer.uint32(34).string(message.email);
-    }
-    if (message.active !== undefined) {
-      writer.uint32(40).bool(message.active);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePatchUserRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.id = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.givenName = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.familyName = reader.string();
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.email = reader.string();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.active = reader.bool();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): PatchUserRequest {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      givenName: isSet(object.givenName) ? String(object.givenName) : undefined,
-      familyName: isSet(object.familyName) ? String(object.familyName) : undefined,
-      email: isSet(object.email) ? String(object.email) : undefined,
-      active: isSet(object.active) ? Boolean(object.active) : undefined,
-    };
-  },
-
-  toJSON(message: PatchUserRequest): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.givenName !== undefined) {
-      obj.givenName = message.givenName;
-    }
-    if (message.familyName !== undefined) {
-      obj.familyName = message.familyName;
-    }
-    if (message.email !== undefined) {
-      obj.email = message.email;
-    }
-    if (message.active !== undefined) {
-      obj.active = message.active;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PatchUserRequest>, I>>(base?: I): PatchUserRequest {
-    return PatchUserRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PatchUserRequest>, I>>(object: I): PatchUserRequest {
-    const message = createBasePatchUserRequest();
-    message.id = object.id ?? "";
-    message.givenName = object.givenName ?? undefined;
-    message.familyName = object.familyName ?? undefined;
-    message.email = object.email ?? undefined;
-    message.active = object.active ?? undefined;
-    return message;
-  },
-};
-
-function createBasePatchUserResponse(): PatchUserResponse {
-  return { user: undefined };
-}
-
-export const PatchUserResponse = {
-  encode(message: PatchUserResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.user !== undefined) {
-      User.encode(message.user, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserResponse {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePatchUserResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.user = User.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): PatchUserResponse {
-    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
-  },
-
-  toJSON(message: PatchUserResponse): unknown {
-    const obj: any = {};
-    if (message.user !== undefined) {
-      obj.user = User.toJSON(message.user);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PatchUserResponse>, I>>(base?: I): PatchUserResponse {
-    return PatchUserResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PatchUserResponse>, I>>(object: I): PatchUserResponse {
-    const message = createBasePatchUserResponse();
-    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
-    return message;
-  },
-};
-
 function createBaseCreateUserRequest(): CreateUserRequest {
   return { email: "", givenName: "", familyName: "" };
 }
@@ -2836,6 +2660,182 @@ export const GetUserResponse = {
     message.user = (object.user !== undefined && object.user !== null)
       ? UserDetail.fromPartial(object.user)
       : undefined;
+    return message;
+  },
+};
+
+function createBasePatchUserRequest(): PatchUserRequest {
+  return { id: "", givenName: undefined, familyName: undefined, email: undefined, active: undefined };
+}
+
+export const PatchUserRequest = {
+  encode(message: PatchUserRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.givenName !== undefined) {
+      writer.uint32(18).string(message.givenName);
+    }
+    if (message.familyName !== undefined) {
+      writer.uint32(26).string(message.familyName);
+    }
+    if (message.email !== undefined) {
+      writer.uint32(34).string(message.email);
+    }
+    if (message.active !== undefined) {
+      writer.uint32(40).bool(message.active);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePatchUserRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.givenName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.familyName = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.email = reader.string();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.active = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PatchUserRequest {
+    return {
+      id: isSet(object.id) ? String(object.id) : "",
+      givenName: isSet(object.givenName) ? String(object.givenName) : undefined,
+      familyName: isSet(object.familyName) ? String(object.familyName) : undefined,
+      email: isSet(object.email) ? String(object.email) : undefined,
+      active: isSet(object.active) ? Boolean(object.active) : undefined,
+    };
+  },
+
+  toJSON(message: PatchUserRequest): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.givenName !== undefined) {
+      obj.givenName = message.givenName;
+    }
+    if (message.familyName !== undefined) {
+      obj.familyName = message.familyName;
+    }
+    if (message.email !== undefined) {
+      obj.email = message.email;
+    }
+    if (message.active !== undefined) {
+      obj.active = message.active;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<PatchUserRequest>, I>>(base?: I): PatchUserRequest {
+    return PatchUserRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PatchUserRequest>, I>>(object: I): PatchUserRequest {
+    const message = createBasePatchUserRequest();
+    message.id = object.id ?? "";
+    message.givenName = object.givenName ?? undefined;
+    message.familyName = object.familyName ?? undefined;
+    message.email = object.email ?? undefined;
+    message.active = object.active ?? undefined;
+    return message;
+  },
+};
+
+function createBasePatchUserResponse(): PatchUserResponse {
+  return { user: undefined };
+}
+
+export const PatchUserResponse = {
+  encode(message: PatchUserResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.user !== undefined) {
+      User.encode(message.user, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePatchUserResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.user = User.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PatchUserResponse {
+    return { user: isSet(object.user) ? User.fromJSON(object.user) : undefined };
+  },
+
+  toJSON(message: PatchUserResponse): unknown {
+    const obj: any = {};
+    if (message.user !== undefined) {
+      obj.user = User.toJSON(message.user);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<PatchUserResponse>, I>>(base?: I): PatchUserResponse {
+    return PatchUserResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PatchUserResponse>, I>>(object: I): PatchUserResponse {
+    const message = createBasePatchUserResponse();
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
     return message;
   },
 };

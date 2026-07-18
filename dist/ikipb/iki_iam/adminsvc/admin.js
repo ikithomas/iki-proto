@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RemoveUserFromGroupRequest = exports.AddUserToGroupResponse = exports.AddUserToGroupRequest = exports.ListGroupUsersResponse = exports.ListGroupUsersRequest = exports.DeleteUserResponse = exports.DeleteUserRequest = exports.GetUserResponse = exports.GetUserRequest = exports.CreateUserResponse = exports.CreateUserRequest = exports.PatchUserResponse = exports.PatchUserRequest = exports.ListUsersResponse = exports.ListUsersRequest = exports.SetGroupRolesResponse = exports.SetGroupRolesRequest = exports.DeleteGroupResponse = exports.DeleteGroupRequest = exports.PatchGroupResponse = exports.PatchGroupRequest = exports.CreateGroupResponse = exports.CreateGroupRequest = exports.GetGroupResponse = exports.GetGroupRequest = exports.ListGroupsResponse = exports.ListGroupsRequest = exports.SetRolePermissionsResponse = exports.SetRolePermissionsRequest = exports.DeleteRoleResponse = exports.DeleteRoleRequest = exports.PatchRoleResponse = exports.PatchRoleRequest = exports.CreateRoleResponse = exports.CreateRoleRequest = exports.GetRoleResponse = exports.GetRoleRequest = exports.ListRolesResponse = exports.ListRolesRequest = exports.DeletePermissionResponse = exports.DeletePermissionRequest = exports.PatchPermissionResponse = exports.PatchPermissionRequest = exports.CreatePermissionResponse = exports.CreatePermissionRequest = exports.GetPermissionResponse = exports.GetPermissionRequest = exports.ListPermissionsResponse = exports.ListPermissionsRequest = exports.protobufPackage = void 0;
+exports.RemoveUserFromGroupRequest = exports.AddUserToGroupResponse = exports.AddUserToGroupRequest = exports.ListGroupUsersResponse = exports.ListGroupUsersRequest = exports.DeleteUserResponse = exports.DeleteUserRequest = exports.PatchUserResponse = exports.PatchUserRequest = exports.GetUserResponse = exports.GetUserRequest = exports.CreateUserResponse = exports.CreateUserRequest = exports.ListUsersResponse = exports.ListUsersRequest = exports.SetGroupRolesResponse = exports.SetGroupRolesRequest = exports.DeleteGroupResponse = exports.DeleteGroupRequest = exports.PatchGroupResponse = exports.PatchGroupRequest = exports.CreateGroupResponse = exports.CreateGroupRequest = exports.GetGroupResponse = exports.GetGroupRequest = exports.ListGroupsResponse = exports.ListGroupsRequest = exports.SetRolePermissionsResponse = exports.SetRolePermissionsRequest = exports.DeleteRoleResponse = exports.DeleteRoleRequest = exports.PatchRoleResponse = exports.PatchRoleRequest = exports.CreateRoleResponse = exports.CreateRoleRequest = exports.GetRoleResponse = exports.GetRoleRequest = exports.ListRolesResponse = exports.ListRolesRequest = exports.DeletePermissionResponse = exports.DeletePermissionRequest = exports.PatchPermissionResponse = exports.PatchPermissionRequest = exports.CreatePermissionResponse = exports.CreatePermissionRequest = exports.GetPermissionResponse = exports.GetPermissionRequest = exports.ListPermissionsResponse = exports.ListPermissionsRequest = exports.protobufPackage = void 0;
 exports.AdminSvcSetRolePermissionsDesc = exports.AdminSvcDeleteRoleDesc = exports.AdminSvcPatchRoleDesc = exports.AdminSvcCreateRoleDesc = exports.AdminSvcGetRoleDesc = exports.AdminSvcListRolesDesc = exports.AdminSvcDeleteGroupDesc = exports.AdminSvcPatchGroupDesc = exports.AdminSvcCreateGroupDesc = exports.AdminSvcGetGroupDesc = exports.AdminSvcListGroupsDesc = exports.AdminSvcDeletePermissionDesc = exports.AdminSvcPatchPermissionDesc = exports.AdminSvcCreatePermissionDesc = exports.AdminSvcGetPermissionDesc = exports.AdminSvcListPermissionsDesc = exports.AdminSvcSetUserGroupsDesc = exports.AdminSvcSetUserRolesDesc = exports.AdminSvcDeleteUserDesc = exports.AdminSvcCreateUserDesc = exports.AdminSvcPatchUserDesc = exports.AdminSvcGetUserDesc = exports.AdminSvcListUsersDesc = exports.AdminSvcDesc = exports.AdminSvcClientImpl = exports.DeleteServiceSecretResponse = exports.DeleteServiceSecretRequest = exports.DeactivateServiceSecretResponse = exports.DeactivateServiceSecretRequest = exports.ActivateServiceSecretResponse = exports.ActivateServiceSecretRequest = exports.AddServiceSecretResponse = exports.AddServiceSecretRequest = exports.DeleteServiceResponse = exports.DeleteServiceRequest = exports.CreateServiceResponse = exports.CreateServiceRequest = exports.GetServiceResponse = exports.GetServiceRequest = exports.ListServicesResponse = exports.ListServicesRequest = exports.DeletePasskeyResponse = exports.DeletePasskeyRequest = exports.ListPasskeysResponse = exports.ListPasskeysRequest = exports.SetUserGroupsResponse = exports.SetUserGroupsRequest = exports.SetUserRolesResponse = exports.SetUserRolesRequest = exports.RemoveUserFromGroupResponse = void 0;
 exports.GrpcWebError = exports.GrpcWebImpl = exports.AdminSvcDeleteServiceSecretDesc = exports.AdminSvcDeactivateServiceSecretDesc = exports.AdminSvcActivateServiceSecretDesc = exports.AdminSvcAddServiceSecretDesc = exports.AdminSvcDeleteServiceDesc = exports.AdminSvcCreateServiceDesc = exports.AdminSvcGetServiceDesc = exports.AdminSvcListServicesDesc = exports.AdminSvcDeletePasskeyDesc = exports.AdminSvcListPasskeysDesc = exports.AdminSvcListGroupUsersDesc = exports.AdminSvcRemoveUserFromGroupDesc = exports.AdminSvcAddUserToGroupDesc = exports.AdminSvcSetGroupRolesDesc = void 0;
 /* eslint-disable */
@@ -1871,165 +1871,6 @@ exports.ListUsersResponse = {
         return message;
     },
 };
-function createBasePatchUserRequest() {
-    return { id: "", givenName: undefined, familyName: undefined, email: undefined, active: undefined };
-}
-exports.PatchUserRequest = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.id !== "") {
-            writer.uint32(10).string(message.id);
-        }
-        if (message.givenName !== undefined) {
-            writer.uint32(18).string(message.givenName);
-        }
-        if (message.familyName !== undefined) {
-            writer.uint32(26).string(message.familyName);
-        }
-        if (message.email !== undefined) {
-            writer.uint32(34).string(message.email);
-        }
-        if (message.active !== undefined) {
-            writer.uint32(40).bool(message.active);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBasePatchUserRequest();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.id = reader.string();
-                    continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.givenName = reader.string();
-                    continue;
-                case 3:
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.familyName = reader.string();
-                    continue;
-                case 4:
-                    if (tag !== 34) {
-                        break;
-                    }
-                    message.email = reader.string();
-                    continue;
-                case 5:
-                    if (tag !== 40) {
-                        break;
-                    }
-                    message.active = reader.bool();
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            id: isSet(object.id) ? String(object.id) : "",
-            givenName: isSet(object.givenName) ? String(object.givenName) : undefined,
-            familyName: isSet(object.familyName) ? String(object.familyName) : undefined,
-            email: isSet(object.email) ? String(object.email) : undefined,
-            active: isSet(object.active) ? Boolean(object.active) : undefined,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.id !== "") {
-            obj.id = message.id;
-        }
-        if (message.givenName !== undefined) {
-            obj.givenName = message.givenName;
-        }
-        if (message.familyName !== undefined) {
-            obj.familyName = message.familyName;
-        }
-        if (message.email !== undefined) {
-            obj.email = message.email;
-        }
-        if (message.active !== undefined) {
-            obj.active = message.active;
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.PatchUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        var _a, _b, _c, _d, _e;
-        const message = createBasePatchUserRequest();
-        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
-        message.givenName = (_b = object.givenName) !== null && _b !== void 0 ? _b : undefined;
-        message.familyName = (_c = object.familyName) !== null && _c !== void 0 ? _c : undefined;
-        message.email = (_d = object.email) !== null && _d !== void 0 ? _d : undefined;
-        message.active = (_e = object.active) !== null && _e !== void 0 ? _e : undefined;
-        return message;
-    },
-};
-function createBasePatchUserResponse() {
-    return { user: undefined };
-}
-exports.PatchUserResponse = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.user !== undefined) {
-            iam_1.User.encode(message.user, writer.uint32(10).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBasePatchUserResponse();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    if (tag !== 10) {
-                        break;
-                    }
-                    message.user = iam_1.User.decode(reader, reader.uint32());
-                    continue;
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skipType(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return { user: isSet(object.user) ? iam_1.User.fromJSON(object.user) : undefined };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.user !== undefined) {
-            obj.user = iam_1.User.toJSON(message.user);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.PatchUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
-    },
-    fromPartial(object) {
-        const message = createBasePatchUserResponse();
-        message.user = (object.user !== undefined && object.user !== null) ? iam_1.User.fromPartial(object.user) : undefined;
-        return message;
-    },
-};
 function createBaseCreateUserRequest() {
     return { email: "", givenName: "", familyName: "" };
 }
@@ -2261,6 +2102,165 @@ exports.GetUserResponse = {
         message.user = (object.user !== undefined && object.user !== null)
             ? iam_1.UserDetail.fromPartial(object.user)
             : undefined;
+        return message;
+    },
+};
+function createBasePatchUserRequest() {
+    return { id: "", givenName: undefined, familyName: undefined, email: undefined, active: undefined };
+}
+exports.PatchUserRequest = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.givenName !== undefined) {
+            writer.uint32(18).string(message.givenName);
+        }
+        if (message.familyName !== undefined) {
+            writer.uint32(26).string(message.familyName);
+        }
+        if (message.email !== undefined) {
+            writer.uint32(34).string(message.email);
+        }
+        if (message.active !== undefined) {
+            writer.uint32(40).bool(message.active);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePatchUserRequest();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.id = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.givenName = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.familyName = reader.string();
+                    continue;
+                case 4:
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.email = reader.string();
+                    continue;
+                case 5:
+                    if (tag !== 40) {
+                        break;
+                    }
+                    message.active = reader.bool();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            id: isSet(object.id) ? String(object.id) : "",
+            givenName: isSet(object.givenName) ? String(object.givenName) : undefined,
+            familyName: isSet(object.familyName) ? String(object.familyName) : undefined,
+            email: isSet(object.email) ? String(object.email) : undefined,
+            active: isSet(object.active) ? Boolean(object.active) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.id !== "") {
+            obj.id = message.id;
+        }
+        if (message.givenName !== undefined) {
+            obj.givenName = message.givenName;
+        }
+        if (message.familyName !== undefined) {
+            obj.familyName = message.familyName;
+        }
+        if (message.email !== undefined) {
+            obj.email = message.email;
+        }
+        if (message.active !== undefined) {
+            obj.active = message.active;
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.PatchUserRequest.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c, _d, _e;
+        const message = createBasePatchUserRequest();
+        message.id = (_a = object.id) !== null && _a !== void 0 ? _a : "";
+        message.givenName = (_b = object.givenName) !== null && _b !== void 0 ? _b : undefined;
+        message.familyName = (_c = object.familyName) !== null && _c !== void 0 ? _c : undefined;
+        message.email = (_d = object.email) !== null && _d !== void 0 ? _d : undefined;
+        message.active = (_e = object.active) !== null && _e !== void 0 ? _e : undefined;
+        return message;
+    },
+};
+function createBasePatchUserResponse() {
+    return { user: undefined };
+}
+exports.PatchUserResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.user !== undefined) {
+            iam_1.User.encode(message.user, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBasePatchUserResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.user = iam_1.User.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return { user: isSet(object.user) ? iam_1.User.fromJSON(object.user) : undefined };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.user !== undefined) {
+            obj.user = iam_1.User.toJSON(message.user);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.PatchUserResponse.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        const message = createBasePatchUserResponse();
+        message.user = (object.user !== undefined && object.user !== null) ? iam_1.User.fromPartial(object.user) : undefined;
         return message;
     },
 };

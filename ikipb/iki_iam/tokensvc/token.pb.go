@@ -7,6 +7,7 @@
 package tokensvc
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	iki_iam "github.com/ikithomas/iki-proto/ikipb/iki_iam"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -202,13 +203,13 @@ var File_ikipb_iki_iam_tokensvc_token_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_tokensvc_token_proto_rawDesc = "" +
 	"\n" +
-	"\"ikipb/iki_iam/tokensvc/token.proto\x12\btokensvc\x1a\x17ikipb/iki_iam/iam.proto\"\x12\n" +
+	"\"ikipb/iki_iam/tokensvc/token.proto\x12\btokensvc\x1a\x1bbuf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"\x12\n" +
 	"\x10GetJwksetRequest\"+\n" +
 	"\x11GetJwksetResponse\x12\x16\n" +
-	"\x06jwkset\x18\x01 \x01(\fR\x06jwkset\"k\n" +
-	"\x12AccessTokenRequest\x12#\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x120\n" +
-	"\ventity_type\x18\x02 \x01(\x0e2\x0f.iam.EntityTypeR\n" +
+	"\x06jwkset\x18\x01 \x01(\fR\x06jwkset\"~\n" +
+	"\x12AccessTokenRequest\x12,\n" +
+	"\rrefresh_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\frefreshToken\x12:\n" +
+	"\ventity_type\x18\x02 \x01(\x0e2\x0f.iam.EntityTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\n" +
 	"entityType\"8\n" +
 	"\x13AccessTokenResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken2\xa0\x01\n" +

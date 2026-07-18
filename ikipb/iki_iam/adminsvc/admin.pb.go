@@ -7,6 +7,7 @@
 package adminsvc
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	iki_iam "github.com/ikithomas/iki-proto/ikipb/iki_iam"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1606,6 +1607,198 @@ func (x *ListUsersResponse) GetUsers() []*iki_iam.User {
 	return nil
 }
 
+type CreateUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	GivenName     string                 `protobuf:"bytes,2,opt,name=given_name,json=givenName,proto3" json:"given_name,omitempty"`
+	FamilyName    string                 `protobuf:"bytes,3,opt,name=family_name,json=familyName,proto3" json:"family_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateUserRequest) Reset() {
+	*x = CreateUserRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateUserRequest) ProtoMessage() {}
+
+func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
+func (*CreateUserRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *CreateUserRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetGivenName() string {
+	if x != nil {
+		return x.GivenName
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetFamilyName() string {
+	if x != nil {
+		return x.FamilyName
+	}
+	return ""
+}
+
+type CreateUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *iki_iam.User          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateUserResponse) Reset() {
+	*x = CreateUserResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateUserResponse) ProtoMessage() {}
+
+func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
+func (*CreateUserResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *CreateUserResponse) GetUser() *iki_iam.User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type GetUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserRequest) Reset() {
+	*x = GetUserRequest{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserRequest) ProtoMessage() {}
+
+func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRequest) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *GetUserRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *iki_iam.UserDetail    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserResponse) Reset() {
+	*x = GetUserResponse{}
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserResponse) ProtoMessage() {}
+
+func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
+func (*GetUserResponse) Descriptor() ([]byte, []int) {
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *GetUserResponse) GetUser() *iki_iam.UserDetail {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
 type PatchUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1619,7 +1812,7 @@ type PatchUserRequest struct {
 
 func (x *PatchUserRequest) Reset() {
 	*x = PatchUserRequest{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[36]
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1631,7 +1824,7 @@ func (x *PatchUserRequest) String() string {
 func (*PatchUserRequest) ProtoMessage() {}
 
 func (x *PatchUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[36]
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1644,7 +1837,7 @@ func (x *PatchUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PatchUserRequest.ProtoReflect.Descriptor instead.
 func (*PatchUserRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{36}
+	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *PatchUserRequest) GetId() string {
@@ -1691,7 +1884,7 @@ type PatchUserResponse struct {
 
 func (x *PatchUserResponse) Reset() {
 	*x = PatchUserResponse{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[37]
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1703,7 +1896,7 @@ func (x *PatchUserResponse) String() string {
 func (*PatchUserResponse) ProtoMessage() {}
 
 func (x *PatchUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[37]
+	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1716,202 +1909,10 @@ func (x *PatchUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PatchUserResponse.ProtoReflect.Descriptor instead.
 func (*PatchUserResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{37}
-}
-
-func (x *PatchUserResponse) GetUser() *iki_iam.User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type CreateUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	GivenName     string                 `protobuf:"bytes,2,opt,name=given_name,json=givenName,proto3" json:"given_name,omitempty"`
-	FamilyName    string                 `protobuf:"bytes,3,opt,name=family_name,json=familyName,proto3" json:"family_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserRequest) Reset() {
-	*x = CreateUserRequest{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[38]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserRequest) ProtoMessage() {}
-
-func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[38]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{38}
-}
-
-func (x *CreateUserRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetGivenName() string {
-	if x != nil {
-		return x.GivenName
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetFamilyName() string {
-	if x != nil {
-		return x.FamilyName
-	}
-	return ""
-}
-
-type CreateUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *iki_iam.User          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[39]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserResponse) ProtoMessage() {}
-
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[39]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{39}
-}
-
-func (x *CreateUserResponse) GetUser() *iki_iam.User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type GetUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserRequest) Reset() {
-	*x = GetUserRequest{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[40]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserRequest) ProtoMessage() {}
-
-func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[40]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{40}
-}
-
-func (x *GetUserRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *iki_iam.UserDetail    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserResponse) Reset() {
-	*x = GetUserResponse{}
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[41]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserResponse) ProtoMessage() {}
-
-func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[41]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
-func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_iam_adminsvc_admin_proto_rawDescGZIP(), []int{41}
 }
 
-func (x *GetUserResponse) GetUser() *iki_iam.UserDetail {
+func (x *PatchUserResponse) GetUser() *iki_iam.User {
 	if x != nil {
 		return x.User
 	}
@@ -3290,180 +3291,195 @@ var File_ikipb_iki_iam_adminsvc_admin_proto protoreflect.FileDescriptor
 
 const file_ikipb_iki_iam_adminsvc_admin_proto_rawDesc = "" +
 	"\n" +
-	"\"ikipb/iki_iam/adminsvc/admin.proto\x12\badminsvc\x1a\x17ikipb/iki_iam/iam.proto\"\x18\n" +
+	"\"ikipb/iki_iam/adminsvc/admin.proto\x12\badminsvc\x1a\x1bbuf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"\x18\n" +
 	"\x16ListPermissionsRequest\"L\n" +
 	"\x17ListPermissionsResponse\x121\n" +
-	"\vpermissions\x18\x01 \x03(\v2\x0f.iam.PermissionR\vpermissions\"&\n" +
-	"\x14GetPermissionRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"N\n" +
+	"\vpermissions\x18\x01 \x03(\v2\x0f.iam.PermissionR\vpermissions\"0\n" +
+	"\x14GetPermissionRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"N\n" +
 	"\x15GetPermissionResponse\x125\n" +
 	"\n" +
 	"permission\x18\x01 \x01(\v2\x15.iam.PermissionDetailR\n" +
-	"permission\"N\n" +
-	"\x17CreatePermissionRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
-	"\vexternal_id\x18\x02 \x01(\tR\n" +
+	"permission\"d\n" +
+	"\x17CreatePermissionRequest\x12\x1e\n" +
+	"\x04name\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x04name\x12)\n" +
+	"\vexternal_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\n" +
 	"externalId\"K\n" +
 	"\x18CreatePermissionResponse\x12/\n" +
 	"\n" +
 	"permission\x18\x01 \x01(\v2\x0f.iam.PermissionR\n" +
-	"permission\"\x80\x01\n" +
-	"\x16PatchPermissionRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12$\n" +
-	"\vexternal_id\x18\x03 \x01(\tH\x01R\n" +
+	"permission\"\xa0\x01\n" +
+	"\x16PatchPermissionRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12#\n" +
+	"\x04name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x00R\x04name\x88\x01\x01\x12.\n" +
+	"\vexternal_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01H\x01R\n" +
 	"externalId\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_external_id\"J\n" +
 	"\x17PatchPermissionResponse\x12/\n" +
 	"\n" +
 	"permission\x18\x01 \x01(\v2\x0f.iam.PermissionR\n" +
-	"permission\")\n" +
-	"\x17DeletePermissionRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x1a\n" +
+	"permission\"3\n" +
+	"\x17DeletePermissionRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x1a\n" +
 	"\x18DeletePermissionResponse\"\x12\n" +
 	"\x10ListRolesRequest\"4\n" +
 	"\x11ListRolesResponse\x12\x1f\n" +
-	"\x05roles\x18\x01 \x03(\v2\t.iam.RoleR\x05roles\" \n" +
-	"\x0eGetRoleRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"6\n" +
+	"\x05roles\x18\x01 \x03(\v2\t.iam.RoleR\x05roles\"*\n" +
+	"\x0eGetRoleRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"6\n" +
 	"\x0fGetRoleResponse\x12#\n" +
-	"\x04role\x18\x01 \x01(\v2\x0f.iam.RoleDetailR\x04role\"'\n" +
-	"\x11CreateRoleRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"3\n" +
+	"\x04role\x18\x01 \x01(\v2\x0f.iam.RoleDetailR\x04role\"3\n" +
+	"\x11CreateRoleRequest\x12\x1e\n" +
+	"\x04name\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x04name\"3\n" +
 	"\x12CreateRoleResponse\x12\x1d\n" +
-	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"D\n" +
-	"\x10PatchRoleRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01B\a\n" +
+	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"Z\n" +
+	"\x10PatchRoleRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12#\n" +
+	"\x04name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x00R\x04name\x88\x01\x01B\a\n" +
 	"\x05_name\"2\n" +
 	"\x11PatchRoleResponse\x12\x1d\n" +
-	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"#\n" +
-	"\x11DeleteRoleRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
-	"\x12DeleteRoleResponse\"[\n" +
-	"\x19SetRolePermissionsRequest\x12\x17\n" +
-	"\arole_id\x18\x01 \x01(\tR\x06roleId\x12%\n" +
-	"\x0epermission_ids\x18\x02 \x03(\tR\rpermissionIds\"A\n" +
+	"\x04role\x18\x01 \x01(\v2\t.iam.RoleR\x04role\"-\n" +
+	"\x11DeleteRoleRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x14\n" +
+	"\x12DeleteRoleResponse\"t\n" +
+	"\x19SetRolePermissionsRequest\x12!\n" +
+	"\arole_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06roleId\x124\n" +
+	"\x0epermission_ids\x18\x02 \x03(\tB\r\xbaH\n" +
+	"\x92\x01\a\"\x05r\x03\xb0\x01\x01R\rpermissionIds\"A\n" +
 	"\x1aSetRolePermissionsResponse\x12#\n" +
 	"\x04role\x18\x01 \x01(\v2\x0f.iam.RoleDetailR\x04role\"\x13\n" +
 	"\x11ListGroupsRequest\"8\n" +
 	"\x12ListGroupsResponse\x12\"\n" +
 	"\x06groups\x18\x01 \x03(\v2\n" +
-	".iam.GroupR\x06groups\"!\n" +
-	"\x0fGetGroupRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\":\n" +
+	".iam.GroupR\x06groups\"+\n" +
+	"\x0fGetGroupRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\":\n" +
 	"\x10GetGroupResponse\x12&\n" +
-	"\x05group\x18\x01 \x01(\v2\x10.iam.GroupDetailR\x05group\"(\n" +
-	"\x12CreateGroupRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"7\n" +
+	"\x05group\x18\x01 \x01(\v2\x10.iam.GroupDetailR\x05group\"4\n" +
+	"\x12CreateGroupRequest\x12\x1e\n" +
+	"\x04name\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x04name\"7\n" +
 	"\x13CreateGroupResponse\x12 \n" +
 	"\x05group\x18\x01 \x01(\v2\n" +
-	".iam.GroupR\x05group\"E\n" +
-	"\x11PatchGroupRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01B\a\n" +
+	".iam.GroupR\x05group\"[\n" +
+	"\x11PatchGroupRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12#\n" +
+	"\x04name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x00R\x04name\x88\x01\x01B\a\n" +
 	"\x05_name\"6\n" +
 	"\x12PatchGroupResponse\x12 \n" +
 	"\x05group\x18\x01 \x01(\v2\n" +
-	".iam.GroupR\x05group\"$\n" +
-	"\x12DeleteGroupRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x15\n" +
-	"\x13DeleteGroupResponse\"L\n" +
-	"\x14SetGroupRolesRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\brole_ids\x18\x02 \x03(\tR\aroleIds\"?\n" +
+	".iam.GroupR\x05group\".\n" +
+	"\x12DeleteGroupRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x15\n" +
+	"\x13DeleteGroupResponse\"e\n" +
+	"\x14SetGroupRolesRequest\x12#\n" +
+	"\bgroup_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\agroupId\x12(\n" +
+	"\brole_ids\x18\x02 \x03(\tB\r\xbaH\n" +
+	"\x92\x01\a\"\x05r\x03\xb0\x01\x01R\aroleIds\"?\n" +
 	"\x15SetGroupRolesResponse\x12&\n" +
 	"\x05group\x18\x01 \x01(\v2\x10.iam.GroupDetailR\x05group\"\x12\n" +
 	"\x10ListUsersRequest\"4\n" +
 	"\x11ListUsersResponse\x12\x1f\n" +
-	"\x05users\x18\x01 \x03(\v2\t.iam.UserR\x05users\"\xd8\x01\n" +
-	"\x10PatchUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
+	"\x05users\x18\x01 \x03(\v2\t.iam.UserR\x05users\"\x8a\x01\n" +
+	"\x11CreateUserRequest\x12\x1d\n" +
+	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12)\n" +
 	"\n" +
-	"given_name\x18\x02 \x01(\tH\x00R\tgivenName\x88\x01\x01\x12$\n" +
-	"\vfamily_name\x18\x03 \x01(\tH\x01R\n" +
-	"familyName\x88\x01\x01\x12\x19\n" +
-	"\x05email\x18\x04 \x01(\tH\x02R\x05email\x88\x01\x01\x12\x1b\n" +
+	"given_name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\tgivenName\x12+\n" +
+	"\vfamily_name\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\n" +
+	"familyName\"3\n" +
+	"\x12CreateUserResponse\x12\x1d\n" +
+	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\"*\n" +
+	"\x0eGetUserRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"6\n" +
+	"\x0fGetUserResponse\x12#\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"\x83\x02\n" +
+	"\x10PatchUserRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12.\n" +
+	"\n" +
+	"given_name\x18\x02 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x00R\tgivenName\x88\x01\x01\x120\n" +
+	"\vfamily_name\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01H\x01R\n" +
+	"familyName\x88\x01\x01\x12\"\n" +
+	"\x05email\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01H\x02R\x05email\x88\x01\x01\x12\x1b\n" +
 	"\x06active\x18\x05 \x01(\bH\x03R\x06active\x88\x01\x01B\r\n" +
 	"\v_given_nameB\x0e\n" +
 	"\f_family_nameB\b\n" +
 	"\x06_emailB\t\n" +
 	"\a_active\"2\n" +
 	"\x11PatchUserResponse\x12\x1d\n" +
-	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\"i\n" +
-	"\x11CreateUserRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1d\n" +
-	"\n" +
-	"given_name\x18\x02 \x01(\tR\tgivenName\x12\x1f\n" +
-	"\vfamily_name\x18\x03 \x01(\tR\n" +
-	"familyName\"3\n" +
-	"\x12CreateUserResponse\x12\x1d\n" +
-	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\" \n" +
-	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"6\n" +
-	"\x0fGetUserResponse\x12#\n" +
-	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"#\n" +
-	"\x11DeleteUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
-	"\x12DeleteUserResponse\"2\n" +
-	"\x15ListGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\"9\n" +
+	"\x04user\x18\x01 \x01(\v2\t.iam.UserR\x04user\"-\n" +
+	"\x11DeleteUserRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x14\n" +
+	"\x12DeleteUserResponse\"<\n" +
+	"\x15ListGroupUsersRequest\x12#\n" +
+	"\bgroup_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\agroupId\"9\n" +
 	"\x16ListGroupUsersResponse\x12\x1f\n" +
-	"\x05users\x18\x01 \x03(\v2\t.iam.UserR\x05users\"K\n" +
-	"\x15AddUserToGroupRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
-	"\bgroup_id\x18\x02 \x01(\tR\agroupId\"\x18\n" +
-	"\x16AddUserToGroupResponse\"P\n" +
-	"\x1aRemoveUserFromGroupRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
-	"\bgroup_id\x18\x02 \x01(\tR\agroupId\"\x1d\n" +
-	"\x1bRemoveUserFromGroupResponse\"I\n" +
-	"\x13SetUserRolesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
-	"\brole_ids\x18\x02 \x03(\tR\aroleIds\";\n" +
+	"\x05users\x18\x01 \x03(\v2\t.iam.UserR\x05users\"_\n" +
+	"\x15AddUserToGroupRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12#\n" +
+	"\bgroup_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\agroupId\"\x18\n" +
+	"\x16AddUserToGroupResponse\"d\n" +
+	"\x1aRemoveUserFromGroupRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12#\n" +
+	"\bgroup_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\agroupId\"\x1d\n" +
+	"\x1bRemoveUserFromGroupResponse\"b\n" +
+	"\x13SetUserRolesRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12(\n" +
+	"\brole_ids\x18\x02 \x03(\tB\r\xbaH\n" +
+	"\x92\x01\a\"\x05r\x03\xb0\x01\x01R\aroleIds\";\n" +
 	"\x14SetUserRolesResponse\x12#\n" +
-	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"L\n" +
-	"\x14SetUserGroupsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tgroup_ids\x18\x02 \x03(\tR\bgroupIds\"<\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"e\n" +
+	"\x14SetUserGroupsRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12*\n" +
+	"\tgroup_ids\x18\x02 \x03(\tB\r\xbaH\n" +
+	"\x92\x01\a\"\x05r\x03\xb0\x01\x01R\bgroupIds\"<\n" +
 	"\x15SetUserGroupsResponse\x12#\n" +
-	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"?\n" +
-	"\x13ListPasskeysRequest\x12\x1c\n" +
-	"\auser_id\x18\x01 \x01(\tH\x00R\x06userId\x88\x01\x01B\n" +
+	"\x04user\x18\x01 \x01(\v2\x0f.iam.UserDetailR\x04user\"I\n" +
+	"\x13ListPasskeysRequest\x12&\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x06userId\x88\x01\x01B\n" +
 	"\n" +
 	"\b_user_id\"@\n" +
 	"\x14ListPasskeysResponse\x12(\n" +
-	"\bpasskeys\x18\x01 \x03(\v2\f.iam.PasskeyR\bpasskeys\"&\n" +
-	"\x14DeletePasskeyRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
+	"\bpasskeys\x18\x01 \x03(\v2\f.iam.PasskeyR\bpasskeys\"0\n" +
+	"\x14DeletePasskeyRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x17\n" +
 	"\x15DeletePasskeyResponse\"\x15\n" +
 	"\x13ListServicesRequest\"@\n" +
 	"\x14ListServicesResponse\x12(\n" +
-	"\bservices\x18\x01 \x03(\v2\f.iam.ServiceR\bservices\"#\n" +
-	"\x11GetServiceRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"B\n" +
+	"\bservices\x18\x01 \x03(\v2\f.iam.ServiceR\bservices\"-\n" +
+	"\x11GetServiceRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"B\n" +
 	"\x12GetServiceResponse\x12,\n" +
-	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\"*\n" +
-	"\x14CreateServiceRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"?\n" +
+	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\"6\n" +
+	"\x14CreateServiceRequest\x12\x1e\n" +
+	"\x04name\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x04name\"?\n" +
 	"\x15CreateServiceResponse\x12&\n" +
-	"\aservice\x18\x01 \x01(\v2\f.iam.ServiceR\aservice\"&\n" +
-	"\x14DeleteServiceRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
-	"\x15DeleteServiceResponse\")\n" +
-	"\x17AddServiceSecretRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"H\n" +
+	"\aservice\x18\x01 \x01(\v2\f.iam.ServiceR\aservice\"0\n" +
+	"\x14DeleteServiceRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x17\n" +
+	"\x15DeleteServiceResponse\"3\n" +
+	"\x17AddServiceSecretRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"H\n" +
 	"\x18AddServiceSecretResponse\x12,\n" +
-	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\".\n" +
-	"\x1cActivateServiceSecretRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x1f\n" +
-	"\x1dActivateServiceSecretResponse\"0\n" +
-	"\x1eDeactivateServiceSecretRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
-	"\x1fDeactivateServiceSecretResponse\",\n" +
-	"\x1aDeleteServiceSecretRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x1d\n" +
+	"\aservice\x18\x01 \x01(\v2\x12.iam.ServiceDetailR\aservice\"8\n" +
+	"\x1cActivateServiceSecretRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x1f\n" +
+	"\x1dActivateServiceSecretResponse\":\n" +
+	"\x1eDeactivateServiceSecretRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"!\n" +
+	"\x1fDeactivateServiceSecretResponse\"6\n" +
+	"\x1aDeleteServiceSecretRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x1d\n" +
 	"\x1bDeleteServiceSecretResponse2\x8d\x18\n" +
 	"\bAdminSvc\x12F\n" +
 	"\tListUsers\x12\x1a.adminsvc.ListUsersRequest\x1a\x1b.adminsvc.ListUsersResponse\"\x00\x12@\n" +
@@ -3561,12 +3577,12 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_goTypes = []any{
 	(*SetGroupRolesResponse)(nil),           // 33: adminsvc.SetGroupRolesResponse
 	(*ListUsersRequest)(nil),                // 34: adminsvc.ListUsersRequest
 	(*ListUsersResponse)(nil),               // 35: adminsvc.ListUsersResponse
-	(*PatchUserRequest)(nil),                // 36: adminsvc.PatchUserRequest
-	(*PatchUserResponse)(nil),               // 37: adminsvc.PatchUserResponse
-	(*CreateUserRequest)(nil),               // 38: adminsvc.CreateUserRequest
-	(*CreateUserResponse)(nil),              // 39: adminsvc.CreateUserResponse
-	(*GetUserRequest)(nil),                  // 40: adminsvc.GetUserRequest
-	(*GetUserResponse)(nil),                 // 41: adminsvc.GetUserResponse
+	(*CreateUserRequest)(nil),               // 36: adminsvc.CreateUserRequest
+	(*CreateUserResponse)(nil),              // 37: adminsvc.CreateUserResponse
+	(*GetUserRequest)(nil),                  // 38: adminsvc.GetUserRequest
+	(*GetUserResponse)(nil),                 // 39: adminsvc.GetUserResponse
+	(*PatchUserRequest)(nil),                // 40: adminsvc.PatchUserRequest
+	(*PatchUserResponse)(nil),               // 41: adminsvc.PatchUserResponse
 	(*DeleteUserRequest)(nil),               // 42: adminsvc.DeleteUserRequest
 	(*DeleteUserResponse)(nil),              // 43: adminsvc.DeleteUserResponse
 	(*ListGroupUsersRequest)(nil),           // 44: adminsvc.ListGroupUsersRequest
@@ -3627,9 +3643,9 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	78, // 12: adminsvc.PatchGroupResponse.group:type_name -> iam.Group
 	79, // 13: adminsvc.SetGroupRolesResponse.group:type_name -> iam.GroupDetail
 	80, // 14: adminsvc.ListUsersResponse.users:type_name -> iam.User
-	80, // 15: adminsvc.PatchUserResponse.user:type_name -> iam.User
-	80, // 16: adminsvc.CreateUserResponse.user:type_name -> iam.User
-	81, // 17: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
+	80, // 15: adminsvc.CreateUserResponse.user:type_name -> iam.User
+	81, // 16: adminsvc.GetUserResponse.user:type_name -> iam.UserDetail
+	80, // 17: adminsvc.PatchUserResponse.user:type_name -> iam.User
 	80, // 18: adminsvc.ListGroupUsersResponse.users:type_name -> iam.User
 	81, // 19: adminsvc.SetUserRolesResponse.user:type_name -> iam.UserDetail
 	81, // 20: adminsvc.SetUserGroupsResponse.user:type_name -> iam.UserDetail
@@ -3639,9 +3655,9 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	83, // 24: adminsvc.CreateServiceResponse.service:type_name -> iam.Service
 	84, // 25: adminsvc.AddServiceSecretResponse.service:type_name -> iam.ServiceDetail
 	34, // 26: adminsvc.AdminSvc.ListUsers:input_type -> adminsvc.ListUsersRequest
-	40, // 27: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
-	36, // 28: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
-	38, // 29: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
+	38, // 27: adminsvc.AdminSvc.GetUser:input_type -> adminsvc.GetUserRequest
+	40, // 28: adminsvc.AdminSvc.PatchUser:input_type -> adminsvc.PatchUserRequest
+	36, // 29: adminsvc.AdminSvc.CreateUser:input_type -> adminsvc.CreateUserRequest
 	42, // 30: adminsvc.AdminSvc.DeleteUser:input_type -> adminsvc.DeleteUserRequest
 	50, // 31: adminsvc.AdminSvc.SetUserRoles:input_type -> adminsvc.SetUserRolesRequest
 	52, // 32: adminsvc.AdminSvc.SetUserGroups:input_type -> adminsvc.SetUserGroupsRequest
@@ -3676,9 +3692,9 @@ var file_ikipb_iki_iam_adminsvc_admin_proto_depIdxs = []int32{
 	70, // 61: adminsvc.AdminSvc.DeactivateServiceSecret:input_type -> adminsvc.DeactivateServiceSecretRequest
 	72, // 62: adminsvc.AdminSvc.DeleteServiceSecret:input_type -> adminsvc.DeleteServiceSecretRequest
 	35, // 63: adminsvc.AdminSvc.ListUsers:output_type -> adminsvc.ListUsersResponse
-	41, // 64: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
-	37, // 65: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
-	39, // 66: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
+	39, // 64: adminsvc.AdminSvc.GetUser:output_type -> adminsvc.GetUserResponse
+	41, // 65: adminsvc.AdminSvc.PatchUser:output_type -> adminsvc.PatchUserResponse
+	37, // 66: adminsvc.AdminSvc.CreateUser:output_type -> adminsvc.CreateUserResponse
 	43, // 67: adminsvc.AdminSvc.DeleteUser:output_type -> adminsvc.DeleteUserResponse
 	51, // 68: adminsvc.AdminSvc.SetUserRoles:output_type -> adminsvc.SetUserRolesResponse
 	53, // 69: adminsvc.AdminSvc.SetUserGroups:output_type -> adminsvc.SetUserGroupsResponse
@@ -3727,7 +3743,7 @@ func file_ikipb_iki_iam_adminsvc_admin_proto_init() {
 	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[6].OneofWrappers = []any{}
 	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[16].OneofWrappers = []any{}
 	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[28].OneofWrappers = []any{}
-	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[36].OneofWrappers = []any{}
+	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[40].OneofWrappers = []any{}
 	file_ikipb_iki_iam_adminsvc_admin_proto_msgTypes[54].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

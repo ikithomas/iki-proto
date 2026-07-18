@@ -110,16 +110,6 @@ export interface ListUsersRequest {
 export interface ListUsersResponse {
     users: User[];
 }
-export interface PatchUserRequest {
-    id: string;
-    givenName?: string | undefined;
-    familyName?: string | undefined;
-    email?: string | undefined;
-    active?: boolean | undefined;
-}
-export interface PatchUserResponse {
-    user: User | undefined;
-}
 export interface CreateUserRequest {
     email: string;
     givenName: string;
@@ -133,6 +123,16 @@ export interface GetUserRequest {
 }
 export interface GetUserResponse {
     user: UserDetail | undefined;
+}
+export interface PatchUserRequest {
+    id: string;
+    givenName?: string | undefined;
+    familyName?: string | undefined;
+    email?: string | undefined;
+    active?: boolean | undefined;
+}
+export interface PatchUserResponse {
+    user: User | undefined;
 }
 export interface DeleteUserRequest {
     id: string;
@@ -1661,108 +1661,6 @@ export declare const ListUsersResponse: {
         }[]>]: never; };
     } & { [K_5 in Exclude<keyof I_1, "users">]: never; }>(object: I_1): ListUsersResponse;
 };
-export declare const PatchUserRequest: {
-    encode(message: PatchUserRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserRequest;
-    fromJSON(object: any): PatchUserRequest;
-    toJSON(message: PatchUserRequest): unknown;
-    create<I extends {
-        id?: string;
-        givenName?: string | undefined;
-        familyName?: string | undefined;
-        email?: string | undefined;
-        active?: boolean | undefined;
-    } & {
-        id?: string;
-        givenName?: string | undefined;
-        familyName?: string | undefined;
-        email?: string | undefined;
-        active?: boolean | undefined;
-    } & { [K in Exclude<keyof I, keyof PatchUserRequest>]: never; }>(base?: I): PatchUserRequest;
-    fromPartial<I_1 extends {
-        id?: string;
-        givenName?: string | undefined;
-        familyName?: string | undefined;
-        email?: string | undefined;
-        active?: boolean | undefined;
-    } & {
-        id?: string;
-        givenName?: string | undefined;
-        familyName?: string | undefined;
-        email?: string | undefined;
-        active?: boolean | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof PatchUserRequest>]: never; }>(object: I_1): PatchUserRequest;
-};
-export declare const PatchUserResponse: {
-    encode(message: PatchUserResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserResponse;
-    fromJSON(object: any): PatchUserResponse;
-    toJSON(message: PatchUserResponse): unknown;
-    create<I extends {
-        user?: {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        };
-    } & {
-        user?: {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        } & {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
-    } & { [K_1 in Exclude<keyof I, "user">]: never; }>(base?: I): PatchUserResponse;
-    fromPartial<I_1 extends {
-        user?: {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        };
-    } & {
-        user?: {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        } & {
-            id?: string;
-            email?: string;
-            givenName?: string;
-            familyName?: string;
-            active?: boolean;
-            lastLoginAt?: number;
-            lastActivityAt?: number;
-            scimLastSyncedAt?: number;
-        } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
-    } & { [K_3 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): PatchUserResponse;
-};
 export declare const CreateUserRequest: {
     encode(message: CreateUserRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): CreateUserRequest;
@@ -2152,6 +2050,108 @@ export declare const GetUserResponse: {
             }[]>]: never; };
         } & { [K_20 in Exclude<keyof I_1["user"], keyof UserDetail>]: never; };
     } & { [K_21 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): GetUserResponse;
+};
+export declare const PatchUserRequest: {
+    encode(message: PatchUserRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserRequest;
+    fromJSON(object: any): PatchUserRequest;
+    toJSON(message: PatchUserRequest): unknown;
+    create<I extends {
+        id?: string;
+        givenName?: string | undefined;
+        familyName?: string | undefined;
+        email?: string | undefined;
+        active?: boolean | undefined;
+    } & {
+        id?: string;
+        givenName?: string | undefined;
+        familyName?: string | undefined;
+        email?: string | undefined;
+        active?: boolean | undefined;
+    } & { [K in Exclude<keyof I, keyof PatchUserRequest>]: never; }>(base?: I): PatchUserRequest;
+    fromPartial<I_1 extends {
+        id?: string;
+        givenName?: string | undefined;
+        familyName?: string | undefined;
+        email?: string | undefined;
+        active?: boolean | undefined;
+    } & {
+        id?: string;
+        givenName?: string | undefined;
+        familyName?: string | undefined;
+        email?: string | undefined;
+        active?: boolean | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof PatchUserRequest>]: never; }>(object: I_1): PatchUserRequest;
+};
+export declare const PatchUserResponse: {
+    encode(message: PatchUserResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PatchUserResponse;
+    fromJSON(object: any): PatchUserResponse;
+    toJSON(message: PatchUserResponse): unknown;
+    create<I extends {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        };
+    } & {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        } & { [K in Exclude<keyof I["user"], keyof User>]: never; };
+    } & { [K_1 in Exclude<keyof I, "user">]: never; }>(base?: I): PatchUserResponse;
+    fromPartial<I_1 extends {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        };
+    } & {
+        user?: {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        } & {
+            id?: string;
+            email?: string;
+            givenName?: string;
+            familyName?: string;
+            active?: boolean;
+            lastLoginAt?: number;
+            lastActivityAt?: number;
+            scimLastSyncedAt?: number;
+        } & { [K_2 in Exclude<keyof I_1["user"], keyof User>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "user">]: never; }>(object: I_1): PatchUserResponse;
 };
 export declare const DeleteUserRequest: {
     encode(message: DeleteUserRequest, writer?: _m0.Writer): _m0.Writer;
