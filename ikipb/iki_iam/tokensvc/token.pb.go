@@ -105,7 +105,7 @@ func (x *GetJwksetResponse) GetJwkset() []byte {
 
 type AccessTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshToken  *string                `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3,oneof" json:"refresh_token,omitempty"`
 	EntityType    iki_iam.EntityType     `protobuf:"varint,2,opt,name=entity_type,json=entityType,proto3,enum=iam.EntityType" json:"entity_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -142,8 +142,8 @@ func (*AccessTokenRequest) Descriptor() ([]byte, []int) {
 }
 
 func (x *AccessTokenRequest) GetRefreshToken() string {
-	if x != nil {
-		return x.RefreshToken
+	if x != nil && x.RefreshToken != nil {
+		return *x.RefreshToken
 	}
 	return ""
 }
@@ -206,11 +206,12 @@ const file_ikipb_iki_iam_tokensvc_token_proto_rawDesc = "" +
 	"\"ikipb/iki_iam/tokensvc/token.proto\x12\btokensvc\x1a\x1bbuf/validate/validate.proto\x1a\x17ikipb/iki_iam/iam.proto\"\x12\n" +
 	"\x10GetJwksetRequest\"+\n" +
 	"\x11GetJwksetResponse\x12\x16\n" +
-	"\x06jwkset\x18\x01 \x01(\fR\x06jwkset\"~\n" +
-	"\x12AccessTokenRequest\x12,\n" +
-	"\rrefresh_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\frefreshToken\x12:\n" +
+	"\x06jwkset\x18\x01 \x01(\fR\x06jwkset\"\x95\x01\n" +
+	"\x12AccessTokenRequest\x121\n" +
+	"\rrefresh_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01H\x00R\frefreshToken\x88\x01\x01\x12:\n" +
 	"\ventity_type\x18\x02 \x01(\x0e2\x0f.iam.EntityTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\n" +
-	"entityType\"8\n" +
+	"entityTypeB\x10\n" +
+	"\x0e_refresh_token\"8\n" +
 	"\x13AccessTokenResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken2\xa0\x01\n" +
 	"\bTokenSvc\x12F\n" +
@@ -255,6 +256,7 @@ func file_ikipb_iki_iam_tokensvc_token_proto_init() {
 	if File_ikipb_iki_iam_tokensvc_token_proto != nil {
 		return
 	}
+	file_ikipb_iki_iam_tokensvc_token_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
