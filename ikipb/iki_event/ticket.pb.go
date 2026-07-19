@@ -92,7 +92,7 @@ func (x *User) GetEmail() string {
 
 type Comment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	Author        *User                  `protobuf:"bytes,3,opt,name=author,proto3" json:"author,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -129,11 +129,11 @@ func (*Comment) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Comment) GetId() string {
+func (x *Comment) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *Comment) GetContent() string {
@@ -152,7 +152,7 @@ func (x *Comment) GetAuthor() *User {
 
 type Ticket struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       *string                `protobuf:"bytes,3,opt,name=content,proto3,oneof" json:"content,omitempty"`
 	StateKey      string                 `protobuf:"bytes,4,opt,name=state_key,json=stateKey,proto3" json:"state_key,omitempty"`
@@ -194,11 +194,11 @@ func (*Ticket) Descriptor() ([]byte, []int) {
 	return file_ikipb_iki_event_ticket_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Ticket) GetId() string {
+func (x *Ticket) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *Ticket) GetTitle() string {
@@ -435,13 +435,13 @@ const file_ikipb_iki_event_ticket_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12&\n" +
 	"\tfirstname\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\tfirstname\x12$\n" +
 	"\blastname\x18\x03 \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\blastname\x12\x1d\n" +
-	"\x05email\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"k\n" +
-	"\aComment\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x18\n" +
+	"\x05email\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"j\n" +
+	"\aComment\x12\x17\n" +
+	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12,\n" +
-	"\x06author\x18\x03 \x01(\v2\f.ticket.UserB\x06\xbaH\x03\xc8\x01\x01R\x06author\"\xd5\x02\n" +
-	"\x06Ticket\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
+	"\x06author\x18\x03 \x01(\v2\f.ticket.UserB\x06\xbaH\x03\xc8\x01\x01R\x06author\"\xd4\x02\n" +
+	"\x06Ticket\x12\x17\n" +
+	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\x12 \n" +
 	"\x05title\x18\x02 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05title\x12\x1d\n" +
 	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12$\n" +

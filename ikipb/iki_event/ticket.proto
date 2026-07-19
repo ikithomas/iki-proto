@@ -15,13 +15,13 @@ message User {
 }
 
 message Comment {
-  string id      = 1 [(buf.validate.field).string.uuid = true];
+  int64 id       = 1 [(buf.validate.field).int64.gt = 0];
   string content = 2;
   User author    = 3 [(buf.validate.field).required = true];
 }
 
 message Ticket {
-  string id                = 1 [(buf.validate.field).string.uuid = true];
+  int64 id                 = 1 [(buf.validate.field).int64.gt = 0];
   string title             = 2 [(buf.validate.field).string = {min_len: 1, max_len: 255}];
   optional string content  = 3;
   string state_key         = 4 [(buf.validate.field).string.min_len = 1];
